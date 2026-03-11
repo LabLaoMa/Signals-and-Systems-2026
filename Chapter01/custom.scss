@@ -1,0 +1,170 @@
+/* 1. 针对幻灯片主标题 (通常是 H2) */
+.reveal h2 {
+  margin-bottom: 0.1em !important; /* 默认通常是 larger，改小它 */
+}
+
+/* 2. 针对内容里的小标题 (通常是 H3) */
+.reveal h3 {
+  margin-top: -0.3em !important; /* 默认很大，改小它 */
+  padding-top: 0 !important;     /* 确保没有内边距捣乱 */
+}
+
+/* 3. (可选) 如果你觉得所有标题间距都太大，可以用通用变量覆盖 */
+:root {
+  --r-heading-margin: 0.2em; /* Reveal.js 的原生变量 */
+}
+
+
+/*-- scss:rules --*/
+/*$presentation-font-size-root: 32px;*/
+/* 1. 修改全局变量 (必须写在顶部) */
+$presentation-font-size-root: 48px; 
+/* 调大这个，所有文字都会按比例变大 */
+$font-size-base: 48px;
+
+/*-- scss:rules --*/
+.reveal .title-slide {
+  text-align: center;
+}
+
+.reveal .slides { 
+font-size: 48px;  
+line-height: 1.25; 
+padding-bottom: 0 !important;
+}
+
+.reveal .slides section:not(.title-slide):not(.chapter-slide) h1,
+.reveal .slides section:not(.title-slide):not(.chapter-slide) h2 {
+  position: relative;
+  margin-top: -20px !important;  /* 向上提，数值越小越靠上 */
+  padding-top: 0 !important;
+  padding-bottom: 0.35em;
+  margin-bottom: 0.55em;
+}
+
+.reveal .slides section:not(.title-slide):not(.chapter-slide) h1::after,
+.reveal .slides section:not(.title-slide):not(.chapter-slide) h2::after {
+  content: "";
+  display: block;
+  height: 6px;
+  width: 100%;
+  margin-top: 0.25em;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+    rgba(79, 163, 209, 1) 0%,
+    rgba(207, 227, 246, 1) 55%,
+    rgba(207, 227, 246, 0) 100%
+  );
+}
+
+.reveal .slides section:not(.title-slide):not(.chapter-slide) {
+  padding-top: 0.3em;
+}
+
+.reveal .slides section:not(.title-slide):not(.chapter-slide) .slide-content,
+.reveal .slides section:not(.title-slide):not(.chapter-slide) .content {
+  padding-top: 0.1em !important;
+  margin-top: 0 !important;
+}
+
+/* 强制关闭垂直分散对齐，改回默认的顶部对齐 */
+.reveal .slides section {
+  display: block !important; /* 或者是 flex，但方向要对 */
+  flex-direction: column !important;
+  justify-content: flex-start !important; /* 关键：强制靠上，而不是两端对齐 */
+}
+
+.hud{
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,255,255,0.35);
+  background: rgba(0,255,255,0.07);
+}
+
+/* 小结页的三栏卡片 */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.card {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.06);
+}
+  /* 统一卡片感 */
+.reveal .callout {
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(6px);
+  font-size: 0.9em; /* 稍微调小一点通常更精致 */
+}
+
+.reveal .footer{
+  position: fixed;
+  bottom: 0.4em;
+
+  /* 关键：不再铺满 */
+  max-width: 80%;          /* 可调：70%–85% 都好看 */
+  width: auto;
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  height: 1.2em;
+  line-height: 1.2em;
+  padding: 0;
+
+  background-color: rgba(11, 42, 74, 0.88);
+  border-radius: 0.6em;    /* 轻微圆角，更像 PPT */
+  z-index: 20;
+  box-sizing: border-box;
+}
+
+
+/* 三列容器 */
+.reveal .footer-3col {
+  display: flex;
+  height: 100%;
+}
+
+/* 左 / 中 / 右三块 */
+.reveal .footer-3col > div {
+  flex: 1;
+  display: flex;
+  align-items: center;     /* 垂直居中 */
+  justify-content: center; /* 各自居中 */
+  font-size: 0.75em;
+  color: #e6eef6;
+  letter-spacing: 0.04em;
+}
+
+/* 左右稍微内缩一点，更像官方模板 */
+.reveal .footer-3col .left {
+  justify-content: center;
+  padding-left: 1.2em;
+}
+
+.reveal .footer-3col .right {
+  justify-content: center;
+  padding-right: 1.2em;
+}
+
+.reveal section img {
+  opacity: 1 !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+.reveal figure, .reveal .quarto-figure {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* 左下角菜单按钮缩小 */
+.reveal .slide-menu-button {
+  transform: scale(0.75);
+  bottom: 12px;
+  left: 12px;
+}
