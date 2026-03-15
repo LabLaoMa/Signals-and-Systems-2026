@@ -1216,5 +1216,1083 @@
     "title": "第三章 周期信号的傅里叶级数表示",
     "section": "作业",
     "text": "作业"
+  },
+  {
+    "objectID": "Chapter03_V3.html#toc0",
+    "href": "Chapter03_V3.html#toc0",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "目录",
+    "text": "目录\n\n1. 线性时不变系统对复指数信号的响应\n2. 连续时间周期信号的傅里叶级数表示\n3. 连续时间傅里叶级数的收敛\n4. 连续时间傅里叶级数的性质\n5. 离散时间周期信号的傅里叶级数表示\n6. 离散时间傅里叶级数的性质\n7. 傅里叶级数与线性时不变系统\n8. 滤波\n\n频率成形滤波器\n频率选择性滤波器\n用微分方程描述的连续时间滤波器\n用差分方程描述的离散时间滤波器"
+  },
+  {
+    "objectID": "Chapter03_V3.html#回顾",
+    "href": "Chapter03_V3.html#回顾",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "回顾",
+    "text": "回顾\n\n\n\n\n\n\n\n\n\n\n\\(\\mathbb{R}^{n}\\)\nDT 信号 \\(\\mathbb{C}^{\\mathbb{Z}}\\)\nCT 信号\n\n\n\n\n基 (basis)\n\\(\\left\\{\\mathbf{e}_{1}, \\ldots, \\mathbf{e}_{n}\\right\\}\\)\n\\(\\left\\{\\delta_{k}: k \\in \\mathbb{Z}\\right\\}\\)\n\\(\\left\\{\\delta_{\\tau}: \\tau \\in \\mathbb{R}\\right\\}^{1}\\)\n\n\n一般信号 \\(x\\)\n\\(x=\\sum_{k=1}^{n} x_{k} \\mathbf{e}_{k}\\)\n\\(x=\\sum_{k \\in \\mathbb{Z}} x[k] \\delta_{k}\\)\n\\(x=\\int_{\\mathbb{R}} x(\\tau) \\delta_{\\tau} d \\tau\\)\n\n\n线性变换下的像\n\n\n\n\n\n基的像\n\\(\\left\\{\\mathbf{f}_{1}, \\ldots, \\mathbf{f}_{n}\\right\\}\\)\n\\(\\left\\{h_{k}: k \\in \\mathbb{Z}\\right\\}\\)\n\\(\\left\\{h_{\\tau}: \\tau \\in \\mathbb{R}\\right\\}\\)\n\n\n一般信号 \\(x\\) 的像\n\\(A x=\\sum_{k=1}^{n} x_{k} \\mathbf{f}_{k}\\)\n\\(T(x)=\\sum_{k \\in \\mathbb{Z}} x[k] h_{k}\\)\n\\(T(x)=\\int_{\\mathbb{R}} x(\\tau) h_{\\tau} d \\tau\\)\n\n\nLTI 系统\n-\n\\(T(x)=x * h\\)\n\\(T(x)=x * h\\)\n\n\n\n注：并非“基”的标准用法；需结合下一行的积分表示来理解。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#特征值与特征向量",
+    "href": "Chapter03_V3.html#特征值与特征向量",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "特征值与特征向量",
+    "text": "特征值与特征向量\n在线性代数中，\\(v \\in \\mathbb{R}^{n}\\) 是矩阵 \\(A\\) 的特征向量 (eigenvector)，其对应的特征值 (eigenvalue) 为 \\(\\lambda\\)，如果：\n\\[\nA v=\\lambda v\n\\]\n假设 \\(A\\) 有 \\(n\\) 个不同的特征值 \\(\\lambda_{1}, \\ldots, \\lambda_{n}\\)，分别对应特征向量 \\(v_{1}, \\ldots, v_{n}\\)。\n\n\\(v_{1}, \\ldots, v_{n}\\) 构成 \\(\\mathbb{R}^{n}\\) 的一组基，即 \\(\\forall x \\in \\mathbb{R}^{n}\\) 都有以下表示：\n\n\\[\nx=\\sum_{k=1}^{n} a_{k} v_{k}\n\\]\n\n\\(x\\) 在 \\(A\\) 作用下的像：\n\n\\[\nA x=\\sum_{k=1}^{n} a_{k} A v_{k}=\\sum_{k=1}^{n} a_{k} \\lambda_{k} v_{k}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#基变换-change-of-basis",
+    "href": "Chapter03_V3.html#基变换-change-of-basis",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "基变换 (Change of Basis)",
+    "text": "基变换 (Change of Basis)\n\n\n\n\n\n\n\n\n\n标准基\n\\(A\\) 的特征基\n\n\n\n\n基向量\n\\(\\left\\{\\mathbf{e}_{1}, \\ldots, \\mathbf{e}_{n}\\right\\}\\)\n\\(\\left\\{v_{1}, \\ldots, v_{n}\\right\\}\\)\n\n\n分解\n\\(x=\\sum_{k=1}^{n} x_{k} \\mathbf{e}_{k}\\)\n\\(x=\\sum_{k=1}^{n} a_{k} v_{k}\\)\n\n\n\\(A\\) 作用下的像\n\\(A x=\\sum_{k=1}^{n} x_{k} \\mathbf{f}_{k}\\)\n\\(A x=\\sum_{k=1}^{n} a_{k} \\lambda_{k} v_{k}\\)\n\n\n\n\\(x\\) 和 \\(A x\\) 的展开：\n\n在标准基下：系数 \\(\\left\\{x_{k}\\right\\}\\) 相同，基向量不同 \\(\\left\\{\\mathbf{e}_{k}\\right\\} \\mapsto\\left\\{\\mathbf{f}_{k}\\right\\}\\)（卷积/叠加积分）\n在特征基下：基向量 \\(\\left\\{v_{k}\\right\\}\\) 相同，系数不同 \\(\\left\\{a_{k}\\right\\} \\mapsto\\left\\{\\lambda_{k} a_{k}\\right\\}\\)（乘法）"
+  },
+  {
+    "objectID": "Chapter03_V3.html#基变换-信号与系统",
+    "href": "Chapter03_V3.html#基变换-信号与系统",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "基变换 (信号与系统)",
+    "text": "基变换 (信号与系统)\n\n\n\n\n\n\n\n\n\nDT\n\n标准基\n特征基\n\n\n\n\n\n基向量\n\\(\\left\\{\\delta_{k}: k \\in \\mathbb{Z}\\right\\}\\)\n\\(z^n\\)\n\n\n\n分解\n\\(x=\\sum_{k \\in \\mathbb{Z}} x[k] \\delta_{k}\\)\n傅里叶/Z 变换\n\n\n\n\\(T\\) 作用下的像\n\\(T(x)=\\sum_{k \\in \\mathbb{Z}} x[k] h_{k}\\)\n\\(H(z) z^n\\)\n\n\nCT\n\n“标准基”\n特征基\n\n\n\n基向量\n\\(\\left\\{\\delta_{\\tau}: \\tau \\in \\mathbb{R}\\right\\}\\)\n\\(e^{st}\\)\n\n\n\n分解\n\\(x=\\int_{\\mathbb{R}} x(\\tau) \\delta_{\\tau} d \\tau\\)\n傅里叶/拉普拉斯变换\n\n\n\n\\(T\\) 作用下的像\n\\(T(x)=\\int_{\\mathbb{R}} x(\\tau) h_{\\tau} d \\tau\\)\n\\(H(s) e^{st}\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#lti-系统的特征值与特征函数",
+    "href": "Chapter03_V3.html#lti-系统的特征值与特征函数",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "LTI 系统的特征值与特征函数",
+    "text": "LTI 系统的特征值与特征函数\nCT 指数信号 \\(e^{s t}\\)\n\\[\nT\\left(e^{s t}\\right)=\\int_{\\mathbb{R}} h(\\tau) e^{s(t-\\tau)} d \\tau=e^{s t} \\int_{\\mathbb{R}} h(\\tau) e^{-s \\tau} d \\tau,\n\\]\n \\(e^{s t}\\) 是 \\(T\\) 的特征函数，对应的特征值 为：\n\\[\nH(s)=\\int_{\\mathbb{R}} h(\\tau) e^{-s \\tau} d \\tau \\quad \\text { (系统函数) }\n\\]\nDT 指数信号 \\(z^{n}\\)\n\\[\nT\\left(z^{n}\\right)=\\sum_{k \\in \\mathbb{Z}} h[k] z^{n-k}=z^{n} \\sum_{k \\in \\mathbb{Z}} h[k] z^{-k},\n\\]\n \\(z^{n}\\) 是 \\(T\\) 的特征函数，对应的特征值 为：\n\\[\nH(z)=\\sum_{k \\in \\mathbb{Z}} h[k] z^{-k} \\quad \\text { (系统函数) }\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#对特征函数线性组合的响应",
+    "href": "Chapter03_V3.html#对特征函数线性组合的响应",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "对特征函数线性组合的响应",
+    "text": "对特征函数线性组合的响应\nCT (连续时间)\n\\[\nT\\left(\\sum_{k} a_{k} e^{s_{k} t}\\right)=\\sum_{k} a_{k} H\\left(s_{k}\\right) e^{s_{k} t}\n\\]\nDT (离散时间)\n\\[\nT\\left(\\sum_{k} a_{k} z_{k}^{n}\\right)=\\sum_{k} a_{k} H\\left(z_{k}\\right) z_{k}^{n}\n\\]\n输入 vs. 输出\n\n相同的指数函数的线性组合\n系数发生变化：\\(\\left\\{a_{k}\\right\\} \\mapsto\\left\\{H\\left(s_{k}\\right) a_{k}\\right\\} /\\left\\{H\\left(z_{k}\\right) a_{k}\\right\\}\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#问题",
+    "href": "Chapter03_V3.html#问题",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "问题",
+    "text": "问题\n\n哪些函数可以是指数函数的线性组合？\n如何找到系数 \\(a_{k}\\)？\n\n傅里叶分析重点关注 CT 中的 \\(e^{j \\omega t}\\) 和 DT 中的 \\(e^{j \\omega n}\\)。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#toc1",
+    "href": "Chapter03_V3.html#toc1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "目录",
+    "text": "目录\n\n1. 线性时不变系统对复指数信号的响应\n2. 连续时间周期信号的傅里叶级数表示\n3. 连续时间傅里叶级数的收敛\n4. 连续时间傅里叶级数的性质\n5. 离散时间周期信号的傅里叶级数表示\n6. 离散时间傅里叶级数的性质\n7. 傅里叶级数与线性时不变系统\n8. 滤波\n\n频率成形滤波器\n频率选择性滤波器\n用微分方程描述的连续时间滤波器\n用差分方程描述的离散时间滤波器"
+  },
+  {
+    "objectID": "Chapter03_V3.html#ct-傅里叶级数",
+    "href": "Chapter03_V3.html#ct-傅里叶级数",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "CT 傅里叶级数",
+    "text": "CT 傅里叶级数\n回顾：CT 信号是周期的，周期为 \\(T\\)，如果：\n\\[\nx=\\tau_{T} x \\quad \\text { 或 } \\quad x(t)=x(t+T), \\forall t \\in \\mathbb{R}\n\\]\n\n基波周期 \\(T\\)：最小的正周期\n基波频率 \\(\\omega_{0}=\\frac{2 \\pi}{T}\\)\n\n\\(\\sin \\left(\\omega_{0} t\\right), \\cos \\left(\\omega_{0} t\\right), e^{j \\omega_{0} t}\\) 都是基频为 \\(\\omega_{0}\\) 的周期信号。 傅里叶级数用谐波相关 (harmonically related) 的正弦波或复指数信号表示周期信号：\n\\[\n\\begin{aligned}\n& x(t)=a_{0}+\\sum_{k=1}^{\\infty}\\left[a_{k} \\cos \\left(k \\omega_{0} t\\right)+b_{k} \\sin \\left(k \\omega_{0} t\\right)\\right] \\\\\n& x(t)=\\sum_{k=-\\infty}^{\\infty} c_{k} e^{j k \\omega_{0} t}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#谐波-harmonics",
+    "href": "Chapter03_V3.html#谐波-harmonics",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "谐波 (Harmonics)",
+    "text": "谐波 (Harmonics)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#谐波-harmonics-1",
+    "href": "Chapter03_V3.html#谐波-harmonics-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "谐波 (Harmonics)",
+    "text": "谐波 (Harmonics)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#谐波的正交归一性-orthonormality",
+    "href": "Chapter03_V3.html#谐波的正交归一性-orthonormality",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "谐波的正交归一性 (Orthonormality)",
+    "text": "谐波的正交归一性 (Orthonormality)\n回顾对于 \\(k \\neq 0\\)，\n\\[\n\\int_{a}^{b} e^{j k \\omega_{0} t} d t=\\frac{e^{j k \\omega_{0} b}-e^{j k \\omega_{0} a}}{j k \\omega_{0}}\n\\]\n由于 \\(e^{j k \\omega_{0} t}\\) 具有周期 \\(T\\)，在任意一个周期内：\n\\[\n\\frac{1}{T} \\int_{T} e^{j k \\omega_{0} t} d t=\\frac{1}{T} \\int_{t_{0}}^{t_{0}+T} e^{j k \\omega_{0} t} d t=\\delta[k]\n\\]\n定义两个周期为 \\(T\\) 的信号的内积 (inner product) 为：\n\\[\n\\langle f, g\\rangle=\\frac{1}{T} \\int_{T} f(t) \\overline{g(t)} d t\n\\]\n\\(\\left\\{e^{j k \\omega_{0} t}: k \\in \\mathbb{Z}\\right\\}\\) 是一个正交归一的函数系：\n\\[\n\\left\\langle e^{j k \\omega_{0} t}, e^{j m \\omega_{0} t}\\right\\rangle=\\frac{1}{T} \\int_{T} e^{j(k-m) \\omega_{0} t} d t=\\delta_{k m}=\\delta[k-m]\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#谐波的正交性-orthogonality",
+    "href": "Chapter03_V3.html#谐波的正交性-orthogonality",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "谐波的正交性 (Orthogonality)",
+    "text": "谐波的正交性 (Orthogonality)\n对于正弦和余弦函数：\n\\[\n\\begin{aligned}\n& \\left\\langle\\sin \\left(k \\omega_{0} t\\right), \\sin \\left(m \\omega_{0} t\\right)\\right\\rangle=\\frac{1}{2} \\delta[k-m]-\\frac{1}{2} \\delta[k+m] \\\\\n& \\left\\langle\\cos \\left(k \\omega_{0} t\\right), \\cos \\left(m \\omega_{0} t\\right)\\right\\rangle=\\frac{1}{2} \\delta[k-m]+\\frac{1}{2} \\delta[k+m] \\\\\n& \\left\\langle\\sin \\left(k \\omega_{0} t\\right), \\cos \\left(m \\omega_{0} t\\right)\\right\\rangle=0\n\\end{aligned}\n\\]\n证明： 使用欧拉公式和 \\(\\left\\{e^{i k \\omega_{0} t}: k \\in \\mathbb{Z}\\right\\}\\) 的正交归一性。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#谐波的正交性-图示",
+    "href": "Chapter03_V3.html#谐波的正交性-图示",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "谐波的正交性 (图示)",
+    "text": "谐波的正交性 (图示)\n\\[\n\\begin{gathered}\n\\sin \\left(\\omega_{0} t\\right) \\\\\n\\sin \\left(2 \\omega_{0} t\\right)\n\\end{gathered}\n\\]\n\n\n\n\n\n\\[\n\\begin{aligned}\n& \\sin \\left(\\omega_{0} t\\right) \\\\\n& \\cos \\left(\\omega_{0} t\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#傅里叶系数-fourier-coefficients",
+    "href": "Chapter03_V3.html#傅里叶系数-fourier-coefficients",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "傅里叶系数 (Fourier Coefficients)",
+    "text": "傅里叶系数 (Fourier Coefficients)\n假设 \\(x\\) 周期为 \\(T\\) 且有傅里叶级数表示：\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} c_{k} e^{j k \\omega_{0} t}, \\quad \\omega_{0}=\\frac{2 \\pi}{T}\n\\]\n利用 \\(\\left\\{e^{j k \\omega_{0} t}\\right\\}\\) 的正交归一性求解傅里叶系数：\n\\[\n\\begin{aligned}\n\\left\\langle x, e^{j m \\omega_{0} t}\\right\\rangle & =\\left\\langle\\sum_{k=-\\infty}^{\\infty} c_{k} e^{j k \\omega_{0} t}, e^{j m \\omega_{0} t}\\right\\rangle \\\\\n& =\\sum_{k=-\\infty}^{\\infty} c_{k}\\left\\langle e^{j k \\omega_{0} t}, e^{j m \\omega_{0} t}\\right\\rangle \\\\\n& =\\sum_{k=-\\infty}^{\\infty} c_{k} \\delta[m-k]=c_{m}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#复数傅里叶级数",
+    "href": "Chapter03_V3.html#复数傅里叶级数",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "复数傅里叶级数",
+    "text": "复数傅里叶级数\n综合方程 (Synthesis equation)\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\omega_{0} t}=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\frac{2 \\pi}{T} t}\n\\]\n\\(N\\) 次部分和： \\[\nS_{N}(x)(t)=\\sum_{k=-N}^{N} \\hat{x}[k] e^{i k \\omega_{0} t}\n\\]\n分析方程 (Analysis equation)\n\\[\n\\hat{x}[k]=\\left\\langle x, e^{j k \\omega_{0} t}\\right\\rangle=\\frac{1}{T} \\int_{T} x(t) e^{-j k \\omega_{0} t} d t=\\frac{1}{T} \\int_{T} x(t) e^{-j k \\frac{2 \\pi}{T} t} d t\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#三角傅里叶级数",
+    "href": "Chapter03_V3.html#三角傅里叶级数",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "三角傅里叶级数",
+    "text": "三角傅里叶级数\n对于正弦和余弦： * 正弦与正弦正交 * 余弦与余弦正交 * 正弦与余弦正交\n综合方程\n\\[\nx(t)=a_{0}+\\sum_{k=1}^{\\infty}\\left[a_{k} \\cos \\left(k \\omega_{0} t\\right)+b_{k} \\sin \\left(k \\omega_{0} t\\right)\\right]\n\\]\n分析方程\n\\[\na_{k}=\\frac{2-\\delta[k]}{T} \\int_{T} x(t) \\cos \\left(k \\omega_{0} t\\right) d t, \\quad b_{k}=\\frac{2}{T} \\int_{T} x(t) \\sin \\left(k \\omega_{0} t\\right) d t\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#两种形式的等价性",
+    "href": "Chapter03_V3.html#两种形式的等价性",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "两种形式的等价性",
+    "text": "两种形式的等价性\n复数形式 \\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]\n三角形式 \\[\nx(t)=a_{0}+\\sum_{k=1}^{\\infty}\\left[a_{k} \\cos \\left(k \\omega_{0} t\\right)+b_{k} \\sin \\left(k \\omega_{0} t\\right)\\right]\n\\]\n系数转换 (通过欧拉公式)\n\\[\n\\left\\{\\begin{array}{ll}\na_{0}=\\hat{x}[0] \\\\\na_{k}=\\hat{x}[k]+\\hat{x}[-k], \\\\\nb_{k}=j(\\hat{x}[k]-\\hat{x}[-k]),\n\\end{array} \\quad k \\geq 1 \\quad k \\geq 1 \\quad \\begin{cases}\\hat{x}[0]=a_{0} \\\\\n\\hat{x}[k]=\\frac{1}{2}\\left(a_{k}-j b_{k}\\right), & k \\geq 1 \\\\\n\\hat{x}[k]=\\frac{1}{2}\\left(a_{k}+j b_{-k}\\right), & k \\leq-1\\end{cases}\\right.\n\\]\n复数形式中的负频率是为了数学上的方便引入的，没有直接的物理意义。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子",
+    "href": "Chapter03_V3.html#例子",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子",
+    "text": "例子\n例子：\\(x(t)=e^{j \\omega_{0} t}, \\hat{x}[k]=\\delta[k-1]\\)\n\n\n频谱 \\(\\hat{x}[k]\\)\n\n\n\n例子：\\(x(t)=\\cos \\left(\\omega_{0} t+\\phi\\right)=\\frac{e^{i \\phi}}{2} e^{j \\omega_{0} t}+\\frac{e^{-j \\phi}}{2} e^{-j \\omega_{0} t}\\)，\n显然： \\[\n\\hat{x}[1]=\\frac{1}{2} e^{j \\phi}, \\quad, \\hat{x}[-1]=\\frac{1}{2} e^{-j \\phi}, \\quad \\hat{x}[k]=0, k \\neq \\pm 1\n\\]\n\n\n\n幅值谱 \\(|\\hat{x}[k]|\\)\n\n\n相位谱 \\(\\arg \\hat{x}[k]\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子三角波-triangle-wave",
+    "href": "Chapter03_V3.html#例子三角波-triangle-wave",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：三角波 (Triangle Wave)",
+    "text": "例子：三角波 (Triangle Wave)\n在一个周期内，\n\\[\nx(t)=1-\\frac{2|t|}{T}, \\quad|t| \\leq \\frac{T}{2}\n\\]\n\n傅里叶系数：\n\\[\nk=0, \\quad \\hat{x}[0]=\\frac{1}{T} \\int_{-T / 2}^{T / 2}\\left(1-\\frac{2|t|}{T}\\right) d t=\\frac{1}{2}\n\\]\n\\(k \\neq 0, k\\) 为奇数,\\(\\quad \\hat{x}[k]=\\frac{1}{T} \\int_{-T / 2}^{T / 2}\\left(1-\\frac{2|t|}{T}\\right) e^{-j k \\omega_{0} t} d t=\\frac{2}{\\pi^{2} k^{2}}\\) \\(k \\neq 0, k\\) 为偶数, \\(\\quad \\hat{x}[k]=0\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子三角波频谱",
+    "href": "Chapter03_V3.html#例子三角波频谱",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：三角波频谱",
+    "text": "例子：三角波频谱\n\\[\n\\hat{x}[k]= \\begin{cases}\\frac{1}{2}, & k=0 \\\\ \\frac{2}{\\pi^{2} k^{2}}, & k \\neq 0 \\text { 奇数 } \\\\ 0, & k \\neq 0 \\text { 偶数 }\\end{cases}\n\\]\n固定 \\(T\\) 的频谱，频率间隔 \\(\\Delta \\omega=\\frac{2 \\pi}{T}， \\omega_{k}=k \\frac{2 \\pi}{T}\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子三角波合成-n0",
+    "href": "Chapter03_V3.html#例子三角波合成-n0",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：三角波合成 (\\(N=0\\))",
+    "text": "例子：三角波合成 (\\(N=0\\))\n\\[\nS_{0}(x)(t)=\\sum_{k=-0}^{0} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子三角波合成-n1",
+    "href": "Chapter03_V3.html#例子三角波合成-n1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：三角波合成 (\\(N=1\\))",
+    "text": "例子：三角波合成 (\\(N=1\\))\n\\[\nS_{1}(x)(t)=\\sum_{k=-1}^{1} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子三角波合成-n3",
+    "href": "Chapter03_V3.html#例子三角波合成-n3",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：三角波合成 (\\(N=3\\))",
+    "text": "例子：三角波合成 (\\(N=3\\))\n\\[\nS_{3}(x)(t)=\\sum_{k=-3}^{3} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子三角波合成-n5",
+    "href": "Chapter03_V3.html#例子三角波合成-n5",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：三角波合成 (\\(N=5\\))",
+    "text": "例子：三角波合成 (\\(N=5\\))\n\\[\nS_{5}(x)(t)=\\sum_{k=-5}^{5} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子三角波合成-n7",
+    "href": "Chapter03_V3.html#例子三角波合成-n7",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：三角波合成 (\\(N=7\\))",
+    "text": "例子：三角波合成 (\\(N=7\\))\n\\[\nS_{7}(x)(t)=\\sum_{k=-7}^{7} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子三角波合成-n9",
+    "href": "Chapter03_V3.html#例子三角波合成-n9",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：三角波合成 (\\(N=9\\))",
+    "text": "例子：三角波合成 (\\(N=9\\))\n\\[\nS_{9}(x)(t)=\\sum_{k=-9}^{9} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子三角波合成-n19",
+    "href": "Chapter03_V3.html#例子三角波合成-n19",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：三角波合成 (\\(N=19\\))",
+    "text": "例子：三角波合成 (\\(N=19\\))\n\\[\nS_{19}(x)(t)=\\sum_{k=-19}^{19} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子周期方波-periodic-square-wave",
+    "href": "Chapter03_V3.html#例子周期方波-periodic-square-wave",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：周期方波 (Periodic Square Wave)",
+    "text": "例子：周期方波 (Periodic Square Wave)\n在一个周期内，\n\\[\nx(t)= \\begin{cases}1, & |t|&lt;T_{1} \\\\ 0, & T_{1}&lt;|t|&lt;T / 2\\end{cases}\n\\]\n\n傅里叶系数：\n\\[\n\\begin{array}{ll}\nk=0, & \\hat{x}[0]=\\frac{1}{T} \\int_{-T_{1}}^{T_{1}} 1 d t=\\frac{2 T_{1}}{T} \\\\\nk \\neq 0, & \\hat{x}[k]=\\frac{1}{T} \\int_{-T_{1}}^{T_{1}} e^{-j k \\omega_{0} t} d t=\\frac{2 \\sin \\left(k \\omega_{0} T_{1}\\right)}{k \\omega_{0} T}=\\frac{\\sin \\left(k \\omega_{0} T_{1}\\right)}{k \\pi}\n\\end{array}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子周期方波频谱",
+    "href": "Chapter03_V3.html#例子周期方波频谱",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：周期方波频谱",
+    "text": "例子：周期方波频谱\n\\[\n\\hat{x}[k]=\\frac{\\sin \\left(k \\frac{2 \\pi T_{1}}{T}\\right)}{k \\pi}=\\frac{2 \\sin \\left(\\omega_{k} T_{1}\\right)}{\\omega_{k} T}\n\\]\n固定 \\(T\\)，不同 \\(T_{1}\\) 的频谱："
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子周期方波频谱-不同-t",
+    "href": "Chapter03_V3.html#例子周期方波频谱-不同-t",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：周期方波频谱 (不同 \\(T\\))",
+    "text": "例子：周期方波频谱 (不同 \\(T\\))\n\\[\n\\hat{x}[k]=\\frac{\\sin \\left(k \\frac{2 \\pi T_{1}}{T}\\right)}{k \\pi}=\\frac{2 \\sin \\left(\\omega_{k} T_{1}\\right)}{\\omega_{k} T}\n\\]\n固定 \\(T_{1}\\)，不同 \\(T\\) 的频谱："
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子方波合成-n0",
+    "href": "Chapter03_V3.html#例子方波合成-n0",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：方波合成 (\\(N=0\\))",
+    "text": "例子：方波合成 (\\(N=0\\))\n\\[\nS_{0}(x)(t)=\\sum_{k=-0}^{0} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子方波合成-n1",
+    "href": "Chapter03_V3.html#例子方波合成-n1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：方波合成 (\\(N=1\\))",
+    "text": "例子：方波合成 (\\(N=1\\))\n\\[\nS_{1}(x)(t)=\\sum_{k=-1}^{1} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子方波合成-n3",
+    "href": "Chapter03_V3.html#例子方波合成-n3",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：方波合成 (\\(N=3\\))",
+    "text": "例子：方波合成 (\\(N=3\\))\n\\[\nS_{3}(x)(t)=\\sum_{k=-3}^{3} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子方波合成-n5",
+    "href": "Chapter03_V3.html#例子方波合成-n5",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：方波合成 (\\(N=5\\))",
+    "text": "例子：方波合成 (\\(N=5\\))\n\\[\nS_{5}(x)(t)=\\sum_{k=-5}^{5} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子方波合成-n7",
+    "href": "Chapter03_V3.html#例子方波合成-n7",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：方波合成 (\\(N=7\\))",
+    "text": "例子：方波合成 (\\(N=7\\))\n\\[\nS_{7}(x)(t)=\\sum_{k=-7}^{7} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子方波合成-n9",
+    "href": "Chapter03_V3.html#例子方波合成-n9",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：方波合成 (\\(N=9\\))",
+    "text": "例子：方波合成 (\\(N=9\\))\n\\[\nS_{9}(x)(t)=\\sum_{k=-9}^{9} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子方波合成-n13",
+    "href": "Chapter03_V3.html#例子方波合成-n13",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：方波合成 (\\(N=13\\))",
+    "text": "例子：方波合成 (\\(N=13\\))\n\\[\nS_{13}(x)(t)=\\sum_{k=-13}^{13} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子方波合成-n19",
+    "href": "Chapter03_V3.html#例子方波合成-n19",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：方波合成 (\\(N=19\\))",
+    "text": "例子：方波合成 (\\(N=19\\))\n\\[\nS_{19}(x)(t)=\\sum_{k=-19}^{19} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子方波合成-n29",
+    "href": "Chapter03_V3.html#例子方波合成-n29",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：方波合成 (\\(N=29\\))",
+    "text": "例子：方波合成 (\\(N=29\\))\n\\[\nS_{29}(x)(t)=\\sum_{k=-29}^{29} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子方波合成-n39",
+    "href": "Chapter03_V3.html#例子方波合成-n39",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：方波合成 (\\(N=39\\))",
+    "text": "例子：方波合成 (\\(N=39\\))\n\\[\nS_{39}(x)(t)=\\sum_{k=-39}^{39} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#吉布斯现象-gibbs-phenomenon",
+    "href": "Chapter03_V3.html#吉布斯现象-gibbs-phenomenon",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "吉布斯现象 (Gibbs Phenomenon)",
+    "text": "吉布斯现象 (Gibbs Phenomenon)\n傅里叶级数的部分和在跳变间断点处“振铃”\n\n随着项数增加，过冲越来越靠近间断点\n过冲幅度趋近于跳变幅度的 \\(\\approx 9 \\%\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#toc2",
+    "href": "Chapter03_V3.html#toc2",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "目录",
+    "text": "目录\n\n1. 线性时不变系统对复指数信号的响应\n2. 连续时间周期信号的傅里叶级数表示\n3. 连续时间傅里叶级数的收敛\n4. 连续时间傅里叶级数的性质\n5. 离散时间周期信号的傅里叶级数表示\n6. 离散时间傅里叶级数的性质\n7. 傅里叶级数与线性时不变系统\n8. 滤波\n\n频率成形滤波器\n频率选择性滤波器\n用微分方程描述的连续时间滤波器\n用差分方程描述的离散时间滤波器"
+  },
+  {
+    "objectID": "Chapter03_V3.html#向量空间-vector-space",
+    "href": "Chapter03_V3.html#向量空间-vector-space",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "向量空间 (Vector Space)",
+    "text": "向量空间 (Vector Space)\n域 \\(\\mathbb{F}\\) (\\(\\mathbb{R}\\) 或 \\(\\mathbb{C}\\)) 上的向量空间 \\(V\\) 具有两种运算：\n\n加法：\\(x, y \\in V \\Longrightarrow x+y \\in V\\)\n标量乘法：\\(\\lambda \\in \\mathbb{F}, x \\in V \\Longrightarrow \\lambda x \\in V\\)\n\n满足以下公理：\n\n加法交换律：\\(x+y=y+x, \\forall x, y \\in V\\)\n加法结合律：\\((x+y)+z=x+(y+z), \\forall x, y, z \\in V\\)\n加法单位元：\\(\\exists 0 \\in V\\) s.t. \\(x+0=x, \\forall x \\in V\\)\n加法逆元：\\(\\forall x \\in V, \\exists y \\in V\\) s.t. \\(x+y=0\\)\n标量乘法单位元：\\(1 x=x, \\forall x \\in V\\)\n标量与域乘法的相容性：\\(\\lambda_{1}\\left(\\lambda_{2} x\\right)=\\left(\\lambda_{1} \\lambda_{2}\\right) x, \\forall \\lambda_{1}, \\lambda_{2} \\in \\mathbb{F}, x \\in V\\)\n分配律：\\(\\lambda(x+y)=\\lambda x+\\lambda y, \\forall \\lambda \\in \\mathbb{F}, x, y \\in V\\)\n分配律：\\(\\left(\\lambda_{1}+\\lambda_{2}\\right) x=\\lambda_{1} x+\\lambda_{2} x, \\forall \\lambda_{1}, \\lambda_{2} \\in \\mathbb{F}, x \\in V\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#向量空间示例",
+    "href": "Chapter03_V3.html#向量空间示例",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "向量空间示例",
+    "text": "向量空间示例\n示例：\\(\\mathbb{R}^{n}, \\mathbb{C}^{n}\\)\n\\[\n\\begin{gathered}\n\\left(x_{1}, \\ldots, x_{n}\\right)^{T}+\\left(y_{1}, \\ldots, y_{n}\\right)^{T}=\\left(x_{1}+y_{1}, \\ldots, x_{n}+y_{n}\\right)^{T} \\\\\n\\lambda\\left(x_{1}, \\ldots, x_{n}\\right)^{T}=\\left(\\lambda x_{1}, \\ldots, \\lambda x_{n}\\right)^{T}\n\\end{gathered}\n\\]\n示例：CT 实/复值信号 \\(\\mathbb{R}^{\\mathbb{R}}, \\mathbb{C}^{\\mathbb{R}}\\)\n\\[\n\\begin{gathered}\n(x+y)(t)=x(t)+y(t) \\\\\n(\\lambda x)(t)=\\lambda x(t)\n\\end{gathered}\n\\]\n示例：DT 实/复值信号 \\(\\mathbb{R}^{\\mathbb{Z}}, \\mathbb{C}^{\\mathbb{Z}}\\)\n\\[\n\\begin{gathered}\n(x+y)[n]=x[n]+y[n] \\\\\n(\\lambda x)[n]=\\lambda x[n]\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#赋范向量空间-normed-vector-space",
+    "href": "Chapter03_V3.html#赋范向量空间-normed-vector-space",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "赋范向量空间 (Normed Vector Space)",
+    "text": "赋范向量空间 (Normed Vector Space)\n域 \\(\\mathbb{F}\\) 上向量空间 \\(V\\) 的范数 \\(\\|\\cdot\\|: V \\rightarrow \\mathbb{R}_{+}\\) 满足：\n\n正定性 (Positive definiteness)\n\n\\[\n\\|x\\|=0 \\Longleftrightarrow x=0\n\\]\n\n绝对齐次性 (Absolute homogeneity)\n\n\\[\n\\|\\lambda x\\|=|\\lambda| \\cdot\\|x\\|, \\quad \\forall \\lambda \\in \\mathbb{F}, x \\in V\n\\]\n\n三角不等式 (Triangle inequality)\n\n\\[\n\\|x+y\\| \\leq\\|x\\|+\\|y\\|\n\\]\n带有范数的向量空间称为赋范向量空间。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#赋范向量空间示例",
+    "href": "Chapter03_V3.html#赋范向量空间示例",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "赋范向量空间示例",
+    "text": "赋范向量空间示例\n示例：\\(\\mathbb{R}^{n}, \\mathbb{C}^{n}\\)\n\\[\n\\|x\\|_{p}= \\begin{cases}\\left(\\sum_{k=1}^{n}\\left|x_{k}\\right|^{p}\\right)^{1 / p}, & 1 \\leq p&lt;\\infty \\\\ \\max _{1 \\leq k \\leq n}\\left|x_{k}\\right|, & p=\\infty\\end{cases}\n\\]\n示例：CT 实/复值信号 \\(\\mathbb{R}^{\\mathbb{R}}, \\mathbb{C}^{\\mathbb{R}}\\)\n\\[\n\\|x\\|_{p}= \\begin{cases}\\left(\\int|x(t)|^{p} d t\\right)^{1 / p}, & 1 \\leq p&lt;\\infty \\\\ \\sup _{t}|x(t)|, & p=\\infty\\end{cases}\n\\]\n示例：DT 实/复值信号 \\(\\mathbb{R}^{\\mathbb{Z}}, \\mathbb{C}^{\\mathbb{Z}}\\)\n\\[\n\\|x\\|_{p}= \\begin{cases}\\left(\\sum_{k=-\\infty}^{\\infty}|x[k]|^{p}\\right)^{1 / p}, & 1 \\leq p&lt;\\infty \\\\ \\sup _{k \\in \\mathbb{Z}}|x[k]|, & p=\\infty\\end{cases}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#内积空间-inner-product-space",
+    "href": "Chapter03_V3.html#内积空间-inner-product-space",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "内积空间 (Inner Product Space)",
+    "text": "内积空间 (Inner Product Space)\n域 \\(\\mathbb{F}\\) (\\(\\mathbb{R}\\) 或 \\(\\mathbb{C}\\)) 上向量空间 \\(V\\) 的内积 \\(\\langle\\cdot, \\cdot\\rangle: V \\times V \\rightarrow \\mathbb{F}\\) 满足：\n\n共轭对称性 (Conjugate symmetry)\n\n\\[\n\\langle x, y\\rangle=\\overline{\\langle y, x\\rangle}\n\\]\n\n第一变元线性 (Linearity in first argument)\n\n\\[\n\\langle a x+b y, z\\rangle=a\\langle x, z\\rangle+b\\langle x, z\\rangle\n\\]\n\n正定性 (Positive definiteness)\n\n\\[\n\\begin{gathered}\n\\langle x, x\\rangle \\geq 0 \\\\\n\\langle x, x\\rangle=0 \\Longleftrightarrow x=0\n\\end{gathered}\n\\]\n带有内积的向量空间称为内积空间。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#内积空间示例",
+    "href": "Chapter03_V3.html#内积空间示例",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "内积空间示例",
+    "text": "内积空间示例\n示例：\\(\\mathbb{R}^{n}, \\mathbb{C}^{n}\\)\n\\[\n\\langle x, y\\rangle=\\sum_{k=1}^{n} x_{k} \\bar{y}_{k}\n\\]\n示例：CT 实/复值信号 \\(\\mathbb{R}^{\\mathbb{R}}, \\mathbb{C}^{\\mathbb{R}}\\)\n\\[\n\\langle x, y\\rangle=\\int_{\\mathbb{R}} x(t) \\overline{y(t)} d t\n\\]\n示例：DT 实/复值信号 \\(\\mathbb{R}^{\\mathbb{Z}}, \\mathbb{C}^{\\mathbb{Z}}\\)\n\\[\n\\langle x, y\\rangle=\\sum_{k=-\\infty}^{\\infty} x[k] \\overline{y[k]}\n\\]\n在所有情况下：\n\\[\n\\|x\\|_{2}=\\sqrt{\\langle x, x\\rangle}\n\\]\n对于内积空间，通常用 \\(\\|\\cdot\\|\\) 代替 \\(\\|\\cdot\\|_{2}\\)。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#柯西-施瓦茨不等式-cauchy-schwarz-inequality",
+    "href": "Chapter03_V3.html#柯西-施瓦茨不等式-cauchy-schwarz-inequality",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "柯西-施瓦茨不等式 (Cauchy-Schwarz Inequality)",
+    "text": "柯西-施瓦茨不等式 (Cauchy-Schwarz Inequality)\n\\[\n|\\langle x, y\\rangle| \\leq\\|x\\| \\cdot\\|y\\|\n\\]\n证明：如果 \\(\\|y\\|=0\\)，则 \\(y=0\\) 且 \\(\\langle x, y\\rangle=\\|x\\| \\cdot\\|y\\|\\)。现在假设 \\(\\|y\\| \\neq 0\\)。对于任意 \\(\\lambda \\in \\mathbb{C}\\)，\n\\[\n0 \\leq\\langle x-\\lambda y, x-\\lambda y\\rangle=\\|x\\|^{2}-\\lambda \\overline{\\langle x, y\\rangle}-\\bar{\\lambda}\\langle x, y\\rangle+|\\lambda|^{2}\\|y\\|^{2}\n\\]\n令 \\(\\lambda=\\langle x, y\\rangle /\\|y\\|^{2}\\)，\n\\[\n0 \\leq\\|x\\|^{2}-\\frac{|\\langle x, y\\rangle|^{2}}{\\|y\\|^{2}}-\\frac{|\\langle x, y\\rangle|^{2}}{\\|y\\|^{2}}+\\frac{|\\langle x, y\\rangle|^{2}}{\\|y\\|^{2}} \\Longrightarrow|\\langle x, y\\rangle| \\leq\\|x\\| \\cdot\\|y\\|\n\\]\n积分形式：\n\\[\n\\left|\\int_{\\mathbb{R}} x(t) \\overline{y(t)} d t\\right| \\leq \\sqrt{\\int_{\\mathbb{R}}|x(t)|^{2} d t} \\cdot \\sqrt{\\int_{\\mathbb{R}}|y(t)|^{2} d t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#内积空间中的正交归一系",
+    "href": "Chapter03_V3.html#内积空间中的正交归一系",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "内积空间中的正交归一系",
+    "text": "内积空间中的正交归一系\n如果 \\(\\langle x, y\\rangle=0\\)，则两个向量 \\(x, y \\in V\\) 是正交的。 如果 \\(\\|x\\|=1\\) 或 \\(\\langle x, x\\rangle=1\\)，则向量 \\(x \\in V\\) 是单位向量。 如果对于 \\(m \\neq k\\)，\\(\\left\\langle x_{k}, x_{m}\\right\\rangle=0\\)，则 \\(\\left\\{x_{k}\\right\\}\\) 是正交系。 如果 \\(\\left\\langle e_{k}, e_{m}\\right\\rangle=\\delta_{k m}=\\delta[k-m]\\)，则 \\(\\left\\{e_{k}\\right\\}\\) 是正交归一系 (orthonormal system)。\n示例：令 \\(V\\) 为周期为 \\(T\\) 的函数集合。内积为：\n\\[\n\\langle x, y\\rangle=\\frac{1}{T} \\int_{T} x(t) \\overline{y(t)} d t\n\\]\n令 \\(e_{k}(t)=e^{j k \\frac{2 \\pi}{T} t}\\)。回顾 \\(\\left\\{e_{k}: k \\in \\mathbb{Z}\\right\\}\\) 是正交归一系：\n\\[\n\\left\\langle e_{k}, e_{m}\\right\\rangle=\\delta[k-m]\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#正交归一展开-orthonormal-expansion",
+    "href": "Chapter03_V3.html#正交归一展开-orthonormal-expansion",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "正交归一展开 (Orthonormal Expansion)",
+    "text": "正交归一展开 (Orthonormal Expansion)\n给定正交归一系 \\(\\left\\{e_{k}\\right\\}\\)，假设\n\\[\nx=\\sum_{k} c_{k} e_{k}\n\\]\n通过与 \\(e_{m}\\) 做内积来求系数：\n\\[\n\\left\\langle x, e_{m}\\right\\rangle=\\left\\langle\\sum_{k} c_{k} e_{k}, e_{m}\\right\\rangle=\\sum_{k} c_{k}\\left\\langle e_{k}, e_{m}\\right\\rangle=\\sum_{k} c_{k} \\delta[k-m]=c_{m}\n\\]\n广义傅里叶级数：\n\\[\nx=\\sum_{k}\\left\\langle x, e_{k}\\right\\rangle e_{k}\n\\]\n这就是我们要做的傅里叶级数展开。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#最佳均方逼近-best-mean-square-approximation",
+    "href": "Chapter03_V3.html#最佳均方逼近-best-mean-square-approximation",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "最佳均方逼近 (Best Mean-square Approximation)",
+    "text": "最佳均方逼近 (Best Mean-square Approximation)\n用 \\(\\operatorname{span}\\left\\{e_{1}, \\ldots, e_{n}\\right\\}\\) 中的元素逼近 \\(x\\) 的均方误差，即用形式为 \\(y=\\sum_{k=1}^{n} a_{k} e_{k}\\) 的元素：\n\\[\n\\begin{aligned}\n\\|x-y\\|^{2} & =\\left\\langle x-\\sum_{k=1}^{n} a_{k} e_{k}, x-\\sum_{k=1}^{n} a_{k} e_{k}\\right\\rangle \\\\\n& =\\|x\\|^{2}-\\sum_{k=1}^{n} a_{k}\\left\\langle e_{k}, x\\right\\rangle-\\sum_{k=1}^{n} \\bar{a}_{k}\\left\\langle x, e_{k}\\right\\rangle+\\sum_{k=1}^{n}\\left|a_{k}\\right|^{2} \\\\\n& =\\|x\\|^{2}-2 \\sum_{k=1}^{n} \\operatorname{Re}\\left(\\bar{a}_{k}\\left\\langle x, e_{k}\\right\\rangle\\right)+\\sum_{k=1}^{n}\\left|a_{k}\\right|^{2} \\\\\n& \\geq\\|x\\|^{2}-2 \\sum_{k=1}^{n}\\left|a_{k}\\right| \\cdot\\left|\\left\\langle x, e_{k},\\right\\rangle\\right|+\\sum_{k=1}^{n}\\left|a_{k}\\right|^{2} \\quad(\\text { 使用 }|\\operatorname{Re} z| \\leq|z|) \\\\\n& =\\|x\\|^{2}-\\sum_{k=1}^{n}\\left|\\left\\langle x, e_{k}\\right\\rangle\\right|^{2}+\\sum_{k=1}^{n}\\left(\\left|a_{k}\\right|-\\left|\\left\\langle x, e_{k},\\right\\rangle\\right|\\right)^{2}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#最佳均方逼近-续",
+    "href": "Chapter03_V3.html#最佳均方逼近-续",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "最佳均方逼近 (续)",
+    "text": "最佳均方逼近 (续)\n逼近的均方误差：\n\\[\n\\begin{aligned}\n\\|x-y\\|^{2} & \\stackrel{(1)}{\\geq}\\|x\\|^{2}-\\sum_{k=1}^{n}\\left|\\left\\langle x, e_{k}\\right\\rangle\\right|^{2}+\\sum_{k=1}^{n}\\left(\\left|a_{k}\\right|-\\left|\\left\\langle x, e_{k},\\right\\rangle\\right|\\right)^{2} \\\\\n& \\stackrel{(2)}{\\geq}\\|x\\|^{2}-\\sum_{k=1}^{n}\\left|\\left\\langle x, e_{k}\\right\\rangle\\right|^{2}\n\\end{aligned}\n\\]\n当且仅当 \\(a_{k}=\\left\\langle x, e_{k}\\right\\rangle\\) 时达到最小均方误差。\n\n\n处取等号要求 \\(\\arg a_{k}=\\arg \\left\\langle x, e_{k}\\right\\rangle\\)\n\n\n处取等号要求 \\(\\left|a_{k}\\right|=\\left|\\left\\langle x, e_{k}\\right\\rangle\\right|\\)\n\n\n傅里叶部分和 \\(S_{N}(x)=\\sum_{k=-N}^{N} \\hat{x}[k] e^{j k \\omega_{0} t}\\) 是最佳均方逼近：\n\\[\n\\left\\|x-S_{N}(x)\\right\\|^{2}=\\min _{a_{k},-N \\leq k \\leq N}\\left\\|x-\\sum_{k=-N}^{N} a_{k} e^{j k \\omega_{0} t}\\right\\|^{2}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#贝塞尔不等式-bessels-inequality",
+    "href": "Chapter03_V3.html#贝塞尔不等式-bessels-inequality",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "贝塞尔不等式 (Bessel’s Inequality)",
+    "text": "贝塞尔不等式 (Bessel’s Inequality)\n最小均方误差：\n\\[\n\\left\\|x-\\sum_{k=1}^{n}\\left\\langle x, e_{k}\\right\\rangle e_{k}\\right\\|^{2}=\\|x\\|^{2}-\\sum_{k=1}^{n}\\left|\\left\\langle x, e_{k}\\right\\rangle\\right|^{2}\n\\]\n贝塞尔不等式：\n\\[\n\\sum_{k}\\left|\\left\\langle x, e_{k}\\right\\rangle\\right|^{2} \\leq\\|x\\|^{2}\n\\]\n对于具有有限 2-范数的信号的傅里叶系数：\n\\[\n\\sum_{k=-\\infty}^{\\infty}|\\hat{x}[k]|^{2} \\leq\\|x\\|^{2}\n\\]\n推论：\\(\\lim _{k \\rightarrow \\infty} \\hat{x}[k]=0\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#帕塞瓦尔公式-parsevals-identity",
+    "href": "Chapter03_V3.html#帕塞瓦尔公式-parsevals-identity",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "帕塞瓦尔公式 (Parseval’s Identity)",
+    "text": "帕塞瓦尔公式 (Parseval’s Identity)\n对于具有有限 2-范数 的信号的傅里叶系数：\n\\[\n\\sum_{k=-\\infty}^{\\infty}|\\hat{x}[k]|^{2}=\\|x\\|^{2}=\\frac{1}{T} \\int_{T}|x(t)|^{2} d t\n\\]\n解释：能量守恒\n\n\\(|\\hat{x}[k]|^{2}\\) 是第 \\(k\\) 次谐波分量的平均功率\n\\(\\|x\\|^{2}\\) 是 \\(x\\) 的平均功率\n总功率是所有分量功率之和\n\n定理：傅里叶级数在均方意义下收敛\n\\[\n\\lim _{N \\rightarrow \\infty}\\left\\|x-S_{N}(x)\\right\\|=0\n\\]\n注意：均方收敛并不意味着逐点收敛。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#最佳均方逼近",
+    "href": "Chapter03_V3.html#最佳均方逼近",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "最佳均方逼近",
+    "text": "最佳均方逼近\n给定一个正交归一系统 \\(\\left\\{e_{1}, \\ldots, e_{n}\\right\\}\\), 用由\\(\\operatorname{span}\\left\\{e_{1}, \\ldots, e_{n}\\right\\}\\)张成的空间中的元素来逼近\\(x\\)时，其均方意义下的最佳逼近（best mean-square approximation）是\n\\[\ny=\\sum_{k=1}^{n}\\left\\langle x, e_{k}\\right\\rangle e_{k},\n\\]\n并且其均方误差达到最小值\n\\[\n\\|x-y\\|^{2}=\\|x\\|^{2}-\\sum_{k=1}^{n}\\left|\\left\\langle x, e_{k}\\right\\rangle\\right|^{2} .\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#最佳均方逼近的几何意义",
+    "href": "Chapter03_V3.html#最佳均方逼近的几何意义",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "最佳均方逼近的几何意义",
+    "text": "最佳均方逼近的几何意义\n子空间 \\(\\left\\{e_{1}, \\ldots, e_{n}\\right\\}\\) 上的正交投影（毕达哥拉斯定理）"
+  },
+  {
+    "objectID": "Chapter03_V3.html#赋范向量空间中的收敛",
+    "href": "Chapter03_V3.html#赋范向量空间中的收敛",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "赋范向量空间中的收敛",
+    "text": "赋范向量空间中的收敛\n在赋范向量空间 \\((V, \\|\\cdot\\|)\\) 中，如果满足以下条件，则称序列 \\(\\{x_n\\}\\) 收敛于 \\(x \\in V\\)：\n\\[\\lim_{n \\to \\infty} \\|x_n - x\\| = 0\\]\n我们称 \\(x\\) 为 \\(\\{x_n\\}\\) 的极限，并写作：\n\\[x = \\lim_{n \\to \\infty} x_n, \\quad \\text{或当 } n \\to \\infty \\text{ 时, } x_n \\to x。\\]\n序列 \\(\\{x_n\\} \\subset V\\) 是 Cauchy 序列（柯西序列）当且仅当：\n\\[\\|x_n - x_m\\| \\to 0, \\quad \\text{当 } n, m \\to \\infty \\text{ 时。}\\]\n定理：每一个收敛序列都是 Cauchy 序列。\n证明： 若 \\(x_n \\to x\\)，根据三角不等式可得：\n\\[\\|x_n - x_m\\| \\le \\|x_n - x\\| + \\|x_m - x\\| \\to 0, \\quad \\text{当 } n, m \\to \\infty \\text{ 时。}\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#巴拿赫空间",
+    "href": "Chapter03_V3.html#巴拿赫空间",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "巴拿赫空间",
+    "text": "巴拿赫空间\n如果赋范向量空间 \\((V, \\|\\cdot\\|)\\) 中的每一个 Cauchy 序列都收敛，则称该空间是完备的 (Complete)。\n完备的赋范向量空间被称为 Banach 空间 (Banach space)。\n以下是巴拿赫空间的常见例子：\n\n\\((\\mathbb{R}^n, \\|\\cdot\\|_p), (\\mathbb{C}^n, \\|\\cdot\\|_p)\\)：实数或复数有限维向量空间及其 \\(L_p\\) 范数。\n离散时间 (DT) 信号空间 \\(\\ell_p\\)： \\(\\ell_p = \\{x \\in \\mathbb{C}^{\\mathbb{Z}} : \\|x\\|_p &lt; \\infty\\}\\), 采用\\(\\ell_p\\) 范数。\n连续时间 (CT) 信号空间 \\(L_p\\)： \\(L_p = \\{x \\in \\mathbb{C}^{\\mathbb{R}} : \\|x\\|_p &lt; \\infty\\}\\), 采用 \\(L_p\\) 范数。\n周期为 \\(T\\) 且具有有限平均功率的 CT 信号空间 \\(L_2(T)\\)： 其范数定义为： \\[\\|x\\|^2 = \\frac{1}{T} \\int_{T} |x(t)|^2 dt &lt; \\infty\\]\n连续 \\(T\\)-周期 CT 信号空间 \\(C(T)\\)： 配备 \\(L_\\infty\\) 范数（无穷范数）： \\[\\|x\\|_\\infty = \\sup_{t \\in [0, T]} |x(t)| = \\sup_{t \\in \\mathbb{R}} |x(t)|\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#巴拿赫空间-1",
+    "href": "Chapter03_V3.html#巴拿赫空间-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "巴拿赫空间",
+    "text": "巴拿赫空间\n非完备空间的例子\n\n\\((\\mathbb{Q}, |\\cdot|)\\)：其完备化空间为 \\((\\mathbb{R}, |\\cdot|)\\)。\n配备 \\(L_2\\) 范数的连续 \\(T\\)-周期 CT 信号空间 \\(C(T)\\)：其完备化空间为 \\(L_2(T)\\)。\n周期为 \\(T = 1\\) 的周期奇函数：\n\n\\[\nx_n = \\begin{cases}\nnt, & 0 \\le t \\le \\frac{1}{n} \\\\\n1, & \\frac{1}{n} \\le t \\le \\frac{1}{2} - \\frac{1}{n} \\\\\n1 - nt, & \\frac{1}{2} - \\frac{1}{n} \\le t \\le \\frac{1}{2}\n\\end{cases}\n\\]\n\n\\(x_n \\in C(1)\\)\n\\(x_n\\) 在 \\(L_2\\) 范数下收敛于周期方波。\n但该周期方波函数不属于 \\(C(1)\\)（因为它不是连续的）。\n\n\n结论： 相同的向量空间配备不同的范数会变成不同的赋范向量空间。 例如：\\((C(T), \\|\\cdot\\|_\\infty)\\) 与 \\((C(T), \\|\\cdot\\|_2)\\) 是不同的空间。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#ct-在-l_2-范数下的非完备性",
+    "href": "Chapter03_V3.html#ct-在-l_2-范数下的非完备性",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "\\(C(T)\\) 在 \\(L_2\\) 范数下的非完备性",
+    "text": "\\(C(T)\\) 在 \\(L_2\\) 范数下的非完备性\n\n\n\\(\\left\\|x_{n}-x\\right\\|_{2}^{2}=\\left(\\int_{-\\frac{1}{n}}^{\\frac{1}{n}}+\\int_{\\frac{1}{2}-\\frac{1}{n}}^{\\frac{1}{2}+\\frac{1}{n}}\\right)\\left|x_{n}(t)-x(t)\\right|^{2} d t \\leq \\frac{4}{n} \\rightarrow 0\\) \\(x \\in L_{2}(1)\\)，但 \\(x \\notin C(1)\\). 而且 \\(\\left\\|x_{n}-x\\right\\|_{\\infty}=1, \\forall n\\)\n图示说明： * \\(x_n\\) (上图): 这是一个梯形波序列。随着 \\(n\\) 增大，斜边变得越来越陡（上升时间 \\(\\frac{1}{n}\\) 变短）。它是连续函数，属于 \\(C(1)\\)。\n\n\\(x\\) (下图): 这是一个理想的方波。它是 \\(x_n\\) 的极限，但在跳变点处不连续。\n\n\n\n\n数学推导： 在 \\(L_2\\) 范数下，序列 \\(x_n\\) 与极限 \\(x\\) 之间的平方误差为： \\[\\|x_n - x\\|_2^2 = \\left( \\int_{-\\frac{1}{n}}^{\\frac{1}{n}} + \\int_{\\frac{1}{2}-\\frac{1}{n}}^{\\frac{1}{2}+\\frac{1}{n}} \\right) |x_n(t) - x(t)|^2 dt \\le \\frac{4}{n} \\to 0\\]\n结论： * \\(x \\in L_2(1)\\)（极限在平方可积空间内）。 * 但 \\(x \\notin C(1)\\)（极限不再是连续函数）。 * 此外，在无穷范数下：\\(\\|x_n - x\\|_\\infty = 1, \\forall n\\)（这意味着在一致收敛意义下，它并不收敛）。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#l_2收敛-vs.-逐点收敛",
+    "href": "Chapter03_V3.html#l_2收敛-vs.-逐点收敛",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "\\(L_{2}\\)收敛 vs. 逐点收敛",
+    "text": "\\(L_{2}\\)收敛 vs. 逐点收敛\n\n\n对于 \\(n \\ge 0\\) 且 \\(0 \\le k &lt; 2^n\\)，定义函数序列：\n\\[\nx_{2^n+k}(t) = \\begin{cases}\n1, & \\frac{k}{2^n} \\le t &lt; \\frac{k+1}{2^n} \\\\\n0, & \\text{其他}\n\\end{cases}\n\\]\n1. 在 \\(L_2\\) 范数下收敛于 0\n该序列在 \\(L_2\\) 范数下趋于 0，因为矩形的宽度（即支持集的测度）随着 \\(n\\) 的增加而趋于 0：\n\\(\\|x_{2^n+k} - 0\\|_2 = \\sqrt{\\int_0^1 |x_{2^n+k}(t)|^2 dt} = \\sqrt{\\frac{1}{2^n}} = \\frac{1}{2^{n/2}} \\to 0\\)\n2. 在任何点 \\(t_0 \\in [0, 1)\\) 都不收敛\n尽管整体“能量”在消失，但该序列在任何具体的点上都不存在极限：\n\n\\(\\forall n, \\exists k_1\\) 使得 \\(x_{2^n+k_1}(t_0) = 1\\)：这意味着矩形会周期性地扫过 \\(t_0\\)，使得函数值回到 1。\n\\(\\forall n, \\exists k_0\\) 使得 \\(x_{2^n+k_0}(t_0) = 0\\)：这意味着矩形也会离开 \\(t_0\\)，使得函数值回到 0。\n\n\n解读： &gt; 这个例子深刻地说明了 \\(L_p\\) 收敛并不蕴含逐点收敛。 矩形脉冲在区间内不断“滑行”并变窄：虽然它的面积（积分）趋于 0，但对于任何固定的点 \\(t_0\\)，函数值都会在 0 和 1 之间不断跳动，永不消停。\n\n\n\\[\nn=0, k=0\n\\]  \\[\nn=1, k=0\n\\] \\[\nn=1, k=1\n\\]  \\[\nn=2, k=0\n\\]  \\[\nn=2, k=1\n\\]  \\[\nn=2, k=2\n\\]\n\\[\nn=2, k=3\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#希尔伯特空间",
+    "href": "Chapter03_V3.html#希尔伯特空间",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "希尔伯特空间",
+    "text": "希尔伯特空间\n内积空间 \\((V, \\langle \\cdot, \\cdot \\rangle)\\) 也是一个赋范向量空间，其诱导范数定义为： \\[\\|x\\| = \\sqrt{\\langle x, x \\rangle}\\]\n如果内积空间 \\((V, \\langle \\cdot, \\cdot \\rangle)\\) 在该诱导范数 \\(\\|\\cdot\\|\\) 下是完备的，则称其为完备的。\n完备的内积空间被称为 Hilbert 空间 (Hilbert space)。\n以下是常见的完备内积空间（Hilbert 空间）：\n\n欧几里得空间：\n\n\\(\\mathbb{R}^n\\) 配备内积 \\(\\langle x, y \\rangle = \\sum_{k=1}^{n} x_k y_k\\)\n\\(\\mathbb{C}^n\\) 配备内积 \\(\\langle x, y \\rangle = \\sum_{k=1}^{n} x_k \\bar{y}_k\\)\n\n平方可和序列空间 \\(\\ell_2\\)： 配备内积 \\(\\langle x, y \\rangle = \\sum_{k=-\\infty}^{\\infty} x_k \\bar{y}_k\\)\n平方可积函数空间 \\(L_2\\)： 配备内积 \\(\\langle x, y \\rangle = \\int_{\\mathbb{R}} x(t) \\overline{y(t)} dt\\)\n周期为 \\(T\\) 的平方可积信号空间 \\(L_2(T)\\)： 配备内积 \\(\\langle x, y \\rangle = \\frac{1}{T} \\int_{T} x(t) \\overline{y(t)} dt\\)\n连续 \\(T\\)-周期信号空间 \\(C(T)\\)： 配备内积 \\(\\langle x, y \\rangle = \\frac{1}{T} \\int_{T} x(t) \\overline{y(t)} dt\\)。\n\n注意：在该内积（及其诱导的 \\(L_2\\) 范数）下，\\(C(T)\\) 是不完备的。其完备化空间即为 \\(L_2(T)\\)。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#完备正交规范序列",
+    "href": "Chapter03_V3.html#完备正交规范序列",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "完备正交规范序列",
+    "text": "完备正交规范序列\n在 Hilbert 空间 \\(H\\) 中，如果每一个元素 \\(x \\in H\\) 都可以进行如下展开，则称标准正交序列 \\(\\{e_k : k \\in \\mathbb{N}\\}\\) 是完备的 (Complete)：\n\\[x = \\sum_{k=1}^{\\infty} \\langle x, e_k \\rangle e_k\\]\n这意味着该序列的部分和在范数意义下收敛于 \\(x\\)，即：\n\\[\\lim_{n \\to \\infty} \\left\\| x - \\sum_{k=1}^{n} \\langle x, e_k \\rangle e_k \\right\\| = 0\\]\n\n标准正交基 (Orthonormal Basis)：一个完备的标准正交序列也被称为该 Hilbert 空间 \\(H\\) 的标准正交基。\n系数定义：展开式中的系数 \\(\\langle x, e_k \\rangle\\) 称为 \\(x\\) 关于基 \\(\\{e_k\\}\\) 的傅里叶系数或坐标。\n\n经典示例\n\n单位脉冲基：\\(\\{\\delta_k : k \\in \\mathbb{Z}\\}\\) 是平方可和序列空间 \\(\\ell_2\\) 的标准正交基。\n\n其中 \\(\\delta_k[m] = 1\\) (当 \\(m=k\\) 时) 且 \\(\\delta_k[m] = 0\\) (当 \\(m \\neq k\\) 时)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#帕塞瓦尔公式",
+    "href": "Chapter03_V3.html#帕塞瓦尔公式",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "帕塞瓦尔公式",
+    "text": "帕塞瓦尔公式\n若 \\(\\{e_k : k \\in \\mathbb{N}\\}\\) 是 Hilbert 空间 \\(H\\) 的一个标准正交基，则有：\n\\[\\|x\\|^2 = \\sum_{k=1}^{\\infty} |\\langle x, e_k \\rangle|^2\\]\n证明\n根据勾股定理（毕达哥拉斯定理）：\n\\[\\|x\\|^2 = \\sum_{k=1}^{n} |\\langle x, e_k \\rangle|^2 + \\left\\| x - \\sum_{k=1}^{n} \\langle x, e_k \\rangle e_k \\right\\|^2\\]\n令 \\(n \\to \\infty\\)，根据标准正交基的定义，最后一项（残差项）趋于零。\n结论：\n希尔伯特空间 \\(H\\) 同构于 \\(\\ell_2\\) 空间，其映射关系为 \\(x \\leftrightarrow \\{\\langle x, e_k \\rangle : k \\in \\mathbb{N}\\}\\)，并且满足：\n\\[\\langle x, y \\rangle = \\sum_{k=1}^{\\infty} \\langle x, e_k \\rangle \\overline{\\langle y, e_k \\rangle}\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#帕塞瓦尔公式-1",
+    "href": "Chapter03_V3.html#帕塞瓦尔公式-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "帕塞瓦尔公式",
+    "text": "帕塞瓦尔公式\n证明\n利用 \\(x\\) 和 \\(y\\) 在标准正交基 \\(\\{e_k\\}\\) 下的展开式：\n\\[\\begin{aligned}\n\\langle x, y \\rangle &= \\left\\langle \\sum_{k} \\langle x, e_k \\rangle e_k, \\sum_{m} \\langle y, e_m \\rangle e_m \\right\\rangle \\\\\n&= \\sum_{k} \\langle x, e_k \\rangle \\sum_{m} \\overline{\\langle y, e_m \\rangle} \\langle e_k, e_m \\rangle \\\\\n&= \\sum_{k} \\langle x, e_k \\rangle \\sum_{m} \\overline{\\langle y, e_m \\rangle} \\delta[k - m] \\\\\n&= \\sum_{k} \\langle x, e_k \\rangle \\overline{\\langle y, e_k \\rangle}\n\\end{aligned}\\]\n注意： 当 \\(x = y\\) 时，我们重新得到了 Parseval 等式： \\[\\|x\\|^2 = \\sum_{k=1}^{\\infty} |\\langle x, e_k \\rangle|^2\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#傅里叶级数的均方收敛",
+    "href": "Chapter03_V3.html#傅里叶级数的均方收敛",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "傅里叶级数的均方收敛",
+    "text": "傅里叶级数的均方收敛\n定理\n集合 \\(\\{e^{j k \\frac{2\\pi}{T} t} : k \\in \\mathbb{Z}\\}\\) 是 \\(L_2(T)\\) 空间的标准正交基。对于任何 \\(x \\in L_2(T)\\)，其傅里叶级数在均方意义下收敛，即在 \\(L_2\\) 范数下满足：\n\\[\\lim_{N \\to \\infty} \\|x - S_N(x)\\| = 0\\]\n\n注意 (NB)： 均方收敛并不意味着逐点收敛。\n\nParseval 公式 (帕塞瓦尔恒等式)\n\\[\\sum_{k=-\\infty}^{\\infty} |\\hat{x}[k]|^2 = \\|x\\|^2 = \\frac{1}{T} \\int_{T} |x(t)|^2 dt\\]\n物理阐释：能量守恒 (Energy Conservation)\n\n\\(|\\hat{x}[k]|^2\\)：第 \\(k\\) 次谐波分量的平均功率。\n\\(\\|x\\|^2\\)：信号 \\(x\\) 的总平均功率。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#傅里叶级数的均方收敛-1",
+    "href": "Chapter03_V3.html#傅里叶级数的均方收敛-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "傅里叶级数的均方收敛",
+    "text": "傅里叶级数的均方收敛\n核心解读\n\n均方收敛 vs 逐点收敛： 这是一个非常重要的警示。即使傅里叶级数捕获了信号的所有“能量”（均方收敛），但在信号的跳变点（不连续点）附近，它可能仍然无法完全匹配信号的具体数值（即著名的 Gibbs 现象）。\n频谱的本质： Parseval 等式建立了时域和频域之间的桥梁。它告诉我们，计算信号的功率既可以在时域（对平方求积分），也可以在频域（对系数平方求和）。在工程上，这意味着能量在变换过程中既没有丢失也没有凭空产生。\n正交性的威力： 之所以能写成这种简单的平方和形式，完全归功于复指数函数 \\(\\{e^{j k \\omega_0 t}\\}\\) 之间的相互正交性。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#l_2-信号的傅里叶级数-fourier-series-of-l_2-signals",
+    "href": "Chapter03_V3.html#l_2-信号的傅里叶级数-fourier-series-of-l_2-signals",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "\\(L_2\\) 信号的傅里叶级数 (Fourier Series of \\(L_2\\) Signals)",
+    "text": "\\(L_2\\) 信号的傅里叶级数 (Fourier Series of \\(L_2\\) Signals)\n周期函数与双向无限序列之间的对应关系；时域 vs. 频域\n\\[x \\stackrel{\\mathcal{FS}}{\\longleftrightarrow} \\hat{x} \\quad \\text{或 (or)} \\quad x(t) \\stackrel{\\mathcal{FS}}{\\longleftrightarrow} \\hat{x}[k]\\]\n傅里叶级数是 \\(L_2\\) 信号的 Hilbert 空间与 \\(\\ell_2\\) 傅里叶系数的 Hilbert 空间之间的同构映射\n\\[\\begin{aligned}\n\\mathcal{FS} : L_2(T) &\\to \\ell_2 \\\\\nx &\\mapsto \\hat{x}\n\\end{aligned}\\]\n将会看到离散时间傅里叶变换从 \\(\\hat{x}\\) 映射到 \\(x\\)。Parseval 定理\n\\[\\langle x, y \\rangle_{L_2(T)} = \\langle \\hat{x}, \\hat{y} \\rangle_{\\ell_2}\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#部分和的积分表示",
+    "href": "Chapter03_V3.html#部分和的积分表示",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "部分和的积分表示",
+    "text": "部分和的积分表示\n不失一般性，关注 \\(T=2 \\pi\\) 和 \\(\\omega_{0}=1\\)\n\\[\n\\begin{aligned}\nS_{N}(x)(t) & =\\sum_{k=-N}^{N} \\hat{x}[k] e^{j k t} \\\\\n& =\\sum_{k=-N}^{N}\\left(\\frac{1}{2 \\pi} \\int_{2 \\pi} x(\\tau) e^{-j k \\tau} d \\tau\\right) e^{j k t} \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} x(\\tau) \\sum_{k=-N}^{N} e^{j k(t-\\tau)} d \\tau \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} x(\\tau) D_{N}(t-\\tau) d \\tau=\\left(x * \\frac{D_{N}}{2 \\pi}\\right)(t)\n\\end{aligned}\n\\]\n其中 \\(D_N\\) 是 Dirichlet 核 (Dirichlet kernel)\n\\[\nD_{N}(t)=\\sum_{k=-N}^{N} e^{j k t}=\\frac{\\sin \\left(\\left(N+\\frac{1}{2}\\right) t\\right)}{\\sin (t / 2)}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#狄利克雷核",
+    "href": "Chapter03_V3.html#狄利克雷核",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "狄利克雷核",
+    "text": "狄利克雷核\n不同 \\(N\\) 取值下的 \\(\\frac{D_N}{2\\pi}\\) 图像\n\n\n\n\\(N=4\\)\n\n\n\\(N=8\\)\n\n\n\\(N=16\\)\n\n如果 \\(\\frac{D_N}{2\\pi} \\to \\delta\\)，那么至少对于连续函数 \\(x\\)，将会有 \\(S_N(x) = x * \\frac{D_N}{2\\pi} \\to x * \\delta = x\\)。\n不幸的是，存在连续函数 \\(x\\)，其傅里叶部分和 \\(S_N(x)\\) 当 \\(N \\to \\infty\\) 时，在某些点 \\(t\\) 处根本不收敛，更不用说在这些点收敛到 \\(x(t)\\) 了。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#逐点收敛",
+    "href": "Chapter03_V3.html#逐点收敛",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "逐点收敛",
+    "text": "逐点收敛\n定理。 若 \\(x\\) 是可微的，则对于所有 \\(t\\)，\\(\\lim_{N \\to \\infty} S_N(x)(t) = x(t)\\)。\n证明。 固定 \\(t\\)。定义：\n\\[\nF(\\tau) = \\begin{cases}\n\\frac{x(t-\\tau) - x(t)}{\\sin(\\tau/2)}, & \\tau \\neq 0 \\\\\n-2x'(t), & \\tau = 0\n\\end{cases}\n\\]\n其在 \\([-\\pi, \\pi]\\) 上是连续的。注意 \\(\\frac{1}{2\\pi} \\int_{-\\pi}^{\\pi} D_N(\\tau) d\\tau = 1\\)。\n\\[\\begin{aligned}\nS_N(x)(t) - x(t) &= \\frac{1}{2\\pi} \\int_{-\\pi}^{\\pi} x(t - \\tau) D_N(\\tau) d\\tau - \\frac{1}{2\\pi} \\int_{-\\pi}^{\\pi} x(t) D_N(\\tau) d\\tau \\\\\n&= \\frac{1}{2\\pi} \\int_{-\\pi}^{\\pi} [x(t - \\tau) - x(t)] D_N(\\tau) d\\tau \\\\\n&= \\frac{1}{2\\pi} \\int_{-\\pi}^{\\pi} F(\\tau) \\sin \\left( \\left(N + \\frac{1}{2}\\right) \\tau \\right) d\\tau\n\\end{aligned}\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#狄利克雷判别法",
+    "href": "Chapter03_V3.html#狄利克雷判别法",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "狄利克雷判别法",
+    "text": "狄利克雷判别法\n定理：如果 \\(x\\) 满足以下 狄利克雷条件 (Dirichlet conditions)：\n\n\\(x\\) 是有界的，即 \\(\\|x\\|_\\infty &lt; \\infty\\)；\n\\(x\\) 是分段单调的，即存在周期的有限划分，使得 \\(x\\) 在每个区间段上都是单调的；\n\n那么：\n\\[\\lim_{N \\to \\infty} S_N(x)(t) = \\frac{x(t_+) + x(t_-)}{2}\\]\n示例：\n\\[\\lim_{N \\to \\infty} S_N(x)(t) = \\begin{cases} 1, & t \\in (n, n + \\frac{1}{2}), \\\\ -1, & t \\in (n - \\frac{1}{2}, n), \\\\ 0, & t = \\frac{n}{2}, \\end{cases} \\quad n \\in \\mathbb{Z}\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#toc3",
+    "href": "Chapter03_V3.html#toc3",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "目录",
+    "text": "目录\n\n1. 线性时不变系统对复指数信号的响应\n2. 连续时间周期信号的傅里叶级数表示\n3. 连续时间傅里叶级数的收敛\n4. 连续时间傅里叶级数的性质\n5. 离散时间周期信号的傅里叶级数表示\n6. 离散时间傅里叶级数的性质\n7. 傅里叶级数与线性时不变系统\n8. 滤波\n\n频率成形滤波器\n频率选择性滤波器\n用微分方程描述的连续时间滤波器\n用差分方程描述的离散时间滤波器"
+  },
+  {
+    "objectID": "Chapter03_V3.html#ct-傅里叶级数的性质",
+    "href": "Chapter03_V3.html#ct-傅里叶级数的性质",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "CT 傅里叶级数的性质",
+    "text": "CT 傅里叶级数的性质\n傅里叶级数建立了周期函数与双无限序列之间的对应关系：\n\\[\nx \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} \\hat{x} \\quad \\text { 或 } \\quad x(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} \\hat{x}[k]\n\\]\n线性 (Linearity) 如果 \\(x, y\\) 具有相同的周期 \\(T\\)，那么它们的线性组合 \\(a x+b y\\) 也是，并且：\n\\[\n\\widehat{a x+b y}=a \\hat{x}+b \\hat{y}\n\\]\n证明：\n\\[\n\\begin{aligned}\n(\\widehat{a x+b y})[k] & =\\left\\langle a x+b y, e^{j k \\omega_{0} t}\\right\\rangle \\\\\n& =a\\left\\langle x, e^{j k \\omega_{0} t}\\right\\rangle+b\\left\\langle y, e^{j k \\omega_{0} t}\\right\\rangle \\\\\n& =a \\hat{x}[k]+b \\hat{y}[k]\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#ct-傅里叶级数的性质-1",
+    "href": "Chapter03_V3.html#ct-傅里叶级数的性质-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "CT 傅里叶级数的性质",
+    "text": "CT 傅里叶级数的性质\n时移 (Time shifting) 如果 \\(x\\) 周期为 \\(T\\) 且 \\(\\omega_{0}=\\frac{2 \\pi}{T}\\)，\n\\[\n\\widehat{\\tau_{t_{0}} x}=E_{-\\omega_{0} t_{0}} \\hat{x} \\quad \\text { 或 } \\quad x\\left(t-t_{0}\\right) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} e^{-j k \\omega_{0} t_{0}} \\hat{x}[k]\n\\]\n其中 \\(\\left(E_{a} \\hat{x}\\right)[k]=e^{j a k} \\hat{x}[k]\\) 时移 ⟺ 频率上的线性相位变化\n证明：\n\\[\n\\begin{aligned}\n\\left(\\widehat{\\tau_{t_{0}}} x\\right)[k] & =\\left\\langle\\tau_{t_{0}} x, e^{j k \\omega_{0} t}\\right\\rangle=\\left\\langle x, \\tau_{-t_{0}} e^{j k \\omega_{0} t}\\right\\rangle \\\\\n& =\\left\\langle x, e^{j k \\omega_{0}\\left(t+t_{0}\\right)}\\right\\rangle=\\left\\langle x, e^{j k \\omega_{0} t_{0}} e^{j k \\omega_{0} t}\\right\\rangle \\\\\n& =e^{-j k \\omega_{0} t_{0}}\\left\\langle x, e^{j k \\omega_{0} t}\\right\\rangle=e^{-j k \\omega_{0} t_{0}} \\hat{x}[k]=\\left(E_{-\\omega_{0} t_{0}} \\hat{x}\\right)[k]\n\\end{aligned}\n\\]\n例子：\\(\\cos (t)=\\frac{1}{2} e^{j t}+\\frac{1}{2} e^{-j t}, \\sin (t)=\\cos \\left(t-\\frac{\\pi}{2}\\right)=\\frac{-j}{2} e^{j t}+\\frac{j}{2} e^{-j t}\\)\n\n返回目录"
+  },
+  {
+    "objectID": "Chapter03_V3.html#傅里叶级数-回顾",
+    "href": "Chapter03_V3.html#傅里叶级数-回顾",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "傅里叶级数 (回顾)",
+    "text": "傅里叶级数 (回顾)\n周期为 \\(T\\) 且 \\(\\omega_{0}=\\frac{2 \\pi}{T}\\) 的信号 \\(x\\) 的傅里叶级数：\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]\n周期函数与双无限序列之间的对应关系；时域 vs. 频域：\n\\[\nx \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} \\hat{x} \\quad \\text { 或 } \\quad x(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} \\hat{x}[k]\n\\]\n\n\\(\\hat{x}\\) 由 \\(x\\) 在“基” \\(\\left\\{e^{j k \\omega_{0} t}\\right\\}\\) 下的展开系数组成\n仅凭 \\(\\hat{x}\\) 不能唯一确定 \\(x\\)，\n还需要知道基函数，或者等价地，知道周期 \\(T\\) 或基频 \\(\\omega_{0}\\)\n相同的系数配合不同的基（周期）会给出不同的函数（稍后详述）"
+  },
+  {
+    "objectID": "Chapter03_V3.html#线性-linearity",
+    "href": "Chapter03_V3.html#线性-linearity",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "线性 (Linearity)",
+    "text": "线性 (Linearity)\n如果 \\(x, y\\) 具有相同的周期 \\(T\\)，那么它们的线性组合 \\(a x+b y\\) 也是，并且：\n\\[\n\\widehat{a x+b y}=a \\hat{x}+b \\hat{y}\n\\]\n证明：\n\\[\n\\begin{aligned}\n(\\widehat{a x+b y})[k] & =\\left\\langle a x+b y, e^{j k \\omega_{0} t}\\right\\rangle \\\\\n& =a\\left\\langle x, e^{j k \\omega_{0} t}\\right\\rangle+b\\left\\langle y, e^{j k \\omega_{0} t}\\right\\rangle \\\\\n& =a \\hat{x}[k]+b \\hat{y}[k]\n\\end{aligned}\n\\]\n另一种证明思路：\n\\[\n\\left.\\begin{array}{l}\nx(t)=\\sum_{k} \\hat{x}[k] e^{j k \\omega_{0} t} \\\\\ny(t)=\\sum_{k} \\hat{y}[k] e^{j k \\omega_{0} t}\n\\end{array}\\right\\} \\Longrightarrow a x(t)+b y(t)=\\sum_{k}(a \\hat{x}[k]+b \\hat{y}[k]) e^{j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#时移-time-shifting",
+    "href": "Chapter03_V3.html#时移-time-shifting",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "时移 (Time Shifting)",
+    "text": "时移 (Time Shifting)\n如果 \\(x\\) 周期为 \\(T\\) 且 \\(\\omega_{0}=\\frac{2 \\pi}{T}\\)，\n\\[\n\\widehat{\\tau_{t_{0}} x}=E_{-\\omega_{0} t_{0}} \\hat{x} \\quad \\text { 或 } \\quad x\\left(t-t_{0}\\right) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} e^{-j k \\omega_{0} t_{0}} \\hat{x}[k]\n\\]\n其中 \\(\\left(E_{a} \\hat{x}\\right)[k]=e^{j a k} \\hat{x}[k]\\)\n时移 ⟺ 频率上的线性相位变化\n证明：\n\\[\n\\begin{aligned}\n\\left(\\widehat{\\tau_{t_{0}}} x\\right)[k] & =\\left\\langle\\tau_{t_{0}} x, e^{j k \\omega_{0} t}\\right\\rangle=\\left\\langle x, \\tau_{-t_{0}} e^{j k \\omega_{0} t}\\right\\rangle \\\\\n& =\\left\\langle x, e^{j k \\omega_{0}\\left(t+t_{0}\\right)}\\right\\rangle=\\left\\langle x, e^{j k \\omega_{0} t_{0}} e^{j k \\omega_{0} t}\\right\\rangle \\\\\n& =e^{-j k \\omega_{0} t_{0}}\\left\\langle x, e^{j k \\omega_{0} t}\\right\\rangle=e^{-j k \\omega_{0} t_{0}} \\hat{x}[k]=\\left(E_{-\\omega_{0} t_{0}} \\hat{x}\\right)[k]\n\\end{aligned}\n\\]\n例子：\\(\\cos (t)=\\frac{1}{2} e^{j t}+\\frac{1}{2} e^{-j t}, \\sin (t)=\\cos \\left(t-\\frac{\\pi}{2}\\right)=\\frac{-j}{2} e^{j t}+\\frac{j}{2} e^{-j t}\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#频移-frequency-shifting",
+    "href": "Chapter03_V3.html#频移-frequency-shifting",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "频移 (Frequency Shifting)",
+    "text": "频移 (Frequency Shifting)\n如果 \\(x\\) 周期为 \\(T\\) 且 \\(\\omega_{0}=\\frac{2 \\pi}{T}\\)，\n\\[\n\\widehat{E_{m \\omega_{0}} x}=\\tau_{m} \\hat{x} \\quad \\text { 或 } \\quad e^{j m \\omega_{0} t} x(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} \\hat{x}[k-m]\n\\]\n其中 \\(\\left(E_{a} x\\right)(t)=e^{j a t} x(t)\\)\n谐波指数调制 ⟹ 频移\n证明：\n\\[\n\\begin{aligned}\n\\left(\\widehat{E_{m \\omega_{0}}} x\\right)[k] & =\\left\\langle E_{m \\omega_{0}} x, e^{j k \\omega_{0} t}\\right\\rangle=\\left\\langle x, E_{-m \\omega_{0}} e^{j k \\omega_{0} t}\\right\\rangle \\\\\n& =\\left\\langle x, e^{j(k-m) \\omega_{0} t}\\right\\rangle=\\hat{x}[k-m]\n\\end{aligned}\n\\]\n注意：用非谐波指数信号进行调制可能会改变基频，甚至导致非周期信号。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#频移示例",
+    "href": "Chapter03_V3.html#频移示例",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "频移示例",
+    "text": "频移示例\n例子：\\(x(t)=1+\\cos \\left(\\omega_{0} t\\right)=1+\\frac{1}{2} e^{j \\omega_{0} t}+\\frac{1}{2} e^{-j \\omega_{0} t}\\)\n\\[\ny(t)=e^{j 3 \\omega_{0} t} x(t)=e^{j 3 \\omega_{0} t}+\\frac{1}{2} e^{j 4 \\omega_{0} t}+\\frac{1}{2} e^{j 2 \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#频移示例-1",
+    "href": "Chapter03_V3.html#频移示例-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "频移示例",
+    "text": "频移示例\n例子：\\(x(t)=1+\\cos \\left(\\omega_{0} t\\right)=1+\\frac{1}{2} e^{j \\omega_{0} t}+\\frac{1}{2} e^{-j \\omega_{0} t}\\)\n\\[\n\\begin{aligned}\nz(t)=\\cos \\left(3 \\omega_{0} t\\right) x(t)=\\operatorname{Re} y(t) & =\\frac{1}{2} e^{j 3 \\omega_{0} t}+\\frac{1}{4} e^{j 4 \\omega_{0} t}+\\frac{1}{4} e^{j 2 \\omega_{0} t} \\\\\n& +\\frac{1}{2} e^{-j 3 \\omega_{0} t}+\\frac{1}{4} e^{-j 4 \\omega_{0} t}+\\frac{1}{4} e^{-j 2 \\omega_{0} t}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#时间反转-time-reversal",
+    "href": "Chapter03_V3.html#时间反转-time-reversal",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "时间反转 (Time Reversal)",
+    "text": "时间反转 (Time Reversal)\n如果 \\(x\\) 周期为 \\(T\\)，\n\\[\n\\widehat{R x}=R \\hat{x} \\quad \\text { 或 } \\quad x(-t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} \\hat{x}[-k]\n\\]\n时间反转与傅里叶级数可交换\n\n证明：\n\\[\n(\\widehat{R x})[k]=\\left\\langle R x, e^{j k \\omega_{0} t}\\right\\rangle=\\left\\langle x, R e^{j k \\omega_{0} t}\\right\\rangle=\\left\\langle x, e^{-j k \\omega_{0} t}\\right\\rangle=\\hat{x}[-k]\n\\]\n推论：傅里叶级数保持奇/偶对称性，即 \\(x\\) 偶 \\(\\Longleftrightarrow \\hat{x}\\) 偶，\\(\\quad x\\) 奇 \\(\\Longleftrightarrow \\hat{x}\\) 奇"
+  },
+  {
+    "objectID": "Chapter03_V3.html#时间缩放-time-scaling",
+    "href": "Chapter03_V3.html#时间缩放-time-scaling",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "时间缩放 (Time Scaling)",
+    "text": "时间缩放 (Time Scaling)\n如果 \\(x\\) 周期为 \\(T\\)，那么 \\(S_{a} x\\) 周期为 \\(T / a\\)\n\\[\n\\widehat{S_{a} x}=\\hat{x} \\quad \\text { 或 } \\quad x(a t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} \\hat{x}[k]\n\\]\n时间缩放保持傅里叶系数不变，但改变基频\n\n\n\\[\\begin{aligned}\nx(t) & =\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\omega_{0} t} \\\\\nx(a t) & =\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k\\left(a \\omega_{0}\\right) t}\n\\end{aligned}\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#时间缩放",
+    "href": "Chapter03_V3.html#时间缩放",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "时间缩放",
+    "text": "时间缩放\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]\n对比 \\(\\quad x(a t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k\\left(a \\omega_{0}\\right) t}\\)\n\n\n\n\n\n\n\n\n时域压缩 ⟺ 频域（基频）扩展 时域扩展 ⟹ 频域（基频）压缩"
+  },
+  {
+    "objectID": "Chapter03_V3.html#微分-differentiation",
+    "href": "Chapter03_V3.html#微分-differentiation",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "微分 (Differentiation)",
+    "text": "微分 (Differentiation)\n如果 \\(x\\) 周期为 \\(T\\)，那么其导数 \\(x^{\\prime}\\) 也是，且\n\\[\n\\widehat{x^{\\prime}}=M_{\\omega_{0}} \\hat{x} \\quad \\text { 或 } \\quad x^{\\prime}(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} j k \\omega_{0} \\hat{x}[k]\n\\]\n其中 \\(\\left(M_{a} \\hat{x}\\right)[k]=j a k \\hat{x}[k]\\) 时域微分 ⟹ 频域乘以 \\(j k \\omega_{0}\\)\n证明：\n\\[\n\\begin{aligned}\n\\widehat{x^{\\prime}}[k] & =\\frac{1}{T} \\int_{T} x^{\\prime}(t) e^{-j k \\omega_{0} t} d t \\\\\n& =\\left.\\frac{1}{T}\\left[x(t) e^{-j k \\omega_{0} t}\\right]\\right|_{0} ^{T}+j k \\omega_{0}\\left(\\frac{1}{T} \\int_{T} x(t) e^{-j k \\omega_{0} t} d t\\right)=j k \\omega_{0} \\hat{x}[k]\n\\end{aligned}\n\\]\n或者，逐项求导：\n\\[\nx(t)=\\sum_{k} \\hat{x}[k] e^{j k \\omega_{0} t} \\Longrightarrow x^{\\prime}(t)=\\sum_{k} j k \\omega_{0} \\hat{x}[k] e^{-j k \\omega_{0} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#积分-integration",
+    "href": "Chapter03_V3.html#积分-integration",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "积分 (Integration)",
+    "text": "积分 (Integration)\n如果 \\(x\\) 周期为 \\(T\\) 且有傅里叶级数\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]\n逐项积分：\n\\[\n\\begin{aligned}\ny(t) \\triangleq \\int_{0}^{t} x(s) d s & =\\hat{x}[0] t+\\sum_{k \\neq 0} \\hat{x}[k] \\frac{e^{j k \\omega_{0} t}-1}{j k \\omega_{0}} \\\\\n& =\\hat{x}[0] t-\\sum_{k \\neq 0} \\frac{\\hat{x}[k]}{j k \\omega_{0}}+\\sum_{k \\neq 0} \\frac{1}{j k \\omega_{0}} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\end{aligned}\n\\]\n\n\\(y\\) 是周期的，当且仅当 \\(\\hat{x}[0]=0\\)，即 \\(x\\) 没有直流分量\n如果 \\(\\hat{x}[0]=0, y\\) 周期为 \\(T\\)，\n\n\\[\n\\hat{y}[k]=\\frac{1}{j k \\omega_{0}} \\hat{x}[k] \\quad \\text { 对于 } k \\neq 0\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子三角波",
+    "href": "Chapter03_V3.html#例子三角波",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：三角波",
+    "text": "例子：三角波"
+  },
+  {
+    "objectID": "Chapter03_V3.html#乘法-multiplication",
+    "href": "Chapter03_V3.html#乘法-multiplication",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "乘法 (Multiplication)",
+    "text": "乘法 (Multiplication)\n如果 \\(x\\) 和 \\(y\\) 具有相同的周期 \\(T\\)，那么它们的乘积 \\(x y\\) 也是，且\n\\[\n\\begin{gathered}\n\\widehat{x y}=\\hat{x} * \\hat{y} \\quad \\text { 或 } \\quad x(t) y(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} \\sum_{m=-\\infty}^{\\infty} \\hat{x}[m] \\hat{y}[k-m] \\\\\n\\text { 时域乘法 } \\Longleftrightarrow \\text { 频域卷积 }\n\\end{gathered}\n\\]\n证明：\n\\[\n\\begin{aligned}\nx(t) y(t) & =\\left(\\sum_{m=-\\infty}^{\\infty} \\hat{x}[m] e^{j m \\omega_{0} t}\\right)\\left(\\sum_{\\ell=-\\infty}^{\\infty} \\hat{y}[\\ell] e^{j \\ell \\omega_{0} t}\\right) \\\\\n& =\\sum_{m=-\\infty}^{\\infty} \\sum_{\\ell=-\\infty}^{\\infty} \\hat{x}[m] \\hat{y}[\\ell] e^{j(m+\\ell) \\omega_{0} t} \\\\\n& =\\sum_{k=-\\infty}^{\\infty}\\left(\\sum_{m=-\\infty}^{\\infty} \\hat{x}[m] \\hat{y}[k-m]\\right) e^{j k \\omega_{0} t} \\quad(k=m+\\ell)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#周期卷积-periodic-convolution",
+    "href": "Chapter03_V3.html#周期卷积-periodic-convolution",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "周期卷积 (Periodic Convolution)",
+    "text": "周期卷积 (Periodic Convolution)\n具有相同周期 \\(T\\) 的 \\(x\\) 和 \\(y\\) 的周期卷积 \\(x * y\\) 定义为：\n\\[\n(x * y)(t)=\\int_{T} x(\\tau) y(t-\\tau) d \\tau\n\\]\n性质：\n\n交换律\n\n\\[\nx * y=y * x\n\\]\n\n结合律\n\n\\[\n(x * y) * z=x *(y * z)\n\\]\n\n双线性\n\n\\[\n\\left(\\sum_{i} a_{i} x_{i}\\right) *\\left(\\sum_{j} b_{j} y_{j}\\right)=\\sum_{i, j} a_{i} b_{j}\\left(x_{i} * y_{j}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#周期卷积性质",
+    "href": "Chapter03_V3.html#周期卷积性质",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "周期卷积性质",
+    "text": "周期卷积性质\n傅里叶系数满足\n\\[\n\\widehat{x * y}=T \\hat{x} \\hat{y} \\quad \\text { 或 } \\quad(x * y)(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} T \\hat{x}[k] \\hat{y}[k]\n\\]\n时域卷积 ⟹ 频域乘法\n证明：\n\\[\n\\begin{aligned}\n(\\widehat{x * y})[k] & =\\frac{1}{T} \\int_{T}(x * y)(t) e^{-j k \\omega_{0} t} d t \\\\\n& =\\frac{1}{T} \\int_{T}\\left(\\int_{T} x(\\tau) y(t-\\tau) d \\tau\\right) e^{-j k \\omega_{0} t} d t \\\\\n& =\\int_{T} x(\\tau)\\left(\\frac{1}{T} \\int_{T} y(t-\\tau) e^{-j k \\omega_{0} t} d t\\right) d \\tau \\\\\n& =\\int_{T} x(\\tau)\\left(e^{-j k \\omega_{0} \\tau} \\hat{y}[k]\\right) d \\tau=T \\hat{x}[k] \\hat{y}[k]\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#共轭与对称-conjugation-and-symmetry",
+    "href": "Chapter03_V3.html#共轭与对称-conjugation-and-symmetry",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "共轭与对称 (Conjugation and Symmetry)",
+    "text": "共轭与对称 (Conjugation and Symmetry)\n如果 \\(x\\) 周期为 \\(T\\)，那么其复共轭 \\(\\bar{x}=x^{*}\\) 也是，且\n\\[\n\\widehat{x^{*}}=R \\hat{x}^{*} \\quad \\text { 或 } \\quad x^{*}(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow}(\\hat{x}[-k])^{*}\n\\]\n证明：\n\\[\n\\widehat{x^{*}}[k]=\\left\\langle x^{*}, e^{j k \\omega_{0} t}\\right\\rangle=\\overline{\\left\\langle x, e^{-j k \\omega_{0} t}\\right\\rangle}=\\overline{\\hat{x}[-k]}\n\\]\n推论：如果 \\(x\\) 是实信号，则 \\(\\hat{x}\\) 是共轭对称的，即\n\\[\n\\hat{x}[-k]=\\overline{\\hat{x}[k]}\n\\]\n推论：如果 \\(x\\) 是实偶信号，则 \\(\\hat{x}\\) 也是实偶信号\n\\[\n\\hat{x}[k]=\\hat{x}[-k]=\\overline{\\hat{x}[k]}\n\\]\n推论：如果 \\(x\\) 是实奇信号，则 \\(\\hat{x}\\) 是纯虚奇信号\n\\[\n-\\hat{x}[k]=\\hat{x}[-k]=\\overline{\\hat{x}[k]}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#周期冲激列",
+    "href": "Chapter03_V3.html#周期冲激列",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "周期冲激列",
+    "text": "周期冲激列\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\delta(t-k T)\n\\]\n\n对于“足够好”的函数，例如\\(\\phi\\),具有紧支撑的无限可微函数：\n\\[\n\\begin{gathered}\n(\\phi * x)(t)=\\sum_{k=-\\infty}^{\\infty} \\phi(t-k T) \\\\\n\\int_{\\mathbb{R}} \\phi(t) x(t) d t=\\sum_{k=-\\infty}^{\\infty} \\int_{\\mathbb{R}} \\phi(t) \\delta(t-k T) d t=\\sum_{k=-\\infty}^{\\infty} \\phi(k T)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#周期冲激列-1",
+    "href": "Chapter03_V3.html#周期冲激列-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "周期冲激列",
+    "text": "周期冲激列\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\delta(t-k T)\n\\]\n\n傅里叶系数：\n\\[\n\\hat{x}[k]=\\frac{1}{T} \\int_{-T / 2}^{T / 2} \\delta(t) e^{-j k \\frac{2 \\pi}{T} t} d t=\\frac{1}{T}\n\\]\n傅里叶级数：\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\frac{1}{T} e^{j k \\frac{2 \\pi}{T} t}=\\lim _{N \\rightarrow \\infty} \\frac{1}{T} D_{N}\\left(\\frac{2 \\pi}{T} t\\right)\n\\]\n其中 \\(D_{N}\\) 是狄利克雷核。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#周期冲激列-2",
+    "href": "Chapter03_V3.html#周期冲激列-2",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "周期冲激列",
+    "text": "周期冲激列\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\delta(t-k T)=\\sum_{k=-\\infty}^{\\infty} \\frac{1}{T} e^{j k \\frac{2 \\pi}{T} t}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#周期冲激列-3",
+    "href": "Chapter03_V3.html#周期冲激列-3",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "周期冲激列",
+    "text": "周期冲激列\n\\[\n\\begin{aligned}\n\\int_{\\mathbb{R}} \\phi(t) x(t) d t & =\\lim _{N \\rightarrow \\infty} \\frac{1}{T} \\int_{\\mathbb{R}} \\phi(t) D_{N}\\left(-\\frac{2 \\pi}{T} t\\right) d t \\quad\\left(D_{N} \\text { is even }\\right) \\\\\n& =\\lim _{N \\rightarrow \\infty} \\frac{1}{2 \\pi} \\int_{\\mathbb{R}} \\phi\\left(-\\frac{T}{2 \\pi} t\\right) D_{N}(t) d t \\\\\n& =\\lim _{N \\rightarrow \\infty} \\sum_{k=-\\infty}^{\\infty} \\frac{1}{2 \\pi} \\int_{(2 k-1) \\pi}^{(2 k+1) \\pi} \\phi\\left(-\\frac{T}{2 \\pi} t\\right) D_{N}(t) d t \\\\\n& =\\sum_{k=-\\infty}^{\\infty} \\lim _{N \\rightarrow \\infty} \\frac{1}{2 \\pi} \\int_{-\\pi}^{\\pi} \\phi\\left(\\frac{T}{2 \\pi}(2 \\pi k-t)\\right) D_{N}(t-2 k \\pi) d t \\\\\n& \\left.=\\sum_{k=-\\infty}^{\\infty} \\lim _{N \\rightarrow \\infty} \\frac{1}{2 \\pi} \\int_{-\\pi}^{\\pi} \\phi\\left(\\frac{T}{2 \\pi}(2 \\pi k-t)\\right)_{\\left(D_{N}\\right.} \\text { is } 2 \\pi \\text {-periodic }\\right) \\\\\n& =\\sum_{k=-\\infty}^{\\infty} \\lim _{N \\rightarrow \\infty} S_{N}(\\phi)(k T)=\\sum_{k=-\\infty}^{\\infty} \\phi(k T)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#与周期方波的关系",
+    "href": "Chapter03_V3.html#与周期方波的关系",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "与周期方波的关系",
+    "text": "与周期方波的关系\n\n\n\n\n\n\n\n\n\n\n\\[\n\\begin{aligned}\nr^{\\prime}(t) & =x\\left(t+T_{1}\\right)-x\\left(t-T_{1}\\right) \\\\\n\\widehat{r^{\\prime}}[k] & =\\left(e^{j k \\omega_{0} T_{1}}-e^{-j k \\omega_{0} T_{1}}\\right) \\hat{x}[k]=\\frac{2 j \\sin \\left(k \\omega_{0} T_{1}\\right)}{T} \\\\\n\\hat{r}[k] & =\\frac{1}{j k \\omega_{0}} \\widehat{r^{\\prime}}[k]=\\frac{\\sin \\left(k \\omega_{0} T_{1}\\right)}{k \\pi}, \\quad k \\neq 0\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#toc4",
+    "href": "Chapter03_V3.html#toc4",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "目录",
+    "text": "目录\n\n1. 线性时不变系统对复指数信号的响应\n2. 连续时间周期信号的傅里叶级数表示\n3. 连续时间傅里叶级数的收敛\n4. 连续时间傅里叶级数的性质\n5. 离散时间周期信号的傅里叶级数表示\n6. 离散时间傅里叶级数的性质\n7. 傅里叶级数与线性时不变系统\n8. 滤波\n\n频率成形滤波器\n频率选择性滤波器\n用微分方程描述的连续时间滤波器\n用差分方程描述的离散时间滤波器"
+  },
+  {
+    "objectID": "Chapter03_V3.html#dt-周期信号",
+    "href": "Chapter03_V3.html#dt-周期信号",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "DT 周期信号",
+    "text": "DT 周期信号\n回顾：DT 信号是周期的，周期为 \\(N\\)，如果\n\\[\nx=\\tau_{N} x \\quad \\text { 或 } \\quad x[n]=x[n+N], \\forall n \\in \\mathbb{Z}\n\\]\n\n基波周期 \\(N\\)：最小的正周期\n基频 \\(\\begin{cases}\\frac{2 \\pi}{N}, & \\text { 如果 } N&gt;1 \\\\ 0, & \\text { 如果 } N=1\\end{cases}\\)\n\n复指数信号 \\(\\phi_{N}^{k}[n]=e^{j k \\frac{2 \\pi}{N} n}=e^{j k \\omega_{0} n}\\) 是周期的，具有：\n\n周期 \\(N\\) 和基波周期 \\(\\frac{N}{\\operatorname{gcd}(N, k)}\\)\n基频 \\(\\omega_{k}= \\begin{cases}0, & \\text { 如果 } N \\mid k \\\\ \\omega_{0} \\cdot \\operatorname{gcd}(k, N), & \\text { 其他 }\\end{cases}\\)，总是 \\(\\omega_{0}=\\frac{2 \\pi}{N}\\) 的整数倍"
+  },
+  {
+    "objectID": "Chapter03_V3.html#dt-傅里叶基的有限性",
+    "href": "Chapter03_V3.html#dt-傅里叶基的有限性",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "DT 傅里叶基的有限性",
+    "text": "DT 傅里叶基的有限性\n傅里叶级数用谐波相关的复指数 \\(\\phi_{N}^{k}\\) 表示 \\(N\\)-周期信号\n\\[\nx=\\sum_{k} c_{k} \\phi_{N}^{k}, \\quad \\text { 或 } \\quad x[n]=\\sum_{k} c_{k} \\phi_{N}^{k}[n]=\\sum_{k} c_{k} e^{j k \\frac{2 \\pi}{N} n}\n\\]\n与 CT 情况的关键区别：\\(\\phi_{N}^{k+r N}=\\phi_{N}^{k}\\)，所以只有 \\(N\\) 个不同的 \\(\\phi_{N}^{k}\\)，傅里叶基是有限的，即\n\\[\n\\left\\{\\phi_{N}^{k}: k \\in \\mathbb{Z}\\right\\}=\\left\\{\\phi_{N}^{k}: k \\in[N]\\right\\}\n\\]\n其中 \\([N]=\\{0,1, \\ldots, N-1\\}\\)（可以理解为 \\([N]=\\{\\overline{0}, \\overline{1}, \\ldots, \\overline{N-1}\\}\\)）。\n证明：对于 \\(r \\in \\mathbb{Z}\\)， \\[\n\\phi_{N}^{k+r N}[n]=e^{j(k+r N) \\frac{2 \\pi}{N} n}=e^{j k \\frac{2 \\pi}{N} n} e^{j r 2 \\pi n}=e^{j k \\frac{2 \\pi}{N} n}=\\phi_{N}^{k}[n]\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#dt-傅里叶基的有限性-图示",
+    "href": "Chapter03_V3.html#dt-傅里叶基的有限性-图示",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "DT 傅里叶基的有限性 (图示)",
+    "text": "DT 傅里叶基的有限性 (图示)\n\\(\\phi_{N}^{k}\\) 示例， \\(N=4\\) 和 \\(k=0,1, \\ldots, 8\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#谐波的正交归一性",
+    "href": "Chapter03_V3.html#谐波的正交归一性",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "谐波的正交归一性",
+    "text": "谐波的正交归一性\nDT 傅里叶级数\n\\[\nx=\\sum_{k \\in[N]} \\hat{x}[k] \\phi_{N}^{k}, \\quad \\text { 或 } \\quad x[n]=\\sum_{k \\in[N]} \\hat{x}[k] e^{j k \\frac{2 \\pi}{N} n}\n\\]\n求和可以在任意 \\(N\\) 个连续整数上进行。 定义两个周期为 \\(N\\) 的信号的内积为\n\\[\n\\langle x, y\\rangle=\\frac{1}{N} \\sum_{n \\in[N]} x[n] \\overline{y[n]}\n\\]\n这与 \\(\\mathbb{C}^{N}\\) 中的内积相同（差一个因子 \\(N^{-1}\\)）。 \\(\\left\\{\\phi_{N}^{k}: k \\in[N]\\right\\}\\) 是正交归一函数系\n\\[\n\\left\\langle\\phi_{N}^{k}, \\phi_{N}^{m}\\right\\rangle=\\delta_{k m}=\\delta[k-m]\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#谐波正交归一性的证明",
+    "href": "Chapter03_V3.html#谐波正交归一性的证明",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "谐波正交归一性的证明",
+    "text": "谐波正交归一性的证明\n\\[\n\\left\\langle\\phi_{N}^{k}, \\phi_{N}^{m}\\right\\rangle=\\frac{1}{N} \\sum_{n \\in[N]} e^{j k \\frac{2 \\pi}{N} n} e^{-j m \\frac{2 \\pi}{N} n}=\\frac{1}{N} \\sum_{n=0}^{N-1} e^{j(k-m) \\frac{2 \\pi}{N} n}\n\\]\n如果 \\(k=m\\)，\n\\[\n\\left\\langle\\phi_{N}^{k}, \\phi_{N}^{m}\\right\\rangle=\\frac{1}{N} \\sum_{k=0}^{N-1} 1=1\n\\]\n如果 \\(k \\neq m\\)，由于 \\(|k-m| \\leq N-1, e^{j(k-m) \\frac{2 \\pi}{N}} \\neq 1\\)。利用等比数列求和公式：\n\\[\n\\left\\langle\\phi_{N}^{k}, \\phi_{N}^{m}\\right\\rangle=\\frac{1}{N} \\sum_{n=0}^{N-1} e^{j(k-m) \\frac{2 \\pi}{N} n}=\\frac{1}{N} \\frac{1-e^{j(k-m) \\frac{2 \\pi}{N} N}}{1-e^{j(k-m) \\frac{2 \\pi}{N}}}=0\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#傅里叶系数",
+    "href": "Chapter03_V3.html#傅里叶系数",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "傅里叶系数",
+    "text": "傅里叶系数\n假设 \\(x\\) 周期为 \\(N\\)，利用正交性求解系数：\n\\[\n\\begin{aligned}\n\\left\\langle x, \\phi_{N}^{m}\\right\\rangle & =\\left\\langle\\sum_{k \\in[N]} \\hat{x}[k] \\phi_{N}^{k}, \\phi_{N}^{m}\\right\\rangle=\\sum_{k \\in[N]} \\hat{x}[k]\\left\\langle\\phi_{N}^{k}, \\phi_{N}^{m}\\right\\rangle \\\\\n& =\\sum_{k \\in[N]} \\hat{x}[k] \\delta[m-k]=\\hat{x}[m]\n\\end{aligned}\n\\]\n可以将 \\(\\hat{x}\\) 视为 \\(N\\)-周期信号，因为：\n\\[\n\\hat{x}[m+r N] \\triangleq\\left\\langle x, \\phi_{N}^{m+r N}\\right\\rangle=\\left\\langle x, \\phi_{N}^{m}\\right\\rangle=\\hat{x}[m]\n\\]\n但在傅里叶级数中只使用 \\(N\\) 个连续的值！"
+  },
+  {
+    "objectID": "Chapter03_V3.html#dt-傅里叶级数公式",
+    "href": "Chapter03_V3.html#dt-傅里叶级数公式",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "DT 傅里叶级数公式",
+    "text": "DT 傅里叶级数公式\n综合方程 (Synthesis equation)\n\\[\nx[n]=\\sum_{k \\in[N]} \\hat{x}[k] \\phi_{N}^{k}[n]=\\sum_{k \\in[N]} \\hat{x}[k] e^{j k \\frac{2 \\pi}{N} n}\n\\]\n分析方程 (Analysis equation)\n\\[\n\\hat{x}[k]=\\left\\langle x, \\phi_{N}^{k}\\right\\rangle=\\frac{1}{N} \\sum_{n \\in[N]} x[n] e^{-j k \\frac{2 \\pi}{N} n}\n\\]\n由于所有求和都是有限的，不存在收敛问题！"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子-1",
+    "href": "Chapter03_V3.html#例子-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子",
+    "text": "例子\n\\(x[n]=\\cos \\left(\\frac{6 \\pi}{5} n+\\frac{\\pi}{5}\\right)\\)，周期 \\(N=5\\)。 展开为复指数： \\(x[n]=\\frac{e^{j \\frac{\\pi}{5}}}{2} e^{j 3 \\frac{2 \\pi}{5} n}+\\frac{e^{-j \\frac{\\pi}{5}}}{2} e^{-j 3 \\frac{2 \\pi}{5} n}\\)\n系数： \\(\\hat{x}[3]=\\frac{1}{2} e^{j \\frac{\\pi}{5}} ; \\quad \\hat{x}[2]=\\hat{x}[-3]=\\frac{1}{2} e^{-j \\frac{\\pi}{5}} ; \\quad \\hat{x}[0]=\\hat{x}[1]=\\hat{x}[4]=0\\)\n\\(\\hat{x}[k]\\) 以 \\(N=5\\) 为周期重复。\n\n\n\\[x[n]\\]\n   \n\\[|\\hat{x}[n]|\\]\n\\[Arg\\hat{x}[n]\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子周期方波-periodic-square-wave-1",
+    "href": "Chapter03_V3.html#例子周期方波-periodic-square-wave-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：周期方波 (Periodic Square Wave)",
+    "text": "例子：周期方波 (Periodic Square Wave)\n周期为 \\(N\\) 的方波，在一个周期内：\n\\[\nx[n]= \\begin{cases}1, & -N_{1} \\leq n \\leq N_{1} \\\\ 0, & N_{1}&lt;n&lt;N-N_{1}\\end{cases}\n\\]\n\n傅里叶系数：\n\\[\n\\hat{x}[k]=\\frac{1}{N} \\sum_{n=-N_{1}}^{N_{1}} e^{-j k \\frac{2 \\pi}{N} n}\n\\]\n如果 \\(k\\) 是 \\(N\\) 的整数倍, \\(\\hat{x}[k]=\\frac{2 N_{1}+1}{N}\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#例子周期方波-续",
+    "href": "Chapter03_V3.html#例子周期方波-续",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "例子：周期方波 (续)",
+    "text": "例子：周期方波 (续)\n如果 \\(k\\) 不是 \\(N\\) 的整数倍，则 \\(e^{-j k \\frac{2 \\pi}{N}} \\neq 1\\)。使用等比数列求和：\n\\[\n\\begin{aligned}\n\\hat{x}[k] & =\\frac{1}{N} \\frac{e^{j k \\frac{2 \\pi}{N} N_{1}}-e^{-j k \\frac{2 \\pi}{N}\\left(N_{1}+1\\right)}}{1-e^{-j k \\frac{2 \\pi}{N}}} \\\\\n& =\\frac{1}{N} \\frac{\\sin \\left(k \\frac{2 \\pi}{N}\\left(N_{1}+\\frac{1}{2}\\right)\\right)}{\\sin \\left(k \\frac{\\pi}{N}\\right)}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#dt-傅里叶级数矩阵形式",
+    "href": "Chapter03_V3.html#dt-傅里叶级数矩阵形式",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "DT 傅里叶级数：矩阵形式",
+    "text": "DT 傅里叶级数：矩阵形式\n综合方程可以写成矩阵乘法：\n\\[\nx[n]=\\sum_{k=0}^{N-1} W_{N}^{k n} \\hat{x}[k], \\quad \\text { 其中 } W_{N}=e^{j k \\frac{2 \\pi}{N}}\n\\]\n\\[\nx=\\mathbf{F} \\hat{x}, \\quad \\text { 其中 } \\mathbf{F}=\\left(\\phi_{N}^{0}, \\phi_{N}^{1}, \\ldots, \\phi_{N}^{N-1}\\right)\n\\]\n分析方程：\n\\[\n\\hat{x}=\\mathbf{F}^{-1} x=\\frac{1}{N} \\mathbf{F}^{H} x\n\\]\n其中 \\(\\mathbf{F}^{H}=(\\overline{\\mathbf{F}})^{T}\\) 是 \\(\\mathbf{F}\\) 的共轭转置 (Hermitian transpose)。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#toc5",
+    "href": "Chapter03_V3.html#toc5",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "目录",
+    "text": "目录\n\n1. 线性时不变系统对复指数信号的响应\n2. 连续时间周期信号的傅里叶级数表示\n3. 连续时间傅里叶级数的收敛\n4. 连续时间傅里叶级数的性质\n5. 离散时间周期信号的傅里叶级数表示\n6. 离散时间傅里叶级数的性质\n7. 傅里叶级数与线性时不变系统\n8. 滤波\n\n频率成形滤波器\n频率选择性滤波器\n用微分方程描述的连续时间滤波器\n用差分方程描述的离散时间滤波器"
+  },
+  {
+    "objectID": "Chapter03_V3.html#dt-傅里叶级数-dt-fourier-series",
+    "href": "Chapter03_V3.html#dt-傅里叶级数-dt-fourier-series",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "DT 傅里叶级数 (DT Fourier Series)",
+    "text": "DT 傅里叶级数 (DT Fourier Series)\n周期为 \\(N\\) 的信号 \\(x\\) 的 DTFS：\n\\[\nx[n]=\\sum_{k \\in[N]} \\hat{x}[k] e^{j k \\omega_{0} n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]\n对应关系：\n\\[\nx \\stackrel{\\text { DTFS }}{\\longleftrightarrow} \\hat{x} \\quad \\text { 或 } \\quad x[n] \\stackrel{\\text { DTFS }}{\\longleftrightarrow} \\hat{x}[k]\n\\]\n同一信号的两种等价表示： - 时域：\\(x[n]\\) - 频域：\\(\\hat{x}[k]\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#线性时移与频移",
+    "href": "Chapter03_V3.html#线性时移与频移",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "线性、时移与频移",
+    "text": "线性、时移与频移\n线性 (Linearity) \\[\n\\widehat{a x+b y}=a \\hat{x}+b \\hat{y}\n\\]\n时移 (Time shifting) \\[\nx\\left[n-n_{0}\\right] \\stackrel{\\text { DTFS }}{\\longleftrightarrow} e^{-j k \\omega_{0} n_{0}} \\hat{x}[k]\n\\]\n频移 (Frequency shifting) \\[\ne^{j m \\omega_{0} n} x[n] \\stackrel{\\text { DTFS }}{\\longleftrightarrow} \\hat{x}[k-m]\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#其它性质",
+    "href": "Chapter03_V3.html#其它性质",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "其它性质",
+    "text": "其它性质\n时间反转 (Time reversal) \\[\nx[-n] \\stackrel{\\text { DTFS }}{\\longleftrightarrow} \\hat{x}[-k]\n\\]\n共轭 (Conjugation) \\[\nx^{*}[n] \\stackrel{\\text { DTFS }}{\\longleftrightarrow}(\\hat{x}[-k])^{*}\n\\]\n对称性 (Symmetry) - \\(x\\) 实 \\(\\Longleftrightarrow \\hat{x}[-k]=\\overline{\\hat{x}[k]}\\) (共轭对称) - \\(x\\) 实偶 \\(\\Longleftrightarrow \\hat{x}\\) 实偶"
+  },
+  {
+    "objectID": "Chapter03_V3.html#时间缩放-time-scaling-1",
+    "href": "Chapter03_V3.html#时间缩放-time-scaling-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "时间缩放 (Time Scaling)",
+    "text": "时间缩放 (Time Scaling)\n定义上采样信号 \\(x_{(m)}\\)：\n\\[\nx_{(m)}[n]= \\begin{cases}x[n / m], & \\text { 如果 } n \\text { 是 } m \\text { 的倍数 } \\\\ 0, & \\text { 其他 }\\end{cases}\n\\]\n如果 \\(x\\) 周期为 \\(N\\)，则 \\(x_{(m)}\\) 周期为 \\(m N\\)，且：\n\\[\n\\widehat{x_{(m)}}=\\frac{1}{m} \\hat{x} \\quad \\text { 或 } \\quad x_{(m)}[n] \\stackrel{\\text { DTFS }}{\\longleftrightarrow} \\frac{1}{m} \\hat{x}[k]\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#一阶差分与累加求和",
+    "href": "Chapter03_V3.html#一阶差分与累加求和",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "一阶差分与累加求和",
+    "text": "一阶差分与累加求和\n一阶（后向）差分 (First difference) \\[\nx[n]-x[n-1] \\stackrel{\\text { DTFS }}{\\longleftrightarrow}\\left(1-e^{-j k \\frac{2 \\pi}{N}}\\right) \\hat{x}[k]\n\\]\n累加求和 (Running sum) \\[\ny[n]=\\sum_{m=n_{0}}^{n} x[m]\n\\] - \\(y\\) 是周期的当且仅当 \\(\\hat{x}[0]=0\\)（无直流分量） - 如果 \\(\\hat{x}[0]=0\\)， \\[\n\\hat{y}[k]=\\frac{1}{1-e^{-j k \\frac{2 \\pi}{N}}} \\hat{x}[k] \\quad \\text { 对于 } k \\neq 0\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#乘法-multiplication-1",
+    "href": "Chapter03_V3.html#乘法-multiplication-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "乘法 (Multiplication)",
+    "text": "乘法 (Multiplication)\n时域乘法 \\(\\Longleftrightarrow\\) 频域周期卷积\n\\[\nx[n] y[n] \\stackrel{\\text { DTFS }}{\\longleftrightarrow} \\sum_{m \\in[N]} \\hat{x}[m] \\hat{y}[k-m]\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#周期卷积-periodic-convolution-1",
+    "href": "Chapter03_V3.html#周期卷积-periodic-convolution-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "周期卷积 (Periodic Convolution)",
+    "text": "周期卷积 (Periodic Convolution)\n相同周期 \\(N\\) 的 \\(x\\) 和 \\(y\\) 的周期卷积：\n\\[\n(x * y)[n]=\\sum_{m \\in[N]} x[m] y[n-m]\n\\]\n性质： - 交换律、结合律、双线性\n时域卷积 \\(\\Longrightarrow\\) 频域乘法\n\\[\n(x * y)[n] \\stackrel{\\text { DTFS }}{\\longleftrightarrow} N \\hat{x}[k] \\hat{y}[k]\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#toc6",
+    "href": "Chapter03_V3.html#toc6",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "目录",
+    "text": "目录\n\n1. 线性时不变系统对复指数信号的响应\n2. 连续时间周期信号的傅里叶级数表示\n3. 连续时间傅里叶级数的收敛\n4. 连续时间傅里叶级数的性质\n5. 离散时间周期信号的傅里叶级数表示\n6. 离散时间傅里叶级数的性质\n7. 傅里叶级数与线性时不变系统\n8. 滤波\n\n频率成形滤波器\n频率选择性滤波器\n用微分方程描述的连续时间滤波器\n用差分方程描述的离散时间滤波器"
+  },
+  {
+    "objectID": "Chapter03_V3.html#toc7",
+    "href": "Chapter03_V3.html#toc7",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "目录",
+    "text": "目录\n\n1. 线性时不变系统对复指数信号的响应\n2. 连续时间周期信号的傅里叶级数表示\n3. 连续时间傅里叶级数的收敛\n4. 连续时间傅里叶级数的性质\n5. 离散时间周期信号的傅里叶级数表示\n6. 离散时间傅里叶级数的性质\n7. 傅里叶级数与线性时不变系统\n8. 滤波\n\n频率成形滤波器\n频率选择性滤波器\n用微分方程描述的连续时间滤波器\n用差分方程描述的离散时间滤波器"
+  },
+  {
+    "objectID": "Chapter03_V3.html#sec381",
+    "href": "Chapter03_V3.html#sec381",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "频率成形滤波器",
+    "text": "频率成形滤波器"
+  },
+  {
+    "objectID": "Chapter03_V3.html#频率响应",
+    "href": "Chapter03_V3.html#频率响应",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "频率响应",
+    "text": "频率响应\n回顾连续时间（CT）线性时不变（LTI）系统对指数输入 \\(e^{st}\\) 的响应：\n\\[T \\left( \\sum_{k} a_k e^{s_k t} \\right) = \\sum_{k} a_k H(s_k) e^{s_k t}\\]\n其中 \\(H(s)\\) 是系统函数（System Function）：\n\\[H(s) = \\int_{\\mathbb{R}} h(t) e^{-st} dt\\]\n当限定 \\(s = j\\omega\\) 时，\\(H(j\\omega)\\) 作为 \\(\\omega\\) 的函数被称为系统的频率响应（Frequency Response）：\n\\[H(j\\omega) = \\int_{\\mathbb{R}} h(t) e^{-j\\omega t} dt\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#滤波",
+    "href": "Chapter03_V3.html#滤波",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "滤波",
+    "text": "滤波\n傅里叶级数表示下的周期输入 \\(x\\)：\n\\[x(t) = \\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{jk\\omega_0 t}\\]\n具有频率响应 \\(H(j\\omega)\\) 的 LTI 系统的输出：\n\\[y(t) = T \\left( \\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{jk\\omega_0 t} \\right) = \\sum_{k=-\\infty}^{\\infty} H(j k \\omega_0) \\hat{x}[k] e^{j k \\omega_0 t}\\]\n输出信号是周期性的且具有相同的周期，其傅里叶系数的关系为：\n\\[\\hat{y}[k] = H(j k \\omega_0) \\hat{x}[k]\\]\n滤波会改变频率分量的相对幅度，或者完全消除某些频率分量。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#滤波-1",
+    "href": "Chapter03_V3.html#滤波-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "滤波",
+    "text": "滤波\n\n\n示例：微分器 \\(T(x) = x'\\) 的频率响应为：\n\\[H(j\\omega) = j\\omega\\]\n对于周期输入信号：\n\\[x(t) = \\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{jk\\omega_0 t}\\]\n其输出信号为：\n\\[y(t) = \\sum_{k=-\\infty}^{\\infty} jk\\omega_0 \\hat{x}[k] e^{jk\\omega_0 t}\\]\n傅里叶系数的关系如下：\n\\[\\hat{y}[k] = jk\\omega_0 \\hat{x}[k]\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#滤波-2",
+    "href": "Chapter03_V3.html#滤波-2",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "滤波",
+    "text": "滤波\n\n不能产生新的频率分量。\n只能缩放现有分量的幅度或移动其相位。\n\n非线性滤波器示例： 削波（Clipping） \\(y(t) = \\max\\{x(t), c\\}\\)。\n本课程重点关注 LTI 滤波器。\n频率整形滤波器 (Frequency-shaping filters)\n这类滤波器会改变频谱的形状。\n\n例如：均衡器 (Equalizer)\n\n\n频率选择性滤波器 (Frequency-selective filters)\n这类滤波器使某些频率基本无失真地通过，并显著衰减或消除其他频率。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#理想频率选择性滤波器",
+    "href": "Chapter03_V3.html#理想频率选择性滤波器",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "理想频率选择性滤波器",
+    "text": "理想频率选择性滤波器\n\n\n理想低通滤波器\n\\[\nH(j \\omega)= \\begin{cases}1, & |\\omega| \\leq \\omega_{c} \\\\ 0, & \\text { 其他 }\\end{cases}\n\\]\n\\(\\omega_{c}\\) : 截止频率 \n\n理想高通滤波器\n\\[\nH(j \\omega)= \\begin{cases}1, & |\\omega| \\geq \\omega_{c} \\\\ 0, & \\text { otherwise }\\end{cases}\n\\]\n\\(\\omega_{c}\\) : 截止频率 \n\n理想带通滤波器\n\\[\nH(j \\omega)= \\begin{cases}1, & \\omega_{c 1} \\leq|\\omega| \\leq \\omega_{c 2} \\\\ 0, & \\text { otherwise }\\end{cases}\n\\]\n\\(\\omega_{c 1}\\) : 下截止频率， \\(\\omega_{c 2}\\) : 上截止频率"
+  },
+  {
+    "objectID": "Chapter03_V3.html#sec383",
+    "href": "Chapter03_V3.html#sec383",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "用微分方程描述的连续时间滤波器",
+    "text": "用微分方程描述的连续时间滤波器\n简单 RC 低通滤波器\n\n\n常微分方程 (ODE)\n\\[\nR C \\frac{d v_{C}(t)}{d t}+v_{C}(t)=v_{S}(t)\n\\]\n对于输入 \\(v_{S}(t)=e^{j \\omega t}\\)，输出为\n\\[\nv_{C}(t)=H(j \\omega) e^{j \\omega t}\n\\]\n频率响应 \\(H(j \\omega)=\\frac{1}{1+R C j \\omega}\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#简单-rc-低通滤波器-1",
+    "href": "Chapter03_V3.html#简单-rc-低通滤波器-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "简单 RC 低通滤波器",
+    "text": "简单 RC 低通滤波器\n\n\n频率响应\n\\[\nH(j \\omega)=\\frac{1}{1+R C j \\omega}\n\\]\n\\[\n\\begin{aligned}\n|H(j \\omega)| & =\\frac{1}{\\sqrt{1+(R C \\omega)^{2}}} \\\\\n\\arg H(j \\omega) & =-\\arctan (R C \\omega)\n\\end{aligned}\n\\]   非理想低通滤波器：通过低频，衰减高频。\n\\(R C\\) 越大 \\(\\Longrightarrow\\) 通过的低频范围越小。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#简单-rc-低通滤波器-2",
+    "href": "Chapter03_V3.html#简单-rc-低通滤波器-2",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "简单 RC 低通滤波器",
+    "text": "简单 RC 低通滤波器\n\n\n冲激响应\n\\[\nh(t)=\\frac{1}{R C} e^{-t / R C} u(t)\n\\]\n阶跃响应\n\\[\ns(t)=(h * u)(t)=\\left(1-e^{-t / R C}\\right) u(t)\n\\]\n时间常数 \\(\\tau=R C\\)\n\n\\(\\tau\\) 越大，响应越迟缓 (sluggish)\n\n\n\n\n\n权衡 (Tradeoff)\n\n\\(\\tau\\) 越大：通过的高频越少，响应越迟缓\n\\(\\tau\\) 越小：通过的高频越多，响应越快"
+  },
+  {
+    "objectID": "Chapter03_V3.html#简单-rc-高通滤波器",
+    "href": "Chapter03_V3.html#简单-rc-高通滤波器",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "简单 RC 高通滤波器",
+    "text": "简单 RC 高通滤波器\n\n\nODE \\(R C \\frac{d v_{R}(t)}{d t}+v_{R}(t)=R C \\frac{d v_{S}(t)}{d t}\\)\n对于输入 \\(v_{S}(t)=e^{j \\omega t}\\)，输出为\n\\[\nv_{R}(t)=H(j \\omega) e^{j \\omega t}\n\\]\n频率响应 \\(\\quad H(j \\omega)=\\frac{j \\omega R C}{1+j \\omega R C}\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#简单-rc-高通滤波器-1",
+    "href": "Chapter03_V3.html#简单-rc-高通滤波器-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "简单 RC 高通滤波器",
+    "text": "简单 RC 高通滤波器\n\n\n频率响应\n\\[\nH(j \\omega)=\\frac{j \\omega R C}{1+j \\omega R C}\n\\]\n\\[\n|H(j \\omega)|=\\frac{|\\omega| R C}{\\sqrt{1+(R C \\omega)^{2}}}\n\\]\n\\[\n\\arg H(j \\omega)=\\arctan \\frac{1}{R C \\omega}\n\\]\n非理想高通滤波器：通过高频，衰减低频。\n\\(R C\\) 越大 \\(\\Longrightarrow\\) 通过的低频范围越大。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#简单-rc-高通滤波器-2",
+    "href": "Chapter03_V3.html#简单-rc-高通滤波器-2",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "简单 RC 高通滤波器",
+    "text": "简单 RC 高通滤波器\n\n\n阶跃响应\n\\[\ns(t)=e^{-t / R C} u(t)\n\\]\n\n冲激响应\n\\[\nh(t)=s^{\\prime}(t)=\\delta(t)-\\frac{1}{R C} e^{-t / R C} u(t)\n\\]\n时间常数 \\(\\tau=R C\\)\n\n\\(\\tau\\) 越大，响应越迟缓\n\n\n\n\n\n观察： - \\(\\tau\\) 越大，通过的低频越多，响应越迟缓 - \\(\\tau\\) 越小，通过的低频越少，响应越快"
+  },
+  {
+    "objectID": "Chapter03_V3.html#sec384",
+    "href": "Chapter03_V3.html#sec384",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "用差分方程描述的连续时间滤波器",
+    "text": "用差分方程描述的连续时间滤波器\n\n\n\\(N\\)-周期序列离散时间傅里叶级数（Discrete Time Fourier Series, DTFS）变换对\n分析公式\n\\[\n\\hat{x}[k]=\\frac{1}{N} \\sum_{n \\in[N]} x[n] e^{-j k \\frac{2 \\pi}{N} n}\n\\]\n综合公式\n\\[\nx[n]=\\sum_{k \\in[N]} \\hat{x}[k] e^{j k \\frac{2 \\pi}{N} n}\n\\]\n\n有限长度\\(N\\)序列的离散傅里叶变换（Discrete Fourier Tranform, DFT）对(详细内容见第五章)\nDFT\n\\[\nX[k]=\\sum_{n=0}^{N-1} x[n] e^{-j k \\frac{2 \\pi}{N} n}\n\\]\n逆 DFT\n\\[\nx[n]=\\frac{1}{N} \\sum_{k=0}^{N-1} X[k] e^{j k \\frac{2 \\pi}{N} n}\n\\]\n\n这两组方程本质上是相同的，差别仅在于一个常数因子\\(\\frac{1}{N}\\); 都可以通过快速傅里叶变换 (FFT)实现高效计算"
+  },
+  {
+    "objectID": "Chapter03_V3.html#频率响应-1",
+    "href": "Chapter03_V3.html#频率响应-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "频率响应",
+    "text": "频率响应\n回顾离散时间 (DT) 线性时不变量 (LTI) 系统对指数输入 \\(z^n\\) 的响应：\n\\[T\\left( \\sum_{k} a_k z_k^n \\right) = \\sum_{k} a_k H(z_k) z_k^n\\]\n其中 \\(H(z)\\) 是系统函数：\n\\[H(z) = \\sum_{n=-\\infty}^{\\infty} h[n] z^{-n}\\]\n当限定 \\(z = e^{j\\omega}\\) 时，\\(H(e^{j\\omega})\\) 作为 \\(\\omega\\) 的函数被称为系统的频率响应：\n\\[H(e^{j\\omega}) = \\sum_{n=-\\infty}^{\\infty} h[n] e^{-j\\omega n}\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#频率响应-2",
+    "href": "Chapter03_V3.html#频率响应-2",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "频率响应",
+    "text": "频率响应\n周期输入 \\(x\\) 的傅里叶级数表示：\n\\[x[n] = \\sum_{k \\in [N]} \\hat{x}[k] e^{j k \\omega_0 n}, \\quad \\text{其中 } \\omega_0 = \\frac{2\\pi}{N}\\]\n频率响应为 \\(H(e^{j\\omega})\\) 的 LTI 系统的输出：\n\\[y[n] = T \\left( \\sum_{k \\in [N]} \\hat{x}[k] e^{j k \\omega_0 n} \\right) = \\sum_{k \\in [N]} H(e^{j k \\omega_0}) \\hat{x}[k] e^{j k \\omega_0 n}\\]\n输出信号具有相同的周期，其傅里叶系数之间的关系为：\n\\[\\hat{y}[k] = H(e^{j k \\omega_0}) \\hat{x}[k]\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#滤波-3",
+    "href": "Chapter03_V3.html#滤波-3",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "滤波",
+    "text": "滤波\n滤波会改变频率分量的相对幅度，或者完全消除某些频率分量。\nLTI 系统作为滤波器\n在线性时不变量 (LTI) 系统中，正如连续时间 (CT) 情况一样，系统扮演着滤波器的角色。频率整形 (Frequency-shaping) 与频率选择性 (Frequency-selective) 滤波器的共同点在于：\n\n无法创造新的频率分量。\n只能缩放现有分量的幅度或偏移其相位。\n\n非线性滤波器示例 (Examples of Nonlinear Filter)\n非线性滤波器不遵循 LTI 系统的上述限制，可以产生新的频率分量。\n\n极大值滤波器 (Max filter): \\[y[n] = \\max_{-n_1 \\leq k \\leq n_2} x[n + k]\\]\n中值滤波器 (Median filter): \\[y[n] = \\text{median} \\{x[n - n_1], \\dots, x[n + n_2]\\}\\]\n\n离散时间 (DT) 信号的频率\n回顾离散时间信号的特性：只需考虑长度为 \\(2\\pi\\) 的频率区间即可，例如 \\([0, 2\\pi)\\) 或 \\((-\\pi, \\pi]\\)。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#离散时间信号中的高频与低频",
+    "href": "Chapter03_V3.html#离散时间信号中的高频与低频",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "离散时间信号中的高频与低频",
+    "text": "离散时间信号中的高频与低频\n高频分布在 \\((2k + 1)\\pi\\) 附近，低频分布在 \\(2k\\pi\\) 附近。\n\n\n\n\\(\\phi_{N}^{0}[n]=\\cos (0 \\cdot n)=1\\)\n\n\\(\\phi_{N}^{3}[n]=\\cos (3 \\pi n / 4)\\)\n\n\\(\\phi_{N}^{6}[n]=\\cos (3 \\pi n / 2)\\)\n\n\n\\(\\phi_{N}^{1}[n]=\\cos (\\pi n / 4)\\)\n\n\\(\\phi_{N}^{4}[n]=\\cos (\\pi n)\\)\n\n\\(\\phi_{N}^{7}[n]=\\cos (7 \\pi n / 4)\\)\n\n\n\\(\\phi_{N}^{2}[n]=\\cos (\\pi n / 2)\\)\n\n\\(\\phi_{N}^{5}[n]=\\cos (5 \\pi n / 4)\\)\n\n\\(\\phi_{N}^{8}[n]=\\cos (2 \\pi n)=1\\)"
+  },
+  {
+    "objectID": "Chapter03_V3.html#离散时间频率",
+    "href": "Chapter03_V3.html#离散时间频率",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "离散时间频率",
+    "text": "离散时间频率\n\\(N\\) 周期信号的离散频率特性：\n\n单位圆上的等间隔点：频率分量均匀分布在复平面的单位圆上。\n低频靠近 \\(1\\)，高频靠近 \\(-1\\)：\n\n当 \\(z = e^{j\\omega} \\approx 1\\)（即 \\(\\omega \\approx 2k\\pi\\)）时，对应低频。\n当 \\(z = e^{j\\omega} \\approx -1\\)（即 \\(\\omega \\approx (2k+1)\\pi\\)）时，对应高频。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#理想频率选择性滤波器-1",
+    "href": "Chapter03_V3.html#理想频率选择性滤波器-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "理想频率选择性滤波器",
+    "text": "理想频率选择性滤波器\n理想低通滤波器\n\\[\nH\\left(e^{j \\omega}\\right)= \\begin{cases}1, & |\\omega| \\leq \\omega_{c} \\\\ 0, & \\omega_{c}&lt;|\\omega| \\leq \\pi\\end{cases}\n\\]\n\\(\\omega_{c}\\) : 截止频率"
+  },
+  {
+    "objectID": "Chapter03_V3.html#理想频率选择性滤波器-2",
+    "href": "Chapter03_V3.html#理想频率选择性滤波器-2",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "理想频率选择性滤波器",
+    "text": "理想频率选择性滤波器\n理想高通滤波器\n\\[\nH\\left(e^{j \\omega}\\right)= \\begin{cases}1, & \\omega_{c} \\leq|\\omega| \\leq \\pi \\\\ 0, & |\\omega|&lt;\\left|\\omega_{c}\\right|\\end{cases}\n\\]\n\\(\\omega_{c}\\) : 截止频率"
+  },
+  {
+    "objectID": "Chapter03_V3.html#理想频率选择性滤波器-3",
+    "href": "Chapter03_V3.html#理想频率选择性滤波器-3",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "理想频率选择性滤波器",
+    "text": "理想频率选择性滤波器\n理想带通滤波器\n\\[\nH\\left(e^{j \\omega}\\right)= \\begin{cases}1, & \\omega_{c 1} \\leq|\\omega| \\leq \\omega_{c 2} \\\\ 0, & |\\omega|&lt;\\omega_{c 1} \\text { or } \\omega_{c 2}&lt;|\\omega| \\leq \\pi\\end{cases}\n\\]\n\\(\\omega_{c 1}\\) : 下截止频率， \\(\\omega_{c 2}\\) : 上截止频率"
+  },
+  {
+    "objectID": "Chapter03_V3.html#一阶递归离散时间滤波器",
+    "href": "Chapter03_V3.html#一阶递归离散时间滤波器",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "一阶递归离散时间滤波器",
+    "text": "一阶递归离散时间滤波器\n\\[\ny[n]-a y[n-1]=x[n]\n\\]\n对于输入信号 \\(x[n]=e^{j \\omega n}\\)，系统的输出为 \\(y[n]=H\\left(e^{j \\omega}\\right) e^{j \\omega n}\\)。\n当 \\(|a|&lt;1\\) 时，频率响应（Frequency response）有明确定义：\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{1}{1-a e^{-j \\omega}}, \\quad|a|&lt;1\n\\]\n若将系数 \\(a\\) 表示为极坐标形式 \\(a=|a| e^{j \\phi}\\)，则：\n幅度响应 (Magnitude Response): \\[\n\\left|H\\left(e^{j \\omega}\\right)\\right|=\\frac{1}{\\sqrt{1+|a|^{2}-2|a| \\cos (\\omega-\\phi)}}\n\\]\n相位响应 (Phase Response): \\[\n\\arg H\\left(e^{j \\omega}\\right)=\\arctan \\frac{-|a| \\sin (\\omega-\\phi)}{1-|a| \\cos (\\omega-\\phi)}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#一阶递归离散时间滤波器-1",
+    "href": "Chapter03_V3.html#一阶递归离散时间滤波器-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "一阶递归离散时间滤波器",
+    "text": "一阶递归离散时间滤波器\n\n\n对于 \\(a&gt;0\\), 低通滤波器 (指数平滑) \n\n\n对于 \\(a&lt;0\\), 高通滤波器"
+  },
+  {
+    "objectID": "Chapter03_V3.html#一阶递归离散时间滤波器-2",
+    "href": "Chapter03_V3.html#一阶递归离散时间滤波器-2",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "一阶递归离散时间滤波器",
+    "text": "一阶递归离散时间滤波器\n\n\n单位脉冲响应 (IIR 滤波器)\n\\[\n\\begin{gathered}\nh[n]=a^{n} u[n] \\\\\nH\\left(e^{j \\omega}\\right)=\\sum_{n=0}^{\\infty}\\left(a e^{-j \\omega}\\right)^{n}=\\frac{1}{1-a e^{-j \\omega}}\n\\end{gathered}\n\\]\n为了保证级数收敛（Convergence），需要满足条件：\\(|a|&lt;1\\)。\n阶跃响应 (Step Response)\n\\[\ns[n]=(h * u)[n]=\\frac{1-a^{n+1}}{1-a} u[n]\n\\]\n性能权衡 (Tradeoff)\n\n\\(|a|\\) 较大时：通带越窄（选择性更好），但响应速度越慢（时域拖尾更长）。\n\\(|a|\\) 较小时：响应速度越快，但通带越宽（滤波效果较弱）。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#滑动平均作为低通滤波器",
+    "href": "Chapter03_V3.html#滑动平均作为低通滤波器",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "滑动平均作为低通滤波器",
+    "text": "滑动平均作为低通滤波器\n\\[\ny[n]=\\frac{1}{M_{1}+M_{2}+1} \\sum_{k=-M_{1}}^{M_{2}} x[n-k]\n\\]\n脉冲响应 (FIR 滤波器)\n\\[\nh[n]=\\frac{1}{M_{1}+M_{2}+1} \\sum_{k=-M_{1}}^{M_{2}} \\delta[n-k]\n\\]\n频率响应\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{1}{M_{1}+M_{2}+1} \\sum_{k=-M_{1}}^{M_{2}} e^{-j k \\omega}=\\frac{e^{j \\frac{M_{1}-M_{2}}{2} \\omega}}{M_{1}+M_{2}+1} \\frac{\\sin \\left(\\frac{M_{1}+M_{2}+1}{2} \\omega\\right)}{\\sin \\frac{\\omega}{2}}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#滑动平均作为低通滤波器-1",
+    "href": "Chapter03_V3.html#滑动平均作为低通滤波器-1",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "滑动平均作为低通滤波器",
+    "text": "滑动平均作为低通滤波器\n\\(M_{1}=0, M_{2}=1\\),\n\\[\n\\begin{aligned}\ny[n] & =\\frac{1}{2}(x[n]+x[n-1]) \\\\\nh[n] & =\\frac{1}{2}(\\delta[n]+\\delta[n-1]) \\\\\nH\\left(e^{j \\omega}\\right) & =e^{-j \\frac{\\omega}{2}} \\cos \\frac{\\omega}{2}\n\\end{aligned}\n\\]\n\n验证以下结论：\n\n若输入 \\(x[n]=K e^{j 0 \\cdot n}\\)，则输出 \\(y[n]=x[n]\\)。\n若输入 \\(x[n]=K e^{j \\pi n}=K(-1)^{n}\\)，则输出 \\(y[n]=0\\)。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#滑动平均作为低通滤波器-2",
+    "href": "Chapter03_V3.html#滑动平均作为低通滤波器-2",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "滑动平均作为低通滤波器",
+    "text": "滑动平均作为低通滤波器\n\\(M_{1}=M_{2}=1\\),\n\\[\n\\begin{aligned}\ny[n] & =\\frac{1}{3}(x[n+1]+x[n]+x[n-1]) \\\\\nh[n] & =\\frac{1}{3}(\\delta[n+1]+\\delta[n]+\\delta[n-1]) \\\\\nH\\left(e^{j \\omega}\\right) & =\\frac{\\sin \\left(\\frac{3}{2} \\omega\\right)}{3 \\sin \\frac{\\omega}{2}}=\\frac{1}{3}+\\frac{2}{3} \\cos \\omega\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter03_V3.html#滑动平均作为低通滤波器-3",
+    "href": "Chapter03_V3.html#滑动平均作为低通滤波器-3",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "滑动平均作为低通滤波器",
+    "text": "滑动平均作为低通滤波器\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{e^{j \\frac{M_{1}-M_{2}}{2} \\omega}}{M_{1}+M_{2}+1} \\frac{\\sin \\left(\\frac{M_{1}+M_{2}+1}{2} \\omega\\right)}{\\sin \\frac{\\omega}{2}}\n\\]\n\\[\nM_{1}+M_{2}+1=11\n\\]\n\n\n\n\n\n\n\n\n\\[\nM_{1}+M_{2}+1=41\n\\]\n\n\n\n\n\n\\(M_1 + M_2\\) 越大，通带越窄，输出越平滑。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#滑动平均作为低通滤波器-4",
+    "href": "Chapter03_V3.html#滑动平均作为低通滤波器-4",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "滑动平均作为低通滤波器",
+    "text": "滑动平均作为低通滤波器"
+  },
+  {
+    "objectID": "Chapter03_V3.html#滑动平均作为低通滤波器-5",
+    "href": "Chapter03_V3.html#滑动平均作为低通滤波器-5",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "滑动平均作为低通滤波器",
+    "text": "滑动平均作为低通滤波器\n非因果系统 (Noncausal)\n\\[\ny_{1}[n]=\\frac{1}{2 M+1} \\sum_{k=-M}^{M} x[n-k]\n\\]\n因果系统 (Causal)\n\\[\ny_{2}[n]=\\frac{1}{2 M+1} \\sum_{k=0}^{2 M} x[n-k]\n\\]\n注：\\(y_{2}=\\tau_{M} y_{1}\\)（即 \\(y_2\\) 是 \\(y_1\\) 延迟了 \\(M\\) 个样本的结果）。\n对于实时系统 (Real-time system)\n\n非因果版本不可实现：因为它需要利用“未来”的样本点。\n因果版本可实现：仅利用当前及过去的样本点。\n性能权衡：\\(M\\) 越大，通带越窄，输出越平滑，但延迟越长，响应越迟缓。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#一阶差分作为高通滤波器",
+    "href": "Chapter03_V3.html#一阶差分作为高通滤波器",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "一阶差分作为高通滤波器",
+    "text": "一阶差分作为高通滤波器\n缩放一阶差分（平减一阶差分）\n\\[\ny[n]=\\frac{1}{2}(x[n]-x[n-1])\n\\]\n脉冲响应 (FIR滤波器)\n\\[\nh[n]=\\frac{1}{2}(\\delta[n]-\\delta[n-1])\n\\]\n\n\n频率响应 (Frequency Response)\n\\[\n\\begin{aligned}\nH\\left(e^{j \\omega}\\right) & =\\frac{1}{2}\\left(1-e^{-j \\omega}\\right)=j e^{-j \\frac{\\omega}{2}} \\sin \\frac{\\omega}{2} \\\\\n\\left|H\\left(e^{j \\omega}\\right)\\right| & =\\left|\\sin \\frac{\\omega}{2}\\right|\n\\end{aligned}\n\\]\n结论验证 (Verification)\n\n若输入 \\(x[n]=K e^{j 0 \\cdot n}\\)（直流分量），则输出 \\(y[n]=0\\)。\n若输入 \\(x[n]=K e^{j \\pi n}=K(-1)^{n}\\)（最高频分量），则输出 \\(y[n]=x[n]\\)。"
+  },
+  {
+    "objectID": "Chapter03_V3.html#一阶差分用于边缘检测",
+    "href": "Chapter03_V3.html#一阶差分用于边缘检测",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "一阶差分用于边缘检测",
+    "text": "一阶差分用于边缘检测"
+  },
+  {
+    "objectID": "Chapter03_V3.html#作业",
+    "href": "Chapter03_V3.html#作业",
+    "title": "第三章 周期信号的傅里叶级数表示",
+    "section": "作业",
+    "text": "作业"
   }
 ]

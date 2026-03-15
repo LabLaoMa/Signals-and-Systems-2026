@@ -18,9 +18,6 @@ format:
     # height: 768
     # margin: 0.02
     math: mathjax
-    html-math-method:
-      method: mathjax
-      url: "https://cdn.jsdeliver.net/npm/mathjax@3/es5/tex-mml-chtml.js"
     footer: '<div class="footer-3col"><div class="left">机械与车辆学院 马越</div><div class="center">信号与系统</div><div class="right">2026 春季学期</div></div>'
     toc: false                 # 可以关掉默认的
     titleSelector: 'h1, h2, h3' # 显示 h3 层级
@@ -394,12 +391,14 @@ $$
 
 5种情况：
 
+:::{.incremental}
 
 - $n < 0$: $y[n] = 0$（无重叠）
 - $0 \le n \le 4$: $y[n] = \sum_{k=0}^{n} \alpha^{n-k} = \frac{1-\alpha^{n+1}}{1-\alpha}$
 - $4 < n \le 6$: $y[n] = \sum_{k=0}^{4} \alpha^{n-k} = \alpha^{n-4} \frac{1-\alpha^5}{1-\alpha}$
 - $6 < n \le 10$: $y[n] = \sum_{k=n-6}^{4} \alpha^{n-k} = \frac{\alpha^{n-4}-\alpha^7}{1-\alpha}$
 - $n > 10$: $y[n] = 0$（完全移出）
+:::
 
 :::
 
@@ -502,7 +501,7 @@ $x(t)$实际上是移位冲激的**加权“和”(积分)**。
 
 令 $\hat{h}_{k \Delta}(t)$ 为一个线性时不变系统对输人 $\delta_{\Delta}(t-k \Delta)$ 的响应，根据**叠加性质**，对连续时间线性系统:
 
-$$\hat{y}(t)=\sum_{k=-\infty}^{+\infty} x(k \Delta) \hat{h}_{k \Delta}(t) \Delta$$
+$$\hat{y}(t)=\sum_{k=-\infty}^{+\infty} x(k \Delta) \hat{h}_{k \Delta}(t) \Delta = \sum_{k=-\infty}^{+\infty} x(k \Delta) \hat{h}(t-{k \Delta}) \Delta $$
 
 其中
 
@@ -516,7 +515,7 @@ $\hat{h}_{k \Delta}=T\left(\tau_{k \Delta} p_{\Delta}\right)$ 是移位冲激响
 
 当 $\Delta \rightarrow 0$时：
 
-$$y(t)=\int_{-\infty}^{+\infty} x(\tau) h_\tau(t) \mathrm{d} \tau$$
+$$y(t)=\int_{-\infty}^{+\infty} x(\tau) h_\tau(t) \mathrm{d} \tau = \int_{-\infty}^{+\infty} x(\tau) h(t-\tau) \mathrm{d} \tau $$
 
 :::
 
@@ -760,11 +759,14 @@ $$
 
 分为5种情况：
 
+:::{.incremental}
+
 1. $t<0$
 2. $0 \leq t \leq T$
 3. $T<t \leq 2 T$
 4. $2 T<t \leq 3 T$
 5. $t>3 T$
+:::
 
 :::
 
@@ -1011,7 +1013,7 @@ $$
 \left(\left(x_{1} * x_{2}\right) * x_{3}\right)[n] & =\sum_{m=-\infty}^{\infty}\left(x_{1} * x_{2}\right)[n-m] x_{3}[m] \\
 & =\sum_{m=-\infty}^{\infty}\left(\sum_{k=-\infty}^{\infty} x_{1}[k] x_{2}[n-m-k]\right) x_{3}[m] \\
 & =\sum_{k=-\infty}^{\infty} x_{1}[k] \sum_{m=-\infty}^{\infty} x_{2}[n-k-m] x_{3}[m] \\
-& \left.=\sum_{k=-\infty}^{\infty} x_{1}[k]\left(x_{2} * x_{3}\right)[n-k]\right)=\left(x_{1} *\left(x_{2} * x_{3}\right)\right)[n]
+&  =\sum_{k=-\infty}^{\infty}   x_{1}[k]\left(x_{2} * x_{3}\right)[n-k] =\left( x_{1} *\left(x_{2} * x_{3}\right)\right)[n]
 \end{aligned}
 $$
 
@@ -1214,17 +1216,17 @@ $$
 
 
 
-例： $x_{1}(t)=1, x_{2}(t)=u(t), x_{3}(t)=\delta^{\prime}(t)$ (later)
+例： $x_{1}(t)=1, x_{2}(t)=u(t), x_{3}(t)=\delta^{\prime}(t)$ 
 
 :::: {.columns style="text-align: center;"}
 :::{.column width="50%"}
 
-1. $\left(x_{2} * x_{3}\right)(t)=\delta(t)$, so $x_{1} *\left(x_{2} * x_{3}\right)=1$
-2. $x_{1} * x_{2}$ and $\left(x_{1} * x_{2}\right) * x_{3}$ undefined!
+1. $\left(x_{2} * x_{3}\right)(t)=\delta(t)$, 因而 $x_{1} *\left(x_{2} * x_{3}\right)=1$
+2. $x_{1} * x_{2}$ 以及 $\left(x_{1} * x_{2}\right) * x_{3}$ 没有定义!
 
 :::
 :::{.column width="50%"}
-3. $x_{1} * x_{3}=0$, so $\left(x_{1} * x_{3}\right) * x_{2}=0$
+3. $x_{1} * x_{3}=0$, 因而 $\left(x_{1} * x_{3}\right) * x_{2}=0$
 :::
 ::::
 
@@ -1403,8 +1405,6 @@ $$L_y \tilde{y} = \tilde{f}$$
 此时的**初始条件**变为在零点处定义：
 
 $$\tilde{y}^{(k)}(0) = y_k, \quad k = 0, 1, \dots, N - 1$$
-
-## 线性常系数微分方程 
 
 
 
@@ -1602,7 +1602,7 @@ $$y(t) = \underbrace{\sum_{i=1}^{N} c_{x_i} e^{\lambda_i t}}_{y_{zi}(t)} + \unde
 
 
 
-## 线性性质
+## 由常微分方程表征系统的线性性质
 
 根据系统的响应：
 $$y(t) = \underbrace{\sum_{i=1}^{N} c_{x_i} e^{\lambda_i t}}_{y_{zi}(t)} + \underbrace{\left( \sum_{i=1}^{N} c_{f_i} e^{\lambda_i t} + y_p(t) \right)}_{y_{zs}(t)}$$
@@ -1626,7 +1626,7 @@ $$
 * **全响应呈线性的充要条件是零输入响应为零**
 * **线性性质要求初始状态为零**
 
-## 时间不变性
+## 由常微分方程表征系统的时间不变性
 
 **零初始状态**，即对于 $k = 0, \dots, N - 1$，$y^{(k)}(0) = 0$：
 这能保证系统的**线性**，但**不能**保证**时间不变性**。

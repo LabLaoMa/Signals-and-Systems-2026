@@ -1,0 +1,856 @@
+[
+  {
+    "objectID": "Chapter02_V2.html#toc0",
+    "href": "Chapter02_V2.html#toc0",
+    "title": "第二章 线性时不变系统",
+    "section": "目录",
+    "text": "目录\n\n离散时间线性时不变系统\n\n用脉冲表示离散时间信号\n离散时间线性时不变系统的单位脉冲响应及卷积和表示\n\n连续时间线性时不变系统\n\n用冲激表示连续时间信号\n连续时间线性时不变系统的单位冲激响应及卷积和表示\n\n线性时不变系统的性质\n\n线性时不变系统的交换律、分配律与结合律\n线性时不变系统的记忆性、可逆性、因果性和稳定性\n线性时不变系统的单位阶跃响应\n\n用微分方程和差分方程描述的因果线性时不变系统\n\n线性常系数微分方程\n线性常系数差分方程\n一阶系统的方框图表示\n\n奇异函数"
+  },
+  {
+    "objectID": "Chapter02_V2.html#sec211",
+    "href": "Chapter02_V2.html#sec211",
+    "title": "第二章 线性时不变系统",
+    "section": "用脉冲表示离散时间信号",
+    "text": "用脉冲表示离散时间信号\n离散时间单位脉冲函数\n\\[\n\\delta[n]= \\begin{cases}1, & n=0 \\\\ 0, & n \\neq 0\\end{cases}\n\\]\n\\(\\mathbb{C}^{\\mathbb{Z}}=\\{x[n] \\in \\mathbb{C}: n \\in \\mathbb{Z}\\}\\), 由复数构成的双向无限序列所组成的空间\n\\[\nx=\\sum_{k=-\\infty}^{\\infty} x[k] \\tau_{k} \\delta, \\quad \\text { or } \\quad x[n]=\\sum_{k=-\\infty}^{\\infty} x[k] \\delta[n-k], \\forall n \\in \\mathbb{Z}\n\\]\n以上称为离散时间单位冲激的抽样（筛选）性质\n\\[\\begin{aligned} x[-1] \\delta[n+1] & = \\begin{cases}x[-1], & n=-1 \\\\ 0, & n \\neq-1\\end{cases} \\\\ x[0] \\delta[n] & = \\begin{cases}x[0], & n=0 \\\\ 0, & n \\neq 0\\end{cases} \\\\ x[1] \\delta[n-1] & = \\begin{cases}x[1], & n=1 \\\\ 0, & n \\neq 1\\end{cases} \\end{aligned}\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#用脉冲表示离散时间信号",
+    "href": "Chapter02_V2.html#用脉冲表示离散时间信号",
+    "title": "第二章 线性时不变系统",
+    "section": "用脉冲表示离散时间信号",
+    "text": "用脉冲表示离散时间信号\n例子：\\(x[n]=\\sum_{k=-\\infty}^{\\infty} x[k] \\delta[n-k], \\forall n \\in \\mathbb{Z}\\)\n\\[\\begin{aligned} x[n]=\\cdots & +x[-3] \\delta[n+3]+x[-2] \\delta[n+2]+x[-1] \\delta[n+1]+x[0] \\delta[n] \\\\ & +x[1] \\delta[n-1]+x[2] \\delta[n-2]+x[3] \\delta[n-3]+\\cdots\\end{aligned}\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#sec212",
+    "href": "Chapter02_V2.html#sec212",
+    "title": "第二章 线性时不变系统",
+    "section": "离散时间线性系统的单位脉冲响应与卷积和表示",
+    "text": "离散时间线性系统的单位脉冲响应与卷积和表示\n令\\(h_{k}=T\\left(\\tau_{k} \\delta\\right)\\) 代表线性时不变系统对移位脉冲（\\(\\tau_{k} \\delta\\)）的响应 ：\n\\[\ny=T(x)=T\\left(\\sum_{k=-\\infty}^{\\infty} x[k] \\tau_{k} \\delta\\right)=\\sum_{k=-\\infty}^{\\infty} x[k] T\\left(\\tau_{k} \\delta\\right)=\\sum_{k=-\\infty}^{\\infty} x[k] h_{k}\n\\]\n一般情况下, 不同的 \\(k\\)对应的\\(h_{k}\\) 之间彼此无关。\n\\[\n\\begin{gathered}\nh=T(\\delta) \\\\\n\\text { 时不变性 } \\Longrightarrow h_{k}=T\\left(\\tau_{k} \\delta\\right)=\\tau_{k}(T(\\delta))=\\tau_{k} h = h[n-k]\n\\end{gathered}\n\\] 其中，\\(h[n]=h_0[n]\\)定义为为单位脉冲的序列响应。\n这个结果称为卷积和或者叠加和。\nLTI 系统的响应——卷积和\n\\[\ny=\\sum_{k=-\\infty}^{\\infty} x[k] \\tau_{k} h, \\quad \\text { or } \\quad y[n]=\\sum_{k=-\\infty}^{\\infty} x[k] h[n-k], \\forall n \\in \\mathbb{Z}\n\\]\n离散LTI 系统完全由单位脉冲响应刻画！\n反之， 若给定\\(h(n)\\), 系统 \\(T(x) \\triangleq \\sum_{k=-\\infty}^{\\infty} x[k] \\tau_{k} h\\) 也是线性时不变的。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#离散时间线性系统的单位脉冲响应与卷积和表示",
+    "href": "Chapter02_V2.html#离散时间线性系统的单位脉冲响应与卷积和表示",
+    "title": "第二章 线性时不变系统",
+    "section": "离散时间线性系统的单位脉冲响应与卷积和表示",
+    "text": "离散时间线性系统的单位脉冲响应与卷积和表示\n例： \n\n\n    \n\n     \n\n\n上述过程可以看作是在\\(k\\)时刻\\(x[k]\\)作用下，\\(h[n]\\)系统的所有时刻响应，然后把所有的\\(x[k]\\)作用下的响应叠加起来就是系统的最终输出。（线性系统的叠加性）。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#离散时间线性系统的单位脉冲响应与卷积和表示-1",
+    "href": "Chapter02_V2.html#离散时间线性系统的单位脉冲响应与卷积和表示-1",
+    "title": "第二章 线性时不变系统",
+    "section": "离散时间线性系统的单位脉冲响应与卷积和表示",
+    "text": "离散时间线性系统的单位脉冲响应与卷积和表示\n还是这个例子，换个视角，用反转-移位的方法做：\n\n\n序列 \\(h[n-k]\\) 看成固定 \\(n\\) 时 \\(k\\) 的函数，\\(h[n-k]\\) 是单位脉冲响应 \\(h[k]\\) 的时间反转与移位(思考一下物理意义)。\n\\[\ny[0]=\\sum_{k=-\\infty}^{\\infty} x[k] h[0-k]=0.5\n\\]\n序列 \\(x[k]\\) 与序列 \\(h[1-k]\\) 的乘积有两个非零样本，相加之后得\n\\[\ny[1]=\\sum_{k=-\\infty}^{\\infty} x[k] h[1-k]=0.5+2.0=2.5\n\\]\n\\[\ny[2]=\\sum_{k=-\\infty}^{\\infty} x[k] h[2-k]=0.5+2.0=2.5\n\\]\n\\[\ny[3]=\\sum_{k=-\\infty}^{\\infty} x[k] h[3-k]=2.0\n\\]\n\n\n\n系统在\\(n\\)时刻的总输出\\(y[n]\\)由历史上各个时刻的有效因果输入激励\\(x[k]\\)的响应累加获得！"
+  },
+  {
+    "objectID": "Chapter02_V2.html#简单-lti-系统的冲激响应",
+    "href": "Chapter02_V2.html#简单-lti-系统的冲激响应",
+    "title": "第二章 线性时不变系统",
+    "section": "简单 LTI 系统的冲激响应",
+    "text": "简单 LTI 系统的冲激响应\n恒等系统\n\\[\nh[n]=\\delta[n]\n\\]\n比例（标量）放大\n\\[\nh[n]=K \\delta[n]\n\\]\n时移\n\\[\nh[n]=\\delta_{a}[n] \\triangleq \\delta[n-a]\n\\]\n累加器\n\\[\nh[n]=\\sum_{k=-\\infty}^{n} \\delta[k]=u[n]\n\\]\n一阶差分\n\\[\nh[n]=\\delta[n]-\\delta[n-1]\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#卷积的计算方法",
+    "href": "Chapter02_V2.html#卷积的计算方法",
+    "title": "第二章 线性时不变系统",
+    "section": "卷积的计算方法",
+    "text": "卷积的计算方法\n\n绘制信号\n将 \\(x_{1}\\) 和 \\(x_{2}\\) 表示为自变量 \\(k\\) 的函数，即绘制\\(x_{1}[k], \\quad x_{2}[k]\\)\n信号反转（序列翻转）\n将 \\(x_{2}\\) 关于原点反转，得到 \\(R x_{2}\\)，即\\(R x_{2} = x_{2}[-k]\\)\n序列平移\n对于给定的 \\(n\\)，将 \\(R x_{2}\\) 向右平移 \\(n\\)，得到\\(\\tau_{n}(R x_{2}) = x_{2}[n-k]\\)\n逐点相乘\n将 \\(x_{1}\\) 与 \\(\\tau_{n}(R x_{2})\\) 按分量逐点相乘，得到序列\\(g_{n} = x_{1} \\cdot \\tau_{n}(R x_{2})\\)，即\n\\[\ng_{n}[k] = x_{1}[k]\\,x_{2}[n-k]\n\\]\n求和得到卷积结果\n对 \\(g_{n}\\) 关于 \\(k\\) 求和，得到离散卷积\n\\[\n(x_{1} * x_{2})[n]\n=\n\\sum_{k=-\\infty}^{\\infty} g_{n}[k]\n\\]\n对每个 \\(n\\) 重复上述步骤： 对不同的 \\(n\\) 重复步骤 1–5，即可得到完整的卷积序列 \\((x_{1} * x_{2})[n]\\)。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#卷积示例1",
+    "href": "Chapter02_V2.html#卷积示例1",
+    "title": "第二章 线性时不变系统",
+    "section": "卷积示例1",
+    "text": "卷积示例1\n例： 已知 \\(x[n]=\\alpha^{n} u[n]\\) 和 \\(h[n]=u[n]\\) ，其中\\(\\alpha \\in(0,1)\\).\n\n\n对于 \\(n&lt;0\\),\n\\[\n(x * h)[n]=0\n\\]\n对于 \\(n \\geq 0\\),\n\\[\n(x * h)[n]=\\sum_{k=0}^{n} \\alpha^{k}=\\frac{1-\\alpha^{n+1}}{1-\\alpha}\n\\]\n因此\n\\[\n(x * h)[n]=\\left(\\frac{1-\\alpha^{n+1}}{1-\\alpha}\\right) u[n]\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#卷积示例2-直接计算",
+    "href": "Chapter02_V2.html#卷积示例2-直接计算",
+    "title": "第二章 线性时不变系统",
+    "section": "卷积示例2 （直接计算）",
+    "text": "卷积示例2 （直接计算）\n例： 已知 \\(x[n]=\\alpha^{n} u[n]\\) 和 \\(h[n]=u[n]\\)， 其中 \\(\\alpha \\in(0,1)\\).\n\n\n\\[\n\\begin{aligned}\n(x * h)[n] & =\\sum_{k=-\\infty}^{\\infty} x[k] h[n-k] \\\\\n& =\\sum_{k=-\\infty}^{\\infty} \\alpha^{k} u[k] u[n-k] \\\\\n& =\\sum_{0 \\leq k \\leq n} \\alpha^{k} \\\\\n& =u[n] \\sum_{k=0}^{n} \\alpha^{k} \\\\\n& =\\left(\\frac{1-\\alpha^{n+1}}{1-\\alpha}\\right) u[n]\n\\end{aligned}\n\\]\n对\\(\\alpha&gt;1\\)也成立"
+  },
+  {
+    "objectID": "Chapter02_V2.html#ExamDT03",
+    "href": "Chapter02_V2.html#ExamDT03",
+    "title": "第二章 线性时不变系统",
+    "section": "卷积示例3",
+    "text": "卷积示例3\n例： 已知\n\n\n\\[\n\\begin{aligned}\n& x[n]= \\begin{cases}1, & 0 \\leq n \\leq 4 \\\\\n0, & \\text { 其他 }\\end{cases} \\\\\n& h[n]= \\begin{cases}\\alpha^{n}, & \\alpha &gt; 1, 0 \\leq n \\leq 6 \\\\\n0, & \\text { 其他 }\\end{cases}\n\\end{aligned}\n\\]\n5种情况：\n\n\\(n &lt; 0\\): \\(y[n] = 0\\)（无重叠）\n\\(0 \\le n \\le 4\\): \\(y[n] = \\sum_{k=0}^{n} \\alpha^{n-k} = \\frac{1-\\alpha^{n+1}}{1-\\alpha}\\)\n\\(4 &lt; n \\le 6\\): \\(y[n] = \\sum_{k=0}^{4} \\alpha^{n-k} = \\alpha^{n-4} \\frac{1-\\alpha^5}{1-\\alpha}\\)\n\\(6 &lt; n \\le 10\\): \\(y[n] = \\sum_{k=n-6}^{4} \\alpha^{n-k} = \\frac{\\alpha^{n-4}-\\alpha^7}{1-\\alpha}\\)\n\\(n &gt; 10\\): \\(y[n] = 0\\)（完全移出）\n\n\n\n\n\n\n\n\n\n\n返回目录"
+  },
+  {
+    "objectID": "Chapter02_V2.html#toc1",
+    "href": "Chapter02_V2.html#toc1",
+    "title": "第二章 线性时不变系统",
+    "section": "目录",
+    "text": "目录\n\n离散时间线性时不变系统\n\n用脉冲表示离散时间信号\n离散时间线性时不变系统的单位脉冲响应及卷积和表示\n\n连续时间线性时不变系统\n\n用冲激表示连续时间信号\n连续时间线性时不变系统的单位冲激响应及卷积和表示\n\n线性时不变系统的性质\n\n线性时不变系统的交换律、分配律与结合律\n线性时不变系统的记忆性、可逆性、因果性和稳定性\n线性时不变系统的单位阶跃响应\n\n用微分方程和差分方程描述的因果线性时不变系统\n\n线性常系数微分方程\n线性常系数差分方程\n一阶系统的方框图表示\n\n奇异函数"
+  },
+  {
+    "objectID": "Chapter02_V2.html#sec221",
+    "href": "Chapter02_V2.html#sec221",
+    "title": "第二章 线性时不变系统",
+    "section": "连续时间信号的冲激表示",
+    "text": "连续时间信号的冲激表示\n连续时间单位冲激的抽样（筛选）性质\n\n\n考虑用一串脉冲或阶梯信号 \\(\\hat{x}(t)\\) 来近似 \\(x(t)\\)。如同离散时间情况一样，对于近似式 \\(\\hat{x}(t)\\) 来说，可以用一串延时脉冲的线性组合来表示，若定义\n\\[\n\\delta_{\\Delta}(t)= \\begin{cases}\\frac{1}{\\Delta}, & 0 \\leqslant t&lt;\\Delta \\\\ 0, & \\text { 其他 }\\end{cases}\n\\]\n由于 \\(\\Delta \\delta_{\\Delta}(t)\\) 为 1 ，则 \\(\\hat{x}(t)\\) 可表示成\n\\[\n\\hat{x}(t)=\\sum_{k=-\\infty}^{\\infty} x(k \\Delta) \\delta_{\\Delta}(t-k \\Delta) \\Delta\n\\]\n当 \\(\\Delta \\rightarrow 0\\)时：\n\\[x(t)=\\int_{-\\infty}^{+\\infty} x(\\tau) \\delta(t-\\tau) \\mathrm{d} \\tau\\]\n\n\n\n\n\n\\(x(t)\\)实际上是移位冲激的加权“和”(积分)。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#sec222",
+    "href": "Chapter02_V2.html#sec222",
+    "title": "第二章 线性时不变系统",
+    "section": "连续时间线性时不变系统的单位冲激响应及卷积和表示",
+    "text": "连续时间线性时不变系统的单位冲激响应及卷积和表示\n\n\n线性系统信号\\(x(t)\\)的响应 \\(\\hat{y}(t)\\) 就是系统对 \\(\\delta_{\\Delta}(t)\\) 加权和移位脉冲响应的叠加。\n令 \\(\\hat{h}_{k \\Delta}(t)\\) 为一个线性时不变系统对输人 \\(\\delta_{\\Delta}(t-k \\Delta)\\) 的响应，根据叠加性质，对连续时间线性系统:\n\\[\\hat{y}(t)=\\sum_{k=-\\infty}^{+\\infty} x(k \\Delta) \\hat{h}_{k \\Delta}(t) \\Delta = \\sum_{k=-\\infty}^{+\\infty} x(k \\Delta) \\hat{h}(t-{k \\Delta}) \\Delta \\]\n其中\n\\(\\hat{h}_{k \\Delta}=T\\left(\\tau_{k \\Delta} p_{\\Delta}\\right)\\) 是移位冲激响应 。\n\n\\(\\hat{x}_{\\Delta} \\rightarrow x\\) 和 \\(\\hat{y}_{\\Delta} \\rightarrow y=T(x)\\)\n对于 \\(k \\Delta \\rightarrow \\tau\\), 有 \\(\\hat{h}_{k \\Delta} \\rightarrow h_{\\tau}=T\\left(\\delta_{\\tau}\\right)\\)\n\n那么：\\(y(t)=\\lim _{\\Delta \\rightarrow 0} \\sum_{k=-\\infty}^{+\\infty} x(k \\Delta) \\hat{h}_{k \\Delta}(t) \\Delta\\)\n当 \\(\\Delta \\rightarrow 0\\)时：\n\\[y(t)=\\int_{-\\infty}^{+\\infty} x(\\tau) h_\\tau(t) \\mathrm{d} \\tau = \\int_{-\\infty}^{+\\infty} x(\\tau) h(t-\\tau) \\mathrm{d} \\tau \\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#连续时间线性时不变lti系统",
+    "href": "Chapter02_V2.html#连续时间线性时不变lti系统",
+    "title": "第二章 线性时不变系统",
+    "section": "连续时间线性时不变（LTI）系统",
+    "text": "连续时间线性时不变（LTI）系统\n单位冲激响应\n\\[\n\\begin{gathered}\nh(t)=h=h_{0}=T(\\delta) \\\\\n\\text { 时不变性 } \\Longrightarrow h_{\\tau}=T\\left(\\delta_{\\tau}\\right)=\\tau_{\\tau}(T(\\delta))=\\tau_{\\tau} h\n\\end{gathered}\n\\]\nLTI 系统的响应——卷积积分\n\\[\ny(t)=\\int_{-\\infty}^{+\\infty} x(\\tau) h(t-\\tau) d \\tau\n\\]\nLTI 系统完全由单位冲激响应刻画！\n反之 给定\\(h(t)\\), 系统\n\\[T(x)(t) \\triangleq \\int_{-\\infty}^{+\\infty} x(\\tau) h(t-\\tau) d \\tau\\] 也是线性时不变的(LTI)。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#简单-lti-系统的冲激响应-1",
+    "href": "Chapter02_V2.html#简单-lti-系统的冲激响应-1",
+    "title": "第二章 线性时不变系统",
+    "section": "简单 LTI 系统的冲激响应",
+    "text": "简单 LTI 系统的冲激响应\n恒等系统 \\[  h(t)=\\delta(t)\\]\n比例（标量）放大\n\\[\nh(t)=K \\delta(t)\n\\]\n时移\n\\[\nh(t)=\\delta_{a}(t) \\triangleq \\delta(t-a)\n\\]\n积分器\n\\[\nh(t)=\\int_{-\\infty}^{t} \\delta(\\tau) d \\tau=u(t)\n\\]\n卷积\n\\[\n\\left(x_{1} * x_{2}\\right)(t)=\\int_{-\\infty}^{+\\infty} x_{1}(\\tau) x_{2}(t-\\tau) d \\tau\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#卷积的计算方法-1",
+    "href": "Chapter02_V2.html#卷积的计算方法-1",
+    "title": "第二章 线性时不变系统",
+    "section": "卷积的计算方法",
+    "text": "卷积的计算方法\n\n绘制信号\n将 \\(x_{1}\\) 和 \\(x_{2}\\) 表示为自变量 \\(\\tau\\) 的函数，即绘制\\(x_{1}(\\tau), \\quad x_{2}(\\tau)\\)\n信号反转（时间反转）\n将 \\(x_{2}(\\tau)\\) 关于原点反转，得到\\(x_{2}(-\\tau)\\)\n信号平移\n对于给定的 \\(t\\)，将 \\(x_{2}(-\\tau)\\) 向右平移 \\(t\\)，得到\\(x_{2}(t-\\tau)\\)\n逐点相乘\n将 \\(x_{1}(\\tau)\\) 与 \\(x_{2}(t-\\tau)\\) 逐点相乘，得到函数\n\\[\ng_t(\\tau) = x_{1}(\\tau)x_{2}(t-\\tau)\n\\]\n积分得到卷积结果\n对 \\(g_t(\\tau)\\) 关于 \\(\\tau\\) 积分，得到卷积结果\n\\[\n(x_{1} * x_{2})(t)\n=\n\\int_{-\\infty}^{\\infty}\nx_{1}(\\tau)x_{2}(t-\\tau)\\, d\\tau\n\\]\n对于每个\\(t\\)，重复 \\(1-5\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#卷积示例1-1",
+    "href": "Chapter02_V2.html#卷积示例1-1",
+    "title": "第二章 线性时不变系统",
+    "section": "卷积示例1",
+    "text": "卷积示例1\n例：令 \\(x(t)=e^{-a t} u(t)\\) 以及 \\(h(t)=u(t)\\)，设 \\(a&gt;0\\).\n\n\n 对于 \\(t&lt;0\\),\n\\[\n(x * h)(t)=0\n\\]\n\n对于 \\(t \\geq 0\\),\n\\[\n(x * h)(t)=\\int_{0}^{t} e^{-a \\tau} d \\tau=\\frac{1-e^{-a t}}{a}\n\\]\n 因此\n\\[\n(x * h)(t)=\\left(\\frac{1-e^{-a t}}{a}\\right) u(t)\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#卷积示例1-2",
+    "href": "Chapter02_V2.html#卷积示例1-2",
+    "title": "第二章 线性时不变系统",
+    "section": "卷积示例1",
+    "text": "卷积示例1\n例： 令 \\(x(t)=e^{-a t} u(t)\\) 以及 \\(h(t)=u(t)\\)， \\(a&gt;0\\).(用公式推导的方法)\n\n\n\\[\n\\begin{aligned}\n(x * h)(t) & =\\int_{\\mathbb{R}} x(\\tau) h(t-\\tau) d \\tau \\\\\n& =\\int_{\\mathbb{R}} e^{-a \\tau} u(\\tau) u(t-\\tau) d \\tau \\\\\n& =\\int_{0 \\leq \\tau \\leq t} e^{-a \\tau} d \\tau \\\\\n& =u(t) \\int_{0}^{t} e^{-a \\tau} d \\tau \\\\\n& =\\left(\\frac{1-e^{-a t}}{a}\\right) u(t)\n\\end{aligned}\n\\]\n对\\(a&lt;0\\)也成立"
+  },
+  {
+    "objectID": "Chapter02_V2.html#卷积示例2",
+    "href": "Chapter02_V2.html#卷积示例2",
+    "title": "第二章 线性时不变系统",
+    "section": "卷积示例2",
+    "text": "卷积示例2\n计算 \\(x * x\\)，其中 \\(x(t)=u(t+T)-u(t-T)\\) (宽为 \\(2T\\) 的矩形脉冲)。\n\n\n\\[\n(x * x)(t)= \\begin{cases}0, & t&lt;-2 T \\\\ t+2 T, & -2 T \\leq t&lt;0 \\\\ 2 T-t, & 0 \\leq t&lt;2 T \\\\ 0, & t \\geq 2 T\\end{cases}\n\\] \n结果是一个宽为 \\(4T\\) 的三角形脉冲"
+  },
+  {
+    "objectID": "Chapter02_V2.html#卷积示例3",
+    "href": "Chapter02_V2.html#卷积示例3",
+    "title": "第二章 线性时不变系统",
+    "section": "卷积示例3",
+    "text": "卷积示例3\n例：\n\n\n令 \\[\n\\begin{aligned}\n& x(t)= \\begin{cases}1, & 0&lt;t&lt;T \\\\\n0, & \\text { 其他 }\\end{cases} \\\\\n& h(t)= \\begin{cases}t, & 0 \\leq t \\leq 2 T \\\\\n0, & \\text { 其他 }\\end{cases}\n\\end{aligned}\n\\]\n分为5种情况：\n\n\\(t&lt;0\\)\n\\(0 \\leq t \\leq T\\)\n\\(T&lt;t \\leq 2 T\\)\n\\(2 T&lt;t \\leq 3 T\\)\n\\(t&gt;3 T\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#卷积示例3-1",
+    "href": "Chapter02_V2.html#卷积示例3-1",
+    "title": "第二章 线性时不变系统",
+    "section": "卷积示例3",
+    "text": "卷积示例3\n结果：\n\n\n\\[y(t)=\\begin{cases}\\frac{t^2}{2} &0 \\leq t \\leq T \\\\ t T-\\frac{T^2}{2} &   T&lt;t \\leq 2 T \\\\ -\\frac{t^2}{2}+t T+\\frac{3 T^2}{2} & 2 T&lt;t \\leq 3 T \\\\ 0 & t &gt; 3T\\end{cases}\\]\n\n\n\n\n返回目录"
+  },
+  {
+    "objectID": "Chapter02_V2.html#toc2",
+    "href": "Chapter02_V2.html#toc2",
+    "title": "第二章 线性时不变系统",
+    "section": "目录",
+    "text": "目录\n\n离散时间线性时不变系统\n\n用脉冲表示离散时间信号\n离散时间线性时不变系统的单位脉冲响应及卷积和表示\n\n连续时间线性时不变系统\n\n用冲激表示连续时间信号\n连续时间线性时不变系统的单位冲激响应及卷积和表示\n\n线性时不变系统的性质\n\n线性时不变系统的交换律、分配律与结合律\n线性时不变系统的记忆性、可逆性、因果性和稳定性\n线性时不变系统的单位阶跃响应\n\n用微分方程和差分方程描述的因果线性时不变系统\n\n线性常系数微分方程\n线性常系数差分方程\n一阶系统的方框图表示\n\n奇异函数"
+  },
+  {
+    "objectID": "Chapter02_V2.html#sec231",
+    "href": "Chapter02_V2.html#sec231",
+    "title": "第二章 线性时不变系统",
+    "section": "线性时不变系统的交换律、分配律与结合律",
+    "text": "线性时不变系统的交换律、分配律与结合律\n恒等系统 Element\n回顾抽样性质： \\(\\delta\\)\n\\[\nx[n]=\\sum_{k=-\\infty}^{\\infty} x[k] \\delta[n-k], \\quad \\forall n \\in \\mathbb{Z}\n\\]\n\\(\\delta\\) 函数是卷积运算的单位元（identity element）。\n\\[\nx=x * \\delta=\\delta * x\n\\]\n\\[\nx=x * \\delta\n\\]\n\n\\[\nx=\\delta * x\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#线性时不变系统的交换律分配律与结合律",
+    "href": "Chapter02_V2.html#线性时不变系统的交换律分配律与结合律",
+    "title": "第二章 线性时不变系统",
+    "section": "线性时不变系统的交换律、分配律与结合律",
+    "text": "线性时不变系统的交换律、分配律与结合律\n离散时间LTI系统的交换律、分配率与结合律\n交换律\n\\[\nx_{1} * x_{2}=x_{2} * x_{1}\n\\]\n证明：变量替换: \\(m=n-k\\),\n\\[\n\\begin{aligned}\n\\left(x_{1} * x_{2}\\right)[n] & =\\sum_{k=-\\infty}^{\\infty} x_{1}[k] x_{2}[n-k]=\\sum_{m=-\\infty}^{\\infty} x_{1}[n-m] x_{2}[m]=\\left(x_{2} * x_{1}\\right)[n] \\\\\ny & =x * h \\quad x \\rightarrow y \\\\\ny & =h * x \\quad h \\rightarrow y\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#交换律",
+    "href": "Chapter02_V2.html#交换律",
+    "title": "第二章 线性时不变系统",
+    "section": "交换律",
+    "text": "交换律\n例 (离散时间系统示例3),已知：\n\n\n\\[\n\\begin{aligned}\n& x[n]= \\begin{cases}1, & 0 \\leq n \\leq 4 \\\\\n0, & \\text { 其他 }\\end{cases} \\\\\n& h[n]= \\begin{cases}\\alpha^{n}, & \\alpha &gt; 1, 0 \\leq n \\leq 6 \\\\\n0, & \\text { 其他 }\\end{cases}\n\\end{aligned}\n\\]\n5种情况：\n\n\\(n&lt;0\\)\n\\(0 \\leq n \\leq 4\\)\n\\(4&lt;n \\leq 6\\)\n\\(6&lt;n \\leq 10\\)\n\\(n&gt;10\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#分配律",
+    "href": "Chapter02_V2.html#分配律",
+    "title": "第二章 线性时不变系统",
+    "section": "分配律",
+    "text": "分配律\n\\[\nx_{1} *\\left(x_{2}+x_{3}\\right)=x_{1} * x_{2}+x_{1} * x_{3}\n\\]\n证明： 假设 \\(x_{1} * x_{2}\\) 和 \\(x_{1} * x_{3}\\) 都是良好定义的,\n\\[\n\\sum_{k=-\\infty}^{\\infty} x_{1}[k]\\left(x_{2}[n-k]+x_{3}[n-k]\\right)=\\sum_{k=-\\infty}^{\\infty} x_{1}[k] x_{2}[n-k]+\\sum_{k=-\\infty}^{\\infty} x_{1}[k] x_{3}[n-k]\n\\]\n\n\n  \\[\nh=h_{1}+h_{2}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#双线性",
+    "href": "Chapter02_V2.html#双线性",
+    "title": "第二章 线性时不变系统",
+    "section": "双线性",
+    "text": "双线性\n标量乘法\n\\[\nx_{1} *\\left(K x_{2}\\right)=K\\left(x_{1} * x_{2}\\right)\n\\]\n映射\\(\\left(x_{1}, x_{2}\\right) \\mapsto x_{1} * x_{2}\\) 即对 \\(x_{1}\\) 和 \\(x_{2}\\)都是线性的。\n\\[\n\\left(\\sum_{i} a_{i} x_{1 i}\\right) *\\left(\\sum_{j} b_{j} x_{2 j}\\right)=\\sum_{i} \\sum_{j} a_{i} b_{j}\\left(x_{1 i} * x_{2 j}\\right)\n\\]\n对第一个变量的线性：对于任意标量 \\(a, b\\)，\n\\[\n(a x_{1} + b x_{2}) * x_{3}\n=\na(x_{1} * x_{3}) + b(x_{2} * x_{3})\n\\]\n对第二个变量的线性：对于任意标量 \\(a, b\\)，\n\\[\nx_{1} * (a x_{2} + b x_{3})\n=\na(x_{1} * x_{2}) + b(x_{1} * x_{3})\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#结合律",
+    "href": "Chapter02_V2.html#结合律",
+    "title": "第二章 线性时不变系统",
+    "section": "结合律",
+    "text": "结合律\n\\[\n\\left(x_{1} * x_{2}\\right) * x_{3}=x_{1} *\\left(x_{2} * x_{3}\\right)\n\\]\n证明：在适当条件下，有\n\\[\n\\begin{aligned}\n\\left(\\left(x_{1} * x_{2}\\right) * x_{3}\\right)[n] & =\\sum_{m=-\\infty}^{\\infty}\\left(x_{1} * x_{2}\\right)[n-m] x_{3}[m] \\\\\n& =\\sum_{m=-\\infty}^{\\infty}\\left(\\sum_{k=-\\infty}^{\\infty} x_{1}[k] x_{2}[n-m-k]\\right) x_{3}[m] \\\\\n& =\\sum_{k=-\\infty}^{\\infty} x_{1}[k] \\sum_{m=-\\infty}^{\\infty} x_{2}[n-k-m] x_{3}[m] \\\\\n&  =\\sum_{k=-\\infty}^{\\infty}   x_{1}[k]\\left(x_{2} * x_{3}\\right)[n-k] =\\left( x_{1} *\\left(x_{2} * x_{3}\\right)\\right)[n]\n\\end{aligned}\n\\]\n由于卷积运算满足结合律，可以将 \\(x_{1} * x_{2} * x_{3}\\)写成不带括号的形式而不会产生歧义。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#结合律-1",
+    "href": "Chapter02_V2.html#结合律-1",
+    "title": "第二章 线性时不变系统",
+    "section": "结合律",
+    "text": "结合律\n\\[\nx_{1} *\\left(x_{2} * x_{3}\\right)=\\left(x_{1} * x_{2}\\right) * x_{3}\n\\]\n\n对于 LTI 系统，处理顺序通常不影响结果"
+  },
+  {
+    "objectID": "Chapter02_V2.html#结合律失效的情况",
+    "href": "Chapter02_V2.html#结合律失效的情况",
+    "title": "第二章 线性时不变系统",
+    "section": "结合律失效的情况",
+    "text": "结合律失效的情况\n例： \\(x_{1}[n]=1, x_{2}[n]=u[n], x_{3}[n]=\\delta[n]-\\delta[n-1]\\).\n\n\\(x_{2} * x_{3}=x_{3} * x_{2}=\\delta\\), 因而 \\(x_{1} *\\left(x_{2} * x_{3}\\right)=x_{1} *\\left(x_{3} * x_{2}\\right)=1\\)\n\\(x_{1} * x_{2}\\) 以及 \\(\\left(x_{1} * x_{2}\\right) * x_{3}\\) 没有定义!\n\\(x_{1} * x_{3}=0\\), 因此 \\(\\left(x_{1} * x_{3}\\right) * x_{2}=0\\)\n\n以下条件可作为卷积结合律成立的充分条件：\n\n\\(x_1, x_2, x_3\\) 中至少有两个信号具有有限支撑（finite support）\n\\(x_1, x_2, x_3\\) 全部都是右边序列（或全部都是左边序列）\n则三重卷积 \\[\nx_1 * x_2 * x_3\n\\] 也仍然是右边序列（或左边序列）。\n其中一个信号（例如 \\(x_3\\)）具有有限 \\(\\ell_p\\) 范数（\\(1 \\le p \\le \\infty\\)），其余两个信号具有有限 \\(\\ell_1\\) 范数\n则有估计 \\[\n\\|x_1 * x_2 * x_3\\|_p\n\\le\n\\|x_1\\|_1\\,\\|x_2\\|_1\\,\\|x_3\\|_p\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#时移性质",
+    "href": "Chapter02_V2.html#时移性质",
+    "title": "第二章 线性时不变系统",
+    "section": "时移性质",
+    "text": "时移性质\n\\[\n\\left(\\tau_{a} x_{1}\\right) *\\left(\\tau_{b} x_{2}\\right)=\\tau_{a+b}\\left(x_{1} * x_{2}\\right)\n\\]\n证明：\n注意到： \\(\\tau_{a} x=x * \\delta_{a}\\) and \\(\\delta_{a+b}=\\delta_{a} * \\delta_{b}\\).\n因此\n\\[\n\\begin{aligned}\n\\left(\\tau_{a} x_{1}\\right) *\\left(\\tau_{b} x_{2}\\right) & =\\left(x_{1} * \\delta_{a}\\right) *\\left(x_{2} * \\delta_{b}\\right)=\\left(x_{1} * x_{2}\\right) *\\left(\\delta_{a} * \\delta_{b}\\right) \\\\\n& =\\left(x_{1} * x_{2}\\right) * \\delta_{a+b}=\\tau_{a+b}\\left(x_{1} * x_{2}\\right)\n\\end{aligned}\n\\]\n\n\n编程实现\n\\[\n\\begin{array}{rlrl}\nx[-2] & =-1 & h[-1] & =-0.5 \\\\\nx[-1] & =0 & h[0] & =1 \\\\\nx[0] & =0.5 & h[1] & =0.5 \\\\\nx[1] & =1 & & \\\\\nx[2] & =-0.5 & &\n\\end{array}\n\\]\n\nimport numpy as np\nimport matplotlib.pyplot as plt # 建议补充，用于可视化验证\n\n# 1. 原始信号及其起始坐标 (n_start)\n# x[-2:2] 意味着 n 从 -2 开始，长度为 5\nx = np.array([-1, 0, 0.5, 1, -0.5])\nnx = np.arange(-2, 3) \n\n# h[-1:1] 意味着 n 从 -1 开始，长度为 3\nh = np.array([0.5, 1, 0.5])\nnh = np.arange(-1, 2)\n\n# 2. 卷积运算\n# mode='full' 是默认值，输出长度为 len(x) + len(h) - 1\ny = np.convolve(x, h)\n\n# 3. 计算卷积后的索引坐标 (关键补充)\n# 卷积后信号的起始索引 = x的起始索引 + h的起始索引\n# 卷积后信号的结束索引 = x的结束索引 + h的结束索引\nny_start = nx[0] + nh[0]\nny_end = nx[-1] + nh[-1]\nny = np.arange(ny_start, ny_end + 1)\n\nprint(f\"输出信号 y 的数值: {y}\")\nprint(f\"对应的时间轴 n: {ny}\")"
+  },
+  {
+    "objectID": "Chapter02_V2.html#时移性质-1",
+    "href": "Chapter02_V2.html#时移性质-1",
+    "title": "第二章 线性时不变系统",
+    "section": "时移性质",
+    "text": "时移性质"
+  },
+  {
+    "objectID": "Chapter02_V2.html#利用性质进行计算",
+    "href": "Chapter02_V2.html#利用性质进行计算",
+    "title": "第二章 线性时不变系统",
+    "section": "利用性质进行计算",
+    "text": "利用性质进行计算\n例： 已知\n\\[\nx[n]=\\left\\{\\begin{array}{ll}\n1, & 0 \\leq n \\leq 4 \\\\\n0, & \\text { 其他 }\n\\end{array} \\quad h[n]= \\begin{cases}\\alpha^{n}, & 0 \\leq n \\leq 6 \\\\\n0, & \\text { 其他 }\\end{cases}\\right.\n\\]\n\n设 \\(h_{1}[n]=\\alpha^{n} u[n]\\).\n\n\\[\n\\left(u * h_{1}\\right)[n]=\\left(\\frac{1-\\alpha^{n+1}}{1-\\alpha}\\right) u[n]\n\\]\n\n\\(x=u-\\tau_{5} u, h=h_{1}-\\alpha^{7} \\tau_{7} h_{1}\\).\n\\(x * h=\\left(I-\\tau_{5}-\\alpha^{7} \\tau_{7}+\\alpha^{7} \\tau_{12}\\right)\\left(u * h_{1}\\right)\\)\n\\(x=\\left(\\delta-\\delta_{5}\\right) * u, h=\\left(\\delta-\\alpha^{7} \\delta_{7}\\right) * h_{1}\\).\n\\(x * h=\\left(\\delta-\\delta_{5}-\\alpha^{7} \\delta_{7}+\\alpha^{7} \\delta_{12}\\right) *\\left(u * h_{1}\\right)\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#线性时不变系统的交换律分配律与结合律-1",
+    "href": "Chapter02_V2.html#线性时不变系统的交换律分配律与结合律-1",
+    "title": "第二章 线性时不变系统",
+    "section": "线性时不变系统的交换律、分配律与结合律",
+    "text": "线性时不变系统的交换律、分配律与结合律\n连续时间LTI系统的交换律、分配率与结合律\n交换律\n\\[\nx_{1} * x_{2}=x_{2} * x_{1}\n\\]\n双线性\n\\[\n\\left(\\sum_{i} a_{i} x_{1 i}\\right) *\\left(\\sum_{j} b_{j} x_{2 j}\\right)=\\sum_{i} \\sum_{j} a_{i} b_{j}\\left(x_{1 i} * x_{2 j}\\right)\n\\]\n结合律\n\\[\nx_{1} * x_{2} * x_{3}=\\left(x_{1} * x_{2}\\right) * x_{3}=x_{1} *\\left(x_{2} * x_{3}\\right)\n\\]\n时移\n\\[\n\\left(\\tau_{a} x_{1}\\right) *\\left(\\tau_{b} x_{2}\\right)=\\tau_{a+b}\\left(x_{1} * x_{2}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#结合律-2",
+    "href": "Chapter02_V2.html#结合律-2",
+    "title": "第二章 线性时不变系统",
+    "section": "结合律",
+    "text": "结合律\n\\[\nx_{1} *\\left(x_{2} * x_{3}\\right)=\\left(x_{1} * x_{2}\\right) * x_{3}\n\\]\n\n对于 LTI 系统，处理顺序通常不影响结果"
+  },
+  {
+    "objectID": "Chapter02_V2.html#结合律失效的情况-1",
+    "href": "Chapter02_V2.html#结合律失效的情况-1",
+    "title": "第二章 线性时不变系统",
+    "section": "结合律失效的情况",
+    "text": "结合律失效的情况\n例： \\(x_{1}(t)=1, x_{2}(t)=u(t), x_{3}(t)=\\delta^{\\prime}(t)\\)\n\n\n\n\\(\\left(x_{2} * x_{3}\\right)(t)=\\delta(t)\\), 因而 \\(x_{1} *\\left(x_{2} * x_{3}\\right)=1\\)\n\\(x_{1} * x_{2}\\) 以及 \\(\\left(x_{1} * x_{2}\\right) * x_{3}\\) 没有定义!\n\n\n\n\\(x_{1} * x_{3}=0\\), 因而 \\(\\left(x_{1} * x_{3}\\right) * x_{2}=0\\)\n\n\n结合律成立的充分条件 (Sufficient conditions for associative law)\n\n至少有两个信号（\\(x_1, x_2, x_3\\)）具有紧支撑 (Compact supports)。\n\n解释：在连续空间中，“紧支撑”意味着信号只在有限的时间区间内非零。如果至少有两个信号是有限长的，卷积积分的上下限将被限制在有限范围内，从而避免积分发散。\n\n\\(x_1, x_2, x_3\\) 全部为右边信号（或全部为左边信号）。\n\n推导：\\(\\implies x_1 * x_2 * x_3\\) 也是右边信号（或左边信号）。\n解释：如果所有信号都是因果的（即 \\(t &lt; 0\\) 时为 \\(0\\)），卷积积分的范围变为 \\([0, t]\\)。这种因果性保证了运算在代数结构上构成一个卷积环，结合律始终成立。\n\n其中一个信号（例如 \\(x_3\\)）具有有限的 \\(L_p\\) 范数 (\\(1 \\le p \\le \\infty\\))，而其他信号具有有限的 \\(L_1\\) 范数。\n\n公式：\\(\\|x_1 * x_2 * x_3\\|_p \\le \\|x_1\\|_1 \\cdot \\|x_2\\|_1 \\cdot \\|x_3\\|_p\\)\n解释：这是基于 Young’s 不等式 的稳定性条件。\\(L_1\\) 范数有限意味着信号是绝对可积的（BIBO 稳定）。只要系统中绝大多数组件是稳定的，那么整体输出的能量或幅值就是受控的，结合律在数学上依然保值。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#sec235",
+    "href": "Chapter02_V2.html#sec235",
+    "title": "第二章 线性时不变系统",
+    "section": "线性时不变系统的记忆性、可逆性、因果性和稳定性",
+    "text": "线性时不变系统的记忆性、可逆性、因果性和稳定性\n记忆性 (Memory)\n对于 LTI 系统： \\[\ny(t)=(x * h)(t)=\\int_{\\mathbb{R}} x(\\tau) h(t-\\tau) d \\tau\n\\]\n\\[\n\\text { 无记忆 (memoryless) } \\Longleftrightarrow h=K \\delta\n\\]\n除了标量乘法外，所有 LTI 系统都具有记忆。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#可逆性-invertibility",
+    "href": "Chapter02_V2.html#可逆性-invertibility",
+    "title": "第二章 线性时不变系统",
+    "section": "可逆性 (Invertibility)",
+    "text": "可逆性 (Invertibility)\n系统及其逆系统的冲激响应满足：\n\\[\nh * h_{1}=\\delta\n\\]\n\n这是必要的，但不充分（需要结合律）。 * 例如：一阶差分 \\(h=\\delta-\\tau_{1} \\delta\\)，累加器 \\(h_{1}=u\\)。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#因果性-causality",
+    "href": "Chapter02_V2.html#因果性-causality",
+    "title": "第二章 线性时不变系统",
+    "section": "因果性 (Causality)",
+    "text": "因果性 (Causality)\n对于 LTI 系统：\n\\[\n\\begin{aligned}\ny[n] & =\\sum_{k=-\\infty}^{n} x[k] h[n-k] \\\\\n\\text { 因果 } & \\Longleftrightarrow h[n]=0 \\text { 对所有 } n&lt;0\n\\end{aligned}\n\\]\n\\[\n\\begin{aligned}\ny(t) & =\\int_{-\\infty}^{t} x(\\tau) h(t-\\tau) d \\tau \\\\\n\\text { 因果 } & \\Longleftrightarrow h(t)=0 \\text { 对所有 } t&lt;0\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#稳定性-stability",
+    "href": "Chapter02_V2.html#稳定性-stability",
+    "title": "第二章 线性时不变系统",
+    "section": "稳定性 (Stability)",
+    "text": "稳定性 (Stability)\n回顾 BIBO 稳定性：\\(\\|x\\|_{\\infty}&lt;\\infty \\Longrightarrow\\|T(x)\\|_{\\infty}&lt;\\infty\\)。\n对于 LTI 系统： \\[\n\\text { BIBO 稳定 } \\Longleftrightarrow\\|h\\|_{1}&lt;\\infty\n\\]\n证明： * 充分性：假设 \\(\\|h\\|_{1}&lt;\\infty\\)。因 \\(\\|x * h\\|_{\\infty} \\leq\\|x\\|_{\\infty}\\|h\\|_{1}\\)，故有界输入产生有界输出。\n\n必要性：构建反例 \\(x=R(\\bar{h} /|h|)\\)。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#单位阶跃响应-unit-step-response",
+    "href": "Chapter02_V2.html#单位阶跃响应-unit-step-response",
+    "title": "第二章 线性时不变系统",
+    "section": "单位阶跃响应 (Unit Step Response)",
+    "text": "单位阶跃响应 (Unit Step Response)\nLTI 系统的单位阶跃响应 \\(s \\triangleq T(u)=u * h\\)。\nDT LTI: \\[\ns[n]=\\sum_{-\\infty}^{n} h[k], \\quad h[n]=s[n]-s[n-1]\n\\]\nCT LTI: \\[\ns(t)=\\int_{-\\infty}^{t} h(\\tau) d \\tau, \\quad h(t)=s^{\\prime}(t)\n\\]\n\n返回目录"
+  },
+  {
+    "objectID": "Chapter02_V2.html#toc3",
+    "href": "Chapter02_V2.html#toc3",
+    "title": "第二章 线性时不变系统",
+    "section": "目录",
+    "text": "目录\n\n离散时间线性时不变系统\n\n用脉冲表示离散时间信号\n离散时间线性时不变系统的单位脉冲响应及卷积和表示\n\n连续时间线性时不变系统\n\n用冲激表示连续时间信号\n连续时间线性时不变系统的单位冲激响应及卷积和表示\n\n线性时不变系统的性质\n\n线性时不变系统的交换律、分配律与结合律\n线性时不变系统的记忆性、可逆性、因果性和稳定性\n线性时不变系统的单位阶跃响应\n\n用微分方程和差分方程描述的因果线性时不变系统\n\n线性常系数微分方程\n线性常系数差分方程\n一阶系统的方框图表示\n\n奇异函数"
+  },
+  {
+    "objectID": "Chapter02_V2.html#sec241",
+    "href": "Chapter02_V2.html#sec241",
+    "title": "第二章 线性时不变系统",
+    "section": "线性常系数微分方程 (LCCDE)",
+    "text": "线性常系数微分方程 (LCCDE)\n\n\n根据电阻、电容和电感元件的特性：\n\\(\\begin{aligned} i_R(t) & =\\frac{1}{R} v(t) \\\\ i_L(t) & =\\frac{1}{L} \\int_{-\\infty}^t v(\\tau) d \\tau \\\\ i_C(t) & =C \\frac{d}{d t} v(t)\\end{aligned}\\)\n根据Kirchhoff定律\n\\(i_R(t)+i_L(t)+i_C(t)=i_S(t)\\)\n可以得到以二阶常微分方程（ODE）表达的RLC 电路特性： \\[\nC \\frac{d^{2}}{d t^{2}} v(t)+\\frac{1}{R} \\frac{d}{d t} v(t)+\\frac{1}{L} v(t)=\\frac{d}{d t} i_{S}(t)\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#线性常系数微分方程",
+    "href": "Chapter02_V2.html#线性常系数微分方程",
+    "title": "第二章 线性时不变系统",
+    "section": "线性常系数微分方程",
+    "text": "线性常系数微分方程\n一般形式： \\[\nL_{y} y=L_{x} x\n\\] 其中 \\[L_{y}=\\sum_{k=0}^{N} a_{k} \\frac{d^{k}}{d t^{k}}, L_{x}=\\sum_{k=0}^{M} b_{k} \\frac{d^{k}}{d t^{k}}\\]\n\n\\(N\\): 常微分方程的阶数 (order)\n输入-输出关系由 ODE 隐式 (implicitly) 指定\n解 ODE 以获得显性 (explicit) 输入-输出关系 \\(y = T(x)\\)\n在解 ODE 时，可以将 \\(f = L_x x\\) 视为“输入”\n单凭 ODE 并不能唯一确定 \\(T\\)\n需要辅助条件 (auxiliary conditions)，通常是初始条件 (initial conditions)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#线性常系数微分方程-1",
+    "href": "Chapter02_V2.html#线性常系数微分方程-1",
+    "title": "第二章 线性时不变系统",
+    "section": "线性常系数微分方程",
+    "text": "线性常系数微分方程\n初值问题 (Initial Value Problem, IVP)\n\\[L_y y = f\\]\n伴随以下初始条件 (initial conditions)：\n\\[y^{(k)}(t_0) = y_k, \\quad k = 0, 1, \\dots, N - 1\\]\n核心要点\n\n\\(N\\) 阶常微分方程 (ODE) 需要 \\(N\\) 个初始条件\n通过平移变换，可以将 \\(y\\) 和 \\(f\\) 分别替换为 \\(\\tilde{y} = \\tau_{-t_0} y\\) 和 \\(\\tilde{f} = \\tau_{-t_0} f\\)：\n\n\\[L_y \\tilde{y} = \\tilde{f}\\]\n此时的初始条件变为在零点处定义：\n\\[\\tilde{y}^{(k)}(0) = y_k, \\quad k = 0, 1, \\dots, N - 1\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶-ode-的-ivp-示例",
+    "href": "Chapter02_V2.html#一阶-ode-的-ivp-示例",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶 ODE 的 IVP 示例",
+    "text": "一阶 ODE 的 IVP 示例\n示例\n设算子 \\(L_y = \\frac{d}{dt} + 2\\)，即微分方程为： \\[y'(t) + 2y(t) = x(t) \\quad \\dots (1)\\]\n已知输入 \\(x(t) = Ke^{3t}u(t)\\)，初始条件为 \\(y(0) = y_0\\)。\n解题步骤\n\n通解 (General solution) 是特解 \\(y_p(t)\\) 与齐次解 \\(y_h(t)\\) 之和： \\[y(t) = y_p(t) + y_h(t)\\]\n\\(y_p\\) 满足原方程 (1)；而 \\(y_h\\)（固有响应或自然响应，natural response）满足齐次方程： \\[y_h'(t) + 2y_h(t) = 0\\]\n设 \\(y_h(t) = Ae^{\\lambda t}\\)，其中特征方程为 \\(\\lambda + 2 = 0\\)。\n\n特征方程的左侧 (LHS) 是将算子 \\(L_y\\) 中的 \\(\\frac{d}{dt}\\) 替换为 \\(\\lambda\\) 得到的。\n因此，\\(\\lambda = -2\\)，齐次解为： \\[y_h(t) = Ae^{-2t}\\]\n\n\n解的分解 (Decomposition)\n分解 (1) - 基于 ODE： * 特解：\\(L_{y} y_{p}=f\\) * 齐次解：\\(L_{y} y_{h}=0\\)\n分解 (2) - 基于响应类型： \\[\ny = y_{zi} + y_{zs}\n\\] * 零输入响应 (Zero-input) \\(y_{zi}\\)：输入为0 (\\(f=0\\))，由初始条件 \\(y_k\\) 产生。 * 零状态响应 (Zero-state) \\(y_{zs}\\)：初始状态为0 (\\(y_k=0\\))，由输入 \\(f\\) 产生。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶-ode-的-ivp-示例-1",
+    "href": "Chapter02_V2.html#一阶-ode-的-ivp-示例-1",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶 ODE 的 IVP 示例",
+    "text": "一阶 ODE 的 IVP 示例\n示例（续）.给定线性算子 \\(L_y = \\frac{d}{dt} + 2\\)，即：\n\\[y'(t) + 2y(t) = x(t) \\tag{1}\\]\n其中输入信号为 \\(x(t) = Ke^{3t}u(t)\\)，初始条件为 \\(y(0) = y_0\\)。\n\n求特解:\n\n\n特解 \\(y_p\\)：寻找受迫响应 (forced response)，即与输入信号形式相同的信号。\n对于 \\(t &gt; 0\\)，\\(x(t) = Ke^{3t}\\)，因此设特解形式为 \\(y_p(t) = Ye^{3t}\\)。\n\n将 \\(y_p(t)\\) 代入算子 \\(L_y\\)：\n\\[L_y y_p(t) = 5Ye^{3t} = x(t) = Ke^{3t} \\implies y_p(t) = \\frac{K}{5}e^{3t}\\]\n\n通解\n\n系统的通解由特解和齐次解组成：\n\\[y(t) = \\frac{K}{5}e^{3t} + Ae^{-2t}, \\quad t &gt; 0\\]\n\n注意：其中 \\(A\\) 是待定常数，需根据初始条件 \\(y(0) = y_0\\) 进一步确定。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶-ode-的-ivp-示例-2",
+    "href": "Chapter02_V2.html#一阶-ode-的-ivp-示例-2",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶 ODE 的 IVP 示例",
+    "text": "一阶 ODE 的 IVP 示例\n示例（续）.给定线性算子 \\(L_y = \\frac{d}{dt} + 2\\)，即：\n\\[y'(t) + 2y(t) = x(t) \\tag{1}\\]\n其中输入信号为 \\(x(t) = Ke^{3t}u(t)\\)，初始条件为 \\(y(0) = y_0\\)。\n求解步骤\n\n利用初值条件确定常数 \\(A\\)\n\\[y(0) = \\frac{K}{5} + A = y_0 \\implies A = y_0 - \\frac{K}{5}\\]\n初值问题 (IVP) 的完整解\n\\[y(t) = \\underbrace{\\frac{K}{5} e^{3t}}_{\\text{受迫响应 (forced response)}} + \\underbrace{\\left( y_0 - \\frac{K}{5} \\right) e^{-2t}}_{\\text{固有响应 (natural response)}}, \\quad t &gt; 0\\]\n对于 \\(t \\le 0\\)， \\(y(t) = y_0 e^{-2t}\\)，但通常我们更关注 \\(t &gt; 0\\) 的情况。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶-ode-的-ivp-示例-3",
+    "href": "Chapter02_V2.html#一阶-ode-的-ivp-示例-3",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶 ODE 的 IVP 示例",
+    "text": "一阶 ODE 的 IVP 示例\n初值问题 (IVP) 的完整解\n\\[y(t) = \\frac{K}{5}e^{3t} + \\left( y_0 - \\frac{K}{5} \\right)e^{-2t}, \\quad t &gt; 0\\]\n\n系统 \\(y = T(x)\\) 是线性的吗？ 在一般情况下 不是。\n\n如果 \\(y_0 \\neq 0\\)，则齐次性 (Homogeneity) 失效，\\(y\\) 与 \\(K\\) 不成正比。\n\n\n重写解的形式\n\\[y(t) = \\underbrace{\\frac{K}{5}(e^{3t} - e^{-2t})}_{\\text{零状态响应 (Zero-state response)}} + \\underbrace{y_0 e^{-2t}}_{\\text{零输入响应 (Zero-input response)}} , \\quad t &gt; 0\\]\n\n注：\n\n\n零状态响应：指初始状态为零（\\(y_0 = 0\\)）时，仅由外部输入 \\(x(t)\\) 引起的响应。\n\n\n零输入响应：指外部输入为零（\\(x(t) = 0 （K=0）\\)）时，仅由初始状态 \\(y_0\\) 引起的响应。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#解的分解-1",
+    "href": "Chapter02_V2.html#解的分解-1",
+    "title": "第二章 线性时不变系统",
+    "section": "解的分解 (1)",
+    "text": "解的分解 (1)\n考虑一般的线性常微分方程 (ODE)\n\\[L_y y = f\\]\n如果从系统的受迫响应和固有响应的角度分解：\n特解\n\\[L_y y_p = f\\]\n齐次解\n\\[L_y y_h = 0\\]\n\n仅根据 ODE 本身定义！\n与初始条件无关"
+  },
+  {
+    "objectID": "Chapter02_V2.html#解的分解-2",
+    "href": "Chapter02_V2.html#解的分解-2",
+    "title": "第二章 线性时不变系统",
+    "section": "解的分解 (2)",
+    "text": "解的分解 (2)\n考虑带有一般线性常微分方程（ODE）的初值问题（IVP）：\n\\[\n\\begin{cases}\nL_y y = f \\\\\ny^{(k)}(0) = y_k, \\quad k = 0, 1, \\dots, N - 1\n\\end{cases} \\tag{2}\n\\]\n如果能量来源的角度分解：\n零输入响应 (Zero-input response)\n\\[\n\\begin{cases}\nL_y y_{zi} = 0 \\\\\ny_{zi}^{(k)}(0) = y_k, \\quad k = 0, 1, \\dots, N - 1\n\\end{cases}\n\\]\n零状态响应 (Zero-state response)\n\\[\n\\begin{cases}\nL_y y_{zs} = f \\\\\ny_{zs}^{(k)}(0) = 0, \\quad k = 0, 1, \\dots, N - 1\n\\end{cases}\n\\]\n方程 (2) 的完全解为： \\[y = y_{zi} + y_{zs}\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#解的分解-3",
+    "href": "Chapter02_V2.html#解的分解-3",
+    "title": "第二章 线性时不变系统",
+    "section": "解的分解 (3)",
+    "text": "解的分解 (3)\n\n\n1. 经典解法\n这种方法从微分方程解的数学结构进行分解：\n\\[y(t) = \\underbrace{\\sum_{i=1}^{N} c_i e^{\\lambda_i t}}_{y_{n}(t)} + \\underbrace{y_p(t)}_{y_{f}(t)}\\]\n\n固有响应 (Natural Response, \\(y_n\\)):\n\n对应于齐次方程的通解。\n特性：系数 \\(c_i\\) 由初始状态及输入信号共同决定。\n\n受迫响应 (Forced Response, \\(y_f\\)):\n\n对应于非齐次方程的特解。\n特性：函数形式完全由输入信号 \\(f(t)\\) 的形式决定。\n\n\n\n2. 零输入零状态解法 (Zero-Input & Zero-State)\n这种方法从系统激励的来源进行分解：\n\\[y(t) = \\underbrace{\\sum_{i=1}^{N} c_{x_i} e^{\\lambda_i t}}_{y_{zi}(t)} + \\underbrace{\\left( \\sum_{i=1}^{N} c_{f_i} e^{\\lambda_i t} + y_p(t) \\right)}_{y_{zs}(t)}\\]\n\n零输入响应 (Zero-Input Response, \\(y_{zi}\\)):\n\n由系数 \\(c_{x_i}\\) 决定， \\(c_{x_i}\\)是初始条件的线性组合；\n特性：由系统初始状态 \\(x(0)\\) 唯一决定，与输入信号 \\(f(t)\\) 无关。\n\n零状态响应 (Zero-State Response, \\(y_{zs}\\)):\n\n由系数 \\(c_{f_i}\\) 及特解 \\(y_p(t)\\) 共同组成，\\(c_{f_i}\\) 与输入的系数成正比。\n特性：由零初始状态及输入信号 \\(f(t)\\) 共同决定。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#由常微分方程表征系统的线性性质",
+    "href": "Chapter02_V2.html#由常微分方程表征系统的线性性质",
+    "title": "第二章 线性时不变系统",
+    "section": "由常微分方程表征系统的线性性质",
+    "text": "由常微分方程表征系统的线性性质\n根据系统的响应： \\[y(t) = \\underbrace{\\sum_{i=1}^{N} c_{x_i} e^{\\lambda_i t}}_{y_{zi}(t)} + \\underbrace{\\left( \\sum_{i=1}^{N} c_{f_i} e^{\\lambda_i t} + y_p(t) \\right)}_{y_{zs}(t)}\\]\n零状态响应对输入呈线性\n\\[\n\\begin{cases} L_y y_{zs,i} = f_i \\\\ y_{zs,i}^{(k)}(0) = 0 \\end{cases} \\implies \\begin{cases} L_y (\\sum_i c_i y_{zs,i}) = \\sum_i c_i f_i \\\\ (\\sum_i c_i y_{zs,i})^{(k)}(0) = 0 \\end{cases}\n\\]\n零输入响应对初始状态呈线性\n\\[\n\\begin{cases} L_y y_{zs,i} = 0 \\\\ y_{zs,i}^{(k)}(0) = y_{k,i} \\end{cases} \\implies \\begin{cases} L_y (\\sum_i c_i y_{zs,i}) = 0 \\\\ (\\sum_i c_i y_{zs,i})^{(k)}(0) = \\sum_i c_i y_{k,i} \\end{cases}\n\\]\n\n全响应呈线性的充要条件是零输入响应为零\n线性性质要求初始状态为零"
+  },
+  {
+    "objectID": "Chapter02_V2.html#由常微分方程表征系统的时间不变性",
+    "href": "Chapter02_V2.html#由常微分方程表征系统的时间不变性",
+    "title": "第二章 线性时不变系统",
+    "section": "由常微分方程表征系统的时间不变性",
+    "text": "由常微分方程表征系统的时间不变性\n零初始状态，即对于 \\(k = 0, \\dots, N - 1\\)，\\(y^{(k)}(0) = 0\\)： 这能保证系统的线性，但不能保证时间不变性。\n示例\n考虑以下微分方程：\n\\[y'(t) + 2y(t) = x(t)\\]\n伴随初始条件：\\(y(0) = 0\\)。\n\n如果输入为 \\(x(t) = u(t)\\)：\n\\[y(t) = \\frac{1}{2}(1 - e^{-2t})u(t)\\]\n如果输入为 \\(x(t) = u(t + 1)\\)：\n\\[y(t) = \\frac{1}{2}(1 - e^{-2t})u(t + 1) + \\frac{1}{2}(e^{-2} - 1)e^{-2t}u(-t - 1)\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#初始松弛-initial-rest",
+    "href": "Chapter02_V2.html#初始松弛-initial-rest",
+    "title": "第二章 线性时不变系统",
+    "section": "初始松弛 (Initial Rest)",
+    "text": "初始松弛 (Initial Rest)\n通常处理右边输入 (right-sided inputs)，即 \\(t&lt;t_{0}\\) 时 \\(x(t)=0\\)\n\n激励在某一点开启\n\n初始松弛条件 (Initial rest condition)\n\n如果输入在 \\(t&lt;t_{0}\\) 时 \\(x(t)=0\\)，则输出在 \\(t&lt;t_{0}\\) 时 \\(y(t)=0\\)\n输出保持为零直到被输入改变（参考牛顿定律）\n这对于线性系统等价于因果性\n调整初始时间 \\(t_{0}\\) 以适应输入 \\(x\\)：如果 \\(x\\) 在 \\(t_{0}\\) 变为非零，使用 \\(y^{(k)}\\left(t_{0}\\right)=0\\) 对于 \\(k=0,1, \\ldots, N-1\\)，即求解\n\n\\[\n\\left\\{\\begin{array}{l}\nL_{y} y=f \\\\\ny^{(k)}\\left(t_{0}\\right)=0, \\quad k=0,1, \\ldots, N-1\n\\end{array}\\right.\n\\]\n带有初始松弛条件的线性常系数 ODE 指定了针对右边输入的因果 LTI 系统。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#初始松弛",
+    "href": "Chapter02_V2.html#初始松弛",
+    "title": "第二章 线性时不变系统",
+    "section": "初始松弛",
+    "text": "初始松弛\n例子：牛顿第二定律\n\\[\nm x^{\\prime \\prime}(t)=f(t)\n\\]\n初始松弛\n\n停留在原点 \\(x=0\\)\n零速度 \\(v=0\\)（静止！）\n除非受到外力改变，否则保持该状态（牛顿第一定律）\n\n如果力在 \\(t=0\\) 开始\n\n\\(x(0)=0, v(0)=x^{\\prime}(0)=0\\)\n\n如果力在 \\(t=1\\) 开始 \n\n\\(x(1)=0, v(1)=x^{\\prime}(1)=0\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#初始松弛-1",
+    "href": "Chapter02_V2.html#初始松弛-1",
+    "title": "第二章 线性时不变系统",
+    "section": "初始松弛",
+    "text": "初始松弛\n例子：RLC 电路\n\\[\nC \\frac{d^{2}}{d t^{2}} v(t)+\\frac{1}{R} \\frac{d}{d t} v(t)+\\frac{1}{L} v(t)=\\frac{d}{d t} i_{S}(t)\n\\]\n\n\n初始静止\n\n\\(L, C\\) 中无储能\n零电压和零电流\n\n如果源在 \\(t=0\\) 开启\n\n\\(v(0)=0\\)\n\\(i_{C}(0)=C \\nu^{\\prime}(0)=0\\)\n\n如果源在 \\(t=1\\) 开启\n\n\\(v(1)=0\\)\n\\(i_{C}(1)=C \\nu^{\\prime}(1)=0\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#初始松弛-2",
+    "href": "Chapter02_V2.html#初始松弛-2",
+    "title": "第二章 线性时不变系统",
+    "section": "初始松弛",
+    "text": "初始松弛\n一阶 ODE 的一般初值问题 (IVP)\n\\[\n\\left\\{\\begin{array}{l}\ny^{\\prime}(t)+a y(t)=f(t) \\\\\ny\\left(t_{0}\\right)=y_{0}\n\\end{array}\\right.\n\\]\n解\n\\[\ny(t)=\\underbrace{y_{0} e^{-a\\left(t-t_{0}\\right)}}_{\\text {零输入响应 (zero-input response) }}+\\underbrace{\\int_{t_{0}}^{t} f(\\tau) e^{-a(t-\\tau)} d \\tau}_{\\text {零状态响应 (zero-state response) }}\n\\]\n初始松弛：零输入响应总是 0；取 \\(t_{0} \\rightarrow-\\infty\\)\n\\[\ny(t)=\\int_{-\\infty}^{t} f(\\tau) e^{-a(t-\\tau)} d \\tau \\xrightarrow{f=f \\cdot \\tau_{t_{0}} u} y(t)=u\\left(t-t_{0}\\right) \\int_{t_{0}}^{t} f(\\tau) e^{-a(t-\\tau)} d \\tau\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#初始松弛-3",
+    "href": "Chapter02_V2.html#初始松弛-3",
+    "title": "第二章 线性时不变系统",
+    "section": "初始松弛",
+    "text": "初始松弛\n例子：\n\\[\ny^{\\prime}(t)+2 y(t)=x(t)\n\\]\n带有初始静止条件和输入 \\(x(t)=u(t+1)\\) 响应\n\\[\ny(t)=\\int_{-\\infty}^{t} x(\\tau) e^{-2(t-\\tau)} d \\tau=\\int_{-\\infty}^{t} u(\\tau+1) e^{-2(t-\\tau)} d \\tau\n\\]\n对于 \\(t&lt;-1\\)\n\\[\ny(t)=\\int_{-\\infty}^{t} 0 \\cdot e^{-2(t-\\tau)} d \\tau=0\n\\]\n对于 \\(t&gt;-1\\)\n\\[\ny(t)=\\int_{-1}^{t} e^{-2(t-\\tau)} d \\tau=\\frac{1}{2}\\left(1-e^{-2(t+1)}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#非初始松弛-non-initial-rest",
+    "href": "Chapter02_V2.html#非初始松弛-non-initial-rest",
+    "title": "第二章 线性时不变系统",
+    "section": "非初始松弛 (Non-initial Rest)",
+    "text": "非初始松弛 (Non-initial Rest)\n例子：\n\\[\ny^{\\prime}(t)+2 y(t)=x(t)\n\\]\n带有初始条件 \\(y(0)=0\\) 和输入 \\(x(t)=u(t+1)\\) 响应\n\\[\ny(t)=\\int_{0}^{t} x(\\tau) e^{-2(t-\\tau)} d \\tau=\\int_{0}^{t} u(\\tau+1) e^{-2(t-\\tau)} d \\tau\n\\]\n对于 \\(t&gt;-1\\)\n\\[\ny(t)=\\int_{0}^{t} e^{-2(t-\\tau)} d \\tau=\\frac{1}{2}\\left(1-e^{-2 t}\\right)\n\\]\n对于 \\(t&lt;-1\\)\n\\[\ny(t)=\\int_{0}^{-1} e^{-2(t-\\tau)} d \\tau=\\frac{1}{2}\\left(e^{-2}-1\\right) e^{-2 t}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#初始条件的比较",
+    "href": "Chapter02_V2.html#初始条件的比较",
+    "title": "第二章 线性时不变系统",
+    "section": "初始条件的比较",
+    "text": "初始条件的比较\n例子：\n\\[\ny^{\\prime}(t)+2 y(t)=u(t+1)\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#从-0_--到-0_-的跳变",
+    "href": "Chapter02_V2.html#从-0_--到-0_-的跳变",
+    "title": "第二章 线性时不变系统",
+    "section": "从 \\(0_{-}\\) 到 \\(0_{+}\\) 的跳变",
+    "text": "从 \\(0_{-}\\) 到 \\(0_{+}\\) 的跳变\n结合例子，本节对带有奇异输入的初始条件的系统做专门说明。\n例子：求由 \\(y^{\\prime}(t)+2 y(t)=x(t)\\) 描述的因果 LTI 系统的冲激响应，初始静止条件。\n方法 1：求解\n\\[\n\\left\\{\\begin{array}{l}\nh^{\\prime}(t)+2 h(t)=\\delta(t) \\\\\nh(0)=0\n\\end{array}\\right.\n\\]\n\n对于 \\(t \\neq 0\\)，简化为\n\n\\[\n\\left\\{\\begin{array}{l}\nh^{\\prime}(t)+2 h(t)=0 \\\\\nh(0)=0\n\\end{array}\\right.\n\\]\n\n通解 \\(h(t)=A e^{-2 t}\\) 对于 \\(t \\neq 0\\)\n\\(h(0)=0 \\Longrightarrow h(t)=0\\) 对于 \\(t \\neq 0\\)，这肯定是有问题的!"
+  },
+  {
+    "objectID": "Chapter02_V2.html#从-0_--到-0_-的跳变-1",
+    "href": "Chapter02_V2.html#从-0_--到-0_-的跳变-1",
+    "title": "第二章 线性时不变系统",
+    "section": "从 \\(0_{-}\\) 到 \\(0_{+}\\) 的跳变",
+    "text": "从 \\(0_{-}\\) 到 \\(0_{+}\\) 的跳变\n例子：求由 \\(y^{\\prime}(t)+2 y(t)=x(t)\\) 描述的因果 LTI 系统的冲激响应，初始松弛条件。\n方法 2：响应\n\\[\ny(t)=\\int_{-\\infty}^{t} x(\\tau) e^{-2(t-\\tau)} d \\tau \\Longrightarrow h(t)=e^{-2 t} u(t)\n\\]\n观察：\\(h\\) 在 \\(t=0\\) 处不连续\n\n\\(h\\left(0_{-}\\right)=0, h\\left(0_{+}\\right)=1\\)，由于 \\(\\delta\\) 在 \\(t=0\\) 处的奇异性\n对于 \\(t&gt;0\\)，\n\n\\[\nh(t)=\\int_{-\\infty}^{t} \\delta(\\tau) e^{-2(t-\\tau)} d \\tau=\\int_{0_{-}}^{t} \\delta(\\tau) e^{-2(t-\\tau)} d \\tau\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#从-0_--到-0_-的跳变-2",
+    "href": "Chapter02_V2.html#从-0_--到-0_-的跳变-2",
+    "title": "第二章 线性时不变系统",
+    "section": "从 \\(0_{-}\\) 到 \\(0_{+}\\) 的跳变",
+    "text": "从 \\(0_{-}\\) 到 \\(0_{+}\\) 的跳变\nIVP\n\\[\n\\left\\{\\begin{array} { l }\n{ y ^ { \\prime } ( t ) + a y ( t ) = f ( t ) } \\\\\n{ y ( 0 _ { - } ) = y _ { 0 } }\n\\end{array} \\quad \\text { 对比 } \\quad \\left\\{\\begin{array}{l}\ny^{\\prime}(t)+a y(t)=f(t) \\\\\ny\\left(0_{+}\\right)=y_{0}\n\\end{array}\\right.\\right.\n\\]\n解\n\n\n\\[\ny(t)=y\\left(0_{-}\\right) e^{-a t}+\\int_{0_{-}}^{t} f(\\tau) e^{-a(t-\\tau)} d \\tau\n\\]\n\n对比\n\n\\[\ny(t)=y\\left(0_{+}\\right) e^{-a t}+\\int_{0_{+}}^{t} f(\\tau) e^{-a(t-\\tau)} d \\tau\n\\]\n\n初始松弛：使用 \\(y\\left(0_{-}\\right)=0\\)\n\\[\ny\\left(0_{+}\\right)=y\\left(0_{-}\\right)+\\int_{0_{-}}^{0_{+}} f(\\tau) e^{a \\tau} d \\tau\n\\]\n\n如果 \\(f(\\tau)\\) 在 \\(\\tau=0\\) 处无奇异性，\\(y\\left(0_{+}\\right)=y\\left(0_{-}\\right)=0\\)\n如果 \\(f(\\tau)\\) 在 \\(\\tau=0\\) 处有奇异性，\\(y\\left(0_{+}\\right)\\) 可能会不同"
+  },
+  {
+    "objectID": "Chapter02_V2.html#从-0_--到-0_-的跳变-3",
+    "href": "Chapter02_V2.html#从-0_--到-0_-的跳变-3",
+    "title": "第二章 线性时不变系统",
+    "section": "从 \\(0_{-}\\) 到 \\(0_{+}\\) 的跳变",
+    "text": "从 \\(0_{-}\\) 到 \\(0_{+}\\) 的跳变\n例子：重温 \\(y^{\\prime}(t)+2 y(t)=x(t)\\) 的冲激响应。\n\\[\n\\left\\{\\begin{array}{l}\nh^{\\prime}(t)+2 h(t)=\\delta(t) \\\\\nh\\left(0_{-}\\right)=0\n\\end{array}\\right.\n\\]\n\n对于 \\(t \\neq 0\\)，简化为\n\n\\[\n\\left\\{\\begin{array} { l }\n{ h ^ { \\prime } ( t ) + 2 h ( t ) = 0 , \\quad t &gt; 0 } \\\\\n{ h ( 0 _ { - } ) = 0 }\n\\end{array} \\quad \\left\\{\\begin{array}{l}\nh^{\\prime}(t)+2 h(t)=0, \\quad t&lt;0 \\\\\nh\\left(0_{-}\\right)=0\n\\end{array}\\right.\\right.\n\\]\n\n通解 \\(h(t)=A_{+} e^{-2 t} u(t)+A_{-} e^{-2 t} u(-t)\\)\n\\(A_{+}=h\\left(0_{+}\\right)\\)，但在第一次尝试中使用了 \\(A_{+}=A_{-}=h\\left(0_{-}\\right)=0\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶-ode-初值问题的求解方法-recipe",
+    "href": "Chapter02_V2.html#一阶-ode-初值问题的求解方法-recipe",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶 ODE 初值问题的求解方法 (Recipe)",
+    "text": "一阶 ODE 初值问题的求解方法 (Recipe)\nIVP\n\\[\n\\left\\{\\begin{array}{l}\ny^{\\prime}(t)+a y(t)=f(t) \\\\\ny\\left(t_{0}\\right)=y_{0}\n\\end{array}\\right.\n\\]\n所有情况的解\n\\[\ny(t)=y\\left(t_{0}\\right) e^{-a\\left(t-t_{0}\\right)}+\\int_{t_{0}}^{t} f(\\tau) e^{-a(t-\\tau)} d \\tau\n\\]\n\n如果 \\(t_{0}\\) 指的是 \\(t_{0+}\\) 或 \\(t_{0-}\\)，在所有地方保持一致！\n仅当 \\(f\\) 在 \\(t_{0}\\) 处有奇异性时才重要\n\n初始松弛\n\\[\ny(t)=\\int_{-\\infty}^{t} f(\\tau) e^{-a(t-\\tau)} d \\tau\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#高阶常微分方程-higher-order-ode",
+    "href": "Chapter02_V2.html#高阶常微分方程-higher-order-ode",
+    "title": "第二章 线性时不变系统",
+    "section": "高阶常微分方程 (Higher-order ODE)",
+    "text": "高阶常微分方程 (Higher-order ODE)\n\\[\nL y=\\sum_{k=0}^{N} a_{k} \\frac{d^{k}}{d t^{k}} y=f, \\quad\\left(a_{N} \\neq 0\\right)\n\\]\n通解\n\\[\ny=\\underbrace{y_{h}}_{\\text {齐次解 (homogeneous solution) }}+\\underbrace{y_{p}}_{\\text {特解 (particular solution) }}\n\\]\n特征方程 (Characteristic equation)\n\\[\n\\sum_{k=0}^{N} a_{k} \\lambda^{k}=0\n\\]\n\nLHS 通过替换 \\(L\\) 中的 \\(\\frac{d}{d t} \\rightarrow \\lambda\\) 获得；注意 \\(\\frac{d^{k}}{d t^{k}}=\\left(\\frac{d}{d t}\\right)^{k}\\)\n根据代数基本定理，有 \\(N\\) 个（复）根（重数为 \\(k\\) 的根计为 \\(k\\) 个根）"
+  },
+  {
+    "objectID": "Chapter02_V2.html#高阶常微分方程齐次解-homogeneous-solution",
+    "href": "Chapter02_V2.html#高阶常微分方程齐次解-homogeneous-solution",
+    "title": "第二章 线性时不变系统",
+    "section": "高阶常微分方程齐次解 (Homogeneous solution)",
+    "text": "高阶常微分方程齐次解 (Homogeneous solution)\n\n\\(r\\) 个不同的特征根 \\(\\lambda_{i}\\)，重数为 \\(m_{i}\\)，\\(i=1,2, \\ldots, r\\) （注意 \\(\\sum_{i=1}^{r} m_{i}=N\\)）\n齐次解的形式为\n\n\\[\ny_{h}(t)=\\sum_{i=1}^{r} \\sum_{k=1}^{m_{i}} A_{i k} t^{k-1} e^{\\lambda_{i} t}\n\\]\n即，所有齐次解的空间具有基\n\\[\ne^{\\lambda_{1} t}, t e^{\\lambda_{1} t}, \\ldots, t^{m_{1}-1} e^{\\lambda_{1} t} ; \\ldots ; e^{\\lambda_{r} t}, t e^{\\lambda_{r} t}, \\ldots, t^{m_{r}-1} e^{\\lambda_{r} t}\n\\]\n\n当 \\(\\forall k, a_{k} \\in \\mathbb{R}\\) 时，复根 \\(\\sigma \\pm j \\omega\\) 成对出现\n在微积分中，使用 \\(e^{\\sigma t} \\cos (\\omega t)\\) 和 \\(e^{\\sigma t} \\sin (\\omega t)\\)\n这里，使用 \\(e^{(\\sigma+j \\omega) t}\\) 和 \\(e^{(\\sigma-j \\omega) t}\\)\n通过欧拉公式等价"
+  },
+  {
+    "objectID": "Chapter02_V2.html#高阶常微分方程特解-particular-solution",
+    "href": "Chapter02_V2.html#高阶常微分方程特解-particular-solution",
+    "title": "第二章 线性时不变系统",
+    "section": "高阶常微分方程特解 (Particular solution)",
+    "text": "高阶常微分方程特解 (Particular solution)\n\n寻找形式与输入 \\(f\\) 相同的强迫响应\n\n\n\n\n\n\n\n\n\\(f\\)\n\\(y_{p}\\)\n\n\n\n\n\\(t^{p}, 0\\) 不是特征根\n\\(\\sum_{k=0}^{p} B_{k} t^{k}\\)\n\n\n\\(t^{p}, 0\\) 是重数为 \\(m\\) 的特征根\n\\(\\sum_{k=0}^{p} B_{k} t^{m+k}\\)\n\n\n\\(e^{a t}, a\\) 不是特征根\n\\(B e^{a t}\\)\n\n\n\\(e^{\\lambda_{i} t}, \\lambda_{i}\\) 是重数为 \\(m_{i}\\) 的特征根\n\\(B t^{m_{i}} e^{\\lambda_{i} t}\\)\n\n\n\n注意 \\(\\cos (\\omega t)=\\frac{1}{2}\\left(e^{j \\omega t}+e^{-j \\omega t}\\right)\\) 和 \\(\\sin (\\omega t)=\\frac{1}{2 j}\\left(e^{j \\omega t}-e^{-j \\omega t}\\right)\\) 是特例"
+  },
+  {
+    "objectID": "Chapter02_V2.html#二阶-ode-的初值问题-ivp",
+    "href": "Chapter02_V2.html#二阶-ode-的初值问题-ivp",
+    "title": "第二章 线性时不变系统",
+    "section": "二阶 ODE 的初值问题 (IVP)",
+    "text": "二阶 ODE 的初值问题 (IVP)\n例子：初始松弛的二阶系统\n\\[\ny^{\\prime \\prime}+3 y^{\\prime}+2 y=x\n\\]\n令 \\(x(t)=e^{-t} u(t)\\)。\n\n特征方程\n\n\\[\n\\lambda^{2}+3 \\lambda+2=0 \\Longrightarrow \\lambda_{1}=-1, \\lambda_{2}=-2\n\\]\n\n齐次解 \\(y_{h}(t)=A_{1} e^{-t}+A_{2} e^{-2 t}\\)\n对于 \\(t&gt;0\\)，特解 \\(y_{p}(t)=B t e^{-t}\\)\n\n\\[\ny_{p}^{\\prime \\prime}(t)+3 y_{p}^{\\prime}(t)+2 y_{p}(t)=B e^{-t}=x(t)=e^{-t} \\Longrightarrow B=1\n\\]\n\n通解 \\(y(t)=t e^{-t}+A_{1} e^{-t}+A_{2} e^{-2 t}\\)\n初始静止 \\(y(0)=y^{\\prime}(0)=0 \\Longrightarrow y(t)=t e^{-t}+e^{-2 t}-e^{-t}\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶常微分方程组",
+    "href": "Chapter02_V2.html#一阶常微分方程组",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶常微分方程组",
+    "text": "一阶常微分方程组\n考虑 \\(N\\) 阶 ODE，其中 \\(a_{N}=1\\) (不失一般性)\n\\[\n\\begin{equation*}\ny^{(N)}+a_{N-1} y^{(N-1)}+\\cdots+a_{1} y^{\\prime}+a_{0} y=f \\tag{1}\n\\end{equation*}\n\\]\n令 \\(Y_{k}=y^{(k)}, k=0,1, \\ldots, N-1\\)\n\n\\(Y_{k}^{\\prime}=Y_{k+1}\\) 对于 \\(k=0,1, \\ldots, N-2\\)\n\\(Y_{N-1}^{\\prime}=y^{(N)}=f-\\sum_{k=0}^{N-1} a_{k} y^{(k)}=f-\\sum_{k=0}^{N-1} a_{k} Y_{k}\\)\n\n\n等价于\n\n\\[\nY^{\\prime}=A Y+b f\n\\]\n其中\n\\[\nY=\\left(\\begin{array}{c}\nY_{0} \\\\\nY_{1} \\\\\n\\vdots \\\\\nY_{N-2} \\\\\nY_{N-1}\n\\end{array}\\right), A=\\left(\\begin{array}{cccccc}\n0 & 1 & 0 & 0 & \\ldots & 0 \\\\\n0 & 0 & 1 & 0 & \\ldots & 0 \\\\\n\\vdots & \\vdots & \\vdots & \\vdots & \\ddots & \\vdots \\\\\n0 & 0 & 0 & 0 & \\ldots & 1 \\\\\n-a_{0} & -a_{1} & -a_{2} & -a_{3} & \\ldots & -a_{N-1}\n\\end{array}\\right), b=\\left(\\begin{array}{c}\n0 \\\\\n0 \\\\\n\\vdots \\\\\n0 \\\\\n1\n\\end{array}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶常微分方程组-1",
+    "href": "Chapter02_V2.html#一阶常微分方程组-1",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶常微分方程组",
+    "text": "一阶常微分方程组\n初值问题 (IVP)\n\\[\n\\left\\{\\begin{array}{l}\ny^{(N)}+a_{N-1} y^{(N-1)}+\\cdots+a_{1} y^{\\prime}+a_{0} y=f  \\tag{2}\\\\\ny^{(k)}\\left(t_{0}\\right)=y_{k}, \\quad k=0,1, \\ldots, N-1\n\\end{array}\\right.\n\\]\n等价于\n\\[\n\\left\\{\\begin{array}{l}\nY^{\\prime}=A Y+b f  \\tag{3}\\\\\nY\\left(t_{0}\\right)=Y_{0}\n\\end{array}\\right.\n\\]\n其中 \\(Y_{0}=\\left(y_{0}, y_{1}, \\ldots, y_{N-1}\\right)^{T}\\)。 (3) 的解\n\\[\nY(t)=\\underbrace{e^{A\\left(t-t_{0}\\right)} Y_{0}}_{\\text {零输入响应 }}+\\underbrace{\\int_{t_{0}}^{t} f(\\tau) e^{A(t-\\tau)} b d \\tau}_{\\text {零状态响应 }}\n\\]\n矩阵指数 \\(e^{A t} \\triangleq \\sum_{n=0}^{\\infty} \\frac{(A t)^{n}}{n!}=I+A t+\\frac{1}{2}(A t)^{2}+\\ldots\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶常微分方程组-2",
+    "href": "Chapter02_V2.html#一阶常微分方程组-2",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶常微分方程组",
+    "text": "一阶常微分方程组\n\n的解\n\n\\[\ny(t)=c Y(t)=\\underbrace{c e^{A\\left(t-t_{0}\\right)} Y_{0}}_{\\text {零输入响应 }}+\\underbrace{\\int_{t_{0}}^{t} f(\\tau) c e^{A(t-\\tau)} b d \\tau}_{\\text {零状态响应 }}\n\\]\n其中 \\(c=(1,0,0, \\ldots, 0)\\) 初始松弛\n\\[\ny(t)=\\int_{-\\infty}^{t} f(\\tau) c e^{A(t-\\tau)} b d \\tau\n\\]\n\n回顾 \\(f=\\sum_{k=0}^{M} b_{k} x^{(k)}\\) 关于 \\(x\\) 是线性的\n\\(y=T(x)\\) 因果 LTI 系统；如果 \\(f=x, h(t)=c e^{A t} b u(t)\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#重温二阶-ode-的-ivp",
+    "href": "Chapter02_V2.html#重温二阶-ode-的-ivp",
+    "title": "第二章 线性时不变系统",
+    "section": "重温二阶 ODE 的 IVP",
+    "text": "重温二阶 ODE 的 IVP\n例子：令 \\(x(t)=e^{-t} u(t)\\)。考虑 IVP\n\\[\n\\left\\{\\begin{array}{l}\ny^{\\prime \\prime}+3 y^{\\prime}+2 y=x \\\\\ny\\left(0_{-}\\right)=y_{0}, y^{\\prime}\\left(0_{-}\\right)=y_{1}\n\\end{array}\\right.\n\\]\n\n令 \\(Y=\\left(y, y^{\\prime}\\right)^{T}\\)。\n\n\\[\nY^{\\prime}=A Y+b x\n\\]\n其中\n\\[\nA=\\left(\\begin{array}{cc}\n0 & 1 \\\\\n-2 & -3\n\\end{array}\\right), \\quad b=\\binom{0}{1}\n\\]\n\n对于 \\(t&gt;0\\)，\n\n\\[\ny(t)=(1,0) e^{A t}\\binom{y_{0}}{y_{1}}+\\int_{0_{-}}^{t} x(\\tau)(1,0) e^{A(t-\\tau)}\\binom{0}{1} d \\tau\n\\]\n\n需要计算 \\(e^{A t}\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#重温二阶-ode-的-ivp-1",
+    "href": "Chapter02_V2.html#重温二阶-ode-的-ivp-1",
+    "title": "第二章 线性时不变系统",
+    "section": "重温二阶 ODE 的 IVP",
+    "text": "重温二阶 ODE 的 IVP\n例子（续）：令 \\(x(t)=e^{-t} u(t)\\)。考虑 IVP\n\\[\n\\left\\{\\begin{array}{l}\ny^{\\prime \\prime}+3 y^{\\prime}+2 y=x \\\\\ny\\left(0_{-}\\right)=y_{0}, y^{\\prime}\\left(0_{-}\\right)=y_{1}\n\\end{array}\\right.\n\\]\n\n对角化 \\({ }^{1} A\\)\n\n\\[\nA=P \\Lambda P^{-1}=\\left(\\begin{array}{cc}\n1 & 1 \\\\\n-1 & -2\n\\end{array}\\right)\\left(\\begin{array}{cc}\n-1 & 0 \\\\\n0 & -2\n\\end{array}\\right)\\left(\\begin{array}{cc}\n2 & 1 \\\\\n-1 & -1\n\\end{array}\\right)\n\\]\n\n计算 At 的指数\n\n\\[\ne^{A t}=\\sum_{n=0}^{\\infty} P \\frac{(\\Lambda t)^{n}}{n!} P^{-1}=\\left(\\begin{array}{cc}\n1 & 1 \\\\\n-1 & -2\n\\end{array}\\right)\\left(\\begin{array}{cc}\ne^{-t} & 0 \\\\\n0 & e^{-2 t}\n\\end{array}\\right)\\left(\\begin{array}{cc}\n2 & 1 \\\\\n-1 & -1\n\\end{array}\\right)\n\\]\n¹ 并不总是可能的；一般情况下可能需要若尔当标准型 (Jordan canonical form)。"
+  },
+  {
+    "objectID": "Chapter02_V2.html#重温二阶-ode-的-ivp-2",
+    "href": "Chapter02_V2.html#重温二阶-ode-的-ivp-2",
+    "title": "第二章 线性时不变系统",
+    "section": "重温二阶 ODE 的 IVP",
+    "text": "重温二阶 ODE 的 IVP\n例子（续）：令 \\(x(t)=e^{-t} u(t)\\)。考虑 IVP\n\\[\n\\left\\{\\begin{array}{l}\ny^{\\prime \\prime}+3 y^{\\prime}+2 y=x \\\\\ny\\left(0_{-}\\right)=y_{0}, y^{\\prime}\\left(0_{-}\\right)=y_{1}\n\\end{array}\\right.\n\\]\n\n完全响应\n\n\\[\ny(t)=\\left(2 y_{0}+y_{1}\\right) e^{-t}-\\left(y_{0}+y_{1}\\right) e^{-2 t}+\\int_{0_{-}}^{t} x(\\tau) g(t-\\tau) d \\tau\n\\]\n其中\n\\[\ng(t)=(1,0) e^{A t}\\binom{0}{1}=e^{-t}-e^{-2 t}\n\\]\n\n零状态响应\n\n\\[\ny_{z s}(t)=\\int_{0}^{t} e^{-\\tau}\\left[e^{-(t-\\tau)}-e^{-2(t-\\tau)}\\right] d \\tau=t e^{-t}+e^{-2 t}-e^{-t}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#重温二阶-ode-的-ivp-3",
+    "href": "Chapter02_V2.html#重温二阶-ode-的-ivp-3",
+    "title": "第二章 线性时不变系统",
+    "section": "重温二阶 ODE 的 IVP",
+    "text": "重温二阶 ODE 的 IVP\n例子：考虑初始静止的二阶系统\n\\[\ny^{\\prime \\prime}+3 y^{\\prime}+2 y=x\n\\]\n\n响应\n\n\\[\ny(t)=\\int_{-\\infty}^{t} x(\\tau) h(t-\\tau) d \\tau=(x * h)(t)\n\\]\n其中\n\\[\nh(t)=\\left(e^{-t}-e^{-2 t}\\right) u(t)\n\\]\n\n如果 \\(x(t)=e^{-t} u(t)\\)，\n\n\\[\n\\begin{aligned}\ny(t) & =\\int_{-\\infty}^{t} e^{-\\tau} u(\\tau)\\left[e^{-(t-\\tau)}-e^{-2(t-\\tau)}\\right] d \\tau \\\\\n& =\\left(t e^{-t}+e^{-2 t}-e^{-t}\\right) u(t)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#杜哈梅原理-duhamels-principle",
+    "href": "Chapter02_V2.html#杜哈梅原理-duhamels-principle",
+    "title": "第二章 线性时不变系统",
+    "section": "杜哈梅原理 (Duhamel’s Principle)",
+    "text": "杜哈梅原理 (Duhamel’s Principle)\n\n\n一阶 ODE 向量 IVP 的解\n\\[\nY(t)=\\underbrace{e^{A\\left(t-t_{0}\\right)} Y\\left(t_{0}\\right)}_{\\text {零输入响应 }}+\\underbrace{\\int_{t_{0}}^{t} f(\\tau) G(t-\\tau) d \\tau}_{\\text {零状态响应 }}\n\\]\n\n\\(G(t)=e^{A t} b\\) 是 \\(G^{\\prime}=A G\\) 在初始条件 \\(G(0)=b=(0, \\ldots, 0,1)^{T}\\) 下的齐次解\n\n高阶 ODE 标量 IVP 的解\n\\[\ny(t)=\\underbrace{c e^{A\\left(t-t_{0}\\right)} Y\\left(t_{0}\\right)}_{\\text {零输入响应 }}+\\underbrace{\\int_{t_{0}}^{t} f(\\tau) g(t-\\tau) d \\tau}_{\\text {零状态响应 }}\n\\]\n\n\\(g(t)=c e^{A t} b=c G(t)\\) 是 \\(L g=0\\) 在初始条件 \\(G(0)=b\\) 下的齐次解；回顾 \\(G=\\left(g, g^{\\prime}, g^{\\prime \\prime}, \\ldots, g^{(N-1)}\\right)^{T}\\)。\n\n\n\n\n\nJean-Marie Duhamel (来自维基百科)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#高阶-ode-的冲激响应",
+    "href": "Chapter02_V2.html#高阶-ode-的冲激响应",
+    "title": "第二章 线性时不变系统",
+    "section": "高阶 ODE 的冲激响应",
+    "text": "高阶 ODE 的冲激响应\n初始松弛的一维系统的冲激响应\n\\[\n\\left\\{\\begin{array}{l}\na_{N} h^{(N)}+a_{N-1} h^{(N-1)}+\\cdots+a_{1} h^{\\prime}+a_{0} h=\\delta \\\\\nh^{(k)}\\left(0_{-}\\right)=0, \\quad k=0,1, \\ldots, N-1\n\\end{array}\\right.\n\\]\n根据杜哈梅原理\n\\[\nh(t)=c e^{A t} h\\left(0_{-}\\right)+\\int_{0_{-}}^{t} \\delta(\\tau) g(t-\\tau) d \\tau=g(t) u(t)\n\\]\n其中 \\(g\\) 满足\n\\[\n\\left\\{\\begin{array}{l}\na_{N} g^{(N)}+a_{N-1} g^{(N-1)}+\\cdots+a_{1} g^{\\prime}+a_{0} g=0 \\\\\ng^{(k)}(0)=0, k=0,1, \\ldots, N-2 ; \\quad g^{(N-1)}(0)=1 / a_{N}\n\\end{array}\\right.\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#高阶-ode-ivp-的第二种求解方法",
+    "href": "Chapter02_V2.html#高阶-ode-ivp-的第二种求解方法",
+    "title": "第二章 线性时不变系统",
+    "section": "高阶 ODE IVP 的第二种求解方法",
+    "text": "高阶 ODE IVP 的第二种求解方法\nIVP\n\\[\n\\left\\{\\begin{array}{l}\n\\sum_{k=0}^{N} a_{k} y^{(k)}(t)=f(t) \\\\\ny^{(k)}\\left(t_{0}\\right)=y_{k}, \\quad k=0,1, \\ldots, N-1\n\\end{array}\\right.\n\\]\n\n寻找齐次解 \\(y_{h}\\)\n寻找零输入响应 \\(y_{z i}\\)，即满足初始条件 \\(y_{z i}^{(k)}\\left(t_{0}\\right)=y_{k}, k=0,1, \\ldots, N-1\\) 的齐次解\n寻找满足初始条件 \\(g^{(k)}(0)=0,0 \\leq k \\leq N-2\\) 和 \\(g^{(N-1)}(0)=1 / a_{N}\\) 的齐次解 \\(g\\)\n寻找零状态响应 \\(y_{z s}(t)=\\int_{t_{0}}^{t} f(\\tau) g(t-\\tau) d \\tau\\)\n完全解 \\(y=y_{z i}+y_{z s}\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#高阶-ode-ivp-的第二种求解方法-1",
+    "href": "Chapter02_V2.html#高阶-ode-ivp-的第二种求解方法-1",
+    "title": "第二章 线性时不变系统",
+    "section": "高阶 ODE IVP 的第二种求解方法",
+    "text": "高阶 ODE IVP 的第二种求解方法\n例子：令 \\(x(t)=e^{-t} u(t)\\)。考虑 IVP\n\\[\n\\left\\{\\begin{array}{l}\ny^{\\prime \\prime}+3 y^{\\prime}+2 y=x \\\\\ny\\left(0_{-}\\right)=y_{0}, y^{\\prime}\\left(0_{-}\\right)=y_{1}\n\\end{array}\\right.\n\\]\n\n齐次解 \\(y_{h}(t)=A_{1} e^{-t}+A_{2} e^{-2 t}\\)\n零输入响应\n\n\\[\n\\left\\{\\begin{array} { l }\n{ y ( 0 _ { - } ) = A _ { 1 } + A _ { 2 } = y _ { 0 } } \\\\\n{ y ^ { \\prime } ( 0 _ { - } ) = - A _ { 1 } - 2 A _ { 2 } = y _ { 1 } }\n\\end{array} \\Longrightarrow \\left\\{\\begin{array}{l}\nA_{1}=2 y_{0}+y_{1} \\\\\nA_{2}=-\\left(y_{0}+y_{1}\\right)\n\\end{array}\\right.\\right.\n\\]\n所以\n\\[\ny_{z i}(t)=\\left(2 y_{0}+y_{1}\\right) e^{-t}-\\left(y_{0}+y_{1}\\right) e^{-2 t}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#高阶-ode-ivp-的第二种求解方法-2",
+    "href": "Chapter02_V2.html#高阶-ode-ivp-的第二种求解方法-2",
+    "title": "第二章 线性时不变系统",
+    "section": "高阶 ODE IVP 的第二种求解方法",
+    "text": "高阶 ODE IVP 的第二种求解方法\n例子（续）：令 \\(x(t)=e^{-t} u(t)\\)。考虑 IVP\n\\[\n\\left\\{\\begin{array}{l}\ny^{\\prime \\prime}+3 y^{\\prime}+2 y=x \\\\\ny\\left(0_{-}\\right)=y_{0}, y^{\\prime}\\left(0_{-}\\right)=y_{1}\n\\end{array}\\right.\n\\]\n\n齐次解 \\(y_{h}(t)=A_{1} e^{-t}+A_{2} e^{-2 t}\\)\n齐次解 \\(g\\)\n\n\\[\n\\left\\{\\begin{array} { l }\n{ g ( 0 ) = A _ { 1 } + A _ { 2 } = 0 } \\\\\n{ g ^ { \\prime } ( 0 ) = - A _ { 1 } - 2 A _ { 2 } = 1 }\n\\end{array} \\Longrightarrow \\left\\{\\begin{array}{l}\nA_{1}=1 \\\\\nA_{2}=-1\n\\end{array}\\right.\\right.\n\\]\n所以\n\\[\ng(t)=e^{-t}-e^{-2 t}\n\\]\n\n零状态响应\n\n\\[\ny_{z s}(t)=\\int_{0}^{t} e^{-\\tau}\\left[e^{-(t-\\tau)}-e^{-2(t-\\tau)}\\right] d \\tau=t e^{-t}+e^{-2 t}-e^{-t}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#高阶-ode-ivp-的第二种求解方法-3",
+    "href": "Chapter02_V2.html#高阶-ode-ivp-的第二种求解方法-3",
+    "title": "第二章 线性时不变系统",
+    "section": "高阶 ODE IVP 的第二种求解方法",
+    "text": "高阶 ODE IVP 的第二种求解方法\n例子：求以下 LTI 系统的冲激响应\n\\[\ny^{\\prime \\prime}+3 y^{\\prime}+2 y=x\n\\]\n\n根据前面的例子，\n\n\\[\nh(t)=\\left(e^{-t}-e^{-2 t}\\right) u(t)\n\\]\n\n或者，可以求阶跃响应\n\n\\[\n\\begin{gathered}\ns^{\\prime \\prime}+3 s^{\\prime}+2 s=u \\\\\ns(t)=\\left(\\frac{1}{2}+\\frac{1}{2} e^{-2 t}-e^{-t}\\right) u(t)\n\\end{gathered}\n\\]\n然后使用\n\\[\nh(t)=s^{\\prime}(t)\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#高阶-ode-ivp-的第二种求解方法-4",
+    "href": "Chapter02_V2.html#高阶-ode-ivp-的第二种求解方法-4",
+    "title": "第二章 线性时不变系统",
+    "section": "高阶 ODE IVP 的第二种求解方法",
+    "text": "高阶 ODE IVP 的第二种求解方法\n例子：考虑 LTI 系统\n\\[\ny^{\\prime \\prime}+3 y^{\\prime}+2 y=x^{\\prime}+x\n\\]\n想要寻找冲激响应，即求解\n\\[\nh^{\\prime \\prime}+3 h^{\\prime}+2 h=\\delta^{\\prime}+\\delta\n\\]\n根据前面的例子，以下 LTI 系统的冲激响应\n\\[\ny^{\\prime \\prime}+3 y^{\\prime}+2 y=x\n\\]\n是\n\\[\nh_{1}(t)=\\left(e^{-t}-e^{-2 t}\\right) u(t)\n\\]\n然后\n\\[\nh=h_{1} *\\left(\\delta^{\\prime}+\\delta\\right)=h_{1}+h_{1}^{\\prime} \\Longrightarrow h(t)=e^{-2 t} u(t)\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#sec242",
+    "href": "Chapter02_V2.html#sec242",
+    "title": "第二章 线性时不变系统",
+    "section": "线性常系数差分方程",
+    "text": "线性常系数差分方程\n例子：银行账户余额\n\\[\ny[n]=(1+r) y[n-1]+x[n] \\quad r \\text { 为利率 }\n\\]\n例子：微分方程的离散化\n\\[\ny^{\\prime}(t)=x(t) \\Longrightarrow \\frac{y(n T)-y((n-1) T)}{T} \\approx x(n T)\n\\]\n令 \\(x[n]=x(n T), y[n]=y(n T)\\)。离散化方程为：\n\\[\ny[n]=y[n-1]+T x[n] \\quad \\text { (欧拉法) }\n\\]\n例子：指数平滑 (Exponential smoothing) \\(y[n]=(1-\\alpha) y[n-1]+\\alpha x[n], \\quad \\alpha \\in(0,1)\\) 为平滑因子"
+  },
+  {
+    "objectID": "Chapter02_V2.html#线性常系数差分方程",
+    "href": "Chapter02_V2.html#线性常系数差分方程",
+    "title": "第二章 线性时不变系统",
+    "section": "线性常系数差分方程",
+    "text": "线性常系数差分方程\n由线性常系数差分方程描述的系统：\n\\[\n\\sum_{k=0}^{N} a_{k} y[n-k]=\\sum_{k=-M_{1}}^{M} b_{k} x[n-k]\n\\]\n其中 \\(a_{0} \\neq 0, a_{N} \\neq 0\\)\n\n也称为递归方程 (recursive equation) 或递归\n\\(N\\)：差分方程的阶数\n针对因果系统，重点讨论 \\(M_{1}=0\\) 的情况\n输入-输出关系是隐式指定的\n求解差分方程以获得显式的输入-输出关系\n仅凭差分方程不能唯一确定 \\(T\\)\n需要辅助条件，通常是初始条件"
+  },
+  {
+    "objectID": "Chapter02_V2.html#线性常系数差分方程-1",
+    "href": "Chapter02_V2.html#线性常系数差分方程-1",
+    "title": "第二章 线性时不变系统",
+    "section": "线性常系数差分方程",
+    "text": "线性常系数差分方程\n初值问题 (IVP)\n\\[\nL y=f, \\quad \\text { 其中 } L=\\sum_{k=0}^{N} a_{k} \\tau_{k}\n\\]\n初始条件：\n\\[\ny[k]=y_{k}, \\quad k=n_{0}-1, n_{0}-2, \\ldots, n_{0}-N\n\\]\n\n\\(N\\) 阶差分方程需要 \\(N\\) 个初始条件\n可以使用任意 \\(N\\) 个连续值作为“初始”值\n通常取 \\(n_{0}=0\\)\n通常对于 \\(n&lt;n_{0}\\)，\\(f[n]=0\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#初始松弛-initial-rest-1",
+    "href": "Chapter02_V2.html#初始松弛-initial-rest-1",
+    "title": "第二章 线性时不变系统",
+    "section": "初始松弛 (Initial Rest)",
+    "text": "初始松弛 (Initial Rest)\n\n如果输入 \\(x[n]=0\\) 对于 \\(n&lt;n_{0}\\)，则输出 \\(y[n]=0\\) 对于 \\(n&lt;n_{0}\\)\n输出保持为零直到被输入改变\n这对于线性系统等价于因果性\n调整初始时间 \\(n_{0}\\) 以适应输入 \\(x\\)：如果 \\(x\\) 在 \\(n_{0}\\) 处变为非零，使用 \\(y\\left[n_{0}-k\\right]=0\\) 对于 \\(k=1,2, \\ldots, N\\)，即求解：\n\n\\[\n\\left\\{\\begin{array}{l}\nL y=f \\\\\ny[k]=0, \\quad k=n_{0}-1, n_{0}-2, \\ldots, n_{0}-N\n\\end{array}\\right.\n\\]\n\n带有初始松弛条件的线性常系数差分方程指定了针对右边输入的因果 LTI 系统"
+  },
+  {
+    "objectID": "Chapter02_V2.html#迭代法-iterative-method",
+    "href": "Chapter02_V2.html#迭代法-iterative-method",
+    "title": "第二章 线性时不变系统",
+    "section": "迭代法 (Iterative Method)",
+    "text": "迭代法 (Iterative Method)\n通过 \\(y[n-1], \\ldots, y[n-N]\\) 和 \\(x\\) 迭代计算 \\(y[n]\\)\n\\[\ny[n]=\\frac{1}{a_{0}}\\left(\\sum_{k=0}^{M} b_{k} x[n-k]-\\sum_{k=1}^{N} a_{k} y[n-k]\\right)\n\\]\n特例 \\(N=0\\)\n\\[\ny[n]=\\sum_{k=0}^{M}\\left(\\frac{b_{k}}{a_{0}}\\right) x[n-k]\n\\]\n\n当前和过去输入值的显式函数\n非递归方程，不需要辅助条件\n具有有限冲激响应 (FIR) 的因果 LTI 系统\n\n\\[\nh[n]=\\sum_{k=0}^{M}\\left(\\frac{b_{k}}{a_{0}}\\right) \\delta[n-k]\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#迭代法",
+    "href": "Chapter02_V2.html#迭代法",
+    "title": "第二章 线性时不变系统",
+    "section": "迭代法",
+    "text": "迭代法\n例子：考虑指数平滑\n\\[\ny[n]-a y[n-1]=x[n]\n\\]\n其中 \\(y[-1]=y_{-1}\\)。\n\n对于 \\(n \\geq 0\\)，向前递推\n\n\\[\n\\begin{aligned}\ny[0] & =a y[-1]+x[0]=a y_{-1}+x[0] \\\\\ny[1] & =a y[0]+x[1]=a^{2} y_{-1}+a x[0]+x[1] \\\\\ny[2] & =a y[1]+x[2]=a^{3} y_{-1}+a^{2} x[0]+a x[1]+x[2] \\\\\n& \\vdots \\\\\ny[n] & =a y[n-1]+x[n]=a^{n+1} y_{-1}+\\sum_{k=0}^{n} a^{n-k} x[k]\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#迭代法-1",
+    "href": "Chapter02_V2.html#迭代法-1",
+    "title": "第二章 线性时不变系统",
+    "section": "迭代法",
+    "text": "迭代法\n例子（续）：考虑指数平滑\n\\[\ny[n]-a y[n-1]=x[n]\n\\]\n其中 \\(y[-1]=y_{-1}\\)。\n\n对于 \\(n \\geq 0\\)，向前递推\n\n\\[\n\\begin{aligned}\ny[n] & =a y[n-1]+x[n] \\\\\na y[n-1] & =a^{2} y[n-2]+a x[n-1] \\\\\n& \\vdots \\\\\na^{n-1} y[1] & =a^{n} y[0]+a^{n-1} x[1] \\\\\na^{n} y[0] & =a^{n+1} y[-1]+a^{n} x[0]\n\\end{aligned}\n\\]\n将所有方程相加，\\(y[n]=a^{n+1} y_{-1}+\\sum_{k=0}^{n} a^{n-k} x[k]\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#迭代法-2",
+    "href": "Chapter02_V2.html#迭代法-2",
+    "title": "第二章 线性时不变系统",
+    "section": "迭代法",
+    "text": "迭代法\n例子（续）：考虑指数平滑\n\\[\ny[n]-a y[n-1]=x[n]\n\\]\n其中 \\(y[-1]=y_{-1}\\)。\n\n\\(n&lt;-1\\)，向后递推\n\n\\[\n\\begin{aligned}\ny[-2] & =a^{-1} y[-1]-a^{-1} x[-1]=a^{-1} y_{-1}-a^{-1} x[-1] \\\\\ny[-3] & =a^{-1} y[-2]-a^{-1} x[-2]=a^{-2} y_{-1}-\\sum_{k=-2}^{-1} a^{-3-k} x[k] \\\\\n& \\vdots \\\\\ny[n] & =a^{-1} y[n+1]-a^{-1} x[n+1]=a^{n+1} y_{-1}-\\sum_{k=n+1}^{-1} a^{n-k} x[k]\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#迭代法-3",
+    "href": "Chapter02_V2.html#迭代法-3",
+    "title": "第二章 线性时不变系统",
+    "section": "迭代法",
+    "text": "迭代法\n例子（续）：考虑差分方程\n\\[\ny[n]-a y[n-1]=x[n]\n\\]\n其中 \\(y[-1]=y_{-1}\\)。\n\n响应\n\n\\[\ny[n]=\\underbrace{a^{n+1} y_{-1}}_{\\text {零输入响应 }}+\\underbrace{\\left(\\sum_{k=0}^{n}-\\sum_{k=n+1}^{-1}\\right) a^{n-k} x[k]}_{\\text {零状态响应 }}\n\\]\n这里约定：如果 \\(m_{2}&lt;m_{1}\\)，则 \\(\\sum_{k=m_{1}}^{m_{2}} \\cdot=0\\)\n\n初始松弛：冲激响应为 \\(h[n]=a^{n} u[n]\\) 的因果 LTI 系统"
+  },
+  {
+    "objectID": "Chapter02_V2.html#解的分解-1-1",
+    "href": "Chapter02_V2.html#解的分解-1-1",
+    "title": "第二章 线性时不变系统",
+    "section": "解的分解 (1)",
+    "text": "解的分解 (1)\n线性非齐次差分方程\n\\[\nL y=f, \\quad \\text { 其中 } L=\\sum_{k=0}^{N} a_{k} \\tau_{k}\n\\]\n特解 (Particular solution)\n\\[\nL y_{p}=f\n\\]\n齐次解 (Homogeneous solution) / 自然响应 (Natural response)\n\\[\nL y_{h}=0\n\\]\n通解\n\\[\ny=y_{p}+y_{h}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#齐次解-1",
+    "href": "Chapter02_V2.html#齐次解-1",
+    "title": "第二章 线性时不变系统",
+    "section": "齐次解",
+    "text": "齐次解\n特征方程 (Characteristic equation)\n\\[\n\\sum_{k=0}^{N} a_{k} \\alpha^{N-k}=0\n\\]\n\n通过代入 \\(y_{h}[n]=\\alpha^{n}\\) 从 \\(L y_{h}=0\\) 获得\n\\(r\\) 个不同的特征根 \\(\\alpha_{i}\\)，重数为 \\(m_{i}\\)，\\(i=1,2, \\ldots, r\\)；注意 \\(\\sum_{i=1}^{r} m_{i}=N\\)\n齐次解的形式为\n\n\\[\ny_{h}[n]=\\sum_{i=1}^{r} \\sum_{k=1}^{m_{i}} A_{i k} n^{k-1} \\alpha_{i}^{n}\n\\]\n即，所有齐次解的空间具有基\n\\[\n\\alpha_{1}^{n}, n \\alpha_{1}^{n}, \\ldots, n^{m_{1}-1} \\alpha_{1}^{n} ; \\ldots ; \\alpha_{r}^{n}, n \\alpha_{r}^{n}, \\ldots, n^{m_{r}-1} \\alpha_{r}^{n} .\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#特解-1",
+    "href": "Chapter02_V2.html#特解-1",
+    "title": "第二章 线性时不变系统",
+    "section": "特解",
+    "text": "特解\n\n寻找形式与输入 \\(f\\) 相同的强迫响应\n\n\n\n\n\n\n\n\n\\(f\\)\n\\(y_{p}\\)\n\n\n\n\n\\(n^{p}, 1\\) 不是特征根\n\\(\\sum_{k=0}^{p} B_{k} n^{k}\\)\n\n\n\\(n^{p}, 1\\) 是重数为 \\(m\\) 的特征根\n\\(\\sum_{k=0}^{p} B_{k} n^{m+k}\\)\n\n\n\\(\\alpha^{n}, \\alpha\\) 不是特征根\n\\(B \\alpha^{n}\\)\n\n\n\\(\\alpha_{i}^{n}, \\alpha_{i}\\) 是重数为 \\(m_{i}\\) 的特征根\n\\(B n^{m_{i}} \\alpha_{i}^{n}\\)\n\n\n\n注意 \\(\\cos (\\omega n)=\\frac{1}{2}\\left(e^{j \\omega n}+e^{-j \\omega n}\\right)\\) 和 \\(\\sin (\\omega n)=\\frac{1}{2 j}\\left(e^{j \\omega n}-e^{-j \\omega n}\\right)\\) 是特例"
+  },
+  {
+    "objectID": "Chapter02_V2.html#例子",
+    "href": "Chapter02_V2.html#例子",
+    "title": "第二章 线性时不变系统",
+    "section": "例子",
+    "text": "例子\n斐波那契数列 (Fibonacci sequence)\n\\[\n\\left\\{\\begin{array}{l}\ny[n]-y[n-1]-y[n-2]=0 \\\\\ny[1]=y[2]=1\n\\end{array}\\right.\n\\]\n\n特征方程\n\n\\[\n\\alpha^{2}-\\alpha-1=0 \\Longrightarrow \\alpha_{1,2}=\\frac{1 \\pm \\sqrt{5}}{2}\n\\]\n\n齐次解\n\n\\[\ny[n]=A_{1} \\alpha_{1}^{n}+A_{2} \\alpha_{2}^{n}\n\\]\n\n根据初始条件确定 \\(A_{1}, A_{2}\\)\n\n\\[\n\\left\\{\\begin{array} { l }\n{ y [ 1 ] = A _ { 1 } \\alpha _ { 1 } + A _ { 2 } \\alpha _ { 2 } = 1 } \\\\\n{ y [ 2 ] = A _ { 1 } \\alpha _ { 1 } ^ { 2 } + A _ { 2 } \\alpha _ { 2 } ^ { 2 } = 1 }\n\\end{array} \\Longrightarrow \\left\\{\\begin{array}{l}\nA_{1}=\\frac{1}{\\sqrt{5}} \\\\\nA_{2}=-\\frac{1}{\\sqrt{5}}\n\\end{array}\\right.\\right.\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#例子-1",
+    "href": "Chapter02_V2.html#例子-1",
+    "title": "第二章 线性时不变系统",
+    "section": "例子",
+    "text": "例子\n求解差分方程\n\\[\ny[n]+2 y[n-1]=x[n]-x[n-1]\n\\]\n输入 \\(x[n]=n^{2}\\)，初始条件 \\(y[-1]=-1\\)\n\n特征方程 \\(\\alpha+2=0 \\Longrightarrow \\alpha=-2\\)\n齐次解 \\(y_{h}[n]=A(-2)^{n}\\)\n特解\n找到 \\(f[n]=x[n]-x[n-1]=n^{2}-(n-1)^{2}=2 n-1\\)\n寻找形式为 \\(y_{p}[n]=B_{1} n+B_{0}\\) 的解\n\n\\[\ny_{p}[n]+2 y_{p}[n-1]=3 B_{1} n+3 B_{0}-2 B_{1}=f[n]=2 n-1\n\\]\n\n比较系数\n\n\\[\n\\left\\{\\begin{array} { l }\n{ 3 B _ { 1 } = 2 } \\\\\n{ 3 B _ { 0 } - 2 B _ { 1 } = - 1 }\n\\end{array} \\Longrightarrow \\left\\{\\begin{array}{l}\nB_{1}=\\frac{2}{3} \\\\\nB_{0}=\\frac{1}{9}\n\\end{array}\\right.\\right.\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#例子续",
+    "href": "Chapter02_V2.html#例子续",
+    "title": "第二章 线性时不变系统",
+    "section": "例子（续）",
+    "text": "例子（续）\n求解差分方程\n\\[\ny[n]+2 y[n-1]=x[n]-x[n-1]\n\\]\n输入 \\(x[n]=n^{2}\\)，初始条件 \\(y[-1]=-1\\)\n\n通解\n\n\\[\ny[n]=\\frac{2}{3} n+\\frac{1}{9}+A(-2)^{n}\n\\]\n\n根据初始条件确定 \\(A\\)\n\n\\[\ny[-1]=\\frac{2}{3}(-1)+\\frac{1}{9}+A(-2)^{-1}=-1 \\Longrightarrow A=\\frac{8}{9}\n\\]\n\n完全解\n\n\\[\ny[n]=\\underbrace{\\frac{2}{3} n+\\frac{1}{9}}_{\\text {强迫响应 }}+\\underbrace{\\frac{8}{9}(-2)^{n}}_{\\text {固有响应 }}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#解的分解-2-1",
+    "href": "Chapter02_V2.html#解的分解-2-1",
+    "title": "第二章 线性时不变系统",
+    "section": "解的分解 (2)",
+    "text": "解的分解 (2)\nIVP\n\\[\n\\left\\{\\begin{array}{l}\nL y=f \\\\\ny[k]=y_{k}, \\quad k=n_{0}-1, n_{0}-2, \\ldots, n_{0}-N\n\\end{array}\\right.\n\\]\n零输入响应：关于初始状态是线性的\n\\[\n\\left\\{\\begin{array}{l}\nL y_{z i}=0 \\\\\ny_{z i}[k]=y_{k}, \\quad k=n_{0}-1, n_{0}-2, \\ldots, n_{0}-N\n\\end{array}\\right.\n\\]\n零状态响应：关于输入是线性的\n\\[\n\\left\\{\\begin{array}{l}\nL y_{z s}=f \\\\\ny_{z s}[k]=0, \\quad k=n_{0}-1, n_{0}-2, \\ldots, n_{0}-N\n\\end{array}\\right.\n\\]\n完全解 \\(y=y_{z i}+y_{z s}\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#零状态响应",
+    "href": "Chapter02_V2.html#零状态响应",
+    "title": "第二章 线性时不变系统",
+    "section": "零状态响应",
+    "text": "零状态响应\n\\[\n\\left\\{\\begin{array}{l}\nL y_{z s}=f \\\\\ny_{z s}[k]=0, \\quad k=n_{0}-1, n_{0}-2, \\ldots, n_{0}-N\n\\end{array}\\right.\n\\]\n关注 \\(f[n]=0\\) 当 \\(n&lt;n_{0}\\) 的情况 \\(\\Longrightarrow\\) 初始静止 因果 LTI 系统，输出为\n\\[\ny_{z s}[n]=(f * h)[n]=u\\left[n-n_{0}\\right] \\sum_{k=n_{0}}^{n} f[k] h[n-k]\n\\]\n其中 \\(h\\) 是 \\(L y=x\\) 的冲激响应，即\n\\[\n\\left\\{\\begin{array}{l}\nL h=\\delta, \\quad n \\geq 0 \\\\\nh[k]=0, \\quad k=-1,-2, \\ldots,-N\n\\end{array}\\right.\n\\]\n或等价地\n\\[\n\\left\\{\\begin{array}{l}\nL h=0, \\quad n \\geq 1 \\\\\nh[k]=0, \\quad k=-1,-2, \\ldots, 1-N ; h[0]=1 / a_{0}\n\\end{array}\\right.\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#例子-2",
+    "href": "Chapter02_V2.html#例子-2",
+    "title": "第二章 线性时不变系统",
+    "section": "例子",
+    "text": "例子\n求解差分方程\n\\[\ny[n]+2 y[n-1]=x[n]-x[n-1]\n\\]\n输入 \\(x[n]=n^{2} u[n]\\)，初始条件 \\(y[-1]=-1\\)\n\n齐次解 \\(y_{h}[n]=A(-2)^{n}\\)\n零输入响应，即满足 \\(y_{z i}[-1]=-1\\) 的齐次解\n\n\\[\nA(-2)^{-1}=-1 \\Longrightarrow A=2 \\Longrightarrow y_{z i}=2(-2)^{n}\n\\]\n\n\\(y[n]+2 y[n-1]=x[n]\\) 的冲激响应，即以下 IVP 的解\n\n\\[\n\\left\\{\\begin{array}{l}\nh[n]+2 h[n-1]=\\delta[n] \\\\\nh[-1]=0\n\\end{array}\\right.\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#例子续-1",
+    "href": "Chapter02_V2.html#例子续-1",
+    "title": "第二章 线性时不变系统",
+    "section": "例子（续）",
+    "text": "例子（续）\n求解差分方程\n\\[\ny[n]+2 y[n-1]=x[n]-x[n-1]\n\\]\n输入 \\(x[n]=n^{2} u[n]\\)，初始条件 \\(y[-1]=-1\\)\n\n齐次解 \\(y_{h}[n]=A(-2)^{n}\\)\n冲激响应\n\n\\[\n\\left\\{\\begin{array}{l}\nh[n]+2 h[n-1]=\\delta[n], \\quad n \\geq 0 \\\\\nh[-1]=0\n\\end{array}\\right.\n\\]\n\n通过迭代法 \\(h[0]=\\delta[0]-2 h[-1]=1\\)\n现在求解\n\n\\[\n\\left\\{\\begin{array}{l}\nh[n]+2 h[n-1]=0, \\quad n \\geq 1 \\\\\nh[0]=1\n\\end{array}\\right.\n\\]\n\n\\(h[0]=A=1 \\Longrightarrow h[n]=(-2)^{n} u[n]\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#例子续-2",
+    "href": "Chapter02_V2.html#例子续-2",
+    "title": "第二章 线性时不变系统",
+    "section": "例子（续）",
+    "text": "例子（续）\n求解差分方程\n\\[\ny[n]+2 y[n-1]=x[n]-x[n-1]\n\\]\n输入 \\(x[n]=n^{2} u[n]\\)，初始条件 \\(y[-1]=-1\\)\n\n冲激响应 \\(h[n]=(-2)^{n} u[n]\\)\nRHS \\(f[n]=x[n]-x[n-1]=(2 n-1) u[n-1]\\)\n对于 \\(n \\geq 1\\) 的零状态响应\n\n\\[\n\\begin{aligned}\ny_{z s}[n] & =(f * h)[n]=\\sum_{k=1}^{n} h[n-k](x[k]-x[k-1]) \\\\\n& =\\sum_{k=1}^{n}(-2)^{n-k}(2 k-1)=\\frac{2}{3} n+\\frac{1}{9}-\\frac{1}{9}(-2)^{n}\n\\end{aligned}\n\\]\n\n总响应\n\n\\[\ny[n]=y_{z i}[n]+y_{z s}[n]=2(-2)^{n}+\\left[\\frac{2}{3} n+\\frac{1}{9}-\\frac{1}{9}(-2)^{n}\\right] u[n-1]\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶差分方程组",
+    "href": "Chapter02_V2.html#一阶差分方程组",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶差分方程组",
+    "text": "一阶差分方程组\n考虑 \\(N\\) 阶差分方程，其中 \\(a_{0}=1\\)\n\\[\ny+a_{1} \\tau_{1} y+\\cdots+a_{N-1} \\tau_{N-1} y+a_{N} \\tau_{N} y=f\n\\]\n令 \\(Y_{k}=\\tau_{k} y, k=0,1, \\ldots, N-1\\)\n\n\\(Y_{k}=\\tau_{1} Y_{k-1}\\) 对于 \\(k=1,2, \\ldots, N-1\\)\n\\(Y_{0}=y=f-\\sum_{k=1}^{N} a_{k} \\tau_{k} y=f-\\sum_{k=1}^{N} a_{k} \\tau_{1} Y_{k-1}\\)\n\n等价的向量方程\n\\[\nY=A \\tau_{1} Y+b f\n\\]\n其中\n\\[\nY=\\left(\\begin{array}{c}\nY_{0} \\\\\nY_{1} \\\\\n\\vdots \\\\\nY_{N-2} \\\\\nY_{N-1}\n\\end{array}\\right), A=\\left(\\begin{array}{cccccc}\n-a_{1} & -a_{2} & -a_{3} & \\ldots & -a_{N-1} & -a_{N} \\\\\n1 & 0 & 0 & \\ldots & 0 & 0 \\\\\n0 & 1 & 0 & \\ldots & 0 & 0 \\\\\n\\vdots & & & & & \\\\\n0 & 0 & 0 & \\ldots & 1 & 0\n\\end{array}\\right), b=\\left(\\begin{array}{c}\n1 \\\\\n0 \\\\\n0 \\\\\n\\vdots \\\\\n0\n\\end{array}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶差分方程组-1",
+    "href": "Chapter02_V2.html#一阶差分方程组-1",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶差分方程组",
+    "text": "一阶差分方程组\n初值问题 (IVP)\n\\[\n\\left\\{\\begin{array}{l}\ny+a_{1} \\tau_{1} y+\\cdots+a_{N-1} \\tau_{N-1} y+a_{N} \\tau_{N} y=f  \\tag{1}\\\\\ny[k]=y_{k}, \\quad k=n_{0}-1, n_{0}-2, \\ldots, n_{0}-N\n\\end{array}\\right.\n\\]\n等价于\n\\[\n\\left\\{\\begin{array}{l}\nY=A \\tau_{1} Y+b f  \\tag{2}\\\\\nY\\left[n_{0}-1\\right]=Y_{n_{0}-1}\n\\end{array}\\right.\n\\]\n其中 \\(Y_{n_{0}-1}=\\left(y_{n_{0}-1}, y_{n_{0}-2}, \\ldots, y_{n_{0}-N}\\right)^{T}\\)。 (2) 的解\n\\[\nY[n]=\\underbrace{A^{n-n_{0}+1} Y_{n_{0}-1}}_{\\text {零输入响应 }}+\\underbrace{\\left(\\sum_{k=n_{0}}^{n}-\\sum_{k=n+1}^{n_{0}-1}\\right) A^{n-k} b f[k]}_{\\text {零状态响应 }}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶差分方程组-2",
+    "href": "Chapter02_V2.html#一阶差分方程组-2",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶差分方程组",
+    "text": "一阶差分方程组\n\n的解\n\n\\[\ny[n]=c Y(t)=\\underbrace{c A^{n-n_{0}+1} Y_{n_{0}-1}}_{\\text {零输入响应 }}+\\underbrace{\\left(\\sum_{k=n_{0}}^{n}-\\sum_{k=n+1}^{n_{0}-1}\\right) f[k] c A^{n-k} b}_{\\text {零状态响应 }}\n\\]\n其中 \\(c=(1,0,0, \\ldots, 0)\\) 初始静止\n\\[\ny(t)=\\sum_{k=-\\infty}^{n} f[k] c A^{n-k} b\n\\]\n\n回顾 \\(f=\\sum_{k=0}^{M} b_{k} \\tau_{k} x\\) 关于 \\(x\\) 是线性的\n\\(y=T(x)\\) 因果 LTI 系统；如果 \\(f=x, h[n]=c A^{n} b u[n]\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#sec243",
+    "href": "Chapter02_V2.html#sec243",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶系统的方框图表示",
+    "text": "一阶系统的方框图表示\n离散时间系统\n\\(y[n]+a y[n-1]=b x[n]\\) 的框图 重写输入-输出关系为\n\\[\ny[n]=-a y[n-1]+b x[n]\n\\]\n\n基本元件\n\n加法器 (adder)\n标量乘法 (scalar multiplication)\n单位延迟 \\(D=\\tau_{1}\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#一阶系统的方框图表示",
+    "href": "Chapter02_V2.html#一阶系统的方框图表示",
+    "title": "第二章 线性时不变系统",
+    "section": "一阶系统的方框图表示",
+    "text": "一阶系统的方框图表示\n连续时间系统\n\\(y^{\\prime}(t)+a y(t)=b x(t)\\) 的框图 假设 \\(y(-\\infty)=0\\)，重写输入-输出关系为\n\\[\ny(t)=\\int_{-\\infty}^{t}[b x(\\tau)-a y(\\tau)] d \\tau\n\\]\n\n基本元件\n\n加法器\n标量乘法\n积分器 (integrator)（为了鲁棒性，优先于微分器）\n\n\n返回目录"
+  },
+  {
+    "objectID": "Chapter02_V2.html#toc4",
+    "href": "Chapter02_V2.html#toc4",
+    "title": "第二章 线性时不变系统",
+    "section": "目录",
+    "text": "目录\n\n离散时间线性时不变系统\n\n用脉冲表示离散时间信号\n离散时间线性时不变系统的单位脉冲响应及卷积和表示\n\n连续时间线性时不变系统\n\n用冲激表示连续时间信号\n连续时间线性时不变系统的单位冲激响应及卷积和表示\n\n线性时不变系统的性质\n\n线性时不变系统的交换律、分配律与结合律\n线性时不变系统的记忆性、可逆性、因果性和稳定性\n线性时不变系统的单位阶跃响应\n\n用微分方程和差分方程描述的因果线性时不变系统\n\n线性常系数微分方程\n线性常系数差分方程\n一阶系统的方框图表示\n\n奇异函数"
+  },
+  {
+    "objectID": "Chapter02_V2.html#重温单位冲激-unit-impulse-revisited",
+    "href": "Chapter02_V2.html#重温单位冲激-unit-impulse-revisited",
+    "title": "第二章 线性时不变系统",
+    "section": "重温单位冲激 (Unit Impulse Revisited)",
+    "text": "重温单位冲激 (Unit Impulse Revisited)\n回顾单位冲激\n\\[\n\\delta(t)=\\lim _{\\Delta \\rightarrow 0} r_{\\Delta}(t)\n\\]\n其中\n\\[\nr_{\\Delta}(t)=\\frac{u\\left(t+\\frac{\\Delta}{2}\\right)-u\\left(t-\\frac{\\Delta}{2}\\right)}{\\Delta}\n\\]\n幅度非常大但持续时间非常短（例如冲激力）或空间跨度极小（例如质点/点电荷）的量的理想化 \n回顾单位冲激响应\n\\[\nh=T(\\delta)=\\lim _{\\Delta \\rightarrow 0} T\\left(r_{\\Delta}\\right)\n\\]\n理想化：脉冲如此之短，以至于系统响应仅取决于面积，而不取决于形状和持续时间"
+  },
+  {
+    "objectID": "Chapter02_V2.html#重温单位冲激",
+    "href": "Chapter02_V2.html#重温单位冲激",
+    "title": "第二章 线性时不变系统",
+    "section": "重温单位冲激",
+    "text": "重温单位冲激\n对于初始静止的线性常系数 ODE 描述的系统\n\\[\ny(t)=\\int_{\\mathbb{R}} x(\\tau) h(t-\\tau) d \\tau\n\\]\n对 \\(r_{\\Delta}\\) 的响应\n\\[\n\\left[T\\left(r_{\\Delta}\\right)\\right](t)=\\int_{\\mathbb{R}} r_{\\Delta}(\\tau) h(t-\\tau) d \\tau=\\frac{1}{\\Delta} \\int_{-\\Delta / 2}^{\\Delta / 2} h(t-\\tau) d \\tau\n\\]\n确实\n\\[\n\\lim _{\\Delta \\rightarrow 0} T\\left(r_{\\Delta}\\right)=h\n\\]\n在 \\(h\\) 的连续点处成立。等同于\n\\[\n[T(\\delta)](t)=\\int_{\\mathbb{R}} \\delta(\\tau) h(t-\\tau) d \\tau=h(t)\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#重温单位冲激-1",
+    "href": "Chapter02_V2.html#重温单位冲激-1",
+    "title": "第二章 线性时不变系统",
+    "section": "重温单位冲激",
+    "text": "重温单位冲激\n回顾 \\(\\delta\\) 的第二种定义\n\\[\n\\int_{\\mathbb{R}} \\delta(t) \\phi(t) d t=\\phi(0)\n\\]\n令 \\(\\mathcal{C}\\) 为在 0 处连续的函数集合。上式定义了映射\n\\[\n\\begin{aligned}\n\\delta: \\mathcal{C} & \\rightarrow \\mathbb{R} \\\\\n\\phi & \\mapsto \\phi(0)\n\\end{aligned}\n\\]\n也记作 \\(\\delta[\\phi]=\\phi(0)\\)。\\(\\delta\\) 是 \\(\\mathcal{C}\\) 上的线性泛函\n\\[\n\\delta\\left[a_{1} \\phi_{1}+a_{2} \\phi_{2}\\right]=a_{1} \\phi_{1}(0)+a_{2} \\phi_{2}(0)=a_{1} \\delta\\left[\\phi_{1}\\right]+a_{2} \\delta\\left[\\phi_{2}\\right]\n\\]\n称为广义函数 (generalized function) 或分布 (distribution)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#单位偶极子-unit-doublet",
+    "href": "Chapter02_V2.html#单位偶极子-unit-doublet",
+    "title": "第二章 线性时不变系统",
+    "section": "单位偶极子 (Unit Doublet)",
+    "text": "单位偶极子 (Unit Doublet)\n微分器的冲激响应是什么？\n\\[\nh(t)=\\delta^{\\prime}(t)\n\\]\n期望微分器对输入 \\(x\\) 的输出 \\(y\\) 满足\n\\[\ny=x * h=x^{\\prime}\n\\]\n或\n\\[\n\\int_{\\mathbb{R}} x(\\tau) \\delta^{\\prime}(t-\\tau) d \\tau=x^{\\prime}(t)\n\\]\n在 \\(x\\) 可微的点处。 \\(u_{1}=\\delta^{\\prime}\\) 的第一种定义\n\\[\nx * \\delta^{\\prime}=x^{\\prime}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#单位偶极子",
+    "href": "Chapter02_V2.html#单位偶极子",
+    "title": "第二章 线性时不变系统",
+    "section": "单位偶极子",
+    "text": "单位偶极子\n第二种定义。由于 \\(\\delta \\triangleq \\lim _{\\Delta \\rightarrow 0} r_{\\Delta}\\)，定义\n\\[\n\\delta^{\\prime} \\triangleq \\lim _{\\Delta \\rightarrow 0} r_{\\Delta}^{\\prime}\n\\]\n意味着\n\\[\n\\begin{gathered}\n\\int_{\\mathbb{R}} \\delta^{\\prime}(t) \\phi(t)=\\lim _{\\Delta \\rightarrow 0} \\int_{\\mathbb{R}} r_{\\Delta}^{\\prime}(t) \\phi(t) d t \\\\\n\\int_{\\mathbb{R}} r_{\\Delta}^{\\prime}(t) \\phi(t) d t=\\int_{\\mathbb{R}} \\frac{1}{\\Delta}\\left[\\delta\\left(t+\\frac{\\Delta}{2}\\right)-\\delta\\left(t-\\frac{\\Delta}{2}\\right)\\right] \\phi(t) \\\\\n=\\frac{1}{\\Delta}\\left[\\phi\\left(-\\frac{\\Delta}{2}\\right)-\\phi\\left(\\frac{\\Delta}{2}\\right)\\right] \\\\\n\\int_{\\mathbb{R}} \\delta^{\\prime}(t) \\phi(t)=-\\phi^{\\prime}(0)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#单位偶极子-1",
+    "href": "Chapter02_V2.html#单位偶极子-1",
+    "title": "第二章 线性时不变系统",
+    "section": "单位偶极子",
+    "text": "单位偶极子\n第三种定义。对于在 0 处连续可微的 \\(\\phi\\)\n\\[\n\\delta^{\\prime}[\\phi]=-\\delta\\left[\\phi^{\\prime}\\right]\n\\]\n直觉：分部积分应该适用\n\\[\n\\int_{\\mathbb{R}} f^{\\prime}(t) \\phi(t) d t=\\left.[f(t) \\phi(t)]\\right|_{-\\infty} ^{\\infty}-\\int_{\\mathbb{R}} f(t) \\phi^{\\prime}(t) d t\n\\]\n如果 \\(\\phi\\) 具有紧支集，即在有限区间外为零\n\\[\n\\int_{\\mathbb{R}} f^{\\prime}(t) \\phi(t) d t=-\\int_{\\mathbb{R}} f(t) \\phi^{\\prime}(t) d t\n\\]\n取 \\(f=\\delta\\)\n\\[\n\\int_{\\mathbb{R}} \\delta^{\\prime}(t) \\phi(t) d t=-\\int_{\\mathbb{R}} \\delta(t) \\phi^{\\prime}(t) d t\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#单位偶极子-2",
+    "href": "Chapter02_V2.html#单位偶极子-2",
+    "title": "第二章 线性时不变系统",
+    "section": "单位偶极子",
+    "text": "单位偶极子\n例子：证明 \\(f(t) \\delta^{\\prime}(t)=f(0) \\delta^{\\prime}(t)-f^{\\prime}(0) \\delta(t)\\) 证明：\n\\[\n\\begin{aligned}\n\\int_{\\mathbb{R}} f(t) \\delta^{\\prime}(t) \\phi(t) d t & =\\int_{\\mathbb{R}} \\delta^{\\prime}(t)[f(t) \\phi(t)] d t \\\\\n& =-\\int_{\\mathbb{R}} \\delta(t)[f(t) \\phi(t)]^{\\prime} d t \\\\\n& =-f^{\\prime}(0) \\phi(0)-f(0) \\phi^{\\prime}(0) \\\\\n& =-\\int_{\\mathbb{R}} f^{\\prime}(0) \\delta(t) \\phi(t)+f(0) \\int_{\\mathbb{R}} \\delta^{\\prime}(t) \\phi(t) d t \\\\\n& =\\int_{\\mathbb{R}}\\left[f(0) \\delta^{\\prime}(t)-f^{\\prime}(0) \\delta(t)\\right] \\phi(t) d t\n\\end{aligned}\n\\]\n特别地，\\(t \\delta^{\\prime}(t)=-\\delta(t)\\)"
+  },
+  {
+    "objectID": "Chapter02_V2.html#广义导数-distributional-derivative",
+    "href": "Chapter02_V2.html#广义导数-distributional-derivative",
+    "title": "第二章 线性时不变系统",
+    "section": "广义导数 (Distributional Derivative)",
+    "text": "广义导数 (Distributional Derivative)\n函数（泛函）\\(g\\) 的广义导数定义为\n\\[\n\\int_{\\mathbb{R}} g^{\\prime}(t) \\phi(t) d t=-\\int_{\\mathbb{R}} g(t) \\phi^{\\prime}(t) d t\n\\]\n例子：证明 \\(u^{\\prime}(t)=\\delta(t)\\) 证明：对于具有紧支集的连续可微 \\(\\phi\\)\n\\[\n\\begin{aligned}\n\\int_{\\mathbb{R}} u^{\\prime}(t) \\phi(t) d t & =-\\int_{\\mathbb{R}} u(t) \\phi^{\\prime}(t) d t=-\\int_{0}^{\\infty} \\phi^{\\prime}(t) d t \\\\\n& =\\phi(0)=\\int_{\\mathbb{R}} \\delta(t) \\phi(t) d t\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter02_V2.html#delta-的高阶导数",
+    "href": "Chapter02_V2.html#delta-的高阶导数",
+    "title": "第二章 线性时不变系统",
+    "section": "\\(\\delta\\) 的高阶导数",
+    "text": "\\(\\delta\\) 的高阶导数\n第一种定义\n\\[\nu_{k}=\\delta^{(k)}=\\underbrace{u_{1} * u_{1} * \\cdots * u_{1}}_{k \\text { 次 }}, \\quad k \\geq 1\n\\]\n因此\n\\[\nu_{k} * f=f^{(k)}\n\\]\n第二种定义\n\\[\n\\int_{\\mathbb{R}} \\delta^{(k)}(t) \\phi(t) d t=(-1)^{k} \\int_{\\mathbb{R}} \\delta(t) \\phi^{(k)}(t) d t\n\\]\n使用分部积分 \\(k\\) 次"
+  },
+  {
+    "objectID": "Chapter02_V2.html#delta-的高阶反导数",
+    "href": "Chapter02_V2.html#delta-的高阶反导数",
+    "title": "第二章 线性时不变系统",
+    "section": "\\(\\delta\\) 的高阶反导数",
+    "text": "\\(\\delta\\) 的高阶反导数\n令 \\(u_{0}=\\delta\\) 为单位冲激，\\(u_{-1}=u\\) 为单位阶跃\n\\[\nu_{-k}=\\underbrace{u_{-1} * u_{-1} * \\cdots * u_{-1}}_{k \\text { 次 }}, \\quad k \\geq 1\n\\]\n因此\n\\[\nu_{-k}(t)=\\frac{t^{k-1}}{(k-1)!} u(t)\n\\]\n\\(u_{-2}\\) 称为单位斜坡函数 (unit ramp function) 性质\n\\[\nu_{m} * u_{n}=u_{m+n}, \\quad m, n \\in \\mathbb{Z}\n\\]\n\n返回目录"
+  },
+  {
+    "objectID": "Chapter02_V2.html#作业",
+    "href": "Chapter02_V2.html#作业",
+    "title": "第二章 线性时不变系统",
+    "section": "作业",
+    "text": "作业\n2.4 2.11 2.17 2.23"
+  }
+]
