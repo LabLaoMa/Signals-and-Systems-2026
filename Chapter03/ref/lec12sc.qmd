@@ -1,0 +1,496 @@
+---
+title: "El331 信号与系统 · 第12讲"
+subtitle: "滤波与离散时间傅里叶级数"
+author: "Bo Jiang (中文翻译)"
+date: "2019-03-14"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+## 目录
+
+1. 滤波 (Filtering)
+2. DT 傅里叶级数 (DT Fourier Series)
+3. DT 傅里叶级数的性质 (Properties of DT Fourier Series)
+
+# 1. 滤波 (Filtering)
+
+## 理想频率选择性滤波器
+
+**理想低通滤波器 (Ideal lowpass filter)**
+
+$$
+H(j \omega)= \begin{cases}1, & |\omega| \leq \omega_{c} \\ 0, & \text { 其他 }\end{cases}
+$$
+
+$\omega_{c}$ : 截止频率
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-03.jpg?height=285&width=871&top_left_y=485&top_left_x=217)
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-03.jpg?height=86&width=862&top_left_y=769&top_left_x=217)
+
+## 理想频率选择性滤波器
+
+**理想高通滤波器 (Ideal highpass filter)**
+
+$$
+H(j \omega)= \begin{cases}1, & |\omega| \geq \omega_{c} \\ 0, & \text { 其他 }\end{cases}
+$$
+
+$\omega_{c}$ : 截止频率
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-04.jpg?height=283&width=871&top_left_y=485&top_left_x=217)
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-04.jpg?height=86&width=862&top_left_y=769&top_left_x=217)
+
+## 理想频率选择性滤波器
+
+**理想带通滤波器 (Ideal bandpass filter)**
+
+$$
+H(j \omega)= \begin{cases}1, & \omega_{c 1} \leq|\omega| \leq \omega_{c 2} \\ 0, & \text { 其他 }\end{cases}
+$$
+
+$\omega_{c 1}$ : 下截止频率
+$\omega_{c 2}$ : 上截止频率
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-05.jpg?height=283&width=868&top_left_y=561&top_left_x=217)
+
+## 简单 RC 低通滤波器
+
+常微分方程 (ODE)
+
+$$
+R C \frac{d v_{C}(t)}{d t}+v_{C}(t)=v_{S}(t)
+$$
+
+对于输入 $v_{S}(t)=e^{j \omega t}$，输出为
+
+$$
+v_{C}(t)=H(j \omega) e^{j \omega t}
+$$
+
+频率响应 $H(j \omega)=\frac{1}{1+R C j \omega}$
+
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-06.jpg?height=405&width=616&top_left_y=137&top_left_x=625)
+
+## 简单 RC 低通滤波器
+
+频率响应
+
+$$
+H(j \omega)=\frac{1}{1+R C j \omega}
+$$
+
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-07.jpg?height=271&width=620&top_left_y=113&top_left_x=590)
+
+$$
+\begin{aligned}
+|H(j \omega)| & =\frac{1}{\sqrt{1+(R C \omega)^{2}}} \\
+\arg H(j \omega) & =-\arctan (R C \omega)
+\end{aligned}
+$$
+
+非理想低通滤波器：通过低频，衰减高频。
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-07.jpg?height=394&width=615&top_left_y=443&top_left_x=590)
+
+$R C$ 越大 $\Longrightarrow$ 通过的低频范围越小。
+
+## 简单 RC 低通滤波器
+
+冲激响应
+
+$$
+h(t)=\frac{1}{R C} e^{-t / R C} u(t)
+$$
+
+阶跃响应
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-08.jpg?height=256&width=389&top_left_y=113&top_left_x=825)
+
+$$
+s(t)=(h * u)(t)=\left(1-e^{-t / R C}\right) u(t)
+$$
+
+时间常数 $\tau=R C$
+
+- $\tau$ 越大，响应越迟缓 (sluggish)
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-08.jpg?height=276&width=402&top_left_y=410&top_left_x=812)
+
+## 权衡 (Tradeoff)
+
+- $\tau$ 越大：通过的高频越少，响应越迟缓
+- $\tau$ 越小：通过的高频越多，响应越快
+
+## 简单 RC 高通滤波器
+
+ODE
+$R C \frac{d v_{R}(t)}{d t}+v_{R}(t)=R C \frac{d v_{S}(t)}{d t}$
+
+对于输入 $v_{S}(t)=e^{j \omega t}$，输出为
+
+$$
+v_{R}(t)=H(j \omega) e^{j \omega t}
+$$
+
+频率响应 $\quad H(j \omega)=\frac{j \omega R C}{1+j \omega R C}$
+
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-09.jpg?height=403&width=616&top_left_y=141&top_left_x=625)
+
+## 简单 RC 高通滤波器
+
+频率响应
+
+$$
+H(j \omega)=\frac{j \omega R C}{1+j \omega R C}
+$$
+
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-10.jpg?height=240&width=616&top_left_y=113&top_left_x=594)
+
+$$
+|H(j \omega)|=\frac{|\omega| R C}{\sqrt{1+(R C \omega)^{2}}}
+$$
+
+$$
+\arg H(j \omega)=\arctan \frac{1}{R C \omega}
+$$
+
+非理想高通滤波器：通过高频，衰减低频。
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-10.jpg?height=456&width=616&top_left_y=410&top_left_x=594)
+
+$R C$ 越大 $\Longrightarrow$ 通过的低频范围越大。
+
+## 简单 RC 高通滤波器
+
+阶跃响应
+
+$$
+s(t)=e^{-t / R C} u(t)
+$$
+
+冲激响应
+
+$$
+h(t)=s^{\prime}(t)=\delta(t)-\frac{1}{R C} e^{-t / R C} u(t)
+$$
+
+时间常数 $\tau=R C$
+
+- $\tau$ 越大，响应越迟缓
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-11.jpg?height=353&width=390&top_left_y=113&top_left_x=798)
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-11.jpg?height=249&width=390&top_left_y=468&top_left_x=798)
+
+观察：
+- $\tau$ 越大，通过的低频越多，响应越迟缓
+- $\tau$ 越小，通过的低频越少，响应越快
+
+# 2. DT 傅里叶级数
+
+## DT 周期信号
+
+回顾：DT 信号是周期的，周期为 $N$，如果
+
+$$
+x=\tau_{N} x \quad \text { 或 } \quad x[n]=x[n+N], \forall n \in \mathbb{Z}
+$$
+
+- 基波周期 $N$：最小的正周期
+- 基频 $\begin{cases}\frac{2 \pi}{N}, & \text { 如果 } N>1 \\ 0, & \text { 如果 } N=1\end{cases}$
+
+复指数信号 $\phi_{N}^{k}[n]=e^{j k \frac{2 \pi}{N} n}=e^{j k \omega_{0} n}$ 是周期的，具有：
+
+- 周期 $N$ 和基波周期 $\frac{N}{\operatorname{gcd}(N, k)}$
+- 基频 $\omega_{k}= \begin{cases}0, & \text { 如果 } N \mid k \\ \omega_{0} \cdot \operatorname{gcd}(k, N), & \text { 其他 }\end{cases}$，总是 $\omega_{0}=\frac{2 \pi}{N}$ 的整数倍
+
+## DT 傅里叶基的有限性
+
+傅里叶级数用谐波相关的复指数 $\phi_{N}^{k}$ 表示 $N$-周期信号
+
+$$
+x=\sum_{k} c_{k} \phi_{N}^{k}, \quad \text { 或 } \quad x[n]=\sum_{k} c_{k} \phi_{N}^{k}[n]=\sum_{k} c_{k} e^{j k \frac{2 \pi}{N} n}
+$$
+
+与 CT 情况的关键区别：$\phi_{N}^{k+r N}=\phi_{N}^{k}$，所以只有 $N$ 个不同的 $\phi_{N}^{k}$，傅里叶基是有限的，即
+
+$$
+\left\{\phi_{N}^{k}: k \in \mathbb{Z}\right\}=\left\{\phi_{N}^{k}: k \in[N]\right\}
+$$
+
+其中 $[N]=\{0,1, \ldots, N-1\}$（可以理解为 $[N]=\{\overline{0}, \overline{1}, \ldots, \overline{N-1}\}$）。
+
+证明：对于 $r \in \mathbb{Z}$，
+$$
+\phi_{N}^{k+r N}[n]=e^{j(k+r N) \frac{2 \pi}{N} n}=e^{j k \frac{2 \pi}{N} n} e^{j r 2 \pi n}=e^{j k \frac{2 \pi}{N} n}=\phi_{N}^{k}[n]
+$$
+
+## DT 傅里叶基的有限性 (图示)
+
+$\phi_{N}^{k}$ 示例， $N=4$ 和 $k=0,1, \ldots, 8$
+
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-15.jpg?height=155&width=363&top_left_y=206&top_left_x=96)
+$\phi_{N}^{0}[n]=\cos (0 \cdot n)=1$
+
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-15.jpg?height=152&width=365&top_left_y=209&top_left_x=463)
+$\phi_{N}^{1}[n]=\cos (\pi n / 4)$
+
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-15.jpg?height=152&width=360&top_left_y=209&top_left_x=835)
+$\phi_{N}^{2}[n]=\cos (\pi n / 2)$
+
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-15.jpg?height=155&width=363&top_left_y=453&top_left_x=94)
+$\phi_{N}^{3}[n]=\cos (3 \pi n / 4)$
+
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-15.jpg?height=155&width=370&top_left_y=453&top_left_x=458)
+$\phi_{N}^{4}[n]=\cos (\pi n)$ (注意与 $k=0$ 相同，除了符号/相位)
+
+... (循环重复)
+
+## 谐波的正交归一性
+
+DT 傅里叶级数
+
+$$
+x=\sum_{k \in[N]} \hat{x}[k] \phi_{N}^{k}, \quad \text { 或 } \quad x[n]=\sum_{k \in[N]} \hat{x}[k] e^{j k \frac{2 \pi}{N} n}
+$$
+
+求和可以在任意 $N$ 个连续整数上进行。
+定义两个周期为 $N$ 的信号的内积为
+
+$$
+\langle x, y\rangle=\frac{1}{N} \sum_{n \in[N]} x[n] \overline{y[n]}
+$$
+
+这与 $\mathbb{C}^{N}$ 中的内积相同（差一个因子 $N^{-1}$）。
+$\left\{\phi_{N}^{k}: k \in[N]\right\}$ 是正交归一函数系
+
+$$
+\left\langle\phi_{N}^{k}, \phi_{N}^{m}\right\rangle=\delta_{k m}=\delta[k-m]
+$$
+
+## 谐波正交归一性的证明
+
+$$
+\left\langle\phi_{N}^{k}, \phi_{N}^{m}\right\rangle=\frac{1}{N} \sum_{n \in[N]} e^{j k \frac{2 \pi}{N} n} e^{-j m \frac{2 \pi}{N} n}=\frac{1}{N} \sum_{n=0}^{N-1} e^{j(k-m) \frac{2 \pi}{N} n}
+$$
+
+如果 $k=m$，
+
+$$
+\left\langle\phi_{N}^{k}, \phi_{N}^{m}\right\rangle=\frac{1}{N} \sum_{k=0}^{N-1} 1=1
+$$
+
+如果 $k \neq m$，由于 $|k-m| \leq N-1, e^{j(k-m) \frac{2 \pi}{N}} \neq 1$。利用等比数列求和公式：
+
+$$
+\left\langle\phi_{N}^{k}, \phi_{N}^{m}\right\rangle=\frac{1}{N} \sum_{n=0}^{N-1} e^{j(k-m) \frac{2 \pi}{N} n}=\frac{1}{N} \frac{1-e^{j(k-m) \frac{2 \pi}{N} N}}{1-e^{j(k-m) \frac{2 \pi}{N}}}=0
+$$
+
+## 傅里叶系数
+
+假设 $x$ 周期为 $N$，利用正交性求解系数：
+
+$$
+\begin{aligned}
+\left\langle x, \phi_{N}^{m}\right\rangle & =\left\langle\sum_{k \in[N]} \hat{x}[k] \phi_{N}^{k}, \phi_{N}^{m}\right\rangle=\sum_{k \in[N]} \hat{x}[k]\left\langle\phi_{N}^{k}, \phi_{N}^{m}\right\rangle \\
+& =\sum_{k \in[N]} \hat{x}[k] \delta[m-k]=\hat{x}[m]
+\end{aligned}
+$$
+
+可以将 $\hat{x}$ 视为 $N$-周期信号，因为：
+
+$$
+\hat{x}[m+r N] \triangleq\left\langle x, \phi_{N}^{m+r N}\right\rangle=\left\langle x, \phi_{N}^{m}\right\rangle=\hat{x}[m]
+$$
+
+但在傅里叶级数中只使用 $N$ 个连续的值！
+
+## DT 傅里叶级数公式
+
+**综合方程 (Synthesis equation)**
+
+$$
+x[n]=\sum_{k \in[N]} \hat{x}[k] \phi_{N}^{k}[n]=\sum_{k \in[N]} \hat{x}[k] e^{j k \frac{2 \pi}{N} n}
+$$
+
+**分析方程 (Analysis equation)**
+
+$$
+\hat{x}[k]=\left\langle x, \phi_{N}^{k}\right\rangle=\frac{1}{N} \sum_{n \in[N]} x[n] e^{-j k \frac{2 \pi}{N} n}
+$$
+
+由于所有求和都是有限的，不存在收敛问题！
+
+## 例子
+
+$x[n]=\cos \left(\frac{6 \pi}{5} n+\frac{\pi}{5}\right)$，周期 $N=5$。
+展开为复指数：
+$x[n]=\frac{e^{j \frac{\pi}{5}}}{2} e^{j 3 \frac{2 \pi}{5} n}+\frac{e^{-j \frac{\pi}{5}}}{2} e^{-j 3 \frac{2 \pi}{5} n}$
+
+系数：
+$\hat{x}[3]=\frac{1}{2} e^{j \frac{\pi}{5}} ; \quad \hat{x}[2]=\hat{x}[-3]=\frac{1}{2} e^{-j \frac{\pi}{5}} ; \quad \hat{x}[0]=\hat{x}[1]=\hat{x}[4]=0$
+
+$\hat{x}[k]$ 以 $N=5$ 为周期重复。
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-20.jpg?height=139&width=808&top_left_y=432&top_left_x=244)
+(相位谱)
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-20.jpg?height=340&width=813&top_left_y=590&top_left_x=241)
+(幅度谱)
+
+## 例子：周期方波 (Periodic Square Wave)
+
+周期为 $N$ 的方波，在一个周期内：
+
+$$
+x[n]= \begin{cases}1, & -N_{1} \leq n \leq N_{1} \\ 0, & N_{1}<n<N-N_{1}\end{cases}
+$$
+
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-21.jpg?height=151&width=1209&top_left_y=393&top_left_x=41)
+
+傅里叶系数：
+
+$$
+\hat{x}[k]=\frac{1}{N} \sum_{n=-N_{1}}^{N_{1}} e^{-j k \frac{2 \pi}{N} n}
+$$
+
+如果 $k$ 是 $N$ 的整数倍, $\hat{x}[k]=\frac{2 N_{1}+1}{N}$
+
+## 例子：周期方波 (续)
+
+如果 $k$ 不是 $N$ 的整数倍，则 $e^{-j k \frac{2 \pi}{N}} \neq 1$。使用等比数列求和：
+
+$$
+\begin{aligned}
+\hat{x}[k] & =\frac{1}{N} \frac{e^{j k \frac{2 \pi}{N} N_{1}}-e^{-j k \frac{2 \pi}{N}\left(N_{1}+1\right)}}{1-e^{-j k \frac{2 \pi}{N}}} \\
+& =\frac{1}{N} \frac{\sin \left(k \frac{2 \pi}{N}\left(N_{1}+\frac{1}{2}\right)\right)}{\sin \left(k \frac{\pi}{N}\right)}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/1086b18a-e1fd-43f2-95c8-7e053e314ef6-23.jpg?height=263&width=1106&top_left_y=286&top_left_x=57)
+
+## DT 傅里叶级数：矩阵形式
+
+综合方程可以写成矩阵乘法：
+
+$$
+x[n]=\sum_{k=0}^{N-1} W_{N}^{k n} \hat{x}[k], \quad \text { 其中 } W_{N}=e^{j k \frac{2 \pi}{N}}
+$$
+
+$$
+x=\mathbf{F} \hat{x}, \quad \text { 其中 } \mathbf{F}=\left(\phi_{N}^{0}, \phi_{N}^{1}, \ldots, \phi_{N}^{N-1}\right)
+$$
+
+分析方程：
+
+$$
+\hat{x}=\mathbf{F}^{-1} x=\frac{1}{N} \mathbf{F}^{H} x
+$$
+
+其中 $\mathbf{F}^{H}=(\overline{\mathbf{F}})^{T}$ 是 $\mathbf{F}$ 的共轭转置 (Hermitian transpose)。
+
+# 3. DT 傅里叶级数的性质
+
+## DT 傅里叶级数 (DT Fourier Series)
+
+周期为 $N$ 的信号 $x$ 的 DTFS：
+
+$$
+x[n]=\sum_{k \in[N]} \hat{x}[k] e^{j k \omega_{0} n}, \quad \omega_{0}=\frac{2 \pi}{N}
+$$
+
+对应关系：
+
+$$
+x \stackrel{\text { DTFS }}{\longleftrightarrow} \hat{x} \quad \text { 或 } \quad x[n] \stackrel{\text { DTFS }}{\longleftrightarrow} \hat{x}[k]
+$$
+
+同一信号的两种等价表示：
+- 时域：$x[n]$
+- 频域：$\hat{x}[k]$
+
+## 线性、时移与频移
+
+**线性 (Linearity)**
+$$
+\widehat{a x+b y}=a \hat{x}+b \hat{y}
+$$
+
+**时移 (Time shifting)**
+$$
+x\left[n-n_{0}\right] \stackrel{\text { DTFS }}{\longleftrightarrow} e^{-j k \omega_{0} n_{0}} \hat{x}[k]
+$$
+
+**频移 (Frequency shifting)**
+$$
+e^{j m \omega_{0} n} x[n] \stackrel{\text { DTFS }}{\longleftrightarrow} \hat{x}[k-m]
+$$
+
+## 其它性质
+
+**时间反转 (Time reversal)**
+$$
+x[-n] \stackrel{\text { DTFS }}{\longleftrightarrow} \hat{x}[-k]
+$$
+
+**共轭 (Conjugation)**
+$$
+x^{*}[n] \stackrel{\text { DTFS }}{\longleftrightarrow}(\hat{x}[-k])^{*}
+$$
+
+**对称性 (Symmetry)**
+- $x$ 实 $\Longleftrightarrow \hat{x}[-k]=\overline{\hat{x}[k]}$ (共轭对称)
+- $x$ 实偶 $\Longleftrightarrow \hat{x}$ 实偶
+
+## 时间缩放 (Time Scaling)
+
+定义上采样信号 $x_{(m)}$：
+
+$$
+x_{(m)}[n]= \begin{cases}x[n / m], & \text { 如果 } n \text { 是 } m \text { 的倍数 } \\ 0, & \text { 其他 }\end{cases}
+$$
+
+如果 $x$ 周期为 $N$，则 $x_{(m)}$ 周期为 $m N$，且：
+
+$$
+\widehat{x_{(m)}}=\frac{1}{m} \hat{x} \quad \text { 或 } \quad x_{(m)}[n] \stackrel{\text { DTFS }}{\longleftrightarrow} \frac{1}{m} \hat{x}[k]
+$$
+
+## 一阶差分与累加求和
+
+**一阶（后向）差分** (First difference)
+$$
+x[n]-x[n-1] \stackrel{\text { DTFS }}{\longleftrightarrow}\left(1-e^{-j k \frac{2 \pi}{N}}\right) \hat{x}[k]
+$$
+
+**累加求和** (Running sum)
+$$
+y[n]=\sum_{m=n_{0}}^{n} x[m]
+$$
+- $y$ 是周期的当且仅当 $\hat{x}[0]=0$（无直流分量）
+- 如果 $\hat{x}[0]=0$，
+$$
+\hat{y}[k]=\frac{1}{1-e^{-j k \frac{2 \pi}{N}}} \hat{x}[k] \quad \text { 对于 } k \neq 0
+$$
+
+## 乘法 (Multiplication)
+
+时域乘法 $\Longleftrightarrow$ 频域周期卷积
+
+$$
+x[n] y[n] \stackrel{\text { DTFS }}{\longleftrightarrow} \sum_{m \in[N]} \hat{x}[m] \hat{y}[k-m]
+$$
+
+## 周期卷积 (Periodic Convolution)
+
+相同周期 $N$ 的 $x$ 和 $y$ 的周期卷积：
+
+$$
+(x * y)[n]=\sum_{m \in[N]} x[m] y[n-m]
+$$
+
+性质：
+- 交换律、结合律、双线性
+
+**时域卷积 $\Longrightarrow$ 频域乘法**
+
+$$
+(x * y)[n] \stackrel{\text { DTFS }}{\longleftrightarrow} N \hat{x}[k] \hat{y}[k]
+$$

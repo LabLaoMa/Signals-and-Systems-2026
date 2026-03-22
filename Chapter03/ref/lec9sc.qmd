@@ -1,0 +1,600 @@
+---
+title: "El331 信号与系统 · 第9讲"
+subtitle: "特征函数与连续时间傅里叶级数"
+author: "Bo Jiang (中文翻译)"
+date: "2019-03-14"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+## 目录
+
+1. 特征值与特征函数 (Eigenvalues and Eigenfunctions)
+2. 连续时间傅里叶级数 (CT Fourier Series)
+3. 连续时间傅里叶级数的性质 (Properties of CT Fourier Series)
+
+## 回顾
+
+|  | $\mathbb{R}^{n}$ | DT 信号 $\mathbb{C}^{\mathbb{Z}}$ | CT 信号 |
+| :--- | :--- | :--- | :--- |
+| **基 (basis)** | $\left\{\mathbf{e}_{1}, \ldots, \mathbf{e}_{n}\right\}$ | $\left\{\delta_{k}: k \in \mathbb{Z}\right\}$ | $\left\{\delta_{\tau}: \tau \in \mathbb{R}\right\}^{1}$ |
+| **一般信号 $x$** | $x=\sum_{k=1}^{n} x_{k} \mathbf{e}_{k}$ | $x=\sum_{k \in \mathbb{Z}} x[k] \delta_{k}$ | $x=\int_{\mathbb{R}} x(\tau) \delta_{\tau} d \tau$ |
+| **线性变换下的像** |  |  |  |
+| **基的像** | $\left\{\mathbf{f}_{1}, \ldots, \mathbf{f}_{n}\right\}$ | $\left\{h_{k}: k \in \mathbb{Z}\right\}$ | $\left\{h_{\tau}: \tau \in \mathbb{R}\right\}$ |
+| **一般信号 $x$ 的像** | $A x=\sum_{k=1}^{n} x_{k} \mathbf{f}_{k}$ | $T(x)=\sum_{k \in \mathbb{Z}} x[k] h_{k}$ | $T(x)=\int_{\mathbb{R}} x(\tau) h_{\tau} d \tau$ |
+| **LTI 系统** | - | $T(x)=x * h$ | $T(x)=x * h$ |
+
+[^1]: 并非“基”的标准用法；需结合下一行的积分表示来理解。
+
+# 1. 特征值与特征函数
+
+## 特征值与特征向量
+
+在线性代数中，$v \in \mathbb{R}^{n}$ 是矩阵 $A$ 的特征向量 (eigenvector)，其对应的特征值 (eigenvalue) 为 $\lambda$，如果：
+
+$$
+A v=\lambda v
+$$
+
+假设 $A$ 有 $n$ 个不同的特征值 $\lambda_{1}, \ldots, \lambda_{n}$，分别对应特征向量 $v_{1}, \ldots, v_{n}$。
+
+- $v_{1}, \ldots, v_{n}$ 构成 $\mathbb{R}^{n}$ 的一组基，即 $\forall x \in \mathbb{R}^{n}$ 都有以下表示：
+
+$$
+x=\sum_{k=1}^{n} a_{k} v_{k}
+$$
+
+- $x$ 在 $A$ 作用下的像：
+
+$$
+A x=\sum_{k=1}^{n} a_{k} A v_{k}=\sum_{k=1}^{n} a_{k} \lambda_{k} v_{k}
+$$
+
+## 基变换 (Change of Basis)
+
+|  | 标准基 | $A$ 的特征基 |
+| :---: | :---: | :---: |
+| **基向量** | $\left\{\mathbf{e}_{1}, \ldots, \mathbf{e}_{n}\right\}$ | $\left\{v_{1}, \ldots, v_{n}\right\}$ |
+| **分解** | $x=\sum_{k=1}^{n} x_{k} \mathbf{e}_{k}$ | $x=\sum_{k=1}^{n} a_{k} v_{k}$ |
+| **$A$ 作用下的像** | $A x=\sum_{k=1}^{n} x_{k} \mathbf{f}_{k}$ | $A x=\sum_{k=1}^{n} a_{k} \lambda_{k} v_{k}$ |
+
+$x$ 和 $A x$ 的展开：
+
+- 在标准基下：系数 $\left\{x_{k}\right\}$ 相同，基向量不同 $\left\{\mathbf{e}_{k}\right\} \mapsto\left\{\mathbf{f}_{k}\right\}$（卷积/叠加积分）
+- 在特征基下：基向量 $\left\{v_{k}\right\}$ 相同，系数不同 $\left\{a_{k}\right\} \mapsto\left\{\lambda_{k} a_{k}\right\}$（乘法）
+
+## 基变换 (信号与系统)
+
+| DT |  | 标准基 | 特征基 |
+| :--- | :--- | :--- | :--- |
+|  | 基向量 | $\left\{\delta_{k}: k \in \mathbb{Z}\right\}$ | $z^n$ |
+|  | 分解 | $x=\sum_{k \in \mathbb{Z}} x[k] \delta_{k}$ | 傅里叶/Z 变换 |
+|  | $T$ 作用下的像 | $T(x)=\sum_{k \in \mathbb{Z}} x[k] h_{k}$ | $H(z) z^n$ |
+| CT |  | "标准基" | 特征基 |
+|  | 基向量 | $\left\{\delta_{\tau}: \tau \in \mathbb{R}\right\}$ | $e^{st}$ |
+|  | 分解 | $x=\int_{\mathbb{R}} x(\tau) \delta_{\tau} d \tau$ | 傅里叶/拉普拉斯变换 |
+|  | $T$ 作用下的像 | $T(x)=\int_{\mathbb{R}} x(\tau) h_{\tau} d \tau$ | $H(s) e^{st}$ |
+
+## LTI 系统的特征值与特征函数
+
+**CT 指数信号 $e^{s t}$**
+
+$$
+T\left(e^{s t}\right)=\int_{\mathbb{R}} h(\tau) e^{s(t-\tau)} d \tau=e^{s t} \int_{\mathbb{R}} h(\tau) e^{-s \tau} d \tau,
+$$
+
+$e^{s t}$ 是 $T$ 的特征函数，对应的特征值为：
+
+$$
+H(s)=\int_{\mathbb{R}} h(\tau) e^{-s \tau} d \tau \quad \text { (系统函数) }
+$$
+
+**DT 指数信号 $z^{n}$**
+
+$$
+T\left(z^{n}\right)=\sum_{k \in \mathbb{Z}} h[k] z^{n-k}=z^{n} \sum_{k \in \mathbb{Z}} h[k] z^{-k},
+$$
+
+$z^{n}$ 是 $T$ 的特征函数，对应的特征值为：
+
+$$
+H(z)=\sum_{k \in \mathbb{Z}} h[k] z^{-k} \quad \text { (系统函数) }
+$$
+
+## 对特征函数线性组合的响应
+
+**CT (连续时间)**
+
+$$
+T\left(\sum_{k} a_{k} e^{s_{k} t}\right)=\sum_{k} a_{k} H\left(s_{k}\right) e^{s_{k} t}
+$$
+
+**DT (离散时间)**
+
+$$
+T\left(\sum_{k} a_{k} z_{k}^{n}\right)=\sum_{k} a_{k} H\left(z_{k}\right) z_{k}^{n}
+$$
+
+输入 vs. 输出
+
+- 相同的指数函数的线性组合
+- 系数发生变化：$\left\{a_{k}\right\} \mapsto\left\{H\left(s_{k}\right) a_{k}\right\} /\left\{H\left(z_{k}\right) a_{k}\right\}$
+
+## 问题
+
+- 哪些函数可以是指数函数的线性组合？
+- 如何找到系数 $a_{k}$？
+
+傅里叶分析重点关注 CT 中的 $e^{j \omega t}$ 和 DT 中的 $e^{j \omega n}$。
+
+# 2. 连续时间 (CT) 傅里叶级数
+
+## CT 傅里叶级数
+
+回顾：CT 信号是周期的，周期为 $T$，如果：
+
+$$
+x=\tau_{T} x \quad \text { 或 } \quad x(t)=x(t+T), \forall t \in \mathbb{R}
+$$
+
+- 基波周期 $T$：最小的正周期
+- 基波频率 $\omega_{0}=\frac{2 \pi}{T}$
+
+$\sin \left(\omega_{0} t\right), \cos \left(\omega_{0} t\right), e^{j \omega_{0} t}$ 都是基频为 $\omega_{0}$ 的周期信号。
+傅里叶级数用**谐波相关 (harmonically related)** 的正弦波或复指数信号表示周期信号：
+
+$$
+\begin{aligned}
+& x(t)=a_{0}+\sum_{k=1}^{\infty}\left[a_{k} \cos \left(k \omega_{0} t\right)+b_{k} \sin \left(k \omega_{0} t\right)\right] \\
+& x(t)=\sum_{k=-\infty}^{\infty} c_{k} e^{j k \omega_{0} t}
+\end{aligned}
+$$
+
+## 约瑟夫·傅里叶 (Joseph Fourier)
+
+1807, Mémoire sur la propagation de la chaleur dans les corps solides (关于热在固体中传播的论文)
+
+1822, Théorie analytique de la chaleur (热的解析理论)
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-11.jpg?height=474&width=402&top_left_y=401&top_left_x=44)
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-11.jpg?height=482&width=755&top_left_y=386&top_left_x=468)
+
+## 谐波 (Harmonics)
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-12.jpg?height=789&width=1042&top_left_y=122&top_left_x=110)
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-13.jpg?height=190&width=844&top_left_y=119&top_left_x=235)
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-13.jpg?height=332&width=909&top_left_y=319&top_left_x=168)
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-13.jpg?height=248&width=904&top_left_y=678&top_left_x=168)
+
+## 谐波的正交归一性 (Orthonormality)
+
+回顾对于 $k \neq 0$，
+
+$$
+\int_{a}^{b} e^{j k \omega_{0} t} d t=\frac{e^{j k \omega_{0} b}-e^{j k \omega_{0} a}}{j k \omega_{0}}
+$$
+
+由于 $e^{j k \omega_{0} t}$ 具有周期 $T$，在任意一个周期内：
+
+$$
+\frac{1}{T} \int_{T} e^{j k \omega_{0} t} d t=\frac{1}{T} \int_{t_{0}}^{t_{0}+T} e^{j k \omega_{0} t} d t=\delta[k]
+$$
+
+定义两个周期为 $T$ 的信号的**内积 (inner product)** 为：
+
+$$
+\langle f, g\rangle=\frac{1}{T} \int_{T} f(t) \overline{g(t)} d t
+$$
+
+$\left\{e^{j k \omega_{0} t}: k \in \mathbb{Z}\right\}$ 是一个正交归一的函数系：
+
+$$
+\left\langle e^{j k \omega_{0} t}, e^{j m \omega_{0} t}\right\rangle=\frac{1}{T} \int_{T} e^{j(k-m) \omega_{0} t} d t=\delta_{k m}=\delta[k-m]
+$$
+
+## 谐波的正交性 (Orthogonality)
+
+对于正弦和余弦函数：
+
+$$
+\begin{aligned}
+& \left\langle\sin \left(k \omega_{0} t\right), \sin \left(m \omega_{0} t\right)\right\rangle=\frac{1}{2} \delta[k-m]-\frac{1}{2} \delta[k+m] \\
+& \left\langle\cos \left(k \omega_{0} t\right), \cos \left(m \omega_{0} t\right)\right\rangle=\frac{1}{2} \delta[k-m]+\frac{1}{2} \delta[k+m] \\
+& \left\langle\sin \left(k \omega_{0} t\right), \cos \left(m \omega_{0} t\right)\right\rangle=0
+\end{aligned}
+$$
+
+**证明**：
+使用欧拉公式和 $\left\{e^{i k \omega_{0} t}: k \in \mathbb{Z}\right\}$ 的正交归一性。
+
+## 谐波的正交性 (图示)
+
+$$
+\begin{gathered}
+\sin \left(\omega_{0} t\right) \\
+\sin \left(2 \omega_{0} t\right)
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-16.jpg?height=309&width=706&top_left_y=150&top_left_x=389)
+
+$$
+\begin{aligned}
+& \sin \left(\omega_{0} t\right) \\
+& \cos \left(\omega_{0} t\right)
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-16.jpg?height=307&width=706&top_left_y=543&top_left_x=389)
+
+## 傅里叶系数 (Fourier Coefficients)
+
+假设 $x$ 周期为 $T$ 且有傅里叶级数表示：
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} c_{k} e^{j k \omega_{0} t}, \quad \omega_{0}=\frac{2 \pi}{T}
+$$
+
+利用 $\left\{e^{j k \omega_{0} t}\right\}$ 的正交归一性求解傅里叶系数：
+
+$$
+\begin{aligned}
+\left\langle x, e^{j m \omega_{0} t}\right\rangle & =\left\langle\sum_{k=-\infty}^{\infty} c_{k} e^{j k \omega_{0} t}, e^{j m \omega_{0} t}\right\rangle \\
+& =\sum_{k=-\infty}^{\infty} c_{k}\left\langle e^{j k \omega_{0} t}, e^{j m \omega_{0} t}\right\rangle \\
+& =\sum_{k=-\infty}^{\infty} c_{k} \delta[m-k]=c_{m}
+\end{aligned}
+$$
+
+## 复数傅里叶级数
+
+**综合方程 (Synthesis equation)**
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \frac{2 \pi}{T} t}
+$$
+
+$N$ 次部分和：
+$$
+S_{N}(x)(t)=\sum_{k=-N}^{N} \hat{x}[k] e^{i k \omega_{0} t}
+$$
+
+**分析方程 (Analysis equation)**
+
+$$
+\hat{x}[k]=\left\langle x, e^{j k \omega_{0} t}\right\rangle=\frac{1}{T} \int_{T} x(t) e^{-j k \omega_{0} t} d t=\frac{1}{T} \int_{T} x(t) e^{-j k \frac{2 \pi}{T} t} d t
+$$
+
+## 三角傅里叶级数
+
+对于正弦和余弦：
+* 正弦与正弦正交
+* 余弦与余弦正交
+* 正弦与余弦正交
+
+**综合方程**
+
+$$
+x(t)=a_{0}+\sum_{k=1}^{\infty}\left[a_{k} \cos \left(k \omega_{0} t\right)+b_{k} \sin \left(k \omega_{0} t\right)\right]
+$$
+
+**分析方程**
+
+$$
+a_{k}=\frac{2-\delta[k]}{T} \int_{T} x(t) \cos \left(k \omega_{0} t\right) d t, \quad b_{k}=\frac{2}{T} \int_{T} x(t) \sin \left(k \omega_{0} t\right) d t
+$$
+
+## 两种形式的等价性
+
+**复数形式**
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+**三角形式**
+$$
+x(t)=a_{0}+\sum_{k=1}^{\infty}\left[a_{k} \cos \left(k \omega_{0} t\right)+b_{k} \sin \left(k \omega_{0} t\right)\right]
+$$
+
+**系数转换 (通过欧拉公式)**
+
+$$
+\left\{\begin{array}{ll}
+a_{0}=\hat{x}[0] \\
+a_{k}=\hat{x}[k]+\hat{x}[-k], \\
+b_{k}=j(\hat{x}[k]-\hat{x}[-k]),
+\end{array} \quad k \geq 1 \quad k \geq 1 \quad \begin{cases}\hat{x}[0]=a_{0} \\
+\hat{x}[k]=\frac{1}{2}\left(a_{k}-j b_{k}\right), & k \geq 1 \\
+\hat{x}[k]=\frac{1}{2}\left(a_{k}+j b_{-k}\right), & k \leq-1\end{cases}\right.
+$$
+
+复数形式中的负频率是为了数学上的方便引入的，没有直接的物理意义。
+
+## 例子
+
+例子：$x(t)=e^{j \omega_{0} t}, \hat{x}[k]=\delta[k-1]$
+频谱 $\hat{x}[k]$
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-21.jpg?height=140&width=573&top_left_y=164&top_left_x=630)
+
+例子：$x(t)=\cos \left(\omega_{0} t+\phi\right)=\frac{e^{i \phi}}{2} e^{j \omega_{0} t}+\frac{e^{-j \phi}}{2} e^{-j \omega_{0} t}$，
+
+$$
+\hat{x}[1]=\frac{1}{2} e^{j \phi}, \quad, \hat{x}[-1]=\frac{1}{2} e^{-j \phi}, \quad \hat{x}[k]=0, k \neq \pm 1
+$$
+
+幅度谱 $|\hat{x}[k]|$
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-21.jpg?height=114&width=574&top_left_y=590&top_left_x=627)
+
+相位谱 $\arg \hat{x}[k]$
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-21.jpg?height=209&width=569&top_left_y=723&top_left_x=630)
+
+## 例子：三角波 (Triangle Wave)
+
+在一个周期内，
+
+$$
+x(t)=1-\frac{2|t|}{T}, \quad|t| \leq \frac{T}{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-22.jpg?height=249&width=1103&top_left_y=286&top_left_x=93)
+
+傅里叶系数：
+
+$$
+k=0, \quad \hat{x}[0]=\frac{1}{T} \int_{-T / 2}^{T / 2}\left(1-\frac{2|t|}{T}\right) d t=\frac{1}{2}
+$$
+
+$k \neq 0, k$ 为奇数,$\quad \hat{x}[k]=\frac{1}{T} \int_{-T / 2}^{T / 2}\left(1-\frac{2|t|}{T}\right) e^{-j k \omega_{0} t} d t=\frac{2}{\pi^{2} k^{2}}$
+$k \neq 0, k$ 为偶数, $\quad \hat{x}[k]=0$
+
+## 例子：三角波频谱
+
+$$
+\hat{x}[k]= \begin{cases}\frac{1}{2}, & k=0 \\ \frac{2}{\pi^{2} k^{2}}, & k \neq 0 \text { 奇数 } \\ 0, & k \neq 0 \text { 偶数 }\end{cases}
+$$
+
+固定 $T$ 的频谱，频率间隔 $\Delta \omega=\frac{2 \pi}{T} \omega_{k}=k \frac{2 \pi}{T}$
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-23.jpg?height=498&width=856&top_left_y=414&top_left_x=212)
+
+## 例子：三角波合成 ($N=0$)
+
+$$
+S_{0}(x)(t)=\sum_{k=-0}^{0} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-24.jpg?height=409&width=1103&top_left_y=365&top_left_x=74)
+
+## 例子：三角波合成 ($N=1$)
+
+$$
+S_{1}(x)(t)=\sum_{k=-1}^{1} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-25.jpg?height=407&width=1103&top_left_y=367&top_left_x=74)
+
+## 例子：三角波合成 ($N=3$)
+
+$$
+S_{3}(x)(t)=\sum_{k=-3}^{3} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-26.jpg?height=411&width=1105&top_left_y=365&top_left_x=72)
+
+## 例子：三角波合成 ($N=5$)
+
+$$
+S_{5}(x)(t)=\sum_{k=-5}^{5} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-27.jpg?height=411&width=1105&top_left_y=365&top_left_x=72)
+
+## 例子：三角波合成 ($N=7$)
+
+$$
+S_{7}(x)(t)=\sum_{k=-7}^{7} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-28.jpg?height=411&width=1105&top_left_y=365&top_left_x=72)
+
+## 例子：三角波合成 ($N=9$)
+
+$$
+S_{9}(x)(t)=\sum_{k=-9}^{9} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-29.jpg?height=411&width=1105&top_left_y=365&top_left_x=72)
+
+## 例子：三角波合成 ($N=19$)
+
+$$
+S_{19}(x)(t)=\sum_{k=-19}^{19} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-30.jpg?height=411&width=1105&top_left_y=365&top_left_x=72)
+
+## 例子：周期方波 (Periodic Square Wave)
+
+在一个周期内，
+
+$$
+x(t)= \begin{cases}1, & |t|<T_{1} \\ 0, & T_{1}<|t|<T / 2\end{cases}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-31.jpg?height=243&width=1099&top_left_y=339&top_left_x=95)
+
+傅里叶系数：
+
+$$
+\begin{array}{ll}
+k=0, & \hat{x}[0]=\frac{1}{T} \int_{-T_{1}}^{T_{1}} 1 d t=\frac{2 T_{1}}{T} \\
+k \neq 0, & \hat{x}[k]=\frac{1}{T} \int_{-T_{1}}^{T_{1}} e^{-j k \omega_{0} t} d t=\frac{2 \sin \left(k \omega_{0} T_{1}\right)}{k \omega_{0} T}=\frac{\sin \left(k \omega_{0} T_{1}\right)}{k \pi}
+\end{array}
+$$
+
+## 例子：周期方波频谱
+
+$$
+\hat{x}[k]=\frac{\sin \left(k \frac{2 \pi T_{1}}{T}\right)}{k \pi}=\frac{2 \sin \left(\omega_{k} T_{1}\right)}{\omega_{k} T}
+$$
+
+固定 $T$，不同 $T_{1}$ 的频谱：
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-32.jpg?height=285&width=1113&top_left_y=315&top_left_x=70)
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-32.jpg?height=174&width=1117&top_left_y=612&top_left_x=66)
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-32.jpg?height=134&width=1119&top_left_y=803&top_left_x=66)
+
+## 例子：周期方波频谱 (不同 $T$)
+
+$$
+\hat{x}[k]=\frac{\sin \left(k \frac{2 \pi T_{1}}{T}\right)}{k \pi}=\frac{2 \sin \left(\omega_{k} T_{1}\right)}{\omega_{k} T}
+$$
+
+固定 $T_{1}$，不同 $T$ 的频谱：
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-33.jpg?height=288&width=1117&top_left_y=312&top_left_x=68)
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-33.jpg?height=172&width=1122&top_left_y=612&top_left_x=66)
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-33.jpg?height=134&width=1122&top_left_y=798&top_left_x=66)
+
+## 例子：方波合成 ($N=0$)
+
+$$
+S_{0}(x)(t)=\sum_{k=-0}^{0} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-34.jpg?height=603&width=790&top_left_y=311&top_left_x=206)
+
+## 例子：方波合成 ($N=1$)
+
+$$
+S_{1}(x)(t)=\sum_{k=-1}^{1} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-35.jpg?height=605&width=792&top_left_y=311&top_left_x=205)
+
+## 例子：方波合成 ($N=3$)
+
+$$
+S_{3}(x)(t)=\sum_{k=-3}^{3} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-36.jpg?height=605&width=792&top_left_y=311&top_left_x=205)
+
+## 例子：方波合成 ($N=5$)
+
+$$
+S_{5}(x)(t)=\sum_{k=-5}^{5} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-37.jpg?height=605&width=792&top_left_y=311&top_left_x=205)
+
+## 例子：方波合成 ($N=7$)
+
+$$
+S_{7}(x)(t)=\sum_{k=-7}^{7} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-38.jpg?height=602&width=788&top_left_y=312&top_left_x=206)
+
+## 例子：方波合成 ($N=9$)
+
+$$
+S_{9}(x)(t)=\sum_{k=-9}^{9} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-39.jpg?height=603&width=791&top_left_y=311&top_left_x=205)
+
+## 例子：方波合成 ($N=13$)
+
+$$
+S_{13}(x)(t)=\sum_{k=-13}^{13} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-40.jpg?height=603&width=791&top_left_y=311&top_left_x=205)
+
+## 例子：方波合成 ($N=19$)
+
+$$
+S_{19}(x)(t)=\sum_{k=-19}^{19} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-41.jpg?height=604&width=789&top_left_y=311&top_left_x=206)
+
+## 例子：方波合成 ($N=29$)
+
+$$
+S_{29}(x)(t)=\sum_{k=-29}^{29} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-42.jpg?height=600&width=787&top_left_y=312&top_left_x=207)
+
+## 例子：方波合成 ($N=39$)
+
+$$
+S_{39}(x)(t)=\sum_{k=-39}^{39} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-43.jpg?height=603&width=788&top_left_y=312&top_left_x=206)
+
+## 吉布斯现象 (Gibbs Phenomenon)
+
+傅里叶级数的部分和在跳变间断点处“振铃”
+
+- 随着项数增加，过冲越来越靠近间断点
+- 过冲幅度趋近于跳变幅度的 $\approx 9 \%$
+![](https://cdn.mathpix.com/cropped/42d286b0-1293-4bd1-b498-da763b255ab3-44.jpg?height=605&width=796&top_left_y=311&top_left_x=201)
+
+# 3. 连续时间傅里叶级数的性质
+
+## CT 傅里叶级数的性质
+
+傅里叶级数建立了周期函数与双无限序列之间的对应关系：
+
+$$
+x \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x} \quad \text { 或 } \quad x(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[k]
+$$
+
+**线性 (Linearity)**
+如果 $x, y$ 具有相同的周期 $T$，那么它们的线性组合 $a x+b y$ 也是，并且：
+
+$$
+\widehat{a x+b y}=a \hat{x}+b \hat{y}
+$$
+
+证明：
+
+$$
+\begin{aligned}
+(\widehat{a x+b y})[k] & =\left\langle a x+b y, e^{j k \omega_{0} t}\right\rangle \\
+& =a\left\langle x, e^{j k \omega_{0} t}\right\rangle+b\left\langle y, e^{j k \omega_{0} t}\right\rangle \\
+& =a \hat{x}[k]+b \hat{y}[k]
+\end{aligned}
+$$
+
+## CT 傅里叶级数的性质
+
+**时移 (Time shifting)**
+如果 $x$ 周期为 $T$ 且 $\omega_{0}=\frac{2 \pi}{T}$，
+
+$$
+\widehat{\tau_{t_{0}} x}=E_{-\omega_{0} t_{0}} \hat{x} \quad \text { 或 } \quad x\left(t-t_{0}\right) \stackrel{\mathcal{F S}}{\longleftrightarrow} e^{-j k \omega_{0} t_{0}} \hat{x}[k]
+$$
+
+其中 $\left(E_{a} \hat{x}\right)[k]=e^{j a k} \hat{x}[k]$
+**时移 ⟺ 频率上的线性相位变化**
+
+证明：
+
+$$
+\begin{aligned}
+\left(\widehat{\tau_{t_{0}}} x\right)[k] & =\left\langle\tau_{t_{0}} x, e^{j k \omega_{0} t}\right\rangle=\left\langle x, \tau_{-t_{0}} e^{j k \omega_{0} t}\right\rangle \\
+& =\left\langle x, e^{j k \omega_{0}\left(t+t_{0}\right)}\right\rangle=\left\langle x, e^{j k \omega_{0} t_{0}} e^{j k \omega_{0} t}\right\rangle \\
+& =e^{-j k \omega_{0} t_{0}}\left\langle x, e^{j k \omega_{0} t}\right\rangle=e^{-j k \omega_{0} t_{0}} \hat{x}[k]=\left(E_{-\omega_{0} t_{0}} \hat{x}\right)[k]
+\end{aligned}
+$$
+
+例子：$\cos (t)=\frac{1}{2} e^{j t}+\frac{1}{2} e^{-j t}, \sin (t)=\cos \left(t-\frac{\pi}{2}\right)=\frac{-j}{2} e^{j t}+\frac{j}{2} e^{-j t}$

@@ -1,0 +1,57 @@
+<style>
+#quarto-spotlight {
+  position: fixed;
+  /* 初始大小由脚本动态注入 */
+  border-radius: 50%;
+  /* 增加外阴影实现遮罩，并增加内阴影实现边缘羽化 */
+  box-shadow: 0 0 0 9999px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.5);
+  z-index: 999999;
+  pointer-events: none;
+  display: none;
+}
+</style>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  // 1. 从 Reveal 配置或默认值读取半径
+  var spotSize = 150; 
+  if (window.Reveal && Reveal.getConfig().spotlight_size) {
+    spotSize = Reveal.getConfig().spotlight_size;
+  }
+
+  var spot = document.createElement('div');
+  spot.id = 'quarto-spotlight';
+  spot.style.width = spotSize + 'px';
+  spot.style.height = spotSize + 'px';
+  document.body.appendChild(spot);
+
+  var isActive = false;
+  var offset = spotSize / 2;
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key.toLowerCase() === 'c') {
+      isActive = !isActive;
+      if (!isActive) {
+        spot.style.display = 'none';
+        document.documentElement.style.cursor = 'default';
+      } else {
+        document.documentElement.style.cursor = 'none';
+      }
+    }
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (isActive) {
+      spot.style.left = (e.clientX - offset) + 'px';
+      spot.style.top = (e.clientY - offset) + 'px';
+    }
+  });
+
+  document.addEventListener('mousedown', function(e) {
+    if (isActive) {
+      spot.style.display = (spot.style.display === 'none' ? 'block' : 'none');
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+});
+</script>

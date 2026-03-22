@@ -1,0 +1,654 @@
+---
+title: "El331 信号与系统 · 第10讲"
+subtitle: "CT 傅里叶级数的性质与收敛性"
+author: "Bo Jiang (中文翻译)"
+date: "2019-03-14"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+## 目录
+
+1. CT 傅里叶级数的性质 (Properties of CT Fourier Series)
+    1.1 线性 (Linearity)
+    1.2 时移与频移 (Time and Frequency Shifting)
+    1.3 时间反转与缩放 (Time Reversal and Scaling)
+    1.4 微分与积分 (Differentiation and Integration)
+    1.5 乘法与周期卷积 (Multiplication and Periodic Convolution)
+2. 傅里叶级数的收敛性 (Convergence of Fourier Series)
+    2.1 均方收敛 (Mean-square Convergence)
+
+## 傅里叶级数 (回顾)
+
+周期为 $T$ 且 $\omega_{0}=\frac{2 \pi}{T}$ 的信号 $x$ 的傅里叶级数：
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+周期函数与双无限序列之间的对应关系；时域 vs. 频域：
+
+$$
+x \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x} \quad \text { 或 } \quad x(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[k]
+$$
+
+- $\hat{x}$ 由 $x$ 在“基” $\left\{e^{j k \omega_{0} t}\right\}$ 下的展开系数组成
+- 仅凭 $\hat{x}$ 不能唯一确定 $x$，
+- 还需要知道基函数，或者等价地，知道周期 $T$ 或基频 $\omega_{0}$
+- 相同的系数配合不同的基（周期）会给出不同的函数（稍后详述）
+
+# 1. CT 傅里叶级数的性质
+
+## 线性 (Linearity)
+
+如果 $x, y$ 具有相同的周期 $T$，那么它们的线性组合 $a x+b y$ 也是，并且：
+
+$$
+\widehat{a x+b y}=a \hat{x}+b \hat{y}
+$$
+
+证明：
+
+$$
+\begin{aligned}
+(\widehat{a x+b y})[k] & =\left\langle a x+b y, e^{j k \omega_{0} t}\right\rangle \\
+& =a\left\langle x, e^{j k \omega_{0} t}\right\rangle+b\left\langle y, e^{j k \omega_{0} t}\right\rangle \\
+& =a \hat{x}[k]+b \hat{y}[k]
+\end{aligned}
+$$
+
+另一种证明思路：
+
+$$
+\left.\begin{array}{l}
+x(t)=\sum_{k} \hat{x}[k] e^{j k \omega_{0} t} \\
+y(t)=\sum_{k} \hat{y}[k] e^{j k \omega_{0} t}
+\end{array}\right\} \Longrightarrow a x(t)+b y(t)=\sum_{k}(a \hat{x}[k]+b \hat{y}[k]) e^{j k \omega_{0} t}
+$$
+
+## 时移 (Time Shifting)
+
+如果 $x$ 周期为 $T$ 且 $\omega_{0}=\frac{2 \pi}{T}$，
+
+$$
+\widehat{\tau_{t_{0}} x}=E_{-\omega_{0} t_{0}} \hat{x} \quad \text { 或 } \quad x\left(t-t_{0}\right) \stackrel{\mathcal{F S}}{\longleftrightarrow} e^{-j k \omega_{0} t_{0}} \hat{x}[k]
+$$
+
+其中 $\left(E_{a} \hat{x}\right)[k]=e^{j a k} \hat{x}[k]$
+
+**时移 ⟺ 频率上的线性相位变化**
+
+证明：
+
+$$
+\begin{aligned}
+\left(\widehat{\tau_{t_{0}}} x\right)[k] & =\left\langle\tau_{t_{0}} x, e^{j k \omega_{0} t}\right\rangle=\left\langle x, \tau_{-t_{0}} e^{j k \omega_{0} t}\right\rangle \\
+& =\left\langle x, e^{j k \omega_{0}\left(t+t_{0}\right)}\right\rangle=\left\langle x, e^{j k \omega_{0} t_{0}} e^{j k \omega_{0} t}\right\rangle \\
+& =e^{-j k \omega_{0} t_{0}}\left\langle x, e^{j k \omega_{0} t}\right\rangle=e^{-j k \omega_{0} t_{0}} \hat{x}[k]=\left(E_{-\omega_{0} t_{0}} \hat{x}\right)[k]
+\end{aligned}
+$$
+
+例子：$\cos (t)=\frac{1}{2} e^{j t}+\frac{1}{2} e^{-j t}, \sin (t)=\cos \left(t-\frac{\pi}{2}\right)=\frac{-j}{2} e^{j t}+\frac{j}{2} e^{-j t}$
+
+## 频移 (Frequency Shifting)
+
+如果 $x$ 周期为 $T$ 且 $\omega_{0}=\frac{2 \pi}{T}$，
+
+$$
+\widehat{E_{m \omega_{0}} x}=\tau_{m} \hat{x} \quad \text { 或 } \quad e^{j m \omega_{0} t} x(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[k-m]
+$$
+
+其中 $\left(E_{a} x\right)(t)=e^{j a t} x(t)$
+
+**谐波指数调制 ⟹ 频移**
+
+证明：
+
+$$
+\begin{aligned}
+\left(\widehat{E_{m \omega_{0}}} x\right)[k] & =\left\langle E_{m \omega_{0}} x, e^{j k \omega_{0} t}\right\rangle=\left\langle x, E_{-m \omega_{0}} e^{j k \omega_{0} t}\right\rangle \\
+& =\left\langle x, e^{j(k-m) \omega_{0} t}\right\rangle=\hat{x}[k-m]
+\end{aligned}
+$$
+
+注意：用非谐波指数信号进行调制可能会改变基频，甚至导致非周期信号。
+
+## 频移示例
+
+例子：$x(t)=1+\cos \left(\omega_{0} t\right)=1+\frac{1}{2} e^{j \omega_{0} t}+\frac{1}{2} e^{-j \omega_{0} t}$
+
+$$
+y(t)=e^{j 3 \omega_{0} t} x(t)=e^{j 3 \omega_{0} t}+\frac{1}{2} e^{j 4 \omega_{0} t}+\frac{1}{2} e^{j 2 \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-07.jpg?height=247&width=518&top_left_y=359&top_left_x=66)
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-07.jpg?height=285&width=513&top_left_y=361&top_left_x=643)
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-07.jpg?height=216&width=522&top_left_y=643&top_left_x=66)
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-07.jpg?height=221&width=518&top_left_y=643&top_left_x=643)
+
+## 频移示例
+
+例子：$x(t)=1+\cos \left(\omega_{0} t\right)=1+\frac{1}{2} e^{j \omega_{0} t}+\frac{1}{2} e^{-j \omega_{0} t}$
+
+$$
+\begin{aligned}
+z(t)=\cos \left(3 \omega_{0} t\right) x(t)=\operatorname{Re} y(t) & =\frac{1}{2} e^{j 3 \omega_{0} t}+\frac{1}{4} e^{j 4 \omega_{0} t}+\frac{1}{4} e^{j 2 \omega_{0} t} \\
+& +\frac{1}{2} e^{-j 3 \omega_{0} t}+\frac{1}{4} e^{-j 4 \omega_{0} t}+\frac{1}{4} e^{-j 2 \omega_{0} t}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-08.jpg?height=248&width=516&top_left_y=434&top_left_x=66)
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-08.jpg?height=282&width=518&top_left_y=437&top_left_x=641)
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-08.jpg?height=217&width=522&top_left_y=718&top_left_x=66)
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-08.jpg?height=150&width=522&top_left_y=780&top_left_x=641)
+
+## 时间反转 (Time Reversal)
+
+如果 $x$ 周期为 $T$，
+
+$$
+\widehat{R x}=R \hat{x} \quad \text { 或 } \quad x(-t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[-k]
+$$
+
+时间反转与傅里叶级数可交换
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-09.jpg?height=225&width=351&top_left_y=363&top_left_x=457)
+
+证明：
+
+$$
+(\widehat{R x})[k]=\left\langle R x, e^{j k \omega_{0} t}\right\rangle=\left\langle x, R e^{j k \omega_{0} t}\right\rangle=\left\langle x, e^{-j k \omega_{0} t}\right\rangle=\hat{x}[-k]
+$$
+
+推论：傅里叶级数保持奇/偶对称性，即
+$x$ 偶 $\Longleftrightarrow \hat{x}$ 偶，$\quad x$ 奇 $\Longleftrightarrow \hat{x}$ 奇
+
+## 时间缩放 (Time Scaling)
+
+如果 $x$ 周期为 $T$，那么 $S_{a} x$ 周期为 $T / a$
+
+$$
+\widehat{S_{a} x}=\hat{x} \quad \text { 或 } \quad x(a t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[k]
+$$
+
+时间缩放保持傅里叶系数不变，但改变基频
+
+$$
+\begin{aligned}
+x(t) & =\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t} \\
+x(a t) & =\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k\left(a \omega_{0}\right) t}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-10.jpg?height=189&width=551&top_left_y=581&top_left_x=594)
+
+## 时间缩放
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+对比 $\quad x(a t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k\left(a \omega_{0}\right) t}$
+
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-11.jpg?height=185&width=555&top_left_y=290&top_left_x=22)
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-11.jpg?height=194&width=607&top_left_y=288&top_left_x=632)
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-11.jpg?height=240&width=560&top_left_y=508&top_left_x=22)
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-11.jpg?height=238&width=613&top_left_y=510&top_left_x=634)
+
+时域压缩 ⟺ 频域（基频）扩展
+时域扩展 ⟹ 频域（基频）压缩
+
+## 微分 (Differentiation)
+
+如果 $x$ 周期为 $T$，那么其导数 $x^{\prime}$ 也是，且
+
+$$
+\widehat{x^{\prime}}=M_{\omega_{0}} \hat{x} \quad \text { 或 } \quad x^{\prime}(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} j k \omega_{0} \hat{x}[k]
+$$
+
+其中 $\left(M_{a} \hat{x}\right)[k]=j a k \hat{x}[k]$
+**时域微分 ⟹ 频域乘以 $j k \omega_{0}$**
+
+证明：
+
+$$
+\begin{aligned}
+\widehat{x^{\prime}}[k] & =\frac{1}{T} \int_{T} x^{\prime}(t) e^{-j k \omega_{0} t} d t \\
+& =\left.\frac{1}{T}\left[x(t) e^{-j k \omega_{0} t}\right]\right|_{0} ^{T}+j k \omega_{0}\left(\frac{1}{T} \int_{T} x(t) e^{-j k \omega_{0} t} d t\right)=j k \omega_{0} \hat{x}[k]
+\end{aligned}
+$$
+
+或者，逐项求导：
+
+$$
+x(t)=\sum_{k} \hat{x}[k] e^{j k \omega_{0} t} \Longrightarrow x^{\prime}(t)=\sum_{k} j k \omega_{0} \hat{x}[k] e^{-j k \omega_{0} t}
+$$
+
+## 积分 (Integration)
+
+如果 $x$ 周期为 $T$ 且有傅里叶级数
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+逐项积分：
+
+$$
+\begin{aligned}
+y(t) \triangleq \int_{0}^{t} x(s) d s & =\hat{x}[0] t+\sum_{k \neq 0} \hat{x}[k] \frac{e^{j k \omega_{0} t}-1}{j k \omega_{0}} \\
+& =\hat{x}[0] t-\sum_{k \neq 0} \frac{\hat{x}[k]}{j k \omega_{0}}+\sum_{k \neq 0} \frac{1}{j k \omega_{0}} \hat{x}[k] e^{j k \omega_{0} t}
+\end{aligned}
+$$
+
+- $y$ 是周期的，当且仅当 $\hat{x}[0]=0$，即 $x$ 没有直流分量
+- 如果 $\hat{x}[0]=0, y$ 周期为 $T$，
+
+$$
+\hat{y}[k]=\frac{1}{j k \omega_{0}} \hat{x}[k] \quad \text { 对于 } k \neq 0
+$$
+
+## 例子：三角波
+
+![](https://cdn.mathpix.com/cropped/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-14.jpg?height=811&width=1208&top_left_y=110&top_left_x=26)
+
+## 乘法 (Multiplication)
+
+如果 $x$ 和 $y$ 具有相同的周期 $T$，那么它们的乘积 $x y$ 也是，且
+
+$$
+\begin{gathered}
+\widehat{x y}=\hat{x} * \hat{y} \quad \text { 或 } \quad x(t) y(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \sum_{m=-\infty}^{\infty} \hat{x}[m] \hat{y}[k-m] \\
+\text { 时域乘法 } \Longleftrightarrow \text { 频域卷积 }
+\end{gathered}
+$$
+
+证明：
+
+$$
+\begin{aligned}
+x(t) y(t) & =\left(\sum_{m=-\infty}^{\infty} \hat{x}[m] e^{j m \omega_{0} t}\right)\left(\sum_{\ell=-\infty}^{\infty} \hat{y}[\ell] e^{j \ell \omega_{0} t}\right) \\
+& =\sum_{m=-\infty}^{\infty} \sum_{\ell=-\infty}^{\infty} \hat{x}[m] \hat{y}[\ell] e^{j(m+\ell) \omega_{0} t} \\
+& =\sum_{k=-\infty}^{\infty}\left(\sum_{m=-\infty}^{\infty} \hat{x}[m] \hat{y}[k-m]\right) e^{j k \omega_{0} t} \quad(k=m+\ell)
+\end{aligned}
+$$
+
+## 周期卷积 (Periodic Convolution)
+
+具有相同周期 $T$ 的 $x$ 和 $y$ 的周期卷积 $x * y$ 定义为：
+
+$$
+(x * y)(t)=\int_{T} x(\tau) y(t-\tau) d \tau
+$$
+
+性质：
+
+- 交换律
+
+$$
+x * y=y * x
+$$
+
+- 结合律
+
+$$
+(x * y) * z=x *(y * z)
+$$
+
+- 双线性
+
+$$
+\left(\sum_{i} a_{i} x_{i}\right) *\left(\sum_{j} b_{j} y_{j}\right)=\sum_{i, j} a_{i} b_{j}\left(x_{i} * y_{j}\right)
+$$
+
+## 周期卷积性质
+
+傅里叶系数满足
+
+$$
+\widehat{x * y}=T \hat{x} \hat{y} \quad \text { 或 } \quad(x * y)(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} T \hat{x}[k] \hat{y}[k]
+$$
+
+**时域卷积 ⟹ 频域乘法**
+
+证明：
+
+$$
+\begin{aligned}
+(\widehat{x * y})[k] & =\frac{1}{T} \int_{T}(x * y)(t) e^{-j k \omega_{0} t} d t \\
+& =\frac{1}{T} \int_{T}\left(\int_{T} x(\tau) y(t-\tau) d \tau\right) e^{-j k \omega_{0} t} d t \\
+& =\int_{T} x(\tau)\left(\frac{1}{T} \int_{T} y(t-\tau) e^{-j k \omega_{0} t} d t\right) d \tau \\
+& =\int_{T} x(\tau)\left(e^{-j k \omega_{0} \tau} \hat{y}[k]\right) d \tau=T \hat{x}[k] \hat{y}[k]
+\end{aligned}
+$$
+
+## 共轭与对称 (Conjugation and Symmetry)
+
+如果 $x$ 周期为 $T$，那么其复共轭 $\bar{x}=x^{*}$ 也是，且
+
+$$
+\widehat{x^{*}}=R \hat{x}^{*} \quad \text { 或 } \quad x^{*}(t) \stackrel{\mathcal{F S}}{\longleftrightarrow}(\hat{x}[-k])^{*}
+$$
+
+证明：
+
+$$
+\widehat{x^{*}}[k]=\left\langle x^{*}, e^{j k \omega_{0} t}\right\rangle=\overline{\left\langle x, e^{-j k \omega_{0} t}\right\rangle}=\overline{\hat{x}[-k]}
+$$
+
+推论：如果 $x$ 是实信号，则 $\hat{x}$ 是共轭对称的，即
+
+$$
+\hat{x}[-k]=\overline{\hat{x}[k]}
+$$
+
+推论：如果 $x$ 是实偶信号，则 $\hat{x}$ 也是实偶信号
+
+$$
+\hat{x}[k]=\hat{x}[-k]=\overline{\hat{x}[k]}
+$$
+
+推论：如果 $x$ 是实奇信号，则 $\hat{x}$ 是纯虚奇信号
+
+$$
+-\hat{x}[k]=\hat{x}[-k]=\overline{\hat{x}[k]}
+$$
+
+# 2. 傅里叶级数的收敛性
+
+## 向量空间 (Vector Space)
+
+域 $\mathbb{F}$ ($\mathbb{R}$ 或 $\mathbb{C}$) 上的向量空间 $V$ 具有两种运算：
+
+- 加法：$x, y \in V \Longrightarrow x+y \in V$
+- 标量乘法：$\lambda \in \mathbb{F}, x \in V \Longrightarrow \lambda x \in V$
+
+满足以下公理：
+
+1. 加法交换律：$x+y=y+x, \forall x, y \in V$
+2. 加法结合律：$(x+y)+z=x+(y+z), \forall x, y, z \in V$
+3. 加法单位元：$\exists 0 \in V$ s.t. $x+0=x, \forall x \in V$
+4. 加法逆元：$\forall x \in V, \exists y \in V$ s.t. $x+y=0$
+5. 标量乘法单位元：$1 x=x, \forall x \in V$
+6. 标量与域乘法的相容性：$\lambda_{1}\left(\lambda_{2} x\right)=\left(\lambda_{1} \lambda_{2}\right) x, \forall \lambda_{1}, \lambda_{2} \in \mathbb{F}, x \in V$
+7. 分配律：$\lambda(x+y)=\lambda x+\lambda y, \forall \lambda \in \mathbb{F}, x, y \in V$
+8. 分配律：$\left(\lambda_{1}+\lambda_{2}\right) x=\lambda_{1} x+\lambda_{2} x, \forall \lambda_{1}, \lambda_{2} \in \mathbb{F}, x \in V$
+
+## 向量空间示例
+
+示例：$\mathbb{R}^{n}, \mathbb{C}^{n}$
+
+$$
+\begin{gathered}
+\left(x_{1}, \ldots, x_{n}\right)^{T}+\left(y_{1}, \ldots, y_{n}\right)^{T}=\left(x_{1}+y_{1}, \ldots, x_{n}+y_{n}\right)^{T} \\
+\lambda\left(x_{1}, \ldots, x_{n}\right)^{T}=\left(\lambda x_{1}, \ldots, \lambda x_{n}\right)^{T}
+\end{gathered}
+$$
+
+示例：CT 实/复值信号 $\mathbb{R}^{\mathbb{R}}, \mathbb{C}^{\mathbb{R}}$
+
+$$
+\begin{gathered}
+(x+y)(t)=x(t)+y(t) \\
+(\lambda x)(t)=\lambda x(t)
+\end{gathered}
+$$
+
+示例：DT 实/复值信号 $\mathbb{R}^{\mathbb{Z}}, \mathbb{C}^{\mathbb{Z}}$
+
+$$
+\begin{gathered}
+(x+y)[n]=x[n]+y[n] \\
+(\lambda x)[n]=\lambda x[n]
+\end{gathered}
+$$
+
+## 赋范向量空间 (Normed Vector Space)
+
+域 $\mathbb{F}$ 上向量空间 $V$ 的范数 $\|\cdot\|: V \rightarrow \mathbb{R}_{+}$ 满足：
+
+- 正定性 (Positive definiteness)
+
+$$
+\|x\|=0 \Longleftrightarrow x=0
+$$
+
+- 绝对齐次性 (Absolute homogeneity)
+
+$$
+\|\lambda x\|=|\lambda| \cdot\|x\|, \quad \forall \lambda \in \mathbb{F}, x \in V
+$$
+
+- 三角不等式 (Triangle inequality)
+
+$$
+\|x+y\| \leq\|x\|+\|y\|
+$$
+
+带有范数的向量空间称为赋范向量空间。
+
+## 赋范向量空间示例
+
+示例：$\mathbb{R}^{n}, \mathbb{C}^{n}$
+
+$$
+\|x\|_{p}= \begin{cases}\left(\sum_{k=1}^{n}\left|x_{k}\right|^{p}\right)^{1 / p}, & 1 \leq p<\infty \\ \max _{1 \leq k \leq n}\left|x_{k}\right|, & p=\infty\end{cases}
+$$
+
+示例：CT 实/复值信号 $\mathbb{R}^{\mathbb{R}}, \mathbb{C}^{\mathbb{R}}$
+
+$$
+\|x\|_{p}= \begin{cases}\left(\int|x(t)|^{p} d t\right)^{1 / p}, & 1 \leq p<\infty \\ \sup _{t}|x(t)|, & p=\infty\end{cases}
+$$
+
+示例：DT 实/复值信号 $\mathbb{R}^{\mathbb{Z}}, \mathbb{C}^{\mathbb{Z}}$
+
+$$
+\|x\|_{p}= \begin{cases}\left(\sum_{k=-\infty}^{\infty}|x[k]|^{p}\right)^{1 / p}, & 1 \leq p<\infty \\ \sup _{k \in \mathbb{Z}}|x[k]|, & p=\infty\end{cases}
+$$
+
+## 内积空间 (Inner Product Space)
+
+域 $\mathbb{F}$ ($\mathbb{R}$ 或 $\mathbb{C}$) 上向量空间 $V$ 的内积 $\langle\cdot, \cdot\rangle: V \times V \rightarrow \mathbb{F}$ 满足：
+
+- 共轭对称性 (Conjugate symmetry)
+
+$$
+\langle x, y\rangle=\overline{\langle y, x\rangle}
+$$
+
+- 第一变元线性 (Linearity in first argument)
+
+$$
+\langle a x+b y, z\rangle=a\langle x, z\rangle+b\langle x, z\rangle
+$$
+
+- 正定性 (Positive definiteness)
+
+$$
+\begin{gathered}
+\langle x, x\rangle \geq 0 \\
+\langle x, x\rangle=0 \Longleftrightarrow x=0
+\end{gathered}
+$$
+
+带有内积的向量空间称为内积空间。
+
+## 内积空间示例
+
+示例：$\mathbb{R}^{n}, \mathbb{C}^{n}$
+
+$$
+\langle x, y\rangle=\sum_{k=1}^{n} x_{k} \bar{y}_{k}
+$$
+
+示例：CT 实/复值信号 $\mathbb{R}^{\mathbb{R}}, \mathbb{C}^{\mathbb{R}}$
+
+$$
+\langle x, y\rangle=\int_{\mathbb{R}} x(t) \overline{y(t)} d t
+$$
+
+示例：DT 实/复值信号 $\mathbb{R}^{\mathbb{Z}}, \mathbb{C}^{\mathbb{Z}}$
+
+$$
+\langle x, y\rangle=\sum_{k=-\infty}^{\infty} x[k] \overline{y[k]}
+$$
+
+在所有情况下：
+
+$$
+\|x\|_{2}=\sqrt{\langle x, x\rangle}
+$$
+
+对于内积空间，通常用 $\|\cdot\|$ 代替 $\|\cdot\|_{2}$。
+
+## 柯西-施瓦茨不等式 (Cauchy-Schwarz Inequality)
+
+$$
+|\langle x, y\rangle| \leq\|x\| \cdot\|y\|
+$$
+
+证明：如果 $\|y\|=0$，则 $y=0$ 且 $\langle x, y\rangle=\|x\| \cdot\|y\|$。现在假设 $\|y\| \neq 0$。对于任意 $\lambda \in \mathbb{C}$，
+
+$$
+0 \leq\langle x-\lambda y, x-\lambda y\rangle=\|x\|^{2}-\lambda \overline{\langle x, y\rangle}-\bar{\lambda}\langle x, y\rangle+|\lambda|^{2}\|y\|^{2}
+$$
+
+令 $\lambda=\langle x, y\rangle /\|y\|^{2}$，
+
+$$
+0 \leq\|x\|^{2}-\frac{|\langle x, y\rangle|^{2}}{\|y\|^{2}}-\frac{|\langle x, y\rangle|^{2}}{\|y\|^{2}}+\frac{|\langle x, y\rangle|^{2}}{\|y\|^{2}} \Longrightarrow|\langle x, y\rangle| \leq\|x\| \cdot\|y\|
+$$
+
+积分形式：
+
+$$
+\left|\int_{\mathbb{R}} x(t) \overline{y(t)} d t\right| \leq \sqrt{\int_{\mathbb{R}}|x(t)|^{2} d t} \cdot \sqrt{\int_{\mathbb{R}}|y(t)|^{2} d t}
+$$
+
+## 内积空间中的正交归一系
+
+如果 $\langle x, y\rangle=0$，则两个向量 $x, y \in V$ 是**正交**的。
+如果 $\|x\|=1$ 或 $\langle x, x\rangle=1$，则向量 $x \in V$ 是**单位向量**。
+如果对于 $m \neq k$，$\left\langle x_{k}, x_{m}\right\rangle=0$，则 $\left\{x_{k}\right\}$ 是**正交系**。
+如果 $\left\langle e_{k}, e_{m}\right\rangle=\delta_{k m}=\delta[k-m]$，则 $\left\{e_{k}\right\}$ 是**正交归一系 (orthonormal system)**。
+
+示例：令 $V$ 为周期为 $T$ 的函数集合。内积为：
+
+$$
+\langle x, y\rangle=\frac{1}{T} \int_{T} x(t) \overline{y(t)} d t
+$$
+
+令 $e_{k}(t)=e^{j k \frac{2 \pi}{T} t}$。回顾 $\left\{e_{k}: k \in \mathbb{Z}\right\}$ 是正交归一系：
+
+$$
+\left\langle e_{k}, e_{m}\right\rangle=\delta[k-m]
+$$
+
+## 正交归一展开 (Orthonormal Expansion)
+
+给定正交归一系 $\left\{e_{k}\right\}$，假设
+
+$$
+x=\sum_{k} c_{k} e_{k}
+$$
+
+通过与 $e_{m}$ 做内积来求系数：
+
+$$
+\left\langle x, e_{m}\right\rangle=\left\langle\sum_{k} c_{k} e_{k}, e_{m}\right\rangle=\sum_{k} c_{k}\left\langle e_{k}, e_{m}\right\rangle=\sum_{k} c_{k} \delta[k-m]=c_{m}
+$$
+
+广义傅里叶级数：
+
+$$
+x=\sum_{k}\left\langle x, e_{k}\right\rangle e_{k}
+$$
+
+这就是我们要做的傅里叶级数展开。
+
+## 最佳均方逼近 (Best Mean-square Approximation)
+
+用 $\operatorname{span}\left\{e_{1}, \ldots, e_{n}\right\}$ 中的元素逼近 $x$ 的均方误差，即用形式为 $y=\sum_{k=1}^{n} a_{k} e_{k}$ 的元素：
+
+$$
+\begin{aligned}
+\|x-y\|^{2} & =\left\langle x-\sum_{k=1}^{n} a_{k} e_{k}, x-\sum_{k=1}^{n} a_{k} e_{k}\right\rangle \\
+& =\|x\|^{2}-\sum_{k=1}^{n} a_{k}\left\langle e_{k}, x\right\rangle-\sum_{k=1}^{n} \bar{a}_{k}\left\langle x, e_{k}\right\rangle+\sum_{k=1}^{n}\left|a_{k}\right|^{2} \\
+& =\|x\|^{2}-2 \sum_{k=1}^{n} \operatorname{Re}\left(\bar{a}_{k}\left\langle x, e_{k}\right\rangle\right)+\sum_{k=1}^{n}\left|a_{k}\right|^{2} \\
+& \geq\|x\|^{2}-2 \sum_{k=1}^{n}\left|a_{k}\right| \cdot\left|\left\langle x, e_{k},\right\rangle\right|+\sum_{k=1}^{n}\left|a_{k}\right|^{2} \quad(\text { 使用 }|\operatorname{Re} z| \leq|z|) \\
+& =\|x\|^{2}-\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2}+\sum_{k=1}^{n}\left(\left|a_{k}\right|-\left|\left\langle x, e_{k},\right\rangle\right|\right)^{2}
+\end{aligned}
+$$
+
+## 最佳均方逼近 (续)
+
+逼近的均方误差：
+
+$$
+\begin{aligned}
+\|x-y\|^{2} & \stackrel{(1)}{\geq}\|x\|^{2}-\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2}+\sum_{k=1}^{n}\left(\left|a_{k}\right|-\left|\left\langle x, e_{k},\right\rangle\right|\right)^{2} \\
+& \stackrel{(2)}{\geq}\|x\|^{2}-\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2}
+\end{aligned}
+$$
+
+当且仅当 $a_{k}=\left\langle x, e_{k}\right\rangle$ 时达到最小均方误差。
+
+- (1) 处取等号要求 $\arg a_{k}=\arg \left\langle x, e_{k}\right\rangle$
+- (2) 处取等号要求 $\left|a_{k}\right|=\left|\left\langle x, e_{k}\right\rangle\right|$
+
+傅里叶部分和 $S_{N}(x)=\sum_{k=-N}^{N} \hat{x}[k] e^{j k \omega_{0} t}$ 是最佳均方逼近：
+
+$$
+\left\|x-S_{N}(x)\right\|^{2}=\min _{a_{k},-N \leq k \leq N}\left\|x-\sum_{k=-N}^{N} a_{k} e^{j k \omega_{0} t}\right\|^{2}
+$$
+
+## 贝塞尔不等式 (Bessel's Inequality)
+
+最小均方误差：
+
+$$
+\left\|x-\sum_{k=1}^{n}\left\langle x, e_{k}\right\rangle e_{k}\right\|^{2}=\|x\|^{2}-\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2}
+$$
+
+贝塞尔不等式：
+
+$$
+\sum_{k}\left|\left\langle x, e_{k}\right\rangle\right|^{2} \leq\|x\|^{2}
+$$
+
+对于具有有限 2-范数的信号的傅里叶系数：
+
+$$
+\sum_{k=-\infty}^{\infty}|\hat{x}[k]|^{2} \leq\|x\|^{2}
+$$
+
+推论：$\lim _{k \rightarrow \infty} \hat{x}[k]=0$
+
+## 帕塞瓦尔恒等式 (Parseval's Identity)
+
+对于具有有限 **2-范数** 的信号的傅里叶系数：
+
+$$
+\sum_{k=-\infty}^{\infty}|\hat{x}[k]|^{2}=\|x\|^{2}=\frac{1}{T} \int_{T}|x(t)|^{2} d t
+$$
+
+解释：能量守恒
+
+- $|\hat{x}[k]|^{2}$ 是第 $k$ 次谐波分量的平均功率
+- $\|x\|^{2}$ 是 $x$ 的平均功率
+- 总功率是所有分量功率之和
+
+定理：傅里叶级数在均方意义下收敛
+
+$$
+\lim _{N \rightarrow \infty}\left\|x-S_{N}(x)\right\|=0
+$$
+
+注意：均方收敛并不意味着逐点收敛。
