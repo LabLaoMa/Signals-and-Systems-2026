@@ -1,0 +1,596 @@
+---
+title: "EL331 信号与系统 · 第11讲（中文版）"
+subtitle: "连续时间傅里叶级数：性质与收敛性"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+1. 傅里叶级数的均方收敛
+2. 傅里叶级数的逐点收敛
+3. 周期冲激列的傅里叶级数
+4. 滤波
+
+## 最佳均方逼近
+
+Given orthonormal system $\left\{e_{1}, \ldots, e_{n}\right\}$, best mean-square approximation of $x$ by element in $\operatorname{span}\left\{e_{1}, \ldots, e_{n}\right\}$, i.e. by element of form $y=\sum_{k=1}^{n} a_{k} e_{k}$ is
+
+$$
+y=\sum_{k=1}^{n}\left\langle x, e_{k}\right\rangle e_{k},
+$$
+
+with minimum mean-square error
+
+$$
+\|x-y\|^{2}=\|x\|^{2}-\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2} .
+$$
+
+## Geometry of 最佳均方逼近
+
+Orthogonal projection onto subspace span $\left\{e_{1}, \ldots, e_{n}\right\}$
+Pythagorean theorem
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-04.jpg?height=554&width=1153&top_left_y=332&top_left_x=66)
+
+## 赋范向量空间中的收敛
+
+In normed vector space $(V,\|\cdot\|)$, sequence $\left\{x_{n}\right\}$ converges to $x \in V$ if
+
+$$
+\lim _{n \rightarrow \infty}\left\|x_{n}-x\right\|=0
+$$
+
+We say $x$ is the limit of $\left\{x_{n}\right\}$ and write
+
+$$
+x=\lim _{n \rightarrow \infty} x_{n}, \quad \text { or } \quad x_{n} \rightarrow x, \text { as } n \rightarrow \infty .
+$$
+
+Sequence $\left\{x_{n}\right\} \subset V$ is Cauchy sequence iff
+
+$$
+\left\|x_{n}-x_{m}\right\| \rightarrow 0, \quad \text { as } n, m \rightarrow \infty .
+$$
+
+Theorem. Every convergent sequence is Cauchy.
+Proof. If $x_{n} \rightarrow x$, triangle inequality yields
+
+$$
+\left\|x_{n}-x_{m}\right\| \leq\left\|x_{n}-x\right\|+\left\|x_{m}-x\right\| \rightarrow 0, \quad \text { as } n, m \rightarrow \infty .
+$$
+
+## 巴拿赫空间
+
+Normed vector space ( $V,\|\cdot\|$ ) is complete if every Cauchy sequence converges.
+
+Complete normed vector space is called Banach space.
+
+## 巴拿赫空间的例子
+
+- $\left(\mathbb{R}^{n},\|\cdot\|_{p}\right),\left(\mathbb{C}^{n},\|\cdot\|_{p}\right)$
+- DT signal space $\ell_{p}=\left\{x \in \mathbb{C}^{\mathbb{Z}}:\|x\|_{p}<\infty\right\}$ with $\ell_{p}$ norm
+- CT signal space $L_{p}=\left\{x \in \mathbb{C}^{\mathbb{R}}:\|x\|_{p}<\infty\right\}$ with $L_{p}$ norm
+- Space $L_{2}(T)$ of CT signals with period $T$ and finite average power, $\|x\|^{2}=\frac{1}{T} \int_{T}|x(t)|^{2} d t<\infty$
+- Space $C(T)$ of continuous $T$-periodic CT signals with $L_{\infty}$ norm
+
+$$
+\|x\|_{\infty}=\sup _{t \in[0, T]}|x(t)|=\sup _{t \in \mathbb{R}}|x(t)| .
+$$
+
+$x_{n} \rightarrow x$ in $L_{\infty}$ norm means uniform convergence
+
+## 巴拿赫空间
+
+非完备空间的例子
+
+- $(\mathbb{Q},|\cdot|)$. Its completion is $(\mathbb{R},|\cdot|)$
+- Space $C(T)$ of continuous $T$-periodic CT signals with $L_{2}$ norm. Its completion is $L_{2}(T)$
+- periodic odd function with period $T=1$
+
+$$
+x_{n}= \begin{cases}n t, & 0 \leq t \leq \frac{1}{n} \\ 1, & \frac{1}{n} \leq \frac{1}{2}-\frac{1}{n} \\ 1-n t, & \frac{1}{2}-\frac{1}{n} \leq t \leq \frac{1}{2}\end{cases}
+$$
+
+- $x_{n} \in C(1)$
+- $x_{n}$ converges to periodic square wave in $L_{2}$ norm
+- but periodic square function not in $C(1)$
+
+Same vector space with different norms becomes different normed vector spaces, e.g $\left(C(T),\|\cdot\|_{\infty}\right)$ vs. $\left(C(T),\|\cdot\|_{2}\right)$
+
+Incompleteness of $C(T)$ with $L_{2}$ Norm
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-08.jpg?height=597&width=1125&top_left_y=111&top_left_x=87)
+$\left\|x_{n}-x\right\|_{2}^{2}=\left(\int_{-\frac{1}{n}}^{\frac{1}{n}}+\int_{\frac{1}{2}-\frac{1}{n}}^{\frac{1}{2}+\frac{1}{n}}\right)\left|x_{n}(t)-x(t)\right|^{2} d t \leq \frac{4}{n} \rightarrow 0$
+$x \in L_{2}(1)$ but $x \notin C(1)$. Also $\left\|x_{n}-x\right\|_{\infty}=1, \forall n$
+
+## $L_{2}$ Convergence vs. 逐点收敛
+
+For $n \geq 0$ and $0 \leq k<2^{n}$,
+
+$$
+n=0, k=0
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-09.jpg?height=128&width=294&top_left_y=128&top_left_x=945)
+
+$$
+x_{2^{n}+k}= \begin{cases}1, & \frac{k}{2^{n}} \leq t<\frac{k+1}{2^{n}} \\ 0, & \text { otherwise }\end{cases}
+$$
+
+$$
+n=1, k=0
+$$
+
+$$
+n=1, k=1
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-09.jpg?height=243&width=294&top_left_y=230&top_left_x=945)
+
+- $x_{2^{n}+k} \rightarrow 0$ in $L_{2}$ norm
+
+$$
+n=2, k=0
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-09.jpg?height=133&width=292&top_left_y=450&top_left_x=947)
+
+$$
+\left\|x_{2^{n}+k}-0\right\|_{2}=\frac{1}{2^{n / 2}} \rightarrow 0
+$$
+
+$$
+n=2, k=1
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-09.jpg?height=143&width=292&top_left_y=545&top_left_x=947)
+
+- not convergent at any $t_{0} \in[0,1)$
+- $\forall n, \exists k_{1}$ s.t $x_{2^{n}+k_{1}}\left(t_{0}\right)=1$
+
+$$
+n=2, k=2
+$$
+
+- $\forall n, \exists k_{0}$ s.t $x_{2^{n}+k_{0}}\left(t_{0}\right)=0$
+
+$$
+n=2, k=3
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-09.jpg?height=230&width=294&top_left_y=674&top_left_x=945)
+
+## 希尔伯特空间
+
+Inner product space $(V,\langle\cdot, \cdot\rangle)$ is also normed vector space with induced norm $\|x\|=\sqrt{\langle x, x\rangle}$.
+$(V,\langle\cdot, \cdot\rangle)$ is complete if ( $V,\|\cdot\|$ ) with induced norm is complete.
+Complete inner produce space is called Hilbert space.
+
+## 希尔伯特空间的例子
+
+- $\mathbb{R}^{n}$ with $\langle x, y\rangle=\sum_{k=1}^{n} x_{k} y_{k} ; \mathbb{C}^{n}$ with $\langle x, y\rangle=\sum_{k=1}^{n} x_{k} \bar{y}_{k}$
+- Space $\ell_{2}$ with $\langle x, y\rangle=\sum_{k=-\infty}^{\infty} x_{k} \bar{y}_{k}$
+- Space $L_{2}$ with $\langle x, y\rangle=\int_{\mathbb{R}} x(t) \overline{y(t)} d t$
+- Space $L_{2}(T)$ with $\langle x, y\rangle=\frac{1}{T} \int_{T} x(t) \overline{y(t)} d t$
+
+Example of incomplete space
+
+- Space $C(T)$ with $\langle x, y\rangle=\frac{1}{T} \int_{T} x(t) \overline{y(t)} d t L_{2}(T)$ is completion of $C(T)$.
+
+
+## 完备正交规范序列
+
+Orthonormal sequence $\left\{e_{k}: k \in \mathbb{N}\right\}$ in Hilbert space $H$ is complete if every $x \in H$ has expansion
+
+$$
+x=\sum_{k=1}^{\infty}\left\langle x, e_{k}\right\rangle e_{k}
+$$
+
+i.e.
+
+$$
+\lim _{n \rightarrow \infty}\left\|x-\sum_{k=1}^{n}\left\langle x, e_{k}\right\rangle e_{k}\right\|=0
+$$
+
+Complete orthonormal sequence also called orthonormal basis of $H$.
+
+Example. $\left\{\delta_{k}: k \in \mathbb{Z}\right\}$ is orthonormal basis of $\ell_{2}$
+
+## 帕塞瓦尔恒等式
+
+If $\left\{e_{k}: k \in \mathbb{N}\right\}$ orthonormal basis of $H$,
+
+$$
+\|x\|^{2}=\sum_{k=1}^{\infty}\left|\left\langle x, e_{k}\right\rangle\right|^{2}
+$$
+
+Proof. By Pythagorean theorem
+
+$$
+\|x\|^{2}=\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2}+\left\|x-\sum_{k=1}^{n}\left\langle x, e_{k}\right\rangle e_{k}\right\|^{2}
+$$
+
+Let $n \rightarrow \infty$ and last term goes to zero by definition of orthonormal basis.
+
+## 帕塞瓦尔恒等式
+
+$H$ is isomorphic to $\ell_{2}, x \leftrightarrow\left\{\left\langle x, e_{k}\right\rangle: k \in \mathbb{N}\right\}$ and
+
+$$
+\langle x, y\rangle=\sum_{k=1}^{\infty}\left\langle x, e_{k}\right\rangle \overline{\left\langle y, e_{k}\right\rangle}
+$$
+
+Proof.
+
+$$
+\begin{aligned}
+\langle x, y\rangle & =\left\langle\sum_{k}\left\langle x, e_{k}\right\rangle e_{k}, \sum_{m}\left\langle y, e_{m}\right\rangle e_{m}\right\rangle \\
+& =\sum_{k}\left\langle x, e_{k}\right\rangle \sum_{m} \overline{\left\langle y, e_{m}\right\rangle}\left\langle e_{k}, e_{m}\right\rangle \\
+& =\sum_{k}\left\langle x, e_{k}\right\rangle \sum_{m} \overline{\left\langle y, e_{m}\right\rangle} \delta[k-m] \\
+& =\sum_{k}\left\langle x, e_{k}\right\rangle \overline{\left\langle y, e_{k}\right\rangle}
+\end{aligned}
+$$
+
+NB. When $x=y$, we recover $\|x\|^{2}=\sum_{k=1}^{\infty}\left|\left\langle x, e_{k}\right\rangle\right|^{2}$
+
+## 傅里叶级数的均方收敛
+
+Theorem. $\left\{e^{j k \frac{2 \pi}{T} t}: k \in \mathbb{Z}\right\}$ is orthonormal basis of $L_{2}(T)$.
+For any $x \in L_{2}(T)$, Fourier series converges in mean-square, i.e. in $L_{2}$ norm
+
+$$
+\lim _{N \rightarrow \infty}\left\|x-S_{N}(x)\right\|=0
+$$
+
+NB. Convergence in mean-square does not imply pointwise convergence
+Parseval's identity
+
+$$
+\sum_{k=-\infty}^{\infty}|\hat{x}[k]|^{2}=\|x\|^{2}=\frac{1}{T} \int_{T}|x(t)|^{2} d t
+$$
+
+Interpretation: Energy conservation
+
+- $|\hat{x}[k]|^{2}$ is average power of $k$-th harmonic component
+- $\|x\|^{2}$ is average power of $x$
+
+
+## Fourier Series of $L_{2}$ Signals
+
+Correspondence between periodic functions and doubly infinite sequences; time domain vs. frequency domain
+
+$$
+x \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x} \quad \text { or } \quad x(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[k]
+$$
+
+Fourier series is isomorphism between Hilbert space of $L_{2}$ signals and Hilbert space of $\ell_{2}$ Fourier coefficients
+
+$$
+\begin{aligned}
+\mathcal{F S}: L_{2}(T) & \rightarrow \ell_{2} \\
+x & \mapsto \hat{x}
+\end{aligned}
+$$
+
+Will see discrete-time Fourier transform goes from $\hat{x}$ to $x$
+Parseval's theorem
+
+$$
+\langle x, y\rangle_{L_{2}(T)}=\langle\hat{x}, \hat{y}\rangle_{\ell_{2}}
+$$
+
+## 目录
+
+1. 傅里叶级数的均方收敛
+2. 傅里叶级数的逐点收敛
+3. 周期冲激列的傅里叶级数
+4. 滤波
+
+## 部分和的积分表示
+
+WLOG, focus on $T=2 \pi$ and $\omega_{0}=1$
+
+$$
+\begin{aligned}
+S_{N}(x)(t) & =\sum_{k=-N}^{N} \hat{x}[k] e^{j k t} \\
+& =\sum_{k=-N}^{N}\left(\frac{1}{2 \pi} \int_{2 \pi} x(\tau) e^{-j k \tau} d \tau\right) e^{j k t} \\
+& =\frac{1}{2 \pi} \int_{2 \pi} x(\tau) \sum_{k=-N}^{N} e^{j k(t-\tau)} d \tau \\
+& =\frac{1}{2 \pi} \int_{2 \pi} x(\tau) D_{N}(t-\tau) d \tau=\left(x * \frac{D_{N}}{2 \pi}\right)(t)
+\end{aligned}
+$$
+
+where $D_{N}$ is Dirichlet kernel
+
+$$
+D_{N}(t)=\sum_{k=-N}^{N} e^{j k t}=\frac{\sin \left(\left(N+\frac{1}{2}\right) t\right)}{\sin (t / 2)}
+$$
+
+## 狄利克雷核
+
+Plot of $\frac{D_{N}}{2 \pi}$ for various $N$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-18.jpg?height=332&width=359&top_left_y=190&top_left_x=70)
+$N=4$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-18.jpg?height=332&width=358&top_left_y=190&top_left_x=463)
+$N=8$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-18.jpg?height=341&width=360&top_left_y=181&top_left_x=856)
+$N=16$
+
+If $\frac{D_{N}}{2 \pi} \rightarrow \delta$ (more precisely, periodic impulse train on slide 22), then would have $S_{N}(x)=x * \frac{D_{N}}{2 \pi} \rightarrow x * \delta=x$ at least for continuous $x$
+
+Unfortunately, exists continuous $x$ whose Fourier partial sum $S_{N}(x)$, as $N \rightarrow \infty$, fails to converge at all at some $t$, let alone converges to $x(t)$ at such $t$
+
+## 逐点收敛
+
+Theorem. If $x$ is differentiable, then $\lim _{N \rightarrow \infty} S_{N}(x)(t)=x(t), \forall t$.
+Proof. Fix $t$. Define
+
+$$
+F(\tau)= \begin{cases}\frac{x(t-\tau)-x(t)}{\sin (\tau / 2)}, & \tau \neq 0 \\ -2 x^{\prime}(t), & \tau=0\end{cases}
+$$
+
+which is continuous on $[-\pi, \pi]$. Note $\frac{1}{2 \pi} \int_{-\pi}^{\pi} D_{N}(\tau) d \tau=1$.
+
+$$
+\begin{aligned}
+S_{N}(x)(t)-x(t) & =\frac{1}{2 \pi} \int_{-\pi}^{\pi} x(t-\tau) D_{N}(\tau) d \tau-\frac{1}{2 \pi} \int_{-\pi}^{\pi} x(t) D_{N}(\tau) d \tau \\
+& =\frac{1}{2 \pi} \int_{-\pi}^{\pi}[x(t-\tau)-x(t)] D_{N}(\tau) d \tau \\
+& =\frac{1}{2 \pi} \int_{-\pi}^{\pi} F(\tau) \sin \left(\left(N+\frac{1}{2}\right) \tau\right) d \tau
+\end{aligned}
+$$
+
+## 逐点收敛
+
+Theorem. If $x$ is differentiable, then $\lim _{N \rightarrow \infty} S_{N}(x)(t)=x(t)$.
+Proof (cont'd). Define $y(\tau)=e^{-j \frac{\tau}{2}} F(\tau)$.
+
+$$
+\begin{aligned}
+S_{N}(x)(t)-x(t) & =\frac{1}{2 \pi} \int_{-\pi}^{\pi} F(\tau) \sin \left(\left(N+\frac{1}{2}\right) \tau\right) d \tau \\
+& =-\operatorname{lm} \frac{1}{2 \pi} \int_{-\pi}^{\pi} y(\tau) e^{-j N \tau} d \tau \\
+& =-\operatorname{lm} \hat{y}[N]
+\end{aligned}
+$$
+
+Being continuous on $[-\pi, \pi], y(\tau) \in L_{2}(2 \pi)$. Bessel's inequality implies $\hat{y}[N] \rightarrow 0$, so
+
+$$
+S_{N}(x)(t)-x(t)=-\operatorname{lm} \hat{y}[N] \rightarrow 0, \quad \text { as } N \rightarrow \infty
+$$
+
+## 狄利克雷判别法
+
+Theorem. If $x$ satisfies following Dirichlet conditions
+
+1. $x$ is bounded, i.e. $\|x\|_{\infty}<\infty$,
+2. $x$ is piecewise monotone, i.e. $\exists$ finite partition of a period s.t. $x$ is monotone on each segment,
+then
+
+$$
+\lim _{N \rightarrow \infty} S_{N}(x)(t)=\frac{x\left(t_{+}\right)+x\left(t_{-}\right)}{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-21.jpg?height=192&width=1006&top_left_y=525&top_left_x=115)
+
+$$
+\lim _{N \rightarrow \infty} S_{N}(x)(t)= \begin{cases}1, & t \in\left(n, n+\frac{1}{2}\right), \\ -1, & t \in\left(n-\frac{1}{2}, n\right),, \quad n \in \mathbb{Z} \\ 0, & t=\frac{n}{2},\end{cases}
+$$
+
+## 目录
+
+1. 傅里叶级数的均方收敛
+2. 傅里叶级数的逐点收敛
+3. 周期冲激列的傅里叶级数
+4. 滤波
+
+## 周期冲激列
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \delta(t-k T)
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-23.jpg?height=197&width=1009&top_left_y=272&top_left_x=119)
+
+For "good" enough function $\phi$, e.g. infinitely differentiable function with compact support,
+
+$$
+\begin{gathered}
+(\phi * x)(t)=\sum_{k=-\infty}^{\infty} \phi(t-k T) \\
+\int_{\mathbb{R}} \phi(t) x(t) d t=\sum_{k=-\infty}^{\infty} \int_{\mathbb{R}} \phi(t) \delta(t-k T) d t=\sum_{k=-\infty}^{\infty} \phi(k T)
+\end{gathered}
+$$
+
+## 周期冲激列
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \delta(t-k T)
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-24.jpg?height=196&width=1009&top_left_y=268&top_left_x=119)
+
+Fourier coefficients
+
+$$
+\hat{x}[k]=\frac{1}{T} \int_{-T / 2}^{T / 2} \delta(t) e^{-j k \frac{2 \pi}{T} t} d t=\frac{1}{T}
+$$
+
+Fourier series
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \frac{1}{T} e^{j k \frac{2 \pi}{T} t}=\lim _{N \rightarrow \infty} \frac{1}{T} D_{N}\left(\frac{2 \pi}{T} t\right)
+$$
+
+where $D_{N}$ is Dirichlet kernel
+
+## 周期冲激列
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \delta(t-k T)=\sum_{k=-\infty}^{\infty} \frac{1}{T} e^{j k \frac{2 \pi}{T} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-25.jpg?height=200&width=1006&top_left_y=326&top_left_x=119)
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-25.jpg?height=198&width=1009&top_left_y=623&top_left_x=119)
+
+## 周期冲激列
+
+$$
+\begin{aligned}
+\int_{\mathbb{R}} \phi(t) x(t) d t & =\lim _{N \rightarrow \infty} \frac{1}{T} \int_{\mathbb{R}} \phi(t) D_{N}\left(-\frac{2 \pi}{T} t\right) d t \quad\left(D_{N} \text { is even }\right) \\
+& =\lim _{N \rightarrow \infty} \frac{1}{2 \pi} \int_{\mathbb{R}} \phi\left(-\frac{T}{2 \pi} t\right) D_{N}(t) d t \\
+& =\lim _{N \rightarrow \infty} \sum_{k=-\infty}^{\infty} \frac{1}{2 \pi} \int_{(2 k-1) \pi}^{(2 k+1) \pi} \phi\left(-\frac{T}{2 \pi} t\right) D_{N}(t) d t \\
+& =\sum_{k=-\infty}^{\infty} \lim _{N \rightarrow \infty} \frac{1}{2 \pi} \int_{-\pi}^{\pi} \phi\left(\frac{T}{2 \pi}(2 \pi k-t)\right) D_{N}(t-2 k \pi) d t \\
+& \left.=\sum_{k=-\infty}^{\infty} \lim _{N \rightarrow \infty} \frac{1}{2 \pi} \int_{-\pi}^{\pi} \phi\left(\frac{T}{2 \pi}(2 \pi k-t)\right)_{\left(D_{N}\right.} \text { is } 2 \pi \text {-periodic }\right) \\
+& =\sum_{k=-\infty}^{\infty} \lim _{N \rightarrow \infty} S_{N}(\phi)(k T)=\sum_{k=-\infty}^{\infty} \phi(k T)
+\end{aligned}
+$$
+
+## 与周期方波的关系
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-27.jpg?height=243&width=1103&top_left_y=126&top_left_x=93)
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-27.jpg?height=221&width=1101&top_left_y=392&top_left_x=95)
+
+$$
+\begin{aligned}
+r^{\prime}(t) & =x\left(t+T_{1}\right)-x\left(t-T_{1}\right) \\
+\widehat{r^{\prime}}[k] & =\left(e^{j k \omega_{0} T_{1}}-e^{-j k \omega_{0} T_{1}}\right) \hat{x}[k]=\frac{2 j \sin \left(k \omega_{0} T_{1}\right)}{T} \\
+\hat{r}[k] & =\frac{1}{j k \omega_{0}} \widehat{r^{\prime}}[k]=\frac{\sin \left(k \omega_{0} T_{1}\right)}{k \pi}, \quad k \neq 0
+\end{aligned}
+$$
+
+## 目录
+
+1. 傅里叶级数的均方收敛
+2. 傅里叶级数的逐点收敛
+3. 周期冲激列的傅里叶级数
+4. 滤波
+
+## 频率响应
+
+Recall response of CT LTI system to exponential input $e^{s t}$
+
+$$
+T\left(\sum_{k} a_{k} e^{s_{k} t}\right)=\sum_{k} a_{k} H\left(s_{k}\right) e^{s_{k} t}
+$$
+
+where $H(s)$ is system function
+
+$$
+H(s)=\int_{\mathbb{R}} h(t) e^{-s t} d t
+$$
+
+When restricted to $s=j \omega, H(j \omega)$ as function of $\omega$ is called frequency response of the system
+
+$$
+H(j \omega)=\int_{\mathbb{R}} h(t) e^{-j \omega t} d t
+$$
+
+## 滤波
+
+Periodic input $x$ in Fourier series representation
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+Output of LTI system with frequency response $H(j \omega)$
+
+$$
+y(t)=T\left(\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}\right)=\sum_{k=-\infty}^{\infty} H\left(j k \omega_{0}\right) \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+periodic with same periodic, Fourier coefficients related by
+
+$$
+\hat{y}[k]=H\left(j k \omega_{0}\right) \hat{x}[k]
+$$
+
+滤波 changes relative amplitudes of frequency components or eliminates some frequency components entirely
+
+## 滤波
+
+Example. Differentiator $T(x)=x^{\prime}$ has frequency response
+
+$$
+H(j \omega)=j \omega
+$$
+
+For periodic input
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-31.jpg?height=311&width=420&top_left_y=113&top_left_x=792)
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+output
+
+$$
+y(t)=\sum_{k=-\infty}^{\infty} j k \omega_{0} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-31.jpg?height=367&width=418&top_left_y=505&top_left_x=794)
+
+Fourier coefficients related by $\hat{y}[k]=j k \omega_{0} \hat{x}[k]$
+
+## 滤波
+
+LTI systems as filters
+
+- cannot create new frequency components
+- can only scale magnitudes or shift phases of existing components
+
+Example of nonlinear filter: Clipping $y(t)=\max \{x(t), c\}$
+Focus on LTI filters in this course
+
+Frequency-shaping filters change shape of spectrum
+
+- e.g. equalizer
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-32.jpg?height=159&width=795&top_left_y=639&top_left_x=427)
+
+Frequency-selective filters pass some frequencies essentially undistorted and significantly attenuate or eliminate others
+
+## 理想频率选择性滤波器
+
+理想低通滤波器
+
+$$
+H(j \omega)= \begin{cases}1, & |\omega| \leq \omega_{c} \\ 0, & \text { otherwise }\end{cases}
+$$
+
+$\omega_{c}$ : cutoff frequency
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-33.jpg?height=285&width=871&top_left_y=485&top_left_x=217)
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-33.jpg?height=86&width=862&top_left_y=769&top_left_x=217)
+
+## 理想频率选择性滤波器
+
+理想高通滤波器
+
+$$
+H(j \omega)= \begin{cases}1, & |\omega| \geq \omega_{c} \\ 0, & \text { otherwise }\end{cases}
+$$
+
+$\omega_{c}$ : cutoff frequency
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-34.jpg?height=283&width=871&top_left_y=485&top_left_x=217)
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-34.jpg?height=86&width=862&top_left_y=769&top_left_x=217)
+
+## 理想频率选择性滤波器
+
+理想带通滤波器
+
+$$
+H(j \omega)= \begin{cases}1, & \omega_{c 1} \leq|\omega| \leq \omega_{c 2} \\ 0, & \text { otherwise }\end{cases}
+$$
+
+$\omega_{c 1}$ : lower cutoff frequency
+$\omega_{c 2}$ : upper cutoff frequency
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-35.jpg?height=283&width=868&top_left_y=561&top_left_x=217)

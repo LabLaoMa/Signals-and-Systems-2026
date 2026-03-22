@@ -1,0 +1,417 @@
+---
+title: "El331 信号与系统 · 第11讲"
+subtitle: "傅里叶级数的收敛性与滤波"
+author: "Bo Jiang (中文翻译)"
+date: "2019-03-14"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+## 目录
+
+1. 傅里叶级数的均方收敛性 (Mean-square Convergence)
+2. 傅里叶级数的逐点收敛性 (Pointwise Convergence)
+3. 周期冲激串的傅里叶级数 (Periodic Impulse Train)
+4. 滤波 (Filtering)
+
+# 1. 傅里叶级数的均方收敛性
+
+## 最佳均方逼近
+
+给定正交归一系 $\left\{e_{1}, \ldots, e_{n}\right\}$，用 $\operatorname{span}\left\{e_{1}, \ldots, e_{n}\right\}$ 中的元素（即形式为 $y=\sum_{k=1}^{n} a_{k} e_{k}$ 的元素）对 $x$ 进行的**最佳均方逼近**是：
+
+$$
+y=\sum_{k=1}^{n}\left\langle x, e_{k}\right\rangle e_{k},
+$$
+
+其最小均方误差为：
+
+$$
+\|x-y\|^{2}=\|x\|^{2}-\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2} .
+$$
+
+## 最佳均方逼近的几何解释
+
+这是向子空间 $\operatorname{span}\left\{e_{1}, \ldots, e_{n}\right\}$ 的**正交投影 (Orthogonal projection)**。
+勾股定理 (Pythagorean theorem)：
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-04.jpg?height=554&width=1153&top_left_y=332&top_left_x=66)
+
+## 赋范向量空间中的收敛
+
+在赋范向量空间 $(V,\|\cdot\|)$ 中，序列 $\left\{x_{n}\right\}$ 收敛于 $x \in V$，如果：
+
+$$
+\lim _{n \rightarrow \infty}\left\|x_{n}-x\right\|=0
+$$
+
+我们称 $x$ 为 $\left\{x_{n}\right\}$ 的极限，记作：
+
+$$
+x=\lim _{n \rightarrow \infty} x_{n}, \quad \text { 或 } \quad x_{n} \rightarrow x, \text { 当 } n \rightarrow \infty .
+$$
+
+序列 $\left\{x_{n}\right\} \subset V$ 是**柯西序列 (Cauchy sequence)**，当且仅当：
+
+$$
+\left\|x_{n}-x_{m}\right\| \rightarrow 0, \quad \text { 当 } n, m \rightarrow \infty .
+$$
+
+**定理**：每个收敛序列都是柯西序列。
+**证明**：如果 $x_{n} \rightarrow x$，由三角不等式可得：
+$$
+\left\|x_{n}-x_{m}\right\| \leq\left\|x_{n}-x\right\|+\left\|x_{m}-x\right\| \rightarrow 0, \quad \text { 当 } n, m \rightarrow \infty .
+$$
+
+## 巴拿赫空间 (Banach Space)
+
+如果赋范向量空间 $(V,\|\cdot\|)$ 中的每个柯西序列都收敛，则称该空间是**完备的 (complete)**。
+
+完备的赋范向量空间称为**巴拿赫空间**。
+
+**巴拿赫空间的例子**：
+- $\left(\mathbb{R}^{n},\|\cdot\|_{p}\right),\left(\mathbb{C}^{n},\|\cdot\|_{p}\right)$
+- 带有 $\ell_{p}$ 范数的 DT 信号空间 $\ell_{p}=\left\{x \in \mathbb{C}^{\mathbb{Z}}:\|x\|_{p}<\infty\right\}$
+- 带有 $L_{p}$ 范数的 CT 信号空间 $L_{p}=\left\{x \in \mathbb{C}^{\mathbb{R}}:\|x\|_{p}<\infty\right\}$
+- 具有周期 $T$ 且平均功率有限的 CT 信号空间 $L_{2}(T)$，$\|x\|^{2}=\frac{1}{T} \int_{T}|x(t)|^{2} d t<\infty$
+- 带有 $L_{\infty}$ 范数的连续 $T$-周期 CT 信号空间 $C(T)$：
+  $$
+  \|x\|_{\infty}=\sup _{t \in[0, T]}|x(t)|=\sup _{t \in \mathbb{R}}|x(t)| .
+  $$
+  $L_{\infty}$ 范数下的收敛意味着**一致收敛 (uniform convergence)**。
+
+## 巴拿赫空间 (续)
+
+**不完备空间的例子**：
+
+- $(\mathbb{Q},|\cdot|)$。其完备化是 $(\mathbb{R},|\cdot|)$。
+- 带有 $L_{2}$ 范数的连续 $T$-周期 CT 信号空间 $C(T)$。其完备化是 $L_{2}(T)$。
+- 例子：周期为 $T=1$ 的周期奇函数 $x_n$：
+  $$
+  x_{n}= \begin{cases}n t, & 0 \leq t \leq \frac{1}{n} \\ 1, & \frac{1}{n} \leq \frac{1}{2}-\frac{1}{n} \\ 1-n t, & \frac{1}{2}-\frac{1}{n} \leq t \leq \frac{1}{2}\end{cases}
+  $$
+  - $x_{n} \in C(1)$
+  - $x_{n}$ 在 $L_{2}$ 范数下收敛于周期方波
+  - 但周期方波不在 $C(1)$ 中
+
+同一个向量空间配备不同的范数会变成不同的赋范向量空间，例如 $\left(C(T),\|\cdot\|_{\infty}\right)$ 与 $\left(C(T),\|\cdot\|_{2}\right)$。
+
+## $C(T)$ 在 $L_{2}$ 范数下的不完备性
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-08.jpg?height=597&width=1125&top_left_y=111&top_left_x=87)
+
+$$
+\left\|x_{n}-x\right\|_{2}^{2}=\left(\int_{-\frac{1}{n}}^{\frac{1}{n}}+\int_{\frac{1}{2}-\frac{1}{n}}^{\frac{1}{2}+\frac{1}{n}}\right)\left|x_{n}(t)-x(t)\right|^{2} d t \leq \frac{4}{n} \rightarrow 0
+$$
+
+$x \in L_{2}(1)$ 但 $x \notin C(1)$。同时 $\left\|x_{n}-x\right\|_{\infty}=1, \forall n$。
+
+## $L_{2}$ 收敛 vs. 逐点收敛
+
+对于 $n \geq 0$ 和 $0 \leq k<2^{n}$，考虑 $x_{2^{n}+k}$：
+
+$$
+x_{2^{n}+k}= \begin{cases}1, & \frac{k}{2^{n}} \leq t<\frac{k+1}{2^{n}} \\ 0, & \text { 其他 }\end{cases}
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-09.jpg?height=243&width=294&top_left_y=230&top_left_x=945)
+
+- $x_{2^{n}+k} \rightarrow 0$ 在 $L_{2}$ 范数下收敛：
+  $$
+  \left\|x_{2^{n}+k}-0\right\|_{2}=\frac{1}{2^{n / 2}} \rightarrow 0
+  $$
+
+- 但在任何 $t_{0} \in[0,1)$ 处**不收敛**：
+  - $\forall n, \exists k_{1}$ 使得 $x_{2^{n}+k_{1}}\left(t_{0}\right)=1$
+  - $\forall n, \exists k_{0}$ 使得 $x_{2^{n}+k_{0}}\left(t_{0}\right)=0$
+
+## 希尔伯特空间 (Hilbert Space)
+
+内积空间 $(V,\langle\cdot, \cdot\rangle)$ 也是赋范向量空间，其诱导范数为 $\|x\|=\sqrt{\langle x, x\rangle}$。
+如果 $(V,\langle\cdot, \cdot\rangle)$ 在诱导范数下是完备的，则称其为**完备**的。
+完备的内积空间称为**希尔伯特空间**。
+
+**希尔伯特空间的例子**：
+- $\mathbb{R}^{n}$ （内积 $\langle x, y\rangle=\sum_{k=1}^{n} x_{k} y_{k}$）；$\mathbb{C}^{n}$ （内积 $\langle x, y\rangle=\sum_{k=1}^{n} x_{k} \bar{y}_{k}$）
+- 空间 $\ell_{2}$ （内积 $\langle x, y\rangle=\sum_{k=-\infty}^{\infty} x_{k} \bar{y}_{k}$）
+- 空间 $L_{2}$ （内积 $\langle x, y\rangle=\int_{\mathbb{R}} x(t) \overline{y(t)} d t$）
+- 空间 $L_{2}(T)$ （内积 $\langle x, y\rangle=\frac{1}{T} \int_{T} x(t) \overline{y(t)} d t$）
+
+**不完备空间的例子**：
+- 空间 $C(T)$ （内积同上）。$L_{2}(T)$ 是 $C(T)$ 的完备化。
+
+## 完备正交归一序列
+
+希尔伯特空间 $H$ 中的正交归一序列 $\left\{e_{k}: k \in \mathbb{N}\right\}$ 是**完备的**，如果每个 $x \in H$ 都有展开式：
+
+$$
+x=\sum_{k=1}^{\infty}\left\langle x, e_{k}\right\rangle e_{k}
+$$
+
+即：
+$$
+\lim _{n \rightarrow \infty}\left\|x-\sum_{k=1}^{n}\left\langle x, e_{k}\right\rangle e_{k}\right\|=0
+$$
+
+完备正交归一序列也称为 $H$ 的**正交归一基 (orthonormal basis)**。
+例如：$\left\{\delta_{k}: k \in \mathbb{Z}\right\}$ 是 $\ell_{2}$ 的正交归一基。
+
+## 帕塞瓦尔恒等式 (Parseval's Identity)
+
+如果 $\left\{e_{k}: k \in \mathbb{N}\right\}$ 是 $H$ 的正交归一基，则：
+
+$$
+\|x\|^{2}=\sum_{k=1}^{\infty}\left|\left\langle x, e_{k}\right\rangle\right|^{2}
+$$
+
+**证明**：由勾股定理
+$$
+\|x\|^{2}=\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2}+\left\|x-\sum_{k=1}^{n}\left\langle x, e_{k}\right\rangle e_{k}\right\|^{2}
+$$
+令 $n \rightarrow \infty$，最后一项根据正交归一基的定义趋于零。
+
+$H$ 同构于 $\ell_{2}$，$x \leftrightarrow\left\{\left\langle x, e_{k}\right\rangle: k \in \mathbb{N}\right\}$ 且：
+$$
+\langle x, y\rangle=\sum_{k=1}^{\infty}\left\langle x, e_{k}\right\rangle \overline{\left\langle y, e_{k}\right\rangle}
+$$
+
+## 傅里叶级数的均方收敛性
+
+**定理**：$\left\{e^{j k \frac{2 \pi}{T} t}: k \in \mathbb{Z}\right\}$ 是 $L_{2}(T)$ 的正交归一基。
+对于任意 $x \in L_{2}(T)$，傅里叶级数在**均方意义下 (in mean-square)** 收敛，即在 $L_{2}$ 范数下收敛：
+
+$$
+\lim _{N \rightarrow \infty}\left\|x-S_{N}(x)\right\|=0
+$$
+
+**注意**：均方收敛并不意味着逐点收敛。
+
+**帕塞瓦尔恒等式**：
+$$
+\sum_{k=-\infty}^{\infty}|\hat{x}[k]|^{2}=\|x\|^{2}=\frac{1}{T} \int_{T}|x(t)|^{2} d t
+$$
+**解释：能量守恒**
+- $|\hat{x}[k]|^{2}$ 是第 $k$ 次谐波分量的平均功率
+- $\|x\|^{2}$ 是 $x$ 的平均功率
+
+## $L_2$ 信号的傅里叶级数
+
+周期函数与双无限序列之间的对应关系；时域 vs. 频域：
+
+$$
+x \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x} \quad \text { 或 } \quad x(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[k]
+$$
+
+傅里叶级数是 $L_{2}$ 信号的希尔伯特空间与 $\ell_{2}$ 傅里叶系数的希尔伯特空间之间的**同构 (isomorphism)**：
+
+$$
+\begin{aligned}
+\mathcal{F S}: L_{2}(T) & \rightarrow \ell_{2} \\
+x & \mapsto \hat{x}
+\end{aligned}
+$$
+
+稍后将看到离散时间傅里叶变换从 $\hat{x}$ 到 $x$。
+帕塞瓦尔定理：
+$$
+\langle x, y\rangle_{L_{2}(T)}=\langle\hat{x}, \hat{y}\rangle_{\ell_{2}}
+$$
+
+# 2. 傅里叶级数的逐点收敛性
+
+## 部分和的积分表示
+
+不失一般性，关注 $T=2 \pi$ 和 $\omega_{0}=1$：
+
+$$
+\begin{aligned}
+S_{N}(x)(t) & =\sum_{k=-N}^{N} \hat{x}[k] e^{j k t} \\
+& =\sum_{k=-N}^{N}\left(\frac{1}{2 \pi} \int_{2 \pi} x(\tau) e^{-j k \tau} d \tau\right) e^{j k t} \\
+& =\frac{1}{2 \pi} \int_{2 \pi} x(\tau) \sum_{k=-N}^{N} e^{j k(t-\tau)} d \tau \\
+& =\frac{1}{2 \pi} \int_{2 \pi} x(\tau) D_{N}(t-\tau) d \tau=\left(x * \frac{D_{N}}{2 \pi}\right)(t)
+\end{aligned}
+$$
+
+其中 $D_{N}$ 是**狄利克雷核 (Dirichlet kernel)**：
+
+$$
+D_{N}(t)=\sum_{k=-N}^{N} e^{j k t}=\frac{\sin \left(\left(N+\frac{1}{2}\right) t\right)}{\sin (t / 2)}
+$$
+
+## 狄利克雷核 (Dirichlet Kernel)
+
+$\frac{D_{N}}{2 \pi}$ 在不同 $N$ 下的图像：
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-18.jpg?height=332&width=359&top_left_y=190&top_left_x=70) ($N=4$)
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-18.jpg?height=332&width=358&top_left_y=190&top_left_x=463) ($N=8$)
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-18.jpg?height=341&width=360&top_left_y=181&top_left_x=856) ($N=16$)
+
+如果 $\frac{D_{N}}{2 \pi} \rightarrow \delta$（更准确地说是周期冲激串），那么至少对于连续的 $x$，会有 $S_{N}(x)=x * \frac{D_{N}}{2 \pi} \rightarrow x * \delta=x$。
+
+不幸的是，存在连续的 $x$，其傅里叶部分和 $S_{N}(x)$ 在 $N \rightarrow \infty$ 时在某些 $t$ 处根本不收敛，更不用说收敛到 $x(t)$ 了。
+
+## 逐点收敛 (Pointwise Convergence)
+
+**定理**：如果 $x$ 是可微的，那么 $\lim _{N \rightarrow \infty} S_{N}(x)(t)=x(t), \forall t$。
+
+**证明**：固定 $t$。定义
+$$
+F(\tau)= \begin{cases}\frac{x(t-\tau)-x(t)}{\sin (\tau / 2)}, & \tau \neq 0 \\ -2 x^{\prime}(t), & \tau=0\end{cases}
+$$
+$F(\tau)$ 在 $[-\pi, \pi]$ 上连续。注意 $\frac{1}{2 \pi} \int_{-\pi}^{\pi} D_{N}(\tau) d \tau=1$。
+$$
+\begin{aligned}
+S_{N}(x)(t)-x(t) & =\frac{1}{2 \pi} \int_{-\pi}^{\pi} x(t-\tau) D_{N}(\tau) d \tau-\frac{1}{2 \pi} \int_{-\pi}^{\pi} x(t) D_{N}(\tau) d \tau \\
+& =\frac{1}{2 \pi} \int_{-\pi}^{\pi}[x(t-\tau)-x(t)] D_{N}(\tau) d \tau \\
+& =\frac{1}{2 \pi} \int_{-\pi}^{\pi} F(\tau) \sin \left(\left(N+\frac{1}{2}\right) \tau\right) d \tau
+\end{aligned}
+$$
+
+定义 $y(\tau)=e^{-j \frac{\tau}{2}} F(\tau)$。利用 $y(\tau) \in L_{2}(2 \pi)$ 和贝塞尔不等式 ($\hat{y}[N] \rightarrow 0$) 可证极限为 0。
+
+## 狄利克雷判据 (Dirichlet Test)
+
+**定理**：如果 $x$ 满足以下狄利克雷条件：
+1. $x$ 是有界的，即 $\|x\|_{\infty}<\infty$，
+2. $x$ 是分段单调的，即存在周期的有限划分，使得 $x$ 在每个分段上是单调的，
+那么：
+
+$$
+\lim _{N \rightarrow \infty} S_{N}(x)(t)=\frac{x\left(t_{+}\right)+x\left(t_{-}\right)}{2}
+$$
+
+例子（方波）：
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-21.jpg?height=192&width=1006&top_left_y=525&top_left_x=115)
+$$
+\lim _{N \rightarrow \infty} S_{N}(x)(t)= \begin{cases}1, & t \in\left(n, n+\frac{1}{2}\right), \\ -1, & t \in\left(n-\frac{1}{2}, n\right), \quad n \in \mathbb{Z} \\ 0, & t=\frac{n}{2},\end{cases}
+$$
+
+# 3. 周期冲激串的傅里叶级数
+
+## 周期冲激串 (Periodic Impulse Train)
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \delta(t-k T)
+$$
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-23.jpg?height=197&width=1009&top_left_y=272&top_left_x=119)
+
+对于足够“好”的函数 $\phi$（例如具有紧支集的无穷可微函数）：
+
+$$
+\begin{gathered}
+(\phi * x)(t)=\sum_{k=-\infty}^{\infty} \phi(t-k T) \\
+\int_{\mathbb{R}} \phi(t) x(t) d t=\sum_{k=-\infty}^{\infty} \int_{\mathbb{R}} \phi(t) \delta(t-k T) d t=\sum_{k=-\infty}^{\infty} \phi(k T)
+\end{gathered}
+$$
+
+## 周期冲激串的傅里叶系数
+
+傅里叶系数：
+
+$$
+\hat{x}[k]=\frac{1}{T} \int_{-T / 2}^{T / 2} \delta(t) e^{-j k \frac{2 \pi}{T} t} d t=\frac{1}{T}
+$$
+
+傅里叶级数：
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \frac{1}{T} e^{j k \frac{2 \pi}{T} t}=\lim _{N \rightarrow \infty} \frac{1}{T} D_{N}\left(\frac{2 \pi}{T} t\right)
+$$
+
+其中 $D_{N}$ 是狄利克雷核。
+
+![](https://cdn.mathpix.com/cropped/4cb8e742-a9ce-42fa-a004-42de4559e768-25.jpg?height=200&width=1006&top_left_y=326&top_left_x=119)
+
+## 与周期方波的关系
+
+$$
+\begin{aligned}
+r^{\prime}(t) & =x\left(t+T_{1}\right)-x\left(t-T_{1}\right) \\
+\widehat{r^{\prime}}[k] & =\left(e^{j k \omega_{0} T_{1}}-e^{-j k \omega_{0} T_{1}}\right) \hat{x}[k]=\frac{2 j \sin \left(k \omega_{0} T_{1}\right)}{T} \\
+\hat{r}[k] & =\frac{1}{j k \omega_{0}} \widehat{r^{\prime}}[k]=\frac{\sin \left(k \omega_{0} T_{1}\right)}{k \pi}, \quad k \neq 0
+\end{aligned}
+$$
+
+# 4. 滤波 (Filtering)
+
+## 频率响应 (Frequency Response)
+
+回顾 CT LTI 系统对指数输入 $e^{s t}$ 的响应：
+
+$$
+T\left(\sum_{k} a_{k} e^{s_{k} t}\right)=\sum_{k} a_{k} H\left(s_{k}\right) e^{s_{k} t}
+$$
+
+其中 $H(s)$ 是系统函数：
+$$
+H(s)=\int_{\mathbb{R}} h(t) e^{-s t} d t
+$$
+
+当限制在 $s=j \omega$ 时，$H(j \omega)$ 作为 $\omega$ 的函数称为系统的**频率响应**：
+
+$$
+H(j \omega)=\int_{\mathbb{R}} h(t) e^{-j \omega t} d t
+$$
+
+## 滤波 (Filtering)
+
+周期输入 $x$ 的傅里叶级数表示：
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+频率响应为 $H(j \omega)$ 的 LTI 系统的输出：
+$$
+y(t)=T\left(\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}\right)=\sum_{k=-\infty}^{\infty} H\left(j k \omega_{0}\right) \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+输出是同周期的，傅里叶系数关系为：
+$$
+\hat{y}[k]=H\left(j k \omega_{0}\right) \hat{x}[k]
+$$
+
+滤波改变了频率分量的相对幅度或完全消除某些频率分量。
+
+## 滤波示例：微分器
+
+微分器 $T(x)=x^{\prime}$ 的频率响应：
+$$
+H(j \omega)=j \omega
+$$
+
+对于周期输入 $x(t)$，输出 $y(t)$ 的傅里叶系数为：
+$$
+\hat{y}[k]=j k \omega_{0} \hat{x}[k]
+$$
+
+## 理想频率选择性滤波器
+
+LTI 系统作为滤波器：
+- 不能产生新的频率分量
+- 只能缩放现有分量的幅度或移动相位
+
+**频率整形滤波器 (Frequency-shaping filters)**：改变频谱形状（例如均衡器）。
+**频率选择性滤波器 (Frequency-selective filters)**：通过某些频率而基本不失真，并显著衰减或消除其他频率。
+
+### 理想低通滤波器 (Lowpass)
+$$
+H(j \omega)= \begin{cases}1, & |\omega| \leq \omega_{c} \\ 0, & \text { 其他 }\end{cases}
+$$
+$\omega_{c}$：截止频率 (cutoff frequency)。
+
+### 理想高通滤波器 (Highpass)
+$$
+H(j \omega)= \begin{cases}1, & |\omega| \geq \omega_{c} \\ 0, & \text { 其他 }\end{cases}
+$$
+
+### 理想带通滤波器 (Bandpass)
+$$
+H(j \omega)= \begin{cases}1, & \omega_{c 1} \leq|\omega| \leq \omega_{c 2} \\ 0, & \text { 其他 }\end{cases}
+$$
