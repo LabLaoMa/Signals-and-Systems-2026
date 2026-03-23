@@ -540,8 +540,11 @@ $$
 ## 三角傅里叶级数
 
 对于正弦和余弦：
+
 * 正弦与正弦正交
+
 * 余弦与余弦正交
+
 * 正弦与余弦正交
 
 **综合方程**
@@ -575,7 +578,7 @@ $$
 a_{0}=\hat{x}[0] \\
 a_{k}=\hat{x}[k]+\hat{x}[-k], \\
 b_{k}=j(\hat{x}[k]-\hat{x}[-k]),
-\end{array} \quad k \geq 1 \quad k \geq 1 \quad \begin{cases}\hat{x}[0]=a_{0} \\
+\end{array} \quad k \geq 1 \quad  \begin{cases}\hat{x}[0]=a_{0} \\
 \hat{x}[k]=\frac{1}{2}\left(a_{k}-j b_{k}\right), & k \geq 1 \\
 \hat{x}[k]=\frac{1}{2}\left(a_{k}+j b_{-k}\right), & k \leq-1\end{cases}\right.
 $$
