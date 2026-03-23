@@ -1,0 +1,72 @@
+---
+title: "线性空间深度推导：最小二乘逼近与正交投影"
+author: "学术笔记总结"
+date: "2026-03-23"
+format:
+  html:
+    toc: true
+    math: katex
+---
+
+## 1. 问题定义 (Problem Setup)
+
+给定一个向量 $x$ 和一组**标准正交基** $\{e_1, e_2, \dots, e_n\}$。我们希望在由这组基张量的子空间内，找到一个向量 $y = \sum_{k=1}^n a_k e_k$，使得误差的范数平方 $\|x - y\|^2$ 最小。
+
+* **标准正交性**：$\langle e_i, e_j \rangle = \delta_{ij}$（当 $i=j$ 时为 $1$，否则为 $0$）。
+* **目标**：寻找最优系数 $a_k$。
+
+---
+
+## 2. 核心推导：四项全展开 (The Surgical Expansion)
+
+误差的平方定义为向量与其自身的内积。为了推导清晰，我们将左、右两侧的求和索引分别设为 $k$ 和 $m$。
+
+$$\|x - y\|^2 = \left\langle x - \sum_{k=1}^n a_k e_k, \;\; x - \sum_{m=1}^n a_m e_m \right\rangle$$
+
+利用内积的分配律（Distributive Law），将其展开为四项：
+
+### ① 第一项：左 $x$ 与 右 $x$
+直接得到向量自身的模平方：
+$$\langle x, x \rangle = \|x\|^2$$
+
+### ② 第二项：左 $x$ 与 右侧求和项
+**依据**：内积的**右共轭线性**（$\langle u, \alpha v \rangle = \bar{\alpha} \langle u, v \rangle$）。
+当右侧的系数 $a_m$ 提出内积号时，必须取共轭：
+$$\left\langle x, -\sum_{m=1}^n a_m e_m \right\rangle = -\sum_{m=1}^n \bar{a}_m \langle x, e_m \rangle$$
+
+### ③ 第三项：左侧求和项 与 右 $x$
+**依据**：内积的**左线性**（$\langle \alpha u, v \rangle = \alpha \langle u, v \rangle$）。
+当左侧的系数 $a_k$ 提出内积号时，保持原样：
+$$\left\langle -\sum_{k=1}^n a_k e_k, x \right\rangle = -\sum_{k=1}^n a_k \langle e_k, x \rangle$$
+
+### ④ 第四项：左侧求和项 与 右侧求和项
+**依据**：同时利用左线性和右共轭线性。
+$$\left\langle -\sum_{k=1}^n a_k e_k, -\sum_{m=1}^n a_m e_m \right\rangle = \sum_{k=1}^n \sum_{m=1}^n a_k \bar{a}_m \langle e_k, e_m \rangle$$
+利用**标准正交性** $\langle e_k, e_m \rangle = \delta_{km}$，双重求和坍缩为单重求和：
+$$\sum_{k=1}^n a_k \bar{a}_k \cdot 1 = \sum_{k=1}^n |a_k|^2$$
+
+---
+
+## 3. 合并与配方 (Completing the Square)
+
+将上述四项合并，得到总误差表达式：
+$$\|x - y\|^2 = \|x\|^2 - \sum_{k=1}^n a_k \langle e_k, x \rangle - \sum_{k=1}^n \bar{a}_k \langle x, e_k \rangle + \sum_{k=1}^n |a_k|^2$$
+
+为了找到最小值，我们引入常数 $c_k = \langle x, e_k \rangle$。观察以下恒等式：
+$$|a_k - c_k|^2 = (a_k - c_k)(\bar{a}_k - \bar{c}_k) = |a_k|^2 - a_k \bar{c}_k - \bar{a}_k c_k + |c_k|^2$$
+
+将此结构代入原式进行“配方”处理：
+$$\|x - y\|^2 = \underbrace{\left( \|x\|^2 - \sum_{k=1}^n |\langle x, e_k \rangle|^2 \right)}_{\text{与 } a_k \text{ 无关的常数}} + \underbrace{\sum_{k=1}^n |a_k - \langle x, e_k \rangle|^2}_{\text{非负误差项}}$$
+
+---
+
+## 4. 结论与逻辑终点
+
+1.  **最小化条件**：由于第二部分是绝对值的平方和（永远 $\ge 0$），要使总误差最小，必须令该项为 $0$。
+2.  **最优解**：
+    $$a_k = \langle x, e_k \rangle$$
+
+### 深度解读
+* **共轭的来源**：$\bar{a}_k$ 纯粹是因为内积定义的“右共轭线性”导致的数学结果。
+* **$e_k$ 的形态**：在抽象推导中 $e_k$ 是向量对象。只有在具体空间（如 $L^2$ 空间）展开为积分时，$\langle x, e_k \rangle = \int x \bar{e}_k dt$ 才会显性出现基函数的共轭。
+* **物理意义**：最优逼近就是**正交投影**。这构成了傅里叶级数、小波分析以及 PCA（主成分分析）的共同数学基石。

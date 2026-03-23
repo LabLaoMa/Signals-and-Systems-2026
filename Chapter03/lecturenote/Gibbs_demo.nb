@@ -1,0 +1,249 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      9280,        241]
+NotebookOptionsPosition[      8798,        224]
+NotebookOutlinePosition[      9192,        240]
+CellTagsIndexPosition[      9149,        237]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "(*", "\:5e03\:5c40\:8c03\:6574\:540e\:7684\:5409\:5e03\:65af\:6548\:5e94\
+\:6f14\:793a", "*)"}], 
+  RowBox[{"Manipulate", "[", 
+   RowBox[{"(*", 
+    RowBox[{
+    "1.", " ", "\:5b9a\:4e49", " ", "N", " ", 
+     "\:9879\:5085\:91cc\:53f6\:7ea7\:6570\:4e4b\:548c"}], "*)"}], 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"fourierSum", "[", 
+       RowBox[{"x_", ",", "n_"}], "]"}], ":=", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"4", "/", "Pi"}], ")"}], "*", 
+       RowBox[{"Total", "[", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Sin", "[", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"2", " ", "k"}], "-", "1"}], ")"}], " ", "x"}], "]"}], 
+           "/", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"2", " ", "k"}], "-", "1"}], ")"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"k", ",", "1", ",", "n"}], "}"}]}], "]"}], "]"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{"2.", " ", "\:7ed8\:56fe\:90e8\:5206"}], "*)"}], 
+     RowBox[{"Plot", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"SquareWave", "[", "x", "]"}], ",", 
+         RowBox[{"fourierSum", "[", 
+          RowBox[{"x", ",", "N"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", 
+         RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
+       RowBox[{"PlotRange", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1.3"}], ",", "1.3"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"(*", 
+        RowBox[{
+        "\:589e\:52a0\:8fb9\:7f18\:7559\:767d", "\:ff0c", 
+         "\:65b9\:4fbf\:89c2\:5bdf\:8fc7\:51b2"}], "*)"}], 
+       RowBox[{"PlotRangePadding", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Scaled", "[", "0.05", "]"}], ",", 
+          RowBox[{"Scaled", "[", "0.05", "]"}]}], "}"}]}], ",", 
+       RowBox[{"PlotStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Dynamic", "[", 
+            RowBox[{"If", "[", 
+             RowBox[{"showOriginal", ",", 
+              RowBox[{"Directive", "[", 
+               RowBox[{"Dashed", ",", "Blue", ",", "Thick"}], "]"}], ",", 
+              RowBox[{"Directive", "[", 
+               RowBox[{"Opacity", "[", "0", "]"}], "]"}]}], "]"}], "]"}], 
+           "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"Red", ",", "Thick"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"GridLines", "->", 
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1"}], ",", "1"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"AxesLabel", "->", 
+        RowBox[{"{", 
+         RowBox[{"\"\<x\>\"", ",", "\"\<S_N(x)\>\""}], "}"}]}], ",", 
+       RowBox[{"PlotLabel", "->", 
+        RowBox[{"Style", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+           "StringTemplate", 
+            "[", "\"\<\:77e9\:5f62\:6ce2\:5085\:91cc\:53f6\:7ea7\:6570\:8fd1\
+\:4f3c (N=``)\>\"", "]"}], "[", "N", "]"}], ",", "16", ",", "Bold"}], "]"}]}],
+        ",", 
+       RowBox[{"PlotLegends", "->", 
+        RowBox[{"Placed", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<\:7406\:60f3\:4fe1\:53f7\>\"", 
+            ",", "\"\<\:5085\:91cc\:53f6\:7ea7\:6570\>\""}], "}"}], ",", 
+          "Bottom"}], "]"}]}], ",", 
+       RowBox[{"Exclusions", "->", "None"}], ",", 
+       RowBox[{"PerformanceGoal", "->", "\"\<Quality\>\""}], ",", 
+       RowBox[{"ImageSize", "->", "Large"}]}], "]"}]}], ",", 
+    RowBox[{"(*", 
+     RowBox[{"3.", " ", "\:63a7\:4ef6\:8bbe\:7f6e"}], "*)"}], 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"N", ",", "1", ",", "\"\<\:7ea7\:6570\:9879\:6570 (N)\>\""}], 
+       "}"}], ",", "1", ",", "200", ",", "1", ",", 
+      RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "showOriginal", ",", "True", 
+        ",", "\"\<\:663e\:793a\:539f\:4fe1\:53f7\:80cc\:666f\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"True", ",", "False"}], "}"}]}], "}"}], ",", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"4.", " ", "\:5173\:952e\:4f4d\:7f6e\:8c03\:6574"}], "\:ff1a", 
+      "\:5c06\:63a7\:4ef6\:653e\:5728\:6b63\:4e0a\:65b9"}], "*)"}], 
+    RowBox[{"ControlPlacement", "->", "Top"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.983216518167729*^9, 3.983216518169602*^9}},
+ CellLabel->"In[15]:=",ExpressionUUID->"35aaf0a2-87a9-4c53-850e-20f5ac8c8c43"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{N$$ = 200, $CellContext`showOriginal$$ = True, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[N$$], 1, "\:7ea7\:6570\:9879\:6570 (N)"}, 1, 200, 1, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`showOriginal$$], True, 
+       "\:663e\:793a\:539f\:4fe1\:53f7\:80cc\:666f"}, {True, False}, 
+      ControlType -> Checkbox}}, Typeset`size$$ = {
+    800.1015625, {293.8855250652524, 269.2698942058772}}, Typeset`update$$ = 
+    0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {N$$ = 1, $CellContext`showOriginal$$ = True}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> ($CellContext`fourierSum[
+          Pattern[$CellContext`x, 
+           Blank[]], 
+          Pattern[$CellContext`n, 
+           Blank[]]] := (4/Pi) Total[
+           Table[
+           Sin[(2 $CellContext`k - 1) $CellContext`x]/(2 $CellContext`k - 
+            1), {$CellContext`k, 1, $CellContext`n}]]; Plot[{
+          SquareWave[$CellContext`x], 
+          $CellContext`fourierSum[$CellContext`x, N$$]}, {$CellContext`x, -Pi,
+           Pi}, PlotRange -> {{-Pi, Pi}, {-1.3, 1.3}}, PlotRangePadding -> {
+           Scaled[0.05], 
+           Scaled[0.05]}, PlotStyle -> {{
+            Dynamic[
+             If[$CellContext`showOriginal$$, 
+              Directive[Dashed, Blue, Thick], 
+              Directive[
+               Opacity[0]]]]}, {Red, Thick}}, 
+         GridLines -> {Automatic, {-1, 1}}, AxesLabel -> {"x", "S_N(x)"}, 
+         PlotLabel -> Style[
+           StringTemplate[
+           "\:77e9\:5f62\:6ce2\:5085\:91cc\:53f6\:7ea7\:6570\:8fd1\:4f3c \
+(N=``)"][N$$], 16, Bold], PlotLegends -> 
+         Placed[{"\:7406\:60f3\:4fe1\:53f7", 
+            "\:5085\:91cc\:53f6\:7ea7\:6570"}, Bottom], Exclusions -> None, 
+         PerformanceGoal -> "Quality", ImageSize -> Large]), 
+      "Specifications" :> {{{N$$, 1, "\:7ea7\:6570\:9879\:6570 (N)"}, 1, 200, 
+         1, Appearance -> 
+         "Labeled"}, {{$CellContext`showOriginal$$, True, 
+          "\:663e\:793a\:539f\:4fe1\:53f7\:80cc\:666f"}, {True, False}}}, 
+      "Options" :> {ControlPlacement -> Top}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      849.2015624999999, {337.1821682537289, 342.9141018474789}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.983216518709065*^9},
+ CellLabel->"Out[15]=",ExpressionUUID->"b24bb37f-761f-42e2-a1f3-0b81bd139ea5"]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e42e04aa-e9f8-4ced-93b7-fd9c1a1eabb4"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4801, 129, 226, "Input",ExpressionUUID->"35aaf0a2-87a9-4c53-850e-20f5ac8c8c43"],
+Cell[5380, 153, 3402, 68, 697, "Output",ExpressionUUID->"b24bb37f-761f-42e2-a1f3-0b81bd139ea5"]
+}, Open  ]]
+}
+]
+*)
+
