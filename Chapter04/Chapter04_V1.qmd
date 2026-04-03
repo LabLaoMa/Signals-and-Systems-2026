@@ -1,0 +1,2163 @@
+---
+title: "第四章 连续时间傅里叶变换"
+author: "马越"
+institute: >
+  北京理工大学机械与车辆学院<br> 
+  Email: yuema@bit.edu.cn<br>
+format:
+  revealjs:
+    theme: [simple, custom2.scss]
+    transition: slide
+    # title-slide-attributes:
+    #   data-background-color: "#0b2a4a"
+    #   data-background-opacity: "0.96"
+    slide-number: true
+    incremental: false
+    center: false
+    # width: 1366
+    # height: 768
+    # margin: 0.02
+    math: mathjax
+    footer: '<div class="footer-3col"><div class="left">机械与车辆学院 马越</div><div class="center">信号与系统</div><div class="right">2026 春季学期</div></div>'
+    toc: false                 # 可以关掉默认的
+    titleSelector: 'h1, h2, h3' # 显示 h3 层级
+    # revealjs-plugins:
+    #  - tableofcontents        # 加载插件
+    toc-title: "目录"     # 中文标题（默认是 Table of Contents）
+    depth: 3          # 显示到几级标题（默认 3，建议 2 或 3）
+    embed-resources: true
+    self-contained-math: true
+    include-in-header: plugin/myspotlight.html
+    spotlight_size: 200
+
+    # 封面背景图可选：
+    # background-image: "img/cover.jpg"
+    # background-opacity: 0.22
+  beamer:
+    theme: Madrid
+    fonttheme: structurebold
+    keep-tex: true   # 保留中间生成的 .tex 文件以便微调
+resource-path: ["."]
+execute:
+  echo: false
+---
+
+
+## 目录 {#toc0}
+
+- [**1. 非周期信号的表示：连续时间傅里叶变换**](#sec41)
+- [2. 连续时间傅里叶变换的性质](#sec42)
+- [3. 卷积性质](#sec43)
+- [4. 相乘性质](#sec44)
+- [5. 变换性质和变换对列表](#sec45)
+- [6. 由线性常系数微分方程表征的系统](#sec46)
+
+# 1. 非周期信号的表示：连续时间傅里叶变换 (CT Fourier Transform){#sec41}
+
+## 动机示例：周期方波
+
+In one period,
+
+$$
+x_{T}(t)= \begin{cases}1, & |t|<T_{1} \\ 0, & T_{1}<|t|<T / 2\end{cases}
+$$
+
+![](imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-30.png)
+
+Frequency component at $\omega_{k}=k \omega_{0}$ satisfies
+
+$$
+T \hat{x}_{T}[k]=\frac{2 \sin \left(k \omega_{0} T_{1}\right)}{k \omega_{0}}=\left.\frac{2 \sin \left(\omega T_{1}\right)}{\omega}\right|_{\omega=k \omega_{0}}
+$$
+
+$T \hat{x}_{T}[k]$ is value of envelope $X(j \omega) \triangleq \frac{2 \sin \left(\omega T_{1}\right)}{\omega}$ sampled at $\omega_{k}=k \omega_{0}$
+
+## 动机示例：周期方波
+
+$X\left(j \omega_{k}\right)$ for fixed $T_{1}$ and different $T$
+![](imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-31_3.png)
+![](imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-31_2.png)
+![](imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-31.png)
+
+As $T \rightarrow \infty$, discrete frequencies sampled more densely
+
+## 动机示例：周期方波
+
+As $T \rightarrow \infty, x_{T}(t) \rightarrow x(t) \triangleq u\left(t+\frac{T_{2}}{2}\right)-u\left(t-\frac{T_{1}}{2}\right)$, rectangular pulse
+
+$$
+\begin{array}{rlr}
+x_{T}(t) & =\sum_{k=-\infty}^{\infty} \hat{x}_{T}[k] e^{j \omega_{k} t}=\sum_{k=-\infty}^{\infty} \frac{1}{T} X\left(j \omega_{k}\right) e^{j \omega_{k} t} & \left(T \hat{x}[k]=X\left(j \omega_{k}\right)\right) \\
+& =\sum_{k=-\infty}^{\infty} \frac{\omega_{0}}{2 \pi} X\left(j \omega_{k}\right) e^{j \omega_{k} t} & \left(\omega_{0}=\frac{2 \pi}{T}\right) \\
+& =\frac{1}{2 \pi} \sum_{k=-\infty}^{\infty} X\left(j \omega_{k}\right) e^{j \omega_{k} t} \Delta \omega & \left(\Delta \omega=\omega_{0}\right) \\
+& \rightarrow \frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega) e^{j \omega t} d \omega & \left(\Delta \omega=\omega_{0} \rightarrow 0\right)
+\end{array}
+$$
+
+Thus
+
+$$
+x(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega) e^{j \omega t} d \omega
+$$
+
+## 动机示例：周期方波
+
+For envelope $X(j \omega)$,
+
+$$
+\begin{aligned}
+X\left(j \omega_{k}\right) & =T \hat{x}_{T}[k] \\
+& =\int_{-\frac{T}{2}}^{\frac{T}{2}} x_{T}(t) e^{-j \omega_{k} t} d t \\
+& =\int_{-\frac{T}{2}}^{\frac{T}{2}} x(t) e^{-j \omega_{k} t} d t \quad\left(x_{T}(t)=x(t) \text { for }|t| \leq T / 2\right) \\
+& =\int_{-\infty}^{\infty} x(t) e^{-j \omega_{k} t} d t \quad(x(t)=0 \text { for }|t|>T / 2)
+\end{aligned}
+$$
+
+SO
+
+$$
+X(j \omega)=\int_{-\infty}^{\infty} x(t) e^{-j \omega t} d t
+$$
+
+## 动机示例：周期方波
+
+![](imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-34_2.png)
+![](imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-34.png)
+![](imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-34_3.png)
+
+## 连续时间傅里叶变换 of Aperiodic Signals
+
+For aperiodic signal $x$ with $\operatorname{supp} x \subset\left[-T_{1}, T_{1}\right]$, define periodic extension with period $T>2 T_{1}$,
+
+$$
+x_{T}(t)=\sum_{k=-\infty}^{\infty} x(t-k T)
+$$
+
+Then
+
+$$
+x(t)=x_{T}(t), \quad|t|<\frac{T}{2}
+$$
+
+As $T \rightarrow \infty$,
+
+$$
+x_{T}(t) \rightarrow x(t), \quad \forall t \in \mathbb{R}
+$$
+
+$x_{T}$ has Fourier series representation
+
+$$
+x_{T}(t)=\sum_{k=-\infty}^{\infty} \hat{x}_{T}[k] e^{j k \omega_{0} t}, \quad \omega_{0}=\frac{2 \pi}{T}
+$$
+
+## 连续时间傅里叶变换 of Aperiodic Signals
+
+Define
+
+$$
+X(j \omega)=\int_{-\infty}^{\infty} x(t) e^{-j \omega t} d t
+$$
+
+$X(j \omega)$ is envelope of $T \hat{x}_{T}[k]$,
+
+$$
+\begin{aligned}
+\hat{x}_{T}[k] & =\frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} x_{T}(t) e^{-j k \omega_{0} t} d t=\frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} x(t) e^{-j k \omega_{0} t} d t \\
+& =\frac{1}{T} \int_{-\infty}^{\infty} x(t) e^{-j k \omega_{0} t} d t=\frac{1}{T} X\left(j k \omega_{0}\right)=\frac{\omega_{0}}{2 \pi} X\left(j k \omega_{0}\right)
+\end{aligned}
+$$
+
+so
+
+$$
+\begin{aligned}
+x(t) & =\lim _{T \rightarrow \infty} x_{T}(t)=\lim _{T \rightarrow \infty} \sum_{k=-\infty}^{\infty} \frac{\omega_{0}}{2 \pi} X\left(j k \omega_{0}\right) e^{j k \omega_{0} t} \\
+& =\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega) e^{j \omega t} d \omega
+\end{aligned}
+$$
+
+## 连续时间傅里叶变换 Pair
+
+Fourier transform (analysis equation)
+
+$$
+X(j \omega)=\mathcal{F}(x)(j \omega)=\int_{-\infty}^{\infty} x(t) e^{-j \omega t} d t
+$$
+
+$X(j \omega)$ called spectrum of $x(t)$
+
+Inverse Fourier transform (synthesis equation)
+
+$$
+x(t)=\mathcal{F}^{-1}(X)(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega) e^{j \omega t} d \omega
+$$
+
+Superposition of complex exponentials at continuum of frequencies; frequency $\omega$ has "amplitude" $X(j \omega) \frac{d \omega}{2 \pi}$
+
+## CT 傅里叶变换定义
+
+**傅里叶变换 (分析方程)**
+
+$$
+X(j \omega)=\mathcal{F}\{x\}(j \omega)=\int_{-\infty}^{\infty} x(t) e^{-j \omega t} d t
+$$
+
+$X(j \omega)$ 称为 $x(t)$ 的**频谱 (spectrum)**。
+
+**傅里叶逆变换 (综合方程)**
+
+$$
+x(t)=\mathcal{F}^{-1}\{X\}(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega) e^{j \omega t} d \omega
+$$
+
+这表示在连续频率范围内的复指数信号的叠加；频率 $\omega$ 处的“密度”为 $\frac{1}{2 \pi} X(j \omega)$。
+
+## 等价表示与应用
+
+同一信号的两种等价表示：
+
+- 时域 vs. 频域：$x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(j \omega)$
+
+**其他领域的应用**：
+
+- **概率论**：具有密度函数 $p(x)$ 的随机变量 $X$ 的特征函数
+  $$
+  \varphi_{X}(t)=\mathbb{E}\left[e^{j t X}\right]=\int_{-\infty}^{\infty} p(x) e^{j x t} d x
+  $$
+
+- **量子力学**：
+  - 位置表示：波函数 $\psi(x)$（$|\psi(x)|^{2}$ 是在位置 $x$ 发现粒子的概率密度）
+  - 动量表示：$\Psi(p)$
+    $$
+    \Psi(p)=\frac{1}{\sqrt{2 \pi \hbar}} \int_{-\infty}^{\infty} \psi(x) e^{-j p x / \hbar} d x
+    $$
+  - $|\Psi(p)|^{2}$ 是发现具有动量 $p$ 的粒子的概率密度
+
+## 目录 {#toc1}
+
+- [1. 非周期信号的表示：连续时间傅里叶变换](#sec41)
+- [**2. 连续时间傅里叶变换的性质**](#sec42)
+- [3. 卷积性质](#sec43)
+- [4. 相乘性质](#sec44)
+- [5. 变换性质和变换对列表](#sec45)
+- [6. 由线性常系数微分方程表征的系统](#sec46)
+
+## 目录 {#toc2}
+
+- [1. 非周期信号的表示：连续时间傅里叶变换](#sec41)
+- [2. 连续时间傅里叶变换的性质](#sec42)
+- [**3. 卷积性质**](#sec44)
+- [4. 相乘性质](#sec45)
+- [5. 变换性质和变换对列表](#sec46)
+- [6. 由线性常系数微分方程表征的系统](#sec47)
+
+## 目录 {#toc3}
+
+- [1. 非周期信号的表示：连续时间傅里叶变换](#sec41)
+- [2. 连续时间傅里叶变换的性质](#sec42)
+- [3. 卷积性质](#sec43)
+- [**4. 相乘性质**](#sec44)
+- [5. 变换性质和变换对列表](#sec45)
+- [6. 由线性常系数微分方程表征的系统](#sec46)
+
+## 目录 {#toc4}
+
+- [1. 非周期信号的表示：连续时间傅里叶变换](#sec41)
+- [2. 连续时间傅里叶变换的性质](#sec42)
+- [3. 卷积性质](#sec43)
+- [4. 相乘性质](#sec44)
+- [**5. 变换性质和变换对列表**](#sec45)
+- [6. 由线性常系数微分方程表征的系统](#sec46)
+
+## 目录 {#toc5}
+
+- [1. 非周期信号的表示：连续时间傅里叶变换](#sec41)
+- [2. 连续时间傅里叶变换的性质](#sec42)
+- [3. 卷积性质](#sec43)
+- [4. 相乘性质](#sec44)
+- [5. 变换性质和变换对列表](#sec45)
+- [**6. 由线性常系数微分方程表征的系统**](#sec46)
+
+
+
+
+
+
+# 2. $L_{1}$ 信号的傅里叶变换
+
+## $L_{1}$ 信号的定义
+
+回顾微积分，对于实值函数 $x$，广义积分定义为：
+
+$$
+\int_{\mathbb{R}} x(t) d t \triangleq \lim _{T_{1}, T_{2} \rightarrow \infty} \int_{-T_{1}}^{T_{2}} x(t) d t
+$$
+
+如果 $x \in L_{1}(\mathbb{R})$，即 $\|x\|_{1}=\int_{\mathbb{R}}|x(t)| d t<\infty$，则该积分是**定义良好 (well-defined)** 的。
+对于复值函数 $x=u+j v$ 同样适用，因为 $|u|,|v| \leq|x|$。
+
+对于信号 $x \in L_{1}(\mathbb{R})$：
+- $x(t) e^{-j \omega t} \in L_{1}(\mathbb{R})$，因为 $\left|x(t) e^{-j \omega t}\right|=|x(t)|$。
+- 对于每个 $\omega$，傅里叶变换 $X(j \omega)$ 都是定义良好的广义积分。
+
+## $L_{1}$ 信号傅里叶变换的性质
+
+**定理**：如果 $x \in L_{1}$，则 $X$ 是**有界**的，实际上 $\|X\|_{\infty} \leq\|x\|_{1}$。
+
+**引理**：对于实变量 $t$ 的复值函数 $f$，
+$$
+\left|\int f(t) d t\right| \leq \int|f(t)| d t
+$$
+**证明**：若右边为 $\infty$ 则显然。假设有限。令积分的相位为 $\phi$，即 $\int f(t) d t=\left|\int f(t) d t\right| e^{j \phi}$。
+$$
+\left|\int f(t) d t\right|=e^{-j \phi} \int f(t) d t=\int e^{-j \phi} f(t) d t
+$$
+取实部：
+$$
+\left|\int f(t) d t\right|=\operatorname{Re} \int e^{-j \phi} f(t) d t=\int \operatorname{Re}\left[e^{-j \phi} f(t)\right] d t \leq \int\left|e^{-j \phi} f(t)\right| d t
+$$
+
+**定理**：如果 $x \in L_{1}$，则 $X$ 是**一致连续 (uniformly continuous)** 的。
+*(证明利用三角不等式和 $L_1$ 积分的性质，此处略去详细推导，见原课件)*
+
+## 例子：右边衰减指数信号
+
+$$
+x(t)=e^{-a t} u(t), \quad a>0
+$$
+
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-09.png)
+
+$$
+\begin{aligned}
+X(j \omega) & =\int_{0}^{\infty} e^{-(a+j \omega) t} d t \\
+& =-\left.\frac{1}{a+j \omega} e^{-(a+j \omega) t}\right|_{0} ^{\infty}=\frac{1}{a+j \omega}
+\end{aligned}
+$$
+
+*(注：该公式也适用于实部 $\operatorname{Re} a>0$ 的复数 $a$)*
+
+对于 $a>0$：
+$$
+|X(j \omega)|=\frac{1}{\sqrt{a^{2}+\omega^{2}}}, \quad \arg X(j \omega)=-\arctan \frac{\omega}{a}
+$$
+
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-09_2.png)
+
+## 例子：双边衰减指数信号
+
+$$
+x(t)=e^{-a|t|}, \quad a>0
+$$
+
+$$
+\begin{aligned}
+X(j \omega) & =\int_{-\infty}^{\infty} e^{-a|t|} e^{-j \omega t} d t \\
+& =\int_{-\infty}^{0} e^{(a-j \omega) t} d t+\int_{0}^{\infty} e^{-(a+j \omega) t} d t \\
+& =\frac{1}{a-j \omega}+\frac{1}{a+j \omega}=\frac{2 a}{a^{2}+\omega^{2}}
+\end{aligned}
+$$
+
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-10.png)
+
+## 例子：高斯信号 (Gaussian)
+
+对于 $a>0$，
+
+$$
+x(t)=e^{-a t^{2}} \stackrel{\mathcal{F}}{\longleftrightarrow} X(j \omega)=\sqrt{\frac{\pi}{a}} e^{-\frac{\omega^{2}}{4 a}}
+$$
+
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-11.png)
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-11_2.png)
+
+特别地，如果 $a=1/2$：
+$$
+x(t)=e^{-\frac{1}{2} t^{2}} \stackrel{\mathcal{F}}{\longleftrightarrow} X(j \omega)=\sqrt{2 \pi} e^{-\frac{1}{2} \omega^{2}}
+$$
+即高斯函数是傅里叶变换的特征函数。
+
+## 高斯信号变换证明
+
+利用微分方程和分部积分证明：
+
+$$
+\begin{aligned}
+\frac{d}{d \omega} X(j \omega) & =\int_{-\infty}^{\infty} e^{-a t^{2}}(-j t) e^{-j \omega t} d t=\frac{j}{2 a} \int_{-\infty}^{\infty}\left(\frac{d}{d t} e^{-a t^{2}}\right) e^{-j \omega t} d t \\
+&=-\frac{j}{2 a} \int_{-\infty}^{\infty} e^{-a t^{2}}\left(\frac{d}{d t} e^{-j \omega t}\right) d t \quad \text { (分部积分) } \\
+&=-\frac{\omega}{2 a} X(j \omega)
+\end{aligned}
+$$
+
+解微分方程 $\frac{d}{d \omega} X(j \omega)=-\frac{\omega}{2 a} X(j \omega)$ 并利用 $X(0)=\sqrt{\pi/a}$ 可得结果。
+
+## $L_{1}$ 信号的傅里叶逆变换
+
+给定 $X(j\omega)$，逆变换是否等于 $x(t)$？
+
+$$
+x(t) \stackrel{?}{=} \mathcal{F}^{-1}\{X\}(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega) e^{j \omega t} d \omega
+$$
+
+**定理**：如果 $x \in L_{1}(\mathbb{R})$ 是连续的，且 $X=\mathcal{F}\{x\} \in L_{1}(\mathbb{R})$，那么 $x=\mathcal{F}^{-1}\{X\}$。
+- 例如：双边衰减指数，高斯信号。
+
+**注意**：对于 $x \in L_1$，其变换 $X$ 不一定属于 $L_1$。
+- 例如：单边衰减指数，矩形脉冲。
+
+**主值积分**：通常将逆变换解释为柯西主值 (Principal Value)：
+$$
+\lim _{W \rightarrow \infty} \frac{1}{2 \pi} \int_{-W}^{W} X(j \omega) e^{j \omega t} d \omega
+$$
+
+**狄利克雷定理**：如果 $x \in L_1$ 且满足狄利克雷条件，逆变换收敛于 $\frac{x\left(t_{+}\right)+x\left(t_{-}\right)}{2}$（吉布斯现象）。
+
+## 例子：矩形脉冲 (Rectangular Pulse)
+
+$$
+x(t)=u(t+T)-u(t-T)
+$$
+
+$$
+X(j \omega)=\int_{-T}^{T} e^{-j \omega t} d t=\frac{2 \sin (\omega T)}{\omega}
+$$
+
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-15.png)
+
+当 $T \rightarrow \infty$ 时：
+- 频域：$\frac{\sin (\omega T)}{\pi \omega} \rightarrow \delta(\omega)$
+- 时域：$x(t) \rightarrow 1$ (直流信号)
+
+定义 Sinc 函数：$\operatorname{sinc}(\theta) \triangleq \frac{\sin (\pi \theta)}{\pi \theta}$
+
+## 例子：理想低通滤波器
+
+频率响应：
+$$
+H(j \omega)=u\left(\omega+\omega_{c}\right)-u\left(\omega-\omega_{c}\right)
+$$
+
+冲激响应（逆变换）：
+$$
+h(t)=\frac{1}{2 \pi} \int_{-\omega_{c}}^{\omega_{c}} e^{j \omega t} d \omega=\frac{\sin \left(\omega_{c} t\right)}{\pi t}
+$$
+
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-16.png)
+
+注意：$h(t) \notin L_{1}(\mathbb{R})$ 但 $H(j \omega) \in L_{1}(\mathbb{R})$。
+
+当 $\omega_{c} \rightarrow \infty$ 时，
+- 时域：$h(t) \rightarrow \delta(t)$
+- 频域：$H(j \omega) \rightarrow 1$（通过所有频率）
+
+## 对偶性 (Duality)
+
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-17.png)
+
+- 时间脉冲 $\leftrightarrow$ 频域 Sinc
+- 时间 Sinc $\leftrightarrow$ 频域脉冲 (低通滤波器)
+
+# 3. 更一般函数的傅里叶变换
+
+## 广义傅里叶变换定义
+
+如果 $x_n \rightarrow x$，定义 $x$ 的傅里叶变换为：
+$$
+X(j \omega)=\mathcal{F}\{x\} \triangleq \lim _{n} \mathcal{F}\left\{x_{n}\right\}
+$$
+
+更正式地，基于**分布/广义函数**理论，对于测试函数 $\phi$：
+$$
+\int_{\mathbb{R}} X(j \omega) \phi(\omega) d \omega=\int_{\mathbb{R}} x(t) \Phi(j t) d t
+$$
+
+**施瓦兹空间 (Schwarz Space) $\mathcal{S}$**：
+- 无穷可微且**速降 (rapidly decreasing)** 的函数空间。
+- 例如：高斯函数 $g(t)=e^{-a t^{2}} \in \mathcal{S}$。
+- 性质：$\phi \in \mathcal{S} \Longrightarrow \Phi \in \mathcal{S}$。
+
+## 例子：单位冲激 $\delta$
+
+**方法 1**：作为理想低通滤波器的极限。
+$$
+h_{W}(t)=\frac{\sin (W t)}{\pi t} \stackrel{\mathcal{F}}{\longleftrightarrow} H_{W}(j \omega)=u(\omega+W)-u(\omega-W)
+$$
+当 $W \rightarrow \infty$，$h_W \to \delta$，且 $H_W \to 1$。
+$$
+\therefore \mathcal{F}\{\delta\}=1
+$$
+
+**方法 2**：使用广义定义。
+$$
+\int_{\mathbb{R}} X(j \omega) \phi(\omega) d \omega=\int_{\mathbb{R}} \delta(t) \Phi(j t) d t=\Phi(0)=\int_{\mathbb{R}} 1 \cdot \phi(\omega) d \omega
+$$
+因此 $X(j\omega)=1$。
+$\delta$ 具有**白色频谱 (white spectrum)**，包含等量的所有频率。
+
+## 例子：直流信号 1
+
+**方法 1**：作为矩形脉冲的极限。
+$$
+x_{T}(t) \longleftrightarrow X_{T}(j \omega)=\frac{2 \sin (\omega T)}{\omega}
+$$
+当 $T \rightarrow \infty$，$x_T \to 1$，且 $X_T \to 2\pi\delta(\omega)$。
+$$
+\therefore \mathcal{F}\{1\}=2 \pi \delta(\omega)
+$$
+
+**方法 2**：使用广义定义。
+$$
+\int_{\mathbb{R}} X(j \omega) \phi(\omega) d \omega=\int_{\mathbb{R}} 1 \cdot \Phi(j t) d t=2 \pi \phi(0)=\int_{\mathbb{R}} 2 \pi \delta(\omega) \phi(\omega) d \omega
+$$
+**直流信号的频谱是零频率处的冲激！**
+
+## 例子：复指数信号
+
+令 $x(t)=e^{j \omega_{0} t}$。
+
+$$
+\begin{aligned}
+\int_{\mathbb{R}} X(j \omega) \phi(\omega) d \omega & =\int_{\mathbb{R}} e^{j \omega_{0} t} \Phi(j t) d t=2 \pi \phi\left(\omega_{0}\right) \\
+& =\int_{\mathbb{R}} 2 \pi \delta\left(\omega-\omega_{0}\right) \phi(\omega) d \omega
+\end{aligned}
+$$
+
+因此：
+$$
+\mathcal{F}\{e^{j \omega_{0} t}\} = 2 \pi \delta\left(\omega-\omega_{0}\right)
+$$
+
+$e^{j \omega_{0} t}$ 的频谱是 $\omega_{0}$ 处的冲激。
+这可以解释为 $e^{j \omega t}$ 的正交性：
+$$
+X(j \omega)=\left\langle x, e^{j \omega t}\right\rangle
+$$
+
+# 4. 周期信号的傅里叶变换
+
+## 周期信号的频谱
+
+基频为 $\omega_0$ 的周期信号具有傅里叶级数：
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+利用线性和复指数的变换：
+$$
+\begin{aligned}
+X(j \omega) & =\mathcal{F}\left\{\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}\right\} \\
+& =\sum_{k=-\infty}^{\infty} \hat{x}[k] \mathcal{F}\left\{e^{j k \omega_{0} t}\right\} \\
+& =\sum_{k=-\infty}^{\infty} 2 \pi \hat{x}[k] \delta\left(\omega-k \omega_{0}\right)
+\end{aligned}
+$$
+
+**结论**：周期信号的频谱由**谐波相关频率处的冲激**组成！冲激的面积是 $2\pi$ 乘以傅里叶级数系数。
+
+## 例子：正弦和余弦
+
+**余弦**：$x(t) = \cos(\omega_0 t) = \frac{1}{2} e^{j \omega_{0} t}+\frac{1}{2} e^{-j \omega_{0} t}$
+$$
+X(j \omega) = \pi \delta\left(\omega-\omega_{0}\right)+\pi \delta\left(\omega+\omega_{0}\right)
+$$
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-29.png)
+
+**正弦**：$x(t) = \sin(\omega_0 t) = \frac{1}{2j} e^{j \omega_{0} t}-\frac{1}{2j} e^{-j \omega_{0} t}$
+$$
+X(j \omega) = \frac{\pi}{j} \delta\left(\omega-\omega_{0}\right)-\frac{\pi}{j} \delta\left(\omega+\omega_{0}\right)
+$$
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-29_2.png)
+
+## 例子：周期冲激串
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \delta(t-k T)
+$$
+
+傅里叶系数 $\hat{x}[k] = 1/T$。
+傅里叶变换：
+
+$$
+X(j \omega)=\sum_{k=-\infty}^{\infty} \frac{2 \pi}{T} \delta\left(\omega-k \frac{2 \pi}{T}\right)
+$$
+
+时域中的冲激串 $\longleftrightarrow$ 频域中的冲激串。
+
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-31.png)
+![](imglink/dcd4b7c8-46bd-4548-b1ba-2916a67f3fc6-31_2.png)
+
+## 2. 连续时间傅里叶变换的性质
+
+## 回顾: $L_1(\mathbb{R})$ 函数的傅里叶变换
+
+Fourier transform and its inverse as principal values
+
+$$
+\begin{aligned}
+\mathcal{F}\{x\}(j \omega) & =\lim _{T \rightarrow \infty} \int_{-T}^{T} x(t) e^{-j \omega t} d t \\
+\mathcal{F}^{-1}(X)(t) & =\lim _{W \rightarrow \infty} \frac{1}{2 \pi} \int_{-W}^{W} X(j \omega) e^{j \omega t} d \omega
+\end{aligned}
+$$
+
+定理。 (Pointwise inversion)
+
+1. If $x \in L_{1}(\mathbb{R})$ satisfies Dirichlet conditions on all finite intervals,
+
+$$
+\left(\mathcal{F}^{-1} \circ \mathcal{F}\{x\}\right)(t)=\frac{x\left(t_{+}\right)+x\left(t_{-}\right)}{2}, \quad \forall t
+$$
+
+2. If $X \in L_{1}(\mathbb{R})$ satisfies Dirichlet conditions on all finite intervals,
+
+$$
+\left(\mathcal{F} \circ \mathcal{F}^{-1}\{X\}\right)(j \omega)=\frac{X\left(j \omega_{+}\right)+X\left(j \omega_{-}\right)}{2}, \quad \forall \omega
+$$
+
+3. If $x \in C(\mathbb{R}) \cap L_{1}(\mathbb{R})$ and $\mathcal{F}\{x\} \in L_{1}(\mathbb{R})$, then $\mathcal{F}^{-1} \circ \mathcal{F}\{x\}=x$
+
+## 回顾: $L_1(\mathbb{R})$ 函数的傅里叶变换
+
+傅里叶变换对
+
+| case | $x(t)$ | $X(j \omega)$ |
+| :--- | :--- | :--- |
+| 1 | $e^{-a t} u(t), \quad \operatorname{Re} a>0$ | $\frac{1}{a+j \omega}$ |
+| 3 | $e^{-a\|t\|}, \quad \operatorname{Re} a>0$ | $\frac{2 a}{a^{2}+\omega^{2}}$ |
+| 3 | $e^{-a t^{2}}, \quad a>0$ | $\sqrt{\frac{\pi}{a}} e^{-\frac{\omega^{2}}{4 a}}$ |
+| 1 | $u(t+T)-u(t-T)$ | $\frac{2 \sin (\omega T)}{\omega}$ |
+| 2 | $\frac{\sin \left(\omega_{c} t\right)}{\pi t}$ | $u\left(\omega+\omega_{c}\right)-u\left(\omega-\omega_{c}\right)$ |
+
+## 回顾: 广义函数的傅里叶变换
+
+施瓦茨空间 $\mathcal{S}=\mathcal{S}(\mathbb{R})$ of rapidly decreasing functions
+
+$$
+\mathcal{S}=\left\{\phi \in C^{\infty}(\mathbb{R}):\|\phi\|_{\ell, k}<\infty, \forall \ell, k \in \mathbb{N}\right\}
+$$
+
+where $\|\phi\|_{\ell, k}=\sup _{t \in \mathbb{R}}\left|t^{\ell} \phi^{(k)}(t)\right|$. Note $\mathcal{F}\{\mathcal{S}\}=\mathcal{S}$.
+Fourier transform of tempered distributions
+
+$$
+(x, \phi) \triangleq \int_{\mathbb{R}} x(\xi) \phi(\xi) d \xi
+$$
+
+- If $x_{n} \rightarrow x$ in distribution, then $\mathcal{F}\{x\} \triangleq \lim _{n} \mathcal{F}\left\{x_{n}\right\}$ in distribution
+
+$$
+(x, \phi)=\lim _{n}\left(x_{n}, \phi\right) \Longrightarrow(\mathcal{F}\{x\}, \phi) \triangleq \lim _{n}\left(\mathcal{F}\left\{x_{n}\right\}, \phi\right), \quad \forall \phi \in \mathcal{S}
+$$
+
+- Alternatively, $(\mathcal{F}\{x\}, \phi) \triangleq(x, \mathcal{F}\{\phi\}), \quad \forall \phi \in \mathcal{S}$
+
+
+## 回顾: 广义函数的傅里叶变换
+
+傅里叶变换对
+
+| $x(t)$ | $X(j \omega)$ |
+| :--- | :--- |
+| $\delta(t)$ | 1 |
+| $\delta\left(t-t_{0}\right)$ | $e^{-j \omega t_{0}}$ |
+| 1 | $2 \pi \delta(\omega)$ |
+| $e^{j \omega_{0} t}$ | $2 \pi \delta\left(\omega-\omega_{0}\right)$ |
+
+$$
+\begin{gathered}
+\int_{\mathbb{R}} \delta\left(t-t_{0}\right) e^{-j \omega t} d t=e^{-j \omega t_{0}}, \quad \int_{\mathbb{R}} e^{j\left(\omega_{1}-\omega_{2}\right) t} d t=2 \pi \delta\left(\omega_{1}-\omega_{2}\right) \\
+\int_{\mathbb{R}} X(j \omega) e^{j \omega t} d \omega=\int_{\mathbb{R}} \int_{\mathbb{R}} x(\tau) e^{j \omega(t-\tau)} d \tau d \omega=\int_{\mathbb{R}} x(\tau) 2 \pi \delta(t-\tau) d \tau=2 \pi x(t)
+\end{gathered}
+$$
+
+## 回顾: Fourier Transform for Periodic Functions
+
+傅里叶级数
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+Fourier transform
+
+$$
+X(j \omega)=\sum_{k=-\infty}^{\infty} 2 \pi \hat{x}[k] \delta\left(\omega-k \omega_{0}\right)
+$$
+
+等价表示
+
+- $\hat{x}[k]$ is amplitude of component at $\omega_{k}=k \omega_{0}$
+- $\hat{x}[k] \delta\left(\omega-k \omega_{0}\right)$ is density of component at $\omega_{k}=k \omega_{0}$
+
+Cf. discrete random variable $x$ in probability
+
+$$
+\mathbb{E} f(X)=\sum_{n} f\left(x_{n}\right) p_{n}=\int_{\mathbb{R}} f(x) p(x) d x \text { with } p(x)=\sum_{n} p_{n} \delta\left(x-x_{n}\right)
+$$
+
+## 回顾: 傅里叶级数与傅里叶变换的关系
+
+- Aperiodic signal $x$ with finite support of length $<T$
+- Periodic extension $x_{T}$ of $x$
+
+$$
+x_{T}(t)=\sum_{k=-\infty}^{\infty} x(t-k T)
+$$
+
+NB. In other words, $x$ is one period of periodic signal $x_{T}$
+
+$$
+\begin{array}{rlr}
+x \stackrel{\mathcal{F}}{\longleftrightarrow} X & \hat{x}_{T}[k]=\frac{1}{T} X\left(j k \omega_{0}\right) \\
+x_{T} \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}_{T} & X_{T}(j \omega)=\sum_{k=-\infty}^{\infty} 2 \pi \hat{x}_{T}[k] \delta\left(\omega-k \omega_{0}\right) \\
+x_{T} \stackrel{\mathcal{F}}{\longleftrightarrow} X_{T} & =\sum_{k=-\infty}^{\infty} \omega_{0} X\left(j k \omega_{0}\right) \delta\left(\omega-k \omega_{0}\right)
+\end{array}
+$$
+
+## 目录
+
+## 1. 回顾
+
+2. 连续时间傅里叶变换的性质
+
+## 连续时间傅里叶变换的性质
+
+线性
+
+$$
+\mathcal{F}\{a x+b y\}=a \mathcal{F}\{x\}+b \mathcal{F}\{y\}
+$$
+
+时移
+
+$$
+\mathcal{F}\left\{\tau_{t_{0}} x\right\}=E_{-t_{0}} \mathcal{F}\{x\} \quad \text { or } \quad x\left(t-t_{0}\right) \stackrel{\mathcal{F}}{\longleftrightarrow} e^{-j \omega t_{0}} X(j \omega)
+$$
+
+where $\left(E_{a} f\right)(s)=e^{j a s} f(s)$
+证明。
+
+$$
+\int_{\mathbb{R}} x\left(t-t_{0}\right) e^{-j \omega t} d t=\int_{\mathbb{R}} x(s) e^{-j \omega\left(s+t_{0}\right)} d s=e^{-j \omega t_{0}} \int_{\mathbb{R}} x(s) e^{-j \omega s} d s
+$$
+
+频移
+
+$$
+\mathcal{F}\left\{E_{\omega_{0}} x\right\}=\tau_{\omega_{0}} \hat{x} \quad \text { or } \quad e^{j \omega_{0} t} x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(j\left(\omega-\omega_{0}\right)\right)
+$$
+
+## 例: 多径效应
+
+Transmitter: $x(t)$
+Receiver: $y(t)=a_{0} x(t)+a_{1} x(t-\tau)$
+
+$$
+\begin{aligned}
+Y(j \omega) & =a_{0} X(j \omega)+a_{1} e^{-j \omega \tau} X(j \omega) \\
+& =\left(a_{0}+a_{1} e^{-j \omega \tau}\right) X(j \omega)
+\end{aligned}
+$$
+
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-11_2.png)
+
+Let $x(t)=u(t+T)-u(t-T)$.
+
+$$
+X(j \omega)=\frac{2 \sin (\omega T)}{\omega}
+$$
+
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-11.png)
+
+$$
+Y(j \omega)=\left(a_{0}+a_{1} e^{-j \omega \tau}\right) \frac{2 \sin (\omega T)}{\omega}
+$$
+
+For $a_{0}=a_{1}=1$,
+
+$$
+Y(j \omega)=4 e^{-j \omega \tau / 2} \cos \left(\frac{\omega \tau}{2}\right) \frac{\sin (\omega T)}{\omega}
+$$
+
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-11_3.png)
+
+## 例: 调制
+
+Baseband signal: $x(t)$
+Modulated signal
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-12.png)
+
+$$
+\begin{aligned}
+& y(t)=x(t) \cos \left(\omega_{c} t\right)=\frac{1}{2} x(t)\left(e^{j \omega_{c} t}+e^{-j \omega_{c} t}\right) \\
+& Y(j \omega)=\frac{1}{2} X\left(j\left(\omega-\omega_{c}\right)\right)+\frac{1}{2} X\left(j\left(\omega+\omega_{c}\right)\right)
+\end{aligned}
+$$
+
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-12_4.png)
+
+For $x(t)=u(t+T)-u(t-T)$,
+
+$$
+Y(j \omega)=\frac{\sin \left(\left(\omega-\omega_{c}\right) T\right)}{\omega-\omega_{c}}+\frac{\sin \left(\left(\omega+\omega_{c}\right) T\right)}{\omega+\omega_{c}}
+$$
+
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-12_3.png)
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-12_2.png)
+
+## 连续时间傅里叶变换的性质
+
+时间反转
+
+$$
+\mathcal{F}\{R x\}=R \mathcal{F}\{x\} \quad \text { or } \quad x(-t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(-j \omega)
+$$
+
+共轭
+
+$$
+\mathcal{F}\left\{x^{*}\right\}=R \overline{\mathcal{F}\{x\}} \quad \text { or } \quad x^{*}(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X^{*}(-j \omega)
+$$
+
+证明。 $\mathcal{F}\left\{x^{*}\right\}(j \omega)=\int_{\mathbb{R}} x^{*}(t) e^{-j \omega t} d t=\left(\int_{\mathbb{R}} x(t) e^{j \omega t} d t\right)^{*}=X^{*}(-j \omega)$
+对称性
+
+- $x$ even $\Longleftrightarrow X$ even, $\quad x$ odd $\Longleftrightarrow X$ odd
+- $x$ real $\Longleftrightarrow X(-j \omega)=X^{*}(j \omega)$
+- $x$ real and even $\Longleftrightarrow X$ real and even
+- $x$ real and odd $\Longleftrightarrow X$ purely imaginary and odd
+
+
+## 例
+
+For $a>0$,
+
+$$
+x(t)= \begin{cases}e^{-a t}, & t>0 \\ -e^{a t}, & t<0\end{cases}
+$$
+
+Let $y(t)=e^{-a t} u(t)$, with
+
+$$
+Y(j \omega)=\frac{1}{a+j \omega}
+$$
+
+Since $x(t)=y(t)-y(-t)$.
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-14.png)
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-14_3.png)
+
+$$
+\begin{aligned}
+X(j \omega) & =Y(j \omega)-Y(-j \omega) \\
+& =\frac{1}{a+j \omega}-\frac{1}{a-j \omega}=\frac{-2 j \omega}{a^{2}+\omega^{2}}
+\end{aligned}
+$$
+
+$x$ real \& odd, $X$ purely imaginary \& odd
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-14_2.png)
+
+## 时间与频率尺度变换
+
+For $a \neq 0$,
+
+$$
+\mathcal{F}\left\{S_{a} x\right\}=\frac{1}{|a|} S_{\frac{1}{a}} \mathcal{F}\{x\} \quad \text { or } \quad x(a t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{|a|} X\left(\frac{j \omega}{a}\right)
+$$
+
+证明。 Change variables by $\tau=a t$.
+For $a>0$,
+
+$$
+\int_{-\infty}^{\infty} x(a t) e^{-j \omega t} d t=\int_{-\infty}^{\infty} x(\tau) e^{-j \frac{\omega}{a} \tau} \frac{d \tau}{a}=\frac{1}{a} X\left(\frac{j \omega}{a}\right)
+$$
+
+For $a<0$,
+
+$$
+\int_{-\infty}^{\infty} x(a t) e^{-j \omega t} d t=\int_{\infty}^{-\infty} x(\tau) e^{-j \frac{\omega}{a} \tau} \frac{d \tau}{a}=-\frac{1}{a} X\left(\frac{j \omega}{a}\right)
+$$
+
+## 时间与频率尺度变换
+
+$$
+\mathcal{F}\left\{S_{a} x\right\}=\frac{1}{|a|} S_{\frac{1}{a}} \mathcal{F}\{x\} \quad \text { or } \quad x(a t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{|a|} X\left(\frac{j \omega}{a}\right)
+$$
+
+compression in time ⟹ stretching in frequency stretching in time ⟹ compression in frequency
+e.g. audio: faster playback ⟹ higher pitch
+
+$$
+x(t)=e^{-(a t)^{2}} \stackrel{\mathcal{F}}{\longleftrightarrow} X(j \omega)=\frac{\sqrt{\pi}}{|a|} e^{-\frac{1}{4}\left(\frac{\omega}{a}\right)^{2}}
+$$
+
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-16.png)
+$a=1 / 2$
+$a=1$
+$a=2$
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-16_2.png)
+
+## 微分
+
+$$
+x^{\prime}(t) \stackrel{\mathcal{F}}{\longleftrightarrow} j \omega X(j \omega), \quad x^{(k)}(t) \stackrel{\mathcal{F}}{\longleftrightarrow}(j \omega)^{k} X(j \omega)
+$$
+
+证明。 Differentiate under integral sign
+
+$$
+x(t)=\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) e^{j \omega t} d \omega \Longrightarrow x^{\prime}(t)=\frac{1}{2 \pi} \int_{\mathbb{R}} j \omega X(j \omega) e^{j \omega t} d \omega
+$$
+
+$y=x^{\prime}$ is output of differentiator with frequency response
+
+$$
+H(j \omega)=\mathcal{F}\left\{\delta^{\prime}\right\}(j \omega)=\int_{\mathbb{R}} \delta^{\prime}(t) e^{-j \omega t} d t=-\left.\frac{d}{d t} e^{-j \omega t}\right|_{0}=j \omega
+$$
+
+- $Y(j \omega)=H(j \omega) X(j \omega)$
+- amplifies high frequencies
+- suppresses low frequencies
+- DC completely eliminated
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-17.png)
+
+
+## 积分
+
+$$
+y(t)=\int_{-\infty}^{t} x(\tau) d \tau \stackrel{\mathcal{F}}{\longleftrightarrow} Y(j \omega)=\frac{1}{j \omega} X(j \omega)+\pi X(0) \delta(\omega)
+$$
+
+Since $x(t)=y^{\prime}(t)$, by differentiation property
+
+$$
+X(j \omega)=j \omega Y(j \omega) \Longrightarrow Y(j \omega)=\frac{1}{j \omega} X(j \omega) \text { for } \omega \neq 0
+$$
+
+Intuitively, $y(t)$ has DC component
+
+$$
+\begin{aligned}
+\bar{y} & =\lim _{T \rightarrow \infty} \frac{1}{2 T} \int_{-T}^{T} y(t) d t=\lim _{T \rightarrow \infty} \frac{1}{2 T} \int_{-T}^{T} \int_{\mathbb{R}} x(\tau) u(t-\tau) d \tau d t \\
+& =\int_{\mathbb{R}} x(\tau)\left(\lim _{T \rightarrow \infty} \frac{1}{2 T} \int_{-T}^{T} u(t-\tau) d t\right) d \tau=\frac{1}{2} X(0)
+\end{aligned}
+$$
+
+So $Y$ also has component $2 \pi \bar{y} \delta(\omega)=\pi X(0) \delta(\omega)$
+
+## 积分
+
+例. Unit step function
+
+$$
+\begin{gathered}
+u(t)=\int_{-\infty}^{t} \delta(\tau) d \tau \\
+U(j \omega)=\frac{1}{j \omega} \mathcal{F}\{\delta\}(j \omega)+\pi \mathcal{F}\{\delta\}(0) \delta(\omega) \\
+=\frac{1}{j \omega}+\pi \delta(\omega)
+\end{gathered}
+$$
+
+例. Sign function
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-19.png)
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-19_3.png)
+
+$$
+\operatorname{sgn}(t)= \begin{cases}1, & t>0 \\ -1 & t<0\end{cases}
+$$
+
+Since $\operatorname{sgn}=2 u-1$,
+
+$$
+\mathcal{F}\{\operatorname{sgn}\}(j \omega)=2 U(j \omega)-2 \pi \delta(\omega)=\frac{2}{j \omega}
+$$
+
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-19_2.png)
+
+## 积分
+
+例. Unit ramp function $u_{-2}(t)=t u(t)$
+
+$$
+u_{-2}(t)=\int_{-\infty}^{t} u(\tau) d \tau
+$$
+
+积分 property suggests
+$\mathcal{F}\left\{u_{-2}\right\}(j \omega)=\frac{1}{j \omega} U(j \omega)+\pi U(0) \delta(\omega)=-\frac{1}{\omega^{2}}+\frac{\pi}{j \omega} \delta(\omega)+\pi U(0) \delta(\omega)$
+But what's $U(0)=\frac{1}{j 0}+\pi \delta(0)$ ? What's $\frac{\pi}{j \omega} \delta(\omega)$ ? Not well-defined!
+积分 property not applicable here!
+Will see $\mathcal{F}\left\{u_{-2}\right\}=-\frac{1}{\omega^{2}}+j \pi \delta^{\prime}(\omega)$
+Rule of thumb. Applicable when formula is well-defined
+
+例
+$x(t)=\left(1-\frac{2|t|}{T}\right)\left[u\left(t+\frac{T}{2}\right)-u\left(t-\frac{T}{2}\right)\right]$
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-21.png)
+$X_{2}(j \omega)=\frac{2}{T}\left[e^{j \frac{\omega T}{2}}-2+e^{-j \frac{\omega T}{2}}\right]=-\frac{8}{T} \sin ^{2}\left(\frac{\omega T}{4}\right)$
+$X_{1}(j \omega)=\frac{X_{2}(j \omega)}{j \omega}+\pi X_{2}(0) \delta(\omega)=-\frac{8 \sin ^{2}\left(\frac{\omega T}{4}\right)}{j \omega T}$
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-21_3.png)
+$X(j \omega)=\frac{X_{1}(j \omega)}{j \omega}+\pi X_{1}(0) \delta(\omega)=\frac{8 \sin ^{2}\left(\frac{\omega T}{4}\right)}{\omega^{2} T}$
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-21_2.png)
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-21_4.png)
+
+20/32
+
+## 例: 符号函数 sgn
+
+$$
+x(t)=\operatorname{sgn}(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(j \omega)=\frac{2}{j \omega}
+$$
+
+- Neither $x$ nor $X$ is in $L_{1}(\mathbb{R})$, above interpreted in the sense of distribution, i.e.
+
+$$
+(X, \phi)=(x, \mathcal{F}\{\phi\}), \quad \forall \phi \in \mathcal{S}
+$$
+
+or for approximating sequence $x_{n} \rightarrow x$,
+
+$$
+(X, \phi)=\lim _{n}\left(X_{n}, \phi\right), \quad \forall \phi \in \mathcal{S}
+$$
+
+- Since $\frac{2}{j \omega}$ not integrable at $\omega=0, X$ should be interpreted as principal value, often denoted $X(j \omega)=\mathrm{pv}\left(\frac{2}{j \omega}\right)$, i.e.
+
+$$
+(X, \phi)=\int_{\mathbb{R}} \mathrm{pv}\left(\frac{2}{j \omega}\right) \phi(\omega) d \omega \triangleq \lim _{\epsilon \rightarrow 0} \int_{|\omega| \geq \epsilon} \frac{2}{j \omega} \phi(\omega) d \omega
+$$
+
+## 例: 符号函数 sgn
+
+Claim. Principal value below is well-defined
+
+$$
+\int_{\mathbb{R}} \mathrm{pv}\left(\frac{1}{\omega}\right) \phi(\omega) d \omega \triangleq \lim _{\epsilon \rightarrow 0} \int_{|\omega| \geq \epsilon} \frac{1}{\omega} \phi(\omega) d \omega
+$$
+
+证明。
+
+- $\int_{|\omega| \geq 1} \frac{1}{\omega} \phi(\omega) d \omega$ well-defined, since $\phi$ is rapidly decreasing
+- Since $\int_{1 \geq|\omega| \geq \epsilon} \frac{1}{\omega} d \omega=0$,
+
+$$
+\int_{1 \geq|\omega| \geq \epsilon} \frac{1}{\omega} \phi(\omega) d \omega=\int_{1 \geq|\omega| \geq \epsilon} \frac{\phi(\omega)-\phi(0)}{\omega} d \omega
+$$
+
+- By Intermediate Value Theorem, $\left|\frac{\phi(\omega)-\phi(0)}{\omega}\right|=\left|\phi^{\prime}(\xi)\right| \leq\|\phi\|_{0,1}$
+
+$$
+\left|\int_{1 \geq|\omega| \geq \epsilon} \frac{1}{\omega} \phi(\omega) d \omega\right|=\int_{1 \geq|\omega| \geq \epsilon}\left|\frac{\phi(\omega)-\phi(0)}{\omega}\right| d \omega \leq 2\|\phi\|_{0,1}
+$$
+
+## 例: 符号函数 sgn
+
+Claim.
+
+$$
+\mathcal{F}\{\operatorname{sgn}\}(j \omega)=\operatorname{pv}\left(\frac{2}{j \omega}\right)
+$$
+
+证明。 Let $x_{a}(t)=\operatorname{sgn}(t) e^{-a|t|}$ for $a>0 . x_{a} \rightarrow x$ pointwise and in distribution as $a \rightarrow 0$ (legal to push limit inside integral)
+
+$$
+\lim _{a \rightarrow 0} \int_{\mathbb{R}} x_{a}(t) \phi(t)=\int_{\mathbb{R}} \lim _{a \rightarrow 0} x_{a}(t) \phi(t)=\int_{\mathbb{R}} x(t) \phi(t) d t
+$$
+
+Recall
+
+$$
+X_{a}(j \omega)=\frac{-2 j \omega}{a^{2}+\omega^{2}}
+$$
+
+For $\omega \neq 0, X_{a}(j \omega) \rightarrow \frac{2}{j \omega}$ pointwise as $a \rightarrow 0$. But need
+
+$$
+\int_{\mathbb{R}} X_{a}(j \omega) \phi(\omega) d \omega \rightarrow \int_{\mathbb{R}} \mathrm{pv}\left(\frac{2}{j \omega}\right) \phi(\omega) d \omega
+$$
+
+## 例: 符号函数 sgn
+
+Claim.
+
+$$
+\lim _{a \rightarrow 0} \int_{\mathbb{R}} \frac{\omega}{a^{2}+\omega^{2}} \phi(\omega) d \omega=\lim _{\epsilon \rightarrow 0} \int_{|\omega| \geq \epsilon} \frac{1}{\omega} \phi(\omega) d \omega
+$$
+
+证明。 Since $\frac{\omega}{a^{2}+\omega^{2}} \phi(\omega) \in L_{1}(\mathbb{R})$,
+
+$$
+\int_{\mathbb{R}} \frac{\omega}{a^{2}+\omega^{2}} \phi(\omega) d \omega=\lim _{\epsilon \rightarrow 0} \int_{|\omega| \geq \epsilon} \frac{\omega}{a^{2}+\omega^{2}} \phi(\omega) d \omega
+$$
+
+Need to show $\lim _{a \rightarrow 0} \lim _{\epsilon \rightarrow 0}|J|=0$, where
+
+$$
+J=\int_{|\omega| \geq \epsilon}\left(\frac{\omega}{a^{2}+\omega^{2}}-\frac{1}{\omega}\right) \phi(\omega) d \omega=\int_{|\omega| \geq \epsilon} \frac{-a^{2}}{\omega\left(a^{2}+\omega^{2}\right)} \phi(\omega) d \omega
+$$
+
+## 例: 符号函数 sgn
+
+Proof (cont'd). Using $0=\int_{|\omega| \geq \epsilon} \frac{-a^{2}}{\omega\left(a^{2}+\omega^{2}\right)} d \omega$, we obtain
+
+$$
+J=\int_{|\omega| \geq \epsilon} \frac{-a^{2}}{a^{2}+\omega^{2}} \cdot \frac{\phi(\omega)-\phi(0)}{\omega} d \omega
+$$
+
+By Intermediate Value Theorem, $\left|\frac{\phi(\omega)-\phi(0)}{\omega}\right|=\left|\phi^{\prime}(\xi)\right| \leq\|\phi\|_{0,1}$
+
+$$
+\begin{aligned}
+|J| & \leq \int_{|\omega| \geq \epsilon}\left|\frac{-a^{2}}{a^{2}+\omega^{2}} \cdot \frac{\phi(\omega)-\phi(0)}{\omega}\right| d \omega \leq \int_{|\omega| \geq \epsilon} \frac{a^{2}}{a^{2}+\omega^{2}}\|\phi\|_{0,1} d \omega \\
+& \leq \int_{\mathbb{R}} \frac{a^{2}}{a^{2}+\omega^{2}}\|\phi\|_{0,1} d \omega=a \pi\|\phi\|_{0,1}
+\end{aligned}
+$$
+
+Therefore,
+
+$$
+\lim _{a \rightarrow 0} \lim _{\epsilon \rightarrow 0}|J|=0
+$$
+
+## 例: 单位阶跃函数
+
+$$
+u(t) \stackrel{\mathcal{F}}{\longleftrightarrow} U(j \omega)=\frac{1}{j \omega}+\pi \delta(\omega)
+$$
+
+NB. More precisely, $U(j \omega)=\mathrm{pv}\left(\frac{1}{j \omega}\right)+\pi \delta(\omega)$
+证明。 Note $u(t)=\frac{1}{2} \operatorname{sgn}(t)+\frac{1}{2}$. By linearity
+
+$$
+U(j \omega)=\frac{1}{2} \mathcal{F}\{\operatorname{sgn}\}(j \omega)+\frac{1}{2} \mathcal{F}\{1\}(j \omega)=\frac{1}{j \omega}+\pi \delta(\omega)
+$$
+
+Remark. Can use approximation approach but with caution.
+
+- Let $x_{a}(t)=e^{-a t} u(t)$ for $a>0$. Note $x_{a} \rightarrow u$ pointwise and in distribution as $a \rightarrow 0$.
+- For $\omega \neq 0, X_{a}(j \omega)=\frac{1}{a+j \omega} \rightarrow \frac{1}{j \omega}$ pointwise as $a \downarrow 0$.
+- Tempting to conclude $U(j \omega)=\frac{1}{j \omega}$.
+- But need convergence in distribution !
+
+
+## 对偶性
+
+$$
+\begin{aligned}
+\mathcal{F}\{f\}(\eta) & =\int_{\mathbb{R}} f(\xi) e^{-j \eta \xi} d \xi \\
+\mathcal{F}^{-1}\{f\}(\eta) & =\frac{1}{2 \pi} \int_{\mathbb{R}} f(\xi) e^{j \eta \xi} d \xi
+\end{aligned}
+$$
+
+Identical except for
+
+- different signs in exponent of complex exponential
+- constant factor $\frac{1}{2 \pi}$
+
+$$
+\mathcal{F}\{f\}(\eta)=\int_{\mathbb{R}} f(\xi) e^{-j \eta \xi} d \xi=\int_{\mathbb{R}} f(-\xi) e^{j \eta \xi} d \xi=\mathcal{F}^{-1}\{2 \pi R f\}(\eta)
+$$
+
+对偶性
+
+$$
+f \stackrel{\mathcal{F}}{\longleftrightarrow} g \Longleftrightarrow g \stackrel{\mathcal{F}}{\Longleftrightarrow} 2 \pi R f \Longleftrightarrow R g \stackrel{\mathcal{F}}{\Longleftrightarrow} 2 \pi f
+$$
+
+## 对偶性
+
+$$
+\begin{aligned}
+\mathcal{F}\{f\}(\eta) & =\int_{\mathbb{R}} f(\xi) e^{-j \eta \xi} d \xi \\
+\mathcal{F}^{-1}\{f\}(\eta) & =\frac{1}{2 \pi} \int_{\mathbb{R}} f(\xi) e^{j \eta \xi} d \xi
+\end{aligned}
+$$
+
+Identical except for
+
+- different signs in exponent of complex exponential
+- constant factor $\frac{1}{2 \pi}$
+
+$$
+\overline{\mathcal{F}\{f\}}=\left(\int_{\mathbb{R}} f(\xi) e^{-j \eta \xi} d \xi\right)^{*}=\int_{\mathbb{R}} f^{*}(\xi) e^{j \eta \xi} d \xi=\mathcal{F}^{-1}\left\{2 \pi f^{*}\right\}
+$$
+
+对偶性
+
+$$
+f \stackrel{\mathcal{F}}{\longleftrightarrow} g \quad \Longleftrightarrow \quad g^{*} \stackrel{\mathcal{F}}{\longleftrightarrow} 2 \pi f^{*}
+$$
+
+## 对偶性
+
+$$
+u(t+a)-u(t-a) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{2 \sin (a \omega)}{\omega}
+$$
+
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-30_3.png)
+
+$$
+\stackrel{\mathcal{F}}{\longmapsto}
+$$
+
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-30_5.png)
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-30_4.png)
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-30.png)
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-30_6.png)
+![](imglink/66426e84-291f-4a59-9308-7ce62f2dea7a-30_2.png)
+
+## 对偶性
+
+例. $x(t)=\frac{1}{t}$ (more precisely, $\mathrm{pv}\left(\frac{1}{t}\right)$ )
+Know
+
+$$
+\operatorname{sgn}(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{j \omega}
+$$
+
+By duality
+
+$$
+-\frac{1}{j t} \stackrel{\mathcal{F}}{\longleftrightarrow} 2 \pi \operatorname{sgn}(\omega)
+$$
+
+- switch LHS and RHS, switch $\omega$ and $t$
+- do either of following (but not both)
+- take complex conjugate of both sides
+- substitute $\omega \rightarrow-\omega$ or $t \rightarrow-t$ (but not both)
+- multiply RHS by $2 \pi$
+
+By linearity
+
+$$
+\frac{1}{t} \stackrel{\mathcal{F}}{\longleftrightarrow}-j 2 \pi \operatorname{sgn}(\omega)
+$$
+
+## 对偶性
+
+例. $x(t)=\frac{1}{1+t^{2}}$
+Know
+
+$$
+e^{-|t|} \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{2}{1+\omega^{2}}
+$$
+
+By duality
+
+$$
+\frac{2}{1+t^{2}} \stackrel{\mathcal{F}}{\longleftrightarrow} 2 \pi e^{-|\omega|}
+$$
+
+- switch LHS and RHS, switch $\omega$ and $t$
+- do either of following (but not both)
+- take complex conjugate of both sides
+- substitute $\omega \rightarrow-\omega$ or $t \rightarrow-t$ (but not both)
+- multiply RHS by $2 \pi$
+
+By linearity
+
+$$
+\frac{1}{1+t^{2}} \stackrel{\mathcal{F}}{\longleftrightarrow} \pi e^{-|\omega|}
+$$
+
+## 对偶性
+
+微分 in frequency
+
+$$
+-j t x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{d X(j \omega)}{d \omega}
+$$
+
+证明。 Differentiate under integral sign
+
+$$
+X(j \omega)=\int_{\mathbb{R}} x(t) e^{-j \omega t} d t \Longrightarrow \frac{d X(j \omega)}{d \omega}=\int_{\mathbb{R}}(-j t) x(t) e^{-j \omega t} d t
+$$
+
+例. Unit ramp function $u_{-2}=t u(t)$
+
+$$
+\mathcal{F}\left\{u_{-2}\right\}=j \mathcal{F}\{-j t u\}=j \frac{d U(j \omega)}{d \omega}=-\frac{1}{\omega^{2}}+j \pi \delta^{\prime}(\omega)
+$$
+
+积分 in frequency
+
+$$
+-\frac{1}{j t} x(t)+\pi x(0) \delta(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \int_{-\infty}^{\omega} X(j \lambda) d \lambda
+$$
+
+## 帕塞瓦尔恒等式
+
+定理。 If $x \in L_{2}(\mathbb{R}), X=\mathcal{F}\{x\}$, then
+
+$$
+\|x\|_{2}^{2}=\frac{1}{2 \pi}\|X\|_{2}^{2}, \quad \text { or } \quad \int_{\mathbb{R}}|x(t)|^{2} d t=\frac{1}{2 \pi} \int_{\mathbb{R}}|X(j \omega)|^{2} d \omega
+$$
+
+Note $\omega$ is angular frequency and $\frac{\omega}{2 \pi}$ is frequency
+
+$$
+\int_{\mathbb{R}}|x(t)|^{2} d t=\int_{\mathbb{R}}|X(j \omega)|^{2} \frac{d \omega}{2 \pi}
+$$
+
+物理解释: Energy conservation
+
+- $|x(t)|^{2}$ power, or energy per unit time (second)
+- $|X(j \omega)|^{2}$ energy per unit frequency (Hertz)
+$|X(j \omega)|^{2}$ called 能量密度谱
+
+
+## 帕塞瓦尔恒等式
+
+定理。 If $x, y \in L_{2}(\mathbb{R}), X=\mathcal{F}\{x\}, Y=\mathcal{F}\{y\}$, then $\langle x, y\rangle=\frac{1}{2 \pi}\langle X, Y\rangle, \quad$ or $\quad \int_{\mathbb{R}} x(t) y^{*}(t) d t=\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) Y^{*}(j \omega) d \omega$
+"证明。"
+
+$$
+\begin{aligned}
+\int_{\mathbb{R}} x(t) y^{*}(t) d t & =\int_{\mathbb{R}} x(t)\left(\frac{1}{2 \pi} \int_{R} Y(j \omega) e^{j \omega t} d \omega\right)^{*} d t \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}} x(t) \int_{R} Y^{*}(j \omega) e^{-j \omega t} d \omega d t \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}}\left(\int_{\mathbb{R}} x(t) e^{-j \omega t} d t\right) Y^{*}(j \omega) d \omega \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) Y^{*}(j \omega) d \omega
+\end{aligned}
+$$
+
+## 帕塞瓦尔恒等式
+
+例.
+
+$$
+\frac{\sin (W t)}{\pi t} \stackrel{\mathcal{F}}{\longleftrightarrow} u(\omega+W)-u(\omega-W)
+$$
+
+By Parseval's identity
+
+$$
+\begin{aligned}
+\int_{\mathbb{R}} \frac{\sin ^{2}(W t)}{\pi^{2} t^{2}} d t & =\frac{1}{2 \pi} \int_{\mathbb{R}}|u(\omega+W)-u(\omega-W)|^{2} d \omega \\
+& =\frac{1}{2 \pi} \int_{-W}^{W} d \omega \\
+& =\frac{W}{\pi}
+\end{aligned}
+$$
+
+## 目录
+
+## 1. 帕塞瓦尔恒等式
+
+2. 卷积性质
+
+## 3. 乘积性质
+
+4. 线性常系数微分方程描述的系统
+
+## 卷积性质
+
+For LTI systems $T$ with
+
+- 冲激响应 $h$
+- 频率响应 $H(j \omega)=\int_{\mathbb{R}} h(t) e^{-j \omega t} d t=\mathcal{F}\{h\}$
+$e^{j \omega t}$ is eigenfunction associated with eigenvalue $H(j \omega)$
+
+$$
+T\left(e^{j \omega t}\right)=H(j \omega) e^{\omega t}
+$$
+
+Input $x$ is linear superposition of $e^{j \omega t}$
+
+$$
+x(t)=\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) e^{j \omega t} d \omega
+$$
+
+Output
+
+$$
+\begin{aligned}
+y(t) & =(x * h)(t)=T\left(\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) e^{j \omega t} d \omega\right) \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) T\left(e^{j \omega t}\right) d \omega=\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) H(j \omega) e^{j \omega t} d \omega
+\end{aligned}
+$$
+
+## 卷积性质
+
+$$
+\mathcal{F}\{x * y\}=\mathcal{F}\{x\} \mathcal{F}\{y\}, \quad \text { or } \quad(x * y)(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(j \omega) Y(j \omega)
+$$
+
+convolution in time ⟹ multiplication in frequency
+"Proof".
+
+$$
+\begin{aligned}
+\int_{\mathbb{R}}(x * y)(t) e^{-j \omega t} d t & =\int_{\mathbb{R}} \int_{\mathbb{R}} x(\tau) y(t-\tau) e^{-j \omega t} d \tau d t \\
+& =\int_{\mathbb{R}} x(\tau)\left(\int_{\mathbb{R}} y(t-\tau) e^{-j \omega t} d t\right) d \tau \\
+& =\int_{\mathbb{R}} x(\tau) Y(j \omega) e^{-j \omega \tau} d \tau \\
+& =Y(j \omega) \int_{\mathbb{R}} x(\tau) e^{-j \omega \tau} d \tau \\
+& =Y(j \omega) X(j \omega)
+\end{aligned}
+$$
+
+例
+
+$$
+\begin{gathered}
+x(t)=\left(1-\frac{2|t|}{T}\right)\left[u\left(t+\frac{T}{2}\right)-u\left(t-\frac{T}{2}\right)\right] \\
+x=x_{1} * x_{1}
+\end{gathered}
+$$
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-09_2.png)
+
+$$
+\begin{gathered}
+X_{1}(j \omega)=\sqrt{\frac{2}{T}} \cdot \frac{2 \sin \left(\frac{\omega T}{4}\right)}{\omega} \\
+X(j \omega)=X_{1}^{2}(j \omega)=\frac{8 \sin ^{2}\left(\frac{\omega T}{4}\right)}{\omega^{2} T}
+\end{gathered}
+$$
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-09_4.png)
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-09_3.png)
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-09.png)
+
+## LTI 系统的频率响应
+
+LTI system $T$
+
+- fully characterized by 冲激响应 $h$
+
+$$
+y=T(x)=h * x
+$$
+
+- also fully characterized by 频率响应 $H=\mathcal{F}\{h\}$, if $H$ is well-defined
+- BIBO stable system, $h \in L_{1}(\mathbb{R})$
+- other systems: identity $h=\delta$, differentiator $h=\delta^{\prime}, \ldots$
+
+Typically, convolution property implies
+
+$$
+Y=\mathcal{F}\{y\}=H X=\mathcal{F}\{h\} \mathcal{F}\{x\}
+$$
+
+Instead of computing $x * h$, can do
+
+$$
+y=\mathcal{F}^{-1}(\mathcal{F}\{h\} \mathcal{F}\{x\})
+$$
+
+LTI 系统的频率响应
+
+|  | $h(t)$ | $H(j \omega)$ |
+| :--- | :--- | :--- |
+| id | $\delta(t)$ | 1 |
+| $\tau_{t_{0}}$ | $\delta\left(t-t_{0}\right)$ | $e^{-j \omega t_{0}}$ |
+| $\frac{d}{d t}$ | $\delta^{\prime}(t)$ | $j \omega$ |
+| $\int_{-\infty}^{t}$ | $u(t)$ | $\frac{1}{j \omega}+\pi \delta(\omega)$ |
+| ideal lowpass | $\frac{\sin \left(\omega_{c} t\right)}{\pi t}$ | $u\left(\omega+\omega_{c}\right)-u\left(\omega-\omega_{c}\right)$ |
+| 1st order lowpass | $\frac{1}{\tau} e^{-t / \tau} u(t)$ | $\frac{1}{1+j \tau \omega}$ |
+
+## 例s
+
+例. Differentiation property
+
+$$
+\begin{gathered}
+y=x^{\prime}=x * \delta^{\prime} \\
+Y(j \omega)=X(j \omega) \mathcal{F}\left\{\delta^{\prime}\right\}=j \omega X(j \omega)
+\end{gathered}
+$$
+
+例. Integration property
+
+$$
+\begin{gathered}
+y(t)=\int_{-\infty}^{t} x(\tau) d \tau=(x * u)(t) \\
+Y(j \omega)=X(j \omega) U(j \omega)=X(j \omega)\left[\frac{1}{j \omega}+\pi \delta(\omega)\right]=\frac{1}{j \omega} X(j \omega)+\pi X(0) \delta(\omega)
+\end{gathered}
+$$
+
+## 例
+
+Unit ramp function $u_{-2}(t)=t u(t)=(u * u)(t)$
+Convolution property suggests
+
+$$
+\mathcal{F}\left\{u_{-2}\right\}(j \omega)=U^{2}(j \omega)=-\frac{1}{\omega^{2}}+\frac{2 \pi}{j \omega} \delta(\omega)+\pi^{2} \delta(\omega) \delta(\omega)
+$$
+
+But $\frac{\pi}{j \omega} \delta(\omega)$ and $\delta(\omega) \delta(\omega)$ not well-defined!
+Know $\mathcal{F}\left\{u_{-2}\right\}=-\frac{1}{\omega^{2}}+j \pi \delta^{\prime}(\omega)$
+Convolution property not applicable here!
+Rule of thumb. Applicable when formula is well-defined
+
+## 例
+
+Response of LTI system with 冲激响应 $h(t)=e^{-a t} u(t)$ to input $x(t)=e^{-b t} u(t), a, b>0$
+
+方法 1. Direct convolution $y=x * h$
+方法 2. Solve following ODE with initial rest condition
+
+$$
+y^{\prime}(t)+a y(t)=e^{-b t} u(t)
+$$
+
+方法 3. Fourier transform.
+
+$$
+H(j \omega)=\frac{1}{a+j \omega}, X(j \omega)=\frac{1}{b+j \omega} \Longrightarrow Y(j \omega)=\frac{1}{(a+j \omega)(b+j \omega)}
+$$
+
+If $a \neq b, Y(j \omega)=\frac{1}{b-a}\left(\frac{1}{a+j \omega}-\frac{1}{b+j \omega}\right) \Longrightarrow y(t)=\frac{1}{b-a}\left(e^{-a t}-e^{-b t}\right) u(t)$
+If $a=b, Y(j \omega)=-\frac{d}{d a}\left(\frac{1}{a+j \omega}\right) \Longrightarrow y(t)=-\frac{d}{d a} e^{-a t} u(t)=t e^{-a t} u(t)$
+Can also use $Y(j \omega)=j \frac{d}{d \omega}\left(\frac{1}{a+j \omega}\right)$ and differentiation property
+
+## 例
+
+Response of LTI system with 冲激响应 $h(t)=e^{-a t} u(t)$ to input $x(t)=\cos \left(\omega_{0} t\right), a>0$.
+频率响应
+
+$$
+H(j \omega)=\frac{1}{a+j \omega}=\frac{1}{\sqrt{a^{2}+\omega^{2}}} e^{-j \arctan \frac{\omega}{a}}
+$$
+
+方法 1. Use eigenfunction property
+
+$$
+\begin{gathered}
+x(t)=\frac{1}{2} e^{j \omega_{0} t}+\frac{1}{2} e^{-j \omega_{0} t} \\
+y(t)=\frac{1}{2} H\left(j \omega_{0}\right) e^{j \omega_{0} t}+\frac{1}{2} H\left(-j \omega_{0}\right) e^{-j \omega_{0} t}=\operatorname{Re} \frac{e^{j \omega_{0} t}}{a+j \omega_{0}} \\
+=\frac{a \cos \left(\omega_{0} t\right)+\omega_{0} \sin \left(\omega_{0} t\right)}{a^{2}+\omega_{0}^{2}}=\frac{1}{\sqrt{a^{2}+\omega_{0}^{2}}} \cos \left(\omega_{0} t-\arctan \frac{\omega_{0}}{a}\right)
+\end{gathered}
+$$
+
+## 例
+
+Response of LTI system with 冲激响应 $h(t)=e^{-a t} u(t)$ to input $x(t)=\cos \left(\omega_{0} t\right)$.
+
+频率响应
+
+$$
+H(j \omega)=\frac{1}{a+j \omega}=\frac{1}{\sqrt{a^{2}+\omega^{2}}} e^{-j \arctan \frac{\omega}{a}}
+$$
+
+方法 2. Use Fourier transform of $X$
+
+$$
+\begin{gathered}
+X(j \omega)=\pi \delta\left(\omega-\omega_{0}\right)+\pi \delta\left(\omega+\omega_{0}\right) \\
+Y(j \omega)=\pi H\left(j \omega_{0}\right) \delta\left(\omega-\omega_{0}\right)+\pi H\left(-j \omega_{0}\right) \delta\left(\omega+\omega_{0}\right) \\
+y(t)=\frac{1}{2} H\left(j \omega_{0}\right) e^{j \omega_{0} t}+\frac{1}{2} H\left(-j \omega_{0}\right) e^{-j \omega_{0} t}
+\end{gathered}
+$$
+
+## 例
+
+Response of ideal lowpass filter with 冲激响应 $h(t)$ to input $x(t)$.
+
+$$
+h(t)=\frac{\sin \left(\omega_{c} t\right)}{\pi t}, \quad x(t)=\frac{\sin \left(\omega_{i} t\right)}{\pi t}
+$$
+
+Fourier transforms
+
+$$
+\begin{aligned}
+& X(j \omega)=u\left(\omega+\omega_{i}\right)-u\left(\omega-\omega_{i}\right) \\
+& H(j \omega)=u\left(\omega+\omega_{c}\right)-u\left(\omega-\omega_{c}\right)
+\end{aligned}
+$$
+
+Use $Y(j \omega)=X(j \omega) H(j \omega)$,
+
+$$
+Y(j \omega)=\left\{\begin{array}{ll}
+X(j \omega), & \text { if } \omega_{i} \leq \omega_{c} \\
+H(j \omega), & \text { if } \omega_{i}>\omega_{c}
+\end{array} \Longrightarrow y(t)= \begin{cases}x(t), & \text { if } \omega_{i} \leq \omega_{c} \\
+h(t), & \text { if } \omega_{i}>\omega_{c}\end{cases}\right.
+$$
+
+NB. Convolution of two sinc is another sinc
+
+## 例
+
+Convolution of Gaussians is another Gaussian
+
+$$
+x_{i}(t)=\frac{1}{\sqrt{2 \pi \sigma_{i}^{2}}} \exp \left(-\frac{\left(t-\mu_{i}\right)^{2}}{2 \sigma_{i}^{2}}\right)
+$$
+
+Fourier transform (complex conjugate of characteristic function)
+
+$$
+X_{i}(j \omega)=\exp \left(-i \mu_{i} \omega-\frac{\sigma_{i}^{2}}{2} \omega^{2}\right)
+$$
+
+For $y=x_{1} * x_{2}$,
+
+$$
+\begin{gathered}
+Y(j \omega)=X_{1}(j \omega) X_{2}(j \omega)=\exp \left(-i\left(\mu_{1}+\mu_{2}\right) \omega-\frac{\sigma_{1}^{2}+\sigma_{2}^{2}}{2} \omega^{2}\right) \\
+y(t)=\frac{1}{\sqrt{2 \pi\left(\sigma_{1}^{2}+\sigma_{2}^{2}\right)}} \exp \left(-\frac{\left(t-\mu_{1}-\mu_{2}\right)^{2}}{2\left(\sigma_{1}^{2}+\sigma_{2}^{2}\right)}\right)
+\end{gathered}
+$$
+
+## 系统连接
+
+LTI systems in 串联系统
+
+$$
+y=\left(x * h_{1}\right) * h_{2}=x *\left(h_{1} * h_{2}\right)=\left(x * h_{2}\right) * h_{1}
+$$
+
+$$
+h=h_{1} * h_{2}
+$$
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-19.png)
+
+对 LTI 系统而言，处理顺序通常不影响结果
+
+## 系统连接
+
+LTI systems in 串联系统
+
+$$
+Y=\left(X H_{1}\right) H_{2}=X\left(H_{1} H_{2}\right)=\left(X H_{2}\right) H_{1}
+$$
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-20.png)
+
+对 LTI 系统而言，处理顺序通常不影响结果
+
+## 系统连接
+
+LTI systems in systems in 并联系统
+
+$$
+h=h_{1}+h_{2}
+$$
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-21.png)
+
+$$
+H=H_{1}+H_{2}
+$$
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-21_2.png)
+
+## 系统连接
+
+LTI systems in systems in 反馈连接
+
+$$
+\begin{gathered}
+y=h_{1} *\left(x-h_{2} * y\right) \\
+h=?
+\end{gathered}
+$$
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-22.png)
+
+$$
+\begin{aligned}
+Y & =H_{1} X-H_{1} H_{2} Y \\
+H & =\frac{Y}{X}=\frac{H_{1}}{1+H_{1} H_{2}}
+\end{aligned}
+$$
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-22_2.png)
+
+## 目录
+
+## 1. 帕塞瓦尔恒等式
+
+2. 卷积性质
+3. 乘积性质
+4. 线性常系数微分方程描述的系统
+
+## 乘积性质
+
+卷积性质的对偶
+
+$$
+\mathcal{F}\{x y\}=\frac{1}{2 \pi} \mathcal{F}\{x\} * \mathcal{F}\{y\}, \text { or } x(t) y(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{2 \pi} \int_{\mathbb{R}} X(j \theta) Y(j(\omega-\theta)) d \theta
+$$
+
+时域相乘 ⟹ 频域卷积
+证明。 Let $Z(j \omega)=\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \theta) Y(j(\omega-\theta)) d \theta$
+
+$$
+\begin{aligned}
+\frac{1}{2 \pi} \int_{\mathbb{R}} Z(j \omega) e^{j \omega t} d \omega & =\frac{1}{2 \pi} \int_{\mathbb{R}} \frac{1}{2 \pi}\left(\int_{\mathbb{R}} X(j \theta) Y(j(\omega-\theta)) d \theta\right) e^{j \omega t} d \omega \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \theta) \frac{1}{2 \pi}\left(\int_{\mathbb{R}} Y(j(\omega-\theta)) e^{j \omega t} d \omega\right) d \theta \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \theta) y(t) e^{j \theta t} d \theta=x(t) y(t)
+\end{aligned}
+$$
+
+## 例: 调制
+
+Baseband signal $x(t)$
+Carrier
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-25_2.png)
+
+$$
+\begin{aligned}
+& p(t)=\cos \left(\omega_{c} t\right) \\
+& P(j \omega)=\pi \delta\left(\omega-\omega_{c}\right)+\pi \delta\left(\omega+\omega_{c}\right)
+\end{aligned}
+$$
+
+Modulated signal
+
+$$
+\begin{aligned}
+& y(t)=x(t) p(t) \\
+& Y(j \omega)=\frac{1}{2} X\left(j\left(\omega-\omega_{c}\right)\right)+\frac{1}{2} X\left(j\left(\omega+\omega_{c}\right)\right)
+\end{aligned}
+$$
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-25.png)
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-25_3.png)
+
+## 例: 解调
+
+Modulated signal $y(t)$
+Carrier
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-26.png)
+
+$$
+\begin{aligned}
+& p(t)=\cos \left(\omega_{c} t\right) \\
+& P(j \omega)=\pi \delta\left(\omega-\omega_{c}\right)+\pi \delta\left(\omega+\omega_{c}\right)
+\end{aligned}
+$$
+
+解调
+
+$$
+\begin{aligned}
+& z(t)=y(t) p(t) \\
+& \quad=\frac{1}{2} x(t)+\frac{1}{2} x(t) \cos \left(2 \omega_{c} t\right) \\
+& R(j \omega)=Z(j \omega) H_{\text {lowpass }}(j \omega) \\
+& r(t)=x(t)
+\end{aligned}
+$$
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-26_2.png)
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-26_3.png)
+
+## 理想 AM 通信系统
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-27.png)
+
+例
+
+$$
+\begin{gathered}
+x(t)=\frac{\sin t \cdot \sin \frac{t}{2}}{\pi t^{2}}=\pi x_{1}(t) x_{2}(t) \\
+x_{1}(t)=\frac{\sin t}{\pi t} \\
+x_{2}(t)=\frac{\sin \frac{t}{2}}{\pi t} \\
+X=\frac{1}{2} X_{1} * X_{2}
+\end{gathered}
+$$
+
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-28.png)
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-28_3.png)
+![](imglink/0971cef0-84f4-4512-ad15-12a491cd1229-28_2.png)
+
+## 目录
+
+## 1. 帕塞瓦尔恒等式
+
+## 2. 卷积性质
+
+## 3. 乘积性质
+
+4. 线性常系数微分方程描述的系统
+
+## 线性常系数微分方程
+
+频率响应 of LTI system described by
+
+$$
+\sum_{k=0}^{N} a_{k} \frac{d^{k} y}{d t^{k}}=\sum_{k=0}^{M} b_{k} \frac{d^{k} x}{d t^{k}}
+$$
+
+方法 1. Use eigenfunction property
+
+$$
+x(t)=e^{j \omega t} \Longrightarrow y(t)=H(j \omega) e^{j \omega t}
+$$
+
+Substitution into ODE yields
+
+$$
+\begin{gathered}
+\sum_{k=0}^{N} a_{k} H(j \omega)(j \omega)^{k} e^{j \omega t}=\sum_{k=0}^{M} b_{k}(j \omega)^{k} e^{j \omega t} \\
+H(j \omega)=\frac{\sum_{k=0}^{M} b_{k}(j \omega)^{k}}{\sum_{k=0}^{N} a_{k}(j \omega)^{k}}
+\end{gathered}
+$$
+
+## 线性常系数微分方程
+
+方法 2. Take Fourier transform of both sides
+
+$$
+\mathcal{F}\left\{\sum_{k=0}^{N} a_{k} \frac{d^{k} y}{d t^{k}}\right\}=\mathcal{F}\left\{\sum_{k=0}^{M} b_{k} \frac{d^{k} x}{d t^{k}}\right\}
+$$
+
+By linearity and differentiation property
+
+$$
+\sum_{k=0}^{N} a_{k}(j \omega)^{k} Y(j \omega)=\sum_{k=0}^{M} b_{k}(j \omega)^{k} X(j \omega)
+$$
+
+By convolution property
+
+$$
+H(j \omega)=\frac{Y(j \omega)}{X(j \omega)}=\frac{\sum_{k=0}^{M} b_{k}(j \omega)^{k}}{\sum_{k=0}^{N} a_{k}(j \omega)^{k}}
+$$
+
+频率响应 is rational function of $j \omega$
+
+## 例
+
+$$
+y^{\prime \prime}+4 y^{\prime}+3 y=x^{\prime}+2 x
+$$
+
+频率响应
+
+$$
+H(j \omega)=\frac{j \omega+2}{(j \omega)^{2}+4(j \omega)+3}
+$$
+
+By partial fraction expansion
+
+$$
+H(j \omega)=\frac{j \omega+2}{(j \omega+1)(j \omega+3)}=\frac{1 / 2}{j \omega+1}+\frac{1 / 2}{j \omega+3}
+$$
+
+Take inverse Fourier transform to find 冲激响应
+
+$$
+h(t)=\frac{1}{2} e^{-t} u(t)+\frac{1}{2} e^{-3 t} u(t)
+$$
+
+## 例
+
+$$
+y^{\prime \prime}+4 y^{\prime}+3 y=x^{\prime}+2 x
+$$
+
+Find zero-state response to $x(t)=e^{-t} u(t)$
+
+$$
+Y(j \omega)=H(j \omega) X(j \omega)=\frac{j \omega+2}{(j \omega+1)(j \omega+3)} \cdot \frac{1}{j \omega+1}=\frac{j \omega+2}{(j \omega+1)^{2}(j \omega+3)}
+$$
+
+By partial fraction expansion
+
+$$
+Y(j \omega)=\frac{1 / 4}{j \omega+1}+\frac{1 / 2}{(j \omega+1)^{2}}-\frac{1 / 4}{j \omega+3}
+$$
+
+Take inverse Fourier transform to find zero-state response
+
+$$
+y(t)=\left(\frac{1}{4} e^{-t}+\frac{1}{2} t e^{-t}-\frac{1}{4} e^{-3 t}\right) u(t)
+$$
+
+## Inverse Fourier Transform of $\frac{1}{(j \omega+a)^{n}}$
+
+Recall
+
+$$
+e^{-a t} u(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{a+j \omega}
+$$
+
+Note
+
+$$
+j^{n-1} \frac{d^{n-1}}{d \omega^{n-1}}\left(\frac{1}{a+j \omega}\right)=\left(j \frac{d}{d \omega}\right)^{n-1}\left(\frac{1}{a+j \omega}\right)=\frac{(n-1)!}{(a+j \omega)^{n}}
+$$
+
+Recall frequency differentiation property
+
+$$
+t x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} j \frac{d}{d \omega} X(j \omega)
+$$
+
+Applying it $n-1$ times yields
+
+$$
+\frac{t^{n-1}}{(n-1)!} e^{-a t} u(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{(a+j \omega)^{n}}
+$$
+
+## 部分分式展开
+
+Rational function
+
+$$
+R(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{k=0}^{M} b_{k} s^{k}}{\sum_{k=0}^{N} a_{k} s^{k}}
+$$
+
+Proper rational function if $M<N$
+Improper rational function can be rewritten as sum of polynomial and proper rational function by long division
+
+$$
+R(s)=P_{0}(s)+\frac{P_{1}(s)}{Q(s)}
+$$
+
+where $\operatorname{deg} P_{1}<\operatorname{deg} Q$
+例.
+
+$$
+\frac{s^{3}+5 s^{2}+8 s+5}{s^{2}+4 s+3}=s+1+\frac{s+2}{s^{2}+4 s+3}
+$$
+
+## 部分分式展开
+
+例 (long division).
+
+$$
+\frac{s^{3}+5 s^{2}+8 s+5}{s^{2}+4 s+3}=s+1+\frac{s+2}{s^{2}+4 s+3}
+$$
+
+$$
+\begin{aligned}
+\left.s^{2}+4 s+3\right) & s+1 \\
+\cline { 2 - 2 } \begin{array}{r}
+s^{3}+5 s^{2}+8 s+5 \\
+-s^{3}-4 s^{2}-3 s \\
+s^{2}+5 s+5 \\
+-s^{2}-4 s-3 \\
+s+2
+\end{array} & \\
+\hline &
+\end{aligned}
+$$
+
+## 部分分式展开
+
+Consider proper rational function $R(s)=P(s) / Q(s)$
+Denominator $Q(s)$ has $r$ distinct roots $a_{1}, \ldots, a_{r} \in \mathbb{C}$ and factorization
+
+$$
+Q(s)=\prod_{i=1}^{r}\left(s-a_{i}\right)^{N_{i}}
+$$
+
+$R(s)$ has following partial fraction expansion
+
+$$
+R(s)=\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(s-a_{i}\right)^{k_{i}}}
+$$
+
+Find coefficients by
+
+- reducing to common denominator
+- comparing coefficients of numerators
+
+
+## 部分分式展开
+
+例.
+
+$$
+R(s)=\frac{s+2}{(s+1)^{2}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{2,1}}{s+3}
+$$
+
+RHS is
+
+$$
+\begin{aligned}
+& \frac{A_{1,1}(s+1)(s+3)+A_{1,2}(s+3)+A_{2,1}(s+1)^{2}}{(s+1)^{2}(s+3)} \\
+& =\frac{\left(A_{1,1}+A_{2,1}\right) s^{2}+\left(4 A_{1,1}+A_{1,2}+2 A_{2,1}\right) s+\left(3 A_{1,1}+3 A_{1,2}+A_{2,1}\right)}{(s+1)^{2}(s+3)} \\
+& \left\{\begin{array} { r l } 
+{ A _ { 1 , 1 } + A _ { 2 , 1 } } & { = 0 } \\
+{ 4 A _ { 1 , 1 } + A _ { 1 , 2 } + 2 A _ { 2 , 1 } } & { = 1 } \\
+{ 3 A _ { 1 , 1 } + 3 A _ { 1 , 2 } + A _ { 2 , 1 } } & { = 2 }
+\end{array} \Rightarrow \left\{\begin{array}{l}
+A_{1,1}=1 / 4 \\
+A_{1,2}=1 / 2 \\
+A_{2,1}=-1 / 4
+\end{array}\right.\right.
+\end{aligned}
+$$
+
+## 部分分式展开
+
+$$
+R(s)=\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(s-a_{i}\right)^{k_{i}}}
+$$
+
+Multiply both sides by $\left(s-a_{j}\right)^{N_{j}}$,
+
+$$
+\left(s-a_{j}\right)^{N_{j}} R(s)=\sum_{k_{j}=1}^{N_{j}} A_{j, k_{j}}\left(s-a_{j}\right)^{N_{j}-k_{j}}+\left(s-a_{j}\right)^{N_{j}} R_{j}(s)
+$$
+
+where $R_{j}(s)=\sum_{i \neq j} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(s-a_{i}\right)^{k_{i}}}$. For $k<N_{j}$,
+
+$$
+\begin{aligned}
+\frac{d^{k}}{d s^{k}}\left[\left(s-a_{j}\right)^{N_{j}} R(s)\right] & =\sum_{k_{j}=0}^{N_{j}-k} A_{j, k_{j}} \frac{\left(N_{j}-k_{j}\right)!}{\left(N_{j}-k_{j}-k\right)!}\left(s-a_{j}\right)^{N_{j}-k_{j}-k} \\
+& +\sum_{\ell=0}^{k}\binom{k}{\ell} \frac{N_{j}!}{\left(N_{j}-\ell\right)!}\left(s-a_{j}\right)^{N_{j}-\ell} R_{j}^{(\ell)}(s)
+\end{aligned}
+$$
+
+## 部分分式展开
+
+$$
+\begin{aligned}
+\frac{d^{k}}{d s^{k}}\left[\left(s-a_{j}\right)^{N_{j}} R(s)\right] & =\sum_{k_{j}=0}^{N_{j}-k} A_{j, k_{j}} \frac{\left(N_{j}-k_{j}\right)!}{\left(N_{j}-k_{j}-k\right)!}\left(s-a_{j}\right)^{N_{j}-k_{j}-k} \\
+& +\sum_{\ell=0}^{k}\binom{k}{\ell} \frac{N_{j}!}{\left(N_{j}-\ell\right)!}\left(s-a_{j}\right)^{N_{j}-\ell} R_{j}^{(\ell)}(s)
+\end{aligned}
+$$
+
+Evaluating at $s=a_{j}$,
+
+$$
+\left.\left[\frac{d^{k}}{d s^{k}}\left[\left(s-a_{j}\right)^{N_{j}} R(s)\right]\right]\right|_{s=a_{j}}=A_{j, N_{j}-k} k!
+$$
+
+Replacing $k$ by $N_{j}-k$,
+
+$$
+A_{j, k}=\left.\frac{1}{\left(N_{j}-k\right)!}\left[\frac{d^{N_{j}-k}}{d s^{N_{j}-k}}\left[\left(s-a_{j}\right)^{N_{j}} R(s)\right]\right]\right|_{s=a_{j}}
+$$
+
+## 部分分式展开
+
+例.
+
+$$
+R(s)=\frac{s+2}{(s+1)^{2}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{2,1}}{s+3}
+$$
+
+To find $A_{2,1}$
+
+1. Multiply both sides by $s+3$,
+
+$$
+(s+3) R(s)=\frac{s+2}{(s+1)^{2}}=\frac{A_{1,1}(s+3)}{s+1}+\frac{A_{1,2}(s+3)}{(s+1)^{2}}+A_{2,1}
+$$
+
+2. Evaluate at $s=-3$,
+
+$$
+A_{2,1}=\left.\frac{s+2}{(s+1)^{2}}\right|_{s=-3}=-\frac{1}{4}
+$$
+
+## 部分分式展开
+
+例 (cont'd).
+
+$$
+R(s)=\frac{s+2}{(s+1)^{2}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{2,1}}{s+3}
+$$
+
+To find $A_{1,2}$
+
+1. Multiply both sides by $(s+1)^{2}$,
+
+$$
+(s+1)^{2} R(s)=\frac{s+2}{s+3}=A_{1,1}(s+1)+A_{1,2}+\frac{A_{2,1}(s+1)^{2}}{s+3}
+$$
+
+2 . Evaluate at $s=-1$,
+
+$$
+A_{1,2}=\left.\frac{s+2}{s+3}\right|_{s=-1}=\frac{1}{2}
+$$
+
+## 部分分式展开
+
+例 (cont'd).
+
+$$
+R(s)=\frac{s+2}{(s+1)^{2}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{2,1}}{s+3}
+$$
+
+To find $A_{1,1}$
+
+1. Multiply both sides by $(s+1)^{2}$,
+
+$$
+(s+1)^{2} R(s)=\frac{s+2}{s+3}=A_{1,1}(s+1)+A_{1,2}+\frac{A_{2,1}(s+1)^{2}}{s+3}
+$$
+
+2. Take first derivative w.r.t. $s$,
+
+$$
+\frac{d}{d s}\left(\frac{s+2}{s+3}\right)=\frac{1}{(s+3)^{2}}=A_{1,1}+\frac{d}{d s}\left(\frac{A_{2,1}(s+1)^{2}}{s+3}\right)
+$$
+
+3. Evaluate at $s=-1$,
+
+$$
+A_{1,1}=\left.\frac{1}{(s+3)^{2}}\right|_{s=-1}=\frac{1}{4}
+$$
+
+## 部分分式展开
+
+例.
+
+$$
+R(s)=\frac{1}{(s+1)^{3}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{1,3}}{(s+1)^{3}}+\frac{A_{2,1}}{s+3}
+$$
+
+1. $A_{2,1}$
+
+$$
+\begin{gathered}
+(s+3) R(s)=\frac{1}{(s+1)^{3}}=\frac{A_{1,1}(s+3)}{s+1}+\frac{A_{1,2}(s+3)}{(s+1)^{2}}+\frac{A_{1,3}(s+3)}{(s+1)^{3}}+A_{2,1} \\
+A_{2,1}=\left.\frac{1}{(s+1)^{3}}\right|_{s=-3}=-\frac{1}{8}
+\end{gathered}
+$$
+
+2. $A_{1,3}$
+
+$$
+\begin{gathered}
+(s+1)^{3} R(s)=\frac{1}{s+3}=A_{1,1}(s+1)^{2}+A_{1,2}(s+1)+A_{1,3}+\frac{A_{2,1}(s+1)^{3}}{s+3} \\
+A_{1,3}=\left.\frac{1}{s+3}\right|_{s=-1}=\frac{1}{2}
+\end{gathered}
+$$
+
+## 部分分式展开
+
+例 (cont'd).
+
+$$
+R(s)=\frac{1}{(s+1)^{3}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{1,3}}{(s+1)^{3}}+\frac{A_{2,1}}{s+3}
+$$
+
+3. $A_{1,2}$
+
+$$
+\begin{gathered}
+(s+1)^{3} R(s)=\frac{1}{s+3}=A_{1,1}(s+1)^{2}+A_{1,2}(s+1)+A_{1,3}+\frac{A_{2,1}(s+1)^{3}}{s+3} \\
+A_{1,2}=\left.\frac{d}{d s}\left(\frac{1}{s+3}\right)\right|_{s=-1}=-\left.\frac{1}{(s+3)^{2}}\right|_{s=-1}=-\frac{1}{4}
+\end{gathered}
+$$
+
+4. $A_{1,1}$
+
+$$
+2 A_{1,1}=\left.\frac{d^{2}}{d s^{2}}\left(\frac{1}{s+3}\right)\right|_{s=-1}=\left.\frac{2}{(s+3)^{3}}\right|_{s=-1}=\frac{1}{8} \Longrightarrow A_{1,1}=\frac{1}{16}
+$$
+
+
+## 作业
+
+ 
+
+---
+
+<section style="
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+">
+  <div style="transform: translateY(10vh);">
+<h1>第四章  <br >连续时间傅里叶变换  <br> 完</h1>
+  </div>
+</section>

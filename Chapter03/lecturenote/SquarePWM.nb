@@ -1,0 +1,482 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     19113,        474]
+NotebookOptionsPosition[     18405,        453]
+NotebookOutlinePosition[     18797,        469]
+CellTagsIndexPosition[     18754,        466]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"T", "=", "1"}], ",", 
+       RowBox[{"kMax", "=", "100"}], ",", "sincFunc", ",", "discreteData"}], 
+      "}"}], ",", 
+     RowBox[{"(*", 
+      RowBox[{"\:5b9a\:4e49\:5305\:7edc\:51fd\:6570", ":", 
+       RowBox[{"2", " ", 
+        RowBox[{
+         RowBox[{"Sin", "[", 
+          RowBox[{"k", " ", "Pi", " ", 
+           RowBox[{"(", 
+            RowBox[{"2", 
+             RowBox[{"T1", "/", "T"}]}], ")"}]}], "]"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"k", " ", "Pi", " ", 
+           RowBox[{"(", 
+            RowBox[{"2", 
+             RowBox[{"T1", "/", "T"}]}], ")"}]}], ")"}]}]}]}], "*)"}], 
+     RowBox[{"(*", 
+      RowBox[{
+      "\:6ce8\:610f\:8fd9\:91cc\:4f7f\:7528\:4e86\:89c4\:8303\:5316\:7684", " ",
+        "sinc", " ", "\:5f62\:5f0f\:4ee5\:65b9\:4fbf\:89c2\:5bdf"}], "*)"}], 
+     RowBox[{
+      RowBox[{
+       RowBox[{"sincFunc", "[", "k_", "]"}], ":=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"k", "==", "0"}], ",", 
+         RowBox[{"2", "*", 
+          RowBox[{"T1", "/", "T"}]}], ",", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"2", " ", 
+            RowBox[{"Sin", "[", 
+             RowBox[{"k", "*", "Pi", "*", 
+              RowBox[{"(", 
+               RowBox[{"2", " ", 
+                RowBox[{"T1", "/", "T"}]}], ")"}]}], "]"}]}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{"k", "*", "Pi"}], ")"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+      "(*", "\:751f\:6210\:79bb\:6563\:7684\:5085\:91cc\:53f6\:7cfb\:6570\
+\:70b9", "*)"}], 
+      RowBox[{"discreteData", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"k", ",", 
+           RowBox[{"sincFunc", "[", "k", "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"k", ",", 
+           RowBox[{"-", "kMax"}], ",", "kMax"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2", " ", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"x", "*", "Pi", "*", 
+             RowBox[{"(", 
+              RowBox[{"2", " ", 
+               RowBox[{"T1", "/", "T"}]}], ")"}]}], "]"}]}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"x", "*", "Pi"}], ")"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", 
+          RowBox[{"-", "kMax"}], ",", "kMax"}], "}"}], ",", 
+        RowBox[{"PlotRange", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "kMax"}], ",", "kMax"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.1"}], ",", "0.5"}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"PlotStyle", "->", 
+         RowBox[{"{", 
+          RowBox[{"Red", ",", "Thick"}], "}"}]}], ",", 
+        RowBox[{"Filling", "->", "Axis"}], ",", 
+        RowBox[{"FillingStyle", "->", 
+         RowBox[{"Lighter", "[", 
+          RowBox[{"Blue", ",", "0.8"}], "]"}]}], ",", 
+        RowBox[{"AxesLabel", "->", 
+         RowBox[{"{", 
+          
+          RowBox[{"\"\<k (\:8c10\:6ce2\:6b21\:6570)\>\"", 
+           ",", "\"\<X[k]\>\""}], "}"}]}], ",", 
+        RowBox[{"PlotLabel", "->", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"\"\<\:5360\:7a7a\:6bd4 (2T1/T) = \>\"", ",", 
+              RowBox[{"NumberForm", "[", 
+               RowBox[{
+                RowBox[{"2", " ", 
+                 RowBox[{"T1", "/", "T"}]}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"3", ",", "3"}], "}"}]}], "]"}]}], "}"}], "]"}], ",",
+            "14"}], "]"}]}], ",", 
+        RowBox[{"Epilog", "->", 
+         RowBox[{"{", 
+          RowBox[{"Blue", ",", 
+           RowBox[{"PointSize", "[", "0.008", "]"}], ",", 
+           RowBox[{"Point", "[", "discreteData", "]"}], ",", 
+           RowBox[{
+           "(*", "\:7ed8\:5236\:7ad6\:76f4\:7ebf\:8868\:793a\:8109\:51b2", 
+            "*)"}], 
+           RowBox[{"Line", "[", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"k", ",", "0"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"k", ",", 
+                  RowBox[{"sincFunc", "[", "k", "]"}]}], "}"}]}], "}"}], ",", 
+              
+              RowBox[{"{", 
+               RowBox[{"k", ",", 
+                RowBox[{"-", "kMax"}], ",", "kMax"}], "}"}]}], "]"}], "]"}]}],
+           "}"}]}], ",", 
+        RowBox[{"ImageSize", "->", "Large"}], ",", 
+        RowBox[{"AspectRatio", "->", 
+         RowBox[{"1", "/", "3"}]}]}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"T1", ",", "0.05", ",", "\"\<\:534a\:8109\:5bbd T1\>\""}], 
+      "}"}], ",", "0.005", ",", "0.25", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"SaveDefinitions", "->", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9833014808283567`*^9, 3.9833014808301363`*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"5c7f0088-8b46-47f2-885f-80a5a79ae4da"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`T1$$ = 0.25, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`T1$$], 0.05, "\:534a\:8109\:5bbd T1"}, 0.005, 0.25, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    907.93359375, {159.82208210818558`, 165.55401570193558`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`T1$$ = 0.05}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`T$ = 1, $CellContext`kMax$ = 
+         100, $CellContext`sincFunc$, $CellContext`discreteData$}, \
+$CellContext`sincFunc$[
+           Pattern[$CellContext`k$, 
+            Blank[]]] := 
+         If[$CellContext`k$ == 0, 
+           2 ($CellContext`T1$$/$CellContext`T$), (2 
+            Sin[$CellContext`k$ 
+              Pi (2 ($CellContext`T1$$/$CellContext`T$))])/($CellContext`k$ 
+           Pi)]; $CellContext`discreteData$ = Table[{$CellContext`k, 
+            $CellContext`sincFunc$[$CellContext`k]}, {$CellContext`k, \
+-$CellContext`kMax$, $CellContext`kMax$}]; 
+        Plot[(2 Sin[$CellContext`x 
+             Pi (2 ($CellContext`T1$$/$CellContext`T$))])/($CellContext`x 
+          Pi), {$CellContext`x, -$CellContext`kMax$, $CellContext`kMax$}, 
+          PlotRange -> {{-$CellContext`kMax$, $CellContext`kMax$}, {-0.1, 
+            0.5}}, PlotStyle -> {Red, Thick}, Filling -> Axis, FillingStyle -> 
+          Lighter[Blue, 0.8], 
+          AxesLabel -> {"k (\:8c10\:6ce2\:6b21\:6570)", "X[k]"}, PlotLabel -> 
+          Style[
+            Row[{"\:5360\:7a7a\:6bd4 (2T1/T) = ", 
+              NumberForm[2 ($CellContext`T1$$/$CellContext`T$), {3, 3}]}], 
+            14], Epilog -> {Blue, 
+            PointSize[0.008], 
+            Point[$CellContext`discreteData$], 
+            Line[
+             Table[{{$CellContext`k, 0}, {$CellContext`k, 
+                $CellContext`sincFunc$[$CellContext`k]}}, {$CellContext`k, \
+-$CellContext`kMax$, $CellContext`kMax$}]]}, ImageSize -> Large, AspectRatio -> 
+          1/3]], "Specifications" :> {{{$CellContext`T1$$, 0.05, 
+          "\:534a\:8109\:5bbd T1"}, 0.005, 0.25, Appearance -> "Labeled"}}, 
+      "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      957.0335937499999, {207.49250752322465`, 213.22444111697465`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.983301494908448*^9},
+ CellLabel->"Out[18]=",ExpressionUUID->"bb6d35c4-a0c7-4ff7-860b-fd199d867f89"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"T1", "=", "0.1"}], ",", 
+       RowBox[{"kRange", "=", "50"}], ",", "omega0", ",", "discretePoints", ",",
+        "envelope"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"omega0", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"2", " ", "Pi"}], ")"}], "/", "T"}]}], ";", 
+      RowBox[{"(*", "\:57fa\:9891", "*)"}], 
+      RowBox[{"(*", 
+       RowBox[{"\:5b9a\:4e49\:8fde\:7eed\:5305\:7edc\:51fd\:6570", " ", 
+        RowBox[{
+        "(", "\:5085\:91cc\:53f6\:53d8\:6362\:7684\:5f62\:72b6", ")"}]}], 
+       "*)"}], 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{
+        "\:5bf9\:4e8e\:56fa\:5b9a", " ", "T1", " ", 
+         "\:7684\:77e9\:5f62\:8109\:51b2"}], "\:ff0c", 
+        RowBox[{
+        "\:5176", " ", "FT", " ", "\:5305\:7edc\:4e3a", " ", "2", " ", "T1", " ", 
+         RowBox[{"Sinc", "[", 
+          RowBox[{"w", " ", "T1"}], "]"}]}]}], "*)"}], 
+      RowBox[{
+       RowBox[{"envelope", "[", "w_", "]"}], ":=", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"w", "==", "0"}], ",", 
+         RowBox[{"2", " ", "T1"}], ",", 
+         RowBox[{"2", " ", "T1", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"Sin", "[", 
+             RowBox[{"w", " ", "T1"}], "]"}], "/", 
+            RowBox[{"(", 
+             RowBox[{"w", " ", "T1"}], ")"}]}], ")"}]}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{
+        "\:751f\:6210\:79bb\:6563\:8c31\:7ebf\:4f4d\:7f6e", ":", "w_k"}], "=", 
+        RowBox[{"k", "*", "omega0"}]}], "*)"}], 
+      RowBox[{"discretePoints", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"k", "*", "omega0"}], ",", 
+           RowBox[{"envelope", "[", 
+            RowBox[{"k", "*", "omega0"}], "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"k", ",", 
+           RowBox[{"-", "kRange"}], ",", "kRange"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{"envelope", "[", "w", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"w", ",", 
+          RowBox[{"-", "30"}], ",", "30"}], "}"}], ",", 
+        RowBox[{"PlotRange", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "30"}], ",", "30"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "0.1"}], ",", "0.25"}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"PlotStyle", "->", 
+         RowBox[{"{", 
+          RowBox[{"Red", ",", "Dashed", ",", 
+           RowBox[{"Thickness", "[", "0.003", "]"}]}], "}"}]}], ",", 
+        RowBox[{"Filling", "->", "Axis"}], ",", 
+        RowBox[{"FillingStyle", "->", 
+         RowBox[{"Lighter", "[", 
+          RowBox[{"Gray", ",", "0.9"}], "]"}]}], ",", 
+        RowBox[{"AxesLabel", "->", 
+         RowBox[{"{", 
+          
+          RowBox[{"\"\<\[Omega] (\:89d2\:9891\:7387)\>\"", 
+           ",", "\"\<X[k]\>\""}], "}"}]}], ",", 
+        RowBox[{"PlotLabel", "->", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             RowBox[{"\"\<\:5468\:671f T = \>\"", ",", 
+              RowBox[{"NumberForm", "[", 
+               RowBox[{"T", ",", 
+                RowBox[{"{", 
+                 RowBox[{"3", ",", "1"}], "}"}]}], "]"}], 
+              ",", "\"\<  |  \:8c31\:7ebf\:95f4\:9694 \[CapitalDelta]\[Omega] \
+= \>\"", ",", 
+              RowBox[{"NumberForm", "[", 
+               RowBox[{"omega0", ",", 
+                RowBox[{"{", 
+                 RowBox[{"3", ",", "2"}], "}"}]}], "]"}]}], "}"}], "]"}], ",",
+            "14"}], "]"}]}], ",", 
+        RowBox[{"Epilog", "->", 
+         RowBox[{"{", 
+          RowBox[{"Blue", ",", "Thick", ",", 
+           RowBox[{"(*", "\:7ed8\:5236\:79bb\:6563\:8c31\:7ebf", "*)"}], 
+           RowBox[{"Line", "[", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"p", "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], ",", "0"}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"p", "[", 
+                   RowBox[{"[", "1", "]"}], "]"}], ",", 
+                  RowBox[{"p", "[", 
+                   RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"p", ",", "discretePoints"}], "}"}]}], "]"}], "]"}], ",", 
+           RowBox[{"PointSize", "[", "0.01", "]"}], ",", 
+           RowBox[{"Point", "[", "discretePoints", "]"}]}], "}"}]}], ",", 
+        RowBox[{"ImageSize", "->", "Large"}], ",", 
+        RowBox[{"AspectRatio", "->", 
+         RowBox[{"1", "/", "3"}]}]}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"T", ",", "1", ",", "\"\<\:5468\:671f T\>\""}], "}"}], ",", 
+     "0.5", ",", "20", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"SaveDefinitions", "->", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.983301650946177*^9, 3.983301650947954*^9}},
+ CellLabel->"In[19]:=",ExpressionUUID->"f896b55e-3e5d-44f3-94bc-a96c01a707ec"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`T$$ = 0.5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`T$$], 1, "\:5468\:671f T"}, 0.5, 20, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    576., {101.98397714120374`, 107.71591073495374`}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`T$$ = 1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`T1$ = 0.1, $CellContext`kRange$ = 
+         50, $CellContext`omega0$, $CellContext`discretePoints$, \
+$CellContext`envelope$}, $CellContext`omega0$ = (2 
+           Pi)/$CellContext`T$$; $CellContext`envelope$[
+           Pattern[$CellContext`w$, 
+            Blank[]]] := 
+         If[$CellContext`w$ == 0, 2 $CellContext`T1$, 
+           2 $CellContext`T1$ (
+            Sin[$CellContext`w$ $CellContext`T1$]/($CellContext`w$ \
+$CellContext`T1$))]; $CellContext`discretePoints$ = 
+         Table[{$CellContext`k $CellContext`omega0$, 
+            $CellContext`envelope$[$CellContext`k $CellContext`omega0$]}, \
+{$CellContext`k, -$CellContext`kRange$, $CellContext`kRange$}]; Plot[
+          $CellContext`envelope$[$CellContext`w], {$CellContext`w, -30, 30}, 
+          PlotRange -> {{-30, 30}, {-0.1, 0.25}}, PlotStyle -> {Red, Dashed, 
+            Thickness[0.003]}, Filling -> Axis, FillingStyle -> 
+          Lighter[Gray, 0.9], 
+          AxesLabel -> {"\[Omega] (\:89d2\:9891\:7387)", "X[k]"}, PlotLabel -> 
+          Style[
+            Row[{"\:5468\:671f T = ", 
+              NumberForm[$CellContext`T$$, {3, 1}], 
+              "  |  \:8c31\:7ebf\:95f4\:9694 \[CapitalDelta]\[Omega] = ", 
+              NumberForm[$CellContext`omega0$, {3, 2}]}], 14], 
+          Epilog -> {Blue, Thick, 
+            Line[
+             Table[{{
+                Part[$CellContext`p, 1], 0}, {
+                Part[$CellContext`p, 1], 
+                
+                Part[$CellContext`p, 
+                 2]}}, {$CellContext`p, $CellContext`discretePoints$}]], 
+            PointSize[0.01], 
+            Point[$CellContext`discretePoints$]}, ImageSize -> Large, 
+          AspectRatio -> 1/3]], 
+      "Specifications" :> {{{$CellContext`T$$, 1, "\:5468\:671f T"}, 0.5, 20, 
+         Appearance -> "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      625.0999999999999, {149.6544025562428, 155.3863361499928}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.983301652404666*^9},
+ CellLabel->"Out[19]=",ExpressionUUID->"7272606d-6b32-462e-b78c-6f5e0367d543"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{28, Automatic}, {Automatic, 64}},
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"73757c6f-6350-4c47-9c91-46806c8f236c"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5326, 143, 292, "Input",ExpressionUUID->"5c7f0088-8b46-47f2-885f-80a5a79ae4da"],
+Cell[5905, 167, 3452, 66, 437, "Output",ExpressionUUID->"bb6d35c4-a0c7-4ff7-860b-fd199d867f89"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9394, 238, 5432, 140, 376, "Input",ExpressionUUID->"f896b55e-3e5d-44f3-94bc-a96c01a707ec"],
+Cell[14829, 380, 3560, 70, 322, "Output",ExpressionUUID->"7272606d-6b32-462e-b78c-6f5e0367d543"]
+}, Open  ]]
+}
+]
+*)
+

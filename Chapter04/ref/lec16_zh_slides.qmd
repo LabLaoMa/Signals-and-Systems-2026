@@ -1,0 +1,885 @@
+---
+title: "EL331 信号与系统 · 第16讲（中文版）"
+subtitle: "连续时间傅里叶变换：帕塞瓦尔恒等式、卷积与系统分析"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+1. 帕塞瓦尔恒等式
+2. 卷积性质
+3. 乘积性质
+4. 线性常系数微分方程描述的系统
+
+## 帕塞瓦尔恒等式
+
+定理。 If $x \in L_{2}(\mathbb{R}), X=\mathcal{F}\{x\}$, then
+
+$$
+\|x\|_{2}^{2}=\frac{1}{2 \pi}\|X\|_{2}^{2}, \quad \text { or } \quad \int_{\mathbb{R}}|x(t)|^{2} d t=\frac{1}{2 \pi} \int_{\mathbb{R}}|X(j \omega)|^{2} d \omega
+$$
+
+Note $\omega$ is angular frequency and $\frac{\omega}{2 \pi}$ is frequency
+
+$$
+\int_{\mathbb{R}}|x(t)|^{2} d t=\int_{\mathbb{R}}|X(j \omega)|^{2} \frac{d \omega}{2 \pi}
+$$
+
+物理解释: Energy conservation
+
+- $|x(t)|^{2}$ power, or energy per unit time (second)
+- $|X(j \omega)|^{2}$ energy per unit frequency (Hertz)
+$|X(j \omega)|^{2}$ called 能量密度谱
+
+
+## 帕塞瓦尔恒等式
+
+定理。 If $x, y \in L_{2}(\mathbb{R}), X=\mathcal{F}\{x\}, Y=\mathcal{F}\{y\}$, then $\langle x, y\rangle=\frac{1}{2 \pi}\langle X, Y\rangle, \quad$ or $\quad \int_{\mathbb{R}} x(t) y^{*}(t) d t=\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) Y^{*}(j \omega) d \omega$
+"证明。"
+
+$$
+\begin{aligned}
+\int_{\mathbb{R}} x(t) y^{*}(t) d t & =\int_{\mathbb{R}} x(t)\left(\frac{1}{2 \pi} \int_{R} Y(j \omega) e^{j \omega t} d \omega\right)^{*} d t \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}} x(t) \int_{R} Y^{*}(j \omega) e^{-j \omega t} d \omega d t \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}}\left(\int_{\mathbb{R}} x(t) e^{-j \omega t} d t\right) Y^{*}(j \omega) d \omega \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) Y^{*}(j \omega) d \omega
+\end{aligned}
+$$
+
+## 帕塞瓦尔恒等式
+
+例.
+
+$$
+\frac{\sin (W t)}{\pi t} \stackrel{\mathcal{F}}{\longleftrightarrow} u(\omega+W)-u(\omega-W)
+$$
+
+By Parseval's identity
+
+$$
+\begin{aligned}
+\int_{\mathbb{R}} \frac{\sin ^{2}(W t)}{\pi^{2} t^{2}} d t & =\frac{1}{2 \pi} \int_{\mathbb{R}}|u(\omega+W)-u(\omega-W)|^{2} d \omega \\
+& =\frac{1}{2 \pi} \int_{-W}^{W} d \omega \\
+& =\frac{W}{\pi}
+\end{aligned}
+$$
+
+## 目录
+
+## 1. 帕塞瓦尔恒等式
+
+2. 卷积性质
+
+## 3. 乘积性质
+
+4. 线性常系数微分方程描述的系统
+
+## 卷积性质
+
+For LTI systems $T$ with
+
+- 冲激响应 $h$
+- 频率响应 $H(j \omega)=\int_{\mathbb{R}} h(t) e^{-j \omega t} d t=\mathcal{F}\{h\}$
+$e^{j \omega t}$ is eigenfunction associated with eigenvalue $H(j \omega)$
+
+$$
+T\left(e^{j \omega t}\right)=H(j \omega) e^{\omega t}
+$$
+
+Input $x$ is linear superposition of $e^{j \omega t}$
+
+$$
+x(t)=\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) e^{j \omega t} d \omega
+$$
+
+Output
+
+$$
+\begin{aligned}
+y(t) & =(x * h)(t)=T\left(\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) e^{j \omega t} d \omega\right) \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) T\left(e^{j \omega t}\right) d \omega=\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) H(j \omega) e^{j \omega t} d \omega
+\end{aligned}
+$$
+
+## 卷积性质
+
+$$
+\mathcal{F}\{x * y\}=\mathcal{F}\{x\} \mathcal{F}\{y\}, \quad \text { or } \quad(x * y)(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(j \omega) Y(j \omega)
+$$
+
+convolution in time ⟹ multiplication in frequency
+"Proof".
+
+$$
+\begin{aligned}
+\int_{\mathbb{R}}(x * y)(t) e^{-j \omega t} d t & =\int_{\mathbb{R}} \int_{\mathbb{R}} x(\tau) y(t-\tau) e^{-j \omega t} d \tau d t \\
+& =\int_{\mathbb{R}} x(\tau)\left(\int_{\mathbb{R}} y(t-\tau) e^{-j \omega t} d t\right) d \tau \\
+& =\int_{\mathbb{R}} x(\tau) Y(j \omega) e^{-j \omega \tau} d \tau \\
+& =Y(j \omega) \int_{\mathbb{R}} x(\tau) e^{-j \omega \tau} d \tau \\
+& =Y(j \omega) X(j \omega)
+\end{aligned}
+$$
+
+例
+
+$$
+\begin{gathered}
+x(t)=\left(1-\frac{2|t|}{T}\right)\left[u\left(t+\frac{T}{2}\right)-u\left(t-\frac{T}{2}\right)\right] \\
+x=x_{1} * x_{1}
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-09.jpg?height=229&width=314&top_left_y=62&top_left_x=825)
+
+$$
+\begin{gathered}
+X_{1}(j \omega)=\sqrt{\frac{2}{T}} \cdot \frac{2 \sin \left(\frac{\omega T}{4}\right)}{\omega} \\
+X(j \omega)=X_{1}^{2}(j \omega)=\frac{8 \sin ^{2}\left(\frac{\omega T}{4}\right)}{\omega^{2} T}
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-09.jpg?height=270&width=316&top_left_y=332&top_left_x=825)
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-09.jpg?height=263&width=491&top_left_y=676&top_left_x=117)
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-09.jpg?height=214&width=489&top_left_y=670&top_left_x=741)
+
+## LTI 系统的频率响应
+
+LTI system $T$
+
+- fully characterized by 冲激响应 $h$
+
+$$
+y=T(x)=h * x
+$$
+
+- also fully characterized by 频率响应 $H=\mathcal{F}\{h\}$, if $H$ is well-defined
+- BIBO stable system, $h \in L_{1}(\mathbb{R})$
+- other systems: identity $h=\delta$, differentiator $h=\delta^{\prime}, \ldots$
+
+Typically, convolution property implies
+
+$$
+Y=\mathcal{F}\{y\}=H X=\mathcal{F}\{h\} \mathcal{F}\{x\}
+$$
+
+Instead of computing $x * h$, can do
+
+$$
+y=\mathcal{F}^{-1}(\mathcal{F}\{h\} \mathcal{F}\{x\})
+$$
+
+LTI 系统的频率响应
+
+|  | $h(t)$ | $H(j \omega)$ |
+| :--- | :--- | :--- |
+| id | $\delta(t)$ | 1 |
+| $\tau_{t_{0}}$ | $\delta\left(t-t_{0}\right)$ | $e^{-j \omega t_{0}}$ |
+| $\frac{d}{d t}$ | $\delta^{\prime}(t)$ | $j \omega$ |
+| $\int_{-\infty}^{t}$ | $u(t)$ | $\frac{1}{j \omega}+\pi \delta(\omega)$ |
+| ideal lowpass | $\frac{\sin \left(\omega_{c} t\right)}{\pi t}$ | $u\left(\omega+\omega_{c}\right)-u\left(\omega-\omega_{c}\right)$ |
+| 1st order lowpass | $\frac{1}{\tau} e^{-t / \tau} u(t)$ | $\frac{1}{1+j \tau \omega}$ |
+
+## 例s
+
+例. Differentiation property
+
+$$
+\begin{gathered}
+y=x^{\prime}=x * \delta^{\prime} \\
+Y(j \omega)=X(j \omega) \mathcal{F}\left\{\delta^{\prime}\right\}=j \omega X(j \omega)
+\end{gathered}
+$$
+
+例. Integration property
+
+$$
+\begin{gathered}
+y(t)=\int_{-\infty}^{t} x(\tau) d \tau=(x * u)(t) \\
+Y(j \omega)=X(j \omega) U(j \omega)=X(j \omega)\left[\frac{1}{j \omega}+\pi \delta(\omega)\right]=\frac{1}{j \omega} X(j \omega)+\pi X(0) \delta(\omega)
+\end{gathered}
+$$
+
+## 例
+
+Unit ramp function $u_{-2}(t)=t u(t)=(u * u)(t)$
+Convolution property suggests
+
+$$
+\mathcal{F}\left\{u_{-2}\right\}(j \omega)=U^{2}(j \omega)=-\frac{1}{\omega^{2}}+\frac{2 \pi}{j \omega} \delta(\omega)+\pi^{2} \delta(\omega) \delta(\omega)
+$$
+
+But $\frac{\pi}{j \omega} \delta(\omega)$ and $\delta(\omega) \delta(\omega)$ not well-defined!
+Know $\mathcal{F}\left\{u_{-2}\right\}=-\frac{1}{\omega^{2}}+j \pi \delta^{\prime}(\omega)$
+Convolution property not applicable here!
+Rule of thumb. Applicable when formula is well-defined
+
+## 例
+
+Response of LTI system with 冲激响应 $h(t)=e^{-a t} u(t)$ to input $x(t)=e^{-b t} u(t), a, b>0$
+
+方法 1. Direct convolution $y=x * h$
+方法 2. Solve following ODE with initial rest condition
+
+$$
+y^{\prime}(t)+a y(t)=e^{-b t} u(t)
+$$
+
+方法 3. Fourier transform.
+
+$$
+H(j \omega)=\frac{1}{a+j \omega}, X(j \omega)=\frac{1}{b+j \omega} \Longrightarrow Y(j \omega)=\frac{1}{(a+j \omega)(b+j \omega)}
+$$
+
+If $a \neq b, Y(j \omega)=\frac{1}{b-a}\left(\frac{1}{a+j \omega}-\frac{1}{b+j \omega}\right) \Longrightarrow y(t)=\frac{1}{b-a}\left(e^{-a t}-e^{-b t}\right) u(t)$
+If $a=b, Y(j \omega)=-\frac{d}{d a}\left(\frac{1}{a+j \omega}\right) \Longrightarrow y(t)=-\frac{d}{d a} e^{-a t} u(t)=t e^{-a t} u(t)$
+Can also use $Y(j \omega)=j \frac{d}{d \omega}\left(\frac{1}{a+j \omega}\right)$ and differentiation property
+
+## 例
+
+Response of LTI system with 冲激响应 $h(t)=e^{-a t} u(t)$ to input $x(t)=\cos \left(\omega_{0} t\right), a>0$.
+频率响应
+
+$$
+H(j \omega)=\frac{1}{a+j \omega}=\frac{1}{\sqrt{a^{2}+\omega^{2}}} e^{-j \arctan \frac{\omega}{a}}
+$$
+
+方法 1. Use eigenfunction property
+
+$$
+\begin{gathered}
+x(t)=\frac{1}{2} e^{j \omega_{0} t}+\frac{1}{2} e^{-j \omega_{0} t} \\
+y(t)=\frac{1}{2} H\left(j \omega_{0}\right) e^{j \omega_{0} t}+\frac{1}{2} H\left(-j \omega_{0}\right) e^{-j \omega_{0} t}=\operatorname{Re} \frac{e^{j \omega_{0} t}}{a+j \omega_{0}} \\
+=\frac{a \cos \left(\omega_{0} t\right)+\omega_{0} \sin \left(\omega_{0} t\right)}{a^{2}+\omega_{0}^{2}}=\frac{1}{\sqrt{a^{2}+\omega_{0}^{2}}} \cos \left(\omega_{0} t-\arctan \frac{\omega_{0}}{a}\right)
+\end{gathered}
+$$
+
+## 例
+
+Response of LTI system with 冲激响应 $h(t)=e^{-a t} u(t)$ to input $x(t)=\cos \left(\omega_{0} t\right)$.
+
+频率响应
+
+$$
+H(j \omega)=\frac{1}{a+j \omega}=\frac{1}{\sqrt{a^{2}+\omega^{2}}} e^{-j \arctan \frac{\omega}{a}}
+$$
+
+方法 2. Use Fourier transform of $X$
+
+$$
+\begin{gathered}
+X(j \omega)=\pi \delta\left(\omega-\omega_{0}\right)+\pi \delta\left(\omega+\omega_{0}\right) \\
+Y(j \omega)=\pi H\left(j \omega_{0}\right) \delta\left(\omega-\omega_{0}\right)+\pi H\left(-j \omega_{0}\right) \delta\left(\omega+\omega_{0}\right) \\
+y(t)=\frac{1}{2} H\left(j \omega_{0}\right) e^{j \omega_{0} t}+\frac{1}{2} H\left(-j \omega_{0}\right) e^{-j \omega_{0} t}
+\end{gathered}
+$$
+
+## 例
+
+Response of ideal lowpass filter with 冲激响应 $h(t)$ to input $x(t)$.
+
+$$
+h(t)=\frac{\sin \left(\omega_{c} t\right)}{\pi t}, \quad x(t)=\frac{\sin \left(\omega_{i} t\right)}{\pi t}
+$$
+
+Fourier transforms
+
+$$
+\begin{aligned}
+& X(j \omega)=u\left(\omega+\omega_{i}\right)-u\left(\omega-\omega_{i}\right) \\
+& H(j \omega)=u\left(\omega+\omega_{c}\right)-u\left(\omega-\omega_{c}\right)
+\end{aligned}
+$$
+
+Use $Y(j \omega)=X(j \omega) H(j \omega)$,
+
+$$
+Y(j \omega)=\left\{\begin{array}{ll}
+X(j \omega), & \text { if } \omega_{i} \leq \omega_{c} \\
+H(j \omega), & \text { if } \omega_{i}>\omega_{c}
+\end{array} \Longrightarrow y(t)= \begin{cases}x(t), & \text { if } \omega_{i} \leq \omega_{c} \\
+h(t), & \text { if } \omega_{i}>\omega_{c}\end{cases}\right.
+$$
+
+NB. Convolution of two sinc is another sinc
+
+## 例
+
+Convolution of Gaussians is another Gaussian
+
+$$
+x_{i}(t)=\frac{1}{\sqrt{2 \pi \sigma_{i}^{2}}} \exp \left(-\frac{\left(t-\mu_{i}\right)^{2}}{2 \sigma_{i}^{2}}\right)
+$$
+
+Fourier transform (complex conjugate of characteristic function)
+
+$$
+X_{i}(j \omega)=\exp \left(-i \mu_{i} \omega-\frac{\sigma_{i}^{2}}{2} \omega^{2}\right)
+$$
+
+For $y=x_{1} * x_{2}$,
+
+$$
+\begin{gathered}
+Y(j \omega)=X_{1}(j \omega) X_{2}(j \omega)=\exp \left(-i\left(\mu_{1}+\mu_{2}\right) \omega-\frac{\sigma_{1}^{2}+\sigma_{2}^{2}}{2} \omega^{2}\right) \\
+y(t)=\frac{1}{\sqrt{2 \pi\left(\sigma_{1}^{2}+\sigma_{2}^{2}\right)}} \exp \left(-\frac{\left(t-\mu_{1}-\mu_{2}\right)^{2}}{2\left(\sigma_{1}^{2}+\sigma_{2}^{2}\right)}\right)
+\end{gathered}
+$$
+
+## 系统连接
+
+LTI systems in 串联系统
+
+$$
+y=\left(x * h_{1}\right) * h_{2}=x *\left(h_{1} * h_{2}\right)=\left(x * h_{2}\right) * h_{1}
+$$
+
+$$
+h=h_{1} * h_{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-19.jpg?height=509&width=886&top_left_y=310&top_left_x=328)
+
+对 LTI 系统而言，处理顺序通常不影响结果
+
+## 系统连接
+
+LTI systems in 串联系统
+
+$$
+Y=\left(X H_{1}\right) H_{2}=X\left(H_{1} H_{2}\right)=\left(X H_{2}\right) H_{1}
+$$
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-20.jpg?height=509&width=1159&top_left_y=310&top_left_x=51)
+
+对 LTI 系统而言，处理顺序通常不影响结果
+
+## 系统连接
+
+LTI systems in systems in 并联系统
+
+$$
+h=h_{1}+h_{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-21.jpg?height=334&width=725&top_left_y=221&top_left_x=414)
+
+$$
+H=H_{1}+H_{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-21.jpg?height=334&width=725&top_left_y=576&top_left_x=414)
+
+## 系统连接
+
+LTI systems in systems in 反馈连接
+
+$$
+\begin{gathered}
+y=h_{1} *\left(x-h_{2} * y\right) \\
+h=?
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-22.jpg?height=320&width=769&top_left_y=224&top_left_x=452)
+
+$$
+\begin{aligned}
+Y & =H_{1} X-H_{1} H_{2} Y \\
+H & =\frac{Y}{X}=\frac{H_{1}}{1+H_{1} H_{2}}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-22.jpg?height=325&width=769&top_left_y=594&top_left_x=452)
+
+## 目录
+
+## 1. 帕塞瓦尔恒等式
+
+2. 卷积性质
+3. 乘积性质
+4. 线性常系数微分方程描述的系统
+
+## 乘积性质
+
+卷积性质的对偶
+
+$$
+\mathcal{F}\{x y\}=\frac{1}{2 \pi} \mathcal{F}\{x\} * \mathcal{F}\{y\}, \text { or } x(t) y(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{2 \pi} \int_{\mathbb{R}} X(j \theta) Y(j(\omega-\theta)) d \theta
+$$
+
+时域相乘 ⟹ 频域卷积
+证明。 Let $Z(j \omega)=\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \theta) Y(j(\omega-\theta)) d \theta$
+
+$$
+\begin{aligned}
+\frac{1}{2 \pi} \int_{\mathbb{R}} Z(j \omega) e^{j \omega t} d \omega & =\frac{1}{2 \pi} \int_{\mathbb{R}} \frac{1}{2 \pi}\left(\int_{\mathbb{R}} X(j \theta) Y(j(\omega-\theta)) d \theta\right) e^{j \omega t} d \omega \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \theta) \frac{1}{2 \pi}\left(\int_{\mathbb{R}} Y(j(\omega-\theta)) e^{j \omega t} d \omega\right) d \theta \\
+& =\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \theta) y(t) e^{j \theta t} d \theta=x(t) y(t)
+\end{aligned}
+$$
+
+## 例: 调制
+
+Baseband signal $x(t)$
+Carrier
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-25.jpg?height=207&width=339&top_left_y=115&top_left_x=900)
+
+$$
+\begin{aligned}
+& p(t)=\cos \left(\omega_{c} t\right) \\
+& P(j \omega)=\pi \delta\left(\omega-\omega_{c}\right)+\pi \delta\left(\omega+\omega_{c}\right)
+\end{aligned}
+$$
+
+Modulated signal
+
+$$
+\begin{aligned}
+& y(t)=x(t) p(t) \\
+& Y(j \omega)=\frac{1}{2} X\left(j\left(\omega-\omega_{c}\right)\right)+\frac{1}{2} X\left(j\left(\omega+\omega_{c}\right)\right)
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-25.jpg?height=172&width=656&top_left_y=425&top_left_x=585)
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-25.jpg?height=236&width=682&top_left_y=683&top_left_x=559)
+
+## 例: 解调
+
+Modulated signal $y(t)$
+Carrier
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-26.jpg?height=172&width=652&top_left_y=115&top_left_x=567)
+
+$$
+\begin{aligned}
+& p(t)=\cos \left(\omega_{c} t\right) \\
+& P(j \omega)=\pi \delta\left(\omega-\omega_{c}\right)+\pi \delta\left(\omega+\omega_{c}\right)
+\end{aligned}
+$$
+
+解调
+
+$$
+\begin{aligned}
+& z(t)=y(t) p(t) \\
+& \quad=\frac{1}{2} x(t)+\frac{1}{2} x(t) \cos \left(2 \omega_{c} t\right) \\
+& R(j \omega)=Z(j \omega) H_{\text {lowpass }}(j \omega) \\
+& r(t)=x(t)
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-26.jpg?height=174&width=654&top_left_y=383&top_left_x=565)
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-26.jpg?height=231&width=1125&top_left_y=707&top_left_x=93)
+
+## 理想 AM 通信系统
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-27.jpg?height=775&width=1199&top_left_y=135&top_left_x=31)
+
+例
+
+$$
+\begin{gathered}
+x(t)=\frac{\sin t \cdot \sin \frac{t}{2}}{\pi t^{2}}=\pi x_{1}(t) x_{2}(t) \\
+x_{1}(t)=\frac{\sin t}{\pi t} \\
+x_{2}(t)=\frac{\sin \frac{t}{2}}{\pi t} \\
+X=\frac{1}{2} X_{1} * X_{2}
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-28.jpg?height=223&width=420&top_left_y=113&top_left_x=719)
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-28.jpg?height=249&width=420&top_left_y=379&top_left_x=719)
+![](https://cdn.mathpix.com/cropped/0971cef0-84f4-4512-ad15-12a491cd1229-28.jpg?height=248&width=420&top_left_y=654&top_left_x=719)
+
+## 目录
+
+## 1. 帕塞瓦尔恒等式
+
+## 2. 卷积性质
+
+## 3. 乘积性质
+
+4. 线性常系数微分方程描述的系统
+
+## 线性常系数微分方程
+
+频率响应 of LTI system described by
+
+$$
+\sum_{k=0}^{N} a_{k} \frac{d^{k} y}{d t^{k}}=\sum_{k=0}^{M} b_{k} \frac{d^{k} x}{d t^{k}}
+$$
+
+方法 1. Use eigenfunction property
+
+$$
+x(t)=e^{j \omega t} \Longrightarrow y(t)=H(j \omega) e^{j \omega t}
+$$
+
+Substitution into ODE yields
+
+$$
+\begin{gathered}
+\sum_{k=0}^{N} a_{k} H(j \omega)(j \omega)^{k} e^{j \omega t}=\sum_{k=0}^{M} b_{k}(j \omega)^{k} e^{j \omega t} \\
+H(j \omega)=\frac{\sum_{k=0}^{M} b_{k}(j \omega)^{k}}{\sum_{k=0}^{N} a_{k}(j \omega)^{k}}
+\end{gathered}
+$$
+
+## 线性常系数微分方程
+
+方法 2. Take Fourier transform of both sides
+
+$$
+\mathcal{F}\left\{\sum_{k=0}^{N} a_{k} \frac{d^{k} y}{d t^{k}}\right\}=\mathcal{F}\left\{\sum_{k=0}^{M} b_{k} \frac{d^{k} x}{d t^{k}}\right\}
+$$
+
+By linearity and differentiation property
+
+$$
+\sum_{k=0}^{N} a_{k}(j \omega)^{k} Y(j \omega)=\sum_{k=0}^{M} b_{k}(j \omega)^{k} X(j \omega)
+$$
+
+By convolution property
+
+$$
+H(j \omega)=\frac{Y(j \omega)}{X(j \omega)}=\frac{\sum_{k=0}^{M} b_{k}(j \omega)^{k}}{\sum_{k=0}^{N} a_{k}(j \omega)^{k}}
+$$
+
+频率响应 is rational function of $j \omega$
+
+## 例
+
+$$
+y^{\prime \prime}+4 y^{\prime}+3 y=x^{\prime}+2 x
+$$
+
+频率响应
+
+$$
+H(j \omega)=\frac{j \omega+2}{(j \omega)^{2}+4(j \omega)+3}
+$$
+
+By partial fraction expansion
+
+$$
+H(j \omega)=\frac{j \omega+2}{(j \omega+1)(j \omega+3)}=\frac{1 / 2}{j \omega+1}+\frac{1 / 2}{j \omega+3}
+$$
+
+Take inverse Fourier transform to find 冲激响应
+
+$$
+h(t)=\frac{1}{2} e^{-t} u(t)+\frac{1}{2} e^{-3 t} u(t)
+$$
+
+## 例
+
+$$
+y^{\prime \prime}+4 y^{\prime}+3 y=x^{\prime}+2 x
+$$
+
+Find zero-state response to $x(t)=e^{-t} u(t)$
+
+$$
+Y(j \omega)=H(j \omega) X(j \omega)=\frac{j \omega+2}{(j \omega+1)(j \omega+3)} \cdot \frac{1}{j \omega+1}=\frac{j \omega+2}{(j \omega+1)^{2}(j \omega+3)}
+$$
+
+By partial fraction expansion
+
+$$
+Y(j \omega)=\frac{1 / 4}{j \omega+1}+\frac{1 / 2}{(j \omega+1)^{2}}-\frac{1 / 4}{j \omega+3}
+$$
+
+Take inverse Fourier transform to find zero-state response
+
+$$
+y(t)=\left(\frac{1}{4} e^{-t}+\frac{1}{2} t e^{-t}-\frac{1}{4} e^{-3 t}\right) u(t)
+$$
+
+## Inverse Fourier Transform of $\frac{1}{(j \omega+a)^{n}}$
+
+Recall
+
+$$
+e^{-a t} u(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{a+j \omega}
+$$
+
+Note
+
+$$
+j^{n-1} \frac{d^{n-1}}{d \omega^{n-1}}\left(\frac{1}{a+j \omega}\right)=\left(j \frac{d}{d \omega}\right)^{n-1}\left(\frac{1}{a+j \omega}\right)=\frac{(n-1)!}{(a+j \omega)^{n}}
+$$
+
+Recall frequency differentiation property
+
+$$
+t x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} j \frac{d}{d \omega} X(j \omega)
+$$
+
+Applying it $n-1$ times yields
+
+$$
+\frac{t^{n-1}}{(n-1)!} e^{-a t} u(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{(a+j \omega)^{n}}
+$$
+
+## 部分分式展开
+
+Rational function
+
+$$
+R(s)=\frac{P(s)}{Q(s)}=\frac{\sum_{k=0}^{M} b_{k} s^{k}}{\sum_{k=0}^{N} a_{k} s^{k}}
+$$
+
+Proper rational function if $M<N$
+Improper rational function can be rewritten as sum of polynomial and proper rational function by long division
+
+$$
+R(s)=P_{0}(s)+\frac{P_{1}(s)}{Q(s)}
+$$
+
+where $\operatorname{deg} P_{1}<\operatorname{deg} Q$
+例.
+
+$$
+\frac{s^{3}+5 s^{2}+8 s+5}{s^{2}+4 s+3}=s+1+\frac{s+2}{s^{2}+4 s+3}
+$$
+
+## 部分分式展开
+
+例 (long division).
+
+$$
+\frac{s^{3}+5 s^{2}+8 s+5}{s^{2}+4 s+3}=s+1+\frac{s+2}{s^{2}+4 s+3}
+$$
+
+$$
+\begin{aligned}
+\left.s^{2}+4 s+3\right) & s+1 \\
+\cline { 2 - 2 } \begin{array}{r}
+s^{3}+5 s^{2}+8 s+5 \\
+-s^{3}-4 s^{2}-3 s \\
+s^{2}+5 s+5 \\
+-s^{2}-4 s-3 \\
+s+2
+\end{array} & \\
+\hline &
+\end{aligned}
+$$
+
+## 部分分式展开
+
+Consider proper rational function $R(s)=P(s) / Q(s)$
+Denominator $Q(s)$ has $r$ distinct roots $a_{1}, \ldots, a_{r} \in \mathbb{C}$ and factorization
+
+$$
+Q(s)=\prod_{i=1}^{r}\left(s-a_{i}\right)^{N_{i}}
+$$
+
+$R(s)$ has following partial fraction expansion
+
+$$
+R(s)=\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(s-a_{i}\right)^{k_{i}}}
+$$
+
+Find coefficients by
+
+- reducing to common denominator
+- comparing coefficients of numerators
+
+
+## 部分分式展开
+
+例.
+
+$$
+R(s)=\frac{s+2}{(s+1)^{2}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{2,1}}{s+3}
+$$
+
+RHS is
+
+$$
+\begin{aligned}
+& \frac{A_{1,1}(s+1)(s+3)+A_{1,2}(s+3)+A_{2,1}(s+1)^{2}}{(s+1)^{2}(s+3)} \\
+& =\frac{\left(A_{1,1}+A_{2,1}\right) s^{2}+\left(4 A_{1,1}+A_{1,2}+2 A_{2,1}\right) s+\left(3 A_{1,1}+3 A_{1,2}+A_{2,1}\right)}{(s+1)^{2}(s+3)} \\
+& \left\{\begin{array} { r l } 
+{ A _ { 1 , 1 } + A _ { 2 , 1 } } & { = 0 } \\
+{ 4 A _ { 1 , 1 } + A _ { 1 , 2 } + 2 A _ { 2 , 1 } } & { = 1 } \\
+{ 3 A _ { 1 , 1 } + 3 A _ { 1 , 2 } + A _ { 2 , 1 } } & { = 2 }
+\end{array} \Rightarrow \left\{\begin{array}{l}
+A_{1,1}=1 / 4 \\
+A_{1,2}=1 / 2 \\
+A_{2,1}=-1 / 4
+\end{array}\right.\right.
+\end{aligned}
+$$
+
+## 部分分式展开
+
+$$
+R(s)=\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(s-a_{i}\right)^{k_{i}}}
+$$
+
+Multiply both sides by $\left(s-a_{j}\right)^{N_{j}}$,
+
+$$
+\left(s-a_{j}\right)^{N_{j}} R(s)=\sum_{k_{j}=1}^{N_{j}} A_{j, k_{j}}\left(s-a_{j}\right)^{N_{j}-k_{j}}+\left(s-a_{j}\right)^{N_{j}} R_{j}(s)
+$$
+
+where $R_{j}(s)=\sum_{i \neq j} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(s-a_{i}\right)^{k_{i}}}$. For $k<N_{j}$,
+
+$$
+\begin{aligned}
+\frac{d^{k}}{d s^{k}}\left[\left(s-a_{j}\right)^{N_{j}} R(s)\right] & =\sum_{k_{j}=0}^{N_{j}-k} A_{j, k_{j}} \frac{\left(N_{j}-k_{j}\right)!}{\left(N_{j}-k_{j}-k\right)!}\left(s-a_{j}\right)^{N_{j}-k_{j}-k} \\
+& +\sum_{\ell=0}^{k}\binom{k}{\ell} \frac{N_{j}!}{\left(N_{j}-\ell\right)!}\left(s-a_{j}\right)^{N_{j}-\ell} R_{j}^{(\ell)}(s)
+\end{aligned}
+$$
+
+## 部分分式展开
+
+$$
+\begin{aligned}
+\frac{d^{k}}{d s^{k}}\left[\left(s-a_{j}\right)^{N_{j}} R(s)\right] & =\sum_{k_{j}=0}^{N_{j}-k} A_{j, k_{j}} \frac{\left(N_{j}-k_{j}\right)!}{\left(N_{j}-k_{j}-k\right)!}\left(s-a_{j}\right)^{N_{j}-k_{j}-k} \\
+& +\sum_{\ell=0}^{k}\binom{k}{\ell} \frac{N_{j}!}{\left(N_{j}-\ell\right)!}\left(s-a_{j}\right)^{N_{j}-\ell} R_{j}^{(\ell)}(s)
+\end{aligned}
+$$
+
+Evaluating at $s=a_{j}$,
+
+$$
+\left.\left[\frac{d^{k}}{d s^{k}}\left[\left(s-a_{j}\right)^{N_{j}} R(s)\right]\right]\right|_{s=a_{j}}=A_{j, N_{j}-k} k!
+$$
+
+Replacing $k$ by $N_{j}-k$,
+
+$$
+A_{j, k}=\left.\frac{1}{\left(N_{j}-k\right)!}\left[\frac{d^{N_{j}-k}}{d s^{N_{j}-k}}\left[\left(s-a_{j}\right)^{N_{j}} R(s)\right]\right]\right|_{s=a_{j}}
+$$
+
+## 部分分式展开
+
+例.
+
+$$
+R(s)=\frac{s+2}{(s+1)^{2}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{2,1}}{s+3}
+$$
+
+To find $A_{2,1}$
+
+1. Multiply both sides by $s+3$,
+
+$$
+(s+3) R(s)=\frac{s+2}{(s+1)^{2}}=\frac{A_{1,1}(s+3)}{s+1}+\frac{A_{1,2}(s+3)}{(s+1)^{2}}+A_{2,1}
+$$
+
+2. Evaluate at $s=-3$,
+
+$$
+A_{2,1}=\left.\frac{s+2}{(s+1)^{2}}\right|_{s=-3}=-\frac{1}{4}
+$$
+
+## 部分分式展开
+
+例 (cont'd).
+
+$$
+R(s)=\frac{s+2}{(s+1)^{2}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{2,1}}{s+3}
+$$
+
+To find $A_{1,2}$
+
+1. Multiply both sides by $(s+1)^{2}$,
+
+$$
+(s+1)^{2} R(s)=\frac{s+2}{s+3}=A_{1,1}(s+1)+A_{1,2}+\frac{A_{2,1}(s+1)^{2}}{s+3}
+$$
+
+2 . Evaluate at $s=-1$,
+
+$$
+A_{1,2}=\left.\frac{s+2}{s+3}\right|_{s=-1}=\frac{1}{2}
+$$
+
+## 部分分式展开
+
+例 (cont'd).
+
+$$
+R(s)=\frac{s+2}{(s+1)^{2}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{2,1}}{s+3}
+$$
+
+To find $A_{1,1}$
+
+1. Multiply both sides by $(s+1)^{2}$,
+
+$$
+(s+1)^{2} R(s)=\frac{s+2}{s+3}=A_{1,1}(s+1)+A_{1,2}+\frac{A_{2,1}(s+1)^{2}}{s+3}
+$$
+
+2. Take first derivative w.r.t. $s$,
+
+$$
+\frac{d}{d s}\left(\frac{s+2}{s+3}\right)=\frac{1}{(s+3)^{2}}=A_{1,1}+\frac{d}{d s}\left(\frac{A_{2,1}(s+1)^{2}}{s+3}\right)
+$$
+
+3. Evaluate at $s=-1$,
+
+$$
+A_{1,1}=\left.\frac{1}{(s+3)^{2}}\right|_{s=-1}=\frac{1}{4}
+$$
+
+## 部分分式展开
+
+例.
+
+$$
+R(s)=\frac{1}{(s+1)^{3}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{1,3}}{(s+1)^{3}}+\frac{A_{2,1}}{s+3}
+$$
+
+1. $A_{2,1}$
+
+$$
+\begin{gathered}
+(s+3) R(s)=\frac{1}{(s+1)^{3}}=\frac{A_{1,1}(s+3)}{s+1}+\frac{A_{1,2}(s+3)}{(s+1)^{2}}+\frac{A_{1,3}(s+3)}{(s+1)^{3}}+A_{2,1} \\
+A_{2,1}=\left.\frac{1}{(s+1)^{3}}\right|_{s=-3}=-\frac{1}{8}
+\end{gathered}
+$$
+
+2. $A_{1,3}$
+
+$$
+\begin{gathered}
+(s+1)^{3} R(s)=\frac{1}{s+3}=A_{1,1}(s+1)^{2}+A_{1,2}(s+1)+A_{1,3}+\frac{A_{2,1}(s+1)^{3}}{s+3} \\
+A_{1,3}=\left.\frac{1}{s+3}\right|_{s=-1}=\frac{1}{2}
+\end{gathered}
+$$
+
+## 部分分式展开
+
+例 (cont'd).
+
+$$
+R(s)=\frac{1}{(s+1)^{3}(s+3)}=\frac{A_{1,1}}{s+1}+\frac{A_{1,2}}{(s+1)^{2}}+\frac{A_{1,3}}{(s+1)^{3}}+\frac{A_{2,1}}{s+3}
+$$
+
+3. $A_{1,2}$
+
+$$
+\begin{gathered}
+(s+1)^{3} R(s)=\frac{1}{s+3}=A_{1,1}(s+1)^{2}+A_{1,2}(s+1)+A_{1,3}+\frac{A_{2,1}(s+1)^{3}}{s+3} \\
+A_{1,2}=\left.\frac{d}{d s}\left(\frac{1}{s+3}\right)\right|_{s=-1}=-\left.\frac{1}{(s+3)^{2}}\right|_{s=-1}=-\frac{1}{4}
+\end{gathered}
+$$
+
+4. $A_{1,1}$
+
+$$
+2 A_{1,1}=\left.\frac{d^{2}}{d s^{2}}\left(\frac{1}{s+3}\right)\right|_{s=-1}=\left.\frac{2}{(s+3)^{3}}\right|_{s=-1}=\frac{1}{8} \Longrightarrow A_{1,1}=\frac{1}{16}
+$$

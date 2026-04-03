@@ -1,0 +1,88 @@
+---
+title: "讨论课(第一次)"
+author: "马越"
+institute: >
+  北京理工大学机械与车辆学院<br> 
+  Email: yuema@bit.edu.cn<br>
+format:
+  revealjs:
+    theme: [simple, custom2.scss]
+    transition: slide
+    # title-slide-attributes:
+    #   data-background-color: "#0b2a4a"
+    #   data-background-opacity: "0.96"
+    slide-number: true
+    incremental: false
+    center: false
+    # width: 1366
+    # height: 768
+    # margin: 0.02
+    math: mathjax
+    footer: '<div class="footer-3col"><div class="left">机械与车辆学院 马越</div><div class="center">信号与系统</div><div class="right">2026 春季学期</div></div>'
+    toc: false                 # 可以关掉默认的
+    titleSelector: 'h1, h2, h3' # 显示 h3 层级
+    # revealjs-plugins:
+    #  - tableofcontents        # 加载插件
+    toc-title: "目录"     # 中文标题（默认是 Table of Contents）
+    depth: 3          # 显示到几级标题（默认 3，建议 2 或 3）
+    embed-resources: true
+    self-contained-math: true
+    #include-in-header: plugin/myspotlight.html
+    #spotlight_size: 200
+
+    # 封面背景图可选：
+    # background-image: "img/cover.jpg"
+    # background-opacity: 0.22
+  beamer:
+    theme: Madrid
+    fonttheme: structurebold
+    keep-tex: true   # 保留中间生成的 .tex 文件以便微调
+resource-path: ["."]
+execute:
+  echo: false
+---
+
+**1**. 我们已经知道：对于单位冲击响应为$h(t)$的系统，在受到输入信号为$x(t)$激励下，系统的时域响应$y(t)$可以用卷积来计算：$y(t)=∫x(τ)h(t−τ)dτ$。问题：
+
+**（1）** 如何解释$x(t)$、$\delta(t)$、$h(t)$和$y(t)$之间的联系？
+
+**（2）** 为什么一定是$h(t−τ)$?
+
+**（3）** 如果有系统 A：$h(t)=\delta(t)$和系统 B：$h(t)=e^{-t}u(t)$，两个系统对于单位阶跃信号的响应有什么不同？为什么系统 B 不“立刻稳定”？
+
+**（4）** 输入信号$x(t)=u(t)-u(t-1)$,系统为：$h(t)=e^{-t}u(t)$，输入在 $t=1$ 后已经为 0，为什么输出仍然存在？
+
+<br>
+<br>
+
+**2**. 已知一个二阶线性时不变系统（LTI），其运动方程为：$$2\frac{d^2y(t)}{dt^2} + 3\frac{d y(t)}{dt} + y(t) = f(t)$$初始状态为 $y(0_-) = 1, y'(0_-) = 2$。请讨论：
+
+**(1)**根据杜哈梅原理，方程的全解的组成；
+
+
+**(2)**该系统的单位冲激响应 $g(t)$应该怎么表示，如何计算；特别讨论：为什么此时 $g'(0)$ 的值必须是 $1/2$ 而不是 $1$？如果说 $g(t)$ 本质上可以看作是一种“特殊的零输入响应”，这种描述可以接受吗？
+
+**(3)**零状态响应 (ZSR) ：如果输入 $f(t)$ 是一个阶跃信号 $u(t)$，这个累加过程在图形上是如何体现的？
+
+---
+
+**3**. 在离散时间傅里叶级数中，当谐波次数 $k$ 增加时，信号的变化速率如何变化？
+
+**(1)** $k$ 越大，信号震荡越快（与连续时间情况相同）。
+
+**(2)** 在 $k=N/2$ 附近（即 $\pi$ 附近）信号震荡最快；当 $k$ 接近 $N$ 时，信号反而变得平缓。
+
+**(3)** 变化速率与 $k$ 呈线性关系，没有极限。
+
+
+<br>
+<br>
+
+
+**4**. 假设输入信号 $x(t) = \sum_{k=1}^{100} \frac{1}{k^2} \cos(k\cdot 100\pi t)$，系统冲激响应为 $h(t) = e^{-t}u(t)$。如何快速计算系统响应。
+
+
+<br>
+<br>
+
+5. 根据第三章例题：$H(j \omega)$不改变频率，怎么做滤波？

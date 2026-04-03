@@ -1,0 +1,513 @@
+---
+title: "第六章 信号与系统的时域和频域特性"
+author: "马越"
+institute: >
+  北京理工大学机械与车辆学院<br> 
+  Email: yuema@bit.edu.cn<br>
+format:
+  revealjs:
+    theme: [simple, custom2.scss]
+    transition: slide
+    # title-slide-attributes:
+    #   data-background-color: "#0b2a4a"
+    #   data-background-opacity: "0.96"
+    slide-number: true
+    incremental: false
+    center: false
+    # width: 1366
+    # height: 768
+    # margin: 0.02
+    math: mathjax
+    footer: '<div class="footer-3col"><div class="left">机械与车辆学院 马越</div><div class="center">信号与系统</div><div class="right">2026 春季学期</div></div>'
+    toc: false                 # 可以关掉默认的
+    titleSelector: 'h1, h2, h3' # 显示 h3 层级
+    # revealjs-plugins:
+    #  - tableofcontents        # 加载插件
+    toc-title: "目录"     # 中文标题（默认是 Table of Contents）
+    depth: 3          # 显示到几级标题（默认 3，建议 2 或 3）
+    embed-resources: true
+    self-contained-math: true
+    #include-in-header: plugin/myspotlight.html
+    #spotlight_size: 200
+
+    # 封面背景图可选：
+    # background-image: "img/cover.jpg"
+    # background-opacity: 0.22
+  beamer:
+    theme: Madrid
+    fonttheme: structurebold
+    keep-tex: true   # 保留中间生成的 .tex 文件以便微调
+resource-path: ["."]
+execute:
+  echo: false
+---
+
+
+## 目录 {#toc0}
+
+- [**1. 傅里叶变换的模和相位表示**](#sec61)
+- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
+- [3. 理想频率选择性滤波器的时域特性](#sec63)
+- [4. 非理想频率选择性滤波器的时域特性](#sec64)
+- [5. 一阶与二阶连续时间系统](#sec65)
+- [6. 一阶与二阶离散时间系统](#sec66)
+- [7. 系统的时域和频域分析实例](#sec67)
+
+## 目录 {#toc1}
+
+- [1. 傅里叶变换的模和相位表示](#sec61)
+- [**2. 线性时不变系统频率响应的模和相位表示**](#sec62)
+- [3. 理想频率选择性滤波器的时域特性](#sec63)
+- [4. 非理想频率选择性滤波器的时域特性](#sec64)
+- [5. 一阶与二阶连续时间系统](#sec65)
+- [6. 一阶与二阶离散时间系统](#sec66)
+- [7. 系统的时域和频域分析实例](#sec67)
+
+## 目录 {#toc2}
+
+- [1. 傅里叶变换的模和相位表示](#sec61)
+- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
+- [**3. 理想频率选择性滤波器的时域特性**](#sec63)
+- [4. 非理想频率选择性滤波器的时域特性](#sec64)
+- [5. 一阶与二阶连续时间系统](#sec65)
+- [6. 一阶与二阶离散时间系统](#sec66)
+- [7. 系统的时域和频域分析实例](#sec67)
+
+## 目录 {#toc3}
+
+- [1. 傅里叶变换的模和相位表示](#sec61)
+- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
+- [3. 理想频率选择性滤波器的时域特性](#sec63)
+- [**4. 非理想频率选择性滤波器的时域特性**](#sec64)
+- [5. 一阶与二阶连续时间系统](#sec65)
+- [6. 一阶与二阶离散时间系统](#sec66)
+- [7. 系统的时域和频域分析实例](#sec67)
+
+## 目录 {#toc4}
+
+- [1. 傅里叶变换的模和相位表示](#sec61)
+- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
+- [3. 理想频率选择性滤波器的时域特性](#sec63)
+- [4. 非理想频率选择性滤波器的时域特性](#sec64)
+- [**5. 一阶与二阶连续时间系统**](#sec65)
+- [6. 一阶与二阶离散时间系统](#sec66)
+- [7. 系统的时域和频域分析实例](#sec67)
+
+## 目录 {#toc5}
+
+- [1. 傅里叶变换的模和相位表示](#sec61)
+- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
+- [3. 理想频率选择性滤波器的时域特性](#sec63)
+- [4. 非理想频率选择性滤波器的时域特性](#sec64)
+- [5. 一阶与二阶连续时间系统](#sec65)
+- [**6. 一阶与二阶离散时间系统**](#sec66)
+- [7. 系统的时域和频域分析实例](#sec67)
+
+## 目录 {#toc6}
+
+- [1. 傅里叶变换的模和相位表示](#sec61)
+- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
+- [3. 理想频率选择性滤波器的时域特性](#sec63)
+- [4. 非理想频率选择性滤波器的时域特性](#sec64)
+- [5. 一阶与二阶连续时间系统](#sec65)
+- [6. 一阶与二阶离散时间系统](#sec66)
+- [**7. 系统的时域和频域分析实例**](#sec67)
+
+## 目录
+
+1. 傅里叶变换的幅度–相位表示
+2. 不确定性原理
+3. 傅里叶表示之间的关系
+
+傅里叶变换的幅度–相位表示
+
+$$
+X(j \omega)=|X(j \omega)| e^{j \arg X(j \omega)}, \quad X\left(e^{j \omega}\right)=\left|X\left(e^{j \omega}\right)\right| e^{j \arg X\left(e^{j \omega}\right)}
+$$
+
+回顾：傅里叶变换是将信号分解为复指数（“波”）的叠加
+
+- $|X|$ 表示各频率分量的幅值
+- $\arg X$ 表示各频率分量的相位
+
+相位 $\arg X$ 包含关于信号的重要信息
+
+- 决定各分量是相长叠加还是相消叠加
+- 即使幅度谱相同，微小的相位变化也会导致信号波形显著不同
+
+相位信息的重要性
+
+$$
+\begin{array}{ll}
+x(t)=1+\frac{1}{2} \cos \left(2 \pi t+\phi_{1}\right) & +\cos \left(4 \pi t+\phi_{2}\right)+\frac{2}{3} \cos \left(6 \pi t+\phi_{3}\right) \\
+\phi_{1}=0, \phi_{2}=0, \phi_{3}=0 & \\
+\phi_{1}=4, \phi_{2}=8, \phi_{3}=12 & \\
+\phi_{1}=6, \phi_{2}=-2.7, \phi_{3}=0.93 &
+\end{array}
+$$
+
+## 幅度与相位的比较
+
+## 汉字“中文”的波形 $x$
+
+## 幅度谱与相位谱 $|X|, \arg X$（DFT）
+
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-05.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-05_2.png)
+
+## 幅度与相位的比较
+
+## 汉字“中文”的波形 $x$
+
+## 幅度谱与相位谱 $|X|, \arg X$（DFT）
+
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-06_2.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-06.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-06_3.png)
+
+## 幅度与相位的比较
+
+汉字“中文”的波形 $x$
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07_6.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07_3.png)
+
+仅利用幅度谱重构的波形 $\mathcal{F}^{-1}\{|X|\}$
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07_4.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07.png)
+
+仅利用相位谱重构的波形 $\mathcal{F}^{-1}\left\{e^{j \arg X}\right\}$
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07_5.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07_2.png)
+
+幅度与相位的比较
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-08_5.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-08.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-08_2.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-08_3.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-08_4.png)
+
+上排：$X,|X|, \arg X$
+
+下排：
+$\mathcal{F}^{-1}\{|X|\},\ \mathcal{F}^{-1}\left\{e^{j \arg X}\right\}$
+
+## 频率响应的幅度–相位表示
+
+对于线性时不变系统
+
+$$
+Y(j \omega)=H(j \omega) X(j \omega), \quad Y\left(e^{j \omega}\right)=H\left(e^{j \omega}\right) X\left(e^{j \omega}\right)
+$$
+
+因此
+
+$$
+|Y|=|H| \cdot|X|, \quad |H| \text{ 表示系统的增益 }
+$$
+
+以及
+
+$$
+\arg Y=\arg H+\arg X, \quad \arg H \text{ 表示系统引入的相移 }
+$$
+
+LTI 系统带来的影响，可能是我们希望得到的，也可能不是。
+
+- 在滤波中，我们往往希望系统产生特定效果；
+- 若这种影响不是我们想要的，则称为失真。
+
+例：无失真传输
+
+- 理想情况下，$H(j \omega)=1$，但这对应于非因果系统；
+- 当 $H(j \omega)=K e^{-j \omega t_{0}}$ 时，系统保持波形形状不变，只引入幅值缩放和时延。
+
+
+## 线性相位
+
+对于具有单位增益和线性相位的连续时间 LTI 系统
+
+$$
+H(j \omega)=e^{-j \omega t_{0}} \Longrightarrow y(t)=x\left(t-t_{0}\right)
+$$
+
+输出是输入的延时版本
+
+对于具有单位增益和线性相位的离散时间 LTI 系统
+
+$$
+H\left(e^{j \omega}\right)=e^{-j \omega n_{0}},
+$$
+
+输出为
+
+$$
+y[n]=\frac{1}{2 \pi} \int_{-\pi}^{\pi} X\left(e^{j \omega}\right) e^{-j \omega n_{0}} e^{j \omega n} d \omega=\sum_{m=-\infty}^{\infty} x[m] \operatorname{sinc}\left(n-n_{0}-m\right)
+$$
+
+- 当 $n_{0}$ 为整数时，$y[n]=x\left[n-n_{0}\right]$，即输出是输入的整数点延时版本；
+- 当 $n_{0}$ 为非整数时，$y[n]=y_{c}\left(n-n_{0}\right)$，它是信号包络
+  $y_{c}(t)=\sum_{m=-\infty}^{\infty} x[m] \operatorname{sinc}(t-m)$
+  延时后的采样值。
+
+
+## 线性相位
+
+$$
+H(j \omega)=e^{-j \omega / 2}
+$$
+
+对于输入
+
+$$
+x(t)=\sum_{k=0}^{3} \cos (2 k \pi t)=1+\cos (2 \pi t)+\cos (4 \pi t)+\cos (6 \pi t)
+$$
+
+输出为
+
+$$
+y(t)=\sum_{k=0}^{3} \cos (2 k \pi t-k \pi)=x\left(t-\frac{1}{2}\right)
+$$
+
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-11_2.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-11.png)
+
+## 线性相位
+
+半采样延时
+
+$$
+H\left(e^{j \omega}\right)=e^{-j \omega / 2}
+$$
+
+对于输入
+
+$$
+x[n]=\cos \left(\frac{\pi}{3} n\right)
+$$
+
+输出为
+
+$$
+y[n]=\sum_{m=-\infty}^{\infty} \cos \left(\frac{\pi}{3} m\right) \operatorname{sinc}\left(n-n_{0}-m\right)=\cos \left(\frac{\pi}{3}\left[n-\frac{1}{2}\right)\right]
+$$
+
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-12_2.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-12.png)
+
+## 非线性相位
+
+$$
+H(j \omega)=e^{-j \arctan \omega}
+$$
+
+对于输入
+
+$$
+x(t)=\sum_{k=0}^{3} \cos (2 k \pi t)=1+\cos (2 \pi t)+\cos (4 \pi t)+\cos (6 \pi t)
+$$
+
+输出为
+
+$$
+y(t)=\sum_{k=0}^{3} \cos [2 k \pi t-\arctan (2 k \pi)]
+$$
+
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-13.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-13_2.png)
+
+## 群时延
+
+对于以 $\omega_{0}$ 为中心的窄带输入信号 $x$，即
+
+$$
+X(j \omega)=0, \quad \text { for }\left|\omega-\omega_{0}\right|>\Delta \omega, \text { where } \Delta \omega \ll 1
+$$
+
+对相位作线性近似
+
+$$
+\arg H(j \omega) \approx \arg H\left(j \omega_{0}\right)-\tau\left(\omega_{0}\right)\left(\omega-\omega_{0}\right)=\phi_{0}-\tau\left(\omega_{0}\right) \omega
+$$
+
+其中，在频率 $\omega$ 处的群时延定义为
+
+$$
+\tau(\omega)=-\frac{d}{d \omega} \arg H(j \omega)
+$$
+
+如果当 $\left|\omega-\omega_{0}\right| \leq \Delta \omega$ 时，$|H(j \omega)| \approx\left|H\left(j \omega_{0}\right)\right|$，
+$Y(j \omega) \approx\left|H\left(j \omega_{0}\right)\right| X(j \omega) e^{j \phi_{0}-j \tau\left(\omega_{0}\right) \omega} \Longrightarrow y(t) \approx\left|H\left(j \omega_{0}\right)\right| e^{j \phi_{0}} x\left(t-\tau\left(\omega_{0}\right)\right)$
+
+## 群时延
+
+$$
+H(j \omega)=e^{-j \arctan \omega} \Longrightarrow \tau(\omega)=\frac{d}{d \omega} \arctan (\omega)=\frac{1}{1+\omega^{2}}
+$$
+
+对于输入信号（它可看作以 $\pm \pi$ 为中心的两个窄带信号 $z, \bar z$ 之和）
+$x(t)=\sum_{k=9}^{11} \cos \left(\frac{k \pi}{10} t\right)=\operatorname{Re} z(t)=\frac{1}{2} z(t)+\frac{1}{2} \bar{z}(t)$，其中 $z(t)=\sum_{k=9}^{11} e^{j \frac{k \pi}{10} t}$，输出近似为
+
+$$
+y(t) \approx \frac{1}{2} e^{j \phi_{0}} z\left(t-\tau_{0}\right)+\frac{1}{2} e^{-j \phi_{0}} \bar{z}\left(t-\tau_{0}\right)=\operatorname{Re}\left[e^{j \phi_{0}} z\left(t-\tau_{0}\right)\right]
+$$
+
+其中，$\phi_{0}=-\arctan \pi+\frac{\pi}{1+\pi^{2}}$，$\tau_{0}=\frac{1}{1+\pi^{2}}$。
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-15.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-15_2.png)
+
+## 目录
+
+1. 傅里叶变换的幅度–相位表示
+2. 不确定性原理
+3. 傅里叶表示之间的关系
+
+## 不确定性原理
+
+设连续时间信号 $x \in L_{2}(\mathbb{R})$，其傅里叶变换为 $X=\mathcal{F}\{x\} \in L_{2}(\mathbb{R})$。定义时域与频域中的归一化功率密度为
+
+$$
+p(t)=\frac{|x(t)|^{2}}{\int_{\mathbb{R}}|x(\tau)|^{2} d \tau}, \quad P(\omega)=\frac{|X(j \omega)|^{2}}{\int_{\mathbb{R}}|X(j \theta)|^{2} d \theta}
+$$
+
+注：$p$ 与 $P$ 可以像量子力学中那样解释为概率密度。
+从如下意义上说，$x$ 与 $X$ 分别以 $t_{0}$ 和 $\omega_{0}$ 为中心：
+
+$$
+t_{0}=\int_{\mathbb{R}} t p(t) d t, \quad \omega_{0}=\int_{\mathbb{R}} \omega P(\omega) d \omega
+$$
+
+“标准差”用于衡量能量相对于中心位置的分散程度
+
+$$
+\Delta t=\left[\int_{\mathbb{R}}\left(t-t_{0}\right)^{2} p(t) d t\right]^{\frac{1}{2}}, \quad \Delta \omega=\left[\int_{\mathbb{R}}\left(\omega-\omega_{0}\right)^{2} P(\omega) d \omega\right]^{\frac{1}{2}}
+$$
+
+## 不确定性原理
+
+定理：若 $x(t) \in L_{2}(\mathbb{R})$，其傅里叶变换为 $X(j \omega)$，则有
+
+$$
+\Delta t \Delta \omega \geq \frac{1}{2}
+$$
+
+当且仅当 $x$ 为高斯函数时取等号。
+事实上，还成立如下稍一般的关系：
+
+$$
+D_{a}(x) D_{b}(X) \geq \frac{1}{2}\|x\|_{2} \cdot\|X\|_{2}
+$$
+
+其中，对任意 $g \in L_{2}(\mathbb{R})$ 以及 $a \in \mathbb{R}$，
+
+$$
+D_{a}(g)=\left[\int_{\mathbb{R}}(\xi-a)^{2}|g(\xi)|^{2} d \xi\right]^{\frac{1}{2}}
+$$
+
+注：粗略地说，一个信号不可能同时在时域和频域都高度集中；短脉冲往往对应较宽带宽，而窄带信号通常持续时间较长。
+
+## 不确定性原理的证明
+
+先假设 $a=b=0$。
+
+$$
+D_{0}(X)=\left[\int_{\mathbb{R}} \omega^{2}|X(j \omega)|^{2} d t\right]^{\frac{1}{2}}=\left[\int_{\mathbb{R}}|j \omega X(j \omega)|^{2} d \omega\right]^{\frac{1}{2}}
+$$
+
+由于 $x^{\prime}(t) \stackrel{\mathcal{F}}{\longleftrightarrow} j \omega X(j \omega)$，由 Parseval 恒等式可得
+
+$$
+D_{0}(X)=\left[2 \pi \int_{\mathbb{R}}\left|x^{\prime}(t)\right|^{2} d t\right]^{\frac{1}{2}}
+$$
+
+由 Cauchy–Schwarz 不等式，
+
+$$
+\begin{aligned}
+D_{0}(x) D_{0}(X) & =\sqrt{2 \pi}\left[\int_{\mathbb{R}}|t x(t)|^{2} d t\right]^{\frac{1}{2}}\left[\int_{\mathbb{R}}\left|x^{\prime}(t)\right|^{2} d t\right]^{\frac{1}{2}} \\
+& \geq \sqrt{2 \pi}\left|\int_{\mathbb{R}} t x^{*}(t) x^{\prime}(t) d t\right| \geq \sqrt{2 \pi}\left|\operatorname{Re} \int_{\mathbb{R}} t x^{*}(t) x^{\prime}(t) d t\right|
+\end{aligned}
+$$
+
+## 不确定性原理的证明
+
+注意，
+$2 \operatorname{Re} \int_{\mathbb{R}} t x^{*}(t) x^{\prime}(t) d t=\int_{\mathbb{R}} t x^{*}(t) x^{\prime}(t) d t+\int_{\mathbb{R}} t x(t) \overline{x^{\prime}(t)} d t=\int_{\mathbb{R}} t d|x(t)|^{2}$
+对其分部积分可得
+
+$$
+2 \operatorname{Re} \int_{\mathbb{R}} t x^{*}(t) x^{\prime}(t) d t=\left.t|x(t)|^{2}\right|_{-\infty} ^{\infty}-\int_{\mathbb{R}}|x(t)|^{2} d t
+$$
+
+若 $D_{0}(x)=\infty$，则不等式显然成立，因此可设 $D_{0}(x)<\infty$。于是当 $t \rightarrow \infty$ 时，$t|x(t)|^{2} \rightarrow 0$。因此
+
+$$
+D_{0}(x) D_{0}(X) \geq \frac{\sqrt{2 \pi}}{2}\|x\|_{2}^{2}=\frac{1}{2}\|x\|_{2} \cdot\|X\|_{2}
+$$
+
+对于 $a,b \neq 0$ 的情形，注意到若定义
+$y(t)=x(t+a) e^{-j b t} \stackrel{\mathcal{F}}{\longleftrightarrow} Y(j \omega)=X(j(\omega+b)) e^{j(\omega+b) a}$，
+则有 $D_{a}(x)=D_{0}(y)$ 且 $D_{b}(X)=D_{0}(Y)$。$
+
+目录
+
+1. 傅里叶变换的幅度–相位表示
+2. 不确定性原理
+3. 傅里叶表示之间的关系
+
+## 四种傅里叶表示
+
+连续时间傅里叶级数（CTFS）
+$\hat{x}[k]=\frac{1}{T} \int_{T} x(t) e^{-j \frac{2 \pi}{T} k t} d t$
+$x(t)=x(t+T)=\sum_{k \in \mathbb{Z}} \hat{x}[k] e^{j \frac{2 \pi}{T} k t}$
+离散时间傅里叶级数（DTFS）
+$\hat{x}[k]=\frac{1}{N} \sum_{n \in[N]} x[n] e^{-j \frac{2 \pi}{N} k n}$
+$x[n]=x[n+N]=\sum_{k \in[N]} \hat{x}[k] e^{j \frac{2 \pi}{N} k n}$
+
+连续时间傅里叶变换（CTFT）
+$X(j \omega)=\int_{\mathbb{R}} x(t) e^{-j \omega t} d t$
+$x(t)=\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) e^{j \omega t} d \omega$
+离散时间傅里叶变换（DTFT）
+$X\left(e^{j \omega}\right)=\sum_{n \in \mathbb{Z}} x[n] e^{-j \omega n}$
+$x[n]=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega$
+
+DFT 可以看作 DTFS 的一个周期。
+
+四种傅里叶表示之间的关系
+
+| 表示 | 时间域自变量 | 时间域信号 | 频域自变量 | 频域表示 |
+| :--- | :---: | :---: | :---: | :---: |
+| CTFS | 连续 | 周期 | 离散 | 非周期 |
+| CTFT | 连续 | 非周期 | 连续 | 非周期 |
+| DTFS | 离散 | 周期 | 离散 | 周期 |
+| DTFT | 离散 | 非周期 | 连续 | 周期 |
+
+观察结论
+
+- 一个域中“周期”，对应另一个域中“离散”；
+- 一个域中的采样离散化，对应另一个域中的周期延拓；
+- 一个域中的插值连续化，对应另一个域中取出一个周期。
+
+四种傅里叶表示之间的关系
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-24.png)
+
+注：上述对应关系在某些情形下需要满足额外条件。
+
+
+## 作业
+
+ 
+
+---
+
+<section style="
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+">
+  <div style="transform: translateY(10vh);">
+<h1>第六章  <br >信号与系统的时域和频域特性  <br> 完</h1>
+  </div>
+</section>

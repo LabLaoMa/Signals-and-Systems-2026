@@ -1,0 +1,202 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      7582,        192]
+NotebookOptionsPosition[      7103,        175]
+NotebookOutlinePosition[      7495,        191]
+CellTagsIndexPosition[      7452,        188]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"\:5b9a\:4e49\:7cfb\:7edf\:4f20\:9012\:51fd\:6570", "\:ff0c", 
+    RowBox[{"s", " ", "\:662f\:62c9\:666e\:62c9\:65af\:53d8\:91cf"}], "\:ff0c", 
+    RowBox[{"wc", " ", "\:662f\:622a\:6b62\:9891\:7387"}]}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"G", "[", 
+      RowBox[{"s_", ",", "wc_"}], "]"}], ":=", 
+     RowBox[{"wc", "/", 
+      RowBox[{"(", 
+       RowBox[{"s", "+", "wc"}], ")"}]}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"Manipulate", "[", 
+    RowBox[{
+     RowBox[{"Column", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"(*", 
+         RowBox[{"\:7ed8\:5236\:6ce2\:7279\:56fe", "\:ff1a", 
+          RowBox[{"s", "=", 
+           RowBox[{"j", "*", "w"}]}]}], "*)"}], 
+        RowBox[{
+         RowBox[{"BodePlot", "[", 
+          RowBox[{
+           RowBox[{"G", "[", 
+            RowBox[{
+             RowBox[{"I", "*", "w"}], ",", "wc"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"w", ",", "0.1", ",", "1000"}], "}"}], ",", 
+           RowBox[{"PlotLabel", "->", 
+            RowBox[{"Style", "[", 
+             RowBox[{
+              RowBox[{"Row", "[", 
+               RowBox[{"{", 
+                
+                RowBox[{"\"\<RC\:4f4e\:901a\:6ee4\:6ce2\:5668\:9891\:7387\
+\:54cd\:5e94 (\:622a\:6b62\:9891\:7387 \[Omega]_c = \>\"", ",", "wc"}], "}"}],
+                "]"}], ",", "14", ",", "Bold"}], "]"}]}], ",", 
+           RowBox[{"FrameLabel", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               
+               RowBox[{"\"\<\:5e45\:5ea6 (dB)\>\"", 
+                ",", "\"\<\:76f8\:4f4d (\:5ea6)\>\""}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"\"\<\:9891\:7387 (rad/s)\>\"", ",", "\"\<\>\""}], 
+               "}"}]}], "}"}]}], ",", 
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"ImageSize", "->", "Large"}]}], "]"}], ",", 
+         RowBox[{"(*", 
+          RowBox[{
+          "\:8865\:5145", "\:ff1a", 
+           "\:5728\:590d\:5e73\:9762\:4e0a\:7ed8\:5236\:6781\:70b9"}], "*)"}], 
+         RowBox[{"text", "[", 
+          RowBox[{"Style", "[", 
+           
+           RowBox[{"\"\<\:6781\:70b9\:4f4d\:7f6e (s = -\[Omega]_c)\>\"", ",", 
+            "12"}], "]"}], "]"}], ",", 
+         RowBox[{"ComplexListPlot", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"-", "wc"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "110"}], ",", "10"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"-", "10"}], ",", "10"}], "}"}]}], "}"}]}], ",", 
+           RowBox[{"AspectRatio", "->", 
+            RowBox[{"1", "/", "5"}]}], ",", 
+           RowBox[{"ImageSize", "->", "Medium"}], ",", 
+           RowBox[{"PlotStyle", "->", 
+            RowBox[{"{", 
+             RowBox[{"Red", ",", "Thick", ",", 
+              RowBox[{"PointSize", "[", "Large", "]"}]}], "}"}]}]}], "]"}]}], 
+        "}"}], ",", "Center"}], "]"}], ",", 
+     RowBox[{"(*", 
+      RowBox[{"\:4ea4\:4e92\:63a7\:4ef6", "\:ff1a", 
+       RowBox[{
+       "wc", " ", "\:4ece", " ", "1", " ", "\:5230", " ", "100", " ", 
+        "\:53d8\:5316"}]}], "*)"}], 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "wc", ",", "10", ",", "\"\<\:622a\:6b62\:9891\:7387 \[Omega]_c\>\""}],
+         "}"}], ",", "1", ",", "100", ",", "1", ",", 
+       RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}]}], 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.983752172675797*^9, 3.983752172678095*^9}},
+ CellLabel->"In[19]:=",ExpressionUUID->"79091b35-3d84-4544-8546-b9ca1e4cb18a"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`wc$$ = 46, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`wc$$], 10, "\:622a\:6b62\:9891\:7387 \[Omega]_c"}, 1,
+       100, 1, ControlType -> Manipulator}}, Typeset`size$$ = {
+    576., {431.40054084683396`, 437.13247444058396`}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`wc$$ = 10}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> Column[{
+         BodePlot[
+          $CellContext`G[
+          I $CellContext`w, $CellContext`wc$$], {$CellContext`w, 0.1, 1000}, 
+          PlotLabel -> Style[
+            
+            Row[{"RC\:4f4e\:901a\:6ee4\:6ce2\:5668\:9891\:7387\:54cd\:5e94 (\
+\:622a\:6b62\:9891\:7387 \[Omega]_c = ", $CellContext`wc$$}], 14, Bold], 
+          FrameLabel -> {{"\:5e45\:5ea6 (dB)", "\:76f8\:4f4d (\:5ea6)"}, {
+            "\:9891\:7387 (rad/s)", ""}}, GridLines -> Automatic, ImageSize -> 
+          Large], 
+         $CellContext`text[
+          Style["\:6781\:70b9\:4f4d\:7f6e (s = -\[Omega]_c)", 12]], 
+         ComplexListPlot[{-$CellContext`wc$$}, 
+          PlotRange -> {{-110, 10}, {-10, 10}}, AspectRatio -> 1/5, ImageSize -> 
+          Medium, PlotStyle -> {Red, Thick, 
+            PointSize[Large]}]}, Center], 
+      "Specifications" :> {{{$CellContext`wc$$, 10, 
+          "\:622a\:6b62\:9891\:7387 \[Omega]_c"}, 1, 100, 1, Appearance -> 
+         "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{625.0999999999999, {479.070966261873, 484.802899855623}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.983752174863695*^9},
+ CellLabel->"Out[20]=",ExpressionUUID->"ab1d35a0-d0e3-40c4-9b3f-d8f401d8d4fe"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{20, Automatic}, {Automatic, 44}},
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"f3ab6ff5-7493-4291-bb39-6afe75b89b06"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 3796, 96, 229, "Input",ExpressionUUID->"79091b35-3d84-4544-8546-b9ca1e4cb18a"],
+Cell[4375, 120, 2712, 52, 999, "Output",ExpressionUUID->"ab1d35a0-d0e3-40c4-9b3f-d8f401d8d4fe"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

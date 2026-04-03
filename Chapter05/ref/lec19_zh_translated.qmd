@@ -1,0 +1,745 @@
+---
+title: "EL331 信号与系统 · 第19讲（中文版）"
+subtitle: "DTFT 的性质、差分系统与采样处理"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+用于mat:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    到c: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+1. DTFT 的卷积性质
+2. DTFT 的乘积性质
+3. 线性常系数差分方程描述的系统
+4. 离散时间信号的采样
+5. 连续时间信号的离散时间处理
+
+## DTFT 的卷积性质
+
+$$
+(x * h)[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right) H\left(e^{j \omega}\right)
+$$
+
+NB. Dual 的 multiplication property 的 CTFS
+
+$$
+x(t) y(t) \stackrel{\mathcal{F S}}{\longleftrightarrow}(\hat{x} * \hat{y})[k]
+$$
+
+NB. Similar 到 CTFT, applicable when 用于mula 是 我们ll-defined Pro的.
+
+$$
+\begin{aligned}
+\mathcal{F}\{x * h\}\left(e^{j \omega}\right) & =\sum_{n \in \mathbb{Z}}(x * h)[n] e^{-j \omega n}=\sum_{n \in \mathbb{Z}} \sum_{m \in \mathbb{Z}} x[m] h[n-m] e^{-j \omega n} \\
+& =\sum_{m \in \mathbb{Z}} x[m] \sum_{n \in \mathbb{Z}} h[n-m] e^{-j \omega n} \\
+& =\sum_{m \in \mathbb{Z}} x[m] e^{-j \omega m} H\left(e^{j \omega}\right) \\
+& =X\left(e^{j \omega}\right) H\left(e^{j \omega}\right)
+\end{aligned}
+$$
+
+## LTI 系统的频率响应
+
+LTI 系统 $T$
+
+- fully characterized by impulse 响应 $h$
+
+$$
+y=T(x)=h * x
+$$
+
+- also fully characterized by frequency 响应 $H=\mathcal{F}\{h\}$, if $H$ 是 我们ll-defined
+- BIBO stable 系统, $h \in \ell_{1}$
+- other 系统s: accumula到r $h=u$, ...
+
+Typically, convolution property implies
+
+$$
+Y=\mathcal{F}\{y\}=H X=\mathcal{F}\{h\} \mathcal{F}\{x\}
+$$
+
+Instead 的 computing $x * h$, can do
+
+$$
+y=\mathcal{F}^{-1}(\mathcal{F}\{h\} \mathcal{F}\{x\})
+$$
+
+## 例
+
+Response 的 LTI 系统 with impulse 响应 $h[n]=a^{n} u[n]$ 到 input $x[n]=b^{n} u[n]$, where $|a|<1,|b|<1$
+方法 1. Direct convolution $y=x * h$
+方法 2. Solve difference equation with initial rest condition
+
+$$
+y[n]-a y[n-1]=b^{n} u[n]
+$$
+
+方法 3. Fourier trans用于m.
+
+$$
+H=\frac{1}{1-a e^{-j \omega}}, X=\frac{1}{1-b e^{-j \omega}} \Longrightarrow Y=\frac{1}{\left(1-a e^{-j \omega}\right)\left(1-b e^{-j \omega}\right)}
+$$
+
+If $a \neq b, Y\left(e^{j \omega}\right)=\frac{a /(a-b)}{1-a e^{-j \omega}}-\frac{b /(a-b)}{1-b e^{-j \omega}}, \quad y[n]=\frac{1}{a-b}\left(a^{n+1}-b^{n+1}\right) u[n]$
+If $a=b, Y\left(e^{j \omega}\right)=\frac{d}{d a}\left(\frac{a}{1-a e^{-j \omega}}\right), y[n]=\frac{d}{d a} a^{n+1} u[n]=(n+1) a^{n} u[n]$
+Or use $Y\left(e^{j \omega}\right)=\frac{j}{a} e^{j \omega} \frac{d}{d \omega}\left(\frac{a}{1-a e^{-j \omega}}\right)$ 与 differentiation property
+
+## 例
+
+Response 的 LTI 系统 with impulse 响应 $h[n]=a^{n} u[n]$ 到 input $x[n]=\cos \left(\omega_{0} n\right),|a|<1$.
+Frequency 响应
+
+$$
+H\left(e^{j \omega}\right)=\frac{1}{1-a e^{-j \omega}}
+$$
+
+方法 1. Use eigen函数 property
+
+$$
+\begin{gathered}
+x[n]=\frac{1}{2} e^{j \omega_{0} n}+\frac{1}{2} e^{-j \omega_{0} n} \\
+y[n]=\frac{1}{2} H\left(e^{j \omega_{0}}\right) e^{j \omega_{0} n}+\frac{1}{2} H\left(e^{-j \omega_{0}}\right) e^{-j \omega_{0} n}=\opera到rname{Re} \frac{e^{j \omega_{0} n}}{1-a e^{-j \omega_{0}}} \\
+=\frac{1}{\sqrt{1-2 a \cos \omega_{0}+a^{2}}} \cos \left(\omega_{0} n-\arctan \frac{a \sin \omega_{0}}{1-a \cos \omega_{0}}\right)
+\end{gathered}
+$$
+
+## 例
+
+方法 2. Use Fourier trans用于m 的 $X$
+
+$$
+\begin{aligned}
+& X\left(e^{j \omega}\right)=\sum_{k=-\infty}^{\infty}\left[\pi \delta\left(\omega-\omega_{0}+2 k \pi\right)+\pi \delta\left(\omega+\omega_{0}+2 k \pi\right)\right] \\
+& Y\left(e^{j \omega}\right)=\sum_{k=-\infty}^{\infty} \pi H\left(e^{j\left(\omega_{0}-2 k \pi\right)}\right) \delta\left(\omega-\omega_{0}+2 k \pi\right) \\
+& \quad+\sum_{k=-\infty}^{\infty} \pi H\left(e^{-j\left(\omega_{0}+2 k \pi\right)}\right) \delta\left(\omega+\omega_{0}+2 k \pi\right) \\
+& =H\left(e^{j \omega_{0}}\right) \sum_{k=-\infty}^{\infty} \pi \delta\left(\omega-\omega_{0}+2 k \pi\right) \\
+& \quad+H\left(e^{-j \omega_{0}}\right) \sum_{k=-\infty}^{\infty} \pi \delta\left(\omega+\omega_{0}+2 k \pi\right) \\
+& y[n]=\frac{1}{2} H\left(e^{j \omega_{0}}\right) e^{j \omega_{0} n}+\frac{1}{2} H\left(e^{-j \omega_{0}}\right) e^{-j \omega_{0} n}
+\end{aligned}
+$$
+
+## 例: Ideal B与s到p Filter
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-08.jpg?height=354&width=909&到p_left_y=119&到p_left_x=168)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-08.jpg?height=172&width=1137&到p_left_y=505&到p_left_x=48)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-08.jpg?height=216&width=1135&到p_left_y=712&到p_left_x=46)
+
+## 目录
+
+1. DTFT 的卷积性质
+2. DTFT 的乘积性质
+3. 线性常系数差分方程描述的系统
+4. 离散时间信号的采样
+5. 连续时间信号的离散时间处理
+
+## DTFT 的乘积性质
+
+$$
+x[n] y[n] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{2 \pi} X \circledast Y=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right) Y\left(e^{j(\omega-\theta)}\right) d \theta
+$$
+
+NB. Dual 的 periodic convolution property 的 CTFS
+
+$$
+x \circledast y \stackrel{\mathcal{F S}}{\longleftrightarrow} T \hat{x} \hat{y}
+$$
+
+Pro的.
+
+$$
+\begin{aligned}
+\mathcal{F}\{x y\}\left(e^{j \omega}\right) & =\sum_{n \in \mathbb{Z}} x[n] y[n] e^{-j \omega n}=\sum_{n \in \mathbb{Z}}\left(\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right) e^{j \theta n} d \theta\right) y[n] e^{-j \omega n} \\
+& =\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right)\left(\sum_{n \in \mathbb{Z}} y[n] e^{-j(\omega-\theta) n}\right) d \theta \\
+& =\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right) Y\left(e^{j(\omega-\theta)}\right) d \theta
+\end{aligned}
+$$
+
+## 例
+
+$x[n]=x_{1}[n] x_{2}[n]$, where $x_{1}[n]=\frac{\sin (3 \pi n / 4)}{\pi n}, x_{2}[n]=\frac{\sin (\pi n / 2)}{\pi n}$
+
+$$
+X=\frac{1}{2 \pi} X_{1} \underset{\uparrow}{\circledast} X_{2}=\frac{1}{2 \pi} \tilde{X}_{1} * X_{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-11.jpg?height=167&width=952&到p_left_y=406&到p_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-11.jpg?height=168&width=951&到p_left_y=587&到p_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-11.jpg?height=168&width=953&到p_left_y=758&到p_left_x=141)
+
+## 例
+
+$x[n]=x_{1}[n] x_{2}[n]$, where $x_{1}[n]=\frac{\sin (3 \pi n / 4)}{\pi n}, x_{2}[n]=\frac{\sin (\pi n / 2)}{\pi n}$
+
+$$
+X=\frac{1}{2 \pi} X_{1} \underset{\uparrow}{\circledast} X_{2}=\frac{1}{2 \pi} \tilde{X}_{1} * X_{2}=\frac{1}{2 \pi} \sum_{k=-\infty}^{\infty} \underset{\substack{\uparrow \\ \text { periodic }}}{\tau_{2 k \pi}\left(\tilde{X}_{1} * \tilde{X}_{2}\right)} \text { aperiodic }
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-12.jpg?height=165&width=951&到p_left_y=408&到p_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-12.jpg?height=170&width=949&到p_left_y=585&到p_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-12.jpg?height=168&width=951&到p_left_y=758&到p_left_x=141)
+
+## 例
+
+$x[n]=x_{1}[n] x_{2}[n]$, where $x_{1}[n]=\frac{\sin (3 \pi n / 4)}{\pi n}, x_{2}[n]=\frac{\sin (\pi n / 2)}{\pi n}$
+
+$$
+X=\frac{1}{2 \pi} X_{1} \circledast X_{2}=\frac{1}{2 \pi} \tilde{X}_{1} * X_{2}=\frac{1}{2 \pi} \sum_{k=-\infty}^{\infty} \underset{\substack{\uparrow \\ \text { periodic }}}{\tau_{2 k \pi}\left(\tilde{X}_{1} * \tilde{X}_{2}\right)} \text { aperiodic }
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-13.jpg?height=165&width=951&到p_left_y=408&到p_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-13.jpg?height=170&width=949&到p_left_y=585&到p_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-13.jpg?height=163&width=955&到p_left_y=763&到p_left_x=139)
+
+## 例
+
+$x[n]=x_{1}[n] x_{2}[n]$, where $x_{1}[n]=\frac{\sin (3 \pi n / 4)}{\pi n}, x_{2}[n]=\frac{\sin (\pi n / 2)}{\pi n}$
+
+$$
+X=\frac{1}{2 \pi} X_{1} \circledast X_{2}=\frac{1}{2 \pi} \tilde{X}_{1} * X_{2}=\frac{1}{2 \pi} \sum_{k=-\infty}^{\infty} \underset{\substack{\uparrow \\ \text { periodic }}}{\tau_{2 k \pi}\left(\tilde{X}_{1} * \tilde{X}_{2}\right)} \text { aperiodic }
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-14.jpg?height=165&width=953&到p_left_y=408&到p_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-14.jpg?height=170&width=951&到p_left_y=585&到p_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-14.jpg?height=163&width=953&到p_left_y=763&到p_left_x=141)
+
+## 例: DT Modulation
+
+$$
+y[n]=x[n] c[n], \text { where } c[n]=\cos \left(\omega_{c} n\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-15.jpg?height=181&width=1079&到p_left_y=197&到p_left_x=69)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-15.jpg?height=170&width=1089&到p_left_y=397&到p_left_x=59)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-15.jpg?height=185&width=1075&到p_left_y=585&到p_left_x=71)
+
+No overlap bet我们en replicas: $\left\{\begin{array}{l}\omega_{c}>\omega_{M} \\ \omega_{c}+\omega_{M}<\pi\end{array} \quad \Longrightarrow \omega_{M}<\frac{\pi}{2}\right.$
+
+## 例: DT Demodulation
+
+$$
+z[n]=y[n] c[n], \text { where } c[n]=\cos \left(\omega_{c} n\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-16.jpg?height=190&width=1086&到p_left_y=197&到p_left_x=64)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-16.jpg?height=181&width=1093&到p_left_y=390&到p_left_x=57)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-16.jpg?height=263&width=1088&到p_left_y=594&到p_left_x=62)
+
+Recover $X$ by lowpass filtering $Y$ with $W \in\left(\omega_{M}, 2 \omega_{c}-\omega_{M}\right)$
+
+## 目录
+
+1. DTFT 的卷积性质
+2. DTFT 的乘积性质
+3. 线性常系数差分方程描述的系统
+4. 离散时间信号的采样
+5. 连续时间信号的离散时间处理
+
+## Linear Constant-coefficient Difference Equations
+
+Frequency 响应 的 LTI 系统 described by
+
+$$
+\sum_{k=0}^{N} a_{k} y[n-k]=\sum_{k=0}^{M} b_{k} x[n-k]
+$$
+
+方法 1. Use eigen函数 property
+
+$$
+x[n]=e^{j \omega n} \Longrightarrow y[n]=H\left(e^{j \omega}\right) e^{j \omega n}
+$$
+
+Substitution in到 difference equation yields
+
+$$
+\begin{gathered}
+\sum_{k=0}^{N} a_{k} H\left(e^{j \omega}\right) e^{j \omega(n-k)}=\sum_{k=0}^{M} b_{k} e^{j \omega(n-k)} \\
+H\left(e^{j \omega}\right)=\frac{\sum_{k=0}^{M} b_{k} e^{-j \omega k}}{\sum_{k=0}^{N} a_{k} e^{-j \omega k}}
+\end{gathered}
+$$
+
+## Linear Constant-coefficient Difference Equations
+
+方法 2. Take Fourier trans用于m 的 both sides
+
+$$
+\mathcal{F}\left\{\sum_{k=0}^{N} a_{k} y[n-k]\right\}=\mathcal{F}\left\{\sum_{k=0}^{M} b_{k} x[n-k]\right\}
+$$
+
+By linearity 与 time-shifting property
+
+$$
+\sum_{k=0}^{N} a_{k} e^{-j \omega k} Y\left(e^{j \omega}\right)=\sum_{k=0}^{M} b_{k} e^{-j \omega k} X\left(e^{j \omega}\right)
+$$
+
+By convolution property
+
+$$
+H\left(e^{j \omega}\right)=\frac{Y\left(e^{j \omega}\right)}{X\left(e^{j \omega}\right)}=\frac{\sum_{k=0}^{M} b_{k} e^{-j \omega k}}{\sum_{k=0}^{N} a_{k} e^{-j \omega k}}
+$$
+
+Frequency 响应 是 rational 函数 的 $e^{-j \omega}$
+
+## 例
+
+Consider LTI 系统 described by
+
+$$
+y[n]-\frac{3}{4} y[n-1]+\frac{1}{8} y[n-2]=2 x[n]
+$$
+
+Frequency 响应
+
+$$
+H\left(e^{j \omega}\right)=\frac{2}{1-\frac{3}{4} e^{-j \omega}+\frac{1}{8} e^{-j 2 \omega}}
+$$
+
+By partial fraction expansion
+
+$$
+H\left(e^{j \omega}\right)=\frac{2}{\left(1-\frac{1}{2} e^{-j \omega}\right)\left(1-\frac{1}{4} e^{-j \omega}\right)}=\frac{4}{1-\frac{1}{2} e^{-j \omega}}-\frac{2}{1-\frac{1}{4} e^{-j \omega}}
+$$
+
+Take inverse Fourier trans用于m 到 obtain impulse 响应
+
+$$
+h[n]=4\left(\frac{1}{2}\right)^{n} u[n]-2\left(\frac{1}{4}\right)^{n} u[n]
+$$
+
+## 例
+
+Find 响应 到 $x[n]=\left(\frac{1}{4}\right)^{n} u[n]$.
+Fourier trans用于m 的 响应
+
+$$
+Y\left(e^{j \omega}\right)=H\left(e^{j \omega}\right) X\left(e^{j \omega}\right)=\frac{2}{\left(1-\frac{1}{2} e^{-j \omega}\right)\left(1-\frac{1}{4} e^{-j \omega}\right)} \cdot \frac{1}{1-\frac{1}{4} e^{-j \omega}}
+$$
+
+By partial fraction expansion
+
+$$
+Y\left(e^{j \omega}\right)=-\frac{4}{1-\frac{1}{4} e^{-j \omega}}-\frac{2}{\left(1-\frac{1}{4} e^{-j \omega}\right)^{2}}+\frac{8}{1-\frac{1}{2} e^{-j \omega}}
+$$
+
+Take inverse Fourier trans用于m 到 obtain 响应
+
+$$
+y[n]=\left\{-4\left(\frac{1}{4}\right)^{n}-2(n+1)\left(\frac{1}{4}\right)^{n}+8\left(\frac{1}{2}\right)^{n}\right\} u[n]
+$$
+
+## 部分分式展开
+
+$$
+H\left(e^{j \omega}\right)=\frac{2}{1-\frac{3}{4} e^{-j \omega}+\frac{1}{8} e^{-j 2 \omega}}
+$$
+
+Replace $e^{-j \omega}$ by $z$,
+
+$$
+\begin{gathered}
+H\left(z^{-1}\right)=\frac{2}{1-\frac{3}{4} z+\frac{1}{8} z^{2}}=\frac{2}{\left(1-\frac{1}{2} z\right)\left(1-\frac{1}{4} z\right)}=\frac{A}{1-\frac{1}{2} z}+\frac{B}{1-\frac{1}{4} z} \\
+A=\left.\left[\left(1-\frac{1}{2} z\right) H\left(z^{-1}\right)\right]\right|_{z=2}=\left.\frac{2}{1-\frac{1}{4} z}\right|_{z=2}=4 \\
+B=\left.\left[\left(1-\frac{1}{4} z\right) H\left(z^{-1}\right)\right]\right|_{z=4}=\left.\frac{2}{1-\frac{1}{2} z}\right|_{z=4}=-2
+\end{gathered}
+$$
+
+NB. Terms take 用于m $\frac{A}{(s-r)^{m}}$ 用于 CT, but $\frac{A}{(1-r z)^{m}}$ 用于 DT
+
+## 部分分式展开
+
+$$
+Y\left(e^{j \omega}\right)=\frac{2}{\left(1-\frac{1}{2} e^{-j \omega}\right)\left(1-\frac{1}{4} e^{-j \omega}\right)} \cdot \frac{1}{1-\frac{1}{4} e^{-j \omega}}
+$$
+
+Replace $e^{-j \omega}$ by $z$,
+
+$$
+Y\left(z^{-1}\right)=\frac{2}{\left(1-\frac{1}{2} z\right)\left(1-\frac{1}{4} z\right)^{2}}=\frac{A_{1,1}}{1-\frac{1}{2} z}+\frac{A_{2,1}}{1-\frac{1}{4} z}+\frac{A_{2,2}}{\left(1-\frac{1}{4} z\right)^{2}}
+$$
+
+To find $A_{1,1}$
+
+1. Multiply both side by $1-\frac{1}{2} z$,
+
+$$
+\left(1-\frac{1}{2} z\right) Y\left(z^{-1}\right)=\frac{2}{\left(1-\frac{1}{4} z\right)^{2}}=A_{1,1}+\frac{A_{2,1}\left(1-\frac{1}{2} z\right)}{1-\frac{1}{4} z}+\frac{A_{2,2}\left(1-\frac{1}{2} z\right)}{\left(1-\frac{1}{4} z\right)^{2}}
+$$
+
+2. Evaluate at $z=2$, i.e. root 的 $1-\frac{1}{2} z=0$
+
+$$
+A_{1,1}=\left.\left[\left(1-\frac{1}{2} z\right) Y\left(z^{-1}\right)\right]\right|_{z=2}=\left.\frac{2}{\left(1-\frac{1}{4} z\right)^{2}}\right|_{z=2}=8
+$$
+
+## 部分分式展开
+
+$$
+Y\left(z^{-1}\right)=\frac{2}{\left(1-\frac{1}{2} z\right)\left(1-\frac{1}{4} z\right)^{2}}=\frac{A_{1,1}}{1-\frac{1}{2} z}+\frac{A_{2,1}}{1-\frac{1}{4} z}+\frac{A_{2,2}}{\left(1-\frac{1}{4} z\right)^{2}}
+$$
+
+To find $A_{2,2}$
+
+1. Multiply both side by $\left(1-\frac{1}{4} z\right)^{2}$,
+
+$$
+\left(1-\frac{1}{4} z\right)^{2} Y\left(z^{-1}\right)=\frac{2}{1-\frac{1}{2} z}=\frac{A_{1,1}\left(1-\frac{1}{4} z\right)^{2}}{1-\frac{1}{2} z}+A_{2,1}\left(1-\frac{1}{4} z\right)+A_{2,2}
+$$
+
+2. Evaluate at $z=4$, i.e. root 的 $1-\frac{1}{4} z=0$
+
+$$
+A_{2,2}=\left.\left[\left(1-\frac{1}{4} z\right)^{2} Y\left(z^{-1}\right)\right]\right|_{z=4}=\left.\frac{2}{1-\frac{1}{2} z}\right|_{z=4}=-2
+$$
+
+## 部分分式展开
+
+$$
+Y\left(z^{-1}\right)=\frac{2}{\left(1-\frac{1}{2} z\right)\left(1-\frac{1}{4} z\right)^{2}}=\frac{A_{1,1}}{1-\frac{1}{2} z}+\frac{A_{2,1}}{1-\frac{1}{4} z}+\frac{A_{2,2}}{\left(1-\frac{1}{4} z\right)^{2}}
+$$
+
+To find $A_{2,1}$
+
+1. Multiply both side by $\left(1-\frac{1}{4} z\right)^{2}$,
+
+$$
+\left(1-\frac{1}{4} z\right)^{2} Y\left(z^{-1}\right)=\frac{2}{1-\frac{1}{2} v}=\frac{A_{1,1}\left(1-\frac{1}{4} z\right)^{2}}{1-\frac{1}{2} z}+A_{2,1}\left(1-\frac{1}{4} z\right)+A_{2,2}
+$$
+
+2. Differentiate both sides
+
+$$
+\frac{d}{d z}\left(1-\frac{1}{4} z\right)^{2} Y\left(z^{-1}\right)=\frac{1}{\left(1-\frac{1}{2} z\right)^{2}}=\frac{d}{d z} \frac{A_{1,1}\left(1-\frac{1}{4} z\right)^{2}}{1-\frac{1}{2} z}+\left(-\frac{\mathbf{1}}{\mathbf{4}}\right) A_{2,1}
+$$
+
+3. Evaluate at $z=4$, i.e. root 的 $1-\frac{1}{4} z=0$
+
+$$
+A_{2,1}=\left.(-4)\left[\frac{d}{d z}\left(1-\frac{1}{4} z\right)^{2} Y\left(z^{-1}\right)\right]\right|_{z=4}=\left.\frac{-4}{\left(1-\frac{1}{2} z\right)^{2}}\right|_{z=4}=-4
+$$
+
+## 逆傅里叶变换 的 $\frac{1}{\left(1-a e^{-j \omega}\right)^{n}}$
+
+Recall
+
+$$
+a^{n} u[n] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{1-a e^{-j \omega}}, \quad|a|<1
+$$
+
+i.e.
+
+$$
+\frac{1}{1-a z}=\sum_{n=0}^{\infty} a^{n} z^{n}, \quad z=e^{-j \omega}
+$$
+
+Differentiate $m-1$ times w.r.t. $z$
+
+$$
+\frac{(m-1)!a^{m-1}}{(1-a z)^{m}}=\sum_{n=m-1}^{\infty} a^{n} \frac{n!}{(n-m+1)!} z^{n-(m-1)}
+$$
+
+$$
+\frac{1}{(1-a z)^{m}}=\sum_{n=m-1}^{\infty} a^{n-m+1}\binom{n}{m-1} z^{n-m+1}=\sum_{n=0}^{\infty} a^{n}\binom{n+m-1}{m-1} z^{n}
+$$
+
+Thus
+
+$$
+\binom{n+m-1}{n} a^{n} u[n] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{\left(1-a e^{-j \omega}\right)^{m}}
+$$
+
+## 目录
+
+1. DTFT 的卷积性质
+2. DTFT 的乘积性质
+3. 线性常系数差分方程描述的系统
+4. 离散时间信号的采样
+5. 连续时间信号的离散时间处理
+
+## 冲激列采样
+
+DT signal $x[n]$
+
+DT impulse train
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-28.jpg?height=256&width=695&到p_left_y=137&到p_left_x=559)
+
+$$
+p[n]=\sum_{k=-\infty}^{\infty} \delta[n-k N]
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-28.jpg?height=183&width=693&到p_left_y=425&到p_left_x=559)
+
+$$
+\begin{aligned}
+& \text { Sampled signal } \\
+& \begin{aligned}
+x_{p}[n] & =x[n] p[n] \\
+& =\sum_{k=-\infty}^{\infty} x[k N] \delta[n-k N]
+\end{aligned}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-28.jpg?height=274&width=693&到p_left_y=647&到p_left_x=559)
+
+## 冲激列采样
+
+Spectrum 的 impulse train
+
+$$
+P\left(e^{j \omega}\right)=\omega_{s} \sum_{k=-\infty}^{\infty} \delta\left(\omega-k \omega_{s}\right), \quad \omega_{s}=\frac{2 \pi}{N}
+$$
+
+Spectrum 的 sampled signal
+
+$$
+X_{p}=\frac{1}{2 \pi} X \circledast P=\frac{1}{2 \pi} \tilde{X} * P=\frac{1}{2 \pi} X * \tilde{P}
+$$
+
+where $\tilde{X}, \tilde{P}$ are respective parts 的 $X, P$ within one period 的 $2 \pi$
+
+$$
+X_{p}\left(e^{j \omega}\right)=\frac{1}{N} \sum_{k=-\infty}^{\infty} \tilde{X}\left(e^{j\left(\omega-k \omega_{s}\right)}\right)=\frac{1}{N} \sum_{k=0}^{N-1} X\left(e^{j\left(\omega-k \omega_{s}\right)}\right)
+$$
+
+## 冲激列采样
+
+First view: Replicating $\tilde{X}$ at $k \omega_{s}$ 用于 $k \in \mathbb{Z}$
+
+$$
+X_{p}\left(e^{j \omega}\right)=\frac{1}{N} \sum_{k=-\infty}^{\infty} \tilde{X}\left(e^{j\left(\omega-k \omega_{s}\right)}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-30.jpg?height=169&width=1205&到p_left_y=357&到p_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-30.jpg?height=161&width=1208&到p_left_y=563&到p_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-30.jpg?height=174&width=1199&到p_left_y=747&到p_left_x=42)
+
+## 冲激列采样
+
+Second view: Replicating $X$ at $k \omega_{s}$ 用于 $k=0,1, \ldots, N-1$
+
+$$
+X_{p}\left(e^{j \omega}\right)=\frac{1}{N} \sum_{k=0}^{N-1} X\left(e^{j\left(\omega-k \omega_{s}\right)}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-31.jpg?height=176&width=1211&到p_left_y=350&到p_left_x=39)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-31.jpg?height=163&width=1210&到p_left_y=561&到p_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-31.jpg?height=180&width=1184&到p_left_y=741&到p_left_x=39)
+
+## 冲激列采样
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-32.jpg?height=322&width=1206&到p_left_y=113&到p_left_x=35)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-32.jpg?height=309&width=1210&到p_left_y=448&到p_left_x=31)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-32.jpg?height=156&width=1204&到p_left_y=772&到p_left_x=35)
+
+## 离散时间采样定理
+
+B与-limited DT signal $x[n]$ whose spectrum $X\left(e^{j \omega}\right)=0$ 用于 $\omega_{M}<|\omega| \leq \pi$ 是 uniquely determined by its samples $x[k N], k \in \mathbb{Z}$ if
+
+$$
+\omega_{s} \triangleq \frac{2 \pi}{N}>2 \omega_{M}
+$$
+
+Given $\{x[k N]: k \in \mathbb{Z}\}, x[n]$ can be reconstructed as follows
+
+1. construct $x_{p}[n]=\sum_{k=-\infty}^{\infty} x[k N] \delta[n-k N]$
+2. send $x_{p}$ through lowpass filter with gain $N$ 与 cut的f frequency $\omega_{c} \in\left(\omega_{M}, \omega_{s}-\omega_{M}\right)$, i.e.
+
+$$
+H\left(e^{j \omega}\right)=N\left[u\left(\omega+\omega_{c}\right)-u\left(\omega-\omega_{c}\right)\right]
+$$
+
+3. output $x_{r}[n]$ with $X_{r}\left(e^{j \omega}\right)=X_{p}\left(e^{j \omega}\right) H\left(e^{j \omega}\right)$ 是 same as $x[n]$
+
+## 时域重建
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-34.jpg?height=261&width=1128&到p_left_y=141&到p_left_x=46)
+
+Impulse 响应 的 lowpass filter
+
+$$
+h[n]=\frac{N \sin \left(\omega_{c} n\right)}{\pi n}
+$$
+
+$x$ recovered by b与-limited interpolation using sinc 函数
+
+$$
+x[n]=x_{r}[n]=\left(x_{p} * h\right)[n]=\sum_{k=-\infty}^{\infty} x[k N] \frac{N \sin \left(\omega_{c}(n-k N)\right)}{\pi(n-k N)}
+$$
+
+## 抽取
+
+DT signal $x[n]$
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-35.jpg?height=232&width=702&到p_left_y=110&到p_left_x=554)
+
+Sampled signal
+
+$$
+x_{p}[n]=\sum_{k=-\infty}^{\infty} x[k N] \delta[n-k N]
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-35.jpg?height=234&width=702&到p_left_y=381&到p_left_x=554)
+
+Decimated signal
+
+$$
+x_{b}[n]=x[n N]
+$$
+
+Reduces samples
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-35.jpg?height=229&width=684&到p_left_y=661&到p_left_x=572)
+
+## 抽取
+
+$$
+\begin{aligned}
+X_{b}\left(e^{j \omega}\right) & =\sum_{n \in \mathbb{Z}} x_{b}[n] e^{-j \omega n} \\
+& =\sum_{n \in \mathbb{Z}} x[n N] e^{-j \omega n} \\
+& =\sum_{k \in N \mathbb{Z}} x[k] e^{-j \omega k / N} \quad(k=n N) \\
+& =\sum_{k \in \mathbb{Z}} x_{p}[k] e^{-j \frac{\omega}{N} k} \quad\left(x_{p}[n]=0 \text { 用于 } n \in \mathbb{Z} \backslash N \mathbb{Z}\right) \\
+& =X_{p}\left(e^{j \omega / N}\right)
+\end{aligned}
+$$
+
+Recall $X_{p}\left(e^{j \omega}\right)$ has period $2 \pi / N$, so $X_{b}\left(e^{j \omega)}\right.$ has period $2 \pi$.
+If no aliasing in sampling
+
+- $X_{b}$ 是 stretched version 的 $X$ in each period
+- $X_{b}\left(e^{j \omega}\right)=X_{p}\left(e^{j \omega / N}\right)$, but $X_{b}\left(e^{j \omega}\right) \neq X\left(e^{j \omega / N}\right)$
+
+
+## 抽取
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-37.jpg?height=155&width=1196&到p_left_y=138&到p_left_x=43)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-37.jpg?height=172&width=1199&到p_left_y=333&到p_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-37.jpg?height=158&width=1199&到p_left_y=531&到p_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-37.jpg?height=163&width=1196&到p_left_y=753&到p_left_x=43)
+
+## 目录
+
+1. DTFT 的卷积性质
+2. DTFT 的乘积性质
+3. 线性常系数差分方程描述的系统
+4. 离散时间信号的采样
+5. 连续时间信号的离散时间处理
+
+## 连续时间信号的离散时间处理
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-39.jpg?height=181&width=1220&到p_left_y=116&到p_left_x=31)
+
+离散时间处理的优点
+
+- versatility 的 digital electronic devices
+- resilience against no是e
+
+在实际中
+
+- C/D implemented by analog-到-digital converter
+- D/C implemented by digital-到-analog converter
+
+理想化假设
+
+- no quantization
+- C/D by impulse-train sampling
+- D/C by ideal reconstruction
+
+
+## 模数转换（C/D）
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-40.jpg?height=289&width=1152&到p_left_y=113&到p_left_x=51)
+
+Assumption
+
+- $x_{c}(t)$ b与limited, e.g. lowpass filtered
+- sampling above Nyqu是t rate, no aliasing
+
+Relation bet我们en CT 与 DT spectra
+
+$$
+\begin{aligned}
+X_{p}(j \omega) & =\mathrm{CTFT}\left\{\sum_{n \in \mathbb{Z}} x_{c}(n T) \delta(t-n T)\right\} \\
+& =\sum_{n \in \mathbb{Z}} x_{c}(n T) e^{-j \omega T n}=\sum_{n \in \mathbb{Z}} x_{d}[n] e^{-j \omega T n}=X_{d}\left(e^{j \omega T}\right)
+\end{aligned}
+$$
+
+## 模数转换（C/D）
+
+时域
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-41.jpg?height=665&width=564&到p_left_y=168&到p_left_x=64)
+
+频域
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-41.jpg?height=205&width=525&到p_left_y=179&到p_left_x=709)
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-41.jpg?height=212&width=525&到p_left_y=421&到p_left_x=709)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-41.jpg?height=196&width=529&到p_left_y=652&到p_left_x=705)
+
+From $x_{p}$ 到 $x_{d}$ : normalization in both time 与 frequency
+
+## 数模转换（D/C）
+
+C/D conversion
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-42.jpg?height=252&width=1091&到p_left_y=159&到p_left_x=48)
+
+Relation bet我们en CT 与 DT spectra
+
+$$
+\begin{aligned}
+& Y_{p}(j \omega)=Y_{d}\left(e^{j \omega T}\right) \\
+& Y_{c}(j \omega)= \begin{cases}Y_{p}(j \omega) & |\omega|<\frac{\omega_{s}}{2}=\frac{\omega}{T} \\
+0, & \text { otherw是e }\end{cases}
+\end{aligned}
+$$
+
+## 数模转换（D/C）
+
+时域
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-43.jpg?height=665&width=562&到p_left_y=168&到p_left_x=64)
+
+频域
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-43.jpg?height=201&width=527&到p_left_y=179&到p_left_x=709)
+
+频域
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-43.jpg?height=212&width=545&到p_left_y=408&到p_left_x=705)
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-43.jpg?height=212&width=531&到p_left_y=625&到p_left_x=705)
+
+Reverse process 的 C/D conversion
+
+## 频率响应
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-44.jpg?height=314&width=1208&到p_left_y=137&到p_left_x=31)
+
+1. $Y_{d}\left(e^{j \Omega}\right)=H_{d}\left(e^{j \Omega}\right) X_{d}\left(e^{j \Omega}\right)$
+2. $Y_{p}(j \omega)=Y_{d}\left(e^{j \omega T}\right)=H_{d}\left(e^{j \omega T}\right) X_{d}\left(e^{j \omega T}\right)=H_{d}\left(e^{j \omega T}\right) X_{p}(j \omega)$
+3. $Y_{c}(j \omega)=Y_{p}(j \omega) H_{\mathrm{lp}}(j \omega)=H_{d}\left(e^{j \omega T}\right) X_{p}(j \omega) H_{\mathrm{lp}}(j \omega)=H_{d}\left(e^{j \omega T}\right) X_{c}(j \omega)$
+4. $H_{c}(j \omega)= \begin{cases}H_{d}\left(e^{j \omega T}\right) & |\omega|<\frac{\omega_{s}}{2}=\frac{\omega}{T} \\ 0, & \text { otherw是e }\end{cases}$
+
+频率响应
+
+$$
+\begin{gathered}
+H_{c}(j \omega)= \begin{cases}H_{d}\left(e^{j \omega T}\right) & |\omega|<\frac{\omega_{s}}{2}=\frac{\omega}{T} \\
+0, & \text { otherw是e }\end{cases} \\
+\Longrightarrow H_{d}\left(e^{j \Omega}\right)=H_{c}\left(j \frac{\Omega}{T}\right),|\Omega|<\pi
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-45.jpg?height=209&width=1195&到p_left_y=437&到p_left_x=44)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-45.jpg?height=199&width=1199&到p_left_y=685&到p_left_x=42)
+
+## 例: 数字微分器
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-46.jpg?height=372&width=320&到p_left_y=137&到p_left_x=44)
+
+$$
+\arg H_{c}(j \omega)
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-46.jpg?height=311&width=322&到p_left_y=590&到p_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-46.jpg?height=770&width=817&到p_left_y=132&到p_left_x=388)

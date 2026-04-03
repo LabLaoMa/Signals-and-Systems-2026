@@ -1,0 +1,104 @@
+---
+title: "二维一阶差分滤波器：Sobel 算子边缘检测"
+author: "Gemini AI"
+date: "2026-03-25"
+format:
+  html:
+    code-fold: false
+    toc: true
+---
+
+## 1. 数学原理
+
+Sobel 算子是一种离散微分算子，结合了**高斯平滑**和**一阶差分**。它通过计算图像亮度函数的梯度近似值来寻找边缘。
+
+### 1.1 差分方程形式
+对于图像中的像素 $x[i, j]$，其水平和垂直方向的梯度 $G_x$ 和 $G_y$ 可由以下差分方程定义：
+
+**水平梯度 (检测垂直边缘):**
+$$
+\begin{aligned}
+G_x[i, j] = \ &1 \cdot x[i-1, j+1] + 2 \cdot x[i, j+1] + 1 \cdot x[i+1, j+1] \\
+&- (1 \cdot x[i-1, j-1] + 2 \cdot x[i, j-1] + 1 \cdot x[i+1, j-1])
+\end{aligned}
+$$
+
+**垂直梯度 (检测水平边缘):**
+$$
+\begin{aligned}
+G_y[i, j] = \ &1 \cdot x[i+1, j-1] + 2 \cdot x[i+1, j] + 1 \cdot x[i+1, j+1] \\
+&- (1 \cdot x[i-1, j-1] + 2 \cdot x[i-1, j] + 1 \cdot x[i-1, j+1])
+\end{aligned}
+$$
+
+### 1.2 卷积核矩阵 (Kernels)
+上述方程对应的卷积核矩阵形式如下：
+
+$$
+K_x = \begin{bmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{bmatrix}, \quad
+K_y = \begin{bmatrix} -1 & -2 & -1 \\ 0 & 0 & 0 \\ 1 & 2 & 1 \end{bmatrix}
+$$
+
+
+
+### 1.3 算子分解
+Sobel 算子可以分解为一个平滑算子和一个差分算子的乘积（以 $K_x$ 为例）：
+$$
+K_x = \begin{bmatrix} 1 \\ 2 \\ 1 \end{bmatrix} \times \begin{bmatrix} -1 & 0 & 1 \end{bmatrix}
+$$
+这表明它在差分前先进行了垂直方向的平滑，从而提高了抗噪能力。
+
+---
+
+## 2. Python 代码实现
+
+本实现使用 `Numpy` 进行矩阵运算，`Scipy` 进行卷积，`Pillow` 处理图像输入。
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+from scipy.signal import convolve2d
+import os
+
+# 配置图像路径
+IMAGE_PATH = 'your_image.jpg' # 请替换为实际路径
+
+def process_sobel_edge(path):
+    # 1. 读入并转为灰度图
+    with Image.open(path) as pil_img:
+        original_rgb = pil_img.convert('RGB')
+        gray_img = np.array(pil_img.convert('L'), dtype=np.float32)
+
+    # 2. 定义 Sobel 卷积核
+    Kx = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
+    Ky = np.array([[-1, -2, -1], [0, 0, 0], [1, 2, 1]])
+
+    # 3. 执行二维卷积 (一阶差分)
+    gx = convolve2d(gray_img, Kx, mode='same', boundary='symm')
+    gy = convolve2d(gray_img, Ky, mode='same', boundary='symm')
+
+    # 4. 合成梯度幅值
+    magnitude = np.sqrt(gx**2 + gy**2)
+    
+    # 归一化到 0-255
+    if magnitude.max() > 0:
+        magnitude = (magnitude / magnitude.max()) * 255
+        
+    return original_rgb, gx, gy, magnitude.astype(np.uint8)
+
+# 运行并可视化
+try:
+    orig, gx, gy, edge = process_sobel_edge(IMAGE_PATH)
+    
+    fig, axes = plt.subplots(1, 4, figsize=(20, 5))
+    axes[0].imshow(orig); axes[0].set_title("Original")
+    axes[1].imshow(np.abs(gx), cmap='gray'); axes[1].set_title("Sobel X")
+    axes[2].imshow(np.abs(gy), cmap='gray'); axes[2].set_title("Sobel Y")
+    axes[3].imshow(edge, cmap='magma'); axes[3].set_title("Edge Magnitude")
+    
+    for ax in axes: ax.axis('off')
+    plt.tight_layout()
+    plt.show()
+except Exception as e:
+    print(f"Error: {e}")

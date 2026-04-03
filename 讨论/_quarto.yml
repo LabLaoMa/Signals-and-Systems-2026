@@ -1,0 +1,41 @@
+project:
+  type: website
+  output-dir: docs
+website:
+  title: "My Site"
+
+format:
+  revealjs:
+    theme: [dark, custom2.scss]
+    #transition: slide
+    transition: fade
+    overview: true  # 确保这里是 true (默认就是 true)
+    slide-number: true
+    incremental: false
+    slide-level: 2
+    center: false
+    width: 1920  #本行和下一行适应于16:9的屏幕展示
+    height: 1080
+    #width: 1512 #本行和下一行适应于本机Macbook Pro的屏幕展示
+    #height: 982 #
+    margin: 0.1
+    #fontsize: 36px
+    #fontsize: 60px
+    controls: true
+    controls-layout: edges
+    controls-back-arrows: visible
+    navigation-mode: linear
+    #navigation-mode: grid
+    #navigation-mode: vertical
+    progress: true
+    hash: true
+    math: mathjax
+    html-math-method: mathjax
+    # revealjs-plugins:
+    #   - spotlight
+
+resource-path: ["."]
+execute:
+  echo: false
+  #echo: true
+
