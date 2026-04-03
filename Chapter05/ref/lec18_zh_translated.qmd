@@ -1,0 +1,636 @@
+---
+title: "EL331 信号与系统 · 第18讲（中文版）"
+subtitle: "离散时间傅里叶变换（DTFT）"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+## 1. 离散时间傅里叶变换
+
+## 2. 离散时间傅里叶变换的性质
+
+## 离散时间傅里叶变换
+
+设 $x$ 是一个非周期离散时间信号，并且 $\operatorname{supp} x \subset\left[N_{1}, N_{2}\right]$
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-03.jpg?height=171&width=1182&top_left_y=204&top_left_x=39)
+
+定义其周期延拓，周期满足 $N>N_{2}-N_{1}+1$：
+
+$$
+x_{N}[n]=\sum_{k=-\infty}^{\infty} x[n+k N]
+$$
+
+$$
+x_{N}[n]
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-03.jpg?height=110&width=1179&top_left_y=705&top_left_x=42)
+$x$ 可以看作“周期为无穷大”的周期信号，即 $x[n]=\lim _{N \rightarrow \infty} x_{N}[n]$
+
+## 离散时间傅里叶变换
+
+将 $x_{N}$ 展开为离散时间傅里叶级数
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-04.jpg?height=172&width=1182&top_left_y=188&top_left_x=39)
+
+$$
+\hat{x}_{N}[k]=\left\langle x_{N}, e^{j \frac{2 \pi}{N} k}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \frac{2 \pi}{N} k}=\frac{1}{N} X\left(e^{j k \omega_{0}}\right)
+$$
+
+其中
+
+$$
+X\left(e^{j \omega}\right)=\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \omega n}=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}, \quad \omega_{0}=\frac{2 \pi}{N}
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-04.jpg?height=216&width=1166&top_left_y=714&top_left_x=39)
+
+## 离散时间傅里叶变换
+
+当 $N$ 增大时，离散频率的采样会变得更加稠密
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-05.jpg?height=170&width=1186&top_left_y=190&top_left_x=44)
+
+$$
+\hat{x}_{N}[k]=\left\langle x_{N}, e^{j \frac{2 \pi}{N} k}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \frac{2 \pi}{N} k}=\frac{1}{N} X\left(e^{j k \omega_{0}}\right)
+$$
+
+其中
+
+$$
+X\left(e^{j \omega}\right)=\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \omega n}=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}, \quad \omega_{0}=\frac{2 \pi}{N}
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-05.jpg?height=214&width=1166&top_left_y=712&top_left_x=39)
+
+## 离散时间傅里叶变换
+
+当 $N \rightarrow \infty$ 时，$N \hat{x}[k]$ 逐渐逼近包络 $X\left(e^{j \omega}\right)$
+
+$$
+x_{N}[n]
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-06.jpg?height=105&width=1181&top_left_y=255&top_left_x=46)
+
+$$
+\hat{x}_{N}[k]=\left\langle x_{N}, e^{j \frac{2 \pi}{N} k}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \frac{2 \pi}{N} k}=\frac{1}{N} X\left(e^{j k \omega_{0}}\right)
+$$
+
+其中
+
+$$
+X\left(e^{j \omega}\right)=\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \omega n}=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}, \quad \omega_{0}=\frac{2 \pi}{N}
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-06.jpg?height=214&width=1163&top_left_y=716&top_left_x=42)
+
+## 离散时间傅里叶变换
+
+离散时间傅里叶级数的综合公式为：
+
+$$
+x_{N}[n]=\sum_{k \in[N]} \hat{x}[k] e^{j k \omega_{0} n}=\frac{1}{N} \sum_{k=0}^{N-1} X\left(e^{j k \omega_{0}}\right) e^{j k \omega_{0} n}
+$$
+
+令 $\omega_{k}=k \omega_{0}, \Delta \omega=\omega_{k}-\omega_{k-1}=\omega_{0}$，
+
+$$
+x_{N}[n]=\frac{1}{2 \pi} \sum_{k=0}^{N-1} X\left(e^{j \omega_{k}}\right) e^{j \omega_{k} n} \Delta \omega
+$$
+
+当 $N \rightarrow \infty$、$\Delta \omega \rightarrow 0$ 时，上述黎曼和变为积分：
+
+$$
+x[n]=\frac{1}{2 \pi} \int_{0}^{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega
+$$
+
+可在任意长度为 $2 \pi$ 的周期区间上积分
+
+## 离散时间傅里叶变换变换对
+
+离散时间傅里叶变换（分析公式）
+
+$$
+X\left(e^{j \omega}\right)=\mathcal{F}(x)\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}
+$$
+
+- $X\left(e^{j \omega}\right)$ 称为 $x[n]$ 的频谱，且以 $2 \pi$ 为周期
+
+离散时间逆傅里叶变换（综合公式）
+
+$$
+x[n]=\mathcal{F}^{-1}(X)[n]=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega
+$$
+
+- 频率为 $\omega$ 的复指数分量的权重为 $X\left(e^{j \omega}\right) \frac{d \omega}{2 \pi}$
+- 只需在一个周期内积分，即只使用彼此不同的 $e^{j \omega n}$
+
+
+## DTFT 与 CTFS 之间的对偶性
+
+DTFT 变换对
+
+- 离散时间
+- 连续频率
+分析公式
+
+$$
+X\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}
+$$
+
+综合公式
+
+$$
+x[n]=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega
+$$
+
+CTFS 变换对
+
+- 连续时间
+- 离散频率
+分析公式
+
+$$
+\hat{x}[k]=\frac{1}{T} \int_{T} x(t) e^{-j k \frac{2 \pi}{T} t} d t
+$$
+
+综合公式
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \frac{2 \pi}{T} t}
+$$
+
+$$
+\begin{aligned}
+& \text { continuous variable } \xrightarrow{\text { CTFS }} \text { doubly infinite sequences } \\
+& \text { periodic functions }
+\end{aligned} \xrightarrow[\text { DTFT }]{\leftarrow} \text { 双向映射 }
+$$
+
+## 离散时间信号的高频与低频
+
+高频对应于 $(2 k+1) \pi$ 附近，低频对应于 $2 k \pi$ 附近
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=161&width=368&top_left_y=197&top_left_x=91)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=159&width=370&top_left_y=199&top_left_x=461)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=159&width=367&top_left_y=199&top_left_x=832)
+$\phi_{N}^{0}[n]=\cos (0 \cdot n)=1$
+$\phi_{N}^{1}[n]=\cos (\pi n / 4)$
+$\phi_{N}^{2}[n]=\cos (\pi n / 2)$
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=162&width=365&top_left_y=443&top_left_x=94)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=162&width=368&top_left_y=443&top_left_x=460)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=162&width=365&top_left_y=443&top_left_x=834)
+$\phi_{N}^{3}[n]=\cos (3 \pi n / 4)$
+$\phi_{N}^{4}[n]=\cos (\pi n)$
+$\phi_{N}^{5}[n]=\cos (5 \pi n / 4)$
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=158&width=363&top_left_y=690&top_left_x=94)
+$\phi_{N}^{6}[n]=\cos (3 \pi n / 2)$
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=156&width=372&top_left_y=692&top_left_x=456)
+$\phi_{N}^{7}[n]=\cos (7 \pi n / 4)$
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=156&width=365&top_left_y=692&top_left_x=832)
+$\phi_{N}^{8}[n]=\cos (2 \pi n)=1$
+
+## 离散时间信号的高频与低频
+
+$N$ 周期信号的离散频率
+
+- 在单位圆上均匀分布的点
+- 低频靠近 $1$；高频靠近 $-1$
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-11.jpg?height=580&width=586&top_left_y=337&top_left_x=40)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-11.jpg?height=580&width=592&top_left_y=337&top_left_x=651)
+
+
+## 离散时间信号的高频与低频
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-12.jpg?height=321&width=553&top_left_y=117&top_left_x=22)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-12.jpg?height=290&width=677&top_left_y=148&top_left_x=579)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-12.jpg?height=407&width=545&top_left_y=514&top_left_x=26)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-12.jpg?height=383&width=675&top_left_y=543&top_left_x=579)
+
+## 例：单边衰减指数序列
+
+$$
+x[n]=a^{n} u[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=\frac{1}{1-a e^{-j \omega}}, \quad|a|<1
+$$
+
+$\left|X\left(e^{j \omega}\right)\right|=\frac{1}{\sqrt{1-2 a \cos \omega+a^{2}}}, \quad \arg X\left(e^{j \omega}\right)=-\arctan \frac{a \sin \omega}{1-a \cos \omega}$
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-13.jpg?height=250&width=606&top_left_y=361&top_left_x=22)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-13.jpg?height=94&width=365&top_left_y=361&top_left_x=632)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-13.jpg?height=316&width=615&top_left_y=610&top_left_x=13)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-13.jpg?height=303&width=607&top_left_y=623&top_left_x=632)
+
+## 例：双边衰减指数序列
+
+$$
+x[n]=a^{|n|} \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=\frac{1-a^{2}}{1-2 a \cos \omega+a^{2}}, \quad|a|<1
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-14.jpg?height=276&width=439&top_left_y=235&top_left_x=70)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-14.jpg?height=389&width=598&top_left_y=539&top_left_x=22)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-14.jpg?height=278&width=451&top_left_y=235&top_left_x=670)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-14.jpg?height=407&width=607&top_left_y=536&top_left_x=632)
+
+## 例：矩形脉冲
+
+$$
+x[n]=u\left[n+N_{1}\right]-u\left[n-N_{1}-1\right] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=\frac{\sin \left(\frac{2 N_{1}+1}{2} \omega\right)}{\sin \frac{\omega}{2}}
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-15.jpg?height=176&width=1099&top_left_y=255&top_left_x=84)
+
+$$
+X\left(e^{j \omega}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-15.jpg?height=205&width=1084&top_left_y=534&top_left_x=99)
+
+Dirichlet 核（周期情形）是 sinc 函数（非周期情形）在离散时间中的对应物
+注意：$N_{1}=0 \Longrightarrow x[n]=\delta[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=1$
+
+## DTFT 的收敛性
+
+令
+
+$$
+X_{N}\left(e^{j \omega}\right)=\sum_{n=-N}^{N} x[n] e^{-j \omega n}
+$$
+
+定理：若 $x \in \ell_{1}$，则 $X_{N}$ 一致收敛到 $X$，即
+
+$$
+\lim _{N \rightarrow \infty}\left\|X-X_{N}\right\|_{\infty}=0
+$$
+
+因此，傅里叶变换 $X$ 是一致连续的。
+定理：若 $x \in \ell_{2}$，则 $X_{N}$ 在 $L_{2}$ 意义下收敛到 $X$，即
+
+$$
+\lim _{N \rightarrow \infty}\left\|X-X_{N}\right\|_{2}=0
+$$
+
+- CTFS：$L_{2}(T) \rightarrow \ell_{2}$ 是 Hilbert 空间之间的同构
+- DTFT：$\ell_{2} \rightarrow L_{2}(2 \pi)$ 也是同构
+
+
+## 例：理想低通滤波器
+
+$$
+\begin{aligned}
+& x[n]=\frac{\sin (W n)}{\pi n} \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=\sum_{k=-\infty}^{\infty}[u(\omega+W+2 k \pi)-u(\omega-W+2 k \pi)] \\
+
+\end{aligned}
+$$
+
+注意：$x \notin \ell_{1}$，且 $X$ 不连续
+
+## 作为广义函数的收敛
+
+复指数信号 $x[n]=e^{j \omega_{0} n}$ 不属于 $\ell_{1}$ 也不属于 $\ell_{2}$。
+（平移后的）Dirichlet 核
+
+$$
+X_{N}\left(e^{j \omega n}\right)=\frac{\sin \left(\frac{2 N_{1}+1}{2}\left(\omega-\omega_{0}\right)\right)}{\sin \frac{\omega-\omega_{0}}{2}} \rightarrow 2 \pi \sum_{\ell=-\infty}^{\infty} \delta\left(\omega-\omega_{0}-2 \ell \pi\right)
+$$
+
+在分布（广义函数）意义下，有
+
+$$
+x[n]=e^{j \omega_{0} n} \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=2 \pi \sum_{\ell=-\infty}^{\infty} \delta\left(\omega-\omega_{0}-2 \ell \pi\right)
+$$
+
+利用综合公式进行形式验证
+
+$$
+x[n]=\frac{1}{2 \pi} \int_{-\pi}^{\pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega=\int_{-\pi}^{\pi} \delta\left(\omega-\omega_{0}\right) e^{j \omega n} d \omega=e^{j \omega_{0} n}
+$$
+
+注意：也可通过对 $e^{j \omega_{0} t}$ 以 $T=1, \omega_{s}=2 \pi$ 采样得到
+注意：$x[n]$ 不一定是周期信号！直流分量对应 $\omega_{0}=0$。
+
+## 例：正弦信号
+
+$$
+\begin{aligned}
+x[n] & =\cos \left(\omega_{0} n+\phi\right)=\frac{e^{j \phi}}{2} e^{j \omega_{0} n}+\frac{e^{-j \phi}}{2} e^{-j \omega_{0} n} \\
+X\left(e^{j \omega}\right) & =\sum_{\ell=-\infty}^{\infty} \pi e^{j \phi} \delta\left(\omega-\omega_{0}-2 \ell \pi\right)+\pi e^{-j \phi} \delta\left(\omega+\omega_{0}-2 \ell \pi\right)
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-19.jpg?height=216&width=1084&top_left_y=432&top_left_x=75)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-19.jpg?height=217&width=1081&top_left_y=709&top_left_x=75)
+
+## 周期信号的 DTFT
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-20.jpg?height=320&width=1195&top_left_y=126&top_left_x=37)
+
+回顾：DTFS 系数 $\hat{x}_{N}[k]$ 就是频率 $k \omega_{0}$ 处的幅值
+
+$$
+\hat{x}_{N}[k]=\frac{1}{N} X\left(e^{j k \omega_{0}}\right), \quad \text { 其中 } X=\mathcal{F}\{x\}, \quad \omega_{0}=\frac{2 \pi}{N}
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-20.jpg?height=254&width=1166&top_left_y=665&top_left_x=39)
+
+## 周期信号的 DTFT
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-21.jpg?height=314&width=1195&top_left_y=128&top_left_x=37)
+
+DTFT 中 $(2 \pi)^{-1} X\left(e^{j \omega}\right)$ 表示频率 $\omega$ 处的密度
+
+$$
+X\left(e^{j \omega}\right)=2 \pi \sum_{k=-\infty}^{\infty} \hat{x}_{N}[k] \delta\left(\omega-k \omega_{0}\right)=\omega_{0} \sum_{k=-\infty}^{\infty} X\left(e^{j k \omega_{0}}\right) \delta\left(\omega-k \omega_{0}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-21.jpg?height=262&width=1170&top_left_y=681&top_left_x=35)
+
+## 周期信号的 DTFT
+
+回顾 $x_{N}$ 的 DTFS 表达式
+
+$$
+x_{N}[n]=\sum_{k=0}^{N-1} \hat{x}_{N}[k] e^{j \frac{2 k \pi}{N} n}
+$$
+
+对两边取 DTFT，并利用线性性质以及复指数信号的 DTFT，得到
+
+$$
+\begin{aligned}
+X_{N}\left(e^{j \omega}\right) & =\sum_{k=0}^{N-1} \hat{x}_{N}[k] \mathcal{F}\left\{e^{j \frac{2 k \pi}{N} n}\right\}=\sum_{k=0}^{N-1} \hat{x}_{N}[k] \sum_{\ell=-\infty}^{\infty} 2 \pi \delta\left(\omega-\frac{2 k \pi}{N}-2 \ell \pi\right) \\
+& =2 \pi \sum_{\ell=-\infty}^{\infty} \sum_{k=0}^{N-1} \hat{x}_{N}[k] \delta\left(\omega-\frac{2(k+\ell N) \pi}{N}\right) \\
+& =2 \pi \sum_{k=-\infty}^{\infty} \hat{x}_{N}[k] \delta\left(\omega-\frac{2 k \pi}{N}\right) \quad\left(\text { Recall } \hat{x}_{N}[k]=\hat{x}_{N}[k+\ell N]\right)
+\end{aligned}
+$$
+
+## 周期信号的 DTFT
+
+Can also verify formally using 综合公式
+
+$$
+\frac{1}{2 \pi} \int_{-\frac{\pi}{N}}^{2 \pi-\frac{\pi}{N}} X\left(e^{j \omega}\right) e^{j \omega n} d \omega=\int_{-\frac{\pi}{N}}^{2 \pi-\frac{\pi}{N}} \sum_{k=-\infty}^{\infty} \hat{x}_{N}[k] \delta\left(\omega-\frac{2 k \pi}{N}\right) e^{j \omega n} d \omega
+$$
+
+只有 $k=0,1, \ldots, N-1$ 的项落在积分区间内
+
+$$
+\int_{-\frac{\pi}{N}}^{2 \pi-\frac{\pi}{N}} \sum_{k=0}^{N-1} \hat{x}_{N}[k] \delta\left(\omega-\frac{2 k \pi}{N}\right) e^{j \omega n} d \omega=\sum_{k=0}^{N-1} \hat{x}_{N}[k] e^{j \frac{2 k \pi}{N} n}=x_{N}[n]
+$$
+
+其中 last equality is DTFS 综合公式
+因此得到验证
+
+$$
+x_{N}[n]=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega
+$$
+
+## 例：离散时间周期冲激串
+
+$$
+x[n]=\sum_{k=-\infty}^{\infty} \delta[n-k N] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=\frac{2 \pi}{N} \sum_{k=-\infty}^{\infty} \delta\left(\omega-\frac{2 \pi k}{N}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-24.jpg?height=216&width=1091&top_left_y=328&top_left_x=72)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-24.jpg?height=310&width=1086&top_left_y=604&top_left_x=74)
+
+## 目录
+
+## 1. 离散时间傅里叶变换
+
+2. 离散时间傅里叶变换的性质
+
+## 离散时间傅里叶变换的性质
+
+周期性
+
+$$
+X\left(e^{j(\omega+2 \pi)}\right)=X\left(e^{j(\omega)}\right)
+$$
+
+线性
+
+$$
+\mathcal{F}\{a x+b y\}=a \mathcal{F}\{x\}+b \mathcal{F}\{y\}
+$$
+
+时移与频移
+若
+
+$$
+x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)
+$$
+
+then
+
+$$
+x\left[n-n_{0}\right] \stackrel{\mathcal{F}}{\longleftrightarrow} e^{-j \omega n_{0}} X\left(e^{j \omega}\right)
+$$
+
+并且
+
+$$
+e^{j \omega_{0} n} x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j\left(\omega-\omega_{0}\right)}\right)
+$$
+
+## 例：高通与低通滤波器
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-27.jpg?height=231&width=1150&top_left_y=133&top_left_x=64)
+
+$$
+H_{\mathrm{hp}}\left(e^{j \omega}\right)=H_{\mathrm{lp}}\left(e^{j(\omega-\pi)}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-27.jpg?height=191&width=1147&top_left_y=461&top_left_x=63)
+
+$$
+H_{\mathrm{hp}}\left(e^{j \omega}\right)=H_{\mathrm{lp}}\left(e^{j(\omega-\pi)}\right) \Longleftrightarrow h_{\mathrm{hp}}[n]=e^{j \pi n} h_{\mathrm{lp}}[n]=(-1)^{n} h_{\mathrm{lp}}[n]
+$$
+
+利用低通滤波器实现高通滤波 $y=x * h_{\mathrm{hp}}$
+(1) $x_{1}[n]=(-1)^{n} x[n]$；
+(2) $y_{1}=x_{1} * h_{\mathrm{lp}}$；
+(3) $y[n]=(-1)^{n} y_{1}[n]$
+
+## 离散时间傅里叶变换的性质
+
+设
+
+$$
+x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)
+$$
+
+时间反转
+
+$$
+x[-n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{-j \omega}\right)
+$$
+
+共轭
+
+$$
+x^{*}[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X^{*}\left(e^{-j \omega}\right)
+$$
+
+对称性
+
+- $x$ 为偶信号 $\Longleftrightarrow X$ 为偶函数，$\quad x$ 为奇信号 $\Longleftrightarrow X$ 为奇函数
+- $x$ 为实信号 $\Longleftrightarrow X\left(e^{-j \omega}\right)=X^{*}\left(e^{j \omega}\right)$
+- $x$ real 并且 even $\Longleftrightarrow X$ real 并且 even
+- $x$ real 并且 odd $\Longleftrightarrow X$ purely imaginary 并且 odd
+
+
+## Differencing 并且 Accumulation
+
+一阶（后向）差分
+
+$$
+x[n]-x[n-1] \stackrel{\mathcal{F}}{\longleftrightarrow}\left(1-e^{-j \omega}\right) X\left(e^{j \omega}\right)
+$$
+
+累加（运行和）
+
+$$
+y[n]=\sum_{m=-\infty}^{n} x[m] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{1-e^{-j \omega}} X\left(e^{j \omega}\right)+\pi X\left(e^{j 0}\right) \sum_{k=-\infty}^{\infty} \delta(\omega-2 \pi k)
+$$
+
+- 第一项来自差分性质
+- 第二项是直流分量 $\mathcal{F}\{\bar{y}\}$ 的 DTFT，其中 $\bar{y}=\frac{1}{2} X\left(e^{j 0}\right)$；参见第 15 讲第 17 页
+
+例：由于 $\delta[n] \stackrel{\mathcal{F}}{\longleftrightarrow} 1$，
+
+$$
+u[n]=\sum_{m=-\infty}^{n} \delta[m] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{1-e^{-j \omega}}+\pi \sum_{k=-\infty}^{\infty} \delta(\omega-2 \pi k)
+$$
+
+## 时间扩展
+
+定义 $x_{(m)}$ 为
+
+$$
+x_{(m)}[n]= \begin{cases}x[n / m], & \text { if } n \text { is multiple of } m \\ 0, & \text { otherwise }\end{cases}
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-30.jpg?height=155&width=507&top_left_y=323&top_left_x=77)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-30.jpg?height=157&width=504&top_left_y=321&top_left_x=670)
+
+若
+
+$$
+x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)
+$$
+
+then
+
+$$
+x_{(m)}[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j m \omega}\right)
+$$
+
+证明。
+
+$$
+\mathcal{F}\left\{x_{(m)}\right\}\left(e^{j m \omega}\right)=\sum_{n=-\infty}^{\infty} x_{(m)}[n] e^{-j \omega n}=\sum_{\ell=-\infty}^{\infty} x[\ell] e^{-j \omega m \ell}=X\left(e^{j m \omega}\right)
+$$
+
+## 例
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=154&width=578&top_left_y=133&top_left_x=39)
+
+$$
+X\left(e^{j \omega}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=139&width=533&top_left_y=148&top_left_x=661)
+
+$$
+\left.X_{(2)}\left(e^{j \omega}\right)=X_{( } e^{j 2 \omega}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=156&width=581&top_left_y=419&top_left_x=39)
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=172&width=533&top_left_y=434&top_left_x=661)
+
+$$
+x_{(3)}[n]
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=97&width=581&top_left_y=796&top_left_x=39)
+
+$$
+\left.X_{(3)}\left(e^{j \omega}\right)=X_{( } e^{j 3 \omega}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=169&width=535&top_left_y=752&top_left_x=661)
+
+## 频率微分性质
+
+若
+
+$$
+x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)
+$$
+
+then
+
+$$
+n x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} j \frac{d}{d \omega} X\left(e^{j \omega}\right)
+$$
+
+证明。
+
+$$
+X\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}
+$$
+
+在求和号内对 $\omega$ 求导
+
+$$
+\frac{d}{d \omega} X\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} x[n](-j n) e^{-j \omega n}
+$$
+
+## 帕塞瓦尔恒等式
+
+Theorem. 若 $x \in \ell_{2}, X=\mathcal{F}\{x\}$, then
+
+$$
+\|x\|_{\ell_{2}}^{2}=\|X\|_{L_{2}(2 \pi)}^{2}, \quad \text { or } \quad \sum_{n \in \mathbb{Z}}|x[n]|^{2}=\frac{1}{2 \pi} \int_{2 \pi}\left|X\left(e^{j \omega}\right)\right|^{2} d \omega
+$$
+
+Note $\omega$ is angular frequency 并且 $\frac{\omega}{2 \pi}$ is frequency
+
+$$
+\sum_{n \in \mathbb{Z}}|x[n]|^{2}=\int_{2 \pi}\left|X\left(e^{j \omega}\right)\right|^{2} \frac{d \omega}{2 \pi}
+$$
+
+解释：能量守恒
+
+- $\sum_{n \in \mathbb{Z}}|x[n]|^{2}$ 是总能量
+- $\left|X\left(e^{j \omega}\right)\right|^{2}$ 是单位频率上的能量
+$\left|X\left(e^{j \omega}\right)\right|^{2}$ 称为能量密度谱
+
+
+## 帕塞瓦尔恒等式
+
+Theorem. 若 $x, y \in \ell_{2}, X=\mathcal{F}\{x\}, Y=\mathcal{F}\{y\}$, then
+
+$$
+\langle x, y\rangle_{\ell_{2}}=\langle X, Y\rangle_{L_{2}(2 \pi)}, \quad \text { or } \quad \sum_{n \in \mathbb{Z}} x[n] y^{*}[n]=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) Y^{*}\left(e^{j \omega}\right) d \omega
+$$
+
+证明。
+
+$$
+\begin{aligned}
+\langle X, Y\rangle_{L_{2}(2 \pi)} & =\left\langle\sum_{n \in \mathbb{Z}} x[n] e^{-j \omega n}, \sum_{m \in \mathbb{Z}} y[m] e^{-j \omega m}\right\rangle_{L_{2}(2 \pi)} \\
+& =\sum_{n \in \mathbb{Z}} x[n] \sum_{m \in \mathbb{Z}} y^{*}[m]\left\langle e^{-j \omega n}, e^{-j \omega m}\right\rangle_{L_{2}(2 \pi)} \\
+& =\sum_{n \in \mathbb{Z}} x[n] \sum_{m \in \mathbb{Z}} y^{*}[m] \delta[n-m] \\
+& =\sum_{n \in \mathbb{Z}} x[n] y^{*}[n]=\langle x, y\rangle_{\ell_{2}}
+\end{aligned}
+$$

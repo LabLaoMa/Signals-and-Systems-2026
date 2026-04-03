@@ -1,0 +1,818 @@
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-01.jpg?height=1082&width=2362&top_left_y=119&top_left_x=138)
+
+Time and frequency characterization of signals and systems
+
+## 本章内容（2学时）
+
+※傅里叶变换的模和相位表示
+
+- LTI系统频率响应的模和相位表示
+- 线性和非线性相位
+：群时延
+－理想频率选择性滤波器的时域特性
+
+
+## 学习目标
+
+掌握LTI系统频率响应的模和相位表示了解线性相位和非线性相位，以及群时延的概念；
+了解理想频率选择性滤波器的时域特性
+
+## 6.0 引言
+
+：对于一个LTI系统来说，除了通过卷积的时域特性外，利用系统的频率响应的频域特性是另一种可供选择的表示方法。在LTI系统分析中，由于时域中的微分（差分）方程和卷积运算在频域都变成了代数运算，所以利用频域往往特别方便。
+＊但是我们需要考虑的是，在系统设计和分析中，将时域特性和频域特性联系起来并给予权衡考虑。
+
+## 6.0 引言
+
+一、LTI系统的描述方法：
+（1）时域特性（卷积）；
+（2）频域特性（系统频率响应）
+
+二、在系统分析和设计中，将时域和频域特性联系起来并给以权衡考虑是很有必要的
+
+## 6.1 傅里叶变换的模和相位表示
+
+－一般说来，傅里叶变换是复数值的，用它的模和相位来表示。
+连续时间傅里叶变换 $\boldsymbol{X}(\boldsymbol{j} \omega)$ 的模一相表示：
+
+$$
+X(j \omega)=|X(j \omega)| e^{j \angle X(j \omega)}
+$$
+
+离散时间傅里叶变换 $\boldsymbol{X}\left(\mathbf{e}^{j \omega}\right)$ 的模一相表示：
+
+$$
+X\left(e^{j \omega}\right)=\left|X\left(e^{j \omega}\right)\right| e^{j \angle X\left(e^{j \omega}\right)}
+$$
+
+## 6.1 傅里叶变换的模和相位表示
+
+＊连续时间傅立叶变换（CFT）的模－相表示：
+＊信号 $\mathrm{x}(\mathrm{t})$ 的傅氏变换 ：
+
+$$
+\begin{aligned}
+& x(t) \stackrel{F}{\longleftrightarrow} X(j \omega) \\
+& X(j \omega)=X(j \omega) \mid e^{j X(j \omega)}
+\end{aligned}
+$$
+
+$|X(j \omega)|---$ 幅度频谱（Magnitude Spectrum） $e^{j \angle X(j \omega)}$ ———相位频谱（Phase Spectrum）
+＊傅里叶变换式本身可以看做是信号 $x(t)$ 的一种分解，即把信号 $\boldsymbol{x}(\boldsymbol{t})$ 分解成不同频率的复指数信号之和：
+
+$$
+x(t)=\frac{1}{2 \pi} \int_{-\infty}^{+\infty} X(j \omega) e^{j \omega t} d \omega
+$$
+
+＊由帕斯瓦尔定理，$|X(j \omega)|^{2}$ 可以看作是 $x(t)$ 的能谱密度；也就是 $|\boldsymbol{X}(\boldsymbol{j} \omega)|^{2} \boldsymbol{d} \omega / \mathbf{2} \pi$ 可以认为是信号 $\boldsymbol{x}(\boldsymbol{t})$ 中位于频率由 $\omega$ 到 $\omega+\boldsymbol{d} \omega$ 之间这样一个无限小的频带内所占有的能量。因此，模｜$X(j \omega) \mid$ 所描述的是一个信号的基本频率含量，也即给出是组成 $x(t)$ 的各复指数信号相对振幅的信息。
+＊另一方面，相位角 $\Varangle \boldsymbol{X}(\boldsymbol{j} \omega)$ 不影响各个频率分量的大小，但是提供的是有关这些复指数信号的相对相位信息。由 $\Varangle X(j \omega)$ 所代表的相位关系对信号 $x(t)$ 的本质属性有显著的影响。尤其是，依赖于什么样的相位函数，即使模函数保持不变，也能得出看上去很不相同的信号。例如图3．3所示的例子，由于相对相位关系，造成振幅叠加效应。
+－作为相位影响的另一个例子，如下信号
+
+$$
+x(t)=1+\frac{1}{2} \cos \left(2 \pi t+\phi_{1}\right)+\cos \left(4 \pi t+\phi_{2}\right)+\frac{2}{3} \cos \left(6 \pi t+\phi_{3}\right)
+$$
+
+$$
+x(t)=1+\frac{1}{2} \cos \left(2 \pi t+\phi_{1}\right)+\cos \left(4 \pi t+\phi_{2}\right)+\frac{2}{3} \cos \left(6 \pi t+\phi_{3}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-10.jpg?height=313&width=1354&top_left_y=540&top_left_x=147)
+
+$$
+\Phi_{1}=\Phi_{2}=\Phi_{3}=0
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-10.jpg?height=307&width=1357&top_left_y=862&top_left_x=144)
+
+$$
+\Phi_{1}=4, \Phi_{2}=8, \Phi_{3}=12
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-10.jpg?height=310&width=1371&top_left_y=1168&top_left_x=137)
+
+$$
+\Phi_{1}=6, \Phi_{2}=-2.7, \Phi_{3}=0.93
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-10.jpg?height=286&width=1360&top_left_y=1484&top_left_x=141)
+
+$$
+\Phi_{1}=1.2, \Phi_{2}=4.1, \Phi_{3}=-7.2
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-11.jpg?height=158&width=1378&top_left_y=114&top_left_x=335)
+
+$$
+x(t)=1+\frac{1}{2} \cos \left(2 \pi t+\phi_{1}\right)+\cos \left(4 \pi t+\phi_{2}\right)+\frac{2}{3} \cos \left(6 \pi t+\phi_{3}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-11.jpg?height=384&width=2364&top_left_y=553&top_left_x=94)
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-11.jpg?height=360&width=2364&top_left_y=896&top_left_x=94)
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-11.jpg?height=657&width=2370&top_left_y=1218&top_left_x=91)
+
+## 相应的matlab程序：
+
+```
+* clear all
+* t=0:0.01:10;
+* for i=1:length(t)
+* x1(i)=1+0.5* cos(2*pi*t(i)+0)+cos(4*pi*t(i)+0)+2.0/3* cos(6*pi*t(i)+0);
+* x2(i)=1+0.5* cos(2*pi*t(i)+4)+cos(4*pi*t(i)+8)+2.0/3* cos(6*pi*t(i)+12);
+* x3(i)=1+0.5* cos(2*pi*t(i)+6)+cos(4*pi*t(i)-2.7)+2.0/3* cos(6*pi*t(i)+0.93);
+* x4(i)=1+0.5* cos(2*pi*t(i)+1.2)+cos(4*pi*t(i)+4.1)+2.0/3* cos(6*pi*t(i)-7.02);
+* end
+* subplot(4,1,1),plot(t,x1)
+* subplot(4,1,2),plot(t,x2)
+* subplot(4,1,3),plot(t,x3)
+* subplot(4,1,4),plot(t,x4)
+```
+
+般说来， $\boldsymbol{X}(\boldsymbol{j} \omega)$ 的相位函数的变化会导致信号 $\boldsymbol{x}(\boldsymbol{t})$ 时域特性的改变。作为一个极端的例子，若 $x(t)$ 是一盘录音，那么 $x(-t)$ 就是把这盘录音倒过来放。假设 $x(t)$ 是实值信号，由傅里叶变换性质有 $x(-t)$ 的频谱是：
+
+$$
+F\{x(-t)\}=X(-j \omega)=|X(j \omega)| e^{-j \square X(j \omega)}
+$$
+
+其频谱的模函数与原信号的模函数是一样的，而相位函数则反相。
+
+## 2、相位重要性及其影响的实例
+
+（1）$x(t)$ 是录制在磁带上的一句话，那么 $x(-t)$ 就代表把这个句子倒过来。
+（2）对图像的影响。
+
+说明相位的重要性的第二个例子是在研究图像信号中发现的。看一幅图像最重要的信息就是图像边缘和那些高对比度的区域。从直观上看，在一幅图像上最大和最小强度的地方就是这些不同频率的复指数信号发生在同相位的地方。因此，一幅图像的傅里叶变换的相位包含了图像中大部分信息，尤其是关于边缘方面的信息。
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-15.jpg?height=775&width=959&top_left_y=911&top_left_x=282)
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-15.jpg?height=775&width=948&top_left_y=911&top_left_x=1292)
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-16.jpg?height=955&width=2418&top_left_y=150&top_left_x=45)
+（－）
+
+图6．2（a）元于图1．4的期片；（b）图（a）二维傅里叶变换的模；
+（c）图（a）傅里叶充换的相位；（d）傅里叶变族的尊与（b）相同，而相位为雪的明片；
+（e）傅里叶变换的模为 1 ，相位与（c）相同的所片；
+（f）相位与（c）相同，模为周（g）腊片的傅里叶交换的模所得的照片
+Some
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-17.jpg?height=776&width=961&top_left_y=66&top_left_x=1298)
+(I)
+
+## 模重要？ <br> 相位重要？
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-18.jpg?height=1572&width=1885&top_left_y=145&top_left_x=427)
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-19.jpg?height=859&width=1067&top_left_y=114&top_left_x=193)
+（d）
+
+## 模：1
+
+相位：$\angle P\left(j \omega_{1}, j \omega_{2}\right)$
+
+模：$\left|P\left(j \omega_{1}, j \omega_{2}\right)\right|$
+相位： 0
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-19.jpg?height=868&width=1093&top_left_y=757&top_left_x=1311)
+（e）
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-20.jpg?height=823&width=1056&top_left_y=217&top_left_x=117)
+（f）
+
+模
+相位：$\angle P\left(j \omega_{1}, j \omega_{2}\right)$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-20.jpg?height=841&width=1089&top_left_y=550&top_left_x=1293)
+（g）
+
+6．2 LTI系统频率响应的模和相位表示 LTI系统的输入和输出的傅里叶变换是
+
+$$
+Y(j \omega)=H(j \omega) X(j \omega)
+$$
+
+类似的，离散条件下
+
+$$
+Y\left(e^{j \omega}\right)=H\left(e^{j \omega}\right) X\left(e^{j \omega}\right)
+$$
+
+因此，一个LTI系统对输入的作用就是改变信号中每频率分量的复振幅。利用模一相表示：
+
+$$
+\begin{aligned}
+& |Y(j \omega)|=|H(j \omega)||X(j \omega)| \\
+& \angle Y(j \omega)=\angle H(j \omega)+\angle X(j \omega)
+\end{aligned}
+$$
+
+## 6．2 LTI系统频率响应的模和相位表示
+
+系统特性：冲激响应：$h(t) \stackrel{F}{\longleftrightarrow} H(j \omega)$
+
+$$
+\begin{aligned}
+& \text { 频率响应: } H(j \omega)=\frac{Y(j \omega)}{X(j \omega)} \\
+& H(j \omega)=|H(j \omega)| e^{j \angle H(j \omega)}
+\end{aligned}
+$$
+
+$|H(j \omega)|$ ———幅度响应（Magnitude Response）
+$e^{j \angle H(j \omega)}$ ——相位响应（Phase Response）
+－$|H(j \omega)|$ 为系统的增益。
+＊$K H(j \omega)$ 为系统的相移，它可改变输入信号中各分量之间的相对相位关系。
+
+一个LTI系统对输入傅里叶变换模特性上的作用就是将其乘以系统频率响应的模，为此，$|H(j \omega)|$ 一般称为系统的增益。同时，由LTI系统将输入的相位 $\Varangle \boldsymbol{X}(\boldsymbol{j} \omega)$变化成在它基础上附加了一个相位 $\varangle H(j \omega)$ ，因此， $\boldsymbol{*} \boldsymbol{H} \boldsymbol{(} \boldsymbol{j} \omega \boldsymbol{)}$ 一般就称为系统的相移。
+：如果，系统对输入的改变是一种有意义的方式进行的，那么这种在模和相位上的变化可能就是我们所希望的；否则就是不希望的，在这种情况下模和相位的改变，一般就称为幅度与相位的失真。
+
+## 电视模拟信号失真
+
+在信号经过每一个元器件时，其参数都受热噪声等随机的不稳定性因素的影响，此外，外界环境干扰等随机不稳定因素也会对信号产生影响，引起信号失真。总的来说，失真包含幅度失真和相位失真两种。信号的水平线条增粗，是信号的幅度发生失真。信号的垂直线条增粗，是信号的相位发生失真。模拟信号一旦发生失真，在以后的处理中，将保持这种失真。这就是失真信号的继承性。
+
+## 6．2．1 线性与非线性相位
+
+## Linear and Nonlinear Phase
+
+线性相位：$\quad \angle H(j \omega)=k \omega$
+非线性相位：$\angle H(j \omega)=$ 非线性方程
+例题：
+
+$$
+\begin{aligned}
+& y(t)=x\left(t-t_{0}\right) \\
+& H(j \omega)=e^{-j \omega t_{0}} \\
+& \angle H(j \omega)=-\omega t_{0}(\text { Linear phase })
+\end{aligned}
+$$
+
+效果：线性相位意味着信号传输无失真！
+
+6．2．1 线性和非线性相位
+：当相移是 $\omega$ 的线性函数时，即
+
+$$
+\angle H(j \omega)=k \omega
+$$
+
+相移在时域中的作用就有一个非常直接的解释。
+＊考虑频率响应为 $H(j \omega)=e^{-j \omega t_{0}}$ 的连续时间 $\mathbf{L T I}$ 系统，它有单位增益和线性相位，即
+
+$$
+|H(j \omega)|=1, \quad \angle H(j \omega)=-\omega t_{0}
+$$
+
+在例4．15中已指出，具有这种频率响应的系统所产生的输出就是输入的时移，即
+
+$$
+y(t)=x\left(t-t_{0}\right)
+$$
+
+：在离散时间情况下，当线性相位的斜率 $k$ 为整数时，与连续时间情况类似。
+
+当输入信号受到的是一个 $\omega$ 的非线性函数的相移时，那么在输入中各不同频率的复指数分量都将以某种方式移位，而在它们的相对相位上发生变化。当这些复指数再次叠加在一块时，就会得到一个看起来与输入信号有很大不同的信号。
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-28.jpg?height=676&width=855&top_left_y=438&top_left_x=213)
+
+输入信号
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-28.jpg?height=624&width=976&top_left_y=150&top_left_x=1304)
+
+线性相位
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-28.jpg?height=410&width=988&top_left_y=1212&top_left_x=1292)
+
+非线性相位
+＊要注意的是，上例中考虑的系统都全具有单位增益，这样输入信号傅里叶变换的模通过这些系统时都没有改变。为此，这样的系统一般称为全通系统。一个全同系统的特性完全由它的相位特性决定。
+＊当然，一般说来，LTI系统即会在幅度上（通过增益 $|\boldsymbol{H}(\boldsymbol{j} \omega)|$ ），也会在相位上（可能是线性相位也可能是非线性相位）给予影响。
+
+## 6．2．2 群时延（Group Delay）
+
+定义：$\quad \tau(\omega)=-\frac{d}{d \omega} \angle H(j \omega)$
+例题：$\quad y(t)=x\left(t-t_{0}\right) \longleftarrow \xrightarrow{F T} \longrightarrow H(j \omega)=e^{-j \omega t_{0}}$
+
+$$
+\begin{aligned}
+& \angle H(j \omega)=-\omega t_{0} \\
+& \tau(\omega)=t_{0} \quad(\text { signal delay })
+\end{aligned}
+$$
+
+Distortionless system：$\tau(\omega)$ is flat．
+
+## 6．2．3 对数模和波特图
+
+＊相位关系是相加的，而模的关系则涉及 $|\boldsymbol{H}(\boldsymbol{j} \omega)|$ 和 $|\boldsymbol{X}(\boldsymbol{j} \omega)|$ 的相乘。因此，如果傅里叶变换的模是在一个对数幅度上展示的话，那么就有一个相加的关系：
+
+$$
+\log |Y(j \omega)|=\log |H(j \omega)|+\log |X(j \omega)|
+$$
+
+＊因此，如果有一张输入的傅里叶变换和LTI系统频率响应的对数模和相位图，那么输出的傅里叶变换就可以将两者对数模的图相加和它们的相位图相加来得到。
+＊在一个对数标尺上展现傅里叶变换的模，还能在一个较宽的动态范围上将细节显示出来。
+
+般所采用的对数标尺是以 $20 \log _{10}$ 为单位，称之为分贝 （dB）。因此，0dB就对应于频率响应的模等于 1，20dB就对应于10倍的单位增益，－20dB相应于衰减0．1。
+－对于连续时间系统，采用对数频率坐标也是很通常的。 $\mathbf{2 0 l o g}_{\mathbf{1 0}}|\boldsymbol{H}(\mathbf{j} \omega)|$和 $\Varangle \boldsymbol{H}(\boldsymbol{j} \omega)$ 对 $\boldsymbol{\operatorname { l o g }}_{\mathbf{1 0}}(\omega)$ 作
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-32.jpg?height=590&width=1334&top_left_y=496&top_left_x=1160)
+
+的图称之为波特图。
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-32.jpg?height=607&width=1328&top_left_y=1171&top_left_x=1160)
+图 6.8 一个典型的波符图（注意，$\omega$ 是用对数坐标画出的）
+
+注意，我们在4．3．3节讨论过的，如果 $h(t)$ 是实函数，那么 $|\boldsymbol{H}(\boldsymbol{j} \omega)|$ 是 $\omega$ 的偶函数，而 $K \boldsymbol{H}(\boldsymbol{j} \omega)$ 是 $\omega$ 的奇函数。正是这个原因，负 $\omega$ 部分的图就是多余的了。因此，只需画出频率响应特性在 $\omega>0$ 对 $\log _{10}(\omega)$ 的图就够了。
+＊对数频率坐标，常常可以比线性频率展示宽的多的频率范围。
+
+|  |  |  |  |  |  |  |  |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 |  | C
+
+在离散时间情况下，傅里叶变换和频率响应的模常常也是用dB来表示的。然而，在离散时间情况下对数频率坐标一般是不用的，因为这时要考虑的频率范围就只有 $2 \pi$ 宽，$H\left(e^{j \omega}\right)$ 是周期的。
+＊注意，对实值 $h[n]$ ，仅需画出 $[0, \pi]$ 范围的 $H\left(e^{j \omega}\right)$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-34.jpg?height=1409&width=1421&top_left_y=213&top_left_x=1067)
+图6．9 一个高敬时间频率的应 $H\left(e^{\text {mi）}}\right)$ 的模和相位的典型作图表示
+
+6.3 理想频率选择性滤波器的时域特性
+＊理想频率选择性滤波器，它几乎没有衰减或很小衰减地通过一个或几个频带范围的信号，而阻止或大大衰减掉这些频带以外的频率分量。在这种频率选择性滤波的应用中，出现了几个重要的问题，并且这些问题都直接与频率选择性滤波的特性（模和相位）有关。
+＊本节集中讨论低通滤波器。
+＊一个连续时间理想低通滤波器具有如下的频率响应：
+
+$$
+H(j \omega)= \begin{cases}1, & |\omega| \leq \omega_{c} \\ 0, & |\omega|>\omega_{c}\end{cases}
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-35.jpg?height=411&width=1097&top_left_y=1275&top_left_x=1183)
+＊个离散时间理想低通滤波器具有如下的频率响应：
+
+$$
+H\left(e^{j \omega}\right)= \begin{cases}1, & |\omega| \leq \omega_{c} \\ 0, & \omega_{c}<|\omega| \leq \pi\end{cases}
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-36.jpg?height=423&width=1623&top_left_y=738&top_left_x=398)
+＊注意，这些滤波器具有零相位特性，所以它们不会引入相位失真。
+
+在通带内具有线性相位的理想滤波器，如图6．11所示，相对于零相位特性的理想低通滤波器的响应来说，仅仅是引入了一个单一的时移。
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-37.jpg?height=1081&width=988&top_left_y=484&top_left_x=17)
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-37.jpg?height=694&width=1450&top_left_y=490&top_left_x=1038)
+
+图6．11 具有线性相位特性的连续时间理想低通噛波器
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-37.jpg?height=656&width=1516&top_left_y=1123&top_left_x=980)
+
+＊连续时间和离散时间理想低通滤波器的单位阶跃响应 $s(t)$ 和 $s[n]$ 如图6．14所示。
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-38.jpg?height=740&width=1513&top_left_y=115&top_left_x=923)
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-38.jpg?height=705&width=1513&top_left_y=900&top_left_x=923)
+※可以看出，阶跃响应表现出的几个特性都是我们所不希望的。特别是，对于这些滤波器其阶跃响应都有比它们最后稳态值大的超量，并且呈现称之为振铃的振荡行为。而阶跃响应就是单位冲激响应的积分或求和，即
+
+$$
+s(t)=\int_{-\infty}^{t} h(\tau) d \tau, \quad s[n]=\sum_{m=-\infty}^{n} h[m]
+$$
+
+＊因为理想滤波器的单位冲激响应其主瓣是从 $-\pi / \omega_{c}$ 延伸到 $-\pi / \omega_{c}$ ，所以阶跃响应就在这个时间间隔内其值受到最显著的变化。也就是说，阶跃响应的所谓上升时间与相关滤波器的带宽成反比。而这个上升时间也是该滤波器响应时间（ $\pi / \omega_{c}$ ）的一种大致度量。
+6.3 理想频率选择性滤波器的时域特性
+（Time－Domain Properties of Ideal Frequency－ selective filters）
+6.3 理想频率选择性滤波器的时域特性
+＊理想频率选择性滤波器，它几乎没有衰减或很小衰减地通过一个或几个频带范围的信号，而阻止或大大衰减掉这些频带以外的频率分量。在这种频率选择性滤波的应用中，出现了几个重要的问题，并且这些问题都直接与频率选择性滤波的特性（模和相位）有关。
+：本节集中讨论低通滤波器。
+
+## 低通滤波器（Lowpass filter）
+
+- 个连续时间理想低通滤波器具有如下的频率响应
+- 模拟滤波器：
+
+$$
+H(j \omega)=\left\{\begin{array}{l}
+1,|\omega| \leq \omega_{c} \\
+0,|\omega|>\omega_{c}
+\end{array} \longleftrightarrow h(t)=\frac{\sin \omega_{c} t}{\pi t}\right.
+$$
+
+- 个离散时间理想低通滤波器具有如下的频率响应：
+- 数字滤波器：
+
+$$
+H\left(e^{j \omega}\right)=\left\{\begin{array}{l}
+1, \quad|\omega| \leq \omega_{c} \\
+0, \omega_{c}|\omega| \leq \pi
+\end{array} \stackrel{F}{\longleftrightarrow} h[n]=\frac{\sin \omega_{c} n}{\pi n}\right.
+$$
+
+\％注意，这些滤波器具有零相位特性，所以它们不会引入相位失真。
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-43.jpg?height=1566&width=2200&top_left_y=191&top_left_x=141)
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-44.jpg?height=1492&width=2072&top_left_y=221&top_left_x=235)
+
+在通带内具有线性相位的理想滤波器，如图6．11所示，相对于零相位特性的理想低通滤波器的响应来说，仅仅是引入了一个单一的时移。
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-45.jpg?height=1081&width=988&top_left_y=484&top_left_x=17)
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-45.jpg?height=694&width=1450&top_left_y=490&top_left_x=1038)
+
+图6．11 具有线性相位特性的连续时间理想低通噛波器
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-45.jpg?height=656&width=1516&top_left_y=1123&top_left_x=980)
+
+## 具有线性相位特性的连续时间理想低通滤波器
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-46.jpg?height=532&width=1120&top_left_y=474&top_left_x=156)
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-46.jpg?height=645&width=1106&top_left_y=1117&top_left_x=158)
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-46.jpg?height=751&width=1172&top_left_y=447&top_left_x=1291)
+
+- 连续时间和离散
+- 时间理想低通滤波
+- 器的单位阶跃响应
+- $s(t)$ 和 $s[n]$ 如图6．14
+- 所示。
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-47.jpg?height=1599&width=1396&top_left_y=216&top_left_x=788)
+※可以看出，阶跃响应表现出的几个特性都是我们所不希望的。特别是，对于这些滤波器其阶跃响应都有比它们最后稳态值大的超量，并且呈现称之为振铃的振荡行为。而阶跃响应就是单位冲激响应的积分或求和，即
+
+$$
+s(t)=\int_{-\infty}^{t} h(\tau) d \tau, \quad s[n]=\sum_{m=-\infty}^{n} h[m]
+$$
+
+＊因为理想滤波器的单位冲激响应其主瓣是从 $-\pi / \omega_{c}$ 延伸到 $-\pi / \omega_{c}$ ，所以阶跃响应就在这个时间间隔内其值受到最显著的变化。也就是说，阶跃响应的所谓上升时间与相关滤波器的带宽成反比。而这个上升时间也是该滤波器响应时间（ $\pi / \omega_{c}$ ）的一种大致度量。
+6.4 非理想滤波器的时域和频域特性讨论
+
+理想滤波器的特性在实际中不一定总是满足我们所要求的。例如我们前面多次提到过的时域振荡特性，另外，在许多滤波问题中，我们要分离的信号不总是位于完全分隔开的频段上，如图6．15所示。
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-49.jpg?height=416&width=1046&top_left_y=802&top_left_x=611)
+图6．15 稍後有些重曲的两个険谱
+
+＊两个信号的频谱稍微有些重叠，这时，我们宁肯需要有一个从通带到阻带具有渐渐过渡特性的滤波器。
+∵ 所以，非理想滤波器具有更多的实际意义，特别是我们构成系统的各个元器件本身就存在非理想工作状态 （连续时间，电阻器、电容器和运算放大器等；离散时间，寄存器、乘法器和加法器等）。
+＊在滤波器的通带和阻带特性的设计上容许有某些灵活性，相对于理想滤波器陡峭的过渡带来说，容许在通带和阻带之间有一个渐变的过渡特性。
+＊例如，在低通滤波器情况下，通带内在单位增益上可以有某些偏差，阻带内在零增益上也可以有偏差；以及在通带边缘和阻带边缘之间有一个过渡带存在。
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-50.jpg?height=618&width=1005&top_left_y=958&top_left_x=1408)
+图6．16 低通淴波器模特性的容限。可容许的通带波纹
+
+是 $\delta_{1}$ ，阻带波纹是 $\delta_{2}$ 。图中虚线指出一种可能的频率响应杪特性，它们位于所给容限之内
+
+在图中，偏离单位增益的 $\pm \delta_{1}$ 就是可容许的通带偏离，被称为通带起伏（波纹）；$\delta_{2}$ 就是可容许的阻带偏离，称之为阻带起伏（波纹）。 $\boldsymbol{\omega}_{p}$ 和 $\boldsymbol{\omega}_{s}$ 分别称为通带边缘和阻带边缘。从 $\boldsymbol{\omega}_{\boldsymbol{p}}$ 和 $\boldsymbol{\omega}_{\boldsymbol{s}}$ 的频带范围称为过渡带。
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-51.jpg?height=769&width=1277&top_left_y=692&top_left_x=542)
+图6．16 低通溸波器模特性的客限。可容许的通带波纹是 $\delta_{1}$ ，阻带波纹是 $\delta_{2}$ 。图中虚线指出一种可能的频率响应楼特性，它们位于所给容限之内
+
+为了控制时域特性，一般都将指标要求放在一个滤波器的阶跃响应上。在阶跃响应中往往关心的一个量是上升时间 $t_{r}$ ，也就是阶跃响应上升到它的终值所需要的时间。另外，在阶跃上有无振荡也是重要的，如果这样的振荡存在，由三个量来表征振荡的性质：
+超过阶跃响应终值的超量 $\Delta$ ，
+振荡频率 $\omega_{r}$
+建立时间 $t_{s}, t_{s}$ 是代表阶跃响应位于偏离值容许范围内所要求的时间。
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-53.jpg?height=1338&width=1737&top_left_y=204&top_left_x=379)
+图 6.17 一个连续时间低通波波器的除殹㴼庶，图中指出上升时间 $t_{r}$ ，超量 $\Delta$ ，据满频率 $\omega_{r}$ 和建立时间 $t, t_{s}$ 即胉距响应位于其终值 $\pm \delta$ 内所需要的时间
+
+对于非理想低通滤波器来说，可以看到在过渡带的宽度（频域特性）与阶跃响应的建立时间（时域特性）之间有一种折衷。
+例6．3 巴特沃兹滤波器，椭圆滤波器
+现在来考虑两个具体的低通涩波器，它们都有一个截止频率为 $500 \mathrm{~Hz}_{\text {。 }}$ 每一个渡波器都有一个五阶的有理颅張响应和一个实值的单位仲源响应。这两个港波器都局于特移的型式，一个称之为巴特沃兹（Butterworth）溥波器，另一个是䐈國滤波舞。这两类滤波器在宾际中常常被采用：
+这两个滤波器频率腙应的棋（对類率以 Hz 计作出）如图 $6.18(\mathrm{a})$ 所示。现以下述标准取每个澽波器的过源带：以截止频率 500 Hz 为中心，使频率响应的模眽不在偏离 1 的 0.05 以内（遇带波效），又不在偪离0的0．05以内（四带波绞）所占的范围。由图6．18（日）可见，巴特沃慈滤波厊的过渡带宽于棛圆澽娌器的过渡带。
+楴园䖎濊器所具有的较窄的过瘼带所付出的代侨可由園6．18（b）看到，该图示出了这两个涊波器的阶炸明应。由图叮见，椭图滤波器阶厌响应中的振落比巴特沃总波波器要显著的多，这就是椭圆滤波器抮卧明底的建立时间要更长一些。
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-55.jpg?height=913&width=1320&top_left_y=0&top_left_x=171)
+
+图6．18 具有相同通带和阻带波纹，相同截止频率的五阶巴特沃兹滤波器和五阶椭圆滤波器的例子
+（a）频率响应的模特性 （b）阶跃响应
+
+## 6.5 一阶和二阶连续时间系统
+
+线性常系数微分方程描述的LTI系统，其高阶系统总是常常由一阶和二阶系统以级联或并联的形式来实现的。
+6．5．1 一阶连续时间系统
+
+$$
+\tau \frac{d y(t)}{d t}+y(t)=x(t)
+$$
+
+频率响应
+
+$$
+H(j \omega)=\frac{1}{j \omega \tau+1}
+$$
+
+单位冲激响应
+
+$$
+h(t)=\frac{1}{\tau} e^{-t / \tau} u(t)
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-57.jpg?height=515&width=1299&top_left_y=103&top_left_x=1189)
+（a）
+
+－系统的阶跃响应
+
+$$
+\begin{aligned}
+s(t) & =u(t) * h(t) \\
+& =\left(1-e^{-t / \tau}\right) u(t)
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-57.jpg?height=740&width=1305&top_left_y=819&top_left_x=1177)
+
+参数 $\tau$ 称为系统的时间常数，它控制着一阶系统响应的快慢。当减小时，冲激响应衰减的得就越快，而阶跃响应上升得时间就更短；也就是说，阶跃响应，朝最终值就上升的更陡峭了。注意，一阶系统的阶跃响应不会出现振荡效应。
+＊频率响应的对数模特性：
+
+$$
+20 \log _{10}|H(j \omega)|=-10 \log _{10}\left[(\omega \tau)^{2}+1\right]
+$$
+
+＊当 $\omega \boldsymbol{\tau} \ll 1$ 时，对数模近似为零：
+
+$$
+20 \log _{10}|H(j \omega)| \approx 0
+$$
+
+＊当 $\omega \tau \gg 1$ 时，对数模近似为 $\log _{10}(\omega)$ 的线性函数：
+
+$$
+\begin{gathered}
+20 \log _{10}|H(j \omega)| \approx-20 \log _{10}(\omega \tau) \\
+\square-20 \log _{10}(\omega)-20 \log _{10}(\tau)
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-59.jpg?height=1760&width=2203&top_left_y=0&top_left_x=144)
+图 6.20 一个连续时间一阶系统的波特图
+
+＊$\omega=1 / \tau$ 这一点称苟转折频率，在这一点模的实际值
+
+$$
+20 \log _{10}\left|H\left(j \frac{1}{\tau}\right)\right|=-10 \log _{10} 2 \approx-3 d B
+$$
+
+＊对 $\boldsymbol{*} \boldsymbol{H}(\boldsymbol{j} \boldsymbol{\omega})$ 也有类似的直线近似式，以及渐近线
+
+$$
+\begin{aligned}
+\angle H(j \omega) & =-\tan ^{-1}(\omega \tau) \\
+& =\left\{\begin{array}{l}
+0, \quad \omega \leq 0.1 / \tau \\
+-(\pi / 4)\left[\log _{10}(\omega \tau)+1\right], \quad 0.1 / \tau \leq \omega \leq 10 / \tau \\
+-\pi / 2, \quad \omega \geq 10 / \tau
+\end{array}\right.
+\end{aligned}
+$$
+
+在转折频率 $\omega=1 / \tau$ 处， $\boldsymbol{*} \boldsymbol{H}(\boldsymbol{j} \omega)$ 的近似值与真实值一致，其值为：
+
+$$
+\angle H\left(j \frac{1}{\tau}\right)=-\frac{\pi}{4}
+$$
+
+## 6．5．2 二阶连续时间
+
+一阶系统的线性常系数微分方程的一般形式可表示为
+
+$$
+\frac{\mathrm{d}^{2} y(t)}{\mathrm{d} t^{2}}+2 \zeta \omega_{n} \frac{\mathrm{~d} y(t)}{\mathrm{d} t}+\omega_{n}^{2} y(t)=\omega_{n}^{2} x(t)
+$$
+
+这种形式的方程可以在很多物理系统中见到，其中包括 RLC 电路以及如图 6.21 所示的力学系统，该力学系统由弹簧、质量 m 和粘性阻尼器或减震器所组成的。在图中，输人是外力 $x(t)$ ，输出是物体从某一平衡位置
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-62.jpg?height=435&width=1193&top_left_y=590&top_left_x=1242)
+的位移 $y(t)$ 。该系统的运动方程是
+
+$$
+m \frac{\mathrm{~d}^{2} y(t)}{\mathrm{d} t^{2}}=x(t)-k y(t)-b \frac{\mathrm{~d} y(t)}{\mathrm{d} t}
+$$
+
+或者
+
+图6．21 时弹簧、减震器，以及一个连接着它们的可移动质量和一个固定支擈组成的二阶系统
+
+$$
+\frac{\mathrm{d}^{2} y(t)}{\mathrm{d} t^{2}}+\left(\frac{\mathrm{b}}{m}\right) \frac{\mathrm{d} y(t)}{\mathrm{d} t}+\left(\frac{k}{m}\right) y(t)=\frac{1}{m} x(t)
+$$
+
+将上式与（6．31）式比较，可得该系统的
+
+$$
+\omega_{n}=\sqrt{\frac{k}{m}} \quad \xi=\frac{b}{2 \sqrt{k m}}
+$$
+
+由（6．31）式所代表的二阶系捖的频率响应是
+
+$$
+H(\mathrm{j} \omega)=\frac{\omega_{n}^{2}}{(\mathrm{j} \omega)^{2}+25 \omega_{n}(\mathrm{j} \omega)+\omega_{n}^{2}}
+$$
+
+将 $H(\mathrm{j} \omega)$ 的分母因式化后，得
+
+$$
+H(\mathrm{j} \omega)=\frac{\omega_{n}^{2}}{\left(\mathrm{j} \omega-c_{1}\right)\left(\mathrm{j} \omega-c_{2}\right)}
+$$
+
+式中
+
+$$
+\begin{aligned}
+& c_{1}=-\zeta \omega_{n}+\omega_{n} \sqrt{\zeta^{2}-1} \\
+& c_{2}=-\zeta \omega_{n}-\omega_{n} \sqrt{\zeta^{2}-1}
+\end{aligned}
+$$
+
+若 $\zeta \neq 1$ ，则 $c_{1} \neq c_{2}$ ，进行部分分式展开得到
+
+$$
+H(\mathrm{j} \omega)=\frac{M}{\mathrm{j} \omega-c_{1}}-\frac{M}{\mathrm{j} \omega-c_{2}}
+$$
+
+其中
+
+$$
+M=\frac{\omega_{n}}{2 \sqrt{\zeta^{2}-1}}
+$$
+
+由（6．35）式，系统的单位冲激啘应为
+
+$$
+h(t)=M\left[\mathrm{e}^{c_{1} t}-\mathrm{e}^{c_{2} t}\right] u(t)
+$$
+
+如果 $\zeta=1$ ，则 $c_{1}=c_{2}=-\omega_{n}$ ，这时有
+
+$$
+H(\mathrm{j} \omega)=\frac{\omega_{n}^{2}}{\left(\mathrm{j} \omega+\omega_{n}\right)^{2}}
+$$
+
+由表4．2，此时的单位冲激响应为
+
+$$
+h(t)=\omega_{n}^{2} t \mathrm{e}^{-\omega_{n} t} u(t)
+$$
+
+由（6．37）式和（6．39）式可注意到，$h(t) / \omega_{n}$ 是 $\omega_{n} t$ 的函数。另外，（6．33）式还可写成
+
+$$
+H(\mathrm{j} \omega)=\frac{1}{\left(\mathrm{j} \omega / \omega_{n}\right)^{2}+2 \zeta\left(\mathrm{j} \omega / \omega_{n}\right)+1}
+$$
+
+由这里可以看到，频率响应 $H(\mathrm{j} \omega)$ 是 $\omega / \omega_{n}$ 的函数，因此改变 $\omega_{n}$ 实质上就是与一个时间和频率的尺度变换一致的。
+
+参数 $\zeta$ 称为阻尼系数，$\omega_{n}$ 称为无阻尼自然频率。这些术语的意义会随着对二阶系统单位冲激响应和阶跃响应研究的深入，而愈渐明确。首先由（6．35）式看出，当 $0<\zeta<1$ 时，$c_{1}$和 $c_{2}$ 都是复数，因此可以特（6：37）式的单位冲激响应写成
+
+$$
+\begin{aligned}
+h(t) & =\frac{\omega_{n} \mathrm{e}^{-\zeta \omega_{n} t}}{2 \mathrm{j} \sqrt{1-\zeta^{2}}}\left\{\operatorname { e x p } \left[\mathrm{j}\left(\omega_{n} \sqrt{1-\zeta^{2}}\right) t-\exp \left[-\mathrm{j}\left(\omega_{n} \sqrt{1-\zeta^{2}}\right) t\right] \mid u(t)\right.\right. \\
+& =\frac{\omega_{n} e^{-\xi_{n} t}}{\sqrt{1-\zeta^{2}}}\left[\sin \left(\omega_{n} \sqrt{1-\zeta^{2}}\right) t\right] u(t)
+\end{aligned}
+$$
+
+因此，对于 $0<\zeta<1$ ，二阶系统的单位冲激响应就是一个衰减的振荡。这时系统称为欠阻尼。如果 $\zeta>1$ ，则 $c_{1}$ 和 $c_{2}$ 都是实数，并且是负的，单位冲激响应就是两个衰减的指数之差，这时系统称为过阻尼。当 $\zeta=1$ 时，$c_{1}=c_{2}$ ，这时系统称为临界阻尼。二阶系统在不同 $\zeta$值下的单位冲激响应（乘以 $1 / \omega_{n}$ ）如图 6．22（a）所示。
+
+$$
+h(t)=M\left[e^{c_{1} t}-e^{c_{2} t}\right] u(t)
+$$
+
+$$
+\text { 有 } e^{-\xi \omega_{n} t} \text { 项 }
+$$
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-66.jpg?height=1695&width=1353&top_left_y=5&top_left_x=583)
+图6．22 不同阻尼系数了下的二阶系统响应：（a）单位冲激响应；（b）阶既响应
+
+在几个不同的 $\zeta$ 值下，一阶系统的阶跃响应，绘于图6．22（b）c 从该图可以看出，在欠阻尼情况下，阶跃响应既有超量（即阶既响应超过它的终值），又星现出振荡。当 $\zeta=1$ 时阶跃响应是在没有超量的情况下所能得到的最快的响应（也即最短的上升时间），从而有最短的莛立时间。随着 $\zeta$ 的增加（超过门），响应愈来愈慢，这点可以从（6．34）式和（6．41）式看出。随着 $\zeta$ 的增加，$c_{1}$ 的模越来越小，而 $c_{2}$ 的模则增大，因此虽然与 $e^{c_{2}^{t}}$ 有关的时间常数 $\left(1 / \mid c_{2}^{!}\right)$減小，但与 $\mathrm{e}^{c_{1} t}$ 有关的时间常数 $\left(1 / c_{1} \mid\right)$ 增大。结果，在（6．41）式中涉及 $\mathrm{e}^{c_{1} l}$ 的这一项要用一个较长的时间衰减到零，因此正是与该项有关的时间常数决定了阶跃响应的建立时间。于是，对于大的 $\zeta$ 值，阶跃响应就得用较长的时间才能建立起来。用弹簧－减震器这个力学系统的侧子来说，当衰减系数 $b$ 增大，使 $\zeta$ 超过临界值 1 时，该质量的运动变得愈来愈迟纯。
+
+最后，正如已经说过的，$\omega_{n}$ 的值本质上只是控制响应 $h(t)$ 利 $s(t)$ 的时间尺度。譬如说，在欠阻尼情况下，$\omega_{n}$ 愈大，作为 $t$ 的函数的单位冲激响应在时间上更为压缩，并且 $h(t)$ 和 $s(t)$ 中的振荡频率就更高。事实上，从（6．40）式中可以看到，在 $h(t)$ 和 $s(t)$ 中的振荡频率是 $\omega_{n} \sqrt{1-\zeta^{2}}$ ，它就是随着 $\omega_{n}$ 增加而增加的。然而，应当注意，这个频率明显地与阻尼系数有关，而且不等于（而是小于）$\omega_{n}$ ；除非在 $\zeta=0$ 的无阻尼情况下，才等于 $\omega_{n \circ}$ 由于这个原因，传统上就把这个参数 $\omega_{n}$ 称为无阻尼自然频率。对于上述弹黄一减農器的例子来说，就是当减震器不存在时，该质量的振荡频率就等于 $\omega_{n}$ ；而加人减震器后，振落频率下降。
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-69.jpg?height=1767&width=1576&top_left_y=0&top_left_x=458)
+图 6.23 在几个不同阻尼系数 $\zeta$ 值下，二阶系统的波特图
+
+在图6．23 中画出了由（6．33）式给出的频率响应对于几个不同的 $\zeta$ 值下的波特图。和一阶系统中一样，对数频率坐标导致出对数模特性的高、低频率的线性渐近线。这就是由 （6．33）式可得
+
+$$
+20 \log _{10}|H(j \omega)|=-10 \log _{10}\left\{\left.\left[1-\left(\frac{\omega}{\omega_{n}}\right)^{2}\right]^{2}+4 \zeta^{2}\left(\frac{\omega}{\omega_{n}}\right)^{2} \right\rvert\,\right.
+$$
+
+从这个表示式可以导出高、低频率两条线性浙近线为
+
+$$
+20 \log _{10}|H(\mathrm{j} \omega)|=\left\{\begin{array}{lc}
+0, & \text { 对 } \omega \ll \omega_{n} \\
+-40 \log _{10} \omega+40 \log _{10} \omega_{n}, & \text { 对 } \omega \gg \omega_{n}
+\end{array}\right.
+$$
+
+因此，对数模特性的低频渐近线是 0 dB 线，而高频渐近线则有一个每隔 10 倍频程 -40 dB 的斜率；也就是说，当 $\omega$ 每增加 10 倍时，$|H(\mathrm{j} \omega)|$ 就下降 $40 \mathrm{~dB}_{0}$ 另外，两条渐近线在 $\omega=\omega_{n}$处相交。因此得出，对 $\omega \leqslant \omega_{n}$ ，可以利用（6．44）式给出的近似，对对数模特性求得一个直线渐近近似。为此，$\omega_{\pi}$ 称为二阶系统的折转频率。近以特性用虚线也画在图6．23中。
+
+另外，也能求得 $\nless H(\mathrm{j} \omega)$ 的一个直线近似，$\nless H(\mathrm{j} \omega)$ 的准确表示式可由（6．33）式得到
+
+$$
+\Varangle H(\mathrm{j} \omega)=-\tan ^{-1}\left(\frac{2 \zeta\left(\omega / \omega_{n}\right)}{1-\left(\omega / \omega_{n}\right)^{2}}\right)
+$$
+
+对 $\times H(\mathrm{j} \omega)$ 的近似式是
+
+$$
+\Varangle H(\mathrm{j} \omega)=\left\{\begin{array}{lc}
+0, & \omega \leqslant 0.1 \omega_{n} \\
+-\frac{\pi}{2}\left[\log _{10}\left(\frac{\omega}{\omega_{n}}\right)+1\right], & 0.1 \omega_{n} \leqslant \omega \leqslant 10 \omega_{n} \\
+-\pi, & \omega \geqslant 10 \omega_{n}
+\end{array}\right.
+$$
+
+它也画在图6．23中。注意，在折转频率 $\omega=\omega_{n}$ 上，近似值和真正值又相等，且为
+
+$$
+\forall H\left(\mathrm{j} \omega_{n}\right)=-\frac{\pi}{2}
+$$
+
+对于二阶系统，其渐近线（6．44）式和（6．46）式与 $\zeta$ 无关，而 $|H(\mathrm{j} \omega)|$ 和 $\Varangle H(\mathrm{j} \omega)$ 的真正图形变化肯定是与 $\zeta$ 有关的，注意到这一点是很重要的。因为如果要想在一个渐近近侧的特性上画出一个准确的图（特别是在折转频率附近），就必须考虑到这一点，才能把一张近蜈图修改得与真正的图更为一致。这个差别在 $\zeta$ 值小时最为明显；特别是，在这种情况下，真正的对数模特性在 $\omega=\omega_{n}$ 附近有一个峰值。事实上，利用（6．43）式通过直接计算可以证明，当 $\zeta<\sqrt{2} / 2 \approx 0.707$ 时，$|H(\mathrm{j} \omega)|$ 在
+
+$$
+\omega_{\mathrm{rrkx}}=\omega_{n} \sqrt{1-2 \zeta^{2}}
+$$
+
+处有一个最大值，其值为
+
+$$
+\left|H\left(j \omega_{\max }\right)\right|=\frac{1}{2 \zeta \sqrt{1-\zeta^{2}}}
+$$
+
+然而，对于 $\zeta>0.707, H(\mathrm{j} \omega)$ 从 $\omega=0$ 开始，随 $\omega$ 的增加而单调衰减。 $H(\mathrm{j} \omega)$ 可能有一个桻
+
+## 6．5．3 有理型频率响应的波特图
+
+本节一开始曾指出过，一阶和二阶系统都能用作基本单元以构成更为复杂的，具有有理型频率响应的 LTI 系统。本节所给出的波特图基本上提供了为构成任何一个有理型频率响应的波特图所需要的全部信息。具体说来就是，这一节已经讨论了由（6．22）式和（6．33）式给出的频率响应的波特图；另外，对于具有如下频率响应形式：
+
+$$
+H(\mathrm{j} \omega)=1+\mathrm{j} \omega \tau
+$$
+
+和
+
+$$
+H(\mathrm{j} \omega)=1+2 \zeta\left(\frac{\mathrm{j} \omega}{\omega_{n}}\right)+\left(\frac{\mathrm{j} \omega}{\omega_{n}}\right)^{2}
+$$
+
+的波特笿就能很快得到。因为
+
+$$
+20 \log _{10}|H(\mathrm{j} \omega)|=-20 \log _{10}\left|\frac{1}{H(\mathrm{j} \omega)}\right|(1)
+$$
+
+和
+
+$$
+\Varangle H(\mathrm{j} \omega)=-\Varangle\left(\frac{1}{H(\mathrm{j} \omega)}\right)
+$$
+
+同时，对于系统函数为恒定增益的系统
+
+$$
+H(\mathrm{j} \omega)=K
+$$
+
+因为，若 $K>0, K=|K| e^{j 0}$ ；若 $K<0, K=|K| e^{j \pi}$ ，所以
+
+$$
+\begin{aligned}
+& 20 \log _{10}|H(\mathrm{j} \omega)|=20 \log _{10}|K| \cdots \\
+& \quad \Varangle H(\mathrm{j} \omega)= \begin{cases}0, & \text { 若 } K>0 \\
+\pi, & \text { 若 } K<0\end{cases}
+\end{aligned}
+$$
+
+因为一个有理型频率响应可以被因式分解成一个恒定增益和一阶、二阶项的乘积，所以它的波特图就能由乘积中每－－项的波特图相加得到。下面两个例子将用来进一步说明波特图的构成。
+
+例 6.4 求频率响应为
+
+$$
+H(j \omega)=\frac{2 \times 10^{4}}{(j \omega)^{2}+100 j \omega+10^{4}}
+$$
+
+的波特图。
+
+## 6.7 系统的时域分析与频域分析举例
+
+## 6．7．1 汽车减震系统的分析
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-75.jpg?height=864&width=2069&top_left_y=513&top_left_x=255)
+图6．32 汽车䂸震系统原理图。 $y_{0}$ 代表笨汽车静止时汽车底盘和路面间的距离，$y(c)+y_{0}$是底盘在参考高度上的位置，$x(t)$ 是高于参考高度的路面高度
+
+我们已经得出的在连续时间系统中有关特性和折衷的几点可以用汽车减震系统作为一个低通滤波器来给予说明。图6．32示出一个简单的减震装置的原理图，它由一个弹簧和一个减震器（震动吸收器）所组成。路面可以看作两部分叠加的结果，一个代表路面不平度，因而在高度上有一些快速的小幅度的变化，这就对应着高频分量；另一部分是由于整个地形的变化，因而在高度上有一个缓慢的变化，这就对应着低频分量。汽车减震系统一般来说就是想要滤掉由于路面不平，从而在驾驶中引起的这些快速波动；也就是说该系统是作为一个低通滤波器来用的。
+
+这个减震系统基本目的就是要提供一个平稳的驾驶，而且在要通过的和不让通过的频率之间没有一个明显的界限。因此，事实上宁取一个从通带到阻带具有渐渐过渡特性的低通滤器是合理的。另外，这个系统的时域特性是重要的，如果该减震系统的单位冲激响应或阶跃响应呈现振荡，那么在路面上一个大的冲撞（相当于冲激输入），或者是有一个凸缘（相当于阶跃输人），都会形成一个很不舒服的振荡响应。事实上，在减震系统的一般检验中都要引人一个先将底盘猛压一下然后再释放的激励。如果减震系统在这种激励下的响应有振荡的话，说明系统中的减震器需要更换。
+
+在图6．32中，$y_{0}$ 代表汽车在静止时，底盘与路面间的距离，$y(t)+y_{0}$ 是底盘在参考高度上的位置，而 $x(t)$ 是道路在参考高度上的高度。制约底盘运动的微分方程就是
+
+$$
+M \frac{\mathrm{~d}^{2} y(t)}{\mathrm{d} t}+b \frac{\mathrm{~d} y(t)}{\mathrm{d} t}+k y(t)=k x(t)+b \frac{\mathrm{~d} x(t)}{\mathrm{d} t}
+$$
+
+其中 $M$ 是底盘的质量，$k$ 和 $b$ 是分别与弹簧和减震器有关的系数。于是系统的频率响应是
+
+$$
+H(\mathrm{j} \omega)=\frac{k+b \mathrm{j} \omega}{(\mathrm{j} \omega)^{2} M+b(\mathrm{j} \omega)+k}
+$$
+
+或者
+
+$$
+H(\mathrm{j} \omega)=\frac{\omega_{n}^{2}+2 \zeta \omega_{n}(\mathrm{j} \omega)}{(\mathrm{j} \omega)^{2}+2 \zeta \omega_{n}(\mathrm{j} \omega)+\omega_{n}^{2}}
+$$
+
+这里
+
+$$
+\omega_{n}=\sqrt{\frac{k}{M}}, \quad 2 \zeta \omega_{n}=\frac{b}{M}
+$$
+
+和 6．5．2 节相同，参数 $\omega_{n}$ 称为无阻尼自然频率，$\zeta$ 称为阻尼系统。由（6．77）式给出的频率响
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-78.jpg?height=1381&width=1993&top_left_y=191&top_left_x=204)
+图6．33 对应于几个不同的阻尼系数 5 值下，没车碱震系统频率响应模的波特图
+
+![](https://cdn.mathpix.com/cropped/a148965a-513f-4833-b8ea-72fc34490eed-79.jpg?height=1082&width=2093&top_left_y=278&top_left_x=248)
+
+图 6.34 在各种不同阻尼系数 $(\zeta=0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8$ ， $0.9,1.0,1.2,1.5,2.0,5.0)$ 下汽车减震系统的阶跃䛴应
+
+如同在6．5．2节所曾看到的，该滤波器的截止频率基本上是通过 $\omega_{n}$ 来控制的，或者等效地说，对于某一个底盘质量 $M$ ，通过对弹簧系统 $k$ 的适当选择来控制的。对某一个给定的 $\omega_{n}$ ，然后阻尼系数 $\zeta$ 是由与减震器有关的阻尼因子 $b$ 来调整的。当自然频率 $\omega_{n}$ 减小时，减震系统就趋丁滤掉较慢的路面变化，从而提供一个平滑的驾驶。另一方面，由图6．34可见，系统的上升时间却增加了，因此系统反应就更加迟纯一些。一方面要想保持小的 $\omega_{n}$ ，以改善低通滤波性能；另一方面又想有大的 $\omega_{n}$ ，以便有一个快的时间响应！自然，这都是互为矛盾的要求，从而说明了需要在时域和频域特性之间求得某种折衷。一般将具有低的 $\omega_{n}$ 值，从而上升时间长的这种减震系统称为＂软＂系统；而具有高的 $\omega_{n}$ 值，从而上升时间短的这种减震系统称为＂硬＂系统。从图 6.33 和图 6.34 也能看到，随着阻尼系数的减小，系统频率响应截止得就更陡峭一些，但在阶跃响应中的过冲和振荡就趋于增加。因此，系统在时域和频域之间还存在着这样一种折衷考虑。一般来讲，减震器的阻尼选为有一个快速的上升时间，但又避免过冲和振荡，这种选择就相应于曾在 6.5 .2 节考虑过的，$\zeta=1.0$ 时的临界阻尼情况。
+－6．23（a）（b）
+－6．27（不用画出（a）中的波特图）
+

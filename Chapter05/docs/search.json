@@ -1,0 +1,1766 @@
+[
+  {
+    "objectID": "ref/lec18_zh_translated.html#目录",
+    "href": "ref/lec18_zh_translated.html#目录",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "1 目录",
+    "text": "1 目录"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间傅里叶变换",
+    "href": "ref/lec18_zh_translated.html#离散时间傅里叶变换",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "2 1. 离散时间傅里叶变换",
+    "text": "2 1. 离散时间傅里叶变换"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间傅里叶变换的性质",
+    "href": "ref/lec18_zh_translated.html#离散时间傅里叶变换的性质",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "3 2. 离散时间傅里叶变换的性质",
+    "text": "3 2. 离散时间傅里叶变换的性质"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间傅里叶变换-1",
+    "href": "ref/lec18_zh_translated.html#离散时间傅里叶变换-1",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "4 离散时间傅里叶变换",
+    "text": "4 离散时间傅里叶变换\n设 \\(x\\) 是一个非周期离散时间信号，并且 \\(\\operatorname{supp} x \\subset\\left[N_{1}, N_{2}\\right]\\) \n定义其周期延拓，周期满足 \\(N&gt;N_{2}-N_{1}+1\\)：\n\\[\nx_{N}[n]=\\sum_{k=-\\infty}^{\\infty} x[n+k N]\n\\]\n\\[\nx_{N}[n]\n\\]\n \\(x\\) 可以看作“周期为无穷大”的周期信号，即 \\(x[n]=\\lim _{N \\rightarrow \\infty} x_{N}[n]\\)"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间傅里叶变换-2",
+    "href": "ref/lec18_zh_translated.html#离散时间傅里叶变换-2",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "5 离散时间傅里叶变换",
+    "text": "5 离散时间傅里叶变换\n将 \\(x_{N}\\) 展开为离散时间傅里叶级数 \n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j \\frac{2 \\pi}{N} k}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\frac{2 \\pi}{N} k}=\\frac{1}{N} X\\left(e^{j k \\omega_{0}}\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间傅里叶变换-3",
+    "href": "ref/lec18_zh_translated.html#离散时间傅里叶变换-3",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "6 离散时间傅里叶变换",
+    "text": "6 离散时间傅里叶变换\n当 \\(N\\) 增大时，离散频率的采样会变得更加稠密 \n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j \\frac{2 \\pi}{N} k}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\frac{2 \\pi}{N} k}=\\frac{1}{N} X\\left(e^{j k \\omega_{0}}\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间傅里叶变换-4",
+    "href": "ref/lec18_zh_translated.html#离散时间傅里叶变换-4",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "7 离散时间傅里叶变换",
+    "text": "7 离散时间傅里叶变换\n当 \\(N \\rightarrow \\infty\\) 时，\\(N \\hat{x}[k]\\) 逐渐逼近包络 \\(X\\left(e^{j \\omega}\\right)\\)\n\\[\nx_{N}[n]\n\\]\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j \\frac{2 \\pi}{N} k}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\frac{2 \\pi}{N} k}=\\frac{1}{N} X\\left(e^{j k \\omega_{0}}\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间傅里叶变换-5",
+    "href": "ref/lec18_zh_translated.html#离散时间傅里叶变换-5",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "8 离散时间傅里叶变换",
+    "text": "8 离散时间傅里叶变换\n离散时间傅里叶级数的综合公式为：\n\\[\nx_{N}[n]=\\sum_{k \\in[N]} \\hat{x}[k] e^{j k \\omega_{0} n}=\\frac{1}{N} \\sum_{k=0}^{N-1} X\\left(e^{j k \\omega_{0}}\\right) e^{j k \\omega_{0} n}\n\\]\n令 \\(\\omega_{k}=k \\omega_{0}, \\Delta \\omega=\\omega_{k}-\\omega_{k-1}=\\omega_{0}\\)，\n\\[\nx_{N}[n]=\\frac{1}{2 \\pi} \\sum_{k=0}^{N-1} X\\left(e^{j \\omega_{k}}\\right) e^{j \\omega_{k} n} \\Delta \\omega\n\\]\n当 \\(N \\rightarrow \\infty\\)、\\(\\Delta \\omega \\rightarrow 0\\) 时，上述黎曼和变为积分：\n\\[\nx[n]=\\frac{1}{2 \\pi} \\int_{0}^{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]\n可在任意长度为 \\(2 \\pi\\) 的周期区间上积分"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间傅里叶变换变换对",
+    "href": "ref/lec18_zh_translated.html#离散时间傅里叶变换变换对",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "9 离散时间傅里叶变换变换对",
+    "text": "9 离散时间傅里叶变换变换对\n离散时间傅里叶变换（分析公式）\n\\[\nX\\left(e^{j \\omega}\\right)=\\mathcal{F}(x)\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}\n\\]\n\n\\(X\\left(e^{j \\omega}\\right)\\) 称为 \\(x[n]\\) 的频谱，且以 \\(2 \\pi\\) 为周期\n\n离散时间逆傅里叶变换（综合公式）\n\\[\nx[n]=\\mathcal{F}^{-1}(X)[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]\n\n频率为 \\(\\omega\\) 的复指数分量的权重为 \\(X\\left(e^{j \\omega}\\right) \\frac{d \\omega}{2 \\pi}\\)\n只需在一个周期内积分，即只使用彼此不同的 \\(e^{j \\omega n}\\)"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#dtft-与-ctfs-之间的对偶性",
+    "href": "ref/lec18_zh_translated.html#dtft-与-ctfs-之间的对偶性",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "10 DTFT 与 CTFS 之间的对偶性",
+    "text": "10 DTFT 与 CTFS 之间的对偶性\nDTFT 变换对\n\n离散时间\n连续频率 分析公式\n\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}\n\\]\n综合公式\n\\[\nx[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]\nCTFS 变换对\n\n连续时间\n离散频率 分析公式\n\n\\[\n\\hat{x}[k]=\\frac{1}{T} \\int_{T} x(t) e^{-j k \\frac{2 \\pi}{T} t} d t\n\\]\n综合公式\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\frac{2 \\pi}{T} t}\n\\]\n\\[\n\\begin{aligned}\n& \\text { continuous variable } \\xrightarrow{\\text { CTFS }} \\text { doubly infinite sequences } \\\\\n& \\text { periodic functions }\n\\end{aligned} \\xrightarrow[\\text { DTFT }]{\\leftarrow} \\text { 双向映射 }\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间信号的高频与低频",
+    "href": "ref/lec18_zh_translated.html#离散时间信号的高频与低频",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "11 离散时间信号的高频与低频",
+    "text": "11 离散时间信号的高频与低频\n高频对应于 \\((2 k+1) \\pi\\) 附近，低频对应于 \\(2 k \\pi\\) 附近    \\(\\phi_{N}^{0}[n]=\\cos (0 \\cdot n)=1\\) \\(\\phi_{N}^{1}[n]=\\cos (\\pi n / 4)\\) \\(\\phi_{N}^{2}[n]=\\cos (\\pi n / 2)\\)    \\(\\phi_{N}^{3}[n]=\\cos (3 \\pi n / 4)\\) \\(\\phi_{N}^{4}[n]=\\cos (\\pi n)\\) \\(\\phi_{N}^{5}[n]=\\cos (5 \\pi n / 4)\\)  \\(\\phi_{N}^{6}[n]=\\cos (3 \\pi n / 2)\\)  \\(\\phi_{N}^{7}[n]=\\cos (7 \\pi n / 4)\\)  \\(\\phi_{N}^{8}[n]=\\cos (2 \\pi n)=1\\)"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间信号的高频与低频-1",
+    "href": "ref/lec18_zh_translated.html#离散时间信号的高频与低频-1",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "12 离散时间信号的高频与低频",
+    "text": "12 离散时间信号的高频与低频\n\\(N\\) 周期信号的离散频率\n\n在单位圆上均匀分布的点\n低频靠近 \\(1\\)；高频靠近 \\(-1\\)"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间信号的高频与低频-2",
+    "href": "ref/lec18_zh_translated.html#离散时间信号的高频与低频-2",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "13 离散时间信号的高频与低频",
+    "text": "13 离散时间信号的高频与低频"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#例单边衰减指数序列",
+    "href": "ref/lec18_zh_translated.html#例单边衰减指数序列",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "14 例：单边衰减指数序列",
+    "text": "14 例：单边衰减指数序列\n\\[\nx[n]=a^{n} u[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=\\frac{1}{1-a e^{-j \\omega}}, \\quad|a|&lt;1\n\\]\n\\(\\left|X\\left(e^{j \\omega}\\right)\\right|=\\frac{1}{\\sqrt{1-2 a \\cos \\omega+a^{2}}}, \\quad \\arg X\\left(e^{j \\omega}\\right)=-\\arctan \\frac{a \\sin \\omega}{1-a \\cos \\omega}\\)"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#例双边衰减指数序列",
+    "href": "ref/lec18_zh_translated.html#例双边衰减指数序列",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "15 例：双边衰减指数序列",
+    "text": "15 例：双边衰减指数序列\n\\[\nx[n]=a^{|n|} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=\\frac{1-a^{2}}{1-2 a \\cos \\omega+a^{2}}, \\quad|a|&lt;1\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#例矩形脉冲",
+    "href": "ref/lec18_zh_translated.html#例矩形脉冲",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "16 例：矩形脉冲",
+    "text": "16 例：矩形脉冲\n\\[\nx[n]=u\\left[n+N_{1}\\right]-u\\left[n-N_{1}-1\\right] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=\\frac{\\sin \\left(\\frac{2 N_{1}+1}{2} \\omega\\right)}{\\sin \\frac{\\omega}{2}}\n\\]\n\n\\[\nX\\left(e^{j \\omega}\\right)\n\\]\n\nDirichlet 核（周期情形）是 sinc 函数（非周期情形）在离散时间中的对应物 注意：\\(N_{1}=0 \\Longrightarrow x[n]=\\delta[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=1\\)"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#dtft-的收敛性",
+    "href": "ref/lec18_zh_translated.html#dtft-的收敛性",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "17 DTFT 的收敛性",
+    "text": "17 DTFT 的收敛性\n令\n\\[\nX_{N}\\left(e^{j \\omega}\\right)=\\sum_{n=-N}^{N} x[n] e^{-j \\omega n}\n\\]\n定理：若 \\(x \\in \\ell_{1}\\)，则 \\(X_{N}\\) 一致收敛到 \\(X\\)，即\n\\[\n\\lim _{N \\rightarrow \\infty}\\left\\|X-X_{N}\\right\\|_{\\infty}=0\n\\]\n因此，傅里叶变换 \\(X\\) 是一致连续的。 定理：若 \\(x \\in \\ell_{2}\\)，则 \\(X_{N}\\) 在 \\(L_{2}\\) 意义下收敛到 \\(X\\)，即\n\\[\n\\lim _{N \\rightarrow \\infty}\\left\\|X-X_{N}\\right\\|_{2}=0\n\\]\n\nCTFS：\\(L_{2}(T) \\rightarrow \\ell_{2}\\) 是 Hilbert 空间之间的同构\nDTFT：\\(\\ell_{2} \\rightarrow L_{2}(2 \\pi)\\) 也是同构"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#例理想低通滤波器",
+    "href": "ref/lec18_zh_translated.html#例理想低通滤波器",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "18 例：理想低通滤波器",
+    "text": "18 例：理想低通滤波器\n$$\n\\[\\begin{aligned}\n& x[n]=\\frac{\\sin (W n)}{\\pi n} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=\\sum_{k=-\\infty}^{\\infty}[u(\\omega+W+2 k \\pi)-u(\\omega-W+2 k \\pi)] \\\\\n\n\\end{aligned}\\]\n$$\n注意：\\(x \\notin \\ell_{1}\\)，且 \\(X\\) 不连续"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#作为广义函数的收敛",
+    "href": "ref/lec18_zh_translated.html#作为广义函数的收敛",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "19 作为广义函数的收敛",
+    "text": "19 作为广义函数的收敛\n复指数信号 \\(x[n]=e^{j \\omega_{0} n}\\) 不属于 \\(\\ell_{1}\\) 也不属于 \\(\\ell_{2}\\)。 （平移后的）Dirichlet 核\n\\[\nX_{N}\\left(e^{j \\omega n}\\right)=\\frac{\\sin \\left(\\frac{2 N_{1}+1}{2}\\left(\\omega-\\omega_{0}\\right)\\right)}{\\sin \\frac{\\omega-\\omega_{0}}{2}} \\rightarrow 2 \\pi \\sum_{\\ell=-\\infty}^{\\infty} \\delta\\left(\\omega-\\omega_{0}-2 \\ell \\pi\\right)\n\\]\n在分布（广义函数）意义下，有\n\\[\nx[n]=e^{j \\omega_{0} n} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=2 \\pi \\sum_{\\ell=-\\infty}^{\\infty} \\delta\\left(\\omega-\\omega_{0}-2 \\ell \\pi\\right)\n\\]\n利用综合公式进行形式验证\n\\[\nx[n]=\\frac{1}{2 \\pi} \\int_{-\\pi}^{\\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega=\\int_{-\\pi}^{\\pi} \\delta\\left(\\omega-\\omega_{0}\\right) e^{j \\omega n} d \\omega=e^{j \\omega_{0} n}\n\\]\n注意：也可通过对 \\(e^{j \\omega_{0} t}\\) 以 \\(T=1, \\omega_{s}=2 \\pi\\) 采样得到 注意：\\(x[n]\\) 不一定是周期信号！直流分量对应 \\(\\omega_{0}=0\\)。"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#例正弦信号",
+    "href": "ref/lec18_zh_translated.html#例正弦信号",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "20 例：正弦信号",
+    "text": "20 例：正弦信号\n\\[\n\\begin{aligned}\nx[n] & =\\cos \\left(\\omega_{0} n+\\phi\\right)=\\frac{e^{j \\phi}}{2} e^{j \\omega_{0} n}+\\frac{e^{-j \\phi}}{2} e^{-j \\omega_{0} n} \\\\\nX\\left(e^{j \\omega}\\right) & =\\sum_{\\ell=-\\infty}^{\\infty} \\pi e^{j \\phi} \\delta\\left(\\omega-\\omega_{0}-2 \\ell \\pi\\right)+\\pi e^{-j \\phi} \\delta\\left(\\omega+\\omega_{0}-2 \\ell \\pi\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#周期信号的-dtft",
+    "href": "ref/lec18_zh_translated.html#周期信号的-dtft",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "21 周期信号的 DTFT",
+    "text": "21 周期信号的 DTFT\n\n回顾：DTFS 系数 \\(\\hat{x}_{N}[k]\\) 就是频率 \\(k \\omega_{0}\\) 处的幅值\n\\[\n\\hat{x}_{N}[k]=\\frac{1}{N} X\\left(e^{j k \\omega_{0}}\\right), \\quad \\text { 其中 } X=\\mathcal{F}\\{x\\}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#周期信号的-dtft-1",
+    "href": "ref/lec18_zh_translated.html#周期信号的-dtft-1",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "22 周期信号的 DTFT",
+    "text": "22 周期信号的 DTFT\n\nDTFT 中 \\((2 \\pi)^{-1} X\\left(e^{j \\omega}\\right)\\) 表示频率 \\(\\omega\\) 处的密度\n\\[\nX\\left(e^{j \\omega}\\right)=2 \\pi \\sum_{k=-\\infty}^{\\infty} \\hat{x}_{N}[k] \\delta\\left(\\omega-k \\omega_{0}\\right)=\\omega_{0} \\sum_{k=-\\infty}^{\\infty} X\\left(e^{j k \\omega_{0}}\\right) \\delta\\left(\\omega-k \\omega_{0}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#周期信号的-dtft-2",
+    "href": "ref/lec18_zh_translated.html#周期信号的-dtft-2",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "23 周期信号的 DTFT",
+    "text": "23 周期信号的 DTFT\n回顾 \\(x_{N}\\) 的 DTFS 表达式\n\\[\nx_{N}[n]=\\sum_{k=0}^{N-1} \\hat{x}_{N}[k] e^{j \\frac{2 k \\pi}{N} n}\n\\]\n对两边取 DTFT，并利用线性性质以及复指数信号的 DTFT，得到\n\\[\n\\begin{aligned}\nX_{N}\\left(e^{j \\omega}\\right) & =\\sum_{k=0}^{N-1} \\hat{x}_{N}[k] \\mathcal{F}\\left\\{e^{j \\frac{2 k \\pi}{N} n}\\right\\}=\\sum_{k=0}^{N-1} \\hat{x}_{N}[k] \\sum_{\\ell=-\\infty}^{\\infty} 2 \\pi \\delta\\left(\\omega-\\frac{2 k \\pi}{N}-2 \\ell \\pi\\right) \\\\\n& =2 \\pi \\sum_{\\ell=-\\infty}^{\\infty} \\sum_{k=0}^{N-1} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2(k+\\ell N) \\pi}{N}\\right) \\\\\n& =2 \\pi \\sum_{k=-\\infty}^{\\infty} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2 k \\pi}{N}\\right) \\quad\\left(\\text { Recall } \\hat{x}_{N}[k]=\\hat{x}_{N}[k+\\ell N]\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#周期信号的-dtft-3",
+    "href": "ref/lec18_zh_translated.html#周期信号的-dtft-3",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "24 周期信号的 DTFT",
+    "text": "24 周期信号的 DTFT\nCan also verify formally using 综合公式\n\\[\n\\frac{1}{2 \\pi} \\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega=\\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} \\sum_{k=-\\infty}^{\\infty} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2 k \\pi}{N}\\right) e^{j \\omega n} d \\omega\n\\]\n只有 \\(k=0,1, \\ldots, N-1\\) 的项落在积分区间内\n\\[\n\\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} \\sum_{k=0}^{N-1} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2 k \\pi}{N}\\right) e^{j \\omega n} d \\omega=\\sum_{k=0}^{N-1} \\hat{x}_{N}[k] e^{j \\frac{2 k \\pi}{N} n}=x_{N}[n]\n\\]\n其中 last equality is DTFS 综合公式 因此得到验证\n\\[\nx_{N}[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#例离散时间周期冲激串",
+    "href": "ref/lec18_zh_translated.html#例离散时间周期冲激串",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "25 例：离散时间周期冲激串",
+    "text": "25 例：离散时间周期冲激串\n\\[\nx[n]=\\sum_{k=-\\infty}^{\\infty} \\delta[n-k N] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=\\frac{2 \\pi}{N} \\sum_{k=-\\infty}^{\\infty} \\delta\\left(\\omega-\\frac{2 \\pi k}{N}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#目录-1",
+    "href": "ref/lec18_zh_translated.html#目录-1",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "26 目录",
+    "text": "26 目录"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间傅里叶变换-6",
+    "href": "ref/lec18_zh_translated.html#离散时间傅里叶变换-6",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "27 1. 离散时间傅里叶变换",
+    "text": "27 1. 离散时间傅里叶变换\n\n离散时间傅里叶变换的性质"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间傅里叶变换的性质-1",
+    "href": "ref/lec18_zh_translated.html#离散时间傅里叶变换的性质-1",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "28 离散时间傅里叶变换的性质",
+    "text": "28 离散时间傅里叶变换的性质\n周期性\n\\[\nX\\left(e^{j(\\omega+2 \\pi)}\\right)=X\\left(e^{j(\\omega)}\\right)\n\\]\n线性\n\\[\n\\mathcal{F}\\{a x+b y\\}=a \\mathcal{F}\\{x\\}+b \\mathcal{F}\\{y\\}\n\\]\n时移与频移 若\n\\[\nx[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)\n\\]\nthen\n\\[\nx\\left[n-n_{0}\\right] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} e^{-j \\omega n_{0}} X\\left(e^{j \\omega}\\right)\n\\]\n并且\n\\[\ne^{j \\omega_{0} n} x[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j\\left(\\omega-\\omega_{0}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#例高通与低通滤波器",
+    "href": "ref/lec18_zh_translated.html#例高通与低通滤波器",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "29 例：高通与低通滤波器",
+    "text": "29 例：高通与低通滤波器\n\n\\[\nH_{\\mathrm{hp}}\\left(e^{j \\omega}\\right)=H_{\\mathrm{lp}}\\left(e^{j(\\omega-\\pi)}\\right)\n\\]\n\n\\[\nH_{\\mathrm{hp}}\\left(e^{j \\omega}\\right)=H_{\\mathrm{lp}}\\left(e^{j(\\omega-\\pi)}\\right) \\Longleftrightarrow h_{\\mathrm{hp}}[n]=e^{j \\pi n} h_{\\mathrm{lp}}[n]=(-1)^{n} h_{\\mathrm{lp}}[n]\n\\]\n利用低通滤波器实现高通滤波 \\(y=x * h_{\\mathrm{hp}}\\) (1) \\(x_{1}[n]=(-1)^{n} x[n]\\)； (2) \\(y_{1}=x_{1} * h_{\\mathrm{lp}}\\)； (3) \\(y[n]=(-1)^{n} y_{1}[n]\\)"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#离散时间傅里叶变换的性质-2",
+    "href": "ref/lec18_zh_translated.html#离散时间傅里叶变换的性质-2",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "30 离散时间傅里叶变换的性质",
+    "text": "30 离散时间傅里叶变换的性质\n设\n\\[\nx[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)\n\\]\n时间反转\n\\[\nx[-n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{-j \\omega}\\right)\n\\]\n共轭\n\\[\nx^{*}[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X^{*}\\left(e^{-j \\omega}\\right)\n\\]\n对称性\n\n\\(x\\) 为偶信号 \\(\\Longleftrightarrow X\\) 为偶函数，\\(\\quad x\\) 为奇信号 \\(\\Longleftrightarrow X\\) 为奇函数\n\\(x\\) 为实信号 \\(\\Longleftrightarrow X\\left(e^{-j \\omega}\\right)=X^{*}\\left(e^{j \\omega}\\right)\\)\n\\(x\\) real 并且 even \\(\\Longleftrightarrow X\\) real 并且 even\n\\(x\\) real 并且 odd \\(\\Longleftrightarrow X\\) purely imaginary 并且 odd"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#differencing-并且-accumulation",
+    "href": "ref/lec18_zh_translated.html#differencing-并且-accumulation",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "31 Differencing 并且 Accumulation",
+    "text": "31 Differencing 并且 Accumulation\n一阶（后向）差分\n\\[\nx[n]-x[n-1] \\stackrel{\\mathcal{F}}{\\longleftrightarrow}\\left(1-e^{-j \\omega}\\right) X\\left(e^{j \\omega}\\right)\n\\]\n累加（运行和）\n\\[\ny[n]=\\sum_{m=-\\infty}^{n} x[m] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{1-e^{-j \\omega}} X\\left(e^{j \\omega}\\right)+\\pi X\\left(e^{j 0}\\right) \\sum_{k=-\\infty}^{\\infty} \\delta(\\omega-2 \\pi k)\n\\]\n\n第一项来自差分性质\n第二项是直流分量 \\(\\mathcal{F}\\{\\bar{y}\\}\\) 的 DTFT，其中 \\(\\bar{y}=\\frac{1}{2} X\\left(e^{j 0}\\right)\\)；参见第 15 讲第 17 页\n\n例：由于 \\(\\delta[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} 1\\)，\n\\[\nu[n]=\\sum_{m=-\\infty}^{n} \\delta[m] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{1-e^{-j \\omega}}+\\pi \\sum_{k=-\\infty}^{\\infty} \\delta(\\omega-2 \\pi k)\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#时间扩展",
+    "href": "ref/lec18_zh_translated.html#时间扩展",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "32 时间扩展",
+    "text": "32 时间扩展\n定义 \\(x_{(m)}\\) 为\n\\[\nx_{(m)}[n]= \\begin{cases}x[n / m], & \\text { if } n \\text { is multiple of } m \\\\ 0, & \\text { otherwise }\\end{cases}\n\\]\n \n若\n\\[\nx[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)\n\\]\nthen\n\\[\nx_{(m)}[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j m \\omega}\\right)\n\\]\n证明。\n\\[\n\\mathcal{F}\\left\\{x_{(m)}\\right\\}\\left(e^{j m \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x_{(m)}[n] e^{-j \\omega n}=\\sum_{\\ell=-\\infty}^{\\infty} x[\\ell] e^{-j \\omega m \\ell}=X\\left(e^{j m \\omega}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#例",
+    "href": "ref/lec18_zh_translated.html#例",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "33 例",
+    "text": "33 例\n\n\\[\nX\\left(e^{j \\omega}\\right)\n\\]\n\n\\[\n\\left.X_{(2)}\\left(e^{j \\omega}\\right)=X_{( } e^{j 2 \\omega}\\right)\n\\]\n \n\\[\nx_{(3)}[n]\n\\]\n\n\\[\n\\left.X_{(3)}\\left(e^{j \\omega}\\right)=X_{( } e^{j 3 \\omega}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#频率微分性质",
+    "href": "ref/lec18_zh_translated.html#频率微分性质",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "34 频率微分性质",
+    "text": "34 频率微分性质\n若\n\\[\nx[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)\n\\]\nthen\n\\[\nn x[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} j \\frac{d}{d \\omega} X\\left(e^{j \\omega}\\right)\n\\]\n证明。\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}\n\\]\n在求和号内对 \\(\\omega\\) 求导\n\\[\n\\frac{d}{d \\omega} X\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x[n](-j n) e^{-j \\omega n}\n\\]"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#帕塞瓦尔恒等式",
+    "href": "ref/lec18_zh_translated.html#帕塞瓦尔恒等式",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "35 帕塞瓦尔恒等式",
+    "text": "35 帕塞瓦尔恒等式\nTheorem. 若 \\(x \\in \\ell_{2}, X=\\mathcal{F}\\{x\\}\\), then\n\\[\n\\|x\\|_{\\ell_{2}}^{2}=\\|X\\|_{L_{2}(2 \\pi)}^{2}, \\quad \\text { or } \\quad \\sum_{n \\in \\mathbb{Z}}|x[n]|^{2}=\\frac{1}{2 \\pi} \\int_{2 \\pi}\\left|X\\left(e^{j \\omega}\\right)\\right|^{2} d \\omega\n\\]\nNote \\(\\omega\\) is angular frequency 并且 \\(\\frac{\\omega}{2 \\pi}\\) is frequency\n\\[\n\\sum_{n \\in \\mathbb{Z}}|x[n]|^{2}=\\int_{2 \\pi}\\left|X\\left(e^{j \\omega}\\right)\\right|^{2} \\frac{d \\omega}{2 \\pi}\n\\]\n解释：能量守恒\n\n\\(\\sum_{n \\in \\mathbb{Z}}|x[n]|^{2}\\) 是总能量\n\\(\\left|X\\left(e^{j \\omega}\\right)\\right|^{2}\\) 是单位频率上的能量 \\(\\left|X\\left(e^{j \\omega}\\right)\\right|^{2}\\) 称为能量密度谱"
+  },
+  {
+    "objectID": "ref/lec18_zh_translated.html#帕塞瓦尔恒等式-1",
+    "href": "ref/lec18_zh_translated.html#帕塞瓦尔恒等式-1",
+    "title": "EL331 信号与系统 · 第18讲（中文版）",
+    "section": "36 帕塞瓦尔恒等式",
+    "text": "36 帕塞瓦尔恒等式\nTheorem. 若 \\(x, y \\in \\ell_{2}, X=\\mathcal{F}\\{x\\}, Y=\\mathcal{F}\\{y\\}\\), then\n\\[\n\\langle x, y\\rangle_{\\ell_{2}}=\\langle X, Y\\rangle_{L_{2}(2 \\pi)}, \\quad \\text { or } \\quad \\sum_{n \\in \\mathbb{Z}} x[n] y^{*}[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) Y^{*}\\left(e^{j \\omega}\\right) d \\omega\n\\]\n证明。\n\\[\n\\begin{aligned}\n\\langle X, Y\\rangle_{L_{2}(2 \\pi)} & =\\left\\langle\\sum_{n \\in \\mathbb{Z}} x[n] e^{-j \\omega n}, \\sum_{m \\in \\mathbb{Z}} y[m] e^{-j \\omega m}\\right\\rangle_{L_{2}(2 \\pi)} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x[n] \\sum_{m \\in \\mathbb{Z}} y^{*}[m]\\left\\langle e^{-j \\omega n}, e^{-j \\omega m}\\right\\rangle_{L_{2}(2 \\pi)} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x[n] \\sum_{m \\in \\mathbb{Z}} y^{*}[m] \\delta[n-m] \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x[n] y^{*}[n]=\\langle x, y\\rangle_{\\ell_{2}}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#目录",
+    "href": "ref/lec19_zh_refined.html#目录",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "1 目录",
+    "text": "1 目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#dtft-的卷积性质",
+    "href": "ref/lec19_zh_refined.html#dtft-的卷积性质",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "2 DTFT 的卷积性质",
+    "text": "2 DTFT 的卷积性质\n\\[\n(x * h)[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\n\\]\nNB. Dual 的 multiplication property 的 CTFS\n\\[\nx(t) y(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow}(\\hat{x} * \\hat{y})[k]\n\\]\nNB. Similar to CTFT, applicable when formula 是 我们ll-defined Pro的.\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{x * h\\}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}}(x * h)[n] e^{-j \\omega n}=\\sum_{n \\in \\mathbb{Z}} \\sum_{m \\in \\mathbb{Z}} x[m] h[n-m] e^{-j \\omega n} \\\\\n& =\\sum_{m \\in \\mathbb{Z}} x[m] \\sum_{n \\in \\mathbb{Z}} h[n-m] e^{-j \\omega n} \\\\\n& =\\sum_{m \\in \\mathbb{Z}} x[m] e^{-j \\omega m} H\\left(e^{j \\omega}\\right) \\\\\n& =X\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#lti-系统的频率响应",
+    "href": "ref/lec19_zh_refined.html#lti-系统的频率响应",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "3 LTI 系统的频率响应",
+    "text": "3 LTI 系统的频率响应\nLTI 系统 \\(T\\)\n\nfully characterized by impulse 响应 \\(h\\)\n\n\\[\ny=T(x)=h * x\n\\]\n\nalso fully characterized by 频率响应 \\(H=\\mathcal{F}\\{h\\}\\), if \\(H\\) 是 我们ll-defined\nBIBO stable 系统, \\(h \\in \\ell_{1}\\)\nother 系统s: accumulator \\(h=u\\), …\n\nTypically, convolution property implies\n\\[\nY=\\mathcal{F}\\{y\\}=H X=\\mathcal{F}\\{h\\} \\mathcal{F}\\{x\\}\n\\]\nInstead 的 computing \\(x * h\\), can do\n\\[\ny=\\mathcal{F}^{-1}(\\mathcal{F}\\{h\\} \\mathcal{F}\\{x\\})\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例",
+    "href": "ref/lec19_zh_refined.html#例",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "4 例",
+    "text": "4 例\nResponse 的 LTI 系统 with impulse 响应 \\(h[n]=a^{n} u[n]\\) to input \\(x[n]=b^{n} u[n]\\), where \\(|a|&lt;1,|b|&lt;1\\) 方法 1. Direct convolution \\(y=x * h\\) 方法 2. Solve difference equation with initial rest condition\n\\[\ny[n]-a y[n-1]=b^{n} u[n]\n\\]\n方法 3. 傅里叶 变换.\n\\[\nH=\\frac{1}{1-a e^{-j \\omega}}, X=\\frac{1}{1-b e^{-j \\omega}} \\Longrightarrow Y=\\frac{1}{\\left(1-a e^{-j \\omega}\\right)\\left(1-b e^{-j \\omega}\\right)}\n\\]\nIf \\(a \\neq b, Y\\left(e^{j \\omega}\\right)=\\frac{a /(a-b)}{1-a e^{-j \\omega}}-\\frac{b /(a-b)}{1-b e^{-j \\omega}}, \\quad y[n]=\\frac{1}{a-b}\\left(a^{n+1}-b^{n+1}\\right) u[n]\\) If \\(a=b, Y\\left(e^{j \\omega}\\right)=\\frac{d}{d a}\\left(\\frac{a}{1-a e^{-j \\omega}}\\right), y[n]=\\frac{d}{d a} a^{n+1} u[n]=(n+1) a^{n} u[n]\\) Or use \\(Y\\left(e^{j \\omega}\\right)=\\frac{j}{a} e^{j \\omega} \\frac{d}{d \\omega}\\left(\\frac{a}{1-a e^{-j \\omega}}\\right)\\) and differentiation property"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-1",
+    "href": "ref/lec19_zh_refined.html#例-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "5 例",
+    "text": "5 例\nResponse 的 LTI 系统 with impulse 响应 \\(h[n]=a^{n} u[n]\\) to input \\(x[n]=\\cos \\left(\\omega_{0} n\\right),|a|&lt;1\\). 频率响应\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{1}{1-a e^{-j \\omega}}\n\\]\n方法 1. Use eigen函数 property\n\\[\n\\begin{gathered}\nx[n]=\\frac{1}{2} e^{j \\omega_{0} n}+\\frac{1}{2} e^{-j \\omega_{0} n} \\\\\ny[n]=\\frac{1}{2} H\\left(e^{j \\omega_{0}}\\right) e^{j \\omega_{0} n}+\\frac{1}{2} H\\left(e^{-j \\omega_{0}}\\right) e^{-j \\omega_{0} n}=\\operatorname{Re} \\frac{e^{j \\omega_{0} n}}{1-a e^{-j \\omega_{0}}} \\\\\n=\\frac{1}{\\sqrt{1-2 a \\cos \\omega_{0}+a^{2}}} \\cos \\left(\\omega_{0} n-\\arctan \\frac{a \\sin \\omega_{0}}{1-a \\cos \\omega_{0}}\\right)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-2",
+    "href": "ref/lec19_zh_refined.html#例-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "6 例",
+    "text": "6 例\n方法 2. Use 傅里叶 变换 的 \\(X\\)\n\\[\n\\begin{aligned}\n& X\\left(e^{j \\omega}\\right)=\\sum_{k=-\\infty}^{\\infty}\\left[\\pi \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right)+\\pi \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right)\\right] \\\\\n& Y\\left(e^{j \\omega}\\right)=\\sum_{k=-\\infty}^{\\infty} \\pi H\\left(e^{j\\left(\\omega_{0}-2 k \\pi\\right)}\\right) \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right) \\\\\n& \\quad+\\sum_{k=-\\infty}^{\\infty} \\pi H\\left(e^{-j\\left(\\omega_{0}+2 k \\pi\\right)}\\right) \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right) \\\\\n& =H\\left(e^{j \\omega_{0}}\\right) \\sum_{k=-\\infty}^{\\infty} \\pi \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right) \\\\\n& \\quad+H\\left(e^{-j \\omega_{0}}\\right) \\sum_{k=-\\infty}^{\\infty} \\pi \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right) \\\\\n& y[n]=\\frac{1}{2} H\\left(e^{j \\omega_{0}}\\right) e^{j \\omega_{0} n}+\\frac{1}{2} H\\left(e^{-j \\omega_{0}}\\right) e^{-j \\omega_{0} n}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-ideal-bandstop-filter",
+    "href": "ref/lec19_zh_refined.html#例-ideal-bandstop-filter",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "7 例: Ideal Bandstop Filter",
+    "text": "7 例: Ideal Bandstop Filter"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#目录-1",
+    "href": "ref/lec19_zh_refined.html#目录-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "8 目录",
+    "text": "8 目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#dtft-的乘积性质",
+    "href": "ref/lec19_zh_refined.html#dtft-的乘积性质",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "9 DTFT 的乘积性质",
+    "text": "9 DTFT 的乘积性质\n\\[\nx[n] y[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{2 \\pi} X \\circledast Y=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) Y\\left(e^{j(\\omega-\\theta)}\\right) d \\theta\n\\]\nNB. Dual 的 periodic convolution property 的 CTFS\n\\[\nx \\circledast y \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} T \\hat{x} \\hat{y}\n\\]\nPro的.\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{x y\\}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}} x[n] y[n] e^{-j \\omega n}=\\sum_{n \\in \\mathbb{Z}}\\left(\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) e^{j \\theta n} d \\theta\\right) y[n] e^{-j \\omega n} \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right)\\left(\\sum_{n \\in \\mathbb{Z}} y[n] e^{-j(\\omega-\\theta) n}\\right) d \\theta \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) Y\\left(e^{j(\\omega-\\theta)}\\right) d \\theta\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-3",
+    "href": "ref/lec19_zh_refined.html#例-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "10 例",
+    "text": "10 例\n\\(x[n]=x_{1}[n] x_{2}[n]\\), where \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\underset{\\uparrow}{\\circledast} X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-4",
+    "href": "ref/lec19_zh_refined.html#例-4",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "11 例",
+    "text": "11 例\n\\(x[n]=x_{1}[n] x_{2}[n]\\), where \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\underset{\\uparrow}{\\circledast} X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { periodic }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { aperiodic }\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-5",
+    "href": "ref/lec19_zh_refined.html#例-5",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "12 例",
+    "text": "12 例\n\\(x[n]=x_{1}[n] x_{2}[n]\\), where \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\circledast X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { periodic }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { aperiodic }\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-6",
+    "href": "ref/lec19_zh_refined.html#例-6",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "13 例",
+    "text": "13 例\n\\(x[n]=x_{1}[n] x_{2}[n]\\), where \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\circledast X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { periodic }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { aperiodic }\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-dt-modulation",
+    "href": "ref/lec19_zh_refined.html#例-dt-modulation",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "14 例: DT Modulation",
+    "text": "14 例: DT Modulation\n\\[\ny[n]=x[n] c[n], \\text { where } c[n]=\\cos \\left(\\omega_{c} n\\right)\n\\]\n  \nNo overlap bet我们en replicas: \\(\\left\\{\\begin{array}{l}\\omega_{c}&gt;\\omega_{M} \\\\ \\omega_{c}+\\omega_{M}&lt;\\pi\\end{array} \\quad \\Longrightarrow \\omega_{M}&lt;\\frac{\\pi}{2}\\right.\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-dt-demodulation",
+    "href": "ref/lec19_zh_refined.html#例-dt-demodulation",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "15 例: DT Demodulation",
+    "text": "15 例: DT Demodulation\n\\[\nz[n]=y[n] c[n], \\text { where } c[n]=\\cos \\left(\\omega_{c} n\\right)\n\\]\n  \nRecover \\(X\\) by lowpass filtering \\(Y\\) with \\(W \\in\\left(\\omega_{M}, 2 \\omega_{c}-\\omega_{M}\\right)\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#目录-2",
+    "href": "ref/lec19_zh_refined.html#目录-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "16 目录",
+    "text": "16 目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#linear-constant-coefficient-difference-equations",
+    "href": "ref/lec19_zh_refined.html#linear-constant-coefficient-difference-equations",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "17 Linear Constant-coefficient Difference Equations",
+    "text": "17 Linear Constant-coefficient Difference Equations\n频率响应 的 LTI 系统 described by\n\\[\n\\sum_{k=0}^{N} a_{k} y[n-k]=\\sum_{k=0}^{M} b_{k} x[n-k]\n\\]\n方法 1. Use eigen函数 property\n\\[\nx[n]=e^{j \\omega n} \\Longrightarrow y[n]=H\\left(e^{j \\omega}\\right) e^{j \\omega n}\n\\]\nSubstitution into difference equation yields\n\\[\n\\begin{gathered}\n\\sum_{k=0}^{N} a_{k} H\\left(e^{j \\omega}\\right) e^{j \\omega(n-k)}=\\sum_{k=0}^{M} b_{k} e^{j \\omega(n-k)} \\\\\nH\\left(e^{j \\omega}\\right)=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#linear-constant-coefficient-difference-equations-1",
+    "href": "ref/lec19_zh_refined.html#linear-constant-coefficient-difference-equations-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "18 Linear Constant-coefficient Difference Equations",
+    "text": "18 Linear Constant-coefficient Difference Equations\n方法 2. Take 傅里叶 变换 的 both sides\n\\[\n\\mathcal{F}\\left\\{\\sum_{k=0}^{N} a_{k} y[n-k]\\right\\}=\\mathcal{F}\\left\\{\\sum_{k=0}^{M} b_{k} x[n-k]\\right\\}\n\\]\nBy linearity and 时间-shifting property\n\\[\n\\sum_{k=0}^{N} a_{k} e^{-j \\omega k} Y\\left(e^{j \\omega}\\right)=\\sum_{k=0}^{M} b_{k} e^{-j \\omega k} X\\left(e^{j \\omega}\\right)\n\\]\nBy convolution property\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{Y\\left(e^{j \\omega}\\right)}{X\\left(e^{j \\omega}\\right)}=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\]\n频率响应 是 rational 函数 的 \\(e^{-j \\omega}\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-7",
+    "href": "ref/lec19_zh_refined.html#例-7",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "19 例",
+    "text": "19 例\nConsider LTI 系统 described by\n\\[\ny[n]-\\frac{3}{4} y[n-1]+\\frac{1}{8} y[n-2]=2 x[n]\n\\]\n频率响应\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{1-\\frac{3}{4} e^{-j \\omega}+\\frac{1}{8} e^{-j 2 \\omega}}\n\\]\nBy partial fraction expansion\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)}=\\frac{4}{1-\\frac{1}{2} e^{-j \\omega}}-\\frac{2}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\nTake inverse 傅里叶 变换 to obtain impulse 响应\n\\[\nh[n]=4\\left(\\frac{1}{2}\\right)^{n} u[n]-2\\left(\\frac{1}{4}\\right)^{n} u[n]\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-8",
+    "href": "ref/lec19_zh_refined.html#例-8",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "20 例",
+    "text": "20 例\nFind 响应 to \\(x[n]=\\left(\\frac{1}{4}\\right)^{n} u[n]\\). 傅里叶 变换 的 响应\n\\[\nY\\left(e^{j \\omega}\\right)=H\\left(e^{j \\omega}\\right) X\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)} \\cdot \\frac{1}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\nBy partial fraction expansion\n\\[\nY\\left(e^{j \\omega}\\right)=-\\frac{4}{1-\\frac{1}{4} e^{-j \\omega}}-\\frac{2}{\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)^{2}}+\\frac{8}{1-\\frac{1}{2} e^{-j \\omega}}\n\\]\nTake inverse 傅里叶 变换 to obtain 响应\n\\[\ny[n]=\\left\\{-4\\left(\\frac{1}{4}\\right)^{n}-2(n+1)\\left(\\frac{1}{4}\\right)^{n}+8\\left(\\frac{1}{2}\\right)^{n}\\right\\} u[n]\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#部分分式展开",
+    "href": "ref/lec19_zh_refined.html#部分分式展开",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "21 部分分式展开",
+    "text": "21 部分分式展开\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{1-\\frac{3}{4} e^{-j \\omega}+\\frac{1}{8} e^{-j 2 \\omega}}\n\\]\nReplace \\(e^{-j \\omega}\\) by \\(z\\),\n\\[\n\\begin{gathered}\nH\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{3}{4} z+\\frac{1}{8} z^{2}}=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)}=\\frac{A}{1-\\frac{1}{2} z}+\\frac{B}{1-\\frac{1}{4} z} \\\\\nA=\\left.\\left[\\left(1-\\frac{1}{2} z\\right) H\\left(z^{-1}\\right)\\right]\\right|_{z=2}=\\left.\\frac{2}{1-\\frac{1}{4} z}\\right|_{z=2}=4 \\\\\nB=\\left.\\left[\\left(1-\\frac{1}{4} z\\right) H\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{2}{1-\\frac{1}{2} z}\\right|_{z=4}=-2\n\\end{gathered}\n\\]\nNB. Terms take form \\(\\frac{A}{(s-r)^{m}}\\) for CT, but \\(\\frac{A}{(1-r z)^{m}}\\) for DT"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#部分分式展开-1",
+    "href": "ref/lec19_zh_refined.html#部分分式展开-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "22 部分分式展开",
+    "text": "22 部分分式展开\n\\[\nY\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)} \\cdot \\frac{1}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\nReplace \\(e^{-j \\omega}\\) by \\(z\\),\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\nTo find \\(A_{1,1}\\)\n\nMultiply both side by \\(1-\\frac{1}{2} z\\),\n\n\\[\n\\left(1-\\frac{1}{2} z\\right) Y\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{4} z\\right)^{2}}=A_{1,1}+\\frac{A_{2,1}\\left(1-\\frac{1}{2} z\\right)}{1-\\frac{1}{4} z}+\\frac{A_{2,2}\\left(1-\\frac{1}{2} z\\right)}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\n\nEvaluate at \\(z=2\\), i.e. root 的 \\(1-\\frac{1}{2} z=0\\)\n\n\\[\nA_{1,1}=\\left.\\left[\\left(1-\\frac{1}{2} z\\right) Y\\left(z^{-1}\\right)\\right]\\right|_{z=2}=\\left.\\frac{2}{\\left(1-\\frac{1}{4} z\\right)^{2}}\\right|_{z=2}=8\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#部分分式展开-2",
+    "href": "ref/lec19_zh_refined.html#部分分式展开-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "23 部分分式展开",
+    "text": "23 部分分式展开\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\nTo find \\(A_{2,2}\\)\n\nMultiply both side by \\(\\left(1-\\frac{1}{4} z\\right)^{2}\\),\n\n\\[\n\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{1}{2} z}=\\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+A_{2,1}\\left(1-\\frac{1}{4} z\\right)+A_{2,2}\n\\]\n\nEvaluate at \\(z=4\\), i.e. root 的 \\(1-\\frac{1}{4} z=0\\)\n\n\\[\nA_{2,2}=\\left.\\left[\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{2}{1-\\frac{1}{2} z}\\right|_{z=4}=-2\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#部分分式展开-3",
+    "href": "ref/lec19_zh_refined.html#部分分式展开-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "24 部分分式展开",
+    "text": "24 部分分式展开\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\nTo find \\(A_{2,1}\\)\n\nMultiply both side by \\(\\left(1-\\frac{1}{4} z\\right)^{2}\\),\n\n\\[\n\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{1}{2} v}=\\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+A_{2,1}\\left(1-\\frac{1}{4} z\\right)+A_{2,2}\n\\]\n\nDifferentiate both sides\n\n\\[\n\\frac{d}{d z}\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{1}{\\left(1-\\frac{1}{2} z\\right)^{2}}=\\frac{d}{d z} \\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+\\left(-\\frac{\\mathbf{1}}{\\mathbf{4}}\\right) A_{2,1}\n\\]\n\nEvaluate at \\(z=4\\), i.e. root 的 \\(1-\\frac{1}{4} z=0\\)\n\n\\[\nA_{2,1}=\\left.(-4)\\left[\\frac{d}{d z}\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{-4}{\\left(1-\\frac{1}{2} z\\right)^{2}}\\right|_{z=4}=-4\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#逆傅里叶变换-的-frac1left1-a-e-j-omegarightn",
+    "href": "ref/lec19_zh_refined.html#逆傅里叶变换-的-frac1left1-a-e-j-omegarightn",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "25 逆傅里叶变换 的 \\(\\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{n}}\\)",
+    "text": "25 逆傅里叶变换 的 \\(\\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{n}}\\)\nRecall\n\\[\na^{n} u[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{1-a e^{-j \\omega}}, \\quad|a|&lt;1\n\\]\ni.e.\n\\[\n\\frac{1}{1-a z}=\\sum_{n=0}^{\\infty} a^{n} z^{n}, \\quad z=e^{-j \\omega}\n\\]\nDifferentiate \\(m-1\\) 时间s w.r.t. \\(z\\)\n\\[\n\\frac{(m-1)!a^{m-1}}{(1-a z)^{m}}=\\sum_{n=m-1}^{\\infty} a^{n} \\frac{n!}{(n-m+1)!} z^{n-(m-1)}\n\\]\n\\[\n\\frac{1}{(1-a z)^{m}}=\\sum_{n=m-1}^{\\infty} a^{n-m+1}\\binom{n}{m-1} z^{n-m+1}=\\sum_{n=0}^{\\infty} a^{n}\\binom{n+m-1}{m-1} z^{n}\n\\]\nThus\n\\[\n\\binom{n+m-1}{n} a^{n} u[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{m}}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#目录-3",
+    "href": "ref/lec19_zh_refined.html#目录-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "26 目录",
+    "text": "26 目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#冲激列采样",
+    "href": "ref/lec19_zh_refined.html#冲激列采样",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "27 冲激列采样",
+    "text": "27 冲激列采样\nDT 信号 \\(x[n]\\)\nDT impulse train \n\\[\np[n]=\\sum_{k=-\\infty}^{\\infty} \\delta[n-k N]\n\\]\n\n\\[\n\\begin{aligned}\n& \\text { Sampled 信号 } \\\\\n& \\begin{aligned}\nx_{p}[n] & =x[n] p[n] \\\\\n& =\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\n\\end{aligned}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#冲激列采样-1",
+    "href": "ref/lec19_zh_refined.html#冲激列采样-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "28 冲激列采样",
+    "text": "28 冲激列采样\nSpectrum 的 impulse train\n\\[\nP\\left(e^{j \\omega}\\right)=\\omega_{s} \\sum_{k=-\\infty}^{\\infty} \\delta\\left(\\omega-k \\omega_{s}\\right), \\quad \\omega_{s}=\\frac{2 \\pi}{N}\n\\]\nSpectrum 的 sampled 信号\n\\[\nX_{p}=\\frac{1}{2 \\pi} X \\circledast P=\\frac{1}{2 \\pi} \\tilde{X} * P=\\frac{1}{2 \\pi} X * \\tilde{P}\n\\]\nwhere \\(\\tilde{X}, \\tilde{P}\\) 是 respective parts 的 \\(X, P\\) within one period 的 \\(2 \\pi\\)\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)=\\frac{1}{N} \\sum_{k=0}^{N-1} X\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#冲激列采样-2",
+    "href": "ref/lec19_zh_refined.html#冲激列采样-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "29 冲激列采样",
+    "text": "29 冲激列采样\nFirst view: Replicating \\(\\tilde{X}\\) at \\(k \\omega_{s}\\) for \\(k \\in \\mathbb{Z}\\)\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#冲激列采样-3",
+    "href": "ref/lec19_zh_refined.html#冲激列采样-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "30 冲激列采样",
+    "text": "30 冲激列采样\nSecond view: Replicating \\(X\\) at \\(k \\omega_{s}\\) for \\(k=0,1, \\ldots, N-1\\)\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=0}^{N-1} X\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#冲激列采样-4",
+    "href": "ref/lec19_zh_refined.html#冲激列采样-4",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "31 冲激列采样",
+    "text": "31 冲激列采样"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#离散时间采样定理",
+    "href": "ref/lec19_zh_refined.html#离散时间采样定理",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "32 离散时间采样定理",
+    "text": "32 离散时间采样定理\nBand-limited DT 信号 \\(x[n]\\) whose spectrum \\(X\\left(e^{j \\omega}\\right)=0\\) for \\(\\omega_{M}&lt;|\\omega| \\leq \\pi\\) 是 uniquely determined by its samples \\(x[k N], k \\in \\mathbb{Z}\\) if\n\\[\n\\omega_{s} \\triangleq \\frac{2 \\pi}{N}&gt;2 \\omega_{M}\n\\]\nGiven \\(\\{x[k N]: k \\in \\mathbb{Z}\\}, x[n]\\) can be reconstructed as follows\n\nconstruct \\(x_{p}[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\\)\nsend \\(x_{p}\\) through lowpass filter with gain \\(N\\) and cut的f frequency \\(\\omega_{c} \\in\\left(\\omega_{M}, \\omega_{s}-\\omega_{M}\\right)\\), i.e.\n\n\\[\nH\\left(e^{j \\omega}\\right)=N\\left[u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\\right]\n\\]\n\noutput \\(x_{r}[n]\\) with \\(X_{r}\\left(e^{j \\omega}\\right)=X_{p}\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\\) 是 same as \\(x[n]\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#时域重建",
+    "href": "ref/lec19_zh_refined.html#时域重建",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "33 时域重建",
+    "text": "33 时域重建\n\n冲激响应 的 lowpass filter\n\\[\nh[n]=\\frac{N \\sin \\left(\\omega_{c} n\\right)}{\\pi n}\n\\]\n\\(x\\) recovered by band-limited interpolation using sinc 函数\n\\[\nx[n]=x_{r}[n]=\\left(x_{p} * h\\right)[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\frac{N \\sin \\left(\\omega_{c}(n-k N)\\right)}{\\pi(n-k N)}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#抽取",
+    "href": "ref/lec19_zh_refined.html#抽取",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "34 抽取",
+    "text": "34 抽取\nDT 信号 \\(x[n]\\) \nSampled 信号\n\\[\nx_{p}[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\n\\]\n\nDecimated 信号\n\\[\nx_{b}[n]=x[n N]\n\\]\nReduces samples"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#抽取-1",
+    "href": "ref/lec19_zh_refined.html#抽取-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "35 抽取",
+    "text": "35 抽取\n\\[\n\\begin{aligned}\nX_{b}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}} x_{b}[n] e^{-j \\omega n} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x[n N] e^{-j \\omega n} \\\\\n& =\\sum_{k \\in N \\mathbb{Z}} x[k] e^{-j \\omega k / N} \\quad(k=n N) \\\\\n& =\\sum_{k \\in \\mathbb{Z}} x_{p}[k] e^{-j \\frac{\\omega}{N} k} \\quad\\left(x_{p}[n]=0 \\text { for } n \\in \\mathbb{Z} \\backslash N \\mathbb{Z}\\right) \\\\\n& =X_{p}\\left(e^{j \\omega / N}\\right)\n\\end{aligned}\n\\]\nRecall \\(X_{p}\\left(e^{j \\omega}\\right)\\) has period \\(2 \\pi / N\\), so \\(X_{b}\\left(e^{j \\omega)}\\right.\\) has period \\(2 \\pi\\). If no aliasing in sampling\n\n\\(X_{b}\\) 是 stretched version 的 \\(X\\) in each period\n\\(X_{b}\\left(e^{j \\omega}\\right)=X_{p}\\left(e^{j \\omega / N}\\right)\\), but \\(X_{b}\\left(e^{j \\omega}\\right) \\neq X\\left(e^{j \\omega / N}\\right)\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#抽取-2",
+    "href": "ref/lec19_zh_refined.html#抽取-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "36 抽取",
+    "text": "36 抽取"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#目录-4",
+    "href": "ref/lec19_zh_refined.html#目录-4",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "37 目录",
+    "text": "37 目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#连续时间信号的离散时间处理",
+    "href": "ref/lec19_zh_refined.html#连续时间信号的离散时间处理",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "38 连续时间信号的离散时间处理",
+    "text": "38 连续时间信号的离散时间处理\n\n离散时间处理的优点\n\nversatility 的 digital electronic devices\nresilience against no是e\n\n在实际中\n\nC/D implemented by analog-to-digital converter\nD/C implemented by digital-to-analog converter\n\n理想化假设\n\nno quantization\nC/D by impulse-train sampling\nD/C by ideal reconstruction"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#模数转换cd",
+    "href": "ref/lec19_zh_refined.html#模数转换cd",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "39 模数转换（C/D）",
+    "text": "39 模数转换（C/D）\n\nAssumption\n\n\\(x_{c}(t)\\) bandlimited, e.g. lowpass filtered\nsampling above Nyqu是t rate, no aliasing\n\nRelation bet我们en CT and DT spectra\n\\[\n\\begin{aligned}\nX_{p}(j \\omega) & =\\mathrm{CTFT}\\left\\{\\sum_{n \\in \\mathbb{Z}} x_{c}(n T) \\delta(t-n T)\\right\\} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x_{c}(n T) e^{-j \\omega T n}=\\sum_{n \\in \\mathbb{Z}} x_{d}[n] e^{-j \\omega T n}=X_{d}\\left(e^{j \\omega T}\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#模数转换cd-1",
+    "href": "ref/lec19_zh_refined.html#模数转换cd-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "40 模数转换（C/D）",
+    "text": "40 模数转换（C/D）\n时域 \n频域 \n \nFrom \\(x_{p}\\) to \\(x_{d}\\) : normalization in both 时间 and frequency"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#数模转换dc",
+    "href": "ref/lec19_zh_refined.html#数模转换dc",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "41 数模转换（D/C）",
+    "text": "41 数模转换（D/C）\nC/D conversion \nRelation bet我们en CT and DT spectra\n\\[\n\\begin{aligned}\n& Y_{p}(j \\omega)=Y_{d}\\left(e^{j \\omega T}\\right) \\\\\n& Y_{c}(j \\omega)= \\begin{cases}Y_{p}(j \\omega) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\\n0, & \\text { otherw是e }\\end{cases}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#数模转换dc-1",
+    "href": "ref/lec19_zh_refined.html#数模转换dc-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "42 数模转换（D/C）",
+    "text": "42 数模转换（D/C）\n时域 \n频域 \n频域 \n\nReverse process 的 C/D conversion"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#频率响应",
+    "href": "ref/lec19_zh_refined.html#频率响应",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "43 频率响应",
+    "text": "43 频率响应\n\n\n\\(Y_{d}\\left(e^{j \\Omega}\\right)=H_{d}\\left(e^{j \\Omega}\\right) X_{d}\\left(e^{j \\Omega}\\right)\\)\n\\(Y_{p}(j \\omega)=Y_{d}\\left(e^{j \\omega T}\\right)=H_{d}\\left(e^{j \\omega T}\\right) X_{d}\\left(e^{j \\omega T}\\right)=H_{d}\\left(e^{j \\omega T}\\right) X_{p}(j \\omega)\\)\n\\(Y_{c}(j \\omega)=Y_{p}(j \\omega) H_{\\mathrm{lp}}(j \\omega)=H_{d}\\left(e^{j \\omega T}\\right) X_{p}(j \\omega) H_{\\mathrm{lp}}(j \\omega)=H_{d}\\left(e^{j \\omega T}\\right) X_{c}(j \\omega)\\)\n\\(H_{c}(j \\omega)= \\begin{cases}H_{d}\\left(e^{j \\omega T}\\right) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\ 0, & \\text { otherwise }\\end{cases}\\)\n\n频率响应\n\\[\n\\begin{gathered}\nH_{c}(j \\omega)= \\begin{cases}H_{d}\\left(e^{j \\omega T}\\right) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\\n0, & \\text { otherw是e }\\end{cases} \\\\\n\\Longrightarrow H_{d}\\left(e^{j \\Omega}\\right)=H_{c}\\left(j \\frac{\\Omega}{T}\\right),|\\Omega|&lt;\\pi\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_refined.html#例-数字微分器",
+    "href": "ref/lec19_zh_refined.html#例-数字微分器",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "44 例: 数字微分器",
+    "text": "44 例: 数字微分器\n\n\\[\n\\arg H_{c}(j \\omega)\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#目录",
+    "href": "ref/lec19_zh_translated.html#目录",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "目录",
+    "text": "目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#dtft-的卷积性质",
+    "href": "ref/lec19_zh_translated.html#dtft-的卷积性质",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "DTFT 的卷积性质",
+    "text": "DTFT 的卷积性质\n\\[\n(x * h)[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\n\\]\nNB. Dual 的 multiplication property 的 CTFS\n\\[\nx(t) y(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow}(\\hat{x} * \\hat{y})[k]\n\\]\nNB. Similar 到 CTFT, applicable when 用于mula 是 我们ll-defined Pro的.\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{x * h\\}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}}(x * h)[n] e^{-j \\omega n}=\\sum_{n \\in \\mathbb{Z}} \\sum_{m \\in \\mathbb{Z}} x[m] h[n-m] e^{-j \\omega n} \\\\\n& =\\sum_{m \\in \\mathbb{Z}} x[m] \\sum_{n \\in \\mathbb{Z}} h[n-m] e^{-j \\omega n} \\\\\n& =\\sum_{m \\in \\mathbb{Z}} x[m] e^{-j \\omega m} H\\left(e^{j \\omega}\\right) \\\\\n& =X\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#lti-系统的频率响应",
+    "href": "ref/lec19_zh_translated.html#lti-系统的频率响应",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "LTI 系统的频率响应",
+    "text": "LTI 系统的频率响应\nLTI 系统 \\(T\\)\n\nfully characterized by impulse 响应 \\(h\\)\n\n\\[\ny=T(x)=h * x\n\\]\n\nalso fully characterized by frequency 响应 \\(H=\\mathcal{F}\\{h\\}\\), if \\(H\\) 是 我们ll-defined\nBIBO stable 系统, \\(h \\in \\ell_{1}\\)\nother 系统s: accumula到r \\(h=u\\), …\n\nTypically, convolution property implies\n\\[\nY=\\mathcal{F}\\{y\\}=H X=\\mathcal{F}\\{h\\} \\mathcal{F}\\{x\\}\n\\]\nInstead 的 computing \\(x * h\\), can do\n\\[\ny=\\mathcal{F}^{-1}(\\mathcal{F}\\{h\\} \\mathcal{F}\\{x\\})\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例",
+    "href": "ref/lec19_zh_translated.html#例",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例",
+    "text": "例\nResponse 的 LTI 系统 with impulse 响应 \\(h[n]=a^{n} u[n]\\) 到 input \\(x[n]=b^{n} u[n]\\), where \\(|a|&lt;1,|b|&lt;1\\) 方法 1. Direct convolution \\(y=x * h\\) 方法 2. Solve difference equation with initial rest condition\n\\[\ny[n]-a y[n-1]=b^{n} u[n]\n\\]\n方法 3. Fourier trans用于m.\n\\[\nH=\\frac{1}{1-a e^{-j \\omega}}, X=\\frac{1}{1-b e^{-j \\omega}} \\Longrightarrow Y=\\frac{1}{\\left(1-a e^{-j \\omega}\\right)\\left(1-b e^{-j \\omega}\\right)}\n\\]\nIf \\(a \\neq b, Y\\left(e^{j \\omega}\\right)=\\frac{a /(a-b)}{1-a e^{-j \\omega}}-\\frac{b /(a-b)}{1-b e^{-j \\omega}}, \\quad y[n]=\\frac{1}{a-b}\\left(a^{n+1}-b^{n+1}\\right) u[n]\\) If \\(a=b, Y\\left(e^{j \\omega}\\right)=\\frac{d}{d a}\\left(\\frac{a}{1-a e^{-j \\omega}}\\right), y[n]=\\frac{d}{d a} a^{n+1} u[n]=(n+1) a^{n} u[n]\\) Or use \\(Y\\left(e^{j \\omega}\\right)=\\frac{j}{a} e^{j \\omega} \\frac{d}{d \\omega}\\left(\\frac{a}{1-a e^{-j \\omega}}\\right)\\) 与 differentiation property"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-1",
+    "href": "ref/lec19_zh_translated.html#例-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例",
+    "text": "例\nResponse 的 LTI 系统 with impulse 响应 \\(h[n]=a^{n} u[n]\\) 到 input \\(x[n]=\\cos \\left(\\omega_{0} n\\right),|a|&lt;1\\). Frequency 响应\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{1}{1-a e^{-j \\omega}}\n\\]\n方法 1. Use eigen函数 property\n\\[\n\\begin{gathered}\nx[n]=\\frac{1}{2} e^{j \\omega_{0} n}+\\frac{1}{2} e^{-j \\omega_{0} n} \\\\\ny[n]=\\frac{1}{2} H\\left(e^{j \\omega_{0}}\\right) e^{j \\omega_{0} n}+\\frac{1}{2} H\\left(e^{-j \\omega_{0}}\\right) e^{-j \\omega_{0} n}=\\opera到rname{Re} \\frac{e^{j \\omega_{0} n}}{1-a e^{-j \\omega_{0}}} \\\\\n=\\frac{1}{\\sqrt{1-2 a \\cos \\omega_{0}+a^{2}}} \\cos \\left(\\omega_{0} n-\\arctan \\frac{a \\sin \\omega_{0}}{1-a \\cos \\omega_{0}}\\right)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-2",
+    "href": "ref/lec19_zh_translated.html#例-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例",
+    "text": "例\n方法 2. Use Fourier trans用于m 的 \\(X\\)\n\\[\n\\begin{aligned}\n& X\\left(e^{j \\omega}\\right)=\\sum_{k=-\\infty}^{\\infty}\\left[\\pi \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right)+\\pi \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right)\\right] \\\\\n& Y\\left(e^{j \\omega}\\right)=\\sum_{k=-\\infty}^{\\infty} \\pi H\\left(e^{j\\left(\\omega_{0}-2 k \\pi\\right)}\\right) \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right) \\\\\n& \\quad+\\sum_{k=-\\infty}^{\\infty} \\pi H\\left(e^{-j\\left(\\omega_{0}+2 k \\pi\\right)}\\right) \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right) \\\\\n& =H\\left(e^{j \\omega_{0}}\\right) \\sum_{k=-\\infty}^{\\infty} \\pi \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right) \\\\\n& \\quad+H\\left(e^{-j \\omega_{0}}\\right) \\sum_{k=-\\infty}^{\\infty} \\pi \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right) \\\\\n& y[n]=\\frac{1}{2} H\\left(e^{j \\omega_{0}}\\right) e^{j \\omega_{0} n}+\\frac{1}{2} H\\left(e^{-j \\omega_{0}}\\right) e^{-j \\omega_{0} n}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-ideal-b与s到p-filter",
+    "href": "ref/lec19_zh_translated.html#例-ideal-b与s到p-filter",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例: Ideal B与s到p Filter",
+    "text": "例: Ideal B与s到p Filter"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#目录-1",
+    "href": "ref/lec19_zh_translated.html#目录-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "目录",
+    "text": "目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#dtft-的乘积性质",
+    "href": "ref/lec19_zh_translated.html#dtft-的乘积性质",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "DTFT 的乘积性质",
+    "text": "DTFT 的乘积性质\n\\[\nx[n] y[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{2 \\pi} X \\circledast Y=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) Y\\left(e^{j(\\omega-\\theta)}\\right) d \\theta\n\\]\nNB. Dual 的 periodic convolution property 的 CTFS\n\\[\nx \\circledast y \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} T \\hat{x} \\hat{y}\n\\]\nPro的.\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{x y\\}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}} x[n] y[n] e^{-j \\omega n}=\\sum_{n \\in \\mathbb{Z}}\\left(\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) e^{j \\theta n} d \\theta\\right) y[n] e^{-j \\omega n} \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right)\\left(\\sum_{n \\in \\mathbb{Z}} y[n] e^{-j(\\omega-\\theta) n}\\right) d \\theta \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) Y\\left(e^{j(\\omega-\\theta)}\\right) d \\theta\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-3",
+    "href": "ref/lec19_zh_translated.html#例-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例",
+    "text": "例\n\\(x[n]=x_{1}[n] x_{2}[n]\\), where \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\underset{\\uparrow}{\\circledast} X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-4",
+    "href": "ref/lec19_zh_translated.html#例-4",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例",
+    "text": "例\n\\(x[n]=x_{1}[n] x_{2}[n]\\), where \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\underset{\\uparrow}{\\circledast} X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { periodic }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { aperiodic }\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-5",
+    "href": "ref/lec19_zh_translated.html#例-5",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例",
+    "text": "例\n\\(x[n]=x_{1}[n] x_{2}[n]\\), where \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\circledast X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { periodic }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { aperiodic }\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-6",
+    "href": "ref/lec19_zh_translated.html#例-6",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例",
+    "text": "例\n\\(x[n]=x_{1}[n] x_{2}[n]\\), where \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\circledast X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { periodic }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { aperiodic }\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-dt-modulation",
+    "href": "ref/lec19_zh_translated.html#例-dt-modulation",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例: DT Modulation",
+    "text": "例: DT Modulation\n\\[\ny[n]=x[n] c[n], \\text { where } c[n]=\\cos \\left(\\omega_{c} n\\right)\n\\]\n  \nNo overlap bet我们en replicas: \\(\\left\\{\\begin{array}{l}\\omega_{c}&gt;\\omega_{M} \\\\ \\omega_{c}+\\omega_{M}&lt;\\pi\\end{array} \\quad \\Longrightarrow \\omega_{M}&lt;\\frac{\\pi}{2}\\right.\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-dt-demodulation",
+    "href": "ref/lec19_zh_translated.html#例-dt-demodulation",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例: DT Demodulation",
+    "text": "例: DT Demodulation\n\\[\nz[n]=y[n] c[n], \\text { where } c[n]=\\cos \\left(\\omega_{c} n\\right)\n\\]\n  \nRecover \\(X\\) by lowpass filtering \\(Y\\) with \\(W \\in\\left(\\omega_{M}, 2 \\omega_{c}-\\omega_{M}\\right)\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#目录-2",
+    "href": "ref/lec19_zh_translated.html#目录-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "目录",
+    "text": "目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#linear-constant-coefficient-difference-equations",
+    "href": "ref/lec19_zh_translated.html#linear-constant-coefficient-difference-equations",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "Linear Constant-coefficient Difference Equations",
+    "text": "Linear Constant-coefficient Difference Equations\nFrequency 响应 的 LTI 系统 described by\n\\[\n\\sum_{k=0}^{N} a_{k} y[n-k]=\\sum_{k=0}^{M} b_{k} x[n-k]\n\\]\n方法 1. Use eigen函数 property\n\\[\nx[n]=e^{j \\omega n} \\Longrightarrow y[n]=H\\left(e^{j \\omega}\\right) e^{j \\omega n}\n\\]\nSubstitution in到 difference equation yields\n\\[\n\\begin{gathered}\n\\sum_{k=0}^{N} a_{k} H\\left(e^{j \\omega}\\right) e^{j \\omega(n-k)}=\\sum_{k=0}^{M} b_{k} e^{j \\omega(n-k)} \\\\\nH\\left(e^{j \\omega}\\right)=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#linear-constant-coefficient-difference-equations-1",
+    "href": "ref/lec19_zh_translated.html#linear-constant-coefficient-difference-equations-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "Linear Constant-coefficient Difference Equations",
+    "text": "Linear Constant-coefficient Difference Equations\n方法 2. Take Fourier trans用于m 的 both sides\n\\[\n\\mathcal{F}\\left\\{\\sum_{k=0}^{N} a_{k} y[n-k]\\right\\}=\\mathcal{F}\\left\\{\\sum_{k=0}^{M} b_{k} x[n-k]\\right\\}\n\\]\nBy linearity 与 time-shifting property\n\\[\n\\sum_{k=0}^{N} a_{k} e^{-j \\omega k} Y\\left(e^{j \\omega}\\right)=\\sum_{k=0}^{M} b_{k} e^{-j \\omega k} X\\left(e^{j \\omega}\\right)\n\\]\nBy convolution property\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{Y\\left(e^{j \\omega}\\right)}{X\\left(e^{j \\omega}\\right)}=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\]\nFrequency 响应 是 rational 函数 的 \\(e^{-j \\omega}\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-7",
+    "href": "ref/lec19_zh_translated.html#例-7",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例",
+    "text": "例\nConsider LTI 系统 described by\n\\[\ny[n]-\\frac{3}{4} y[n-1]+\\frac{1}{8} y[n-2]=2 x[n]\n\\]\nFrequency 响应\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{1-\\frac{3}{4} e^{-j \\omega}+\\frac{1}{8} e^{-j 2 \\omega}}\n\\]\nBy partial fraction expansion\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)}=\\frac{4}{1-\\frac{1}{2} e^{-j \\omega}}-\\frac{2}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\nTake inverse Fourier trans用于m 到 obtain impulse 响应\n\\[\nh[n]=4\\left(\\frac{1}{2}\\right)^{n} u[n]-2\\left(\\frac{1}{4}\\right)^{n} u[n]\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-8",
+    "href": "ref/lec19_zh_translated.html#例-8",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例",
+    "text": "例\nFind 响应 到 \\(x[n]=\\left(\\frac{1}{4}\\right)^{n} u[n]\\). Fourier trans用于m 的 响应\n\\[\nY\\left(e^{j \\omega}\\right)=H\\left(e^{j \\omega}\\right) X\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)} \\cdot \\frac{1}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\nBy partial fraction expansion\n\\[\nY\\left(e^{j \\omega}\\right)=-\\frac{4}{1-\\frac{1}{4} e^{-j \\omega}}-\\frac{2}{\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)^{2}}+\\frac{8}{1-\\frac{1}{2} e^{-j \\omega}}\n\\]\nTake inverse Fourier trans用于m 到 obtain 响应\n\\[\ny[n]=\\left\\{-4\\left(\\frac{1}{4}\\right)^{n}-2(n+1)\\left(\\frac{1}{4}\\right)^{n}+8\\left(\\frac{1}{2}\\right)^{n}\\right\\} u[n]\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#部分分式展开",
+    "href": "ref/lec19_zh_translated.html#部分分式展开",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{1-\\frac{3}{4} e^{-j \\omega}+\\frac{1}{8} e^{-j 2 \\omega}}\n\\]\nReplace \\(e^{-j \\omega}\\) by \\(z\\),\n\\[\n\\begin{gathered}\nH\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{3}{4} z+\\frac{1}{8} z^{2}}=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)}=\\frac{A}{1-\\frac{1}{2} z}+\\frac{B}{1-\\frac{1}{4} z} \\\\\nA=\\left.\\left[\\left(1-\\frac{1}{2} z\\right) H\\left(z^{-1}\\right)\\right]\\right|_{z=2}=\\left.\\frac{2}{1-\\frac{1}{4} z}\\right|_{z=2}=4 \\\\\nB=\\left.\\left[\\left(1-\\frac{1}{4} z\\right) H\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{2}{1-\\frac{1}{2} z}\\right|_{z=4}=-2\n\\end{gathered}\n\\]\nNB. Terms take 用于m \\(\\frac{A}{(s-r)^{m}}\\) 用于 CT, but \\(\\frac{A}{(1-r z)^{m}}\\) 用于 DT"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#部分分式展开-1",
+    "href": "ref/lec19_zh_translated.html#部分分式展开-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\nY\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)} \\cdot \\frac{1}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\nReplace \\(e^{-j \\omega}\\) by \\(z\\),\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\nTo find \\(A_{1,1}\\)\n\nMultiply both side by \\(1-\\frac{1}{2} z\\),\n\n\\[\n\\left(1-\\frac{1}{2} z\\right) Y\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{4} z\\right)^{2}}=A_{1,1}+\\frac{A_{2,1}\\left(1-\\frac{1}{2} z\\right)}{1-\\frac{1}{4} z}+\\frac{A_{2,2}\\left(1-\\frac{1}{2} z\\right)}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\n\nEvaluate at \\(z=2\\), i.e. root 的 \\(1-\\frac{1}{2} z=0\\)\n\n\\[\nA_{1,1}=\\left.\\left[\\left(1-\\frac{1}{2} z\\right) Y\\left(z^{-1}\\right)\\right]\\right|_{z=2}=\\left.\\frac{2}{\\left(1-\\frac{1}{4} z\\right)^{2}}\\right|_{z=2}=8\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#部分分式展开-2",
+    "href": "ref/lec19_zh_translated.html#部分分式展开-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\nTo find \\(A_{2,2}\\)\n\nMultiply both side by \\(\\left(1-\\frac{1}{4} z\\right)^{2}\\),\n\n\\[\n\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{1}{2} z}=\\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+A_{2,1}\\left(1-\\frac{1}{4} z\\right)+A_{2,2}\n\\]\n\nEvaluate at \\(z=4\\), i.e. root 的 \\(1-\\frac{1}{4} z=0\\)\n\n\\[\nA_{2,2}=\\left.\\left[\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{2}{1-\\frac{1}{2} z}\\right|_{z=4}=-2\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#部分分式展开-3",
+    "href": "ref/lec19_zh_translated.html#部分分式展开-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\nTo find \\(A_{2,1}\\)\n\nMultiply both side by \\(\\left(1-\\frac{1}{4} z\\right)^{2}\\),\n\n\\[\n\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{1}{2} v}=\\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+A_{2,1}\\left(1-\\frac{1}{4} z\\right)+A_{2,2}\n\\]\n\nDifferentiate both sides\n\n\\[\n\\frac{d}{d z}\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{1}{\\left(1-\\frac{1}{2} z\\right)^{2}}=\\frac{d}{d z} \\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+\\left(-\\frac{\\mathbf{1}}{\\mathbf{4}}\\right) A_{2,1}\n\\]\n\nEvaluate at \\(z=4\\), i.e. root 的 \\(1-\\frac{1}{4} z=0\\)\n\n\\[\nA_{2,1}=\\left.(-4)\\left[\\frac{d}{d z}\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{-4}{\\left(1-\\frac{1}{2} z\\right)^{2}}\\right|_{z=4}=-4\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#逆傅里叶变换-的-frac1left1-a-e-j-omegarightn",
+    "href": "ref/lec19_zh_translated.html#逆傅里叶变换-的-frac1left1-a-e-j-omegarightn",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "逆傅里叶变换 的 \\(\\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{n}}\\)",
+    "text": "逆傅里叶变换 的 \\(\\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{n}}\\)\nRecall\n\\[\na^{n} u[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{1-a e^{-j \\omega}}, \\quad|a|&lt;1\n\\]\ni.e.\n\\[\n\\frac{1}{1-a z}=\\sum_{n=0}^{\\infty} a^{n} z^{n}, \\quad z=e^{-j \\omega}\n\\]\nDifferentiate \\(m-1\\) times w.r.t. \\(z\\)\n\\[\n\\frac{(m-1)!a^{m-1}}{(1-a z)^{m}}=\\sum_{n=m-1}^{\\infty} a^{n} \\frac{n!}{(n-m+1)!} z^{n-(m-1)}\n\\]\n\\[\n\\frac{1}{(1-a z)^{m}}=\\sum_{n=m-1}^{\\infty} a^{n-m+1}\\binom{n}{m-1} z^{n-m+1}=\\sum_{n=0}^{\\infty} a^{n}\\binom{n+m-1}{m-1} z^{n}\n\\]\nThus\n\\[\n\\binom{n+m-1}{n} a^{n} u[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{m}}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#目录-3",
+    "href": "ref/lec19_zh_translated.html#目录-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "目录",
+    "text": "目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#冲激列采样",
+    "href": "ref/lec19_zh_translated.html#冲激列采样",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "冲激列采样",
+    "text": "冲激列采样\nDT signal \\(x[n]\\)\nDT impulse train \n\\[\np[n]=\\sum_{k=-\\infty}^{\\infty} \\delta[n-k N]\n\\]\n\n\\[\n\\begin{aligned}\n& \\text { Sampled signal } \\\\\n& \\begin{aligned}\nx_{p}[n] & =x[n] p[n] \\\\\n& =\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\n\\end{aligned}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#冲激列采样-1",
+    "href": "ref/lec19_zh_translated.html#冲激列采样-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "冲激列采样",
+    "text": "冲激列采样\nSpectrum 的 impulse train\n\\[\nP\\left(e^{j \\omega}\\right)=\\omega_{s} \\sum_{k=-\\infty}^{\\infty} \\delta\\left(\\omega-k \\omega_{s}\\right), \\quad \\omega_{s}=\\frac{2 \\pi}{N}\n\\]\nSpectrum 的 sampled signal\n\\[\nX_{p}=\\frac{1}{2 \\pi} X \\circledast P=\\frac{1}{2 \\pi} \\tilde{X} * P=\\frac{1}{2 \\pi} X * \\tilde{P}\n\\]\nwhere \\(\\tilde{X}, \\tilde{P}\\) are respective parts 的 \\(X, P\\) within one period 的 \\(2 \\pi\\)\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)=\\frac{1}{N} \\sum_{k=0}^{N-1} X\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#冲激列采样-2",
+    "href": "ref/lec19_zh_translated.html#冲激列采样-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "冲激列采样",
+    "text": "冲激列采样\nFirst view: Replicating \\(\\tilde{X}\\) at \\(k \\omega_{s}\\) 用于 \\(k \\in \\mathbb{Z}\\)\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#冲激列采样-3",
+    "href": "ref/lec19_zh_translated.html#冲激列采样-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "冲激列采样",
+    "text": "冲激列采样\nSecond view: Replicating \\(X\\) at \\(k \\omega_{s}\\) 用于 \\(k=0,1, \\ldots, N-1\\)\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=0}^{N-1} X\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#冲激列采样-4",
+    "href": "ref/lec19_zh_translated.html#冲激列采样-4",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "冲激列采样",
+    "text": "冲激列采样"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#离散时间采样定理",
+    "href": "ref/lec19_zh_translated.html#离散时间采样定理",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "离散时间采样定理",
+    "text": "离散时间采样定理\nB与-limited DT signal \\(x[n]\\) whose spectrum \\(X\\left(e^{j \\omega}\\right)=0\\) 用于 \\(\\omega_{M}&lt;|\\omega| \\leq \\pi\\) 是 uniquely determined by its samples \\(x[k N], k \\in \\mathbb{Z}\\) if\n\\[\n\\omega_{s} \\triangleq \\frac{2 \\pi}{N}&gt;2 \\omega_{M}\n\\]\nGiven \\(\\{x[k N]: k \\in \\mathbb{Z}\\}, x[n]\\) can be reconstructed as follows\n\nconstruct \\(x_{p}[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\\)\nsend \\(x_{p}\\) through lowpass filter with gain \\(N\\) 与 cut的f frequency \\(\\omega_{c} \\in\\left(\\omega_{M}, \\omega_{s}-\\omega_{M}\\right)\\), i.e.\n\n\\[\nH\\left(e^{j \\omega}\\right)=N\\left[u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\\right]\n\\]\n\noutput \\(x_{r}[n]\\) with \\(X_{r}\\left(e^{j \\omega}\\right)=X_{p}\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\\) 是 same as \\(x[n]\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#时域重建",
+    "href": "ref/lec19_zh_translated.html#时域重建",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "时域重建",
+    "text": "时域重建\n\nImpulse 响应 的 lowpass filter\n\\[\nh[n]=\\frac{N \\sin \\left(\\omega_{c} n\\right)}{\\pi n}\n\\]\n\\(x\\) recovered by b与-limited interpolation using sinc 函数\n\\[\nx[n]=x_{r}[n]=\\left(x_{p} * h\\right)[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\frac{N \\sin \\left(\\omega_{c}(n-k N)\\right)}{\\pi(n-k N)}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#抽取",
+    "href": "ref/lec19_zh_translated.html#抽取",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "抽取",
+    "text": "抽取\nDT signal \\(x[n]\\) \nSampled signal\n\\[\nx_{p}[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\n\\]\n\nDecimated signal\n\\[\nx_{b}[n]=x[n N]\n\\]\nReduces samples"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#抽取-1",
+    "href": "ref/lec19_zh_translated.html#抽取-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "抽取",
+    "text": "抽取\n\\[\n\\begin{aligned}\nX_{b}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}} x_{b}[n] e^{-j \\omega n} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x[n N] e^{-j \\omega n} \\\\\n& =\\sum_{k \\in N \\mathbb{Z}} x[k] e^{-j \\omega k / N} \\quad(k=n N) \\\\\n& =\\sum_{k \\in \\mathbb{Z}} x_{p}[k] e^{-j \\frac{\\omega}{N} k} \\quad\\left(x_{p}[n]=0 \\text { 用于 } n \\in \\mathbb{Z} \\backslash N \\mathbb{Z}\\right) \\\\\n& =X_{p}\\left(e^{j \\omega / N}\\right)\n\\end{aligned}\n\\]\nRecall \\(X_{p}\\left(e^{j \\omega}\\right)\\) has period \\(2 \\pi / N\\), so \\(X_{b}\\left(e^{j \\omega)}\\right.\\) has period \\(2 \\pi\\). If no aliasing in sampling\n\n\\(X_{b}\\) 是 stretched version 的 \\(X\\) in each period\n\\(X_{b}\\left(e^{j \\omega}\\right)=X_{p}\\left(e^{j \\omega / N}\\right)\\), but \\(X_{b}\\left(e^{j \\omega}\\right) \\neq X\\left(e^{j \\omega / N}\\right)\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#抽取-2",
+    "href": "ref/lec19_zh_translated.html#抽取-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "抽取",
+    "text": "抽取"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#目录-4",
+    "href": "ref/lec19_zh_translated.html#目录-4",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "目录",
+    "text": "目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#连续时间信号的离散时间处理",
+    "href": "ref/lec19_zh_translated.html#连续时间信号的离散时间处理",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "连续时间信号的离散时间处理",
+    "text": "连续时间信号的离散时间处理\n\n离散时间处理的优点\n\nversatility 的 digital electronic devices\nresilience against no是e\n\n在实际中\n\nC/D implemented by analog-到-digital converter\nD/C implemented by digital-到-analog converter\n\n理想化假设\n\nno quantization\nC/D by impulse-train sampling\nD/C by ideal reconstruction"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#模数转换cd",
+    "href": "ref/lec19_zh_translated.html#模数转换cd",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "模数转换（C/D）",
+    "text": "模数转换（C/D）\n\nAssumption\n\n\\(x_{c}(t)\\) b与limited, e.g. lowpass filtered\nsampling above Nyqu是t rate, no aliasing\n\nRelation bet我们en CT 与 DT spectra\n\\[\n\\begin{aligned}\nX_{p}(j \\omega) & =\\mathrm{CTFT}\\left\\{\\sum_{n \\in \\mathbb{Z}} x_{c}(n T) \\delta(t-n T)\\right\\} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x_{c}(n T) e^{-j \\omega T n}=\\sum_{n \\in \\mathbb{Z}} x_{d}[n] e^{-j \\omega T n}=X_{d}\\left(e^{j \\omega T}\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#模数转换cd-1",
+    "href": "ref/lec19_zh_translated.html#模数转换cd-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "模数转换（C/D）",
+    "text": "模数转换（C/D）\n时域 \n频域 \n \nFrom \\(x_{p}\\) 到 \\(x_{d}\\) : normalization in both time 与 frequency"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#数模转换dc",
+    "href": "ref/lec19_zh_translated.html#数模转换dc",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "数模转换（D/C）",
+    "text": "数模转换（D/C）\nC/D conversion \nRelation bet我们en CT 与 DT spectra\n\\[\n\\begin{aligned}\n& Y_{p}(j \\omega)=Y_{d}\\left(e^{j \\omega T}\\right) \\\\\n& Y_{c}(j \\omega)= \\begin{cases}Y_{p}(j \\omega) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\\n0, & \\text { otherw是e }\\end{cases}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#数模转换dc-1",
+    "href": "ref/lec19_zh_translated.html#数模转换dc-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "数模转换（D/C）",
+    "text": "数模转换（D/C）\n时域 \n频域 \n频域 \n\nReverse process 的 C/D conversion"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#频率响应",
+    "href": "ref/lec19_zh_translated.html#频率响应",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "频率响应",
+    "text": "频率响应\n\n\n\\(Y_{d}\\left(e^{j \\Omega}\\right)=H_{d}\\left(e^{j \\Omega}\\right) X_{d}\\left(e^{j \\Omega}\\right)\\)\n\\(Y_{p}(j \\omega)=Y_{d}\\left(e^{j \\omega T}\\right)=H_{d}\\left(e^{j \\omega T}\\right) X_{d}\\left(e^{j \\omega T}\\right)=H_{d}\\left(e^{j \\omega T}\\right) X_{p}(j \\omega)\\)\n\\(Y_{c}(j \\omega)=Y_{p}(j \\omega) H_{\\mathrm{lp}}(j \\omega)=H_{d}\\left(e^{j \\omega T}\\right) X_{p}(j \\omega) H_{\\mathrm{lp}}(j \\omega)=H_{d}\\left(e^{j \\omega T}\\right) X_{c}(j \\omega)\\)\n\\(H_{c}(j \\omega)= \\begin{cases}H_{d}\\left(e^{j \\omega T}\\right) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\ 0, & \\text { otherw是e }\\end{cases}\\)\n\n频率响应\n\\[\n\\begin{gathered}\nH_{c}(j \\omega)= \\begin{cases}H_{d}\\left(e^{j \\omega T}\\right) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\\n0, & \\text { otherw是e }\\end{cases} \\\\\n\\Longrightarrow H_{d}\\left(e^{j \\Omega}\\right)=H_{c}\\left(j \\frac{\\Omega}{T}\\right),|\\Omega|&lt;\\pi\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_translated.html#例-数字微分器",
+    "href": "ref/lec19_zh_translated.html#例-数字微分器",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "例: 数字微分器",
+    "text": "例: 数字微分器\n\n\\[\n\\arg H_{c}(j \\omega)\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#目录",
+    "href": "ref/lec19_zh_final.html#目录",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "1 目录",
+    "text": "1 目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#dtft-的卷积性质",
+    "href": "ref/lec19_zh_final.html#dtft-的卷积性质",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "2 DTFT 的卷积性质",
+    "text": "2 DTFT 的卷积性质\n\\[\n(x * h)[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\n\\]\n注：这是 CTFS 中乘法性质的对偶形式。\n\\[\nx(t) y(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow}(\\hat{x} * \\hat{y})[k]\n\\]\n注：与 CTFT 的情形类似，该公式在相关表达式定义良好时成立。\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{x * h\\}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}}(x * h)[n] e^{-j \\omega n}=\\sum_{n \\in \\mathbb{Z}} \\sum_{m \\in \\mathbb{Z}} x[m] h[n-m] e^{-j \\omega n} \\\\\n& =\\sum_{m \\in \\mathbb{Z}} x[m] \\sum_{n \\in \\mathbb{Z}} h[n-m] e^{-j \\omega n} \\\\\n& =\\sum_{m \\in \\mathbb{Z}} x[m] e^{-j \\omega m} H\\left(e^{j \\omega}\\right) \\\\\n& =X\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#lti-系统的频率响应",
+    "href": "ref/lec19_zh_final.html#lti-系统的频率响应",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "3 LTI 系统的频率响应",
+    "text": "3 LTI 系统的频率响应\nLTI 系统 \\(T\\)\n\n可由冲激响应 \\(h\\) 完全表征\n\n\\[\ny=T(x)=h * x\n\\]\n\n若 \\(H=\\mathcal{F}\\{h\\}\\) 定义良好，也可由频率响应 \\(H\\) 完全表征\n对于 BIBO 稳定系统，有 \\(h \\in \\ell_{1}\\)\n其他系统：例如累加器，其 \\(h=u\\)，等等\n\n通常，由卷积性质可得\n\\[\nY=\\mathcal{F}\\{y\\}=H X=\\mathcal{F}\\{h\\} \\mathcal{F}\\{x\\}\n\\]\n不直接计算 \\(x * h\\)，也可以写成\n\\[\ny=\\mathcal{F}^{-1}(\\mathcal{F}\\{h\\} \\mathcal{F}\\{x\\})\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例",
+    "href": "ref/lec19_zh_final.html#例",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "4 例",
+    "text": "4 例\n求冲激响应为 \\(h[n]=a^{n} u[n]\\) 的 LTI 系统在输入 \\(x[n]=b^{n} u[n]\\) 下的响应，其中 \\(|a|&lt;1,|b|&lt;1\\)$ 方法 1：直接卷积 \\(y=x * h\\) 方法 2：在初始静止条件下求解差分方程\n\\[\ny[n]-a y[n-1]=b^{n} u[n]\n\\]\n方法 3：使用傅里叶变换。\n\\[\nH=\\frac{1}{1-a e^{-j \\omega}}, X=\\frac{1}{1-b e^{-j \\omega}} \\Longrightarrow Y=\\frac{1}{\\left(1-a e^{-j \\omega}\\right)\\left(1-b e^{-j \\omega}\\right)}\n\\]\n若 \\(a \\neq b\\)， Y(e^{j })=-, y[n]=(a{n+1}-b{n+1}) u[n]$ 若 \\(a=b\\)， Y(e^{j })=(), y[n]= a^{n+1} u[n]=(n+1) a^{n} u[n]$ 或者利用 \\(Y\\left(e^{j \\omega}\\right)=\\frac{j}{a} e^{j \\omega} \\frac{d}{d \\omega}\\left(\\frac{a}{1-a e^{-j \\omega}}\\right)\\) 以及微分性质"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例-1",
+    "href": "ref/lec19_zh_final.html#例-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "5 例",
+    "text": "5 例\n求冲激响应为 \\(h[n]=a^{n} u[n]\\) 的 LTI 系统在输入 \\(x[n]=\\cos \\left(\\omega_{0} n\\right)\\)、且 \\(|a|&lt;1\\) 时的响应。 频率响应\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{1}{1-a e^{-j \\omega}}\n\\]\n方法 1：利用特征函数性质\n\\[\n\\begin{gathered}\nx[n]=\\frac{1}{2} e^{j \\omega_{0} n}+\\frac{1}{2} e^{-j \\omega_{0} n} \\\\\ny[n]=\\frac{1}{2} H\\left(e^{j \\omega_{0}}\\right) e^{j \\omega_{0} n}+\\frac{1}{2} H\\left(e^{-j \\omega_{0}}\\right) e^{-j \\omega_{0} n}=\\operatorname{Re} \\frac{e^{j \\omega_{0} n}}{1-a e^{-j \\omega_{0}}} \\\\\n=\\frac{1}{\\sqrt{1-2 a \\cos \\omega_{0}+a^{2}}} \\cos \\left(\\omega_{0} n-\\arctan \\frac{a \\sin \\omega_{0}}{1-a \\cos \\omega_{0}}\\right)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例-2",
+    "href": "ref/lec19_zh_final.html#例-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "6 例",
+    "text": "6 例\n方法 2：利用输入的傅里叶变换 \\(X\\)\n\\[\n\\begin{aligned}\n& X\\left(e^{j \\omega}\\right)=\\sum_{k=-\\infty}^{\\infty}\\left[\\pi \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right)+\\pi \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right)\\right] \\\\\n& Y\\left(e^{j \\omega}\\right)=\\sum_{k=-\\infty}^{\\infty} \\pi H\\left(e^{j\\left(\\omega_{0}-2 k \\pi\\right)}\\right) \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right) \\\\\n& \\quad+\\sum_{k=-\\infty}^{\\infty} \\pi H\\left(e^{-j\\left(\\omega_{0}+2 k \\pi\\right)}\\right) \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right) \\\\\n& =H\\left(e^{j \\omega_{0}}\\right) \\sum_{k=-\\infty}^{\\infty} \\pi \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right) \\\\\n& \\quad+H\\left(e^{-j \\omega_{0}}\\right) \\sum_{k=-\\infty}^{\\infty} \\pi \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right) \\\\\n& y[n]=\\frac{1}{2} H\\left(e^{j \\omega_{0}}\\right) e^{j \\omega_{0} n}+\\frac{1}{2} H\\left(e^{-j \\omega_{0}}\\right) e^{-j \\omega_{0} n}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例理想带阻滤波器",
+    "href": "ref/lec19_zh_final.html#例理想带阻滤波器",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "7 例：理想带阻滤波器",
+    "text": "7 例：理想带阻滤波器"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#目录-1",
+    "href": "ref/lec19_zh_final.html#目录-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "8 目录",
+    "text": "8 目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#dtft-的乘积性质",
+    "href": "ref/lec19_zh_final.html#dtft-的乘积性质",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "9 DTFT 的乘积性质",
+    "text": "9 DTFT 的乘积性质\n\\[\nx[n] y[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{2 \\pi} X \\circledast Y=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) Y\\left(e^{j(\\omega-\\theta)}\\right) d \\theta\n\\]\n注：这是 CTFS 中周期卷积性质的对偶形式。\n\\[\nx \\circledast y \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} T \\hat{x} \\hat{y}\n\\]\n证明。\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{x y\\}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}} x[n] y[n] e^{-j \\omega n}=\\sum_{n \\in \\mathbb{Z}}\\left(\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) e^{j \\theta n} d \\theta\\right) y[n] e^{-j \\omega n} \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right)\\left(\\sum_{n \\in \\mathbb{Z}} y[n] e^{-j(\\omega-\\theta) n}\\right) d \\theta \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) Y\\left(e^{j(\\omega-\\theta)}\\right) d \\theta\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例-3",
+    "href": "ref/lec19_zh_final.html#例-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "10 例",
+    "text": "10 例\n\\(x[n]=x_{1}[n] x_{2}[n]\\)，其中 \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\underset{\\uparrow}{\\circledast} X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例-4",
+    "href": "ref/lec19_zh_final.html#例-4",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "11 例",
+    "text": "11 例\n\\(x[n]=x_{1}[n] x_{2}[n]\\)，其中 \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\underset{\\uparrow}{\\circledast} X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { 周期延拓 }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { 非周期卷积 }\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例-5",
+    "href": "ref/lec19_zh_final.html#例-5",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "12 例",
+    "text": "12 例\n\\(x[n]=x_{1}[n] x_{2}[n]\\)，其中 \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\circledast X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { 周期延拓 }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { 非周期卷积 }\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例-6",
+    "href": "ref/lec19_zh_final.html#例-6",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "13 例",
+    "text": "13 例\n\\(x[n]=x_{1}[n] x_{2}[n]\\)，其中 \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\circledast X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { 周期延拓 }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { 非周期卷积 }\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例离散时间调制",
+    "href": "ref/lec19_zh_final.html#例离散时间调制",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "14 例：离散时间调制",
+    "text": "14 例：离散时间调制\n\\[\ny[n]=x[n] c[n]，其中 $c[n]=\\cos \\left(\\omega_{c} n\\right)$\n\\]\n  \n各谱副本之间不重叠：\\(\\left\\{\\begin{array}{l}\\omega_{c}&gt;\\omega_{M} \\\\ \\omega_{c}+\\omega_{M}&lt;\\pi\\end{array} \\quad \\Longrightarrow \\omega_{M}&lt;\\frac{\\pi}{2}\\right.\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例离散时间解调",
+    "href": "ref/lec19_zh_final.html#例离散时间解调",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "15 例：离散时间解调",
+    "text": "15 例：离散时间解调\n\\[\nz[n]=y[n] c[n]，其中 $c[n]=\\cos \\left(\\omega_{c} n\\right)$\n\\]\n  \n通过截止频率 \\(W \\in\\left(\\omega_{M}, 2 \\omega_{c}-\\omega_{M}\\right)\\) 的低通滤波器对 \\(Y\\) 进行滤波，可恢复 \\(X\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#目录-2",
+    "href": "ref/lec19_zh_final.html#目录-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "16 目录",
+    "text": "16 目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#线性常系数差分方程",
+    "href": "ref/lec19_zh_final.html#线性常系数差分方程",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "17 线性常系数差分方程",
+    "text": "17 线性常系数差分方程\n由下式描述的 LTI 系统，其频率响应为\n\\[\n\\sum_{k=0}^{N} a_{k} y[n-k]=\\sum_{k=0}^{M} b_{k} x[n-k]\n\\]\n方法 1：利用特征函数性质\n\\[\nx[n]=e^{j \\omega n} \\Longrightarrow y[n]=H\\left(e^{j \\omega}\\right) e^{j \\omega n}\n\\]\n代入差分方程得\n\\[\n\\begin{gathered}\n\\sum_{k=0}^{N} a_{k} H\\left(e^{j \\omega}\\right) e^{j \\omega(n-k)}=\\sum_{k=0}^{M} b_{k} e^{j \\omega(n-k)} \\\\\nH\\left(e^{j \\omega}\\right)=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#线性常系数差分方程-1",
+    "href": "ref/lec19_zh_final.html#线性常系数差分方程-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "18 线性常系数差分方程",
+    "text": "18 线性常系数差分方程\n方法 2：对方程两边取傅里叶变换\n\\[\n\\mathcal{F}\\left\\{\\sum_{k=0}^{N} a_{k} y[n-k]\\right\\}=\\mathcal{F}\\left\\{\\sum_{k=0}^{M} b_{k} x[n-k]\\right\\}\n\\]\n由线性性质和时移性质\n\\[\n\\sum_{k=0}^{N} a_{k} e^{-j \\omega k} Y\\left(e^{j \\omega}\\right)=\\sum_{k=0}^{M} b_{k} e^{-j \\omega k} X\\left(e^{j \\omega}\\right)\n\\]\n由卷积性质\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{Y\\left(e^{j \\omega}\\right)}{X\\left(e^{j \\omega}\\right)}=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\]\n频率响应是关于 \\(e^{-j \\omega}\\) 的有理函数"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例-7",
+    "href": "ref/lec19_zh_final.html#例-7",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "19 例",
+    "text": "19 例\n考虑由下式描述的 LTI 系统\n\\[\ny[n]-\\frac{3}{4} y[n-1]+\\frac{1}{8} y[n-2]=2 x[n]\n\\]\n频率响应\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{1-\\frac{3}{4} e^{-j \\omega}+\\frac{1}{8} e^{-j 2 \\omega}}\n\\]\n利用部分分式展开\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)}=\\frac{4}{1-\\frac{1}{2} e^{-j \\omega}}-\\frac{2}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\n取逆傅里叶变换得到冲激响应\n\\[\nh[n]=4\\left(\\frac{1}{2}\\right)^{n} u[n]-2\\left(\\frac{1}{4}\\right)^{n} u[n]\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例-8",
+    "href": "ref/lec19_zh_final.html#例-8",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "20 例",
+    "text": "20 例\nFind 响应 to \\(x[n]=\\left(\\frac{1}{4}\\right)^{n} u[n]\\). 响应的傅里叶变换为\n\\[\nY\\left(e^{j \\omega}\\right)=H\\left(e^{j \\omega}\\right) X\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)} \\cdot \\frac{1}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\n利用部分分式展开\n\\[\nY\\left(e^{j \\omega}\\right)=-\\frac{4}{1-\\frac{1}{4} e^{-j \\omega}}-\\frac{2}{\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)^{2}}+\\frac{8}{1-\\frac{1}{2} e^{-j \\omega}}\n\\]\n取逆傅里叶变换得到响应\n\\[\ny[n]=\\left\\{-4\\left(\\frac{1}{4}\\right)^{n}-2(n+1)\\left(\\frac{1}{4}\\right)^{n}+8\\left(\\frac{1}{2}\\right)^{n}\\right\\} u[n]\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#部分分式展开",
+    "href": "ref/lec19_zh_final.html#部分分式展开",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "21 部分分式展开",
+    "text": "21 部分分式展开\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{1-\\frac{3}{4} e^{-j \\omega}+\\frac{1}{8} e^{-j 2 \\omega}}\n\\]\n令 \\(e^{-j \\omega}\\) 用 \\(z\\) 代替，\n\\[\n\\begin{gathered}\nH\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{3}{4} z+\\frac{1}{8} z^{2}}=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)}=\\frac{A}{1-\\frac{1}{2} z}+\\frac{B}{1-\\frac{1}{4} z} \\\\\nA=\\left.\\left[\\left(1-\\frac{1}{2} z\\right) H\\left(z^{-1}\\right)\\right]\\right|_{z=2}=\\left.\\frac{2}{1-\\frac{1}{4} z}\\right|_{z=2}=4 \\\\\nB=\\left.\\left[\\left(1-\\frac{1}{4} z\\right) H\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{2}{1-\\frac{1}{2} z}\\right|_{z=4}=-2\n\\end{gathered}\n\\]\n注：连续时间中各项写成 \\(\\frac{A}{(s-r)^{m}}\\) 的形式，而离散时间中写成 \\(\\frac{A}{(1-r z)^{m}}\\) 的形式。"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#部分分式展开-1",
+    "href": "ref/lec19_zh_final.html#部分分式展开-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "22 部分分式展开",
+    "text": "22 部分分式展开\n\\[\nY\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)} \\cdot \\frac{1}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\n令 \\(e^{-j \\omega}\\) 用 \\(z\\) 代替，\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\n求 \\(A_{1,1}\\)\n\n两边同乘 \\(1-\\frac{1}{2} z\\)，\n\n\\[\n\\left(1-\\frac{1}{2} z\\right) Y\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{4} z\\right)^{2}}=A_{1,1}+\\frac{A_{2,1}\\left(1-\\frac{1}{2} z\\right)}{1-\\frac{1}{4} z}+\\frac{A_{2,2}\\left(1-\\frac{1}{2} z\\right)}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\n\n在 \\(z=2\\) 处取值，即在 \\(1-\\frac{1}{2} z=0\\) 的根处取值\n\n\\[\nA_{1,1}=\\left.\\left[\\left(1-\\frac{1}{2} z\\right) Y\\left(z^{-1}\\right)\\right]\\right|_{z=2}=\\left.\\frac{2}{\\left(1-\\frac{1}{4} z\\right)^{2}}\\right|_{z=2}=8\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#部分分式展开-2",
+    "href": "ref/lec19_zh_final.html#部分分式展开-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "23 部分分式展开",
+    "text": "23 部分分式展开\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\n求 \\(A_{2,2}\\)\n\n两边同乘 \\(\\left(1-\\frac{1}{4} z\\right)^{2}\\)，\n\n\\[\n\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{1}{2} z}=\\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+A_{2,1}\\left(1-\\frac{1}{4} z\\right)+A_{2,2}\n\\]\n\n在 \\(z=4\\) 处取值，即在 \\(1-\\frac{1}{4} z=0\\) 的根处取值\n\n\\[\nA_{2,2}=\\left.\\left[\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{2}{1-\\frac{1}{2} z}\\right|_{z=4}=-2\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#部分分式展开-3",
+    "href": "ref/lec19_zh_final.html#部分分式展开-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "24 部分分式展开",
+    "text": "24 部分分式展开\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\n求 \\(A_{2,1}\\)\n\n两边同乘 \\(\\left(1-\\frac{1}{4} z\\right)^{2}\\)，\n\n\\[\n\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{1}{2} z}=\\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+A_{2,1}\\left(1-\\frac{1}{4} z\\right)+A_{2,2}\n\\]\n\n对两边求导\n\n\\[\n\\frac{d}{d z}\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{1}{\\left(1-\\frac{1}{2} z\\right)^{2}}=\\frac{d}{d z} \\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+\\left(-\\frac{\\mathbf{1}}{\\mathbf{4}}\\right) A_{2,1}\n\\]\n\n在 \\(z=4\\) 处取值，即在 \\(1-\\frac{1}{4} z=0\\) 的根处取值\n\n\\[\nA_{2,1}=\\left.(-4)\\left[\\frac{d}{d z}\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{-4}{\\left(1-\\frac{1}{2} z\\right)^{2}}\\right|_{z=4}=-4\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#frac1left1-a-e-j-omegarightn-的逆傅里叶变换",
+    "href": "ref/lec19_zh_final.html#frac1left1-a-e-j-omegarightn-的逆傅里叶变换",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "25 \\(\\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{n}}\\) 的逆傅里叶变换",
+    "text": "25 \\(\\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{n}}\\) 的逆傅里叶变换\n回顾\n\\[\na^{n} u[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{1-a e^{-j \\omega}}, \\quad|a|&lt;1\n\\]\n即\n\\[\n\\frac{1}{1-a z}=\\sum_{n=0}^{\\infty} a^{n} z^{n}, \\quad z=e^{-j \\omega}\n\\]\n关于 \\(z\\) 求 \\(m-1\\) 次导数\n\\[\n\\frac{(m-1)!a^{m-1}}{(1-a z)^{m}}=\\sum_{n=m-1}^{\\infty} a^{n} \\frac{n!}{(n-m+1)!} z^{n-(m-1)}\n\\]\n\\[\n\\frac{1}{(1-a z)^{m}}=\\sum_{n=m-1}^{\\infty} a^{n-m+1}\\binom{n}{m-1} z^{n-m+1}=\\sum_{n=0}^{\\infty} a^{n}\\binom{n+m-1}{m-1} z^{n}\n\\]\n因此\n\\[\n\\binom{n+m-1}{n} a^{n} u[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{m}}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#目录-3",
+    "href": "ref/lec19_zh_final.html#目录-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "26 目录",
+    "text": "26 目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#冲激列采样",
+    "href": "ref/lec19_zh_final.html#冲激列采样",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "27 冲激列采样",
+    "text": "27 冲激列采样\n离散时间信号 \\(x[n]\\)\n离散时间冲激列 \n\\[\np[n]=\\sum_{k=-\\infty}^{\\infty} \\delta[n-k N]\n\\]\n\n\\[\n\\begin{aligned}\n& \\text { 采样后的信号 } \\\\\n& \\begin{aligned}\nx_{p}[n] & =x[n] p[n] \\\\\n& =\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\n\\end{aligned}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#冲激列采样-1",
+    "href": "ref/lec19_zh_final.html#冲激列采样-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "28 冲激列采样",
+    "text": "28 冲激列采样\n冲激列的频谱\n\\[\nP\\left(e^{j \\omega}\\right)=\\omega_{s} \\sum_{k=-\\infty}^{\\infty} \\delta\\left(\\omega-k \\omega_{s}\\right), \\quad \\omega_{s}=\\frac{2 \\pi}{N}\n\\]\n采样信号的频谱\n\\[\nX_{p}=\\frac{1}{2 \\pi} X \\circledast P=\\frac{1}{2 \\pi} \\tilde{X} * P=\\frac{1}{2 \\pi} X * \\tilde{P}\n\\]\n其中 \\(\\tilde{X}, \\tilde{P}\\) 分别表示 \\(X, P\\) 在一个 \\(2 \\pi\\) 周期内对应的那一段\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)=\\frac{1}{N} \\sum_{k=0}^{N-1} X\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#冲激列采样-2",
+    "href": "ref/lec19_zh_final.html#冲激列采样-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "29 冲激列采样",
+    "text": "29 冲激列采样\n第一种看法：在 \\(k \\omega_{s}\\) 处复制 \\(\\tilde{X}\\)，其中 \\(k \\in \\mathbb{Z}\\)\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#冲激列采样-3",
+    "href": "ref/lec19_zh_final.html#冲激列采样-3",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "30 冲激列采样",
+    "text": "30 冲激列采样\n第二种看法：在 \\(k \\omega_{s}\\) 处复制 \\(X\\)，其中 \\(k=0,1, \\ldots, N-1\\)\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=0}^{N-1} X\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#冲激列采样-4",
+    "href": "ref/lec19_zh_final.html#冲激列采样-4",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "31 冲激列采样",
+    "text": "31 冲激列采样"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#离散时间采样定理",
+    "href": "ref/lec19_zh_final.html#离散时间采样定理",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "32 离散时间采样定理",
+    "text": "32 离散时间采样定理\n若带限离散时间信号 \\(x[n]\\) 的频谱满足当 \\(\\omega_{M}&lt;|\\omega| \\leq \\pi\\) 时 \\(X\\left(e^{j \\omega}\\right)=0\\)，则当满足下式时，它可由样本 \\(x[k N], k \\in \\mathbb{Z}\\) 唯一确定：\n\\[\n\\omega_{s} \\triangleq \\frac{2 \\pi}{N}&gt;2 \\omega_{M}\n\\]\n给定 \\(\\{x[k N]: k \\in \\mathbb{Z}\\}\\)，可按如下方式重建 \\(x[n]\\)：\n\n构造 \\(x_{p}[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\\)\n将 \\(x_{p}\\) 送入一个增益为 \\(N\\)、截止频率为 \\(\\omega_{c} \\in\\left(\\omega_{M}, \\omega_{s}-\\omega_{M}\\right)\\) 的低通滤波器，即\n\n\\[\nH\\left(e^{j \\omega}\\right)=N\\left[u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\\right]\n\\]\n\n输出 \\(x_{r}[n]\\)，其频谱满足 \\(X_{r}\\left(e^{j \\omega}\\right)=X_{p}\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\\)，并且与原信号 \\(x[n]\\) 相同"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#时域重建",
+    "href": "ref/lec19_zh_final.html#时域重建",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "33 时域重建",
+    "text": "33 时域重建\n\n该低通滤波器的冲激响应\n\\[\nh[n]=\\frac{N \\sin \\left(\\omega_{c} n\\right)}{\\pi n}\n\\]\n利用 sinc 函数进行带限插值即可恢复 \\(x\\)\n\\[\nx[n]=x_{r}[n]=\\left(x_{p} * h\\right)[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\frac{N \\sin \\left(\\omega_{c}(n-k N)\\right)}{\\pi(n-k N)}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#抽取",
+    "href": "ref/lec19_zh_final.html#抽取",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "34 抽取",
+    "text": "34 抽取\n离散时间信号 \\(x[n]\\) \n采样后的信号\n\\[\nx_{p}[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\n\\]\n\n抽取后的信号\n\\[\nx_{b}[n]=x[n N]\n\\]\n样本数减少"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#抽取-1",
+    "href": "ref/lec19_zh_final.html#抽取-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "35 抽取",
+    "text": "35 抽取\n\\[\n\\begin{aligned}\nX_{b}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}} x_{b}[n] e^{-j \\omega n} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x[n N] e^{-j \\omega n} \\\\\n& =\\sum_{k \\in N \\mathbb{Z}} x[k] e^{-j \\omega k / N} \\quad(k=n N) \\\\\n& =\\sum_{k \\in \\mathbb{Z}} x_{p}[k] e^{-j \\frac{\\omega}{N} k} \\quad\\left(x_{p}[n]=0 \\text { for } n \\in \\mathbb{Z} \\backslash N \\mathbb{Z}\\right) \\\\\n& =X_{p}\\left(e^{j \\omega / N}\\right)\n\\end{aligned}\n\\]\n回顾：\\(X_{p}\\left(e^{j \\omega}\\right)\\) 的周期为 \\(2 \\pi / N\\)，因此 \\(X_{b}\\left(e^{j \\omega}\\right)\\) 的周期为 \\(2 \\pi\\)。 若采样中没有混叠\n\n在每个周期内，\\(X_{b}\\) 都是 \\(X\\) 的拉伸版本\n\\(X_{b}\\left(e^{j \\omega}\\right)=X_{p}\\left(e^{j \\omega / N}\\right)\\)，但 \\(X_{b}\\left(e^{j \\omega}\\right) \\neq X\\left(e^{j \\omega / N}\\right)\\)"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#抽取-2",
+    "href": "ref/lec19_zh_final.html#抽取-2",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "36 抽取",
+    "text": "36 抽取"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#目录-4",
+    "href": "ref/lec19_zh_final.html#目录-4",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "37 目录",
+    "text": "37 目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#连续时间信号的离散时间处理",
+    "href": "ref/lec19_zh_final.html#连续时间信号的离散时间处理",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "38 连续时间信号的离散时间处理",
+    "text": "38 连续时间信号的离散时间处理\n\n离散时间处理的优点\n\n数字电子设备具有很强的通用性\n对噪声具有较强的鲁棒性\n\n在实际中\n\nC/D 由模数转换器实现\nD/C 由数模转换器实现\n\n理想化假设\n\n不考虑量化\nC/D 采用冲激列采样\nD/C 采用理想重建"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#模数转换cd",
+    "href": "ref/lec19_zh_final.html#模数转换cd",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "39 模数转换（C/D）",
+    "text": "39 模数转换（C/D）\n\n假设\n\n\\(x_{c}(t)\\) 是带限信号，例如已通过低通滤波\n采样频率高于奈奎斯特率，因此无混叠\n\n连续时间频谱与离散时间频谱之间的关系\n\\[\n\\begin{aligned}\nX_{p}(j \\omega) & =\\mathrm{CTFT}\\left\\{\\sum_{n \\in \\mathbb{Z}} x_{c}(n T) \\delta(t-n T)\\right\\} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x_{c}(n T) e^{-j \\omega T n}=\\sum_{n \\in \\mathbb{Z}} x_{d}[n] e^{-j \\omega T n}=X_{d}\\left(e^{j \\omega T}\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#模数转换cd-1",
+    "href": "ref/lec19_zh_final.html#模数转换cd-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "40 模数转换（C/D）",
+    "text": "40 模数转换（C/D）\n时域 \n频域 \n \n从 \\(x_{p}\\) 到 \\(x_{d}\\)：在时间和频率两个维度上都做了归一化"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#数模转换dc",
+    "href": "ref/lec19_zh_final.html#数模转换dc",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "41 数模转换（D/C）",
+    "text": "41 数模转换（D/C）\nC/D 转换 \n连续时间频谱与离散时间频谱之间的关系\n\\[\n\\begin{aligned}\n& Y_{p}(j \\omega)=Y_{d}\\left(e^{j \\omega T}\\right) \\\\\n& Y_{c}(j \\omega)= \\begin{cases}Y_{p}(j \\omega) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\\n0, & \\text { 否则 }\\end{cases}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#数模转换dc-1",
+    "href": "ref/lec19_zh_final.html#数模转换dc-1",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "42 数模转换（D/C）",
+    "text": "42 数模转换（D/C）\n时域 \n频域 \n频域 \n\n这是 C/D 转换的逆过程"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#频率响应",
+    "href": "ref/lec19_zh_final.html#频率响应",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "43 频率响应",
+    "text": "43 频率响应\n\n\n\\(Y_{d}\\left(e^{j \\Omega}\\right)=H_{d}\\left(e^{j \\Omega}\\right) X_{d}\\left(e^{j \\Omega}\\right)\\)\n\\(Y_{p}(j \\omega)=Y_{d}\\left(e^{j \\omega T}\\right)=H_{d}\\left(e^{j \\omega T}\\right) X_{d}\\left(e^{j \\omega T}\\right)=H_{d}\\left(e^{j \\omega T}\\right) X_{p}(j \\omega)\\)\n\\(Y_{c}(j \\omega)=Y_{p}(j \\omega) H_{\\mathrm{lp}}(j \\omega)=H_{d}\\left(e^{j \\omega T}\\right) X_{p}(j \\omega) H_{\\mathrm{lp}}(j \\omega)=H_{d}\\left(e^{j \\omega T}\\right) X_{c}(j \\omega)\\)\n\\(H_{c}(j \\omega)= \\begin{cases}H_{d}\\left(e^{j \\omega T}\\right) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\ 0, & \\text { otherwise }\\end{cases}\\)\n\n频率响应\n\\[\n\\begin{gathered}\nH_{c}(j \\omega)= \\begin{cases}H_{d}\\left(e^{j \\omega T}\\right) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\\n0, & \\text { 否则 }\\end{cases} \\\\\n\\Longrightarrow H_{d}\\left(e^{j \\Omega}\\right)=H_{c}\\left(j \\frac{\\Omega}{T}\\right),|\\Omega|&lt;\\pi\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/lec19_zh_final.html#例-数字微分器",
+    "href": "ref/lec19_zh_final.html#例-数字微分器",
+    "title": "EL331 信号与系统 · 第19讲（中文版）",
+    "section": "44 例: 数字微分器",
+    "text": "44 例: 数字微分器\n\n\\[\n\\arg H_{c}(j \\omega)\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#toc0",
+    "href": "Chapter05_V3.html#toc0",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：离散时间傅里叶变换\n2. 离散时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 对偶性\n7. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter05_V3.html#toc1",
+    "href": "Chapter05_V3.html#toc1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：离散时间傅里叶变换\n2. 离散时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 对偶性\n7. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter05_V3.html#toc2",
+    "href": "Chapter05_V3.html#toc2",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：离散时间傅里叶变换\n2. 离散时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 对偶性\n7. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter05_V3.html#toc3",
+    "href": "Chapter05_V3.html#toc3",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：离散时间傅里叶变换\n2. 离散时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 对偶性\n7. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter05_V3.html#toc4",
+    "href": "Chapter05_V3.html#toc4",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：离散时间傅里叶变换\n2. 离散时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 对偶性\n7. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter05_V3.html#toc5",
+    "href": "Chapter05_V3.html#toc5",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：离散时间傅里叶变换\n2. 离散时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 对偶性\n7. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter05_V3.html#toc6",
+    "href": "Chapter05_V3.html#toc6",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：离散时间傅里叶变换\n2. 离散时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 对偶性\n7. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间傅里叶变换",
+    "href": "Chapter05_V3.html#离散时间傅里叶变换",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间傅里叶变换",
+    "text": "离散时间傅里叶变换\n设 \\(x\\) 是一个非周期离散时间信号，并且 \\(\\operatorname{supp} x \\subset\\left[N_{1}, N_{2}\\right]\\)\n\n\n\n\n\n定义其周期延拓，周期满足 \\(N&gt;N_{2}-N_{1}+1\\)：\n\\[\nx_{N}[n]=\\sum_{k=-\\infty}^{\\infty} x[n+k N]\n\\]\n\\[\nx_{N}[n]\n\\]\n\n\n\n\n\n\\(x\\) 可以看作“周期为无穷大”的周期信号，即 \\(x[n]=\\lim _{N \\rightarrow \\infty} x_{N}[n]\\)"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间傅里叶变换-1",
+    "href": "Chapter05_V3.html#离散时间傅里叶变换-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间傅里叶变换",
+    "text": "离散时间傅里叶变换\n将 \\(x_{N}\\) 展开为离散时间傅里叶级数\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j \\frac{2 \\pi}{N} k}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\frac{2 \\pi}{N} k}=\\frac{1}{N} X\\left(e^{j k \\omega_{0}}\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间傅里叶变换-2",
+    "href": "Chapter05_V3.html#离散时间傅里叶变换-2",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间傅里叶变换",
+    "text": "离散时间傅里叶变换\n当 \\(N\\) 增大时，离散频率的采样会变得更加稠密\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j \\frac{2 \\pi}{N} k}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\frac{2 \\pi}{N} k}=\\frac{1}{N} X\\left(e^{j k \\omega_{0}}\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间傅里叶变换-3",
+    "href": "Chapter05_V3.html#离散时间傅里叶变换-3",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间傅里叶变换",
+    "text": "离散时间傅里叶变换\n当 \\(N \\rightarrow \\infty\\) 时，\\(N \\hat{x}[k]\\) 逐渐逼近包络 \\(X\\left(e^{j \\omega}\\right)\\)\n\\[\nx_{N}[n]\n\\]\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j \\frac{2 \\pi}{N} k}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\frac{2 \\pi}{N} k}=\\frac{1}{N} X\\left(e^{j k \\omega_{0}}\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间傅里叶变换-4",
+    "href": "Chapter05_V3.html#离散时间傅里叶变换-4",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间傅里叶变换",
+    "text": "离散时间傅里叶变换\n离散时间傅里叶级数的综合公式为：\n\\[\nx_{N}[n]=\\sum_{k \\in[N]} \\hat{x}[k] e^{j k \\omega_{0} n}=\\frac{1}{N} \\sum_{k=0}^{N-1} X\\left(e^{j k \\omega_{0}}\\right) e^{j k \\omega_{0} n}\n\\]\n令 \\(\\omega_{k}=k \\omega_{0}, \\Delta \\omega=\\omega_{k}-\\omega_{k-1}=\\omega_{0}\\)，\n\\[\nx_{N}[n]=\\frac{1}{2 \\pi} \\sum_{k=0}^{N-1} X\\left(e^{j \\omega_{k}}\\right) e^{j \\omega_{k} n} \\Delta \\omega\n\\]\n当 \\(N \\rightarrow \\infty\\)、\\(\\Delta \\omega \\rightarrow 0\\) 时，上述黎曼和变为积分：\n\\[\nx[n]=\\frac{1}{2 \\pi} \\int_{0}^{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]\n可在任意长度为 \\(2 \\pi\\) 的周期区间上积分"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间傅里叶变换变换对",
+    "href": "Chapter05_V3.html#离散时间傅里叶变换变换对",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间傅里叶变换变换对",
+    "text": "离散时间傅里叶变换变换对\n离散时间傅里叶变换（分析公式）\n\\[\nX\\left(e^{j \\omega}\\right)=\\mathcal{F}(x)\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}\n\\]\n\n\\(X\\left(e^{j \\omega}\\right)\\) 称为 \\(x[n]\\) 的频谱，且以 \\(2 \\pi\\) 为周期\n\n离散时间逆傅里叶变换（综合公式）\n\\[\nx[n]=\\mathcal{F}^{-1}(X)[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]\n\n频率为 \\(\\omega\\) 的复指数分量的权重为 \\(X\\left(e^{j \\omega}\\right) \\frac{d \\omega}{2 \\pi}\\)\n只需在一个周期内积分，即只使用彼此不同的 \\(e^{j \\omega n}\\)"
+  },
+  {
+    "objectID": "Chapter05_V3.html#dtft-与-ctfs-之间的对偶性",
+    "href": "Chapter05_V3.html#dtft-与-ctfs-之间的对偶性",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "DTFT 与 CTFS 之间的对偶性",
+    "text": "DTFT 与 CTFS 之间的对偶性\nDTFT 变换对\n\n离散时间\n连续频率 分析公式\n\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}\n\\]\n综合公式\n\\[\nx[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]\nCTFS 变换对\n\n连续时间\n离散频率 分析公式\n\n\\[\n\\hat{x}[k]=\\frac{1}{T} \\int_{T} x(t) e^{-j k \\frac{2 \\pi}{T} t} d t\n\\]\n综合公式\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\frac{2 \\pi}{T} t}\n\\]\n\\[\n\\begin{aligned}\n& \\text { continuous variable } \\xrightarrow{\\text { CTFS }} \\text { doubly infinite sequences } \\\\\n& \\text { periodic functions }\n\\end{aligned} \\xrightarrow[\\text { DTFT }]{\\leftarrow} \\text { 双向映射 }\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间信号的高频与低频",
+    "href": "Chapter05_V3.html#离散时间信号的高频与低频",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间信号的高频与低频",
+    "text": "离散时间信号的高频与低频\n高频对应于 \\((2 k+1) \\pi\\) 附近，低频对应于 \\(2 k \\pi\\) 附近    \\(\\phi_{N}^{0}[n]=\\cos (0 \\cdot n)=1\\) \\(\\phi_{N}^{1}[n]=\\cos (\\pi n / 4)\\) \\(\\phi_{N}^{2}[n]=\\cos (\\pi n / 2)\\)    \\(\\phi_{N}^{3}[n]=\\cos (3 \\pi n / 4)\\) \\(\\phi_{N}^{4}[n]=\\cos (\\pi n)\\) \\(\\phi_{N}^{5}[n]=\\cos (5 \\pi n / 4)\\)  \\(\\phi_{N}^{6}[n]=\\cos (3 \\pi n / 2)\\)  \\(\\phi_{N}^{7}[n]=\\cos (7 \\pi n / 4)\\)  \\(\\phi_{N}^{8}[n]=\\cos (2 \\pi n)=1\\)"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间信号的高频与低频-1",
+    "href": "Chapter05_V3.html#离散时间信号的高频与低频-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间信号的高频与低频",
+    "text": "离散时间信号的高频与低频\n\\(N\\) 周期信号的离散频率\n\n在单位圆上均匀分布的点\n低频靠近 \\(1\\)；高频靠近 \\(-1\\)"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间信号的高频与低频-2",
+    "href": "Chapter05_V3.html#离散时间信号的高频与低频-2",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间信号的高频与低频",
+    "text": "离散时间信号的高频与低频"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例单边衰减指数序列",
+    "href": "Chapter05_V3.html#例单边衰减指数序列",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例：单边衰减指数序列",
+    "text": "例：单边衰减指数序列\n\\[\nx[n]=a^{n} u[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=\\frac{1}{1-a e^{-j \\omega}}, \\quad|a|&lt;1\n\\]\n\\(\\left|X\\left(e^{j \\omega}\\right)\\right|=\\frac{1}{\\sqrt{1-2 a \\cos \\omega+a^{2}}}, \\quad \\arg X\\left(e^{j \\omega}\\right)=-\\arctan \\frac{a \\sin \\omega}{1-a \\cos \\omega}\\)"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例双边衰减指数序列",
+    "href": "Chapter05_V3.html#例双边衰减指数序列",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例：双边衰减指数序列",
+    "text": "例：双边衰减指数序列\n\\[\nx[n]=a^{|n|} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=\\frac{1-a^{2}}{1-2 a \\cos \\omega+a^{2}}, \\quad|a|&lt;1\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例矩形脉冲",
+    "href": "Chapter05_V3.html#例矩形脉冲",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例：矩形脉冲",
+    "text": "例：矩形脉冲\n\\[\nx[n]=u\\left[n+N_{1}\\right]-u\\left[n-N_{1}-1\\right] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=\\frac{\\sin \\left(\\frac{2 N_{1}+1}{2} \\omega\\right)}{\\sin \\frac{\\omega}{2}}\n\\]\n\n\n\n\n\n\\[\nX\\left(e^{j \\omega}\\right)\n\\]\n\n\n\n\n\nDirichlet 核（周期情形）是 sinc 函数（非周期情形）在离散时间中的对应物 注意：\\(N_{1}=0 \\Longrightarrow x[n]=\\delta[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=1\\)"
+  },
+  {
+    "objectID": "Chapter05_V3.html#dtft-的收敛性",
+    "href": "Chapter05_V3.html#dtft-的收敛性",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "DTFT 的收敛性",
+    "text": "DTFT 的收敛性\n令\n\\[\nX_{N}\\left(e^{j \\omega}\\right)=\\sum_{n=-N}^{N} x[n] e^{-j \\omega n}\n\\]\n定理：若 \\(x \\in \\ell_{1}\\)，则 \\(X_{N}\\) 一致收敛到 \\(X\\)，即\n\\[\n\\lim _{N \\rightarrow \\infty}\\left\\|X-X_{N}\\right\\|_{\\infty}=0\n\\]\n因此，傅里叶变换 \\(X\\) 是一致连续的。 定理：若 \\(x \\in \\ell_{2}\\)，则 \\(X_{N}\\) 在 \\(L_{2}\\) 意义下收敛到 \\(X\\)，即\n\\[\n\\lim _{N \\rightarrow \\infty}\\left\\|X-X_{N}\\right\\|_{2}=0\n\\]\n\nCTFS：\\(L_{2}(T) \\rightarrow \\ell_{2}\\) 是 Hilbert 空间之间的同构\nDTFT：\\(\\ell_{2} \\rightarrow L_{2}(2 \\pi)\\) 也是同构"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例理想低通滤波器",
+    "href": "Chapter05_V3.html#例理想低通滤波器",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例：理想低通滤波器",
+    "text": "例：理想低通滤波器\n$$\n\\[\\begin{aligned}\n& x[n]=\\frac{\\sin (W n)}{\\pi n} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=\\sum_{k=-\\infty}^{\\infty}[u(\\omega+W+2 k \\pi)-u(\\omega-W+2 k \\pi)] \\\\\n\n\\end{aligned}\\]\n$$\n注意：\\(x \\notin \\ell_{1}\\)，且 \\(X\\) 不连续"
+  },
+  {
+    "objectID": "Chapter05_V3.html#作为广义函数的收敛",
+    "href": "Chapter05_V3.html#作为广义函数的收敛",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "作为广义函数的收敛",
+    "text": "作为广义函数的收敛\n复指数信号 \\(x[n]=e^{j \\omega_{0} n}\\) 不属于 \\(\\ell_{1}\\) 也不属于 \\(\\ell_{2}\\)。 （平移后的）Dirichlet 核\n\\[\nX_{N}\\left(e^{j \\omega n}\\right)=\\frac{\\sin \\left(\\frac{2 N_{1}+1}{2}\\left(\\omega-\\omega_{0}\\right)\\right)}{\\sin \\frac{\\omega-\\omega_{0}}{2}} \\rightarrow 2 \\pi \\sum_{\\ell=-\\infty}^{\\infty} \\delta\\left(\\omega-\\omega_{0}-2 \\ell \\pi\\right)\n\\]\n在分布（广义函数）意义下，有\n\\[\nx[n]=e^{j \\omega_{0} n} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=2 \\pi \\sum_{\\ell=-\\infty}^{\\infty} \\delta\\left(\\omega-\\omega_{0}-2 \\ell \\pi\\right)\n\\]\n利用综合公式进行形式验证\n\\[\nx[n]=\\frac{1}{2 \\pi} \\int_{-\\pi}^{\\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega=\\int_{-\\pi}^{\\pi} \\delta\\left(\\omega-\\omega_{0}\\right) e^{j \\omega n} d \\omega=e^{j \\omega_{0} n}\n\\]\n注意：也可通过对 \\(e^{j \\omega_{0} t}\\) 以 \\(T=1, \\omega_{s}=2 \\pi\\) 采样得到 注意：\\(x[n]\\) 不一定是周期信号！直流分量对应 \\(\\omega_{0}=0\\)。"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例正弦信号",
+    "href": "Chapter05_V3.html#例正弦信号",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例：正弦信号",
+    "text": "例：正弦信号\n\\[\n\\begin{aligned}\nx[n] & =\\cos \\left(\\omega_{0} n+\\phi\\right)=\\frac{e^{j \\phi}}{2} e^{j \\omega_{0} n}+\\frac{e^{-j \\phi}}{2} e^{-j \\omega_{0} n} \\\\\nX\\left(e^{j \\omega}\\right) & =\\sum_{\\ell=-\\infty}^{\\infty} \\pi e^{j \\phi} \\delta\\left(\\omega-\\omega_{0}-2 \\ell \\pi\\right)+\\pi e^{-j \\phi} \\delta\\left(\\omega+\\omega_{0}-2 \\ell \\pi\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#周期信号的-dtft",
+    "href": "Chapter05_V3.html#周期信号的-dtft",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "周期信号的 DTFT",
+    "text": "周期信号的 DTFT\n\n\n\n\n\n回顾：DTFS 系数 \\(\\hat{x}_{N}[k]\\) 就是频率 \\(k \\omega_{0}\\) 处的幅值\n\\[\n\\hat{x}_{N}[k]=\\frac{1}{N} X\\left(e^{j k \\omega_{0}}\\right), \\quad \\text { 其中 } X=\\mathcal{F}\\{x\\}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#周期信号的-dtft-1",
+    "href": "Chapter05_V3.html#周期信号的-dtft-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "周期信号的 DTFT",
+    "text": "周期信号的 DTFT\n\n\n\n\n\nDTFT 中 \\((2 \\pi)^{-1} X\\left(e^{j \\omega}\\right)\\) 表示频率 \\(\\omega\\) 处的密度\n\\[\nX\\left(e^{j \\omega}\\right)=2 \\pi \\sum_{k=-\\infty}^{\\infty} \\hat{x}_{N}[k] \\delta\\left(\\omega-k \\omega_{0}\\right)=\\omega_{0} \\sum_{k=-\\infty}^{\\infty} X\\left(e^{j k \\omega_{0}}\\right) \\delta\\left(\\omega-k \\omega_{0}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#周期信号的-dtft-2",
+    "href": "Chapter05_V3.html#周期信号的-dtft-2",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "周期信号的 DTFT",
+    "text": "周期信号的 DTFT\n回顾 \\(x_{N}\\) 的 DTFS 表达式\n\\[\nx_{N}[n]=\\sum_{k=0}^{N-1} \\hat{x}_{N}[k] e^{j \\frac{2 k \\pi}{N} n}\n\\]\n对两边取 DTFT，并利用线性性质以及复指数信号的 DTFT，得到\n\\[\n\\begin{aligned}\nX_{N}\\left(e^{j \\omega}\\right) & =\\sum_{k=0}^{N-1} \\hat{x}_{N}[k] \\mathcal{F}\\left\\{e^{j \\frac{2 k \\pi}{N} n}\\right\\}=\\sum_{k=0}^{N-1} \\hat{x}_{N}[k] \\sum_{\\ell=-\\infty}^{\\infty} 2 \\pi \\delta\\left(\\omega-\\frac{2 k \\pi}{N}-2 \\ell \\pi\\right) \\\\\n& =2 \\pi \\sum_{\\ell=-\\infty}^{\\infty} \\sum_{k=0}^{N-1} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2(k+\\ell N) \\pi}{N}\\right) \\\\\n& =2 \\pi \\sum_{k=-\\infty}^{\\infty} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2 k \\pi}{N}\\right) \\quad\\left(\\text { Recall } \\hat{x}_{N}[k]=\\hat{x}_{N}[k+\\ell N]\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#周期信号的-dtft-3",
+    "href": "Chapter05_V3.html#周期信号的-dtft-3",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "周期信号的 DTFT",
+    "text": "周期信号的 DTFT\nCan also verify formally using 综合公式\n\\[\n\\frac{1}{2 \\pi} \\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega=\\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} \\sum_{k=-\\infty}^{\\infty} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2 k \\pi}{N}\\right) e^{j \\omega n} d \\omega\n\\]\n只有 \\(k=0,1, \\ldots, N-1\\) 的项落在积分区间内\n\\[\n\\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} \\sum_{k=0}^{N-1} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2 k \\pi}{N}\\right) e^{j \\omega n} d \\omega=\\sum_{k=0}^{N-1} \\hat{x}_{N}[k] e^{j \\frac{2 k \\pi}{N} n}=x_{N}[n]\n\\]\n其中 last equality is DTFS 综合公式 因此得到验证\n\\[\nx_{N}[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例离散时间周期冲激串",
+    "href": "Chapter05_V3.html#例离散时间周期冲激串",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例：离散时间周期冲激串",
+    "text": "例：离散时间周期冲激串\n\\[\nx[n]=\\sum_{k=-\\infty}^{\\infty} \\delta[n-k N] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)=\\frac{2 \\pi}{N} \\sum_{k=-\\infty}^{\\infty} \\delta\\left(\\omega-\\frac{2 \\pi k}{N}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#目录",
+    "href": "Chapter05_V3.html#目录",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间傅里叶变换-5",
+    "href": "Chapter05_V3.html#离散时间傅里叶变换-5",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "1. 离散时间傅里叶变换",
+    "text": "1. 离散时间傅里叶变换\n\n离散时间傅里叶变换的性质"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间傅里叶变换的性质",
+    "href": "Chapter05_V3.html#离散时间傅里叶变换的性质",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间傅里叶变换的性质",
+    "text": "离散时间傅里叶变换的性质\n周期性\n\\[\nX\\left(e^{j(\\omega+2 \\pi)}\\right)=X\\left(e^{j(\\omega)}\\right)\n\\]\n线性\n\\[\n\\mathcal{F}\\{a x+b y\\}=a \\mathcal{F}\\{x\\}+b \\mathcal{F}\\{y\\}\n\\]\n时移与频移 若\n\\[\nx[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)\n\\]\nthen\n\\[\nx\\left[n-n_{0}\\right] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} e^{-j \\omega n_{0}} X\\left(e^{j \\omega}\\right)\n\\]\n并且\n\\[\ne^{j \\omega_{0} n} x[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j\\left(\\omega-\\omega_{0}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例高通与低通滤波器",
+    "href": "Chapter05_V3.html#例高通与低通滤波器",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例：高通与低通滤波器",
+    "text": "例：高通与低通滤波器\n\n\n\n\n\n\\[\nH_{\\mathrm{hp}}\\left(e^{j \\omega}\\right)=H_{\\mathrm{lp}}\\left(e^{j(\\omega-\\pi)}\\right)\n\\]\n\n\n\n\n\n\\[\nH_{\\mathrm{hp}}\\left(e^{j \\omega}\\right)=H_{\\mathrm{lp}}\\left(e^{j(\\omega-\\pi)}\\right) \\Longleftrightarrow h_{\\mathrm{hp}}[n]=e^{j \\pi n} h_{\\mathrm{lp}}[n]=(-1)^{n} h_{\\mathrm{lp}}[n]\n\\]\n利用低通滤波器实现高通滤波 \\(y=x * h_{\\mathrm{hp}}\\) (1) \\(x_{1}[n]=(-1)^{n} x[n]\\)； (2) \\(y_{1}=x_{1} * h_{\\mathrm{lp}}\\)； (3) \\(y[n]=(-1)^{n} y_{1}[n]\\)"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间傅里叶变换的性质-1",
+    "href": "Chapter05_V3.html#离散时间傅里叶变换的性质-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间傅里叶变换的性质",
+    "text": "离散时间傅里叶变换的性质\n设\n\\[\nx[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)\n\\]\n时间反转\n\\[\nx[-n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{-j \\omega}\\right)\n\\]\n共轭\n\\[\nx^{*}[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X^{*}\\left(e^{-j \\omega}\\right)\n\\]\n对称性\n\n\\(x\\) 为偶信号 \\(\\Longleftrightarrow X\\) 为偶函数，\\(\\quad x\\) 为奇信号 \\(\\Longleftrightarrow X\\) 为奇函数\n\\(x\\) 为实信号 \\(\\Longleftrightarrow X\\left(e^{-j \\omega}\\right)=X^{*}\\left(e^{j \\omega}\\right)\\)\n\\(x\\) real 并且 even \\(\\Longleftrightarrow X\\) real 并且 even\n\\(x\\) real 并且 odd \\(\\Longleftrightarrow X\\) purely imaginary 并且 odd"
+  },
+  {
+    "objectID": "Chapter05_V3.html#differencing-并且-accumulation",
+    "href": "Chapter05_V3.html#differencing-并且-accumulation",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "Differencing 并且 Accumulation",
+    "text": "Differencing 并且 Accumulation\n一阶（后向）差分\n\\[\nx[n]-x[n-1] \\stackrel{\\mathcal{F}}{\\longleftrightarrow}\\left(1-e^{-j \\omega}\\right) X\\left(e^{j \\omega}\\right)\n\\]\n累加（运行和）\n\\[\ny[n]=\\sum_{m=-\\infty}^{n} x[m] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{1-e^{-j \\omega}} X\\left(e^{j \\omega}\\right)+\\pi X\\left(e^{j 0}\\right) \\sum_{k=-\\infty}^{\\infty} \\delta(\\omega-2 \\pi k)\n\\]\n\n第一项来自差分性质\n第二项是直流分量 \\(\\mathcal{F}\\{\\bar{y}\\}\\) 的 DTFT，其中 \\(\\bar{y}=\\frac{1}{2} X\\left(e^{j 0}\\right)\\)；参见第 15 讲第 17 页\n\n例：由于 \\(\\delta[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} 1\\)，\n\\[\nu[n]=\\sum_{m=-\\infty}^{n} \\delta[m] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{1-e^{-j \\omega}}+\\pi \\sum_{k=-\\infty}^{\\infty} \\delta(\\omega-2 \\pi k)\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#时间扩展",
+    "href": "Chapter05_V3.html#时间扩展",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "时间扩展",
+    "text": "时间扩展\n定义 \\(x_{(m)}\\) 为\n\\[\nx_{(m)}[n]= \\begin{cases}x[n / m], & \\text { if } n \\text { is multiple of } m \\\\ 0, & \\text { otherwise }\\end{cases}\n\\]\n\n\n\n\n\n\n\n\n\n\n若\n\\[\nx[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)\n\\]\nthen\n\\[\nx_{(m)}[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j m \\omega}\\right)\n\\]\n证明。\n\\[\n\\mathcal{F}\\left\\{x_{(m)}\\right\\}\\left(e^{j m \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x_{(m)}[n] e^{-j \\omega n}=\\sum_{\\ell=-\\infty}^{\\infty} x[\\ell] e^{-j \\omega m \\ell}=X\\left(e^{j m \\omega}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例",
+    "href": "Chapter05_V3.html#例",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\n\n\n\n\n\\[\nX\\left(e^{j \\omega}\\right)\n\\]\n\n\n\n\n\n\\[\n\\left.X_{(2)}\\left(e^{j \\omega}\\right)=X_{( } e^{j 2 \\omega}\\right)\n\\]\n\n\n\n\n\n\n\n\n\n\n\\[\nx_{(3)}[n]\n\\]\n\n\\[\n\\left.X_{(3)}\\left(e^{j \\omega}\\right)=X_{( } e^{j 3 \\omega}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#频率微分性质",
+    "href": "Chapter05_V3.html#频率微分性质",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "频率微分性质",
+    "text": "频率微分性质\n若\n\\[\nx[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)\n\\]\nthen\n\\[\nn x[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} j \\frac{d}{d \\omega} X\\left(e^{j \\omega}\\right)\n\\]\n证明。\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}\n\\]\n在求和号内对 \\(\\omega\\) 求导\n\\[\n\\frac{d}{d \\omega} X\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x[n](-j n) e^{-j \\omega n}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#帕塞瓦尔恒等式",
+    "href": "Chapter05_V3.html#帕塞瓦尔恒等式",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "帕塞瓦尔恒等式",
+    "text": "帕塞瓦尔恒等式\nTheorem. 若 \\(x \\in \\ell_{2}, X=\\mathcal{F}\\{x\\}\\), then\n\\[\n\\|x\\|_{\\ell_{2}}^{2}=\\|X\\|_{L_{2}(2 \\pi)}^{2}, \\quad \\text { or } \\quad \\sum_{n \\in \\mathbb{Z}}|x[n]|^{2}=\\frac{1}{2 \\pi} \\int_{2 \\pi}\\left|X\\left(e^{j \\omega}\\right)\\right|^{2} d \\omega\n\\]\nNote \\(\\omega\\) is angular frequency 并且 \\(\\frac{\\omega}{2 \\pi}\\) is frequency\n\\[\n\\sum_{n \\in \\mathbb{Z}}|x[n]|^{2}=\\int_{2 \\pi}\\left|X\\left(e^{j \\omega}\\right)\\right|^{2} \\frac{d \\omega}{2 \\pi}\n\\]\n解释：能量守恒\n\n\\(\\sum_{n \\in \\mathbb{Z}}|x[n]|^{2}\\) 是总能量\n\\(\\left|X\\left(e^{j \\omega}\\right)\\right|^{2}\\) 是单位频率上的能量 \\(\\left|X\\left(e^{j \\omega}\\right)\\right|^{2}\\) 称为能量密度谱"
+  },
+  {
+    "objectID": "Chapter05_V3.html#帕塞瓦尔恒等式-1",
+    "href": "Chapter05_V3.html#帕塞瓦尔恒等式-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "帕塞瓦尔恒等式",
+    "text": "帕塞瓦尔恒等式\nTheorem. 若 \\(x, y \\in \\ell_{2}, X=\\mathcal{F}\\{x\\}, Y=\\mathcal{F}\\{y\\}\\), then\n\\[\n\\langle x, y\\rangle_{\\ell_{2}}=\\langle X, Y\\rangle_{L_{2}(2 \\pi)}, \\quad \\text { or } \\quad \\sum_{n \\in \\mathbb{Z}} x[n] y^{*}[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) Y^{*}\\left(e^{j \\omega}\\right) d \\omega\n\\]\n证明。\n\\[\n\\begin{aligned}\n\\langle X, Y\\rangle_{L_{2}(2 \\pi)} & =\\left\\langle\\sum_{n \\in \\mathbb{Z}} x[n] e^{-j \\omega n}, \\sum_{m \\in \\mathbb{Z}} y[m] e^{-j \\omega m}\\right\\rangle_{L_{2}(2 \\pi)} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x[n] \\sum_{m \\in \\mathbb{Z}} y^{*}[m]\\left\\langle e^{-j \\omega n}, e^{-j \\omega m}\\right\\rangle_{L_{2}(2 \\pi)} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x[n] \\sum_{m \\in \\mathbb{Z}} y^{*}[m] \\delta[n-m] \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x[n] y^{*}[n]=\\langle x, y\\rangle_{\\ell_{2}}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#dtft-的卷积性质",
+    "href": "Chapter05_V3.html#dtft-的卷积性质",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "DTFT 的卷积性质",
+    "text": "DTFT 的卷积性质\n\\[\n(x * h)[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\n\\]\n注：这是 CTFS 中乘法性质的对偶形式。\n\\[\nx(t) y(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow}(\\hat{x} * \\hat{y})[k]\n\\]\n注：与 CTFT 的情形类似，该公式在相关表达式定义良好时成立。\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{x * h\\}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}}(x * h)[n] e^{-j \\omega n}=\\sum_{n \\in \\mathbb{Z}} \\sum_{m \\in \\mathbb{Z}} x[m] h[n-m] e^{-j \\omega n} \\\\\n& =\\sum_{m \\in \\mathbb{Z}} x[m] \\sum_{n \\in \\mathbb{Z}} h[n-m] e^{-j \\omega n} \\\\\n& =\\sum_{m \\in \\mathbb{Z}} x[m] e^{-j \\omega m} H\\left(e^{j \\omega}\\right) \\\\\n& =X\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#lti-系统的频率响应",
+    "href": "Chapter05_V3.html#lti-系统的频率响应",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "LTI 系统的频率响应",
+    "text": "LTI 系统的频率响应\nLTI 系统 \\(T\\)\n\n可由冲激响应 \\(h\\) 完全表征\n\n\\[\ny=T(x)=h * x\n\\]\n\n若 \\(H=\\mathcal{F}\\{h\\}\\) 定义良好，也可由频率响应 \\(H\\) 完全表征\n对于 BIBO 稳定系统，有 \\(h \\in \\ell_{1}\\)\n其他系统：例如累加器，其 \\(h=u\\)，等等\n\n通常，由卷积性质可得\n\\[\nY=\\mathcal{F}\\{y\\}=H X=\\mathcal{F}\\{h\\} \\mathcal{F}\\{x\\}\n\\]\n不直接计算 \\(x * h\\)，也可以写成\n\\[\ny=\\mathcal{F}^{-1}(\\mathcal{F}\\{h\\} \\mathcal{F}\\{x\\})\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例-1",
+    "href": "Chapter05_V3.html#例-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例",
+    "text": "例\n求冲激响应为 \\(h[n]=a^{n} u[n]\\) 的 LTI 系统在输入 \\(x[n]=b^{n} u[n]\\) 下的响应，其中 \\(|a|&lt;1,|b|&lt;1\\)$ 方法 1：直接卷积 \\(y=x * h\\) 方法 2：在初始静止条件下求解差分方程\n\\[\ny[n]-a y[n-1]=b^{n} u[n]\n\\]\n方法 3：使用傅里叶变换。\n\\[\nH=\\frac{1}{1-a e^{-j \\omega}}, X=\\frac{1}{1-b e^{-j \\omega}} \\Longrightarrow Y=\\frac{1}{\\left(1-a e^{-j \\omega}\\right)\\left(1-b e^{-j \\omega}\\right)}\n\\]\n若 \\(a \\neq b\\)， Y(e^{j })=-, y[n]=(a{n+1}-b{n+1}) u[n]$ 若 \\(a=b\\)， Y(e^{j })=(), y[n]= a^{n+1} u[n]=(n+1) a^{n} u[n]$ 或者利用 \\(Y\\left(e^{j \\omega}\\right)=\\frac{j}{a} e^{j \\omega} \\frac{d}{d \\omega}\\left(\\frac{a}{1-a e^{-j \\omega}}\\right)\\) 以及微分性质"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例-2",
+    "href": "Chapter05_V3.html#例-2",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例",
+    "text": "例\n求冲激响应为 \\(h[n]=a^{n} u[n]\\) 的 LTI 系统在输入 \\(x[n]=\\cos \\left(\\omega_{0} n\\right)\\)、且 \\(|a|&lt;1\\) 时的响应。 频率响应\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{1}{1-a e^{-j \\omega}}\n\\]\n方法 1：利用特征函数性质\n\\[\n\\begin{gathered}\nx[n]=\\frac{1}{2} e^{j \\omega_{0} n}+\\frac{1}{2} e^{-j \\omega_{0} n} \\\\\ny[n]=\\frac{1}{2} H\\left(e^{j \\omega_{0}}\\right) e^{j \\omega_{0} n}+\\frac{1}{2} H\\left(e^{-j \\omega_{0}}\\right) e^{-j \\omega_{0} n}=\\operatorname{Re} \\frac{e^{j \\omega_{0} n}}{1-a e^{-j \\omega_{0}}} \\\\\n=\\frac{1}{\\sqrt{1-2 a \\cos \\omega_{0}+a^{2}}} \\cos \\left(\\omega_{0} n-\\arctan \\frac{a \\sin \\omega_{0}}{1-a \\cos \\omega_{0}}\\right)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例-3",
+    "href": "Chapter05_V3.html#例-3",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例",
+    "text": "例\n方法 2：利用输入的傅里叶变换 \\(X\\)\n\\[\n\\begin{aligned}\n& X\\left(e^{j \\omega}\\right)=\\sum_{k=-\\infty}^{\\infty}\\left[\\pi \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right)+\\pi \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right)\\right] \\\\\n& Y\\left(e^{j \\omega}\\right)=\\sum_{k=-\\infty}^{\\infty} \\pi H\\left(e^{j\\left(\\omega_{0}-2 k \\pi\\right)}\\right) \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right) \\\\\n& \\quad+\\sum_{k=-\\infty}^{\\infty} \\pi H\\left(e^{-j\\left(\\omega_{0}+2 k \\pi\\right)}\\right) \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right) \\\\\n& =H\\left(e^{j \\omega_{0}}\\right) \\sum_{k=-\\infty}^{\\infty} \\pi \\delta\\left(\\omega-\\omega_{0}+2 k \\pi\\right) \\\\\n& \\quad+H\\left(e^{-j \\omega_{0}}\\right) \\sum_{k=-\\infty}^{\\infty} \\pi \\delta\\left(\\omega+\\omega_{0}+2 k \\pi\\right) \\\\\n& y[n]=\\frac{1}{2} H\\left(e^{j \\omega_{0}}\\right) e^{j \\omega_{0} n}+\\frac{1}{2} H\\left(e^{-j \\omega_{0}}\\right) e^{-j \\omega_{0} n}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例理想带阻滤波器",
+    "href": "Chapter05_V3.html#例理想带阻滤波器",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例：理想带阻滤波器",
+    "text": "例：理想带阻滤波器"
+  },
+  {
+    "objectID": "Chapter05_V3.html#目录-1",
+    "href": "Chapter05_V3.html#目录-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "Chapter05_V3.html#dtft-的乘积性质",
+    "href": "Chapter05_V3.html#dtft-的乘积性质",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "DTFT 的乘积性质",
+    "text": "DTFT 的乘积性质\n\\[\nx[n] y[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{2 \\pi} X \\circledast Y=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) Y\\left(e^{j(\\omega-\\theta)}\\right) d \\theta\n\\]\n注：这是 CTFS 中周期卷积性质的对偶形式。\n\\[\nx \\circledast y \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} T \\hat{x} \\hat{y}\n\\]\n证明。\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{x y\\}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}} x[n] y[n] e^{-j \\omega n}=\\sum_{n \\in \\mathbb{Z}}\\left(\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) e^{j \\theta n} d \\theta\\right) y[n] e^{-j \\omega n} \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right)\\left(\\sum_{n \\in \\mathbb{Z}} y[n] e^{-j(\\omega-\\theta) n}\\right) d \\theta \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) Y\\left(e^{j(\\omega-\\theta)}\\right) d \\theta\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例-4",
+    "href": "Chapter05_V3.html#例-4",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\\(x[n]=x_{1}[n] x_{2}[n]\\)，其中 \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\underset{\\uparrow}{\\circledast} X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例-5",
+    "href": "Chapter05_V3.html#例-5",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\\(x[n]=x_{1}[n] x_{2}[n]\\)，其中 \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\underset{\\uparrow}{\\circledast} X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { 周期延拓 }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { 非周期卷积 }\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例-6",
+    "href": "Chapter05_V3.html#例-6",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\\(x[n]=x_{1}[n] x_{2}[n]\\)，其中 \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\circledast X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { 周期延拓 }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { 非周期卷积 }\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例-7",
+    "href": "Chapter05_V3.html#例-7",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\\(x[n]=x_{1}[n] x_{2}[n]\\)，其中 \\(x_{1}[n]=\\frac{\\sin (3 \\pi n / 4)}{\\pi n}, x_{2}[n]=\\frac{\\sin (\\pi n / 2)}{\\pi n}\\)\n\\[\nX=\\frac{1}{2 \\pi} X_{1} \\circledast X_{2}=\\frac{1}{2 \\pi} \\tilde{X}_{1} * X_{2}=\\frac{1}{2 \\pi} \\sum_{k=-\\infty}^{\\infty} \\underset{\\substack{\\uparrow \\\\ \\text { 周期延拓 }}}{\\tau_{2 k \\pi}\\left(\\tilde{X}_{1} * \\tilde{X}_{2}\\right)} \\text { 非周期卷积 }\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例离散时间调制",
+    "href": "Chapter05_V3.html#例离散时间调制",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例：离散时间调制",
+    "text": "例：离散时间调制\n\\[\ny[n]=x[n] c[n]，其中 $c[n]=\\cos \\left(\\omega_{c} n\\right)$\n\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n各谱副本之间不重叠：\\(\\left\\{\\begin{array}{l}\\omega_{c}&gt;\\omega_{M} \\\\ \\omega_{c}+\\omega_{M}&lt;\\pi\\end{array} \\quad \\Longrightarrow \\omega_{M}&lt;\\frac{\\pi}{2}\\right.\\)"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例离散时间解调",
+    "href": "Chapter05_V3.html#例离散时间解调",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例：离散时间解调",
+    "text": "例：离散时间解调\n\\[\nz[n]=y[n] c[n]，其中 $c[n]=\\cos \\left(\\omega_{c} n\\right)$\n\\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n通过截止频率 \\(W \\in\\left(\\omega_{M}, 2 \\omega_{c}-\\omega_{M}\\right)\\) 的低通滤波器对 \\(Y\\) 进行滤波，可恢复 \\(X\\)"
+  },
+  {
+    "objectID": "Chapter05_V3.html#目录-2",
+    "href": "Chapter05_V3.html#目录-2",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "Chapter05_V3.html#线性常系数差分方程",
+    "href": "Chapter05_V3.html#线性常系数差分方程",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "线性常系数差分方程",
+    "text": "线性常系数差分方程\n由下式描述的 LTI 系统，其频率响应为\n\\[\n\\sum_{k=0}^{N} a_{k} y[n-k]=\\sum_{k=0}^{M} b_{k} x[n-k]\n\\]\n方法 1：利用特征函数性质\n\\[\nx[n]=e^{j \\omega n} \\Longrightarrow y[n]=H\\left(e^{j \\omega}\\right) e^{j \\omega n}\n\\]\n代入差分方程得\n\\[\n\\begin{gathered}\n\\sum_{k=0}^{N} a_{k} H\\left(e^{j \\omega}\\right) e^{j \\omega(n-k)}=\\sum_{k=0}^{M} b_{k} e^{j \\omega(n-k)} \\\\\nH\\left(e^{j \\omega}\\right)=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#线性常系数差分方程-1",
+    "href": "Chapter05_V3.html#线性常系数差分方程-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "线性常系数差分方程",
+    "text": "线性常系数差分方程\n方法 2：对方程两边取傅里叶变换\n\\[\n\\mathcal{F}\\left\\{\\sum_{k=0}^{N} a_{k} y[n-k]\\right\\}=\\mathcal{F}\\left\\{\\sum_{k=0}^{M} b_{k} x[n-k]\\right\\}\n\\]\n由线性性质和时移性质\n\\[\n\\sum_{k=0}^{N} a_{k} e^{-j \\omega k} Y\\left(e^{j \\omega}\\right)=\\sum_{k=0}^{M} b_{k} e^{-j \\omega k} X\\left(e^{j \\omega}\\right)\n\\]\n由卷积性质\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{Y\\left(e^{j \\omega}\\right)}{X\\left(e^{j \\omega}\\right)}=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\]\n频率响应是关于 \\(e^{-j \\omega}\\) 的有理函数"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例-8",
+    "href": "Chapter05_V3.html#例-8",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例",
+    "text": "例\n考虑由下式描述的 LTI 系统\n\\[\ny[n]-\\frac{3}{4} y[n-1]+\\frac{1}{8} y[n-2]=2 x[n]\n\\]\n频率响应\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{1-\\frac{3}{4} e^{-j \\omega}+\\frac{1}{8} e^{-j 2 \\omega}}\n\\]\n利用部分分式展开\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)}=\\frac{4}{1-\\frac{1}{2} e^{-j \\omega}}-\\frac{2}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\n取逆傅里叶变换得到冲激响应\n\\[\nh[n]=4\\left(\\frac{1}{2}\\right)^{n} u[n]-2\\left(\\frac{1}{4}\\right)^{n} u[n]\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例-9",
+    "href": "Chapter05_V3.html#例-9",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例",
+    "text": "例\nFind 响应 to \\(x[n]=\\left(\\frac{1}{4}\\right)^{n} u[n]\\). 响应的傅里叶变换为\n\\[\nY\\left(e^{j \\omega}\\right)=H\\left(e^{j \\omega}\\right) X\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)} \\cdot \\frac{1}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\n利用部分分式展开\n\\[\nY\\left(e^{j \\omega}\\right)=-\\frac{4}{1-\\frac{1}{4} e^{-j \\omega}}-\\frac{2}{\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)^{2}}+\\frac{8}{1-\\frac{1}{2} e^{-j \\omega}}\n\\]\n取逆傅里叶变换得到响应\n\\[\ny[n]=\\left\\{-4\\left(\\frac{1}{4}\\right)^{n}-2(n+1)\\left(\\frac{1}{4}\\right)^{n}+8\\left(\\frac{1}{2}\\right)^{n}\\right\\} u[n]\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#部分分式展开",
+    "href": "Chapter05_V3.html#部分分式展开",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{2}{1-\\frac{3}{4} e^{-j \\omega}+\\frac{1}{8} e^{-j 2 \\omega}}\n\\]\n令 \\(e^{-j \\omega}\\) 用 \\(z\\) 代替，\n\\[\n\\begin{gathered}\nH\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{3}{4} z+\\frac{1}{8} z^{2}}=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)}=\\frac{A}{1-\\frac{1}{2} z}+\\frac{B}{1-\\frac{1}{4} z} \\\\\nA=\\left.\\left[\\left(1-\\frac{1}{2} z\\right) H\\left(z^{-1}\\right)\\right]\\right|_{z=2}=\\left.\\frac{2}{1-\\frac{1}{4} z}\\right|_{z=2}=4 \\\\\nB=\\left.\\left[\\left(1-\\frac{1}{4} z\\right) H\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{2}{1-\\frac{1}{2} z}\\right|_{z=4}=-2\n\\end{gathered}\n\\]\n注：连续时间中各项写成 \\(\\frac{A}{(s-r)^{m}}\\) 的形式，而离散时间中写成 \\(\\frac{A}{(1-r z)^{m}}\\) 的形式。"
+  },
+  {
+    "objectID": "Chapter05_V3.html#部分分式展开-1",
+    "href": "Chapter05_V3.html#部分分式展开-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\nY\\left(e^{j \\omega}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} e^{-j \\omega}\\right)\\left(1-\\frac{1}{4} e^{-j \\omega}\\right)} \\cdot \\frac{1}{1-\\frac{1}{4} e^{-j \\omega}}\n\\]\n令 \\(e^{-j \\omega}\\) 用 \\(z\\) 代替，\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\n求 \\(A_{1,1}\\)\n\n两边同乘 \\(1-\\frac{1}{2} z\\)，\n\n\\[\n\\left(1-\\frac{1}{2} z\\right) Y\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{4} z\\right)^{2}}=A_{1,1}+\\frac{A_{2,1}\\left(1-\\frac{1}{2} z\\right)}{1-\\frac{1}{4} z}+\\frac{A_{2,2}\\left(1-\\frac{1}{2} z\\right)}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\n\n在 \\(z=2\\) 处取值，即在 \\(1-\\frac{1}{2} z=0\\) 的根处取值\n\n\\[\nA_{1,1}=\\left.\\left[\\left(1-\\frac{1}{2} z\\right) Y\\left(z^{-1}\\right)\\right]\\right|_{z=2}=\\left.\\frac{2}{\\left(1-\\frac{1}{4} z\\right)^{2}}\\right|_{z=2}=8\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#部分分式展开-2",
+    "href": "Chapter05_V3.html#部分分式展开-2",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\n求 \\(A_{2,2}\\)\n\n两边同乘 \\(\\left(1-\\frac{1}{4} z\\right)^{2}\\)，\n\n\\[\n\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{1}{2} z}=\\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+A_{2,1}\\left(1-\\frac{1}{4} z\\right)+A_{2,2}\n\\]\n\n在 \\(z=4\\) 处取值，即在 \\(1-\\frac{1}{4} z=0\\) 的根处取值\n\n\\[\nA_{2,2}=\\left.\\left[\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{2}{1-\\frac{1}{2} z}\\right|_{z=4}=-2\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#部分分式展开-3",
+    "href": "Chapter05_V3.html#部分分式展开-3",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\nY\\left(z^{-1}\\right)=\\frac{2}{\\left(1-\\frac{1}{2} z\\right)\\left(1-\\frac{1}{4} z\\right)^{2}}=\\frac{A_{1,1}}{1-\\frac{1}{2} z}+\\frac{A_{2,1}}{1-\\frac{1}{4} z}+\\frac{A_{2,2}}{\\left(1-\\frac{1}{4} z\\right)^{2}}\n\\]\n求 \\(A_{2,1}\\)\n\n两边同乘 \\(\\left(1-\\frac{1}{4} z\\right)^{2}\\)，\n\n\\[\n\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{2}{1-\\frac{1}{2} z}=\\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+A_{2,1}\\left(1-\\frac{1}{4} z\\right)+A_{2,2}\n\\]\n\n对两边求导\n\n\\[\n\\frac{d}{d z}\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)=\\frac{1}{\\left(1-\\frac{1}{2} z\\right)^{2}}=\\frac{d}{d z} \\frac{A_{1,1}\\left(1-\\frac{1}{4} z\\right)^{2}}{1-\\frac{1}{2} z}+\\left(-\\frac{\\mathbf{1}}{\\mathbf{4}}\\right) A_{2,1}\n\\]\n\n在 \\(z=4\\) 处取值，即在 \\(1-\\frac{1}{4} z=0\\) 的根处取值\n\n\\[\nA_{2,1}=\\left.(-4)\\left[\\frac{d}{d z}\\left(1-\\frac{1}{4} z\\right)^{2} Y\\left(z^{-1}\\right)\\right]\\right|_{z=4}=\\left.\\frac{-4}{\\left(1-\\frac{1}{2} z\\right)^{2}}\\right|_{z=4}=-4\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#frac1left1-a-e-j-omegarightn-的逆傅里叶变换",
+    "href": "Chapter05_V3.html#frac1left1-a-e-j-omegarightn-的逆傅里叶变换",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "\\(\\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{n}}\\) 的逆傅里叶变换",
+    "text": "\\(\\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{n}}\\) 的逆傅里叶变换\n回顾\n\\[\na^{n} u[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{1-a e^{-j \\omega}}, \\quad|a|&lt;1\n\\]\n即\n\\[\n\\frac{1}{1-a z}=\\sum_{n=0}^{\\infty} a^{n} z^{n}, \\quad z=e^{-j \\omega}\n\\]\n关于 \\(z\\) 求 \\(m-1\\) 次导数\n\\[\n\\frac{(m-1)!a^{m-1}}{(1-a z)^{m}}=\\sum_{n=m-1}^{\\infty} a^{n} \\frac{n!}{(n-m+1)!} z^{n-(m-1)}\n\\]\n\\[\n\\frac{1}{(1-a z)^{m}}=\\sum_{n=m-1}^{\\infty} a^{n-m+1}\\binom{n}{m-1} z^{n-m+1}=\\sum_{n=0}^{\\infty} a^{n}\\binom{n+m-1}{m-1} z^{n}\n\\]\n因此\n\\[\n\\binom{n+m-1}{n} a^{n} u[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{\\left(1-a e^{-j \\omega}\\right)^{m}}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#目录-3",
+    "href": "Chapter05_V3.html#目录-3",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "Chapter05_V3.html#冲激列采样",
+    "href": "Chapter05_V3.html#冲激列采样",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "冲激列采样",
+    "text": "冲激列采样\n\n\n离散时间信号 \\(x[n]\\)\n离散时间冲激列\n\\[\np[n]=\\sum_{k=-\\infty}^{\\infty} \\delta[n-k N]\n\\]\n\\[\n\\begin{aligned}\n& \\text { 采样后的信号 } \\\\\n& \\begin{aligned}\nx_{p}[n] & =x[n] p[n] \\\\\n& =\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\n\\end{aligned}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#冲激列采样-1",
+    "href": "Chapter05_V3.html#冲激列采样-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "冲激列采样",
+    "text": "冲激列采样\n冲激列的频谱\n\\[\nP\\left(e^{j \\omega}\\right)=\\omega_{s} \\sum_{k=-\\infty}^{\\infty} \\delta\\left(\\omega-k \\omega_{s}\\right), \\quad \\omega_{s}=\\frac{2 \\pi}{N}\n\\]\n采样信号的频谱\n\\[\nX_{p}=\\frac{1}{2 \\pi} X \\circledast P=\\frac{1}{2 \\pi} \\tilde{X} * P=\\frac{1}{2 \\pi} X * \\tilde{P}\n\\]\n其中 \\(\\tilde{X}, \\tilde{P}\\) 分别表示 \\(X, P\\) 在一个 \\(2 \\pi\\) 周期内对应的那一段\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)=\\frac{1}{N} \\sum_{k=0}^{N-1} X\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#冲激列采样-2",
+    "href": "Chapter05_V3.html#冲激列采样-2",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "冲激列采样",
+    "text": "冲激列采样\n第一种看法：在 \\(k \\omega_{s}\\) 处复制 \\(\\tilde{X}\\)，其中 \\(k \\in \\mathbb{Z}\\)\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#冲激列采样-3",
+    "href": "Chapter05_V3.html#冲激列采样-3",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "冲激列采样",
+    "text": "冲激列采样\n第二种看法：在 \\(k \\omega_{s}\\) 处复制 \\(X\\)，其中 \\(k=0,1, \\ldots, N-1\\)\n\\[\nX_{p}\\left(e^{j \\omega}\\right)=\\frac{1}{N} \\sum_{k=0}^{N-1} X\\left(e^{j\\left(\\omega-k \\omega_{s}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#冲激列采样-4",
+    "href": "Chapter05_V3.html#冲激列采样-4",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "冲激列采样",
+    "text": "冲激列采样"
+  },
+  {
+    "objectID": "Chapter05_V3.html#离散时间采样定理",
+    "href": "Chapter05_V3.html#离散时间采样定理",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间采样定理",
+    "text": "离散时间采样定理\n若带限离散时间信号 \\(x[n]\\) 的频谱满足当 \\(\\omega_{M}&lt;|\\omega| \\leq \\pi\\) 时 \\(X\\left(e^{j \\omega}\\right)=0\\)，则当满足下式时，它可由样本 \\(x[k N], k \\in \\mathbb{Z}\\) 唯一确定：\n\\[\n\\omega_{s} \\triangleq \\frac{2 \\pi}{N}&gt;2 \\omega_{M}\n\\]\n给定 \\(\\{x[k N]: k \\in \\mathbb{Z}\\}\\)，可按如下方式重建 \\(x[n]\\)：\n\n构造 \\(x_{p}[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\\)\n将 \\(x_{p}\\) 送入一个增益为 \\(N\\)、截止频率为 \\(\\omega_{c} \\in\\left(\\omega_{M}, \\omega_{s}-\\omega_{M}\\right)\\) 的低通滤波器，即\n\n\\[\nH\\left(e^{j \\omega}\\right)=N\\left[u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\\right]\n\\]\n\n输出 \\(x_{r}[n]\\)，其频谱满足 \\(X_{r}\\left(e^{j \\omega}\\right)=X_{p}\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\\)，并且与原信号 \\(x[n]\\) 相同"
+  },
+  {
+    "objectID": "Chapter05_V3.html#时域重建",
+    "href": "Chapter05_V3.html#时域重建",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "时域重建",
+    "text": "时域重建\n\n该低通滤波器的冲激响应\n\\[\nh[n]=\\frac{N \\sin \\left(\\omega_{c} n\\right)}{\\pi n}\n\\]\n利用 sinc 函数进行带限插值即可恢复 \\(x\\)\n\\[\nx[n]=x_{r}[n]=\\left(x_{p} * h\\right)[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\frac{N \\sin \\left(\\omega_{c}(n-k N)\\right)}{\\pi(n-k N)}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#抽取",
+    "href": "Chapter05_V3.html#抽取",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "抽取",
+    "text": "抽取\n离散时间信号 \\(x[n]\\)\n\n\n\n\n\n采样后的信号\n\\[\nx_{p}[n]=\\sum_{k=-\\infty}^{\\infty} x[k N] \\delta[n-k N]\n\\]\n\n\n\n\n\n抽取后的信号\n\\[\nx_{b}[n]=x[n N]\n\\]\n样本数减少"
+  },
+  {
+    "objectID": "Chapter05_V3.html#抽取-1",
+    "href": "Chapter05_V3.html#抽取-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "抽取",
+    "text": "抽取\n\\[\n\\begin{aligned}\nX_{b}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}} x_{b}[n] e^{-j \\omega n} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x[n N] e^{-j \\omega n} \\\\\n& =\\sum_{k \\in N \\mathbb{Z}} x[k] e^{-j \\omega k / N} \\quad(k=n N) \\\\\n& =\\sum_{k \\in \\mathbb{Z}} x_{p}[k] e^{-j \\frac{\\omega}{N} k} \\quad\\left(x_{p}[n]=0 \\text { for } n \\in \\mathbb{Z} \\backslash N \\mathbb{Z}\\right) \\\\\n& =X_{p}\\left(e^{j \\omega / N}\\right)\n\\end{aligned}\n\\]\n回顾：\\(X_{p}\\left(e^{j \\omega}\\right)\\) 的周期为 \\(2 \\pi / N\\)，因此 \\(X_{b}\\left(e^{j \\omega}\\right)\\) 的周期为 \\(2 \\pi\\)。 若采样中没有混叠\n\n在每个周期内，\\(X_{b}\\) 都是 \\(X\\) 的拉伸版本\n\\(X_{b}\\left(e^{j \\omega}\\right)=X_{p}\\left(e^{j \\omega / N}\\right)\\)，但 \\(X_{b}\\left(e^{j \\omega}\\right) \\neq X\\left(e^{j \\omega / N}\\right)\\)"
+  },
+  {
+    "objectID": "Chapter05_V3.html#抽取-2",
+    "href": "Chapter05_V3.html#抽取-2",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "抽取",
+    "text": "抽取"
+  },
+  {
+    "objectID": "Chapter05_V3.html#目录-4",
+    "href": "Chapter05_V3.html#目录-4",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\nDTFT 的卷积性质\nDTFT 的乘积性质\n线性常系数差分方程描述的系统\n离散时间信号的采样\n连续时间信号的离散时间处理"
+  },
+  {
+    "objectID": "Chapter05_V3.html#连续时间信号的离散时间处理",
+    "href": "Chapter05_V3.html#连续时间信号的离散时间处理",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "连续时间信号的离散时间处理",
+    "text": "连续时间信号的离散时间处理\n\n离散时间处理的优点\n\n数字电子设备具有很强的通用性\n对噪声具有较强的鲁棒性\n\n在实际中\n\nC/D 由模数转换器实现\nD/C 由数模转换器实现\n\n理想化假设\n\n不考虑量化\nC/D 采用冲激列采样\nD/C 采用理想重建"
+  },
+  {
+    "objectID": "Chapter05_V3.html#模数转换cd",
+    "href": "Chapter05_V3.html#模数转换cd",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "模数转换（C/D）",
+    "text": "模数转换（C/D）\n\n假设\n\n\\(x_{c}(t)\\) 是带限信号，例如已通过低通滤波\n采样频率高于奈奎斯特率，因此无混叠\n\n连续时间频谱与离散时间频谱之间的关系\n\\[\n\\begin{aligned}\nX_{p}(j \\omega) & =\\mathrm{CTFT}\\left\\{\\sum_{n \\in \\mathbb{Z}} x_{c}(n T) \\delta(t-n T)\\right\\} \\\\\n& =\\sum_{n \\in \\mathbb{Z}} x_{c}(n T) e^{-j \\omega T n}=\\sum_{n \\in \\mathbb{Z}} x_{d}[n] e^{-j \\omega T n}=X_{d}\\left(e^{j \\omega T}\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#模数转换cd-1",
+    "href": "Chapter05_V3.html#模数转换cd-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "模数转换（C/D）",
+    "text": "模数转换（C/D）\n时域 \n频域  \n从 \\(x_{p}\\) 到 \\(x_{d}\\)：在时间和频率两个维度上都做了归一化"
+  },
+  {
+    "objectID": "Chapter05_V3.html#数模转换dc",
+    "href": "Chapter05_V3.html#数模转换dc",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "数模转换（D/C）",
+    "text": "数模转换（D/C）\nC/D 转换 \n连续时间频谱与离散时间频谱之间的关系\n\\[\n\\begin{aligned}\n& Y_{p}(j \\omega)=Y_{d}\\left(e^{j \\omega T}\\right) \\\\\n& Y_{c}(j \\omega)= \\begin{cases}Y_{p}(j \\omega) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\\n0, & \\text { 否则 }\\end{cases}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#数模转换dc-1",
+    "href": "Chapter05_V3.html#数模转换dc-1",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "数模转换（D/C）",
+    "text": "数模转换（D/C）\n\n\n这是 C/D 转换的逆过程"
+  },
+  {
+    "objectID": "Chapter05_V3.html#频率响应",
+    "href": "Chapter05_V3.html#频率响应",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "频率响应",
+    "text": "频率响应\n\n\n\\(Y_{d}\\left(e^{j \\Omega}\\right)=H_{d}\\left(e^{j \\Omega}\\right) X_{d}\\left(e^{j \\Omega}\\right)\\)\n\\(Y_{p}(j \\omega)=Y_{d}\\left(e^{j \\omega T}\\right)=H_{d}\\left(e^{j \\omega T}\\right) X_{d}\\left(e^{j \\omega T}\\right)=H_{d}\\left(e^{j \\omega T}\\right) X_{p}(j \\omega)\\)\n\\(Y_{c}(j \\omega)=Y_{p}(j \\omega) H_{\\mathrm{lp}}(j \\omega)=H_{d}\\left(e^{j \\omega T}\\right) X_{p}(j \\omega) H_{\\mathrm{lp}}(j \\omega)=H_{d}\\left(e^{j \\omega T}\\right) X_{c}(j \\omega)\\)\n\\(H_{c}(j \\omega)= \\begin{cases}H_{d}\\left(e^{j \\omega T}\\right) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\ 0, & \\text { otherwise }\\end{cases}\\)\n\n频率响应\n\\[\n\\begin{gathered}\nH_{c}(j \\omega)= \\begin{cases}H_{d}\\left(e^{j \\omega T}\\right) & |\\omega|&lt;\\frac{\\omega_{s}}{2}=\\frac{\\omega}{T} \\\\\n0, & \\text { 否则 }\\end{cases} \\\\\n\\Longrightarrow H_{d}\\left(e^{j \\Omega}\\right)=H_{c}\\left(j \\frac{\\Omega}{T}\\right),|\\Omega|&lt;\\pi\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V3.html#例-数字微分器",
+    "href": "Chapter05_V3.html#例-数字微分器",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "例: 数字微分器",
+    "text": "例: 数字微分器"
+  },
+  {
+    "objectID": "Chapter05_V3.html#作业",
+    "href": "Chapter05_V3.html#作业",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "作业",
+    "text": "作业"
+  }
+]

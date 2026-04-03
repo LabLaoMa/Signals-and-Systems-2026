@@ -1321,7 +1321,8 @@ S_N(x)(t) - x(t) &= \frac{1}{2\pi} \int_{-\pi}^{\pi} x(t - \tau) D_N(\tau) d\tau
 **定理**：如果 $x$ 满足以下 **狄利克雷条件 (Dirichlet conditions)**：
 
 1. $x$ 是有界的，即 $\|x\|_\infty < \infty$；
-2. $x$ 是分段单调的，即存在周期的有限划分，使得 $x$ 在每个区间段上都是单调的；
+2. $x$ 是分段单调的，即存在周期的有限划分，使得 $x$ 在每个区间段上都是单调的（有限个极值点）；
+3. 在任何有限区间内，只有有限个不连续点，在这些不连续点上，函数是有限值。
 
 那么：
 
@@ -1642,6 +1643,7 @@ $$
 
 
 时域压缩 ⟺ 频域（基频）扩展
+
 时域扩展 ⟹ 频域（基频）压缩
 
 ## 微分 (Differentiation)
@@ -1689,10 +1691,15 @@ $$
 
 - $y$ 是周期的，当且仅当 $\hat{x}[0]=0$，即 $x$ 没有直流分量
 - 如果 $\hat{x}[0]=0, y$ 周期为 $T$，
+$\hat{y}[k]=\frac{1}{j k \omega_{0}} \hat{x}[k] \quad \text { 对于 } k \neq 0$
 
-$$
-\hat{y}[k]=\frac{1}{j k \omega_{0}} \hat{x}[k] \quad \text { 对于 } k \neq 0
-$$
+- **$\sum_{k \neq 0} \frac{\hat{x}[k]}{j k \omega_{0}}+\sum_{k \neq 0}$ 去哪里了?**
+
+:::{.fragment}
+直流分量
+:::
+
+
 
 ## 例子：三角波
 
@@ -1827,6 +1834,12 @@ $$
 
 ![](imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-24.png){fig-align=center}
 
+
+
+::::{.columns style="text-align: center;"}
+
+::: {.column width="50%"}
+
 傅里叶系数：
 
 $$
@@ -1838,8 +1851,16 @@ $$
 $$
 x(t)=\sum_{k=-\infty}^{\infty} \frac{1}{T} e^{j k \frac{2 \pi}{T} t}=\lim _{N \rightarrow \infty} \frac{1}{T} D_{N}\left(\frac{2 \pi}{T} t\right)
 $$
+:::
 
+::: {.column width="50%"}
 其中 $D_{N}$ 是狄利克雷核。
+
+$$
+D_{N}(t)=\sum_{k=-N}^{N} e^{j k t}=\frac{\sin \left(\left(N+\frac{1}{2}\right) t\right)}{\sin (t / 2)}
+$$
+:::
+::::
 
 ## 周期冲激列
 
@@ -1933,11 +1954,31 @@ $$
 \phi_{N}^{k+r N}[n]=e^{j(k+r N) \frac{2 \pi}{N} n}=e^{j k \frac{2 \pi}{N} n} e^{j r 2 \pi n}=e^{j k \frac{2 \pi}{N} n}=\phi_{N}^{k}[n]
 $$
 
+
+
 ## DT 傅里叶基的有限性 (图示)
 
-$\phi_{N}^{k}$ 示例， $N=4$ 和 $k=0,1, \ldots, 8$
+$\phi_{N}^{k}$ 示例， $N=8$ 和 $k=0,1, \ldots, 8$
 
 ![](imglink/finitness.png){fig-align=center}
+
+## 傅里叶系数的确定
+
+周期序列 $x[n]$，其周期为 $N$，$x[n]$可以表示为
+$$
+x=\sum_{k \in[N]} a_{k} e^{j k \frac{2 \pi}{N} n}
+$$这些系数 $a_k$取值如何确定？这个问题实质上就是要求得一组线性联立方程的解。 显然：
+
+$$
+\begin{aligned}
+x[0] &= \sum_{k \in[N]} a_k \\
+x[1] &= \sum_{k \in[N]} a_k e^{j 2\pi k / N} \\
+&\vdots \\
+x[N-1] &= \sum_{k \in[N]} a_k e^{j 2\pi k (N-1) / N}
+\end{aligned} 
+$$
+
+这样，当 $k$ 在 $N$ 个连续整数值变化时，对应于 $N$ 个未知系数 $a_k$ 的 $N$ 个线性方程。上面的$N$个方程组相互独立，可以利用$x[0]$，$x[1]$,...$x[N-1]$求出系数$a_k$
 
 ## 谐波的正交归一性
 
@@ -1960,6 +2001,8 @@ $\left\{\phi_{N}^{k}: k \in[N]\right\}$ 是正交归一函数系
 $$
 \left\langle\phi_{N}^{k}, \phi_{N}^{m}\right\rangle=\delta_{k m}=\delta[k-m]
 $$
+
+
 
 ## 谐波正交归一性的证明
 
@@ -1990,6 +2033,8 @@ $$
 \end{aligned}
 $$
 
+
+
 可以将 $\hat{x}$ 视为 $N$-周期信号，因为：
 
 $$
@@ -2012,11 +2057,16 @@ $$
 \hat{x}[k]=\left\langle x, \phi_{N}^{k}\right\rangle=\frac{1}{N} \sum_{n \in[N]} x[n] e^{-j k \frac{2 \pi}{N} n}
 $$
 
+$\hat{x}[k]$称为$x[n]$的**频谱系数(Spectral Coefficient)**。
+
 由于所有求和都是有限的，不存在收敛问题！
 
 ## 例子
 
 $x[n]=\cos \left(\frac{6 \pi}{5} n+\frac{\pi}{5}\right)$，周期 $N=5$。
+
+基频$\omega_0=\frac{2 \pi}{N}=\frac{2 \pi}{5}$
+
 展开为复指数：
 $x[n]=\frac{e^{j \frac{\pi}{5}}}{2} e^{j 3 \frac{2 \pi}{5} n}+\frac{e^{-j \frac{\pi}{5}}}{2} e^{-j 3 \frac{2 \pi}{5} n}$
 
@@ -2248,6 +2298,171 @@ $$
 
 # 7. 傅里叶级数与线性时不变系统{#sec37}
 
+## 线性时不变系统对复指数信号的响应
+
+:::: {.columns style="text-align: center;"}
+
+::: {.column width="50%"}
+**CT (连续时间)**
+
+$$
+T\left(\sum_{k} a_{k} e^{s_{k} t}\right)=\sum_{k} a_{k} H\left(s_{k}\right) e^{s_{k} t}
+$$
+ 
+:::
+
+::: {.column width="50%"}
+**DT (离散时间)**
+$$
+T\left(\sum_{k} a_{k} z_{k}^{n}\right)=\sum_{k} a_{k} H\left(z_{k}\right) z_{k}^{n}
+$$
+
+:::
+
+::::
+
+其中
+$$H(s)=\int_{-\infty}^{+\infty} h(\tau) e^{-s\tau} d \tau  \qquad  H(z)=\sum_{k = - \infty}^{+\infty} H(z) z^{n}$$
+
+当$s$或$z$是一般复数时，$H(s)$和$H(z)$就称为该系统的**系统函数(System Function)**。
+
+:::{.hud }
+本章和下一章：重点在$Rs[s]=0$的特殊情况。即$s=j \omega$。
+
+对于离散时间信号系统，重点在$|z|=1$的$z$值上。即$z=e^{j \omega}$,$z^n=e^{j \omega n}$。
+:::
+
+因此，系统函数就简化为
+$$H(j \omega)=\int_{-\infty}^{+\infty} h(t)  e^{-j \omega t} d t \qquad H(j \omega)=\sum_{k = - \infty}^{+\infty} H(n) e^{j \omega n}$$
+
+## 线性时不变系统对复指数信号的响应
+
+连续时间系统示例：有一个周期信号 $x(t)$，其基波频率为 $\omega_0 = 2\pi$。该信号可以写成如下傅里叶级数的形式：
+$$
+x(t) = \sum_{k=-3}^{+3} a_k e^{jk2\pi t}
+$$
+其中：$a_0 = 1$，$a_1 = a_{-1} = \frac{1}{4}$
+，$a_2 = a_{-2} = \frac{1}{2}$，$a_3 = a_{-3} = \frac{1}{3}$
+将$x(t)$作为线性时不变（LTI）系统的输入信号，该系统的单位冲激响应为：
+
+$$
+h(t) = e^{-t}u(t)
+$$
+
+### 求解频率响应 $H(j\omega)$
+
+为了计算输出 $y(t)$ 的傅里叶级数系数，首先要求出系统的频率响应：
+
+$$
+H(j\omega) = \int_{0}^{\infty} e^{-\tau}e^{-j\omega \tau} d\tau = -\left. \frac{1}{1 + j\omega}e^{-\tau}e^{-j\omega \tau} \right|_{0}^{\infty} = \frac{1}{1 + j\omega} 
+$$
+
+## 线性时不变系统对复指数信号的响应
+### 输出信号 $y(t)$ 的表示
+
+输入信号 $\omega_0 = 2\pi$，因此可得输出信号的表示式为：
+
+$$
+y(t) = \sum_{k=-3}^{+3} b_k e^{jk2\pi t} 
+$$
+
+由于 $b_k = a_k H(jk2\pi)$，根据输入信号 $a_k$ 的值，可得各谐波系数：
+
+| 谐波次数 $k$ | 正频率分量 $b_k$ | 负频率分量 $b_{-k}$ |
+| :--- | :--- | :--- |
+| **0** | $b_0 = 1$ | - |
+| **1** | $b_1 = \frac{1}{4}\left( \frac{1}{1 + j2\pi} \right)$ | $b_{-1} = \frac{1}{4}\left( \frac{1}{1 - j2\pi} \right)$ |
+| **2** | $b_2 = \frac{1}{2}\left( \frac{1}{1 + j4\pi} \right)$ | $b_{-2} = \frac{1}{2}\left( \frac{1}{1 - j4\pi} \right)$ |
+| **3** | $b_3 = \frac{1}{3}\left( \frac{1}{1 + j6\pi} \right)$ | $b_{-3} = \frac{1}{3}\left( \frac{1}{1 - j6\pi} \right)$ |
+
+> **注意：** $y(t)$ 一定是实值信号，即 $b_k^* = b_{-k}$，这满足实信号在频域的共轭对称性。
+
+## 线性时不变系统对复指数信号的响应
+
+### 三角函数形式的表达
+
+$y(t)$ 也可以表示成以下两种等价形式：
+
+**形式一：幅相式**: $y(t) = 1 + 2 \sum_{k=1}^{3} D_k \cos(2\pi kt + \theta_k)$
+
+**形式二：正余弦式**: $y(t) = 1 + 2 \sum_{k=1}^{3} [E_k \cos 2\pi kt - F_k \sin 2\pi kt]$
+
+其中系数关系为：$b_k = D_k e^{j\theta_k} = E_k + jF_k$。
+
+### 数值计算示例 ($k=1$)
+
+对于基波分量，各项参数计算如下：
+
+* **幅度 $D_1$**: $D_1 = |b_1| = \frac{1}{4\sqrt{1 + 4\pi^2}}$
+* **相位 $\theta_1$**: $\theta_1 = \angle b_1 = -\arctan(2\pi)$
+* **实部 $E_1$**: $E_1 = \text{Re}\{b_1\} = \frac{1}{4(1 + 4\pi^2)}$
+* **虚部 $F_1$**: $F_1 = \text{Im}\{b_1\} = -\frac{\pi}{2(1 + 4\pi^2)}$
+
+## 线性时不变系统对复指数信号的响应
+
+离散时间系统示例：考虑一个线性时不变系统，其单位脉冲响应为 $h[n] = \alpha^n u[n]$，其中 $-1 < \alpha < 1$。输入信号为：
+
+$$
+x[n] = \cos\left( \frac{2\pi n}{N} \right) \tag{3.132}
+$$
+
+### 1. 输入信号的傅里叶级数表示
+
+利用欧拉公式，$x[n]$ 可以写成复指数形式：
+
+$$
+x[n] = \frac{1}{2} e^{j(2\pi/N)n} + \frac{1}{2} e^{-j(2\pi/N)n}
+$$
+
+### 2. 求解频率响应 $H(e^{j\omega})$
+
+由式 (3.122)，系统的频率响应为单位脉冲响应的离散时间傅里叶变换：
+
+$$
+H(e^{j\omega}) = \sum_{n=0}^{\infty} \alpha^n e^{-j\omega n} = \sum_{n=0}^{\infty} (\alpha e^{-j\omega})^n \tag{3.133}
+$$
+
+利用等比级数求和公式（几何级数收敛条件为 $|\alpha e^{-j\omega}| < 1$），得：
+
+$$
+H(e^{j\omega}) = \frac{1}{1 - \alpha e^{-j\omega}} \tag{3.134}
+$$
+
+## 线性时不变系统对复指数信号的响应
+
+### 3. 输出信号 $y[n]$ 的计算
+
+利用线性系统的频率响应特性，输出的傅里叶级数为：
+
+$$
+\begin{aligned}
+y[n] &= \frac{1}{2} H(e^{j2\pi/N}) e^{j(2\pi/N)n} + \frac{1}{2} H(e^{-j2\pi/N}) e^{-j(2\pi/N)n} \\
+&= \frac{1}{2} \left( \frac{1}{1 - \alpha e^{-j2\pi/N}} \right) e^{j(2\pi/N)n} + \frac{1}{2} \left( \frac{1}{1 - \alpha e^{j2\pi/N}} \right) e^{-j(2\pi/N)n}
+\end{aligned} \tag{3.135}
+$$
+
+若记频率响应的极坐标形式为：
+$$\frac{1}{1 - \alpha e^{-j2\pi/N}} = r e^{j\theta}$$
+
+则式 (3.135) 可化简为实数余弦形式：
+$$y[n] = r \cos\left( \frac{2\pi}{N} n + \theta \right) \tag{3.136}$$
+
+---
+
+### 4. 数值示例 ($N=4$)
+
+若设定周期 $N=4$，则频率响应为：
+
+$$
+\frac{1}{1 - \alpha e^{-j2\pi/4}} = \frac{1}{1 - \alpha e^{-j\pi/2}} = \frac{1}{1 + \alpha j} = \frac{1}{\sqrt{1 + \alpha^2}} e^{j(-\arctan \alpha)}
+$$
+
+因此，输出信号为：
+
+$$
+y[n] = \frac{1}{\sqrt{1 + \alpha^2}} \cos\left( \frac{\pi n}{2} - \arctan \alpha \right)
+$$
+
 ## 目录 {#toc7}
 
 - [1. 线性时不变系统对复指数信号的响应](#sec31)
@@ -2265,7 +2480,7 @@ $$
 
 # 8. 滤波{#sec38}
 
-## 频率成形滤波器{#sec381}
+
 
 ## 频率响应
 
@@ -2283,6 +2498,8 @@ $$H(j\omega) = \int_{\mathbb{R}} h(t) e^{-j\omega t} dt$$
 
 ## 滤波
 
+
+
 傅里叶级数表示下的周期输入 $x$：
 
 $$x(t) = \sum_{k=-\infty}^{\infty} \hat{x}[k] e^{jk\omega_0 t}$$
@@ -2295,9 +2512,28 @@ $$y(t) = T \left( \sum_{k=-\infty}^{\infty} \hat{x}[k] e^{jk\omega_0 t} \right) 
 
 $$\hat{y}[k] = H(j k \omega_0) \hat{x}[k]$$
 
-**滤波**会改变频率分量的相对幅度，或者完全消除某些频率分量。
+**滤波**：改变频率分量的相对幅度的大小，或者完全消除某些频率分量。
 
-## 滤波
+- **频率成形滤波器**：用于改变频谱形状的线性时不变系统
+
+- **频率选择性滤波器**：用于基本无失真通过某些频率，而显著衰减或消除另一些频率的线性时不变系统
+
+* **不能**产生新的频率分量。
+* **只能**缩放现有分量的幅度或移动其相位。
+
+## 频率成形滤波器  (Frequency-shaping filters) {#sec381}
+
+这类滤波器会改变频谱的形状。
+
+* **例如：均衡器 (Equalizer)**
+
+![](imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-32.png){width=15%,fig-align=center}
+
+## 频率成形滤波器  
+
+![](imglink/EQ.webm){width=10%,fig-align=center}
+
+## 频率成形滤波器
 
 :::: {.columns style="text-align: center;"}
 
@@ -2329,29 +2565,16 @@ $$\hat{y}[k] = jk\omega_0 \hat{x}[k]$$
 
 ::::
 
+## 频率成形滤波器
 
-## 滤波
+### 控制系统-回路整形
 
-* **不能**产生新的频率分量。
-* **只能**缩放现有分量的幅度或移动其相位。
+![](imglink/loopshaping.png)
 
-**非线性滤波器示例：** 削波（Clipping） $y(t) = \max\{x(t), c\}$。  
-*本课程重点关注 **LTI 滤波器**。*
+## 频率选择性滤波器
+基本无失真通过某些频率，而显著衰减或消除另一些频率的线性时不变系统.
 
-
-### 频率整形滤波器 (Frequency-shaping filters)
-这类滤波器会改变频谱的形状。
-
-* **例如：均衡器 (Equalizer)**
-
-![](imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-32.png){width=30%,fig-align=center}
-
-
-### 频率选择性滤波器 (Frequency-selective filters)
-这类滤波器使某些频率基本无失真地通过，并显著衰减或消除其他频率。
-
-
-## 理想频率选择性滤波器
+### 理想频率选择性滤波器
 
 :::: {.columns style="text-align: center;"}
 
@@ -2510,6 +2733,7 @@ $$
 ::: {.column width="50%"}
 
 ODE
+
 $R C \frac{d v_{R}(t)}{d t}+v_{R}(t)=R C \frac{d v_{S}(t)}{d t}$
 
 对于输入 $v_{S}(t)=e^{j \omega t}$，输出为
@@ -2671,7 +2895,7 @@ $$y[n] = T \left( \sum_{k \in [N]} \hat{x}[k] e^{j k \omega_0 n} \right) = \sum_
 
 $$\hat{y}[k] = H(e^{j k \omega_0}) \hat{x}[k]$$
 
-## 滤波
+<!-- ## 滤波
 
 **滤波**会改变频率分量的相对幅度，或者完全消除某些频率分量。
 
@@ -2688,7 +2912,7 @@ $$\hat{y}[k] = H(e^{j k \omega_0}) \hat{x}[k]$$
 * **极大值滤波器 (Max filter)**:
     $$y[n] = \max_{-n_1 \leq k \leq n_2} x[n + k]$$
 * **中值滤波器 (Median filter)**:
-    $$y[n] = \text{median} \{x[n - n_1], \dots, x[n + n_2]\}$$
+    $$y[n] = \text{median} \{x[n - n_1], \dots, x[n + n_2]\}$$ -->
 
 ### 离散时间 (DT) 信号的频率
 回顾离散时间信号的特性：只需考虑长度为 $2\pi$ 的频率区间即可，例如 $[0, 2\pi)$ 或 $(-\pi, \pi]$。
@@ -3057,11 +3281,62 @@ $$
 
 ## 一阶差分用于边缘检测
 
-![](imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-28.png){fig-align=center}
+Sobel 算子是一种离散微分算子，结合了**高斯平滑**和**一阶差分**。它通过计算图像亮度函数的梯度近似值来寻找边缘。
+
+:::: {.columns style="text-align: center;"}
+
+::: {.column width="60%"}
+
+差分方程形式
+对于图像中的像素 $x[i, j]$，其水平和垂直方向的梯度 $G_x$ 和 $G_y$ 可由以下差分方程定义：
+
+**水平梯度 (检测垂直边缘):**
+$$
+\begin{aligned}
+G_x[i, j] = \ &1 \cdot x[i-1, j+1] + 2 \cdot x[i, j+1] + 1 \cdot x[i+1, j+1] \\
+&- (1 \cdot x[i-1, j-1] + 2 \cdot x[i, j-1] + 1 \cdot x[i+1, j-1])
+\end{aligned}
+$$
+
+**垂直梯度 (检测水平边缘):**
+$$
+\begin{aligned}
+G_y[i, j] = \ &1 \cdot x[i+1, j-1] + 2 \cdot x[i+1, j] + 1 \cdot x[i+1, j+1] \\
+&- (1 \cdot x[i-1, j-1] + 2 \cdot x[i-1, j] + 1 \cdot x[i-1, j+1])
+\end{aligned}
+$$
+上述方程对应的卷积核矩阵形式如下：
+
+$$
+K_x = \begin{bmatrix} -1 & 0 & 1 \\ -2 & 0 & 2 \\ -1 & 0 & 1 \end{bmatrix}, \quad
+K_y = \begin{bmatrix} -1 & -2 & -1 \\ 0 & 0 & 0 \\ 1 & 2 & 1 \end{bmatrix}
+$$
+
+:::
+
+::: {.column width="40%"}
+![](imglink/cityroad.png){width=100% }
+
+![](imglink/cityroadedge.png){width=120%}
+:::
+
+::::
+
+
+
+
 
 
 
 ## 作业
+
+1. 3.3
+2. 3.6
+3. 3.12
+4. 3.16
+5. 3.20
+6. 计算机作业：用Python Jupyter 完成程序理解、修改或设计，具体见乐学平台。
+
 
  
 

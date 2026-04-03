@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.30">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>第6章 信号与系统的时域和频域特性 – My Site</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6a8276bf55561bdbc268162d41bd1f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-45431c2918bd31147ddb3fa7038bb99f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#第1页" id="toc-第1页" class="nav-link active" data-scroll-target="#第1页">第1页</a></li>
+  <li><a href="#第2页" id="toc-第2页" class="nav-link" data-scroll-target="#第2页">第2页</a></li>
+  <li><a href="#第3页" id="toc-第3页" class="nav-link" data-scroll-target="#第3页">第3页</a></li>
+  <li><a href="#第4页" id="toc-第4页" class="nav-link" data-scroll-target="#第4页">第4页</a></li>
+  <li><a href="#引言" id="toc-引言" class="nav-link" data-scroll-target="#引言">6.0 引言</a></li>
+  <li><a href="#算所以利用频域往往特别方便" id="toc-算所以利用频域往往特别方便" class="nav-link" data-scroll-target="#算所以利用频域往往特别方便">算，所以利用频域往往特别方便。</a></li>
+  <li><a href="#第5页" id="toc-第5页" class="nav-link" data-scroll-target="#第5页">第5页</a></li>
+  <li><a href="#第6页" id="toc-第6页" class="nav-link" data-scroll-target="#第6页">第6页</a></li>
+  <li><a href="#傅里叶变换的模和相位表示" id="toc-傅里叶变换的模和相位表示" class="nav-link" data-scroll-target="#傅里叶变换的模和相位表示">6.1 傅里叶变换的模和相位表示</a></li>
+  <li><a href="#第7页" id="toc-第7页" class="nav-link" data-scroll-target="#第7页">第7页</a></li>
+  <li><a href="#第8页" id="toc-第8页" class="nav-link" data-scroll-target="#第8页">第8页</a></li>
+  <li><a href="#第9页" id="toc-第9页" class="nav-link" data-scroll-target="#第9页">第9页</a></li>
+  <li><a href="#第10页" id="toc-第10页" class="nav-link" data-scroll-target="#第10页">第10页</a></li>
+  <li><a href="#第11页" id="toc-第11页" class="nav-link" data-scroll-target="#第11页">第11页</a></li>
+  <li><a href="#第12页" id="toc-第12页" class="nav-link" data-scroll-target="#第12页">第12页</a></li>
+  <li><a href="#相应的matlab程序" id="toc-相应的matlab程序" class="nav-link" data-scroll-target="#相应的matlab程序">相应的matlab程序：</a></li>
+  <li><a href="#clear-all" id="toc-clear-all" class="nav-link" data-scroll-target="#clear-all">clear all</a></li>
+  <li><a href="#t00.0110" id="toc-t00.0110" class="nav-link" data-scroll-target="#t00.0110">t=0:0.01:10;</a></li>
+  <li><a href="#for-i1lengtht" id="toc-for-i1lengtht" class="nav-link" data-scroll-target="#for-i1lengtht">for i=1:length(t)</a></li>
+  <li><a href="#x1i10.5cos2piti0cos4piti02.03cos6piti0" id="toc-x1i10.5cos2piti0cos4piti02.03cos6piti0" class="nav-link" data-scroll-target="#x1i10.5cos2piti0cos4piti02.03cos6piti0">x1(i)=1+0.5<em>cos(2</em>pi<em>t(i)+0)+cos(4</em>pi<em>t(i)+0)+2.0/3</em>cos(6<em>pi</em>t(i)+0);</a></li>
+  <li><a href="#x2i10.5cos2piti4cos4piti82.03cos6piti12" id="toc-x2i10.5cos2piti4cos4piti82.03cos6piti12" class="nav-link" data-scroll-target="#x2i10.5cos2piti4cos4piti82.03cos6piti12">x2(i)=1+0.5<em>cos(2</em>pi<em>t(i)+4)+cos(4</em>pi<em>t(i)+8)+2.0/3</em>cos(6<em>pi</em>t(i)+12);</a></li>
+  <li><a href="#x3i10.5cos2piti6cos4piti-2.72.03cos6piti0.93" id="toc-x3i10.5cos2piti6cos4piti-2.72.03cos6piti0.93" class="nav-link" data-scroll-target="#x3i10.5cos2piti6cos4piti-2.72.03cos6piti0.93">x3(i)=1+0.5<em>cos(2</em>pi<em>t(i)+6)+cos(4</em>pi<em>t(i)-2.7)+2.0/3</em>cos(6<em>pi</em>t(i)+0.93);</a></li>
+  <li><a href="#x4i10.5cos2piti1.2cos4piti4.12.03cos6piti-7.02" id="toc-x4i10.5cos2piti1.2cos4piti4.12.03cos6piti-7.02" class="nav-link" data-scroll-target="#x4i10.5cos2piti1.2cos4piti4.12.03cos6piti-7.02">x4(i)=1+0.5<em>cos(2</em>pi<em>t(i)+1.2)+cos(4</em>pi<em>t(i)+4.1)+2.0/3</em>cos(6<em>pi</em>t(i)-7.02);</a></li>
+  <li><a href="#end" id="toc-end" class="nav-link" data-scroll-target="#end">end</a></li>
+  <li><a href="#subplot411plottx1" id="toc-subplot411plottx1" class="nav-link" data-scroll-target="#subplot411plottx1">subplot(4,1,1),plot(t,x1)</a></li>
+  <li><a href="#subplot412plottx2" id="toc-subplot412plottx2" class="nav-link" data-scroll-target="#subplot412plottx2">subplot(4,1,2),plot(t,x2)</a></li>
+  <li><a href="#subplot413plottx3" id="toc-subplot413plottx3" class="nav-link" data-scroll-target="#subplot413plottx3">subplot(4,1,3),plot(t,x3)</a></li>
+  <li><a href="#第13页" id="toc-第13页" class="nav-link" data-scroll-target="#第13页">第13页</a></li>
+  <li><a href="#第14页" id="toc-第14页" class="nav-link" data-scroll-target="#第14页">第14页</a></li>
+  <li><a href="#第15页" id="toc-第15页" class="nav-link" data-scroll-target="#第15页">第15页</a></li>
+  <li><a href="#第16页" id="toc-第16页" class="nav-link" data-scroll-target="#第16页">第16页</a></li>
+  <li><a href="#第17页" id="toc-第17页" class="nav-link" data-scroll-target="#第17页">第17页</a></li>
+  <li><a href="#第18页" id="toc-第18页" class="nav-link" data-scroll-target="#第18页">第18页</a></li>
+  <li><a href="#第19页" id="toc-第19页" class="nav-link" data-scroll-target="#第19页">第19页</a></li>
+  <li><a href="#第20页" id="toc-第20页" class="nav-link" data-scroll-target="#第20页">第20页</a></li>
+  <li><a href="#第21页" id="toc-第21页" class="nav-link" data-scroll-target="#第21页">第21页</a></li>
+  <li><a href="#lti系统频率响应的模和相位表示" id="toc-lti系统频率响应的模和相位表示" class="nav-link" data-scroll-target="#lti系统频率响应的模和相位表示">6.2 LTI系统频率响应的模和相位表示</a></li>
+  <li><a href="#第22页" id="toc-第22页" class="nav-link" data-scroll-target="#第22页">第22页</a></li>
+  <li><a href="#第23页" id="toc-第23页" class="nav-link" data-scroll-target="#第23页">第23页</a></li>
+  <li><a href="#第24页" id="toc-第24页" class="nav-link" data-scroll-target="#第24页">第24页</a></li>
+  <li><a href="#第25页" id="toc-第25页" class="nav-link" data-scroll-target="#第25页">第25页</a></li>
+  <li><a href="#第26页" id="toc-第26页" class="nav-link" data-scroll-target="#第26页">第26页</a></li>
+  <li><a href="#线性和非线性相位" id="toc-线性和非线性相位" class="nav-link" data-scroll-target="#线性和非线性相位">6.2.1 线性和非线性相位</a></li>
+  <li><a href="#第27页" id="toc-第27页" class="nav-link" data-scroll-target="#第27页">第27页</a></li>
+  <li><a href="#第28页" id="toc-第28页" class="nav-link" data-scroll-target="#第28页">第28页</a></li>
+  <li><a href="#第29页" id="toc-第29页" class="nav-link" data-scroll-target="#第29页">第29页</a></li>
+  <li><a href="#第30页" id="toc-第30页" class="nav-link" data-scroll-target="#第30页">第30页</a></li>
+  <li><a href="#第31页" id="toc-第31页" class="nav-link" data-scroll-target="#第31页">第31页</a></li>
+  <li><a href="#对数模和波特图" id="toc-对数模和波特图" class="nav-link" data-scroll-target="#对数模和波特图">6.2.3 对数模和波特图</a></li>
+  <li><a href="#到" id="toc-到" class="nav-link" data-scroll-target="#到">到。</a></li>
+  <li><a href="#第32页" id="toc-第32页" class="nav-link" data-scroll-target="#第32页">第32页</a></li>
+  <li><a href="#第33页" id="toc-第33页" class="nav-link" data-scroll-target="#第33页">第33页</a></li>
+  <li><a href="#第34页" id="toc-第34页" class="nav-link" data-scroll-target="#第34页">第34页</a></li>
+  <li><a href="#第35页" id="toc-第35页" class="nav-link" data-scroll-target="#第35页">第35页</a></li>
+  <li><a href="#理想频率选择性滤波器的时域特性" id="toc-理想频率选择性滤波器的时域特性" class="nav-link" data-scroll-target="#理想频率选择性滤波器的时域特性">6.3 理想频率选择性滤波器的时域特性</a></li>
+  <li><a href="#本节集中讨论低通滤波器" id="toc-本节集中讨论低通滤波器" class="nav-link" data-scroll-target="#本节集中讨论低通滤波器">本节集中讨论低通滤波器。</a></li>
+  <li><a href="#第36页" id="toc-第36页" class="nav-link" data-scroll-target="#第36页">第36页</a></li>
+  <li><a href="#一个离散时间理想低通滤波器具有如下的频率响应" id="toc-一个离散时间理想低通滤波器具有如下的频率响应" class="nav-link" data-scroll-target="#一个离散时间理想低通滤波器具有如下的频率响应">一个离散时间理想低通滤波器具有如下的频率响应：</a></li>
+  <li><a href="#第37页" id="toc-第37页" class="nav-link" data-scroll-target="#第37页">第37页</a></li>
+  <li><a href="#第38页" id="toc-第38页" class="nav-link" data-scroll-target="#第38页">第38页</a></li>
+  <li><a href="#第39页" id="toc-第39页" class="nav-link" data-scroll-target="#第39页">第39页</a></li>
+  <li><a href="#和即" id="toc-和即" class="nav-link" data-scroll-target="#和即">和，即</a></li>
+  <li><a href="#第40页" id="toc-第40页" class="nav-link" data-scroll-target="#第40页">第40页</a></li>
+  <li><a href="#第41页" id="toc-第41页" class="nav-link" data-scroll-target="#第41页">第41页</a></li>
+  <li><a href="#理想频率选择性滤波器的时域特性-1" id="toc-理想频率选择性滤波器的时域特性-1" class="nav-link" data-scroll-target="#理想频率选择性滤波器的时域特性-1">6.3 理想频率选择性滤波器的时域特性</a></li>
+  <li><a href="#第42页" id="toc-第42页" class="nav-link" data-scroll-target="#第42页">第42页</a></li>
+  <li><a href="#第43页" id="toc-第43页" class="nav-link" data-scroll-target="#第43页">第43页</a></li>
+  <li><a href="#第44页" id="toc-第44页" class="nav-link" data-scroll-target="#第44页">第44页</a></li>
+  <li><a href="#第45页" id="toc-第45页" class="nav-link" data-scroll-target="#第45页">第45页</a></li>
+  <li><a href="#第46页" id="toc-第46页" class="nav-link" data-scroll-target="#第46页">第46页</a></li>
+  <li><a href="#第47页" id="toc-第47页" class="nav-link" data-scroll-target="#第47页">第47页</a></li>
+  <li><a href="#第48页" id="toc-第48页" class="nav-link" data-scroll-target="#第48页">第48页</a></li>
+  <li><a href="#和即-1" id="toc-和即-1" class="nav-link" data-scroll-target="#和即-1">和，即</a></li>
+  <li><a href="#第49页" id="toc-第49页" class="nav-link" data-scroll-target="#第49页">第49页</a></li>
+  <li><a href="#非理想滤波器的时域和频域特性讨论" id="toc-非理想滤波器的时域和频域特性讨论" class="nav-link" data-scroll-target="#非理想滤波器的时域和频域特性讨论">6.4 非理想滤波器的时域和频域特性讨论</a></li>
+  <li><a href="#第50页" id="toc-第50页" class="nav-link" data-scroll-target="#第50页">第50页</a></li>
+  <li><a href="#第51页" id="toc-第51页" class="nav-link" data-scroll-target="#第51页">第51页</a></li>
+  <li><a href="#第52页" id="toc-第52页" class="nav-link" data-scroll-target="#第52页">第52页</a></li>
+  <li><a href="#第53页" id="toc-第53页" class="nav-link" data-scroll-target="#第53页">第53页</a></li>
+  <li><a href="#第54页" id="toc-第54页" class="nav-link" data-scroll-target="#第54页">第54页</a></li>
+  <li><a href="#第55页" id="toc-第55页" class="nav-link" data-scroll-target="#第55页">第55页</a></li>
+  <li><a href="#第56页" id="toc-第56页" class="nav-link" data-scroll-target="#第56页">第56页</a></li>
+  <li><a href="#一阶和二阶连续时间系统" id="toc-一阶和二阶连续时间系统" class="nav-link" data-scroll-target="#一阶和二阶连续时间系统">6.5 一阶和二阶连续时间系统</a></li>
+  <li><a href="#第57页" id="toc-第57页" class="nav-link" data-scroll-target="#第57页">第57页</a></li>
+  <li><a href="#单位冲激响应" id="toc-单位冲激响应" class="nav-link" data-scroll-target="#单位冲激响应">单位冲激响应</a></li>
+  <li><a href="#第58页" id="toc-第58页" class="nav-link" data-scroll-target="#第58页">第58页</a></li>
+  <li><a href="#频率响应的对数模特性" id="toc-频率响应的对数模特性" class="nav-link" data-scroll-target="#频率响应的对数模特性">频率响应的对数模特性：</a></li>
+  <li><a href="#当ωτ1时对数模近似为零" id="toc-当ωτ1时对数模近似为零" class="nav-link" data-scroll-target="#当ωτ1时对数模近似为零">当ωτ&lt;&lt;1时，对数模近似为零：</a></li>
+  <li><a href="#第59页" id="toc-第59页" class="nav-link" data-scroll-target="#第59页">第59页</a></li>
+  <li><a href="#第60页" id="toc-第60页" class="nav-link" data-scroll-target="#第60页">第60页</a></li>
+  <li><a href="#ω1τ这一点称为转折频率在这一点模的实际值" id="toc-ω1τ这一点称为转折频率在这一点模的实际值" class="nav-link" data-scroll-target="#ω1τ这一点称为转折频率在这一点模的实际值">ω=1/τ这一点称为转折频率，在这一点模的实际值</a></li>
+  <li><a href="#第61页" id="toc-第61页" class="nav-link" data-scroll-target="#第61页">第61页</a></li>
+  <li><a href="#第62页" id="toc-第62页" class="nav-link" data-scroll-target="#第62页">第62页</a></li>
+  <li><a href="#第63页" id="toc-第63页" class="nav-link" data-scroll-target="#第63页">第63页</a></li>
+  <li><a href="#第64页" id="toc-第64页" class="nav-link" data-scroll-target="#第64页">第64页</a></li>
+  <li><a href="#第65页" id="toc-第65页" class="nav-link" data-scroll-target="#第65页">第65页</a></li>
+  <li><a href="#第66页" id="toc-第66页" class="nav-link" data-scroll-target="#第66页">第66页</a></li>
+  <li><a href="#第67页" id="toc-第67页" class="nav-link" data-scroll-target="#第67页">第67页</a></li>
+  <li><a href="#第68页" id="toc-第68页" class="nav-link" data-scroll-target="#第68页">第68页</a></li>
+  <li><a href="#第69页" id="toc-第69页" class="nav-link" data-scroll-target="#第69页">第69页</a></li>
+  <li><a href="#第70页" id="toc-第70页" class="nav-link" data-scroll-target="#第70页">第70页</a></li>
+  <li><a href="#第71页" id="toc-第71页" class="nav-link" data-scroll-target="#第71页">第71页</a></li>
+  <li><a href="#第72页" id="toc-第72页" class="nav-link" data-scroll-target="#第72页">第72页</a></li>
+  <li><a href="#第73页" id="toc-第73页" class="nav-link" data-scroll-target="#第73页">第73页</a></li>
+  <li><a href="#第74页" id="toc-第74页" class="nav-link" data-scroll-target="#第74页">第74页</a></li>
+  <li><a href="#第75页" id="toc-第75页" class="nav-link" data-scroll-target="#第75页">第75页</a></li>
+  <li><a href="#第76页" id="toc-第76页" class="nav-link" data-scroll-target="#第76页">第76页</a></li>
+  <li><a href="#第77页" id="toc-第77页" class="nav-link" data-scroll-target="#第77页">第77页</a></li>
+  <li><a href="#第78页" id="toc-第78页" class="nav-link" data-scroll-target="#第78页">第78页</a></li>
+  <li><a href="#第79页" id="toc-第79页" class="nav-link" data-scroll-target="#第79页">第79页</a></li>
+  <li><a href="#第80页" id="toc-第80页" class="nav-link" data-scroll-target="#第80页">第80页</a></li>
+  <li><a href="#第81页" id="toc-第81页" class="nav-link" data-scroll-target="#第81页">第81页</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">第6章 信号与系统的时域和频域特性</h1>
+<p class="subtitle lead">Time and frequency characterization of signals and systems</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="第1页" class="level2">
+<h2 class="anchored" data-anchor-id="第1页">第1页</h2>
+<p>时域和频域特性 Time and frequency characterization of signals and systems</p>
+</section>
+<section id="第2页" class="level2">
+<h2 class="anchored" data-anchor-id="第2页">第2页</h2>
+<p>本章内容（2学时） - 傅里叶变换的模和相位表示 - LTI系统频率响应的模和相位表示 - 线性和非线性相位 - 群时延 - 理想频率选择性滤波器的时域特性</p>
+</section>
+<section id="第3页" class="level2">
+<h2 class="anchored" data-anchor-id="第3页">第3页</h2>
+<p>学习目标 - 掌握LTI系统频率响应的模和相位表示 - 了解线性相位和非线性相位，以及群</p>
+<p>时延的概念； - 了解理想频率选择性滤波器的时域特性</p>
+</section>
+<section id="第4页" class="level2">
+<h2 class="anchored" data-anchor-id="第4页">第4页</h2>
+</section>
+<section id="引言" class="level2">
+<h2 class="anchored" data-anchor-id="引言">6.0 引言</h2>
+<p>对于一个LTI系统来说，除了通过卷积的时域特性</p>
+<p>外，利用系统的频率响应的频域特性是另一种可供选 择的表示方法。在LTI系统分析中，由于时域中的微 分（差分）方程和卷积运算在频域都变成了代数运</p>
+</section>
+<section id="算所以利用频域往往特别方便" class="level2">
+<h2 class="anchored" data-anchor-id="算所以利用频域往往特别方便">算，所以利用频域往往特别方便。</h2>
+<p>但是我们需要考虑的是，在系统设计和分析中，将时 域特性和频域特性联系起来并给予权衡考虑。</p>
+</section>
+<section id="第5页" class="level2">
+<h2 class="anchored" data-anchor-id="第5页">第5页</h2>
+<p>6.0 引言 一、LTI系统的描述方法： （1）时域特性（卷积）； （2）频域特性（系统频率响应） 二、在系统分析和设计中，将时域和频域</p>
+<p>特性联系起来并给以权衡考虑是很有必</p>
+<p>要的</p>
+</section>
+<section id="第6页" class="level2">
+<h2 class="anchored" data-anchor-id="第6页">第6页</h2>
+</section>
+<section id="傅里叶变换的模和相位表示" class="level2">
+<h2 class="anchored" data-anchor-id="傅里叶变换的模和相位表示">6.1 傅里叶变换的模和相位表示</h2>
+<p>一般说来，傅里叶变换是复数值的，用它的模和相</p>
+<p>位来表示。 连续时间傅里叶变换X(jω)的模－相表示： 离散时间傅里叶变换X(ejω)的模－相表示： ( ) ( ) ( ) j X j X j X j e ω ω ω ∠ = ( ) ( ) ( ) j j j j X e X e X e e ω ω ω ∠ =</p>
+</section>
+<section id="第7页" class="level2">
+<h2 class="anchored" data-anchor-id="第7页">第7页</h2>
+<p>6.1 傅里叶变换的模和相位表示 ) ( |) ( | ) ( ω ω ω j X je j X j X ∠ = ) ( ) ( |) ( | ) ( Spectrum Phase e Spectrum Magnitude j X j X j 相位频谱 幅度频谱 − − − − − − ∠ ω ω - 连续时间傅立叶变换（CFT）的模-相表示： - 信号</p>
+<dl>
+<dt>x(t)的傅氏变换</dt>
+<dd>
+<p>) ( ) ( ω j X t x F ⎯→ ←</p>
+</dd>
+</dl>
+</section>
+<section id="第8页" class="level2">
+<h2 class="anchored" data-anchor-id="第8页">第8页</h2>
+<ul>
+<li></li>
+</ul>
+<p>傅里叶变换式本身可以看做是信号x(t)的一种分解，即 把信号x(t)分解成不同频率的复指数信号之和： -</p>
+<p>由帕斯瓦尔定理，|X(jω)|2可以看作是x(t)的能谱密</p>
+<p>度；也就是|X(jω)|2dω/2π可以认为是信号x(t)中位于 频率由ω到ω＋dω之间这样一个无限小的频带内所占 有的能量。因此，模|X(jω)|所描述的是一个信号的基 本频率含量，也即给出是组成x(t)的各复指数信号相对 振幅的信息。 ( ) ( ) j t x t X j e d ω ω ω π +∞ −∞ = </p>
+</section>
+<section id="第9页" class="level2">
+<h2 class="anchored" data-anchor-id="第9页">第9页</h2>
+<ul>
+<li></li>
+</ul>
+<p>另一方面，相位角≮X(jω)不影响各个频率分量的大 小，但是提供的是有关这些复指数信号的相对相位信 息。由≮X(jω)所代表的相位关系对信号x(t)的本质属 性有显著的影响。尤其是，依赖于什么样的相位函</p>
+<p>数，即使模函数保持不变，也能得出看上去很不相同 的信号。例如图3.3所示的例子，由于相对相位关系， 造成振幅叠加效应。 -</p>
+<p>作为相位影响的另一个例子，如下信号 ( ) cos(2 ) cos(4 ) cos(6 ) x t t t t π φ π φ π φ = + + + + + +</p>
+</section>
+<section id="第10页" class="level2">
+<h2 class="anchored" data-anchor-id="第10页">第10页</h2>
+<p>1、相位对波形的影响： ( ) cos(2 ) cos(4 ) cos(6 ) x t t t t π φ π φ π φ = + + + + + + = Φ = Φ = Φ ,8 ,4 = Φ = Φ = Φ .0 ,7. ,6 = Φ − = Φ = Φ 2.7 ,1.4 ,2.1 − = Φ = Φ = Φ 过桥齐步走?</p>
+</section>
+<section id="第11页" class="level2">
+<h2 class="anchored" data-anchor-id="第11页">第11页</h2>
+<p>1、相位对波形的影响： ( ) cos(2 ) cos(4 ) cos(6 ) x t t t t π φ π φ π φ = + + + + + +</p>
+</section>
+<section id="第12页" class="level2">
+<h2 class="anchored" data-anchor-id="第12页">第12页</h2>
+</section>
+<section id="相应的matlab程序" class="level2">
+<h2 class="anchored" data-anchor-id="相应的matlab程序">相应的matlab程序：</h2>
+</section>
+<section id="clear-all" class="level2">
+<h2 class="anchored" data-anchor-id="clear-all">clear all</h2>
+</section>
+<section id="t00.0110" class="level2">
+<h2 class="anchored" data-anchor-id="t00.0110">t=0:0.01:10;</h2>
+</section>
+<section id="for-i1lengtht" class="level2">
+<h2 class="anchored" data-anchor-id="for-i1lengtht">for i=1:length(t)</h2>
+</section>
+<section id="x1i10.5cos2piti0cos4piti02.03cos6piti0" class="level2">
+<h2 class="anchored" data-anchor-id="x1i10.5cos2piti0cos4piti02.03cos6piti0">x1(i)=1+0.5<em>cos(2</em>pi<em>t(i)+0)+cos(4</em>pi<em>t(i)+0)+2.0/3</em>cos(6<em>pi</em>t(i)+0);</h2>
+</section>
+<section id="x2i10.5cos2piti4cos4piti82.03cos6piti12" class="level2">
+<h2 class="anchored" data-anchor-id="x2i10.5cos2piti4cos4piti82.03cos6piti12">x2(i)=1+0.5<em>cos(2</em>pi<em>t(i)+4)+cos(4</em>pi<em>t(i)+8)+2.0/3</em>cos(6<em>pi</em>t(i)+12);</h2>
+</section>
+<section id="x3i10.5cos2piti6cos4piti-2.72.03cos6piti0.93" class="level2">
+<h2 class="anchored" data-anchor-id="x3i10.5cos2piti6cos4piti-2.72.03cos6piti0.93">x3(i)=1+0.5<em>cos(2</em>pi<em>t(i)+6)+cos(4</em>pi<em>t(i)-2.7)+2.0/3</em>cos(6<em>pi</em>t(i)+0.93);</h2>
+</section>
+<section id="x4i10.5cos2piti1.2cos4piti4.12.03cos6piti-7.02" class="level2">
+<h2 class="anchored" data-anchor-id="x4i10.5cos2piti1.2cos4piti4.12.03cos6piti-7.02">x4(i)=1+0.5<em>cos(2</em>pi<em>t(i)+1.2)+cos(4</em>pi<em>t(i)+4.1)+2.0/3</em>cos(6<em>pi</em>t(i)-7.02);</h2>
+</section>
+<section id="end" class="level2">
+<h2 class="anchored" data-anchor-id="end">end</h2>
+</section>
+<section id="subplot411plottx1" class="level2">
+<h2 class="anchored" data-anchor-id="subplot411plottx1">subplot(4,1,1),plot(t,x1)</h2>
+</section>
+<section id="subplot412plottx2" class="level2">
+<h2 class="anchored" data-anchor-id="subplot412plottx2">subplot(4,1,2),plot(t,x2)</h2>
+</section>
+<section id="subplot413plottx3" class="level2">
+<h2 class="anchored" data-anchor-id="subplot413plottx3">subplot(4,1,3),plot(t,x3)</h2>
+<p>subplot(4,1,4),plot(t,x4)</p>
+</section>
+<section id="第13页" class="level2">
+<h2 class="anchored" data-anchor-id="第13页">第13页</h2>
+<ul>
+<li></li>
+</ul>
+<p>一般说来，X(jω)的相位函数的变化会导致信号x(t)时 域特性的改变。作为一个极端的例子，若x(t)是一盘录 音，那么x(-t)就是把这盘录音倒过来放。假设x(t)是实 值信号，由傅里叶变换性质有x(-t)的频谱是： 其频谱的模函数与原信号的模函数是一样的，而相位 函数则反相。 ( ) { ( )} ( ) ( ) j X j F x t X j X j e ω ω ω − − = − = </p>
+</section>
+<section id="第14页" class="level2">
+<h2 class="anchored" data-anchor-id="第14页">第14页</h2>
+<p>2、相位重要性及其影响的实例 （1）x(t)是录制在磁带上的一句话，那 么x(-t)就代表把这个句子倒过来。  （2）对图像的影响。 </p>
+</section>
+<section id="第15页" class="level2">
+<h2 class="anchored" data-anchor-id="第15页">第15页</h2>
+<ul>
+<li></li>
+</ul>
+<p>说明相位的重要性的第二个例子是在研究图像信号中 发现的。看一幅图像最重要的信息就是图像边缘和那 些高对比度的区域。从直观上看，在一幅图像上最大 和最小强度的地方就是这些不同频率的复指数信号发 生在同相位的地方。因此，一幅图像的傅里叶变换的 相位包含了图像中大部分信息，尤其是关于边缘方面 的信息。</p>
+</section>
+<section id="第16页" class="level2">
+<h2 class="anchored" data-anchor-id="第16页">第16页</h2>
+</section>
+<section id="第17页" class="level2">
+<h2 class="anchored" data-anchor-id="第17页">第17页</h2>
+</section>
+<section id="第18页" class="level2">
+<h2 class="anchored" data-anchor-id="第18页">第18页</h2>
+<p>) , ( ω ω j j P ∠ |) , ( | ω ω j j P 模重要? 相位重要?</p>
+</section>
+<section id="第19页" class="level2">
+<h2 class="anchored" data-anchor-id="第19页">第19页</h2>
+<p>: |) , ( |: 相位 模 ω ω j j P ) , ( : : ω ω j j P ∠ 相位 模</p>
+</section>
+<section id="第20页" class="level2">
+<h2 class="anchored" data-anchor-id="第20页">第20页</h2>
+<p>) , ( : : ω ω j j P ∠ 相位 模</p>
+</section>
+<section id="第21页" class="level2">
+<h2 class="anchored" data-anchor-id="第21页">第21页</h2>
+</section>
+<section id="lti系统频率响应的模和相位表示" class="level2">
+<h2 class="anchored" data-anchor-id="lti系统频率响应的模和相位表示">6.2 LTI系统频率响应的模和相位表示</h2>
+<p>LTI系统的输入和输出的傅里叶变换是 类似的，离散条件下 因此，一个LTI系统对输入的作用就是改变信号中每一 频率分量的复振幅。利用模－相表示： ( ) ( ) ( ) Y j H j X j ω ω ω = ( ) ( ) ( ) j j j Y e H e X e ω ω ω = ( ) ( ) ( ) ( ) ( ) ( ) Y j H j X j Y j H j X j ω ω ω ω ω ω = ∠ = ∠ + ∠</p>
+</section>
+<section id="第22页" class="level2">
+<h2 class="anchored" data-anchor-id="第22页">第22页</h2>
+<p>6.2 LTI系统频率响应的模和相位表示 系统特性: ) ( |) ( | ) ( ω ω ω j H je j H j H ∠ = ) ( ) ( ω j H t h F ⎯→ ← 冲激响应： ) ( ) ( ) ( ω ω ω j X j Y j H = 频率响应: ) ( ) ( |) ( | ) ( Response Phase e Response Magnitude j H j H j 相位响应 幅度响应 − − − − − − ∠ ω ω - |H(jω)|为系统的增益。 - ≮H(jω)为系统的相移，它可改变输入信号中各分 量之间的相对相位关系。</p>
+</section>
+<section id="第23页" class="level2">
+<h2 class="anchored" data-anchor-id="第23页">第23页</h2>
+<ul>
+<li></li>
+</ul>
+<p>一个LTI系统对输入傅里叶变换模特性上的作用就是 将其乘以系统频率响应的模，为此，|H(jω)|一般称为 系统的增益。同时，由LTI系统将输入的相位≮X(jω) 变化成在它基础上附加了一个相位≮H(jω)，因此， ≮H(jω)一般就称为系统的相移。 -</p>
+<p>如果，系统对输入的改变是一种有意义的方式进行 的，那么这种在模和相位上的变化可能就是我们所希 望的；否则就是不希望的，在这种情况下模和相位的 改变，一般就称为幅度与相位的失真。</p>
+</section>
+<section id="第24页" class="level2">
+<h2 class="anchored" data-anchor-id="第24页">第24页</h2>
+<ul>
+<li></li>
+</ul>
+<p>电视模拟信号失真 在信号经过每一个元器件时，其参数都受热噪声等随 机的不稳定性因素的影响，此外，外界环境干扰等随 机不稳定因素也会对信号产生影响，引起信号失真。 总的来说，失真包含幅度失真和相位失真两种。信号 的水平线条增粗，是信号的幅度发生失真。信号的垂 直线条增粗，是信号的相位发生失真。模拟信号一旦 发生失真，在以后的处理中，将保持这种失真。这就 是失真信号的继承性。</p>
+</section>
+<section id="第25页" class="level2">
+<h2 class="anchored" data-anchor-id="第25页">第25页</h2>
+<p>6.2.1 线性与非线性相位 ) ( ) ( ) ( ) ( ) ( phase Linear t j H e j H t t x t y t j ω ω ω ω − = ∠ = − = − 线性相位: ω ω k j H = ∠ ) ( 非线性相位: 非线性方程 = ∠ ) ( ω j H 例题: 效果:线性相位意味着信号传输无失真! Linear and Nonlinear Phase</p>
+</section>
+<section id="第26页" class="level2">
+<h2 class="anchored" data-anchor-id="第26页">第26页</h2>
+</section>
+<section id="线性和非线性相位" class="level2">
+<h2 class="anchored" data-anchor-id="线性和非线性相位">6.2.1 线性和非线性相位</h2>
+<p>当相移是ω的线性函数时，即 相移在时域中的作用就有一个非常直接的解释。 -</p>
+<p>考虑频率响应为</p>
+<p>的连续时间LTI系统， 它有单位增益和线性相位，即 在例4.15中已指出，具有这种频率响应的系统所产生 的输出就是输入的时移，即 -</p>
+<p>在离散时间情况下，当线性相位的斜率k为整数时， 与连续时间情况类似。 ( ) H j k ω ω ∠ = ( ) j t H j e ω ω − = ( ) 1, ( ) H j H j t ω ω ω = ∠ = − ( ) ( ) y t x t t = −</p>
+</section>
+<section id="第27页" class="level2">
+<h2 class="anchored" data-anchor-id="第27页">第27页</h2>
+<ul>
+<li></li>
+</ul>
+<p>当输入信号受到的是一个ω的非线性函数的相移时， 那么在输入中各不同频率的复指数分量都将以某种方 式移位，而在它们的相对相位上发生变化。当这些复 指数再次叠加在一块时，就会得到一个看起来与输入 信号有很大不同的信号。</p>
+</section>
+<section id="第28页" class="level2">
+<h2 class="anchored" data-anchor-id="第28页">第28页</h2>
+<p>输入信号 线性相位 非线性相位</p>
+</section>
+<section id="第29页" class="level2">
+<h2 class="anchored" data-anchor-id="第29页">第29页</h2>
+<ul>
+<li></li>
+</ul>
+<p>要注意的是，上例中考虑的系统都全具有单位增益， 这样输入信号傅里叶变换的模通过这些系统时都没有 改变。为此，这样的系统一般称为全通系统。一个全 同系统的特性完全由它的相位特性决定。 -</p>
+<p>当然，一般说来，LTI系统即会在幅度上（通过增益 |H(jω)|），也会在相位上（可能是线性相位也可能是 非线性相位）给予影响。</p>
+</section>
+<section id="第30页" class="level2">
+<h2 class="anchored" data-anchor-id="第30页">第30页</h2>
+<p>6.2.2 群时延（Group Delay） ) ( ) ( ) ( delay signal t t j H = − = ∠ ω τ ω ω 定义: ) ( ) ( ω ω ω τ j H d d ∠ − = 例题: Distortionless system: is flat. ) (ω τ ) ( ) ( ) ( t j FT e j H t t x t y ω ω − = ⎯ ⎯ ⎯ → ← − =</p>
+</section>
+<section id="第31页" class="level2">
+<h2 class="anchored" data-anchor-id="第31页">第31页</h2>
+</section>
+<section id="对数模和波特图" class="level2">
+<h2 class="anchored" data-anchor-id="对数模和波特图">6.2.3 对数模和波特图</h2>
+<p>相位关系是相加的，而模的关系则涉及|H(jω)|和</p>
+<p>|X(jω)|的相乘。因此，如果傅里叶变换的模是在一个 对数幅度上展示的话，那么就有一个相加的关系： -</p>
+<p>因此，如果有一张输入的傅里叶变换和LTI系统频率 响应的对数模和相位图，那么输出的傅里叶变换就可 以将两者对数模的图相加和它们的相位图相加来得</p>
+</section>
+<section id="到" class="level2">
+<h2 class="anchored" data-anchor-id="到">到。</h2>
+<p>在一个对数标尺上展现傅里叶变换的模，还能在一个 较宽的动态范围上将细节显示出来。 log ( ) log ( ) log ( ) Y j H j X j ω ω ω = +</p>
+</section>
+<section id="第32页" class="level2">
+<h2 class="anchored" data-anchor-id="第32页">第32页</h2>
+<ul>
+<li></li>
+</ul>
+<p>一般所采用的对数标尺是以20log10为单位，称之为分贝 (dB)。因此，0dB就对应于频率响应的模等于1，20dB 就对应于10倍的单位增益，-20dB相应于衰减0.1。 -</p>
+<p>对于连续时间系统， 采用对数频率坐标也是 很通常的。20log10 |H(jω)| 和≮H(jω)对log10 (ω)作 的图称之为波特图。</p>
+</section>
+<section id="第33页" class="level2">
+<h2 class="anchored" data-anchor-id="第33页">第33页</h2>
+<ul>
+<li></li>
+</ul>
+<p>注意，我们在4.3.3节讨论过的，如果h(t)是实函数， 那么|H(jω)|是ω的偶函数，而≮H(jω)是ω的奇函</p>
+<p>数。正是这个原因，负ω部分的图就是多余的了。因 此，只需画出频率响应特性在ω&gt;0对log10 (ω)的图就 够了。 -</p>
+<p>对数频率坐标，常常可以比线性频率展示宽的多的频 率范围。 ω log ω 100 1000 10000 100000 1000000</p>
+</section>
+<section id="第34页" class="level2">
+<h2 class="anchored" data-anchor-id="第34页">第34页</h2>
+<ul>
+<li></li>
+</ul>
+<p>在离散时间情况下， 傅里叶变换和频率响应 的模常常也是用dB来表 示的。然而，在离散时 间情况下对数频率坐标 一般是不用的，因为这 时要考虑的频率范围就 只有2π宽，H(ejω)是周 期的。 -</p>
+<p>注意，对实值h[n]， 仅需画出[0,π]范围的 H(ejω)</p>
+</section>
+<section id="第35页" class="level2">
+<h2 class="anchored" data-anchor-id="第35页">第35页</h2>
+</section>
+<section id="理想频率选择性滤波器的时域特性" class="level2">
+<h2 class="anchored" data-anchor-id="理想频率选择性滤波器的时域特性">6.3 理想频率选择性滤波器的时域特性</h2>
+<p>理想频率选择性滤波器，它几乎没有衰减或很小衰减 地通过一个或几个频带范围的信号，而阻止或大大衰 减掉这些频带以外的频率分量。在这种频率选择性滤 波的应用中，出现了几个重要的问题，并且这些问题 都直接与频率选择性滤波的特性（模和相位）有关。 -</p>
+</section>
+<section id="本节集中讨论低通滤波器" class="level2">
+<h2 class="anchored" data-anchor-id="本节集中讨论低通滤波器">本节集中讨论低通滤波器。</h2>
+<p>一个连续时间理想低通滤波器具有如下的频率响应： 1, ( ) 0, c c H j ω ω ω ω ω  ≤  =  &gt; </p>
+</section>
+<section id="第36页" class="level2">
+<h2 class="anchored" data-anchor-id="第36页">第36页</h2>
+<ul>
+<li></li>
+</ul>
+</section>
+<section id="一个离散时间理想低通滤波器具有如下的频率响应" class="level2">
+<h2 class="anchored" data-anchor-id="一个离散时间理想低通滤波器具有如下的频率响应">一个离散时间理想低通滤波器具有如下的频率响应：</h2>
+<p>注意，这些滤波器具有零相位特性，所以它们不会引 入相位失真。 1, ( ) 0, c j c H e ω ω ω ω ω π  ≤  =  &lt; ≤ </p>
+</section>
+<section id="第37页" class="level2">
+<h2 class="anchored" data-anchor-id="第37页">第37页</h2>
+<ul>
+<li></li>
+</ul>
+<p>在通带内具有线性相位的理想滤波器，如图6.11所</p>
+<p>示，相对于零相位特性的理想低通滤波器的响应来</p>
+<p>说，仅仅是引入了一个单一的时移。</p>
+</section>
+<section id="第38页" class="level2">
+<h2 class="anchored" data-anchor-id="第38页">第38页</h2>
+<ul>
+<li></li>
+</ul>
+<p>连续时间和离散 时间理想低通滤波 器的单位阶跃响应 s(t)和s[n]如图6.14 所示。</p>
+</section>
+<section id="第39页" class="level2">
+<h2 class="anchored" data-anchor-id="第39页">第39页</h2>
+<ul>
+<li></li>
+</ul>
+<p>可以看出，阶跃响应表现出的几个特性都是我们所不 希望的。特别是，对于这些滤波器其阶跃响应都有比 它们最后稳态值大的超量，并且呈现称之为振铃的振 荡行为。而阶跃响应就是单位冲激响应的积分或求</p>
+</section>
+<section id="和即" class="level2">
+<h2 class="anchored" data-anchor-id="和即">和，即</h2>
+<p>因为理想滤波器的单位冲激响应其主瓣是从-π/ωc延 伸到-π/ωc，所以阶跃响应就在这个时间间隔内其值 受到最显著的变化。也就是说，阶跃响应的所谓上升 时间与相关滤波器的带宽成反比。而这个上升时间也 是该滤波器响应时间（π/ωc）的一种大致度量。 ( ) ( ) , [ ] [ ] n t m s t h d s n h m τ τ −∞ =−∞ = =  </p>
+</section>
+<section id="第40页" class="level2">
+<h2 class="anchored" data-anchor-id="第40页">第40页</h2>
+<p>（Time-Domain Properties of Ideal Frequency- selective filters） 6.3 理想频率选择性滤波器</p>
+<p>的时域特性</p>
+</section>
+<section id="第41页" class="level2">
+<h2 class="anchored" data-anchor-id="第41页">第41页</h2>
+</section>
+<section id="理想频率选择性滤波器的时域特性-1" class="level2">
+<h2 class="anchored" data-anchor-id="理想频率选择性滤波器的时域特性-1">6.3 理想频率选择性滤波器的时域特性</h2>
+<p>理想频率选择性滤波器，它几乎没有衰减或很 小衰减地通过一个或几个频带范围的信号，而 阻止或大大衰减掉这些频带以外的频率分量。 在这种频率选择性滤波的应用中，出现了几个 重要的问题，并且这些问题都直接与频率选择 性滤波的特性（模和相位）有关。 -</p>
+<p>本节集中讨论低通滤波器。</p>
+</section>
+<section id="第42页" class="level2">
+<h2 class="anchored" data-anchor-id="第42页">第42页</h2>
+<p>低通滤波器（Lowpass</p>
+<p>filter） 1, | | ( ) 0, | | c c H j ω ω ω ω ω ≤  =  &gt;  sin ( ) F ct h t t ω π ←⎯→ = </p>
+<p>模拟滤波器： </p>
+<p>数字滤波器： 1, | | ( ) 0, | | c j c H e ω ω ω ω ω π ≤  =  &lt; ≤  sin [ ] F cn h n n ω π ←⎯→ = 一个连续时间理想低通滤波器具有如下的频率响应 一个离散时间理想低通滤波器具有如下的频率响应： - 注意，这些滤波器具有零相位特性，所以它们不会引入相位失真。</p>
+</section>
+<section id="第43页" class="level2">
+<h2 class="anchored" data-anchor-id="第43页">第43页</h2>
+<p>幅 频 特 性 和 相 频 特 性</p>
+</section>
+<section id="第44页" class="level2">
+<h2 class="anchored" data-anchor-id="第44页">第44页</h2>
+</section>
+<section id="第45页" class="level2">
+<h2 class="anchored" data-anchor-id="第45页">第45页</h2>
+<ul>
+<li></li>
+</ul>
+<p>在通带内具有线性相位的理想滤波器，如图6.11所</p>
+<p>示，相对于零相位特性的理想低通滤波器的响应来</p>
+<p>说，仅仅是引入了一个单一的时移。</p>
+</section>
+<section id="第46页" class="level2">
+<h2 class="anchored" data-anchor-id="第46页">第46页</h2>
+<p>具有线性相位特性的连续时间理想低通滤波器 ( ) h t α − t α</p>
+</section>
+<section id="第47页" class="level2">
+<h2 class="anchored" data-anchor-id="第47页">第47页</h2>
+<p>•</p>
+<p>连续时间和离散 •</p>
+<p>时间理想低通滤波 •</p>
+<p>器的单位阶跃响应 •</p>
+<p>s(t)和s[n]如图6.14 •</p>
+<p>所示。</p>
+</section>
+<section id="第48页" class="level2">
+<h2 class="anchored" data-anchor-id="第48页">第48页</h2>
+<ul>
+<li></li>
+</ul>
+<p>可以看出，阶跃响应表现出的几个特性都是我们所不 希望的。特别是，对于这些滤波器其阶跃响应都有比 它们最后稳态值大的超量，并且呈现称之为振铃的振 荡行为。而阶跃响应就是单位冲激响应的积分或求</p>
+</section>
+<section id="和即-1" class="level2">
+<h2 class="anchored" data-anchor-id="和即-1">和，即</h2>
+<p>因为理想滤波器的单位冲激响应其主瓣是从-π/ωc延 伸到-π/ωc，所以阶跃响应就在这个时间间隔内其值 受到最显著的变化。也就是说，阶跃响应的所谓上升 时间与相关滤波器的带宽成反比。而这个上升时间也 是该滤波器响应时间（π/ωc）的一种大致度量。 ( ) ( ) , [ ] [ ] n t m s t h d s n h m τ τ −∞ =−∞ = =  </p>
+</section>
+<section id="第49页" class="level2">
+<h2 class="anchored" data-anchor-id="第49页">第49页</h2>
+</section>
+<section id="非理想滤波器的时域和频域特性讨论" class="level2">
+<h2 class="anchored" data-anchor-id="非理想滤波器的时域和频域特性讨论">6.4 非理想滤波器的时域和频域特性讨论</h2>
+<p>理想滤波器的特性在实际中不一定总是满足我们所要 求的。例如我们前面多次提到过的时域振荡特性，另 外，在许多滤波问题中，我们要分离的信号不总是位 于完全分隔开的频段上，如图6.15所示。 -</p>
+<p>两个信号的频谱稍微有些重叠，这时，我们宁肯需要 有一个从通带到阻带具有渐渐过渡特性的滤波器。</p>
+</section>
+<section id="第50页" class="level2">
+<h2 class="anchored" data-anchor-id="第50页">第50页</h2>
+<ul>
+<li></li>
+</ul>
+<p>所以，非理想滤波器具有更多的实际意义，特别是我 们构成系统的各个元器件本身就存在非理想工作状态 (连续时间，电阻器、电容器和运算放大器等；离散时 间，寄存器、乘法器和加法器等)。 -</p>
+<p>在滤波器的通带和阻带特性的设计上容许有某些灵活 性，相对于理想滤波器陡峭的过渡带来说，容许在通 带和阻带之间有一个渐变的过渡特性。 -</p>
+<p>例如，在低通滤波器情况下， 通带内在单位增益上可以有某些 偏差，阻带内在零增益上也可以 有偏差；以及在通带边缘和阻带 边缘之间有一个过渡带存在。</p>
+</section>
+<section id="第51页" class="level2">
+<h2 class="anchored" data-anchor-id="第51页">第51页</h2>
+<ul>
+<li></li>
+</ul>
+<p>在图中，偏离单位增益的±δ1就是可容许的通带偏 离，被称为通带起伏（波纹）；δ2就是可容许的阻带 偏离，称之为阻带起伏（波纹）。ωp和ωs分别称为通 带边缘和阻带边缘。从ωp和ωs的频带范围称为过渡 带。</p>
+</section>
+<section id="第52页" class="level2">
+<h2 class="anchored" data-anchor-id="第52页">第52页</h2>
+<ul>
+<li></li>
+</ul>
+<p>为了控制时域特性，一般都将指标要求放在一 个滤波器的阶跃响应上。在阶跃响应中往往关 心的一个量是上升时间tr ，也就是阶跃响应上升 到它的终值所需要的时间。另外，在阶跃上有 无振荡也是重要的，如果这样的振荡存在，由 三个量来表征振荡的性质： 超过阶跃响应终值的超量Δ， 振荡频率ωr 建立时间ts ，ts 是代表阶跃响应位于偏离值容许 范围内所要求的时间。</p>
+</section>
+<section id="第53页" class="level2">
+<h2 class="anchored" data-anchor-id="第53页">第53页</h2>
+</section>
+<section id="第54页" class="level2">
+<h2 class="anchored" data-anchor-id="第54页">第54页</h2>
+<ul>
+<li></li>
+</ul>
+<p>对于非理想低通滤波器来说，可以看到在过渡带的宽 度（频域特性）与阶跃响应的建立时间（时域特性） 之间有一种折衷。 例6.3 巴特沃兹滤波器，椭圆滤波器</p>
+</section>
+<section id="第55页" class="level2">
+<h2 class="anchored" data-anchor-id="第55页">第55页</h2>
+<p>图6.18 具有相同通 带和阻带波纹，相 同截止频率的五阶 巴特沃兹滤波器和 五阶椭圆滤波器的 例子 (a)频率响应的模特性 (b)阶跃响应</p>
+</section>
+<section id="第56页" class="level2">
+<h2 class="anchored" data-anchor-id="第56页">第56页</h2>
+</section>
+<section id="一阶和二阶连续时间系统" class="level2">
+<h2 class="anchored" data-anchor-id="一阶和二阶连续时间系统">6.5 一阶和二阶连续时间系统</h2>
+<p>线性常系数微分方程描述的LTI系统，其高阶系统总 是常常由一阶和二阶系统以级联或并联的形式来实现 的。 6.5.1 一阶连续时间系统 频率响应 ( ) ( ) ( ) (6.21) dy t y t x t dt τ + = ( ) (6.22) H j j ω ωτ = +</p>
+</section>
+<section id="第57页" class="level2">
+<h2 class="anchored" data-anchor-id="第57页">第57页</h2>
+<ul>
+<li></li>
+</ul>
+</section>
+<section id="单位冲激响应" class="level2">
+<h2 class="anchored" data-anchor-id="单位冲激响应">单位冲激响应</h2>
+<p>系统的阶跃响应 / ( ) ( ) (6.23) t h t e u t τ τ − = / ( ) ( ) ( )</p>
+<p>(1 ) ( ) (6.24) t s t u t h t e u t τ − = ∗ = −</p>
+</section>
+<section id="第58页" class="level2">
+<h2 class="anchored" data-anchor-id="第58页">第58页</h2>
+<ul>
+<li></li>
+</ul>
+<p>参数τ称为系统的时间常数，它控制着一阶系统响 应的快慢。当减小时，冲激响应衰减的得就越快， 而阶跃响应上升得时间就更短；也就是说，阶跃响 应，朝最终值就上升的更陡峭了。注意，一阶系统 的阶跃响应不会出现振荡效应。 -</p>
+</section>
+<section id="频率响应的对数模特性" class="level2">
+<h2 class="anchored" data-anchor-id="频率响应的对数模特性">频率响应的对数模特性：</h2>
+</section>
+<section id="当ωτ1时对数模近似为零" class="level2">
+<h2 class="anchored" data-anchor-id="当ωτ1时对数模近似为零">当ωτ&lt;&lt;1时，对数模近似为零：</h2>
+<p>当ωτ&gt;&gt;1时，对数模近似为log10 (ω)的线性函数： 20log ( ) 10log [( ) 1] (6.25) H jω ωτ = − + 20log ( ) 0 (6.26) H jω ≈ 20log ( ) 20log ( )</p>
+<p>20log ( ) 20log ( ) (6.27) H jω ωτ ω τ ≈− − − </p>
+</section>
+<section id="第59页" class="level2">
+<h2 class="anchored" data-anchor-id="第59页">第59页</h2>
+<p>低频渐近线 高频渐近线</p>
+</section>
+<section id="第60页" class="level2">
+<h2 class="anchored" data-anchor-id="第60页">第60页</h2>
+<ul>
+<li></li>
+</ul>
+</section>
+<section id="ω1τ这一点称为转折频率在这一点模的实际值" class="level2">
+<h2 class="anchored" data-anchor-id="ω1τ这一点称为转折频率在这一点模的实际值">ω=1/τ这一点称为转折频率，在这一点模的实际值</h2>
+<p>对≮H(jω)也有类似的直线近似式，以及渐近线 20log ( ) 10log 2 H j dB τ = − ≈− ( ) tan ( ) 0, 0.1/</p>
+<p>( / 4)[log ( ) 1], 0.1/ 10/ / 2, 10/ H jω ωτ ω τ π ωτ τ ω τ π ω τ − ∠ = − ≤   = − + ≤ ≤  − ≥ </p>
+</section>
+<section id="第61页" class="level2">
+<h2 class="anchored" data-anchor-id="第61页">第61页</h2>
+<ul>
+<li></li>
+</ul>
+<p>在转折频率ω=1/τ处，≮H(jω)的近似值与真实值 一致，其值为： ( ) H j π τ ∠ = −</p>
+</section>
+<section id="第62页" class="level2">
+<h2 class="anchored" data-anchor-id="第62页">第62页</h2>
+<p>6.5.2 二阶连续时间 b km ξ =</p>
+</section>
+<section id="第63页" class="level2">
+<h2 class="anchored" data-anchor-id="第63页">第63页</h2>
+</section>
+<section id="第64页" class="level2">
+<h2 class="anchored" data-anchor-id="第64页">第64页</h2>
+</section>
+<section id="第65页" class="level2">
+<h2 class="anchored" data-anchor-id="第65页">第65页</h2>
+<p>( ) [] ( ) c t c t h t M e e u t = − nt e ξω − 有 项</p>
+</section>
+<section id="第66页" class="level2">
+<h2 class="anchored" data-anchor-id="第66页">第66页</h2>
+</section>
+<section id="第67页" class="level2">
+<h2 class="anchored" data-anchor-id="第67页">第67页</h2>
+</section>
+<section id="第68页" class="level2">
+<h2 class="anchored" data-anchor-id="第68页">第68页</h2>
+</section>
+<section id="第69页" class="level2">
+<h2 class="anchored" data-anchor-id="第69页">第69页</h2>
+</section>
+<section id="第70页" class="level2">
+<h2 class="anchored" data-anchor-id="第70页">第70页</h2>
+</section>
+<section id="第71页" class="level2">
+<h2 class="anchored" data-anchor-id="第71页">第71页</h2>
+</section>
+<section id="第72页" class="level2">
+<h2 class="anchored" data-anchor-id="第72页">第72页</h2>
+</section>
+<section id="第73页" class="level2">
+<h2 class="anchored" data-anchor-id="第73页">第73页</h2>
+<p>6.5.3 有理型频率响应的波特图</p>
+</section>
+<section id="第74页" class="level2">
+<h2 class="anchored" data-anchor-id="第74页">第74页</h2>
+</section>
+<section id="第75页" class="level2">
+<h2 class="anchored" data-anchor-id="第75页">第75页</h2>
+<p>6.7 系统的时域分析与频域分析举例 6.7.1 汽车减震系统的分析</p>
+</section>
+<section id="第76页" class="level2">
+<h2 class="anchored" data-anchor-id="第76页">第76页</h2>
+</section>
+<section id="第77页" class="level2">
+<h2 class="anchored" data-anchor-id="第77页">第77页</h2>
+</section>
+<section id="第78页" class="level2">
+<h2 class="anchored" data-anchor-id="第78页">第78页</h2>
+</section>
+<section id="第79页" class="level2">
+<h2 class="anchored" data-anchor-id="第79页">第79页</h2>
+</section>
+<section id="第80页" class="level2">
+<h2 class="anchored" data-anchor-id="第80页">第80页</h2>
+</section>
+<section id="第81页" class="level2">
+<h2 class="anchored" data-anchor-id="第81页">第81页</h2>
+<p>6.23(a)(b) 6.27(不用画出(a) 中的波特图) 作业</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,70 @@
+---
+title: "狄拉克梳状函数（Dirac Comb）的多维推导与深度理解"
+author: "Gemini AI"
+date: "2026-03-28"
+format:
+  html:
+    code-fold: true
+    math: katex
+---
+
+## 1. 公式背景
+我们在信号处理中经常遇到如下等式，它描述了时域离散脉冲串与频域谐波叠加之间的等价关系：
+
+$$x(t) = \sum_{k=-\infty}^{\infty} \delta(t - kT) = \sum_{k=-\infty}^{\infty} \frac{1}{T} e^{j k \frac{2\pi}{T} t}$$
+
+虽然通过计算傅里叶系数 $a_k = \frac{1}{T} \int_{-T/2}^{T/2} \delta(t) e^{-j k \omega_0 t} dt = \frac{1}{T}$ 可以直接得出结论，但为了深入理解其物理本质，我们可以从以下三个进阶视角进行审视。
+
+---
+
+## 2. 视角一：矩形脉冲的极限 (The Limit of Rectangular Pulses)
+
+从工程实现的角度看，$\delta$ 函数是理想化的产物。我们可以将其视为底边极窄、面积保持为 1 的矩形脉冲的极限。
+
+1. **有限脉宽信号**：假设一个周期为 $T$ 的周期信号 $x_{\tau}(t)$，每个周期内的脉冲宽度为 $\tau$，幅度为 $1/\tau$。
+2. **傅里叶系数**：其系数 $c_k$ 遵循 $Sa$ 函数（Sinc 函数）分布：
+   $$c_k = \frac{1}{T} \text{sinc}\left(k f_0 \tau\right)$$
+3. **趋向极限**：当 $\tau \to 0$ 时，$\text{sinc}$ 函数的第一个零点 $1/\tau$ 会推向无穷远处。
+4. **结论**：在极限情况下，主瓣变得无限宽，所有 $k$ 阶谐波的系数都趋近于常数 $1/T$。
+
+这解释了为什么右侧级数是**等幅叠加**的：因为冲激函数在频域具有“无限宽”的平坦频谱。
+
+---
+
+## 3. 视角二：物理干涉视角 (Constructive vs. Destructive Interference)
+
+我们可以将右侧级数看作无数个不同频率的复指数信号（旋转矢量）的合成。
+
+* **相长干涉（$t = nT$）**：
+    当 $t$ 是周期 $T$ 的整数倍时，每一项的相位 $k \frac{2\pi}{T} (nT) = 2\pi \cdot (kn)$ 都是 $2\pi$ 的整数倍。此时，所有的旋转矢量全部指向正右方，无穷多个 $1/T$ 叠加，形成向上的冲激 $\delta$。
+* **相消干涉（$t \neq nT$）**：
+    当 $t$ 离开采样点时，不同频率的矢量相位迅速发散。对于无穷项求和，这些矢量在复平面上均匀分布并相互抵消，导致结果为 0。
+
+
+
+---
+
+## 4. 视角三：泊松求和公式 (Poisson Summation Formula)
+
+在高等工程数学中，这个等式是**泊松求和公式**的一个特例。该公式联系了函数的平移和与频谱的采样：
+
+$$\sum_{n=-\infty}^{\infty} f(t + nT) = \frac{1}{T} \sum_{k=-\infty}^{\infty} \hat{f}\left(\frac{k}{T}\right) e^{j 2\pi \frac{k}{T} t}$$
+
+若取 $f(t) = \delta(t)$，由于其傅里叶变换 $\hat{f}(\omega) = 1$，代入上式即得原公式。这揭示了：**时域的周期化（左侧）在本质上等价于频域的离散化（右侧）。**
+
+---
+
+## 5. Mathematica 仿真建议
+
+为了直观观察这个“奇怪”的逼近过程，建议你在 Mathematica 中运行以下代码，观察 Gibbs 现象如何演变为 $\delta$ 脉冲：
+
+```wolfram
+(* 定义部分和函数 *)
+diracApprox[t_, T_, N_] := (1/T) * Sum[Cos[k * (2 Pi / T) * t], {k, -N, N}]
+
+(* 绘制随着项数 N 增加的效果 *)
+Plot[Table[diracApprox[t, 1, n], {n, {5, 20, 100}}] // Evaluate, 
+ {t, -0.5, 1.5}, 
+ PlotRange -> All, 
+ PlotLegends -> {"N=5", "N=20", "N=100"},
+ PlotStyle -> Thin]

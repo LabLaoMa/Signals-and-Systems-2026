@@ -1,0 +1,716 @@
+---
+title: "EL331 信号与系统 · 第15讲（中文版）"
+subtitle: "连续时间傅里叶变换（CTFT）：性质与对偶性"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+## 1. 回顾
+
+## 2. 连续时间傅里叶变换的性质
+
+## 回顾: $L_1(\mathbb{R})$ 函数的傅里叶变换
+
+Fourier transform and its inverse as principal values
+
+$$
+\begin{aligned}
+\mathcal{F}\{x\}(j \omega) & =\lim _{T \rightarrow \infty} \int_{-T}^{T} x(t) e^{-j \omega t} d t \\
+\mathcal{F}^{-1}(X)(t) & =\lim _{W \rightarrow \infty} \frac{1}{2 \pi} \int_{-W}^{W} X(j \omega) e^{j \omega t} d \omega
+\end{aligned}
+$$
+
+定理。 (Pointwise inversion)
+
+1. If $x \in L_{1}(\mathbb{R})$ satisfies Dirichlet conditions on all finite intervals,
+
+$$
+\left(\mathcal{F}^{-1} \circ \mathcal{F}\{x\}\right)(t)=\frac{x\left(t_{+}\right)+x\left(t_{-}\right)}{2}, \quad \forall t
+$$
+
+2. If $X \in L_{1}(\mathbb{R})$ satisfies Dirichlet conditions on all finite intervals,
+
+$$
+\left(\mathcal{F} \circ \mathcal{F}^{-1}\{X\}\right)(j \omega)=\frac{X\left(j \omega_{+}\right)+X\left(j \omega_{-}\right)}{2}, \quad \forall \omega
+$$
+
+3. If $x \in C(\mathbb{R}) \cap L_{1}(\mathbb{R})$ and $\mathcal{F}\{x\} \in L_{1}(\mathbb{R})$, then $\mathcal{F}^{-1} \circ \mathcal{F}\{x\}=x$
+
+## 回顾: $L_1(\mathbb{R})$ 函数的傅里叶变换
+
+傅里叶变换对
+
+| case | $x(t)$ | $X(j \omega)$ |
+| :--- | :--- | :--- |
+| 1 | $e^{-a t} u(t), \quad \operatorname{Re} a>0$ | $\frac{1}{a+j \omega}$ |
+| 3 | $e^{-a\|t\|}, \quad \operatorname{Re} a>0$ | $\frac{2 a}{a^{2}+\omega^{2}}$ |
+| 3 | $e^{-a t^{2}}, \quad a>0$ | $\sqrt{\frac{\pi}{a}} e^{-\frac{\omega^{2}}{4 a}}$ |
+| 1 | $u(t+T)-u(t-T)$ | $\frac{2 \sin (\omega T)}{\omega}$ |
+| 2 | $\frac{\sin \left(\omega_{c} t\right)}{\pi t}$ | $u\left(\omega+\omega_{c}\right)-u\left(\omega-\omega_{c}\right)$ |
+
+## 回顾: 广义函数的傅里叶变换
+
+施瓦茨空间 $\mathcal{S}=\mathcal{S}(\mathbb{R})$ of rapidly decreasing functions
+
+$$
+\mathcal{S}=\left\{\phi \in C^{\infty}(\mathbb{R}):\|\phi\|_{\ell, k}<\infty, \forall \ell, k \in \mathbb{N}\right\}
+$$
+
+where $\|\phi\|_{\ell, k}=\sup _{t \in \mathbb{R}}\left|t^{\ell} \phi^{(k)}(t)\right|$. Note $\mathcal{F}\{\mathcal{S}\}=\mathcal{S}$.
+Fourier transform of tempered distributions
+
+$$
+(x, \phi) \triangleq \int_{\mathbb{R}} x(\xi) \phi(\xi) d \xi
+$$
+
+- If $x_{n} \rightarrow x$ in distribution, then $\mathcal{F}\{x\} \triangleq \lim _{n} \mathcal{F}\left\{x_{n}\right\}$ in distribution
+
+$$
+(x, \phi)=\lim _{n}\left(x_{n}, \phi\right) \Longrightarrow(\mathcal{F}\{x\}, \phi) \triangleq \lim _{n}\left(\mathcal{F}\left\{x_{n}\right\}, \phi\right), \quad \forall \phi \in \mathcal{S}
+$$
+
+- Alternatively, $(\mathcal{F}\{x\}, \phi) \triangleq(x, \mathcal{F}\{\phi\}), \quad \forall \phi \in \mathcal{S}$
+
+
+## 回顾: 广义函数的傅里叶变换
+
+傅里叶变换对
+
+| $x(t)$ | $X(j \omega)$ |
+| :--- | :--- |
+| $\delta(t)$ | 1 |
+| $\delta\left(t-t_{0}\right)$ | $e^{-j \omega t_{0}}$ |
+| 1 | $2 \pi \delta(\omega)$ |
+| $e^{j \omega_{0} t}$ | $2 \pi \delta\left(\omega-\omega_{0}\right)$ |
+
+$$
+\begin{gathered}
+\int_{\mathbb{R}} \delta\left(t-t_{0}\right) e^{-j \omega t} d t=e^{-j \omega t_{0}}, \quad \int_{\mathbb{R}} e^{j\left(\omega_{1}-\omega_{2}\right) t} d t=2 \pi \delta\left(\omega_{1}-\omega_{2}\right) \\
+\int_{\mathbb{R}} X(j \omega) e^{j \omega t} d \omega=\int_{\mathbb{R}} \int_{\mathbb{R}} x(\tau) e^{j \omega(t-\tau)} d \tau d \omega=\int_{\mathbb{R}} x(\tau) 2 \pi \delta(t-\tau) d \tau=2 \pi x(t)
+\end{gathered}
+$$
+
+## 回顾: Fourier Transform for Periodic Functions
+
+傅里叶级数
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+Fourier transform
+
+$$
+X(j \omega)=\sum_{k=-\infty}^{\infty} 2 \pi \hat{x}[k] \delta\left(\omega-k \omega_{0}\right)
+$$
+
+等价表示
+
+- $\hat{x}[k]$ is amplitude of component at $\omega_{k}=k \omega_{0}$
+- $\hat{x}[k] \delta\left(\omega-k \omega_{0}\right)$ is density of component at $\omega_{k}=k \omega_{0}$
+
+Cf. discrete random variable $x$ in probability
+
+$$
+\mathbb{E} f(X)=\sum_{n} f\left(x_{n}\right) p_{n}=\int_{\mathbb{R}} f(x) p(x) d x \text { with } p(x)=\sum_{n} p_{n} \delta\left(x-x_{n}\right)
+$$
+
+## 回顾: 傅里叶级数与傅里叶变换的关系
+
+- Aperiodic signal $x$ with finite support of length $<T$
+- Periodic extension $x_{T}$ of $x$
+
+$$
+x_{T}(t)=\sum_{k=-\infty}^{\infty} x(t-k T)
+$$
+
+NB. In other words, $x$ is one period of periodic signal $x_{T}$
+
+$$
+\begin{array}{rlr}
+x \stackrel{\mathcal{F}}{\longleftrightarrow} X & \hat{x}_{T}[k]=\frac{1}{T} X\left(j k \omega_{0}\right) \\
+x_{T} \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}_{T} & X_{T}(j \omega)=\sum_{k=-\infty}^{\infty} 2 \pi \hat{x}_{T}[k] \delta\left(\omega-k \omega_{0}\right) \\
+x_{T} \stackrel{\mathcal{F}}{\longleftrightarrow} X_{T} & =\sum_{k=-\infty}^{\infty} \omega_{0} X\left(j k \omega_{0}\right) \delta\left(\omega-k \omega_{0}\right)
+\end{array}
+$$
+
+## 目录
+
+## 1. 回顾
+
+2. 连续时间傅里叶变换的性质
+
+## 连续时间傅里叶变换的性质
+
+线性
+
+$$
+\mathcal{F}\{a x+b y\}=a \mathcal{F}\{x\}+b \mathcal{F}\{y\}
+$$
+
+时移
+
+$$
+\mathcal{F}\left\{\tau_{t_{0}} x\right\}=E_{-t_{0}} \mathcal{F}\{x\} \quad \text { or } \quad x\left(t-t_{0}\right) \stackrel{\mathcal{F}}{\longleftrightarrow} e^{-j \omega t_{0}} X(j \omega)
+$$
+
+where $\left(E_{a} f\right)(s)=e^{j a s} f(s)$
+证明。
+
+$$
+\int_{\mathbb{R}} x\left(t-t_{0}\right) e^{-j \omega t} d t=\int_{\mathbb{R}} x(s) e^{-j \omega\left(s+t_{0}\right)} d s=e^{-j \omega t_{0}} \int_{\mathbb{R}} x(s) e^{-j \omega s} d s
+$$
+
+频移
+
+$$
+\mathcal{F}\left\{E_{\omega_{0}} x\right\}=\tau_{\omega_{0}} \hat{x} \quad \text { or } \quad e^{j \omega_{0} t} x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(j\left(\omega-\omega_{0}\right)\right)
+$$
+
+## 例: 多径效应
+
+Transmitter: $x(t)$
+Receiver: $y(t)=a_{0} x(t)+a_{1} x(t-\tau)$
+
+$$
+\begin{aligned}
+Y(j \omega) & =a_{0} X(j \omega)+a_{1} e^{-j \omega \tau} X(j \omega) \\
+& =\left(a_{0}+a_{1} e^{-j \omega \tau}\right) X(j \omega)
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-11.jpg?height=247&width=414&top_left_y=137&top_left_x=769)
+
+Let $x(t)=u(t+T)-u(t-T)$.
+
+$$
+X(j \omega)=\frac{2 \sin (\omega T)}{\omega}
+$$
+
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-11.jpg?height=201&width=427&top_left_y=414&top_left_x=767)
+
+$$
+Y(j \omega)=\left(a_{0}+a_{1} e^{-j \omega \tau}\right) \frac{2 \sin (\omega T)}{\omega}
+$$
+
+For $a_{0}=a_{1}=1$,
+
+$$
+Y(j \omega)=4 e^{-j \omega \tau / 2} \cos \left(\frac{\omega \tau}{2}\right) \frac{\sin (\omega T)}{\omega}
+$$
+
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-11.jpg?height=267&width=429&top_left_y=650&top_left_x=767)
+
+## 例: 调制
+
+Baseband signal: $x(t)$
+Modulated signal
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-12.jpg?height=165&width=416&top_left_y=62&top_left_x=820)
+
+$$
+\begin{aligned}
+& y(t)=x(t) \cos \left(\omega_{c} t\right)=\frac{1}{2} x(t)\left(e^{j \omega_{c} t}+e^{-j \omega_{c} t}\right) \\
+& Y(j \omega)=\frac{1}{2} X\left(j\left(\omega-\omega_{c}\right)\right)+\frac{1}{2} X\left(j\left(\omega+\omega_{c}\right)\right)
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-12.jpg?height=257&width=432&top_left_y=252&top_left_x=818)
+
+For $x(t)=u(t+T)-u(t-T)$,
+
+$$
+Y(j \omega)=\frac{\sin \left(\left(\omega-\omega_{c}\right) T\right)}{\omega-\omega_{c}}+\frac{\sin \left(\left(\omega+\omega_{c}\right) T\right)}{\omega+\omega_{c}}
+$$
+
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-12.jpg?height=227&width=416&top_left_y=550&top_left_x=820)
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-12.jpg?height=201&width=1019&top_left_y=736&top_left_x=93)
+
+## 连续时间傅里叶变换的性质
+
+时间反转
+
+$$
+\mathcal{F}\{R x\}=R \mathcal{F}\{x\} \quad \text { or } \quad x(-t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(-j \omega)
+$$
+
+共轭
+
+$$
+\mathcal{F}\left\{x^{*}\right\}=R \overline{\mathcal{F}\{x\}} \quad \text { or } \quad x^{*}(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X^{*}(-j \omega)
+$$
+
+证明。 $\mathcal{F}\left\{x^{*}\right\}(j \omega)=\int_{\mathbb{R}} x^{*}(t) e^{-j \omega t} d t=\left(\int_{\mathbb{R}} x(t) e^{j \omega t} d t\right)^{*}=X^{*}(-j \omega)$
+对称性
+
+- $x$ even $\Longleftrightarrow X$ even, $\quad x$ odd $\Longleftrightarrow X$ odd
+- $x$ real $\Longleftrightarrow X(-j \omega)=X^{*}(j \omega)$
+- $x$ real and even $\Longleftrightarrow X$ real and even
+- $x$ real and odd $\Longleftrightarrow X$ purely imaginary and odd
+
+
+## 例
+
+For $a>0$,
+
+$$
+x(t)= \begin{cases}e^{-a t}, & t>0 \\ -e^{a t}, & t<0\end{cases}
+$$
+
+Let $y(t)=e^{-a t} u(t)$, with
+
+$$
+Y(j \omega)=\frac{1}{a+j \omega}
+$$
+
+Since $x(t)=y(t)-y(-t)$.
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-14.jpg?height=241&width=418&top_left_y=137&top_left_x=767)
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-14.jpg?height=287&width=427&top_left_y=368&top_left_x=765)
+
+$$
+\begin{aligned}
+X(j \omega) & =Y(j \omega)-Y(-j \omega) \\
+& =\frac{1}{a+j \omega}-\frac{1}{a-j \omega}=\frac{-2 j \omega}{a^{2}+\omega^{2}}
+\end{aligned}
+$$
+
+$x$ real \& odd, $X$ purely imaginary \& odd
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-14.jpg?height=247&width=421&top_left_y=683&top_left_x=767)
+
+## 时间与频率尺度变换
+
+For $a \neq 0$,
+
+$$
+\mathcal{F}\left\{S_{a} x\right\}=\frac{1}{|a|} S_{\frac{1}{a}} \mathcal{F}\{x\} \quad \text { or } \quad x(a t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{|a|} X\left(\frac{j \omega}{a}\right)
+$$
+
+证明。 Change variables by $\tau=a t$.
+For $a>0$,
+
+$$
+\int_{-\infty}^{\infty} x(a t) e^{-j \omega t} d t=\int_{-\infty}^{\infty} x(\tau) e^{-j \frac{\omega}{a} \tau} \frac{d \tau}{a}=\frac{1}{a} X\left(\frac{j \omega}{a}\right)
+$$
+
+For $a<0$,
+
+$$
+\int_{-\infty}^{\infty} x(a t) e^{-j \omega t} d t=\int_{\infty}^{-\infty} x(\tau) e^{-j \frac{\omega}{a} \tau} \frac{d \tau}{a}=-\frac{1}{a} X\left(\frac{j \omega}{a}\right)
+$$
+
+## 时间与频率尺度变换
+
+$$
+\mathcal{F}\left\{S_{a} x\right\}=\frac{1}{|a|} S_{\frac{1}{a}} \mathcal{F}\{x\} \quad \text { or } \quad x(a t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{|a|} X\left(\frac{j \omega}{a}\right)
+$$
+
+compression in time ⟹ stretching in frequency stretching in time ⟹ compression in frequency
+e.g. audio: faster playback ⟹ higher pitch
+
+$$
+x(t)=e^{-(a t)^{2}} \stackrel{\mathcal{F}}{\longleftrightarrow} X(j \omega)=\frac{\sqrt{\pi}}{|a|} e^{-\frac{1}{4}\left(\frac{\omega}{a}\right)^{2}}
+$$
+
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-16.jpg?height=371&width=467&top_left_y=561&top_left_x=64)
+$a=1 / 2$
+$a=1$
+$a=2$
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-16.jpg?height=460&width=578&top_left_y=461&top_left_x=645)
+
+## 微分
+
+$$
+x^{\prime}(t) \stackrel{\mathcal{F}}{\longleftrightarrow} j \omega X(j \omega), \quad x^{(k)}(t) \stackrel{\mathcal{F}}{\longleftrightarrow}(j \omega)^{k} X(j \omega)
+$$
+
+证明。 Differentiate under integral sign
+
+$$
+x(t)=\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) e^{j \omega t} d \omega \Longrightarrow x^{\prime}(t)=\frac{1}{2 \pi} \int_{\mathbb{R}} j \omega X(j \omega) e^{j \omega t} d \omega
+$$
+
+$y=x^{\prime}$ is output of differentiator with frequency response
+
+$$
+H(j \omega)=\mathcal{F}\left\{\delta^{\prime}\right\}(j \omega)=\int_{\mathbb{R}} \delta^{\prime}(t) e^{-j \omega t} d t=-\left.\frac{d}{d t} e^{-j \omega t}\right|_{0}=j \omega
+$$
+
+- $Y(j \omega)=H(j \omega) X(j \omega)$
+- amplifies high frequencies
+- suppresses low frequencies
+- DC completely eliminated
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-17.jpg?height=283&width=425&top_left_y=634&top_left_x=789)
+
+
+## 积分
+
+$$
+y(t)=\int_{-\infty}^{t} x(\tau) d \tau \stackrel{\mathcal{F}}{\longleftrightarrow} Y(j \omega)=\frac{1}{j \omega} X(j \omega)+\pi X(0) \delta(\omega)
+$$
+
+Since $x(t)=y^{\prime}(t)$, by differentiation property
+
+$$
+X(j \omega)=j \omega Y(j \omega) \Longrightarrow Y(j \omega)=\frac{1}{j \omega} X(j \omega) \text { for } \omega \neq 0
+$$
+
+Intuitively, $y(t)$ has DC component
+
+$$
+\begin{aligned}
+\bar{y} & =\lim _{T \rightarrow \infty} \frac{1}{2 T} \int_{-T}^{T} y(t) d t=\lim _{T \rightarrow \infty} \frac{1}{2 T} \int_{-T}^{T} \int_{\mathbb{R}} x(\tau) u(t-\tau) d \tau d t \\
+& =\int_{\mathbb{R}} x(\tau)\left(\lim _{T \rightarrow \infty} \frac{1}{2 T} \int_{-T}^{T} u(t-\tau) d t\right) d \tau=\frac{1}{2} X(0)
+\end{aligned}
+$$
+
+So $Y$ also has component $2 \pi \bar{y} \delta(\omega)=\pi X(0) \delta(\omega)$
+
+## 积分
+
+例. Unit step function
+
+$$
+\begin{gathered}
+u(t)=\int_{-\infty}^{t} \delta(\tau) d \tau \\
+U(j \omega)=\frac{1}{j \omega} \mathcal{F}\{\delta\}(j \omega)+\pi \mathcal{F}\{\delta\}(0) \delta(\omega) \\
+=\frac{1}{j \omega}+\pi \delta(\omega)
+\end{gathered}
+$$
+
+例. Sign function
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-19.jpg?height=188&width=451&top_left_y=141&top_left_x=785)
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-19.jpg?height=301&width=427&top_left_y=350&top_left_x=812)
+
+$$
+\operatorname{sgn}(t)= \begin{cases}1, & t>0 \\ -1 & t<0\end{cases}
+$$
+
+Since $\operatorname{sgn}=2 u-1$,
+
+$$
+\mathcal{F}\{\operatorname{sgn}\}(j \omega)=2 U(j \omega)-2 \pi \delta(\omega)=\frac{2}{j \omega}
+$$
+
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-19.jpg?height=249&width=416&top_left_y=670&top_left_x=816)
+
+## 积分
+
+例. Unit ramp function $u_{-2}(t)=t u(t)$
+
+$$
+u_{-2}(t)=\int_{-\infty}^{t} u(\tau) d \tau
+$$
+
+积分 property suggests
+$\mathcal{F}\left\{u_{-2}\right\}(j \omega)=\frac{1}{j \omega} U(j \omega)+\pi U(0) \delta(\omega)=-\frac{1}{\omega^{2}}+\frac{\pi}{j \omega} \delta(\omega)+\pi U(0) \delta(\omega)$
+But what's $U(0)=\frac{1}{j 0}+\pi \delta(0)$ ? What's $\frac{\pi}{j \omega} \delta(\omega)$ ? Not well-defined!
+积分 property not applicable here!
+Will see $\mathcal{F}\left\{u_{-2}\right\}=-\frac{1}{\omega^{2}}+j \pi \delta^{\prime}(\omega)$
+Rule of thumb. Applicable when formula is well-defined
+
+例
+$x(t)=\left(1-\frac{2|t|}{T}\right)\left[u\left(t+\frac{T}{2}\right)-u\left(t-\frac{T}{2}\right)\right]$
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-21.jpg?height=229&width=316&top_left_y=62&top_left_x=894)
+$X_{2}(j \omega)=\frac{2}{T}\left[e^{j \frac{\omega T}{2}}-2+e^{-j \frac{\omega T}{2}}\right]=-\frac{8}{T} \sin ^{2}\left(\frac{\omega T}{4}\right)$
+$X_{1}(j \omega)=\frac{X_{2}(j \omega)}{j \omega}+\pi X_{2}(0) \delta(\omega)=-\frac{8 \sin ^{2}\left(\frac{\omega T}{4}\right)}{j \omega T}$
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-21.jpg?height=274&width=311&top_left_y=301&top_left_x=894)
+$X(j \omega)=\frac{X_{1}(j \omega)}{j \omega}+\pi X_{1}(0) \delta(\omega)=\frac{8 \sin ^{2}\left(\frac{\omega T}{4}\right)}{\omega^{2} T}$
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-21.jpg?height=250&width=485&top_left_y=687&top_left_x=168)
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-21.jpg?height=340&width=311&top_left_y=592&top_left_x=894)
+
+20/32
+
+## 例: 符号函数 sgn
+
+$$
+x(t)=\operatorname{sgn}(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(j \omega)=\frac{2}{j \omega}
+$$
+
+- Neither $x$ nor $X$ is in $L_{1}(\mathbb{R})$, above interpreted in the sense of distribution, i.e.
+
+$$
+(X, \phi)=(x, \mathcal{F}\{\phi\}), \quad \forall \phi \in \mathcal{S}
+$$
+
+or for approximating sequence $x_{n} \rightarrow x$,
+
+$$
+(X, \phi)=\lim _{n}\left(X_{n}, \phi\right), \quad \forall \phi \in \mathcal{S}
+$$
+
+- Since $\frac{2}{j \omega}$ not integrable at $\omega=0, X$ should be interpreted as principal value, often denoted $X(j \omega)=\mathrm{pv}\left(\frac{2}{j \omega}\right)$, i.e.
+
+$$
+(X, \phi)=\int_{\mathbb{R}} \mathrm{pv}\left(\frac{2}{j \omega}\right) \phi(\omega) d \omega \triangleq \lim _{\epsilon \rightarrow 0} \int_{|\omega| \geq \epsilon} \frac{2}{j \omega} \phi(\omega) d \omega
+$$
+
+## 例: 符号函数 sgn
+
+Claim. Principal value below is well-defined
+
+$$
+\int_{\mathbb{R}} \mathrm{pv}\left(\frac{1}{\omega}\right) \phi(\omega) d \omega \triangleq \lim _{\epsilon \rightarrow 0} \int_{|\omega| \geq \epsilon} \frac{1}{\omega} \phi(\omega) d \omega
+$$
+
+证明。
+
+- $\int_{|\omega| \geq 1} \frac{1}{\omega} \phi(\omega) d \omega$ well-defined, since $\phi$ is rapidly decreasing
+- Since $\int_{1 \geq|\omega| \geq \epsilon} \frac{1}{\omega} d \omega=0$,
+
+$$
+\int_{1 \geq|\omega| \geq \epsilon} \frac{1}{\omega} \phi(\omega) d \omega=\int_{1 \geq|\omega| \geq \epsilon} \frac{\phi(\omega)-\phi(0)}{\omega} d \omega
+$$
+
+- By Intermediate Value Theorem, $\left|\frac{\phi(\omega)-\phi(0)}{\omega}\right|=\left|\phi^{\prime}(\xi)\right| \leq\|\phi\|_{0,1}$
+
+$$
+\left|\int_{1 \geq|\omega| \geq \epsilon} \frac{1}{\omega} \phi(\omega) d \omega\right|=\int_{1 \geq|\omega| \geq \epsilon}\left|\frac{\phi(\omega)-\phi(0)}{\omega}\right| d \omega \leq 2\|\phi\|_{0,1}
+$$
+
+## 例: 符号函数 sgn
+
+Claim.
+
+$$
+\mathcal{F}\{\operatorname{sgn}\}(j \omega)=\operatorname{pv}\left(\frac{2}{j \omega}\right)
+$$
+
+证明。 Let $x_{a}(t)=\operatorname{sgn}(t) e^{-a|t|}$ for $a>0 . x_{a} \rightarrow x$ pointwise and in distribution as $a \rightarrow 0$ (legal to push limit inside integral)
+
+$$
+\lim _{a \rightarrow 0} \int_{\mathbb{R}} x_{a}(t) \phi(t)=\int_{\mathbb{R}} \lim _{a \rightarrow 0} x_{a}(t) \phi(t)=\int_{\mathbb{R}} x(t) \phi(t) d t
+$$
+
+Recall
+
+$$
+X_{a}(j \omega)=\frac{-2 j \omega}{a^{2}+\omega^{2}}
+$$
+
+For $\omega \neq 0, X_{a}(j \omega) \rightarrow \frac{2}{j \omega}$ pointwise as $a \rightarrow 0$. But need
+
+$$
+\int_{\mathbb{R}} X_{a}(j \omega) \phi(\omega) d \omega \rightarrow \int_{\mathbb{R}} \mathrm{pv}\left(\frac{2}{j \omega}\right) \phi(\omega) d \omega
+$$
+
+## 例: 符号函数 sgn
+
+Claim.
+
+$$
+\lim _{a \rightarrow 0} \int_{\mathbb{R}} \frac{\omega}{a^{2}+\omega^{2}} \phi(\omega) d \omega=\lim _{\epsilon \rightarrow 0} \int_{|\omega| \geq \epsilon} \frac{1}{\omega} \phi(\omega) d \omega
+$$
+
+证明。 Since $\frac{\omega}{a^{2}+\omega^{2}} \phi(\omega) \in L_{1}(\mathbb{R})$,
+
+$$
+\int_{\mathbb{R}} \frac{\omega}{a^{2}+\omega^{2}} \phi(\omega) d \omega=\lim _{\epsilon \rightarrow 0} \int_{|\omega| \geq \epsilon} \frac{\omega}{a^{2}+\omega^{2}} \phi(\omega) d \omega
+$$
+
+Need to show $\lim _{a \rightarrow 0} \lim _{\epsilon \rightarrow 0}|J|=0$, where
+
+$$
+J=\int_{|\omega| \geq \epsilon}\left(\frac{\omega}{a^{2}+\omega^{2}}-\frac{1}{\omega}\right) \phi(\omega) d \omega=\int_{|\omega| \geq \epsilon} \frac{-a^{2}}{\omega\left(a^{2}+\omega^{2}\right)} \phi(\omega) d \omega
+$$
+
+## 例: 符号函数 sgn
+
+Proof (cont'd). Using $0=\int_{|\omega| \geq \epsilon} \frac{-a^{2}}{\omega\left(a^{2}+\omega^{2}\right)} d \omega$, we obtain
+
+$$
+J=\int_{|\omega| \geq \epsilon} \frac{-a^{2}}{a^{2}+\omega^{2}} \cdot \frac{\phi(\omega)-\phi(0)}{\omega} d \omega
+$$
+
+By Intermediate Value Theorem, $\left|\frac{\phi(\omega)-\phi(0)}{\omega}\right|=\left|\phi^{\prime}(\xi)\right| \leq\|\phi\|_{0,1}$
+
+$$
+\begin{aligned}
+|J| & \leq \int_{|\omega| \geq \epsilon}\left|\frac{-a^{2}}{a^{2}+\omega^{2}} \cdot \frac{\phi(\omega)-\phi(0)}{\omega}\right| d \omega \leq \int_{|\omega| \geq \epsilon} \frac{a^{2}}{a^{2}+\omega^{2}}\|\phi\|_{0,1} d \omega \\
+& \leq \int_{\mathbb{R}} \frac{a^{2}}{a^{2}+\omega^{2}}\|\phi\|_{0,1} d \omega=a \pi\|\phi\|_{0,1}
+\end{aligned}
+$$
+
+Therefore,
+
+$$
+\lim _{a \rightarrow 0} \lim _{\epsilon \rightarrow 0}|J|=0
+$$
+
+## 例: 单位阶跃函数
+
+$$
+u(t) \stackrel{\mathcal{F}}{\longleftrightarrow} U(j \omega)=\frac{1}{j \omega}+\pi \delta(\omega)
+$$
+
+NB. More precisely, $U(j \omega)=\mathrm{pv}\left(\frac{1}{j \omega}\right)+\pi \delta(\omega)$
+证明。 Note $u(t)=\frac{1}{2} \operatorname{sgn}(t)+\frac{1}{2}$. By linearity
+
+$$
+U(j \omega)=\frac{1}{2} \mathcal{F}\{\operatorname{sgn}\}(j \omega)+\frac{1}{2} \mathcal{F}\{1\}(j \omega)=\frac{1}{j \omega}+\pi \delta(\omega)
+$$
+
+Remark. Can use approximation approach but with caution.
+
+- Let $x_{a}(t)=e^{-a t} u(t)$ for $a>0$. Note $x_{a} \rightarrow u$ pointwise and in distribution as $a \rightarrow 0$.
+- For $\omega \neq 0, X_{a}(j \omega)=\frac{1}{a+j \omega} \rightarrow \frac{1}{j \omega}$ pointwise as $a \downarrow 0$.
+- Tempting to conclude $U(j \omega)=\frac{1}{j \omega}$.
+- But need convergence in distribution !
+
+
+## 对偶性
+
+$$
+\begin{aligned}
+\mathcal{F}\{f\}(\eta) & =\int_{\mathbb{R}} f(\xi) e^{-j \eta \xi} d \xi \\
+\mathcal{F}^{-1}\{f\}(\eta) & =\frac{1}{2 \pi} \int_{\mathbb{R}} f(\xi) e^{j \eta \xi} d \xi
+\end{aligned}
+$$
+
+Identical except for
+
+- different signs in exponent of complex exponential
+- constant factor $\frac{1}{2 \pi}$
+
+$$
+\mathcal{F}\{f\}(\eta)=\int_{\mathbb{R}} f(\xi) e^{-j \eta \xi} d \xi=\int_{\mathbb{R}} f(-\xi) e^{j \eta \xi} d \xi=\mathcal{F}^{-1}\{2 \pi R f\}(\eta)
+$$
+
+对偶性
+
+$$
+f \stackrel{\mathcal{F}}{\longleftrightarrow} g \Longleftrightarrow g \stackrel{\mathcal{F}}{\Longleftrightarrow} 2 \pi R f \Longleftrightarrow R g \stackrel{\mathcal{F}}{\Longleftrightarrow} 2 \pi f
+$$
+
+## 对偶性
+
+$$
+\begin{aligned}
+\mathcal{F}\{f\}(\eta) & =\int_{\mathbb{R}} f(\xi) e^{-j \eta \xi} d \xi \\
+\mathcal{F}^{-1}\{f\}(\eta) & =\frac{1}{2 \pi} \int_{\mathbb{R}} f(\xi) e^{j \eta \xi} d \xi
+\end{aligned}
+$$
+
+Identical except for
+
+- different signs in exponent of complex exponential
+- constant factor $\frac{1}{2 \pi}$
+
+$$
+\overline{\mathcal{F}\{f\}}=\left(\int_{\mathbb{R}} f(\xi) e^{-j \eta \xi} d \xi\right)^{*}=\int_{\mathbb{R}} f^{*}(\xi) e^{j \eta \xi} d \xi=\mathcal{F}^{-1}\left\{2 \pi f^{*}\right\}
+$$
+
+对偶性
+
+$$
+f \stackrel{\mathcal{F}}{\longleftrightarrow} g \quad \Longleftrightarrow \quad g^{*} \stackrel{\mathcal{F}}{\longleftrightarrow} 2 \pi f^{*}
+$$
+
+## 对偶性
+
+$$
+u(t+a)-u(t-a) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{2 \sin (a \omega)}{\omega}
+$$
+
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-30.jpg?height=219&width=511&top_left_y=312&top_left_x=31)
+
+$$
+\stackrel{\mathcal{F}}{\longmapsto}
+$$
+
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-30.jpg?height=332&width=524&top_left_y=211&top_left_x=715)
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-30.jpg?height=247&width=513&top_left_y=674&top_left_x=31)
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-30.jpg?height=163&width=163&top_left_y=545&top_left_x=572)
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-30.jpg?height=83&width=158&top_left_y=741&top_left_x=572)
+![](https://cdn.mathpix.com/cropped/66426e84-291f-4a59-9308-7ce62f2dea7a-30.jpg?height=216&width=518&top_left_y=705&top_left_x=718)
+
+## 对偶性
+
+例. $x(t)=\frac{1}{t}$ (more precisely, $\mathrm{pv}\left(\frac{1}{t}\right)$ )
+Know
+
+$$
+\operatorname{sgn}(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{j \omega}
+$$
+
+By duality
+
+$$
+-\frac{1}{j t} \stackrel{\mathcal{F}}{\longleftrightarrow} 2 \pi \operatorname{sgn}(\omega)
+$$
+
+- switch LHS and RHS, switch $\omega$ and $t$
+- do either of following (but not both)
+- take complex conjugate of both sides
+- substitute $\omega \rightarrow-\omega$ or $t \rightarrow-t$ (but not both)
+- multiply RHS by $2 \pi$
+
+By linearity
+
+$$
+\frac{1}{t} \stackrel{\mathcal{F}}{\longleftrightarrow}-j 2 \pi \operatorname{sgn}(\omega)
+$$
+
+## 对偶性
+
+例. $x(t)=\frac{1}{1+t^{2}}$
+Know
+
+$$
+e^{-|t|} \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{2}{1+\omega^{2}}
+$$
+
+By duality
+
+$$
+\frac{2}{1+t^{2}} \stackrel{\mathcal{F}}{\longleftrightarrow} 2 \pi e^{-|\omega|}
+$$
+
+- switch LHS and RHS, switch $\omega$ and $t$
+- do either of following (but not both)
+- take complex conjugate of both sides
+- substitute $\omega \rightarrow-\omega$ or $t \rightarrow-t$ (but not both)
+- multiply RHS by $2 \pi$
+
+By linearity
+
+$$
+\frac{1}{1+t^{2}} \stackrel{\mathcal{F}}{\longleftrightarrow} \pi e^{-|\omega|}
+$$
+
+## 对偶性
+
+微分 in frequency
+
+$$
+-j t x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{d X(j \omega)}{d \omega}
+$$
+
+证明。 Differentiate under integral sign
+
+$$
+X(j \omega)=\int_{\mathbb{R}} x(t) e^{-j \omega t} d t \Longrightarrow \frac{d X(j \omega)}{d \omega}=\int_{\mathbb{R}}(-j t) x(t) e^{-j \omega t} d t
+$$
+
+例. Unit ramp function $u_{-2}=t u(t)$
+
+$$
+\mathcal{F}\left\{u_{-2}\right\}=j \mathcal{F}\{-j t u\}=j \frac{d U(j \omega)}{d \omega}=-\frac{1}{\omega^{2}}+j \pi \delta^{\prime}(\omega)
+$$
+
+积分 in frequency
+
+$$
+-\frac{1}{j t} x(t)+\pi x(0) \delta(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \int_{-\infty}^{\omega} X(j \lambda) d \lambda
+$$

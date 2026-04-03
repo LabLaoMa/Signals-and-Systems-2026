@@ -1,0 +1,661 @@
+---
+title: "EL331 信号与系统 · 第13讲（中文版）"
+subtitle: "滤波与离散时间傅里叶级数 / 变换"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+## 1. 快速傅里叶变换
+
+## 2. 离散时间滤波器
+
+## 3. 连续时间傅里叶变换
+
+## 离散傅里叶变换（DFT）
+
+DTFS pair for $N$-periodic sequence
+
+分析公式
+
+$$
+\hat{x}[k]=\frac{1}{N} \sum_{n \in[N]} x[n] e^{-j k \frac{2 \pi}{N} n}
+$$
+
+综合公式
+
+$$
+x[n]=\sum_{k \in[N]} \hat{x}[k] e^{j k \frac{2 \pi}{N} n}
+$$
+
+DFT pair for finite sequence of length $N$
+
+DFT
+
+$$
+X[k]=\sum_{n=0}^{N-1} x[n] e^{-j k \frac{2 \pi}{N} n}
+$$
+
+逆 DFT
+
+$$
+x[n]=\frac{1}{N} \sum_{k=0}^{N-1} X[k] e^{j k \frac{2 \pi}{N} n}
+$$
+
+Both pairs of equations essentially the same up to constant factor $\frac{1}{N}$; efficient computation by 快速傅里叶变换 (FFT)
+
+## DFT 的矩阵形式
+
+With $W_{N}=e^{-j \frac{2 \pi}{N}}$ (note sign change from last lecture)
+
+$$
+\left[\begin{array}{l}
+X[0] \\
+X[1] \\
+X[2] \\
+X[3] \\
+X[4] \\
+X[5] \\
+X[6] \\
+X[7]
+\end{array}\right]=\left[\begin{array}{llllllll}
+W_{8}^{0} & W_{8}^{0} & W_{8}^{0} & W_{8}^{0} & W_{8}^{0} & W_{8}^{0} & W_{8}^{0} & W_{8}^{0} \\
+W_{8}^{0} & W_{8}^{1} & W_{8}^{2} & W_{8}^{3} & W_{8}^{4} & W_{8}^{5} & W_{8}^{6} & W_{8}^{7} \\
+W_{8}^{0} & W_{8}^{2} & W_{8}^{4} & W_{8}^{6} & W_{8}^{0} & W_{8}^{3} & W_{8}^{4} & W_{8}^{6} \\
+W_{8}^{0} & W_{8}^{3} & W_{8}^{6} & W_{8}^{1} & W_{8}^{4} & W_{8}^{7} & W_{8}^{2} & W_{8}^{5} \\
+W_{8}^{0} & W_{8}^{4} & W_{8}^{0} & W_{8}^{4} & W_{8}^{0} & W_{8}^{4} & W_{8}^{0} & W_{8}^{4} \\
+W_{8}^{0} & W_{8}^{5} & W_{8}^{2} & W_{8}^{7} & W_{8}^{4} & W_{8}^{1} & W_{8}^{6} & W_{8}^{3} \\
+W_{8}^{0} & W_{8}^{6} & W_{8}^{4} & W_{8}^{2} & W_{8}^{0} & W_{8}^{6} & W_{8}^{4} & W_{8}^{2} \\
+W_{8}^{0} & W_{8}^{7} & W_{8}^{6} & W_{8}^{5} & W_{8}^{4} & W_{8}^{3} & W_{8}^{2} & W_{8}^{1}
+\end{array}\right]\left[\begin{array}{l}
+x[0] \\
+x[1] \\
+x[2] \\
+x[3] \\
+x[4] \\
+x[5] \\
+x[6] \\
+x[7]
+\end{array}\right]
+$$
+
+Direct matrix multiplication has complexity $O\left(N^{2}\right)$
+FFT is divide-and-conquer algorithm (Cooley \& Tukey 1965)
+
+## 快速傅里叶变换 (FFT)
+
+分治思想
+Assume $N=2^{M}$ (radix 2). Divide $x$ into two subsequences
+
+$$
+\begin{array}{ll}
+x_{e}[n]=x[2 n], & n=0,1, \ldots, 2^{M-1}-1 \\
+x_{o}[n]=x[2 n+1], & n=0,1, \ldots, 2^{M-1}-1
+\end{array}
+$$
+
+$N$-point DFT $X$ of $x$. For $k=0,1, \ldots, 2^{M}-1$,
+
+$$
+\begin{aligned}
+X[k] & =\sum_{n=0}^{2^{M}-1} x[n] e^{-j k \frac{2 \pi}{2^{M}} n} \\
+& =\sum_{n=0}^{2^{M-1}-1} x_{e}[n] e^{-j k \frac{2 \pi}{2^{M}} 2 n}+\sum_{n=0}^{2^{M-1}-1} x_{o}[n] e^{-j k \frac{2 \pi}{2^{M}}(2 n+1)} \\
+& =\sum_{n=0}^{2^{M-1}-1} x_{e}[n] e^{-j k \frac{2 \pi}{2^{M-1} n}}+e^{-j k \frac{2 \pi}{2^{M}}} \sum_{n=0}^{2^{M-1}-1} x_{o}[n] e^{-j k \frac{2 \pi}{2^{M-1} n}}
+\end{aligned}
+$$
+
+## 快速傅里叶变换 (FFT)
+
+分治思想
+Divide $X$ into two halves. For $k=0,1, \ldots, 2^{M-1}-1$
+
+$$
+\begin{aligned}
+X[k]= & \sum_{n=0}^{2^{M-1}-1} x_{e}[n] e^{-j k \frac{2 \pi}{2^{M-1} n}}+e^{-j k \frac{2 \pi}{2^{M}}} \sum_{n=0}^{2^{M-1}-1} x_{o}[n] e^{-j k \frac{2 \pi}{2^{M-1} n} n} \\
+X\left[2^{M-1}+k\right]= & \sum_{n=0}^{2^{M-1}-1} x_{e}[n] e^{-j k \frac{2 \pi}{2^{M-1} n}}-e^{-j k \frac{2 \pi}{2^{M}}} \sum_{n=0}^{2^{M-1}-1} x_{o}[n] e^{-j k \frac{2 \pi}{2^{M-1} n} n} \\
+& \frac{N}{2} \text {-point DFT of } x_{e} \quad
+\end{aligned}
+$$
+
+Recursive algorithm
+
+$$
+\begin{aligned}
+\operatorname{DFT}(x)[k] & =\operatorname{DFT}\left(x_{e}\right)[k]+e^{-j k \frac{2 \pi}{N}} \operatorname{DFT}\left(x_{o}\right)[k] \\
+\operatorname{DFT}(x)\left[2^{M-1}+k\right] & =\operatorname{DFT}\left(x_{e}\right)[k]-e^{-j k \frac{2 \pi}{N}} \operatorname{DFT}\left(x_{o}\right)[k]
+\end{aligned}
+$$
+
+## 快速傅里叶变换 (FFT)
+
+Naive implementation of radix-2 FFT for $N=2^{M}$
+
+```
+import numpy as np
+# compute DFT of sequences of length N=2^M
+def FFT(x):
+    N = x.size
+    # base case, compute DFT directly
+    if N == 2:
+        return np.array([x[0] + x[1], x[0] - x[1]])
+    # recursively compute N/2 point DFT of even and odd subsquences
+    Xe = FFT(x[0::2])
+    X0 = FFT(x[1::2])
+    # compute phase factor exp(-jk(2*pi/N))
+    K = np.arange(N/2)
+    phase = np.exp(-1j * K * 2 * np.pi / N)
+    Xo_phase = phase * Xo
+    # compute N ponint DFT of x
+    X = np.append(Xe + Xo_phase, Xe - Xo_phase)
+    return X
+```
+
+
+## 快速傅里叶变换 (FFT)
+
+时间复杂度
+Denote by $T(N)$ time complexity of $N$-point FFT
+
+$$
+T(N)=2 T\left(\frac{N}{2}\right)+O(N)
+$$
+
+Let $\tilde{T}(M)=T\left(2^{M}\right)$ and assume $O(N)=c N$ for contant $c$,
+
+$$
+\tilde{T}(M)=2 \tilde{T}(M-1)+c 2^{M} \Longrightarrow \tilde{T}(M)=O\left(M 2^{M}\right)
+$$
+
+or
+
+$$
+T(N)=O(N \log N)
+$$
+
+Much lower than $O\left(N^{2}\right)$ for direct matrix multiplication!
+
+## 目录
+
+## 1. 快速傅里叶变换
+
+## 2. 离散时间滤波器
+
+## 3. 连续时间傅里叶变换
+
+## 频率响应
+
+Recall response of DT LTI system to exponential input $z^{n}$
+
+$$
+T\left(\sum_{k} a_{k} z_{k}^{n}\right)=\sum_{k} a_{k} H\left(z_{k}\right) z_{k}^{n}
+$$
+
+where $H(s)$ is system function
+
+$$
+H(z)=\sum_{n=-\infty}^{\infty} h[n] z^{-n}
+$$
+
+When restricted to $z=e^{j \omega}, H\left(e^{j \omega}\right)$ as function of $\omega$ is called frequency response of the system
+
+$$
+H\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} h[n] e^{-j \omega n}
+$$
+
+## 频率响应
+
+Periodic input $x$ in Fourier series representation
+
+$$
+x[n]=\sum_{k \in[N]} \hat{x}[k] e^{j k \omega_{0} n}, \quad \text { where } \omega_{0}=\frac{2 \pi}{N} .
+$$
+
+Output of LTI system with frequency response $H\left(e^{j \omega}\right)$
+
+$$
+y[n]=T\left(\sum_{k \in[N]} \hat{x}[k] e^{j k \omega_{0} n}\right)=\sum_{k \in[N]} H\left(e^{j k \omega_{0}}\right) \hat{x}[k] e^{j k \omega_{0} n}
+$$
+
+periodic with same periodic, Fourier coefficients related by
+
+$$
+\hat{y}[k]=H\left(e^{j k \omega_{0}}\right) \hat{x}[k]
+$$
+
+## 滤波
+
+滤波 changes relative amplitudes of frequency components or eliminates some frequency components entirely
+
+Frequency-shaping vs frequency-selective filters as in CT case
+LTI systems as filters
+
+- cannot create new frequency components
+- can only scale magnitudes or shift phases of existing components
+
+Examples of nonlinear filter
+
+- max filter: $y[n]=\max _{-n_{1} \leq k \leq n_{2}} x[n+k]$
+- median filter: $y[n]=$ median $\left\{x\left[n-n_{1}\right], \ldots, x\left[n+n_{2}\right]\right\}$
+
+Recall for DT signals, suffices to consider frequencies on an interval of length $2 \pi$, e.g. $[0,2 \pi)$ or $(-\pi, \pi]$
+
+## 离散时间信号中的高频与低频
+
+High frequencies around $(2 k+1) \pi$, low frequencies around $2 k \pi$
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-13.jpg?height=161&width=368&top_left_y=197&top_left_x=91)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-13.jpg?height=159&width=370&top_left_y=199&top_left_x=461)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-13.jpg?height=159&width=367&top_left_y=199&top_left_x=832)
+$\phi_{N}^{0}[n]=\cos (0 \cdot n)=1$
+$\phi_{N}^{1}[n]=\cos (\pi n / 4)$
+$\phi_{N}^{2}[n]=\cos (\pi n / 2)$
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-13.jpg?height=162&width=365&top_left_y=443&top_left_x=94)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-13.jpg?height=159&width=370&top_left_y=446&top_left_x=458)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-13.jpg?height=162&width=365&top_left_y=443&top_left_x=834)
+$\phi_{N}^{3}[n]=\cos (3 \pi n / 4)$
+$\phi_{N}^{4}[n]=\cos (\pi n)$
+$\phi_{N}^{5}[n]=\cos (5 \pi n / 4)$
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-13.jpg?height=158&width=363&top_left_y=690&top_left_x=94)
+$\phi_{N}^{6}[n]=\cos (3 \pi n / 2)$
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-13.jpg?height=156&width=368&top_left_y=692&top_left_x=460)
+$\phi_{N}^{7}[n]=\cos (7 \pi n / 4)$
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-13.jpg?height=156&width=365&top_left_y=692&top_left_x=832)
+$\phi_{N}^{8}[n]=\cos (2 \pi n)=1$
+
+## 离散时间频率
+
+Discrete frequencies of $N$-periodic signals
+
+- evenly spaced points on unit circle
+- low frequencies close to 1 ; high frequencies close to -1
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-14.jpg?height=578&width=584&top_left_y=339&top_left_x=44)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-14.jpg?height=578&width=587&top_left_y=339&top_left_x=652)
+
+
+## 理想频率选择性滤波器
+
+理想低通滤波器
+
+$$
+H\left(e^{j \omega}\right)= \begin{cases}1, & |\omega| \leq \omega_{c} \\ 0, & \omega_{c}<|\omega| \leq \pi\end{cases}
+$$
+
+$\omega_{c}$ : cutoff frequency
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-15.jpg?height=283&width=1148&top_left_y=483&top_left_x=64)
+
+## 理想频率选择性滤波器
+
+理想高通滤波器
+
+$$
+H\left(e^{j \omega}\right)= \begin{cases}1, & \omega_{c} \leq|\omega| \leq \pi \\ 0, & |\omega|<\left|\omega_{c}\right|\end{cases}
+$$
+
+$\omega_{c}$ : cutoff frequency
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-16.jpg?height=283&width=1148&top_left_y=483&top_left_x=64)
+
+## 理想频率选择性滤波器
+
+理想带通滤波器
+
+$$
+H\left(e^{j \omega}\right)= \begin{cases}1, & \omega_{c 1} \leq|\omega| \leq \omega_{c 2} \\ 0, & |\omega|<\omega_{c 1} \text { or } \omega_{c 2}<|\omega| \leq \pi\end{cases}
+$$
+
+$\omega_{c 1}$ : lower cutoff frequency
+$\omega_{c 2}$ : upper cutoff frequency
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-17.jpg?height=280&width=1148&top_left_y=559&top_left_x=64)
+
+## First-order Recursive 离散时间滤波器
+
+$$
+y[n]-a y[n-1]=x[n]
+$$
+
+For input $x[n]=e^{j \omega n}$, output $y[n]=H\left(e^{j \omega}\right) e^{j \omega n}$
+Frequency response (well-defined if $|a|<1$ )
+
+$$
+H\left(e^{j \omega}\right)=\frac{1}{1-a e^{-j \omega}}, \quad|a|<1
+$$
+
+For $a=|a| e^{j \phi}$,
+
+$$
+\begin{aligned}
+& \left|H\left(e^{j \omega}\right)\right|=\frac{1}{\sqrt{1+|a|^{2}-2|a| \cos (\omega-\phi)}} \\
+& \arg H\left(e^{j \omega}\right)=\arctan \frac{-|a| \sin (\omega-\phi)}{1-|a| \cos (\omega-\phi)}
+\end{aligned}
+$$
+
+## First-order Recursive 离散时间滤波器
+
+For $a>0$, lowpass filter (exponential smoothing)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-19.jpg?height=298&width=536&top_left_y=259&top_left_x=48)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-19.jpg?height=325&width=536&top_left_y=612&top_left_x=48)
+
+For $a<0$, highpass filter
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-19.jpg?height=305&width=544&top_left_y=257&top_left_x=670)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-19.jpg?height=325&width=540&top_left_y=612&top_left_x=674)
+
+## First-order Recursive 离散时间滤波器
+
+Impulse response (IIR filter)
+
+$$
+\begin{gathered}
+h[n]=a^{n} u[n] \\
+H\left(e^{j \omega}\right)=\sum_{n=0}^{\infty}\left(a e^{-j \omega}\right)^{n}=\frac{1}{1-a e^{-j \omega}}
+\end{gathered}
+$$
+
+Need $|a|<1$ for convergence
+Step response
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-20.jpg?height=198&width=425&top_left_y=124&top_left_x=787)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-20.jpg?height=199&width=423&top_left_y=323&top_left_x=787)
+
+$$
+s[n]=(h * u)[n]=\frac{1-a^{n+1}}{1-a} u[n]
+$$
+
+Tradeoff
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-20.jpg?height=196&width=425&top_left_y=519&top_left_x=787)
+
+- larger $|a|$, narrower passband, slower response
+- smaller $|a|$, faster response, broader passband
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-20.jpg?height=199&width=423&top_left_y=716&top_left_x=787)
+
+
+## 滑动平均作为低通滤波器
+
+$$
+y[n]=\frac{1}{M_{1}+M_{2}+1} \sum_{k=-M_{1}}^{M_{2}} x[n-k]
+$$
+
+Impulse response (FIR filter)
+
+$$
+h[n]=\frac{1}{M_{1}+M_{2}+1} \sum_{k=-M_{1}}^{M_{2}} \delta[n-k]
+$$
+
+Frequency response
+
+$$
+H\left(e^{j \omega}\right)=\frac{1}{M_{1}+M_{2}+1} \sum_{k=-M_{1}}^{M_{2}} e^{-j k \omega}=\frac{e^{j \frac{M_{1}-M_{2}}{2} \omega}}{M_{1}+M_{2}+1} \frac{\sin \left(\frac{M_{1}+M_{2}+1}{2} \omega\right)}{\sin \frac{\omega}{2}}
+$$
+
+## 滑动平均作为低通滤波器
+
+$M_{1}=0, M_{2}=1$,
+
+$$
+\begin{aligned}
+y[n] & =\frac{1}{2}(x[n]+x[n-1]) \\
+h[n] & =\frac{1}{2}(\delta[n]+\delta[n-1]) \\
+H\left(e^{j \omega}\right) & =e^{-j \frac{\omega}{2}} \cos \frac{\omega}{2}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-22.jpg?height=276&width=1010&top_left_y=561&top_left_x=124)
+
+Verify $y=x$ if $x=K e^{j 0 \cdot n}$ and $y=0$ if $x=K e^{j \pi n}=K(-1)^{n}$.
+
+## 滑动平均作为低通滤波器
+
+$M_{1}=M_{2}=1$,
+
+$$
+\begin{aligned}
+y[n] & =\frac{1}{3}(x[n+1]+x[n]+x[n-1]) \\
+h[n] & =\frac{1}{3}(\delta[n+1]+\delta[n]+\delta[n-1]) \\
+H\left(e^{j \omega}\right) & =\frac{\sin \left(\frac{3}{2} \omega\right)}{3 \sin \frac{\omega}{2}}=\frac{1}{3}+\frac{2}{3} \cos \omega
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-23.jpg?height=294&width=1010&top_left_y=596&top_left_x=124)
+
+## 滑动平均作为低通滤波器
+
+$$
+H\left(e^{j \omega}\right)=\frac{e^{j \frac{M_{1}-M_{2}}{2} \omega}}{M_{1}+M_{2}+1} \frac{\sin \left(\frac{M_{1}+M_{2}+1}{2} \omega\right)}{\sin \frac{\omega}{2}}
+$$
+
+$$
+M_{1}+M_{2}+1=11
+$$
+
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-24.jpg?height=249&width=820&top_left_y=297&top_left_x=319)
+
+$$
+M_{1}+M_{2}+1=41
+$$
+
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-24.jpg?height=237&width=829&top_left_y=556&top_left_x=310)
+
+Larger $M_{1}+M_{2}$, narrower passband, smoother output
+
+## 滑动平均作为低通滤波器
+
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-25.jpg?height=378&width=274&top_left_y=127&top_left_x=18)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-25.jpg?height=378&width=271&top_left_y=127&top_left_x=336)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-25.jpg?height=379&width=272&top_left_y=126&top_left_x=651)
+$y[n], M_{1}=M_{2}=5$
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-25.jpg?height=383&width=275&top_left_y=535&top_left_x=18)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-25.jpg?height=378&width=271&top_left_y=539&top_left_x=336)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-25.jpg?height=379&width=272&top_left_y=539&top_left_x=651)
+$|\hat{y}[k]|, \quad M_{1}=M_{2}=5$
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-25.jpg?height=348&width=271&top_left_y=569&top_left_x=967)
+
+## 滑动平均作为低通滤波器
+
+noncausal
+
+$$
+y_{1}[n]=\frac{1}{2 M+1} \sum_{k=-M}^{M} x[n-k]
+$$
+
+causal
+
+$$
+y_{2}[n]=\frac{1}{2 M+1} \sum_{k=0}^{2 M} x[n-k]
+$$
+
+Note $y_{2}=\tau_{M} y_{1}$
+For real-time system
+
+- noncausal version not realizable
+- causal version realizable
+- larger $M$, narrower passband, smoother output, but longer delay, more sluggish response
+
+
+## 一阶差分作为高通滤波器
+
+Scaled first difference
+
+$$
+y[n]=\frac{1}{2}(x[n]-x[n-1])
+$$
+
+Impulse response (FIR filter)
+
+$$
+h[n]=\frac{1}{2}(\delta[n]-\delta[n-1])
+$$
+
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-27.jpg?height=167&width=471&top_left_y=359&top_left_x=714)
+
+Frequency response
+
+$$
+\begin{aligned}
+H\left(e^{j \omega}\right) & =\frac{1}{2}\left(1-e^{-j \omega}\right)=j e^{-j \frac{\omega}{2}} \sin \frac{\omega}{2} \\
+\left|H\left(e^{j \omega}\right)\right| & =\left|\sin \frac{\omega}{2}\right|
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-27.jpg?height=256&width=423&top_left_y=585&top_left_x=765)
+
+Verify $y=0$ if $x=K e^{j 0 \cdot n}$ and $y=x$ if $x=K e^{j \pi n}=K(-1)^{n}$.
+
+First Difference for Edge Detection
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-28.jpg?height=764&width=1217&top_left_y=125&top_left_x=19)
+
+## 目录
+
+## 1. 快速傅里叶变换
+
+## 2. 离散时间滤波器
+
+## 3. 连续时间傅里叶变换
+
+## 动机示例：周期方波
+
+In one period,
+
+$$
+x_{T}(t)= \begin{cases}1, & |t|<T_{1} \\ 0, & T_{1}<|t|<T / 2\end{cases}
+$$
+
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-30.jpg?height=248&width=1104&top_left_y=332&top_left_x=90)
+
+Frequency component at $\omega_{k}=k \omega_{0}$ satisfies
+
+$$
+T \hat{x}_{T}[k]=\frac{2 \sin \left(k \omega_{0} T_{1}\right)}{k \omega_{0}}=\left.\frac{2 \sin \left(\omega T_{1}\right)}{\omega}\right|_{\omega=k \omega_{0}}
+$$
+
+$T \hat{x}_{T}[k]$ is value of envelope $X(j \omega) \triangleq \frac{2 \sin \left(\omega T_{1}\right)}{\omega}$ sampled at $\omega_{k}=k \omega_{0}$
+
+## 动机示例：周期方波
+
+$X\left(j \omega_{k}\right)$ for fixed $T_{1}$ and different $T$
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-31.jpg?height=203&width=1122&top_left_y=195&top_left_x=66)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-31.jpg?height=181&width=1122&top_left_y=425&top_left_x=66)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-31.jpg?height=180&width=1122&top_left_y=630&top_left_x=66)
+
+As $T \rightarrow \infty$, discrete frequencies sampled more densely
+
+## 动机示例：周期方波
+
+As $T \rightarrow \infty, x_{T}(t) \rightarrow x(t) \triangleq u\left(t+\frac{T_{2}}{2}\right)-u\left(t-\frac{T_{1}}{2}\right)$, rectangular pulse
+
+$$
+\begin{array}{rlr}
+x_{T}(t) & =\sum_{k=-\infty}^{\infty} \hat{x}_{T}[k] e^{j \omega_{k} t}=\sum_{k=-\infty}^{\infty} \frac{1}{T} X\left(j \omega_{k}\right) e^{j \omega_{k} t} & \left(T \hat{x}[k]=X\left(j \omega_{k}\right)\right) \\
+& =\sum_{k=-\infty}^{\infty} \frac{\omega_{0}}{2 \pi} X\left(j \omega_{k}\right) e^{j \omega_{k} t} & \left(\omega_{0}=\frac{2 \pi}{T}\right) \\
+& =\frac{1}{2 \pi} \sum_{k=-\infty}^{\infty} X\left(j \omega_{k}\right) e^{j \omega_{k} t} \Delta \omega & \left(\Delta \omega=\omega_{0}\right) \\
+& \rightarrow \frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega) e^{j \omega t} d \omega & \left(\Delta \omega=\omega_{0} \rightarrow 0\right)
+\end{array}
+$$
+
+Thus
+
+$$
+x(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega) e^{j \omega t} d \omega
+$$
+
+## 动机示例：周期方波
+
+For envelope $X(j \omega)$,
+
+$$
+\begin{aligned}
+X\left(j \omega_{k}\right) & =T \hat{x}_{T}[k] \\
+& =\int_{-\frac{T}{2}}^{\frac{T}{2}} x_{T}(t) e^{-j \omega_{k} t} d t \\
+& =\int_{-\frac{T}{2}}^{\frac{T}{2}} x(t) e^{-j \omega_{k} t} d t \quad\left(x_{T}(t)=x(t) \text { for }|t| \leq T / 2\right) \\
+& =\int_{-\infty}^{\infty} x(t) e^{-j \omega_{k} t} d t \quad(x(t)=0 \text { for }|t|>T / 2)
+\end{aligned}
+$$
+
+SO
+
+$$
+X(j \omega)=\int_{-\infty}^{\infty} x(t) e^{-j \omega t} d t
+$$
+
+## 动机示例：周期方波
+
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-34.jpg?height=220&width=1004&top_left_y=162&top_left_x=119)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-34.jpg?height=156&width=85&top_left_y=383&top_left_x=558)
+![](https://cdn.mathpix.com/cropped/f0d10ac8-9b51-40af-8373-7a211a98e620-34.jpg?height=321&width=1007&top_left_y=558&top_left_x=119)
+
+## 连续时间傅里叶变换 of Aperiodic Signals
+
+For aperiodic signal $x$ with $\operatorname{supp} x \subset\left[-T_{1}, T_{1}\right]$, define periodic extension with period $T>2 T_{1}$,
+
+$$
+x_{T}(t)=\sum_{k=-\infty}^{\infty} x(t-k T)
+$$
+
+Then
+
+$$
+x(t)=x_{T}(t), \quad|t|<\frac{T}{2}
+$$
+
+As $T \rightarrow \infty$,
+
+$$
+x_{T}(t) \rightarrow x(t), \quad \forall t \in \mathbb{R}
+$$
+
+$x_{T}$ has Fourier series representation
+
+$$
+x_{T}(t)=\sum_{k=-\infty}^{\infty} \hat{x}_{T}[k] e^{j k \omega_{0} t}, \quad \omega_{0}=\frac{2 \pi}{T}
+$$
+
+## 连续时间傅里叶变换 of Aperiodic Signals
+
+Define
+
+$$
+X(j \omega)=\int_{-\infty}^{\infty} x(t) e^{-j \omega t} d t
+$$
+
+$X(j \omega)$ is envelope of $T \hat{x}_{T}[k]$,
+
+$$
+\begin{aligned}
+\hat{x}_{T}[k] & =\frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} x_{T}(t) e^{-j k \omega_{0} t} d t=\frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} x(t) e^{-j k \omega_{0} t} d t \\
+& =\frac{1}{T} \int_{-\infty}^{\infty} x(t) e^{-j k \omega_{0} t} d t=\frac{1}{T} X\left(j k \omega_{0}\right)=\frac{\omega_{0}}{2 \pi} X\left(j k \omega_{0}\right)
+\end{aligned}
+$$
+
+so
+
+$$
+\begin{aligned}
+x(t) & =\lim _{T \rightarrow \infty} x_{T}(t)=\lim _{T \rightarrow \infty} \sum_{k=-\infty}^{\infty} \frac{\omega_{0}}{2 \pi} X\left(j k \omega_{0}\right) e^{j k \omega_{0} t} \\
+& =\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega) e^{j \omega t} d \omega
+\end{aligned}
+$$
+
+## 连续时间傅里叶变换 Pair
+
+Fourier transform (analysis equation)
+
+$$
+X(j \omega)=\mathcal{F}(x)(j \omega)=\int_{-\infty}^{\infty} x(t) e^{-j \omega t} d t
+$$
+
+$X(j \omega)$ called spectrum of $x(t)$
+
+Inverse Fourier transform (synthesis equation)
+
+$$
+x(t)=\mathcal{F}^{-1}(X)(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega) e^{j \omega t} d \omega
+$$
+
+Superposition of complex exponentials at continuum of frequencies; frequency $\omega$ has "amplitude" $X(j \omega) \frac{d \omega}{2 \pi}$

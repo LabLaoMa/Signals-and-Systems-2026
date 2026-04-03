@@ -1,0 +1,328 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     13249,        320]
+NotebookOptionsPosition[     12767,        303]
+NotebookOutlinePosition[     13160,        319]
+CellTagsIndexPosition[     13117,        316]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "\:5b9a\:4e49\:53c2\:6570", "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"TVal", "=", "1"}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"Manipulate", "[", 
+    RowBox[{
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{"\:8ba1\:7b97\:4ece", " ", "k"}], "=", 
+          RowBox[{
+           RowBox[{"-", "N"}], " ", "\:5230", " ", "N", " ", 
+           "\:7684\:6240\:6709\:590d\:6570\:9879"}]}], "*)"}], 
+        RowBox[{
+         RowBox[{"terms", "=", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"1", "/", "TVal"}], ")"}], "*", 
+             RowBox[{"Exp", "[", 
+              RowBox[{"I", "*", "k", "*", 
+               RowBox[{"(", 
+                RowBox[{"2", "*", 
+                 RowBox[{"Pi", "/", "TVal"}]}], ")"}], "*", "tVal"}], "]"}]}],
+             ",", 
+            RowBox[{"{", 
+             RowBox[{"k", ",", 
+              RowBox[{"-", "N"}], ",", "N"}], "}"}]}], "]"}]}], ",", 
+         "accumulated", ",", "totalVector", ",", "plotRange"}], "}"}], ",", 
+       RowBox[{
+       "(*", "\:8ba1\:7b97\:7d2f\:52a0\:7684\:9996\:5c3e\:76f8\:8fde\:70b9\
+\:96c6", "*)"}], 
+       RowBox[{
+        RowBox[{"accumulated", "=", 
+         RowBox[{"FoldList", "[", 
+          RowBox[{"Plus", ",", "0", ",", "terms"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"totalVector", "=", 
+         RowBox[{"Last", "[", "accumulated", "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{"\:52a8\:6001\:8bbe\:7f6e\:5750\:6807\:8f74\:8303\:56f4", "\:ff0c", 
+          RowBox[{
+          "\:786e\:4fdd\:5728", " ", "N", " ", 
+           "\:5f88\:5927\:65f6\:4e5f\:80fd\:770b\:6e05"}]}], "*)"}], 
+        RowBox[{"plotRange", "=", 
+         RowBox[{"Max", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"N", "*", 
+              RowBox[{"2", "/", "TVal"}]}], "+", "1"}], ",", "5"}], "}"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"Column", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"ListPlot", "[", 
+             RowBox[{"(*", 
+              RowBox[{"\:4fee\:6b63\:540e\:7684\:8bed\:6cd5", "\:ff1a", 
+               RowBox[{"\:5c06\:590d\:6570\:8f6c\:6362\:4e3a", " ", 
+                RowBox[{"{", 
+                 RowBox[{"\:5b9e\:90e8", ",", "\:865a\:90e8"}], "}"}], " ", 
+                "\:70b9\:5bf9"}]}], "*)"}], 
+             RowBox[{
+              RowBox[{"Map", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Re", "[", "#", "]"}], ",", 
+                   RowBox[{"Im", "[", "#", "]"}]}], "}"}], "&"}], ",", 
+                "accumulated"}], "]"}], ",", 
+              RowBox[{"Joined", "->", "True"}], ",", 
+              RowBox[{"PlotStyle", "->", 
+               RowBox[{"{", 
+                RowBox[{"Thin", ",", "Gray"}], "}"}]}], ",", 
+              RowBox[{"AspectRatio", "->", "1"}], ",", 
+              RowBox[{"Axes", "->", "True"}], ",", 
+              RowBox[{"AxesLabel", "->", 
+               RowBox[{"{", 
+                RowBox[{"\"\<Re\>\"", ",", "\"\<Im\>\""}], "}"}]}], ",", 
+              RowBox[{"PlotRange", "->", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "plotRange"}], "/", "2"}], ",", 
+                   "plotRange"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"-", "plotRange"}], "/", "2"}], ",", 
+                   RowBox[{"plotRange", "/", "2"}]}], "}"}]}], "}"}]}], ",", 
+              RowBox[{"ImageSize", "->", "Medium"}], ",", 
+              RowBox[{"PlotLabel", "->", 
+               RowBox[{"Style", "[", 
+                RowBox[{
+                 RowBox[{"Row", "[", 
+                  RowBox[{"{", 
+                   RowBox[{"\"\<t = \>\"", ",", 
+                    RowBox[{"NumberForm", "[", 
+                    RowBox[{"tVal", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"3", ",", "2"}], "}"}]}], "]"}], ",", "\"\< (\>\"",
+                     ",", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Abs", "[", 
+                    RowBox[{"Mod", "[", 
+                    RowBox[{"tVal", ",", "TVal"}], "]"}], "]"}], "<", 
+                    "0.05"}], ",", 
+                    RowBox[{"Style", "[", 
+                    
+                    RowBox[{"\"\<\:76f8\:957f\:5e72\:6d89 - \
+\:7206\:53d1\:6001\>\"", ",", "Red", ",", "Bold"}], "]"}], 
+                    ",", "\"\<\:76f8\:6d88\:5e72\:6d89 - \:7184\:706d\:6001\>\
+\""}], "]"}], ",", "\"\<)\>\""}], "}"}], "]"}], ",", "14"}], "]"}]}], ",", 
+              RowBox[{"(*", "\:7ed8\:5236\:7bad\:5934", "*)"}], 
+              RowBox[{"Epilog", "->", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Arrowheads", "[", "0.02", "]"}], ",", "Blue", ",", 
+                   RowBox[{"Arrow", "[", 
+                    RowBox[{"Partition", "[", 
+                    RowBox[{
+                    RowBox[{"Map", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Re", "[", "#", "]"}], ",", 
+                    RowBox[{"Im", "[", "#", "]"}]}], "}"}], "&"}], ",", 
+                    "accumulated"}], "]"}], ",", "2", ",", "1"}], "]"}], 
+                    "]"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Arrowheads", "[", "0.05", "]"}], ",", "Red", ",", 
+                   "Thick", ",", 
+                   RowBox[{"Arrow", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Re", "[", "totalVector", "]"}], ",", 
+                    RowBox[{"Im", "[", "totalVector", "]"}]}], "}"}]}], "}"}],
+                     "]"}]}], "}"}]}], "}"}]}]}], "]"}], ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{"Style", "[", 
+              RowBox[{
+               RowBox[{"Row", "[", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<\:603b\:5f3a\:5ea6 x(t) \\[Approx] \>\"", ",", 
+                  RowBox[{"NumberForm", "[", 
+                   RowBox[{
+                    RowBox[{"Re", "[", "totalVector", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"5", ",", "2"}], "}"}]}], "]"}]}], "}"}], "]"}], ",",
+                "12", ",", "Bold"}], "]"}], "]"}]}], "}"}], ",", "Center"}], 
+         "]"}]}]}], "]"}], ",", 
+     RowBox[{"(*", "\:4ea4\:4e92\:63a7\:4ef6", "*)"}], 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "N", ",", "10", 
+         ",", "\"\<\:53e0\:52a0\:9879\:6570 (k\:8f74\:534a\:5f84)\>\""}], 
+        "}"}], ",", "1", ",", "50", ",", "1", ",", 
+       RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"tVal", ",", "1.0", ",", "\"\<\:65f6\:95f4 (t)\>\""}], "}"}], 
+       ",", "0.8", ",", "1.2", ",", "0.005", ",", 
+       RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+     RowBox[{"TrackedSymbols", ":>", 
+      RowBox[{"{", 
+       RowBox[{"N", ",", "tVal"}], "}"}]}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.983740450733424*^9, 3.983740450735169*^9}},
+ CellLabel->"In[17]:=",ExpressionUUID->"7dc32fcb-d61a-4dad-9362-d00b0928609a"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{N$$ = 10, $CellContext`tVal$$ = 1., Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[N$$], 10, "\:53e0\:52a0\:9879\:6570 (k\:8f74\:534a\:5f84)"}, 1, 
+      50, 1, ControlType -> Manipulator}, {{
+       Hold[$CellContext`tVal$$], 1., "\:65f6\:95f4 (t)"}, 0.8, 1.2, 0.005, 
+      ControlType -> Manipulator}}, Typeset`size$$ = {
+    1145.09375, {593.5931285792662, 599.3250621730162}}, Typeset`update$$ = 0,
+     Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {N$$ = 10, $CellContext`tVal$$ = 1.}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`terms$ = 
+         Table[(1/$CellContext`TVal) 
+           Exp[I $CellContext`k (
+              2 (Pi/$CellContext`TVal)) $CellContext`tVal$$], \
+{$CellContext`k, -N$$, 
+            N$$}], $CellContext`accumulated$, $CellContext`totalVector$, \
+$CellContext`plotRange$}, $CellContext`accumulated$ = 
+         FoldList[Plus, 0, $CellContext`terms$]; $CellContext`totalVector$ = 
+         Last[$CellContext`accumulated$]; $CellContext`plotRange$ = 
+         Max[{N$$ (2/$CellContext`TVal) + 1, 5}]; Column[{
+           ListPlot[
+            Map[{
+              Re[#], 
+              Im[#]}& , $CellContext`accumulated$], Joined -> True, 
+            PlotStyle -> {Thin, Gray}, AspectRatio -> 1, Axes -> True, 
+            AxesLabel -> {"Re", "Im"}, 
+            PlotRange -> {{(-$CellContext`plotRange$)/
+               2, $CellContext`plotRange$}, {(-$CellContext`plotRange$)/
+               2, $CellContext`plotRange$/2}}, ImageSize -> Medium, PlotLabel -> 
+            Style[
+              Row[{"t = ", 
+                NumberForm[$CellContext`tVal$$, {3, 2}], " (", 
+                If[Abs[
+                   Mod[$CellContext`tVal$$, $CellContext`TVal]] < 0.05, 
+                 Style[
+                 "\:76f8\:957f\:5e72\:6d89 - \:7206\:53d1\:6001", Red, Bold], 
+                 "\:76f8\:6d88\:5e72\:6d89 - \:7184\:706d\:6001"], ")"}], 14],
+             Epilog -> {{
+               Arrowheads[0.02], Blue, 
+               Arrow[
+                Partition[
+                 Map[{
+                   Re[#], 
+                   Im[#]}& , $CellContext`accumulated$], 2, 1]]}, {
+               Arrowheads[0.05], Red, Thick, 
+               Arrow[{{0, 0}, {
+                  Re[$CellContext`totalVector$], 
+                  Im[$CellContext`totalVector$]}}]}}], 
+           Text[
+            Style[
+             Row[{"\:603b\:5f3a\:5ea6 x(t) \\[Approx] ", 
+               NumberForm[
+                Re[$CellContext`totalVector$], {5, 2}]}], 12, Bold]]}, 
+          Center]], 
+      "Specifications" :> {{{
+         N$$, 10, "\:53e0\:52a0\:9879\:6570 (k\:8f74\:534a\:5f84)"}, 1, 50, 1,
+          Appearance -> 
+         "Labeled"}, {{$CellContext`tVal$$, 1., "\:65f6\:95f4 (t)"}, 0.8, 1.2,
+          0.005, Appearance -> "Labeled"}}, 
+      "Options" :> {TrackedSymbols :> {N$$, $CellContext`tVal$$}}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{1194.19375, {656.0635539943053, 661.7954875880553}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9837404513000937`*^9},
+ CellLabel->"Out[18]=",ExpressionUUID->"8e260d34-ac7c-40ec-b52d-74b29bc4bc93"]
+}, Open  ]]
+},
+WindowSize->{1512, 921},
+WindowMargins->{{0, Automatic}, {Automatic, 458}},
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"51b10bc0-638b-4798-8277-aa59f7370db3"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 7971, 190, 288, "Input",ExpressionUUID->"7dc32fcb-d61a-4dad-9362-d00b0928609a"],
+Cell[8550, 214, 4201, 86, 1334, "Output",ExpressionUUID->"8e260d34-ac7c-40ec-b52d-74b29bc4bc93"]
+}, Open  ]]
+}
+]
+*)
+

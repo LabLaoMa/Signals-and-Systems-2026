@@ -1,0 +1,82 @@
+---
+title: "讨论课(第一次)"
+author: "马越"
+institute: >
+  北京理工大学机械与车辆学院<br> 
+  Email: yuema@bit.edu.cn<br>
+format:
+  revealjs:
+    theme: [simple, custom2.scss]
+    transition: slide
+    # title-slide-attributes:
+    #   data-background-color: "#0b2a4a"
+    #   data-background-opacity: "0.96"
+    slide-number: true
+    incremental: false
+    center: false
+    # width: 1366
+    # height: 768
+    # margin: 0.02
+    math: mathjax
+    footer: '<div class="footer-3col"><div class="left">机械与车辆学院 马越</div><div class="center">信号与系统</div><div class="right">2026 春季学期</div></div>'
+    toc: false                 # 可以关掉默认的
+    titleSelector: 'h1, h2, h3' # 显示 h3 层级
+    # revealjs-plugins:
+    #  - tableofcontents        # 加载插件
+    toc-title: "目录"     # 中文标题（默认是 Table of Contents）
+    depth: 3          # 显示到几级标题（默认 3，建议 2 或 3）
+    embed-resources: true
+    self-contained-math: true
+    #include-in-header: plugin/myspotlight.html
+    #spotlight_size: 200
+
+    # 封面背景图可选：
+    # background-image: "img/cover.jpg"
+    # background-opacity: 0.22
+  beamer:
+    theme: Madrid
+    fonttheme: structurebold
+    keep-tex: true   # 保留中间生成的 .tex 文件以便微调
+resource-path: ["."]
+execute:
+  echo: false
+---
+
+1. 信号分类混淆：能量信号 vs 功率信号
+
+判断下列信号是能量信号、功率信号、还是两者都不是？并说明理由。
+
+a) $x(t) = e^{-|t|}$
+
+b) $x(t) = \cos(t)$（无限长时间）
+
+c) $x[n] = (0.5)^n u[n]$（离散）
+
+<br>
+
+2. 奇异函数的性质与运算
+
+下列运算哪些成立？为什么？
+
+a) $\delta(t) \cdot u(t) = \delta(t)$
+
+b) $\int_{-\infty}^{\infty} \delta(t - \tau) f(\tau) d\tau = f(0)$（任意连续f）
+
+c) $\frac{d}{dt} u(t) = \delta(t)$ 在什么意义下成立？
+
+<br>
+
+3. 系统性质判断（线性、时不变、因果）
+
+判断以下系统是否线性、时不变、因果？给出反例证明你的结论。
+
+a) $y(t) = x(t) + x(t-1) \cdot t$
+
+b) $y[n] = x[n] \cdot x[n-1]$
+
+c) $y(t) = x(2t)$（时间尺度变换）
+
+---
+
+4. LTI系统的冲激响应与完全表征
+为什么LTI系统的冲激响应 $h(t)$ 或 $h[n]$ 能完全表征系统对任意输入的响应？如果系统不是LTI，这个结论还成立吗？举一个非LTI系统的反例。

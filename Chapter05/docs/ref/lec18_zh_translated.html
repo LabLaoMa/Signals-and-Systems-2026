@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6a8276bf55561bdbc268162d41bd1f7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.30">
+
+  <meta name="author" content="Bo Jiang（原作者）｜中文翻译整理">
+  <meta name="dcterms.date" content="2019-03-14">
+  <title>My Site – EL331 信号与系统 · 第18讲（中文版）</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-a4ea08cfedeeddbe6e914dc83ce154fd.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">EL331 信号与系统 · 第18讲（中文版）</h1>
+  <p class="subtitle">离散时间傅里叶变换（DTFT）</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Bo Jiang（原作者）｜中文翻译整理 
+</div>
+</div>
+</div>
+
+  <p class="date">2019-03-14</p>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#/目录" id="/toc-目录"><span class="header-section-number">1</span> 目录</a></li>
+<li><a href="#/离散时间傅里叶变换" id="/toc-离散时间傅里叶变换"><span class="header-section-number">2</span> 1. 离散时间傅里叶变换</a></li>
+<li><a href="#/离散时间傅里叶变换的性质" id="/toc-离散时间傅里叶变换的性质"><span class="header-section-number">3</span> 2. 离散时间傅里叶变换的性质</a></li>
+<li><a href="#/离散时间傅里叶变换-1" id="/toc-离散时间傅里叶变换-1"><span class="header-section-number">4</span> 离散时间傅里叶变换</a></li>
+<li><a href="#/离散时间傅里叶变换-2" id="/toc-离散时间傅里叶变换-2"><span class="header-section-number">5</span> 离散时间傅里叶变换</a></li>
+<li><a href="#/离散时间傅里叶变换-3" id="/toc-离散时间傅里叶变换-3"><span class="header-section-number">6</span> 离散时间傅里叶变换</a></li>
+<li><a href="#/离散时间傅里叶变换-4" id="/toc-离散时间傅里叶变换-4"><span class="header-section-number">7</span> 离散时间傅里叶变换</a></li>
+<li><a href="#/离散时间傅里叶变换-5" id="/toc-离散时间傅里叶变换-5"><span class="header-section-number">8</span> 离散时间傅里叶变换</a></li>
+<li><a href="#/离散时间傅里叶变换变换对" id="/toc-离散时间傅里叶变换变换对"><span class="header-section-number">9</span> 离散时间傅里叶变换变换对</a></li>
+<li><a href="#/dtft-与-ctfs-之间的对偶性" id="/toc-dtft-与-ctfs-之间的对偶性"><span class="header-section-number">10</span> DTFT 与 CTFS 之间的对偶性</a></li>
+<li><a href="#/离散时间信号的高频与低频" id="/toc-离散时间信号的高频与低频"><span class="header-section-number">11</span> 离散时间信号的高频与低频</a></li>
+<li><a href="#/离散时间信号的高频与低频-1" id="/toc-离散时间信号的高频与低频-1"><span class="header-section-number">12</span> 离散时间信号的高频与低频</a></li>
+<li><a href="#/离散时间信号的高频与低频-2" id="/toc-离散时间信号的高频与低频-2"><span class="header-section-number">13</span> 离散时间信号的高频与低频</a></li>
+<li><a href="#/例单边衰减指数序列" id="/toc-例单边衰减指数序列"><span class="header-section-number">14</span> 例：单边衰减指数序列</a></li>
+<li><a href="#/例双边衰减指数序列" id="/toc-例双边衰减指数序列"><span class="header-section-number">15</span> 例：双边衰减指数序列</a></li>
+<li><a href="#/例矩形脉冲" id="/toc-例矩形脉冲"><span class="header-section-number">16</span> 例：矩形脉冲</a></li>
+<li><a href="#/dtft-的收敛性" id="/toc-dtft-的收敛性"><span class="header-section-number">17</span> DTFT 的收敛性</a></li>
+<li><a href="#/例理想低通滤波器" id="/toc-例理想低通滤波器"><span class="header-section-number">18</span> 例：理想低通滤波器</a></li>
+<li><a href="#/作为广义函数的收敛" id="/toc-作为广义函数的收敛"><span class="header-section-number">19</span> 作为广义函数的收敛</a></li>
+<li><a href="#/例正弦信号" id="/toc-例正弦信号"><span class="header-section-number">20</span> 例：正弦信号</a></li>
+<li><a href="#/周期信号的-dtft" id="/toc-周期信号的-dtft"><span class="header-section-number">21</span> 周期信号的 DTFT</a></li>
+<li><a href="#/周期信号的-dtft-1" id="/toc-周期信号的-dtft-1"><span class="header-section-number">22</span> 周期信号的 DTFT</a></li>
+<li><a href="#/周期信号的-dtft-2" id="/toc-周期信号的-dtft-2"><span class="header-section-number">23</span> 周期信号的 DTFT</a></li>
+<li><a href="#/周期信号的-dtft-3" id="/toc-周期信号的-dtft-3"><span class="header-section-number">24</span> 周期信号的 DTFT</a></li>
+<li><a href="#/例离散时间周期冲激串" id="/toc-例离散时间周期冲激串"><span class="header-section-number">25</span> 例：离散时间周期冲激串</a></li>
+<li><a href="#/目录-1" id="/toc-目录-1"><span class="header-section-number">26</span> 目录</a></li>
+<li><a href="#/离散时间傅里叶变换-6" id="/toc-离散时间傅里叶变换-6"><span class="header-section-number">27</span> 1. 离散时间傅里叶变换</a></li>
+<li><a href="#/离散时间傅里叶变换的性质-1" id="/toc-离散时间傅里叶变换的性质-1"><span class="header-section-number">28</span> 离散时间傅里叶变换的性质</a></li>
+<li><a href="#/例高通与低通滤波器" id="/toc-例高通与低通滤波器"><span class="header-section-number">29</span> 例：高通与低通滤波器</a></li>
+<li><a href="#/离散时间傅里叶变换的性质-2" id="/toc-离散时间傅里叶变换的性质-2"><span class="header-section-number">30</span> 离散时间傅里叶变换的性质</a></li>
+<li><a href="#/differencing-并且-accumulation" id="/toc-differencing-并且-accumulation"><span class="header-section-number">31</span> Differencing 并且 Accumulation</a></li>
+<li><a href="#/时间扩展" id="/toc-时间扩展"><span class="header-section-number">32</span> 时间扩展</a></li>
+<li><a href="#/例" id="/toc-例"><span class="header-section-number">33</span> 例</a></li>
+<li><a href="#/频率微分性质" id="/toc-频率微分性质"><span class="header-section-number">34</span> 频率微分性质</a></li>
+<li><a href="#/帕塞瓦尔恒等式" id="/toc-帕塞瓦尔恒等式"><span class="header-section-number">35</span> 帕塞瓦尔恒等式</a></li>
+<li><a href="#/帕塞瓦尔恒等式-1" id="/toc-帕塞瓦尔恒等式-1"><span class="header-section-number">36</span> 帕塞瓦尔恒等式</a></li>
+</ul>
+</nav>
+</section>
+<section id="目录" class="slide level2 center" data-number="1">
+<h2><span class="header-section-number">1</span> 目录</h2>
+</section>
+<section id="离散时间傅里叶变换" class="slide level2 center" data-number="2">
+<h2><span class="header-section-number">2</span> 1. 离散时间傅里叶变换</h2>
+</section>
+<section id="离散时间傅里叶变换的性质" class="slide level2 center" data-number="3">
+<h2><span class="header-section-number">3</span> 2. 离散时间傅里叶变换的性质</h2>
+</section>
+<section id="离散时间傅里叶变换-1" class="slide level2 center" data-number="4">
+<h2><span class="header-section-number">4</span> 离散时间傅里叶变换</h2>
+<p>设 <span class="math inline">\(x\)</span> 是一个非周期离散时间信号，并且 <span class="math inline">\(\operatorname{supp} x \subset\left[N_{1}, N_{2}\right]\)</span> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-03.jpg?height=171&amp;width=1182&amp;top_left_y=204&amp;top_left_x=39"></p>
+<p>定义其周期延拓，周期满足 <span class="math inline">\(N&gt;N_{2}-N_{1}+1\)</span>：</p>
+<p><span class="math display">\[
+x_{N}[n]=\sum_{k=-\infty}^{\infty} x[n+k N]
+\]</span></p>
+<p><span class="math display">\[
+x_{N}[n]
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-03.jpg?height=110&amp;width=1179&amp;top_left_y=705&amp;top_left_x=42"> <span class="math inline">\(x\)</span> 可以看作“周期为无穷大”的周期信号，即 <span class="math inline">\(x[n]=\lim _{N \rightarrow \infty} x_{N}[n]\)</span></p>
+</section>
+<section id="离散时间傅里叶变换-2" class="slide level2 center" data-number="5">
+<h2><span class="header-section-number">5</span> 离散时间傅里叶变换</h2>
+<p>将 <span class="math inline">\(x_{N}\)</span> 展开为离散时间傅里叶级数 <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-04.jpg?height=172&amp;width=1182&amp;top_left_y=188&amp;top_left_x=39"></p>
+<p><span class="math display">\[
+\hat{x}_{N}[k]=\left\langle x_{N}, e^{j \frac{2 \pi}{N} k}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \frac{2 \pi}{N} k}=\frac{1}{N} X\left(e^{j k \omega_{0}}\right)
+\]</span></p>
+<p>其中</p>
+<p><span class="math display">\[
+X\left(e^{j \omega}\right)=\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \omega n}=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}, \quad \omega_{0}=\frac{2 \pi}{N}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-04.jpg?height=216&amp;width=1166&amp;top_left_y=714&amp;top_left_x=39"></p>
+</section>
+<section id="离散时间傅里叶变换-3" class="slide level2 center" data-number="6">
+<h2><span class="header-section-number">6</span> 离散时间傅里叶变换</h2>
+<p>当 <span class="math inline">\(N\)</span> 增大时，离散频率的采样会变得更加稠密 <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-05.jpg?height=170&amp;width=1186&amp;top_left_y=190&amp;top_left_x=44"></p>
+<p><span class="math display">\[
+\hat{x}_{N}[k]=\left\langle x_{N}, e^{j \frac{2 \pi}{N} k}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \frac{2 \pi}{N} k}=\frac{1}{N} X\left(e^{j k \omega_{0}}\right)
+\]</span></p>
+<p>其中</p>
+<p><span class="math display">\[
+X\left(e^{j \omega}\right)=\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \omega n}=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}, \quad \omega_{0}=\frac{2 \pi}{N}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-05.jpg?height=214&amp;width=1166&amp;top_left_y=712&amp;top_left_x=39"></p>
+</section>
+<section id="离散时间傅里叶变换-4" class="slide level2 center" data-number="7">
+<h2><span class="header-section-number">7</span> 离散时间傅里叶变换</h2>
+<p>当 <span class="math inline">\(N \rightarrow \infty\)</span> 时，<span class="math inline">\(N \hat{x}[k]\)</span> 逐渐逼近包络 <span class="math inline">\(X\left(e^{j \omega}\right)\)</span></p>
+<p><span class="math display">\[
+x_{N}[n]
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-06.jpg?height=105&amp;width=1181&amp;top_left_y=255&amp;top_left_x=46"></p>
+<p><span class="math display">\[
+\hat{x}_{N}[k]=\left\langle x_{N}, e^{j \frac{2 \pi}{N} k}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \frac{2 \pi}{N} k}=\frac{1}{N} X\left(e^{j k \omega_{0}}\right)
+\]</span></p>
+<p>其中</p>
+<p><span class="math display">\[
+X\left(e^{j \omega}\right)=\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \omega n}=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}, \quad \omega_{0}=\frac{2 \pi}{N}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-06.jpg?height=214&amp;width=1163&amp;top_left_y=716&amp;top_left_x=42"></p>
+</section>
+<section id="离散时间傅里叶变换-5" class="slide level2 center" data-number="8">
+<h2><span class="header-section-number">8</span> 离散时间傅里叶变换</h2>
+<p>离散时间傅里叶级数的综合公式为：</p>
+<p><span class="math display">\[
+x_{N}[n]=\sum_{k \in[N]} \hat{x}[k] e^{j k \omega_{0} n}=\frac{1}{N} \sum_{k=0}^{N-1} X\left(e^{j k \omega_{0}}\right) e^{j k \omega_{0} n}
+\]</span></p>
+<p>令 <span class="math inline">\(\omega_{k}=k \omega_{0}, \Delta \omega=\omega_{k}-\omega_{k-1}=\omega_{0}\)</span>，</p>
+<p><span class="math display">\[
+x_{N}[n]=\frac{1}{2 \pi} \sum_{k=0}^{N-1} X\left(e^{j \omega_{k}}\right) e^{j \omega_{k} n} \Delta \omega
+\]</span></p>
+<p>当 <span class="math inline">\(N \rightarrow \infty\)</span>、<span class="math inline">\(\Delta \omega \rightarrow 0\)</span> 时，上述黎曼和变为积分：</p>
+<p><span class="math display">\[
+x[n]=\frac{1}{2 \pi} \int_{0}^{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega
+\]</span></p>
+<p>可在任意长度为 <span class="math inline">\(2 \pi\)</span> 的周期区间上积分</p>
+</section>
+<section id="离散时间傅里叶变换变换对" class="slide level2 center" data-number="9">
+<h2><span class="header-section-number">9</span> 离散时间傅里叶变换变换对</h2>
+<p>离散时间傅里叶变换（分析公式）</p>
+<p><span class="math display">\[
+X\left(e^{j \omega}\right)=\mathcal{F}(x)\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X\left(e^{j \omega}\right)\)</span> 称为 <span class="math inline">\(x[n]\)</span> 的频谱，且以 <span class="math inline">\(2 \pi\)</span> 为周期</li>
+</ul>
+<p>离散时间逆傅里叶变换（综合公式）</p>
+<p><span class="math display">\[
+x[n]=\mathcal{F}^{-1}(X)[n]=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega
+\]</span></p>
+<ul>
+<li>频率为 <span class="math inline">\(\omega\)</span> 的复指数分量的权重为 <span class="math inline">\(X\left(e^{j \omega}\right) \frac{d \omega}{2 \pi}\)</span></li>
+<li>只需在一个周期内积分，即只使用彼此不同的 <span class="math inline">\(e^{j \omega n}\)</span></li>
+</ul>
+</section>
+<section id="dtft-与-ctfs-之间的对偶性" class="slide level2 center" data-number="10">
+<h2><span class="header-section-number">10</span> DTFT 与 CTFS 之间的对偶性</h2>
+<p>DTFT 变换对</p>
+<ul>
+<li>离散时间</li>
+<li>连续频率 分析公式</li>
+</ul>
+<p><span class="math display">\[
+X\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}
+\]</span></p>
+<p>综合公式</p>
+<p><span class="math display">\[
+x[n]=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega
+\]</span></p>
+<p>CTFS 变换对</p>
+<ul>
+<li>连续时间</li>
+<li>离散频率 分析公式</li>
+</ul>
+<p><span class="math display">\[
+\hat{x}[k]=\frac{1}{T} \int_{T} x(t) e^{-j k \frac{2 \pi}{T} t} d t
+\]</span></p>
+<p>综合公式</p>
+<p><span class="math display">\[
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \frac{2 \pi}{T} t}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \text { continuous variable } \xrightarrow{\text { CTFS }} \text { doubly infinite sequences } \\
+&amp; \text { periodic functions }
+\end{aligned} \xrightarrow[\text { DTFT }]{\leftarrow} \text { 双向映射 }
+\]</span></p>
+</section>
+<section id="离散时间信号的高频与低频" class="slide level2 center" data-number="11">
+<h2><span class="header-section-number">11</span> 离散时间信号的高频与低频</h2>
+<p>高频对应于 <span class="math inline">\((2 k+1) \pi\)</span> 附近，低频对应于 <span class="math inline">\(2 k \pi\)</span> 附近 <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=161&amp;width=368&amp;top_left_y=197&amp;top_left_x=91"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=159&amp;width=370&amp;top_left_y=199&amp;top_left_x=461"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=159&amp;width=367&amp;top_left_y=199&amp;top_left_x=832"> <span class="math inline">\(\phi_{N}^{0}[n]=\cos (0 \cdot n)=1\)</span> <span class="math inline">\(\phi_{N}^{1}[n]=\cos (\pi n / 4)\)</span> <span class="math inline">\(\phi_{N}^{2}[n]=\cos (\pi n / 2)\)</span> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=162&amp;width=365&amp;top_left_y=443&amp;top_left_x=94"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=162&amp;width=368&amp;top_left_y=443&amp;top_left_x=460"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=162&amp;width=365&amp;top_left_y=443&amp;top_left_x=834"> <span class="math inline">\(\phi_{N}^{3}[n]=\cos (3 \pi n / 4)\)</span> <span class="math inline">\(\phi_{N}^{4}[n]=\cos (\pi n)\)</span> <span class="math inline">\(\phi_{N}^{5}[n]=\cos (5 \pi n / 4)\)</span> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=158&amp;width=363&amp;top_left_y=690&amp;top_left_x=94"> <span class="math inline">\(\phi_{N}^{6}[n]=\cos (3 \pi n / 2)\)</span> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=156&amp;width=372&amp;top_left_y=692&amp;top_left_x=456"> <span class="math inline">\(\phi_{N}^{7}[n]=\cos (7 \pi n / 4)\)</span> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-10.jpg?height=156&amp;width=365&amp;top_left_y=692&amp;top_left_x=832"> <span class="math inline">\(\phi_{N}^{8}[n]=\cos (2 \pi n)=1\)</span></p>
+</section>
+<section id="离散时间信号的高频与低频-1" class="slide level2 center" data-number="12">
+<h2><span class="header-section-number">12</span> 离散时间信号的高频与低频</h2>
+<p><span class="math inline">\(N\)</span> 周期信号的离散频率</p>
+<ul>
+<li>在单位圆上均匀分布的点</li>
+<li>低频靠近 <span class="math inline">\(1\)</span>；高频靠近 <span class="math inline">\(-1\)</span> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-11.jpg?height=580&amp;width=586&amp;top_left_y=337&amp;top_left_x=40"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-11.jpg?height=580&amp;width=592&amp;top_left_y=337&amp;top_left_x=651"></li>
+</ul>
+</section>
+<section id="离散时间信号的高频与低频-2" class="slide level2 center" data-number="13">
+<h2><span class="header-section-number">13</span> 离散时间信号的高频与低频</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-12.jpg?height=321&amp;width=553&amp;top_left_y=117&amp;top_left_x=22"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-12.jpg?height=290&amp;width=677&amp;top_left_y=148&amp;top_left_x=579"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-12.jpg?height=407&amp;width=545&amp;top_left_y=514&amp;top_left_x=26"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-12.jpg?height=383&amp;width=675&amp;top_left_y=543&amp;top_left_x=579"></p>
+</section>
+<section id="例单边衰减指数序列" class="slide level2 center" data-number="14">
+<h2><span class="header-section-number">14</span> 例：单边衰减指数序列</h2>
+<p><span class="math display">\[
+x[n]=a^{n} u[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=\frac{1}{1-a e^{-j \omega}}, \quad|a|&lt;1
+\]</span></p>
+<p><span class="math inline">\(\left|X\left(e^{j \omega}\right)\right|=\frac{1}{\sqrt{1-2 a \cos \omega+a^{2}}}, \quad \arg X\left(e^{j \omega}\right)=-\arctan \frac{a \sin \omega}{1-a \cos \omega}\)</span> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-13.jpg?height=250&amp;width=606&amp;top_left_y=361&amp;top_left_x=22"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-13.jpg?height=94&amp;width=365&amp;top_left_y=361&amp;top_left_x=632"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-13.jpg?height=316&amp;width=615&amp;top_left_y=610&amp;top_left_x=13"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-13.jpg?height=303&amp;width=607&amp;top_left_y=623&amp;top_left_x=632"></p>
+</section>
+<section id="例双边衰减指数序列" class="slide level2 center" data-number="15">
+<h2><span class="header-section-number">15</span> 例：双边衰减指数序列</h2>
+<p><span class="math display">\[
+x[n]=a^{|n|} \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=\frac{1-a^{2}}{1-2 a \cos \omega+a^{2}}, \quad|a|&lt;1
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-14.jpg?height=276&amp;width=439&amp;top_left_y=235&amp;top_left_x=70"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-14.jpg?height=389&amp;width=598&amp;top_left_y=539&amp;top_left_x=22"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-14.jpg?height=278&amp;width=451&amp;top_left_y=235&amp;top_left_x=670"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-14.jpg?height=407&amp;width=607&amp;top_left_y=536&amp;top_left_x=632"></p>
+</section>
+<section id="例矩形脉冲" class="slide level2 center" data-number="16">
+<h2><span class="header-section-number">16</span> 例：矩形脉冲</h2>
+<p><span class="math display">\[
+x[n]=u\left[n+N_{1}\right]-u\left[n-N_{1}-1\right] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=\frac{\sin \left(\frac{2 N_{1}+1}{2} \omega\right)}{\sin \frac{\omega}{2}}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-15.jpg?height=176&amp;width=1099&amp;top_left_y=255&amp;top_left_x=84"></p>
+<p><span class="math display">\[
+X\left(e^{j \omega}\right)
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-15.jpg?height=205&amp;width=1084&amp;top_left_y=534&amp;top_left_x=99"></p>
+<p>Dirichlet 核（周期情形）是 sinc 函数（非周期情形）在离散时间中的对应物 注意：<span class="math inline">\(N_{1}=0 \Longrightarrow x[n]=\delta[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=1\)</span></p>
+</section>
+<section id="dtft-的收敛性" class="slide level2 center" data-number="17">
+<h2><span class="header-section-number">17</span> DTFT 的收敛性</h2>
+<p>令</p>
+<p><span class="math display">\[
+X_{N}\left(e^{j \omega}\right)=\sum_{n=-N}^{N} x[n] e^{-j \omega n}
+\]</span></p>
+<p>定理：若 <span class="math inline">\(x \in \ell_{1}\)</span>，则 <span class="math inline">\(X_{N}\)</span> 一致收敛到 <span class="math inline">\(X\)</span>，即</p>
+<p><span class="math display">\[
+\lim _{N \rightarrow \infty}\left\|X-X_{N}\right\|_{\infty}=0
+\]</span></p>
+<p>因此，傅里叶变换 <span class="math inline">\(X\)</span> 是一致连续的。 定理：若 <span class="math inline">\(x \in \ell_{2}\)</span>，则 <span class="math inline">\(X_{N}\)</span> 在 <span class="math inline">\(L_{2}\)</span> 意义下收敛到 <span class="math inline">\(X\)</span>，即</p>
+<p><span class="math display">\[
+\lim _{N \rightarrow \infty}\left\|X-X_{N}\right\|_{2}=0
+\]</span></p>
+<ul>
+<li>CTFS：<span class="math inline">\(L_{2}(T) \rightarrow \ell_{2}\)</span> 是 Hilbert 空间之间的同构</li>
+<li>DTFT：<span class="math inline">\(\ell_{2} \rightarrow L_{2}(2 \pi)\)</span> 也是同构</li>
+</ul>
+</section>
+<section id="例理想低通滤波器" class="slide level2 center" data-number="18">
+<h2><span class="header-section-number">18</span> 例：理想低通滤波器</h2>
+$$
+<span class="math display">\[\begin{aligned}
+&amp; x[n]=\frac{\sin (W n)}{\pi n} \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=\sum_{k=-\infty}^{\infty}[u(\omega+W+2 k \pi)-u(\omega-W+2 k \pi)] \\
+
+\end{aligned}\]</span>
+<p>$$</p>
+<p>注意：<span class="math inline">\(x \notin \ell_{1}\)</span>，且 <span class="math inline">\(X\)</span> 不连续</p>
+</section>
+<section id="作为广义函数的收敛" class="slide level2 center" data-number="19">
+<h2><span class="header-section-number">19</span> 作为广义函数的收敛</h2>
+<p>复指数信号 <span class="math inline">\(x[n]=e^{j \omega_{0} n}\)</span> 不属于 <span class="math inline">\(\ell_{1}\)</span> 也不属于 <span class="math inline">\(\ell_{2}\)</span>。 （平移后的）Dirichlet 核</p>
+<p><span class="math display">\[
+X_{N}\left(e^{j \omega n}\right)=\frac{\sin \left(\frac{2 N_{1}+1}{2}\left(\omega-\omega_{0}\right)\right)}{\sin \frac{\omega-\omega_{0}}{2}} \rightarrow 2 \pi \sum_{\ell=-\infty}^{\infty} \delta\left(\omega-\omega_{0}-2 \ell \pi\right)
+\]</span></p>
+<p>在分布（广义函数）意义下，有</p>
+<p><span class="math display">\[
+x[n]=e^{j \omega_{0} n} \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=2 \pi \sum_{\ell=-\infty}^{\infty} \delta\left(\omega-\omega_{0}-2 \ell \pi\right)
+\]</span></p>
+<p>利用综合公式进行形式验证</p>
+<p><span class="math display">\[
+x[n]=\frac{1}{2 \pi} \int_{-\pi}^{\pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega=\int_{-\pi}^{\pi} \delta\left(\omega-\omega_{0}\right) e^{j \omega n} d \omega=e^{j \omega_{0} n}
+\]</span></p>
+<p>注意：也可通过对 <span class="math inline">\(e^{j \omega_{0} t}\)</span> 以 <span class="math inline">\(T=1, \omega_{s}=2 \pi\)</span> 采样得到 注意：<span class="math inline">\(x[n]\)</span> 不一定是周期信号！直流分量对应 <span class="math inline">\(\omega_{0}=0\)</span>。</p>
+</section>
+<section id="例正弦信号" class="slide level2 center" data-number="20">
+<h2><span class="header-section-number">20</span> 例：正弦信号</h2>
+<p><span class="math display">\[
+\begin{aligned}
+x[n] &amp; =\cos \left(\omega_{0} n+\phi\right)=\frac{e^{j \phi}}{2} e^{j \omega_{0} n}+\frac{e^{-j \phi}}{2} e^{-j \omega_{0} n} \\
+X\left(e^{j \omega}\right) &amp; =\sum_{\ell=-\infty}^{\infty} \pi e^{j \phi} \delta\left(\omega-\omega_{0}-2 \ell \pi\right)+\pi e^{-j \phi} \delta\left(\omega+\omega_{0}-2 \ell \pi\right)
+\end{aligned}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-19.jpg?height=216&amp;width=1084&amp;top_left_y=432&amp;top_left_x=75"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-19.jpg?height=217&amp;width=1081&amp;top_left_y=709&amp;top_left_x=75"></p>
+</section>
+<section id="周期信号的-dtft" class="slide level2 center" data-number="21">
+<h2><span class="header-section-number">21</span> 周期信号的 DTFT</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-20.jpg?height=320&amp;width=1195&amp;top_left_y=126&amp;top_left_x=37"></p>
+<p>回顾：DTFS 系数 <span class="math inline">\(\hat{x}_{N}[k]\)</span> 就是频率 <span class="math inline">\(k \omega_{0}\)</span> 处的幅值</p>
+<p><span class="math display">\[
+\hat{x}_{N}[k]=\frac{1}{N} X\left(e^{j k \omega_{0}}\right), \quad \text { 其中 } X=\mathcal{F}\{x\}, \quad \omega_{0}=\frac{2 \pi}{N}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-20.jpg?height=254&amp;width=1166&amp;top_left_y=665&amp;top_left_x=39"></p>
+</section>
+<section id="周期信号的-dtft-1" class="slide level2 center" data-number="22">
+<h2><span class="header-section-number">22</span> 周期信号的 DTFT</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-21.jpg?height=314&amp;width=1195&amp;top_left_y=128&amp;top_left_x=37"></p>
+<p>DTFT 中 <span class="math inline">\((2 \pi)^{-1} X\left(e^{j \omega}\right)\)</span> 表示频率 <span class="math inline">\(\omega\)</span> 处的密度</p>
+<p><span class="math display">\[
+X\left(e^{j \omega}\right)=2 \pi \sum_{k=-\infty}^{\infty} \hat{x}_{N}[k] \delta\left(\omega-k \omega_{0}\right)=\omega_{0} \sum_{k=-\infty}^{\infty} X\left(e^{j k \omega_{0}}\right) \delta\left(\omega-k \omega_{0}\right)
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-21.jpg?height=262&amp;width=1170&amp;top_left_y=681&amp;top_left_x=35"></p>
+</section>
+<section id="周期信号的-dtft-2" class="slide level2 center" data-number="23">
+<h2><span class="header-section-number">23</span> 周期信号的 DTFT</h2>
+<p>回顾 <span class="math inline">\(x_{N}\)</span> 的 DTFS 表达式</p>
+<p><span class="math display">\[
+x_{N}[n]=\sum_{k=0}^{N-1} \hat{x}_{N}[k] e^{j \frac{2 k \pi}{N} n}
+\]</span></p>
+<p>对两边取 DTFT，并利用线性性质以及复指数信号的 DTFT，得到</p>
+<p><span class="math display">\[
+\begin{aligned}
+X_{N}\left(e^{j \omega}\right) &amp; =\sum_{k=0}^{N-1} \hat{x}_{N}[k] \mathcal{F}\left\{e^{j \frac{2 k \pi}{N} n}\right\}=\sum_{k=0}^{N-1} \hat{x}_{N}[k] \sum_{\ell=-\infty}^{\infty} 2 \pi \delta\left(\omega-\frac{2 k \pi}{N}-2 \ell \pi\right) \\
+&amp; =2 \pi \sum_{\ell=-\infty}^{\infty} \sum_{k=0}^{N-1} \hat{x}_{N}[k] \delta\left(\omega-\frac{2(k+\ell N) \pi}{N}\right) \\
+&amp; =2 \pi \sum_{k=-\infty}^{\infty} \hat{x}_{N}[k] \delta\left(\omega-\frac{2 k \pi}{N}\right) \quad\left(\text { Recall } \hat{x}_{N}[k]=\hat{x}_{N}[k+\ell N]\right)
+\end{aligned}
+\]</span></p>
+</section>
+<section id="周期信号的-dtft-3" class="slide level2 center" data-number="24">
+<h2><span class="header-section-number">24</span> 周期信号的 DTFT</h2>
+<p>Can also verify formally using 综合公式</p>
+<p><span class="math display">\[
+\frac{1}{2 \pi} \int_{-\frac{\pi}{N}}^{2 \pi-\frac{\pi}{N}} X\left(e^{j \omega}\right) e^{j \omega n} d \omega=\int_{-\frac{\pi}{N}}^{2 \pi-\frac{\pi}{N}} \sum_{k=-\infty}^{\infty} \hat{x}_{N}[k] \delta\left(\omega-\frac{2 k \pi}{N}\right) e^{j \omega n} d \omega
+\]</span></p>
+<p>只有 <span class="math inline">\(k=0,1, \ldots, N-1\)</span> 的项落在积分区间内</p>
+<p><span class="math display">\[
+\int_{-\frac{\pi}{N}}^{2 \pi-\frac{\pi}{N}} \sum_{k=0}^{N-1} \hat{x}_{N}[k] \delta\left(\omega-\frac{2 k \pi}{N}\right) e^{j \omega n} d \omega=\sum_{k=0}^{N-1} \hat{x}_{N}[k] e^{j \frac{2 k \pi}{N} n}=x_{N}[n]
+\]</span></p>
+<p>其中 last equality is DTFS 综合公式 因此得到验证</p>
+<p><span class="math display">\[
+x_{N}[n]=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega
+\]</span></p>
+</section>
+<section id="例离散时间周期冲激串" class="slide level2 center" data-number="25">
+<h2><span class="header-section-number">25</span> 例：离散时间周期冲激串</h2>
+<p><span class="math display">\[
+x[n]=\sum_{k=-\infty}^{\infty} \delta[n-k N] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=\frac{2 \pi}{N} \sum_{k=-\infty}^{\infty} \delta\left(\omega-\frac{2 \pi k}{N}\right)
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-24.jpg?height=216&amp;width=1091&amp;top_left_y=328&amp;top_left_x=72"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-24.jpg?height=310&amp;width=1086&amp;top_left_y=604&amp;top_left_x=74"></p>
+</section>
+<section id="目录-1" class="slide level2 center" data-number="26">
+<h2><span class="header-section-number">26</span> 目录</h2>
+</section>
+<section id="离散时间傅里叶变换-6" class="slide level2 center" data-number="27">
+<h2><span class="header-section-number">27</span> 1. 离散时间傅里叶变换</h2>
+<ol start="2" type="1">
+<li>离散时间傅里叶变换的性质</li>
+</ol>
+</section>
+<section id="离散时间傅里叶变换的性质-1" class="slide level2 center" data-number="28">
+<h2><span class="header-section-number">28</span> 离散时间傅里叶变换的性质</h2>
+<p>周期性</p>
+<p><span class="math display">\[
+X\left(e^{j(\omega+2 \pi)}\right)=X\left(e^{j(\omega)}\right)
+\]</span></p>
+<p>线性</p>
+<p><span class="math display">\[
+\mathcal{F}\{a x+b y\}=a \mathcal{F}\{x\}+b \mathcal{F}\{y\}
+\]</span></p>
+<p>时移与频移 若</p>
+<p><span class="math display">\[
+x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+x\left[n-n_{0}\right] \stackrel{\mathcal{F}}{\longleftrightarrow} e^{-j \omega n_{0}} X\left(e^{j \omega}\right)
+\]</span></p>
+<p>并且</p>
+<p><span class="math display">\[
+e^{j \omega_{0} n} x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j\left(\omega-\omega_{0}\right)}\right)
+\]</span></p>
+</section>
+<section id="例高通与低通滤波器" class="slide level2 center" data-number="29">
+<h2><span class="header-section-number">29</span> 例：高通与低通滤波器</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-27.jpg?height=231&amp;width=1150&amp;top_left_y=133&amp;top_left_x=64"></p>
+<p><span class="math display">\[
+H_{\mathrm{hp}}\left(e^{j \omega}\right)=H_{\mathrm{lp}}\left(e^{j(\omega-\pi)}\right)
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-27.jpg?height=191&amp;width=1147&amp;top_left_y=461&amp;top_left_x=63"></p>
+<p><span class="math display">\[
+H_{\mathrm{hp}}\left(e^{j \omega}\right)=H_{\mathrm{lp}}\left(e^{j(\omega-\pi)}\right) \Longleftrightarrow h_{\mathrm{hp}}[n]=e^{j \pi n} h_{\mathrm{lp}}[n]=(-1)^{n} h_{\mathrm{lp}}[n]
+\]</span></p>
+<p>利用低通滤波器实现高通滤波 <span class="math inline">\(y=x * h_{\mathrm{hp}}\)</span> (1) <span class="math inline">\(x_{1}[n]=(-1)^{n} x[n]\)</span>； (2) <span class="math inline">\(y_{1}=x_{1} * h_{\mathrm{lp}}\)</span>； (3) <span class="math inline">\(y[n]=(-1)^{n} y_{1}[n]\)</span></p>
+</section>
+<section id="离散时间傅里叶变换的性质-2" class="slide level2 center" data-number="30">
+<h2><span class="header-section-number">30</span> 离散时间傅里叶变换的性质</h2>
+<p>设</p>
+<p><span class="math display">\[
+x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)
+\]</span></p>
+<p>时间反转</p>
+<p><span class="math display">\[
+x[-n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{-j \omega}\right)
+\]</span></p>
+<p>共轭</p>
+<p><span class="math display">\[
+x^{*}[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X^{*}\left(e^{-j \omega}\right)
+\]</span></p>
+<p>对称性</p>
+<ul>
+<li><span class="math inline">\(x\)</span> 为偶信号 <span class="math inline">\(\Longleftrightarrow X\)</span> 为偶函数，<span class="math inline">\(\quad x\)</span> 为奇信号 <span class="math inline">\(\Longleftrightarrow X\)</span> 为奇函数</li>
+<li><span class="math inline">\(x\)</span> 为实信号 <span class="math inline">\(\Longleftrightarrow X\left(e^{-j \omega}\right)=X^{*}\left(e^{j \omega}\right)\)</span></li>
+<li><span class="math inline">\(x\)</span> real 并且 even <span class="math inline">\(\Longleftrightarrow X\)</span> real 并且 even</li>
+<li><span class="math inline">\(x\)</span> real 并且 odd <span class="math inline">\(\Longleftrightarrow X\)</span> purely imaginary 并且 odd</li>
+</ul>
+</section>
+<section id="differencing-并且-accumulation" class="slide level2 center" data-number="31">
+<h2><span class="header-section-number">31</span> Differencing 并且 Accumulation</h2>
+<p>一阶（后向）差分</p>
+<p><span class="math display">\[
+x[n]-x[n-1] \stackrel{\mathcal{F}}{\longleftrightarrow}\left(1-e^{-j \omega}\right) X\left(e^{j \omega}\right)
+\]</span></p>
+<p>累加（运行和）</p>
+<p><span class="math display">\[
+y[n]=\sum_{m=-\infty}^{n} x[m] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{1-e^{-j \omega}} X\left(e^{j \omega}\right)+\pi X\left(e^{j 0}\right) \sum_{k=-\infty}^{\infty} \delta(\omega-2 \pi k)
+\]</span></p>
+<ul>
+<li>第一项来自差分性质</li>
+<li>第二项是直流分量 <span class="math inline">\(\mathcal{F}\{\bar{y}\}\)</span> 的 DTFT，其中 <span class="math inline">\(\bar{y}=\frac{1}{2} X\left(e^{j 0}\right)\)</span>；参见第 15 讲第 17 页</li>
+</ul>
+<p>例：由于 <span class="math inline">\(\delta[n] \stackrel{\mathcal{F}}{\longleftrightarrow} 1\)</span>，</p>
+<p><span class="math display">\[
+u[n]=\sum_{m=-\infty}^{n} \delta[m] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{1-e^{-j \omega}}+\pi \sum_{k=-\infty}^{\infty} \delta(\omega-2 \pi k)
+\]</span></p>
+</section>
+<section id="时间扩展" class="slide level2 center" data-number="32">
+<h2><span class="header-section-number">32</span> 时间扩展</h2>
+<p>定义 <span class="math inline">\(x_{(m)}\)</span> 为</p>
+<p><span class="math display">\[
+x_{(m)}[n]= \begin{cases}x[n / m], &amp; \text { if } n \text { is multiple of } m \\ 0, &amp; \text { otherwise }\end{cases}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-30.jpg?height=155&amp;width=507&amp;top_left_y=323&amp;top_left_x=77"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-30.jpg?height=157&amp;width=504&amp;top_left_y=321&amp;top_left_x=670"></p>
+<p>若</p>
+<p><span class="math display">\[
+x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+x_{(m)}[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j m \omega}\right)
+\]</span></p>
+<p>证明。</p>
+<p><span class="math display">\[
+\mathcal{F}\left\{x_{(m)}\right\}\left(e^{j m \omega}\right)=\sum_{n=-\infty}^{\infty} x_{(m)}[n] e^{-j \omega n}=\sum_{\ell=-\infty}^{\infty} x[\ell] e^{-j \omega m \ell}=X\left(e^{j m \omega}\right)
+\]</span></p>
+</section>
+<section id="例" class="slide level2 center" data-number="33">
+<h2><span class="header-section-number">33</span> 例</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=154&amp;width=578&amp;top_left_y=133&amp;top_left_x=39"></p>
+<p><span class="math display">\[
+X\left(e^{j \omega}\right)
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=139&amp;width=533&amp;top_left_y=148&amp;top_left_x=661"></p>
+<p><span class="math display">\[
+\left.X_{(2)}\left(e^{j \omega}\right)=X_{( } e^{j 2 \omega}\right)
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=156&amp;width=581&amp;top_left_y=419&amp;top_left_x=39"> <img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=172&amp;width=533&amp;top_left_y=434&amp;top_left_x=661"></p>
+<p><span class="math display">\[
+x_{(3)}[n]
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=97&amp;width=581&amp;top_left_y=796&amp;top_left_x=39"></p>
+<p><span class="math display">\[
+\left.X_{(3)}\left(e^{j \omega}\right)=X_{( } e^{j 3 \omega}\right)
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/159772dd-711e-4cf6-b135-d8485880c667-31.jpg?height=169&amp;width=535&amp;top_left_y=752&amp;top_left_x=661"></p>
+</section>
+<section id="频率微分性质" class="slide level2 center" data-number="34">
+<h2><span class="header-section-number">34</span> 频率微分性质</h2>
+<p>若</p>
+<p><span class="math display">\[
+x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+n x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} j \frac{d}{d \omega} X\left(e^{j \omega}\right)
+\]</span></p>
+<p>证明。</p>
+<p><span class="math display">\[
+X\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}
+\]</span></p>
+<p>在求和号内对 <span class="math inline">\(\omega\)</span> 求导</p>
+<p><span class="math display">\[
+\frac{d}{d \omega} X\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} x[n](-j n) e^{-j \omega n}
+\]</span></p>
+</section>
+<section id="帕塞瓦尔恒等式" class="slide level2 center" data-number="35">
+<h2><span class="header-section-number">35</span> 帕塞瓦尔恒等式</h2>
+<p>Theorem. 若 <span class="math inline">\(x \in \ell_{2}, X=\mathcal{F}\{x\}\)</span>, then</p>
+<p><span class="math display">\[
+\|x\|_{\ell_{2}}^{2}=\|X\|_{L_{2}(2 \pi)}^{2}, \quad \text { or } \quad \sum_{n \in \mathbb{Z}}|x[n]|^{2}=\frac{1}{2 \pi} \int_{2 \pi}\left|X\left(e^{j \omega}\right)\right|^{2} d \omega
+\]</span></p>
+<p>Note <span class="math inline">\(\omega\)</span> is angular frequency 并且 <span class="math inline">\(\frac{\omega}{2 \pi}\)</span> is frequency</p>
+<p><span class="math display">\[
+\sum_{n \in \mathbb{Z}}|x[n]|^{2}=\int_{2 \pi}\left|X\left(e^{j \omega}\right)\right|^{2} \frac{d \omega}{2 \pi}
+\]</span></p>
+<p>解释：能量守恒</p>
+<ul>
+<li><span class="math inline">\(\sum_{n \in \mathbb{Z}}|x[n]|^{2}\)</span> 是总能量</li>
+<li><span class="math inline">\(\left|X\left(e^{j \omega}\right)\right|^{2}\)</span> 是单位频率上的能量 <span class="math inline">\(\left|X\left(e^{j \omega}\right)\right|^{2}\)</span> 称为能量密度谱</li>
+</ul>
+</section>
+<section id="帕塞瓦尔恒等式-1" class="slide level2 center" data-number="36">
+<h2><span class="header-section-number">36</span> 帕塞瓦尔恒等式</h2>
+<p>Theorem. 若 <span class="math inline">\(x, y \in \ell_{2}, X=\mathcal{F}\{x\}, Y=\mathcal{F}\{y\}\)</span>, then</p>
+<p><span class="math display">\[
+\langle x, y\rangle_{\ell_{2}}=\langle X, Y\rangle_{L_{2}(2 \pi)}, \quad \text { or } \quad \sum_{n \in \mathbb{Z}} x[n] y^{*}[n]=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) Y^{*}\left(e^{j \omega}\right) d \omega
+\]</span></p>
+<p>证明。</p>
+<p><span class="math display">\[
+\begin{aligned}
+\langle X, Y\rangle_{L_{2}(2 \pi)} &amp; =\left\langle\sum_{n \in \mathbb{Z}} x[n] e^{-j \omega n}, \sum_{m \in \mathbb{Z}} y[m] e^{-j \omega m}\right\rangle_{L_{2}(2 \pi)} \\
+&amp; =\sum_{n \in \mathbb{Z}} x[n] \sum_{m \in \mathbb{Z}} y^{*}[m]\left\langle e^{-j \omega n}, e^{-j \omega m}\right\rangle_{L_{2}(2 \pi)} \\
+&amp; =\sum_{n \in \mathbb{Z}} x[n] \sum_{m \in \mathbb{Z}} y^{*}[m] \delta[n-m] \\
+&amp; =\sum_{n \in \mathbb{Z}} x[n] y^{*}[n]=\langle x, y\rangle_{\ell_{2}}
+\end{aligned}
+\]</span></p>
+
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'visible',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

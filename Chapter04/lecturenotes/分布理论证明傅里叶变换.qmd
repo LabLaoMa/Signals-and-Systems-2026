@@ -1,0 +1,120 @@
+---
+title: "非周期信号的连续时间傅里叶变换 —— 严格推导（分布理论 + Dirac comb）"
+author: "Grok"
+date: "2026-04-02"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    html-math-method: katex
+---
+
+## 1. 问题背景
+
+在普通函数意义下，把傅里叶级数系数积分区间从 \([-T/2, T/2]\) 扩展到 \((-\infty, +\infty)\) 只是近似（需 \(T\) 足够大且 \(x(t)\) 快速衰减）。  
+但在**广义函数（分布理论）**下，这个关系是**精确成立**的，无需任何“大 \(T\)”假设。
+
+下面使用 **Dirac comb（Shah 函数）** 给出完整严谨推导。
+
+## 2. 周期延拓信号的精确定义
+
+定义周期为 \(T\) 的周期化信号：
+$$
+x_T(t) := \sum_{n=-\infty}^{\infty} x(t - nT)
+$$
+
+引入 **Dirac comb**：
+$$
+Ш_T(t) := \sum_{n=-\infty}^{\infty} \delta(t - nT)
+$$
+
+则周期化可精确写为卷积形式：
+$$
+x_T(t) = x(t) * Ш_T(t)
+$$
+
+## 3. Dirac comb 的傅里叶变换
+
+采用连续时间傅里叶变换定义：
+$$
+X(j\omega) = \int_{-\infty}^{\infty} x(t) e^{-j\omega t}\, dt
+$$
+
+Dirac comb 的傅里叶变换为（Poisson summation formula 的直接结果）：
+$$
+\mathcal{F}\{Ш_T(t)\}(\omega) = \frac{2\pi}{T} \sum_{k=-\infty}^{\infty} \delta(\omega - k \omega_0), \quad \omega_0 = \frac{2\pi}{T}
+$$
+
+## 4. \(x_T(t)\) 的傅里叶变换（分布意义下）
+
+由卷积定理（在 tempered distribution 下成立）：
+$$
+\begin{aligned}
+\mathcal{F}\{x_T\}(\omega) 
+&= X(j\omega) \cdot \mathcal{F}\{Ш_T\}(\omega) \\
+&= X(j\omega) \cdot \frac{2\pi}{T} \sum_{k=-\infty}^{\infty} \delta(\omega - k\omega_0)
+\end{aligned}
+$$
+
+另一方面，\(x_T(t)\) 是严格周期信号，其傅里叶级数为：
+$$
+x_T(t) = \sum_{k=-\infty}^{\infty} \hat{x}_T[k] \, e^{j k \omega_0 t}
+$$
+
+对应的傅里叶变换（分布意义）为：
+$$
+\mathcal{F}\{x_T\}(\omega) = 2\pi \sum_{k=-\infty}^{\infty} \hat{x}_T[k] \, \delta(\omega - k\omega_0)
+$$
+
+## 5. 两个表达式相等 → 系数关系
+
+令两者相等：
+$$
+2\pi \sum_{k=-\infty}^{\infty} \hat{x}_T[k] \, \delta(\omega - k\omega_0)
+= \frac{2\pi}{T} \sum_{k=-\infty}^{\infty} X(j k \omega_0) \, \delta(\omega - k\omega_0)
+$$
+
+由于 Dirac delta 在不同离散点上是线性独立的，系数必须逐项相等：
+$$
+2\pi \, \hat{x}_T[k] = \frac{2\pi}{T} \, X(j k \omega_0)
+$$
+
+化简得到**严格等式**：
+$$
+\hat{x}_T[k] = \frac{1}{T} X(j k \omega_0)
+$$
+
+或等价形式：
+$$
+T \hat{x}_T[k] = X(j k \omega_0)
+$$
+
+这正是图片中“**X(jω) 是 \(T \hat{x}_T[k]\) 的包络线**”的严格数学基础。
+
+## 6. 与原积分定义的关系
+
+原定义：
+$$
+\hat{x}_T[k] = \frac{1}{T} \int_{-T/2}^{T/2} x_T(t) e^{-j k \omega_0 t}\, dt
+$$
+
+在分布理论下，上面的等式**自动精确成立**，无需讨论积分限是否扩展：
+
+- 当 \(x(t)\) 有紧支撑且支撑在 \((-T/2, T/2)\) 内时，普通积分直接等于 \(\frac{1}{T} X(j k \omega_0)\)。
+- 当 \(x(t)\) 支撑无限时，普通积分可能不收敛，但 Dirac comb 的卷积在分布意义下自动正确处理所有“尾巴”贡献，最终仍严格满足 \(\hat{x}_T[k] = \frac{1}{T} X(j k \omega_0)\)。  
+
+因此，教材中直接把积分上下限换成 \((-\infty, +\infty)\) 并写等号，在**分布理论**下是完全严谨的。
+
+## 7. 总结
+
+- 使用 Dirac comb + 卷积定理，我们在**分布意义下**严格证明了：
+  $$
+  T \hat{x}_T[k] = X(j k \omega_0)
+  $$
+- 这为后续取极限 \(T \to \infty\)（\(\omega_0 \to 0\)），从傅里叶级数过渡到傅里叶逆变换积分提供了坚实基础。
+- 该推导无需“\(T\) 足够大”的近似说明，是连接**傅里叶级数**与**傅里叶变换**的最严格桥梁（本质上是 Poisson summation formula 的应用）。
+
+---
+
+如果你需要添加具体数值例子（如矩形脉冲）、Python 数值验证代码，或更详细的 Poisson summation 证明，可以继续告诉我，我可以补充到这份 qmd 文件中。
