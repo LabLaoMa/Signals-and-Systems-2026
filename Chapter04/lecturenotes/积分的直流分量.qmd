@@ -1,0 +1,58 @@
+---
+title: "信号积分的直流分量推导详解"
+format: html
+---
+
+## 1. 核心概念：积分即卷积
+
+信号的积分 $y(t) = \int_{-\infty}^{t} x(\tau) d\tau$ 在线性非时变（LTI）系统视角下，可以看作是输入信号 $x(t)$ 与单位阶跃函数 $u(t)$ 的**卷积**：
+
+$$y(t) = x(t) * u(t) = \int_{-\infty}^{\infty} x(\tau) u(t - \tau) d\tau$$
+
+由于 $u(t-\tau)$ 仅在 $\tau < t$ 时为 $1$，其余为 $0$，因此该卷积定义式与原积分限完全等价。
+
+---
+
+## 2. 关键步骤：计算平均值 $\bar{y}$
+
+为了确定频域中的冲击项（直流分量），我们需要计算积分结果 $y(t)$ 在无穷时间轴上的平均值 $\bar{y}$。
+
+### 2.1 展开推导
+利用卷积形式，我们将 $\bar{y}$ 定义为时域极限：
+
+$$\bar{y} = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^{T} y(t) dt = \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^{T} \left[ \int_{\mathbb{R}} x(\tau)u(t - \tau)d\tau \right] dt$$
+
+交换积分次序：
+
+$$\bar{y} = \int_{\mathbb{R}} x(\tau) \left( \lim_{T \to \infty} \frac{1}{2T} \int_{-T}^{T} u(t - \tau)dt \right) d\tau$$
+
+### 2.2 阶跃函数的空间占比
+括号内的项 $\lim_{T \to \infty} \frac{1}{2T} \int_{-T}^{T} u(t - \tau)dt$ 的物理意义是：**观察一个延迟后的阶跃信号在无限长时间内的“占空比”**。
+
+
+
+* 对于单位阶跃函数 $u(t)$，它在 $t>0$ 时为 $1$，在 $t<0$ 时为 $0$。
+* 在范围 $[-T, T]$ 内，虽然有 $\tau$ 的偏移，但当 $T \to \infty$ 时，该偏移忽略不计。
+* 函数有约一半的时间处于“高电平”，一半时间处于“零电平”。
+
+因此，该极限恒等于 $\frac{1}{2}$。
+
+---
+
+## 3. 结论：直流分量与 $X(0)$ 的关系
+
+将结果代回原式：
+
+$$\bar{y} = \int_{\mathbb{R}} x(\tau) \cdot \frac{1}{2} d\tau = \frac{1}{2} \int_{-\infty}^{\infty} x(\tau) d\tau$$
+
+根据傅里叶变换的定义 $X(j\omega) = \int_{-\infty}^{\infty} x(t)e^{-j\omega t}dt$，当 $\omega = 0$ 时：
+$$X(0) = \int_{-\infty}^{\infty} x(t) dt$$
+
+故得出积分信号的平均值（直流偏置）为：
+$$\bar{y} = \frac{1}{2} X(0)$$
+
+### 4. 频域表达
+在频域中，直流分量表现为一个位于零频处的冲击函数。根据直流分量与傅里叶变换的关系：
+$$直流项 = 2\pi \bar{y} \delta(\omega) = 2\pi \cdot \left( \frac{1}{2} X(0) \right) \delta(\omega) = \pi X(0) \delta(\omega)$$
+
+这就是为什么积分的傅里叶变换公式中，除了 $\frac{1}{j\omega}X(j\omega)$ 之外，还有一个由于阶跃信号带来的修正项 $\pi X(0)\delta(\omega)$。

@@ -126,7 +126,7 @@ $$
 
 ## 动机示例：周期方波
 
-对于包络线 $X(j\omega)$ ，
+对于$X(j\omega)$ ，
 
 $$
 \begin{aligned}

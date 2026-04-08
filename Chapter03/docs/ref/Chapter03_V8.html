@@ -1,0 +1,3475 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.30">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="马越">
+
+<title>第三章 周期信号的傅里叶级数表示 – My Site</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6a8276bf55561bdbc268162d41bd1f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-45431c2918bd31147ddb3fa7038bb99f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Chapter03_V8.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="Chapter03_V8.pdf"><i class="bi bi-file-pdf"></i>Beamer</a></li></ul></div></div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">第三章 周期信号的傅里叶级数表示</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">马越 </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            </p><p>北京理工大学机械与车辆学院<br> Email: yuema@bit.edu.cn<br></p>
+          <p></p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="傅里叶分析的历史回顾" class="level1">
+<h1>0. 傅里叶分析的历史回顾</h1>
+<section id="引子" class="level2">
+<h2 class="anchored" data-anchor-id="引子">引子</h2>
+<p><img src="imglink/taylor_swift_fourier_series_maths_physics.png" class="img-fluid"></p>
+</section>
+<section id="波动方程的诞生-1747" class="level2">
+<h2 class="anchored" data-anchor-id="波动方程的诞生-1747">波动方程的诞生 (1747)</h2>
+<p><strong>达朗贝尔 (Jean le Rond d’Alembert)</strong></p>
+<p>开启了将物理现象“数学化”的先河。他通过研究琴弦的受力，导出了历史上第一个偏微分方程。</p>
+<section id="一维波动方程" class="level3">
+<h3 class="anchored" data-anchor-id="一维波动方程">一维波动方程</h3>
+<p><span class="math display">\[ \frac{\partial^2 u}{\partial t^2} = v^2 \frac{\partial^2 u}{\partial x^2} \]</span></p>
+<ul>
+<li><strong><span class="math inline">\(u(x, t)\)</span></strong>：弦在 <span class="math inline">\(t\)</span> 时刻、位置 <span class="math inline">\(x\)</span> 处的位移。</li>
+<li><strong><span class="math inline">\(v\)</span></strong>：波在弦上的传播速度。</li>
+</ul>
+</section>
+<section id="达朗贝尔解" class="level3">
+<h3 class="anchored" data-anchor-id="达朗贝尔解">达朗贝尔解</h3>
+<p>他指出，波动方程的通解可以表示为两个行进波的叠加： <span class="math display">\[ u(x, t) = f(x - vt) + g(x + vt) \]</span></p>
+<hr>
+</section>
+</section>
+<section id="叠加原理的物理直觉-1753" class="level2">
+<h2 class="anchored" data-anchor-id="叠加原理的物理直觉-1753">叠加原理的物理直觉 (1753)</h2>
+<p><strong>丹尼尔·伯努利 (Daniel Bernoulli)</strong></p>
+<p>是一位极具物理洞察力的科学家。他通过观察乐器的泛音现象，提出了划时代的观点：<strong>复杂的振动是由简单频率的简谐振动叠加而成的。</strong></p>
+<section id="伯努利解三角级数雏形" class="level3">
+<h3 class="anchored" data-anchor-id="伯努利解三角级数雏形">伯努利解（三角级数雏形）</h3>
+<p>对于两端固定的琴弦（长度为 <span class="math inline">\(L\)</span>），他给出了级数形式的解： <span class="math display">\[ u(x, t) = \sum_{n=1}^{\infty} A_n \sin\left(\frac{n\pi x}{L}\right) \cos\left(\frac{n\pi vt}{L}\right) \]</span></p>
+<ul>
+<li><strong>物理意义</strong>：每一个 <span class="math inline">\(n\)</span> 对应一个“模态”。<span class="math inline">\(n=1\)</span> 是基音，<span class="math inline">\(n &gt; 1\)</span> 是泛音。</li>
+<li><strong>争议点</strong>：当时的数学界无法接受“无穷多个连续函数相加可以组合成任意形状”这一观点。</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="正交性与系数推导-1777" class="level2">
+<h2 class="anchored" data-anchor-id="正交性与系数推导-1777">正交性与系数推导 (1777)</h2>
+<p><strong>欧拉 (Leonhard Euler)</strong> 展现了他惊人的数学推导能力。虽然他对伯努利结论的普适性持怀疑态度，但他却亲手推导出了计算这些系数的关键数学工具。</p>
+<section id="三角函数的正交性" class="level3">
+<h3 class="anchored" data-anchor-id="三角函数的正交性">三角函数的正交性</h3>
+<p>欧拉发现，在特定区间内，不同频率的正弦函数乘积的积分为零： <span class="math display">\[ \int_0^L \sin\left(\frac{m\pi x}{L}\right) \sin\left(\frac{n\pi x}{L}\right) dx = \begin{cases} L/2, &amp; m = n \\ 0, &amp; m \neq n \end{cases} \]</span></p>
+</section>
+<section id="系数确定公式" class="level3">
+<h3 class="anchored" data-anchor-id="系数确定公式">系数确定公式</h3>
+<p>基于正交性，欧拉给出了如何从初始波形 <span class="math inline">\(f(x)\)</span> 中提取系数 <span class="math inline">\(A_n\)</span> 的公式（这正是后来傅里叶系数的标准形式）： <span class="math display">\[ A_n = \frac{2}{L} \int_0^L f(x) \sin\left(\frac{n\pi x}{L}\right) dx \]</span></p>
+<hr>
+</section>
+</section>
+<section id="傅里叶级数" class="level2">
+<h2 class="anchored" data-anchor-id="傅里叶级数">傅里叶级数</h2>
+<p><strong>傅里叶（Joseph Fourier）</strong>在格勒诺布尔的火炉旁研究<strong>热传导</strong>时，受到了实际物理过程的强烈启发，这直接促成了<strong>傅里叶级数</strong>和<strong>热传导方程</strong>的诞生。</p>
+<p>场景：一根细长金属棒，两端保持固定低温（例如0°C），初始时棒子中间被局部加热，形成非均匀温度分布-光滑的近似的驼峰形状</p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p><video src="imglink/en-thermodynamics-heat-equation-diffusion-equation.mp4" class="img-fluid" controls=""><a href="imglink/en-thermodynamics-heat-equation-diffusion-equation.mp4">Video</a></video></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/en-thermodynamics-heat-equation-diffusion-equation-temperature-gradient-768x432.png" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+<p>热量流动方向总是从高温到低温（由曲率决定）：</p>
+<p>凹向下（曲率正）→ 热量净流入，温度上升；凹向上（曲率负）→ 热量净流出，温度下降。</p>
+<p><span class="math display">\[\frac{\partial T}{\partial t} = \alpha \frac{\partial^2 T}{\partial x^2}\]</span></p>
+<hr>
+</section>
+<section id="傅里叶级数-1" class="level2">
+<h2 class="anchored" data-anchor-id="傅里叶级数-1">傅里叶级数</h2>
+<p>为了求解这个偏微分方程，傅里叶引入了分离变量法，得到用正弦函数（或余弦）展开初始温度分布的想法——这就是傅里叶级数的诞生。</p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p><img src="imglink/en-thermodynamics-heat-equation-diffusion-equation-temperature-decrease.png" class="img-fluid" style="width:60.0%"></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/v2-29585c43f35579534d35d919df68d8d7_1440w.png" class="img-fluid" style="width:60.0%"></p>
+</div>
+</div>
+<p>1807 年 12 月 21 日，傅里叶向法兰西学会提交了论文 《固体中的热传导》 (Sur la propagation de la chaleur dans les corps solides)。</p>
+<p><span class="math display">\[ f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} [a_n \cos(nx) + b_n \sin(nx)] \]</span></p>
+<p>傅里叶的数学洞察本质是：<strong>物理上热量会“抹平”尖锐的温度差异，而数学上可以用无穷多个光滑的正弦波无限逼近任何（合理）的初始分布</strong>。高频（短波长）分量衰减最快 → 温度曲线逐渐变光滑。</p>
+<p>这两种看似无关的现象在 1822 年的《热的解析理论》中被统一起来，成为分析数学与物理的桥梁。</p>
+</section>
+<section id="拉格朗日的执念与傅里叶的胜利" class="level2">
+<h2 class="anchored" data-anchor-id="拉格朗日的执念与傅里叶的胜利">拉格朗日的执念与傅里叶的胜利</h2>
+<p>审查委员会里: 拉普拉斯、拉格朗日、蒙日。</p>
+<p>拉格朗日站起来强烈抗议：他在年轻时研究弦振动就否定过这种级数，他绝不相信无穷个三角级数能表示不连续函数。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>结果：论文被搁置了 15 年，直到拉格朗日去世后，傅里叶才正式出版了他的著作。</p>
+</div>
+</div>
+<p>数学史评价：傅里叶不是在象牙塔里推导公式，他是在格勒诺布尔的火炉旁，看着热量如何抹平温度的褶皱，感悟到了宇宙的语言——频率。</p>
+<div class="hud">
+<p>“对自然界的深刻研究是数学发现最丰饶的源泉。” —— 约瑟夫·傅里叶</p>
+</div>
+<section id="完善从直觉跨入严密分析" class="level3">
+<h3 class="anchored" data-anchor-id="完善从直觉跨入严密分析">完善：从直觉跨入严密分析</h3>
+<ul>
+<li><span class="highlight">狄利克雷 (1829)</span>：给出了著名的“狄利克雷条件”。这是数学史上第一次明确了三角级数表示法的适用边界。</li>
+<li><span class="highlight">从级数到变换</span>：通过将周期趋于无穷大，实现了从周期信号（加权和）到非周期信号（积分）的飞跃。</li>
+<li><span class="highlight">认知结论</span>：傅里叶分析不仅是计算工具，更是一种将“时域”映射到“频域”的哲学观。</li>
+</ul>
+</section>
+</section>
+<section id="离散化高斯的秘密遗稿" class="level2">
+<h2 class="anchored" data-anchor-id="离散化高斯的秘密遗稿">离散化：高斯的秘密遗稿</h2>
+<p>虽然教材通常从1965年讲起，但史料显示：</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<section id="年-高斯-gauss" class="level3">
+<h3 class="anchored" data-anchor-id="年-高斯-gauss"><span class="highlight">1805年 高斯 (Gauss)</span></h3>
+<p>为计算小行星轨道，已发明类似FFT的技巧。但他认为这只是“小把戏”，未曾发表 。</p>
+</section>
+</div><div class="column" style="width:50%;">
+<section id="世纪-天体观测" class="level3">
+<h3 class="anchored" data-anchor-id="世纪-天体观测"><span class="highlight">18-19世纪 天体观测</span></h3>
+<p>天文学数据天生是离散的，这为数值分析和傅里叶方法的结合提供了第二舞台。</p>
+</section>
+</div>
+</div>
+<section id="fft-与数字文明的开启" class="level3">
+<h3 class="anchored" data-anchor-id="fft-与数字文明的开启">1965：FFT 与数字文明的开启</h3>
+<ul>
+<li><span class="highlight">Cooley-Tukey 算法</span>：冷战期间为监测核试验而“再发现”FFT。</li>
+<li><span class="highlight">计算量级跳变</span>：将 <span class="math inline">\(O(N^2)\)</span> 降至 <span class="math inline">\(O(N \log N)\)</span>。</li>
+<li><span class="highlight">应用爆发</span>：雷达、通信（4G/5G）、图像处理（JPEG）、语音识别。</li>
+</ul>
+<div class="hud">
+<p>如果没有FFT，现代智能手机的信号处理将需要几百倍的功耗。</p>
+</div>
+</section>
+</section>
+<section id="toc0" class="level2">
+<h2 class="anchored" data-anchor-id="toc0">目录</h2>
+<ul>
+<li><a href="#sec31"><strong>1. 线性时不变系统对复指数信号的响应</strong></a></li>
+<li><a href="#sec32">2. 连续时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec33">3. 连续时间傅里叶级数的收敛</a></li>
+<li><a href="#sec34">4. 连续时间傅里叶级数的性质</a></li>
+<li><a href="#35">5. 离散时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec36">6. 离散时间傅里叶级数的性质</a></li>
+<li><a href="#sec37">7. 傅里叶级数与线性时不变系统</a></li>
+<li><a href="#sec38">8. 滤波</a>
+<ul>
+<li><a href="#sec381">频率成形滤波器</a></li>
+<li><a href="#sec382">频率选择性滤波器</a></li>
+<li><a href="#sec383">用微分方程描述的连续时间滤波器</a></li>
+<li><a href="#sec383">用差分方程描述的离散时间滤波器</a></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="sec31" class="level1">
+<h1>1. 线性时不变系统对复指数信号的响应</h1>
+<section id="回顾与联系" class="level2">
+<h2 class="anchored" data-anchor-id="回顾与联系">回顾与联系</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;"><span class="math inline">\(\mathbb{R}^{n}\)</span></th>
+<th style="text-align: left;">DT 信号 <span class="math inline">\(\mathbb{C}^{\mathbb{Z}}\)</span></th>
+<th style="text-align: left;">CT 信号</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>基 (basis)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\left\{\mathbf{e}_{1}, \ldots, \mathbf{e}_{n}\right\}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left\{\delta_{k}: k \in \mathbb{Z}\right\}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left\{\delta_{\tau}: \tau \in \mathbb{R}\right\}^{1}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>一般信号 <span class="math inline">\(x\)</span></strong></td>
+<td style="text-align: left;"><span class="math inline">\(x=\sum_{k=1}^{n} x_{k} \mathbf{e}_{k}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(x=\sum_{k \in \mathbb{Z}} x[k] \delta_{k}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(x=\int_{\mathbb{R}} x(\tau) \delta_{\tau} d \tau\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>线性变换下的像</strong></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>基的像</strong></td>
+<td style="text-align: left;"><span class="math inline">\(\left\{\mathbf{f}_{1}, \ldots, \mathbf{f}_{n}\right\}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left\{h_{k}: k \in \mathbb{Z}\right\}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\left\{h_{\tau}: \tau \in \mathbb{R}\right\}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>一般信号 <span class="math inline">\(x\)</span> 的像</strong></td>
+<td style="text-align: left;"><span class="math inline">\(A x=\sum_{k=1}^{n} x_{k} \mathbf{f}_{k}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(T(x)=\sum_{k \in \mathbb{Z}} x[k] h_{k}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(T(x)=\int_{\mathbb{R}} x(\tau) h_{\tau} d \tau\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>LTI 系统</strong></td>
+<td style="text-align: left;">-</td>
+<td style="text-align: left;"><span class="math inline">\(T(x)=x * h\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(T(x)=x * h\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>注：并非“基”的标准用法；需结合下一行的积分表示来理解。</p>
+</section>
+<section id="特征值与特征向量" class="level2">
+<h2 class="anchored" data-anchor-id="特征值与特征向量">特征值与特征向量</h2>
+<p>在线性代数中，<span class="math inline">\(v \in \mathbb{R}^{n}\)</span> 是矩阵 <span class="math inline">\(A\)</span> 的特征向量 (eigenvector)，其对应的特征值 (eigenvalue) 为 <span class="math inline">\(\lambda\)</span>，如果：</p>
+<p><span class="math display">\[
+A v=\lambda v
+\]</span></p>
+<p>假设 <span class="math inline">\(A\)</span> 有 <span class="math inline">\(n\)</span> 个不同的特征值 <span class="math inline">\(\lambda_{1}, \ldots, \lambda_{n}\)</span>，分别对应特征向量 <span class="math inline">\(v_{1}, \ldots, v_{n}\)</span>。</p>
+<ul>
+<li><span class="math inline">\(v_{1}, \ldots, v_{n}\)</span> 构成 <span class="math inline">\(\mathbb{R}^{n}\)</span> 的一组基，即 <span class="math inline">\(\forall x \in \mathbb{R}^{n}\)</span> 都有以下表示：</li>
+</ul>
+<p><span class="math display">\[
+x=\sum_{k=1}^{n} a_{k} v_{k}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(x\)</span> 在 <span class="math inline">\(A\)</span> 作用下的像：</li>
+</ul>
+<p><span class="math display">\[
+A x=\sum_{k=1}^{n} a_{k} A v_{k}=\sum_{k=1}^{n} a_{k} \lambda_{k} v_{k}
+\]</span></p>
+</section>
+<section id="基变换-change-of-basis" class="level2">
+<h2 class="anchored" data-anchor-id="基变换-change-of-basis">基变换 (Change of Basis)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">标准基</th>
+<th style="text-align: center;"><span class="math inline">\(A\)</span> 的”特征基”</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>基向量</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\left\{\mathbf{e}_{1}, \ldots, \mathbf{e}_{n}\right\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\left\{v_{1}, \ldots, v_{n}\right\}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>分解</strong></td>
+<td style="text-align: center;"><span class="math inline">\(x=\sum_{k=1}^{n} x_{k} \mathbf{e}_{k}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x=\sum_{k=1}^{n} a_{k} v_{k}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong><span class="math inline">\(A\)</span> 作用下的像</strong></td>
+<td style="text-align: center;"><span class="math inline">\(A x=\sum_{k=1}^{n} x_{k} \mathbf{f}_{k}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A x=\sum_{k=1}^{n} a_{k} \lambda_{k} v_{k}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="math inline">\(x\)</span> 和 <span class="math inline">\(A x\)</span> 的展开：</p>
+<ul>
+<li>在标准基下：系数 <span class="math inline">\(\left\{x_{k}\right\}\)</span> 相同，基向量不同 <span class="math inline">\(\left\{\mathbf{e}_{k}\right\} \mapsto\left\{\mathbf{f}_{k}\right\}\)</span>（卷积/叠加积分）</li>
+<li>在特征基下：基向量 <span class="math inline">\(\left\{v_{k}\right\}\)</span> 相同，系数不同 <span class="math inline">\(\left\{a_{k}\right\} \mapsto\left\{\lambda_{k} a_{k}\right\}\)</span>（乘法）</li>
+</ul>
+<!-- ## 基变换 (信号与系统)
+
+| DT |  | 标准基 | "特征"基 |
+| :--- | :--- | :--- | :--- |
+|  | 基向量 | $\left\{\delta_{k}: k \in \mathbb{Z}\right\}$ | $z^n$ |
+|  | 分解 | $x=\sum_{k \in \mathbb{Z}} x[k] \delta_{k}$ | 傅里叶/Z 变换 |
+|  | $T$ 作用下的像 | $T(x)=\sum_{k \in \mathbb{Z}} x[k] h_{k}$ | $H(z) z^n$ |
+| CT |  | "标准基" | 特征基 |
+|  | 基向量 | $\left\{\delta_{\tau}: \tau \in \mathbb{R}\right\}$ | $e^{st}$ |
+|  | 分解 | $x=\int_{\mathbb{R}} x(\tau) \delta_{\tau} d \tau$ | 傅里叶/拉普拉斯变换 |
+|  | $T$ 作用下的像 | $T(x)=\int_{\mathbb{R}} x(\tau) h_{\tau} d \tau$ | $H(s) e^{st}$ | -->
+</section>
+<section id="基变换-信号与系统" class="level2">
+<h2 class="anchored" data-anchor-id="基变换-信号与系统">基变换 (信号与系统)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">DT</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">标准基</th>
+<th style="text-align: left;">“特征基”</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">基向量</td>
+<td style="text-align: left;"><span class="math inline">\(\left\{\delta_{k}: k \in \mathbb{Z}\right\}\)</span></td>
+<td style="text-align: left;">？</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">分解</td>
+<td style="text-align: left;"><span class="math inline">\(x=\sum_{k \in \mathbb{Z}} x[k] \delta_{k}\)</span></td>
+<td style="text-align: left;">？</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="math inline">\(T\)</span> 作用下的像</td>
+<td style="text-align: left;"><span class="math inline">\(T(x)=\sum_{k \in \mathbb{Z}} x[k] h_{k}\)</span></td>
+<td style="text-align: left;">？</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CT</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">“标准基”</td>
+<td style="text-align: left;">“特征基”</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">基向量</td>
+<td style="text-align: left;"><span class="math inline">\(\left\{\delta_{\tau}: \tau \in \mathbb{R}\right\}\)</span></td>
+<td style="text-align: left;">？</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">分解</td>
+<td style="text-align: left;"><span class="math inline">\(x=\int_{\mathbb{R}} x(\tau) \delta_{\tau} d \tau\)</span></td>
+<td style="text-align: left;">？</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="math inline">\(T\)</span> 作用下的像</td>
+<td style="text-align: left;"><span class="math inline">\(T(x)=\int_{\mathbb{R}} x(\tau) h_{\tau} d \tau\)</span></td>
+<td style="text-align: left;">？</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="lti-系统的特征值与特征函数" class="level2">
+<h2 class="anchored" data-anchor-id="lti-系统的特征值与特征函数">LTI 系统的特征值与特征函数</h2>
+<p><strong>CT 指数信号 <span class="math inline">\(e^{s t}\)</span></strong></p>
+<p><span class="math display">\[
+T\left(e^{s t}\right)=\int_{\mathbb{R}} h(\tau) e^{s(t-\tau)} d \tau=e^{s t} \int_{\mathbb{R}} h(\tau) e^{-s \tau} d \tau,
+\]</span></p>
+<p><span class="wavy-underline"> <span class="math inline">\(e^{s t}\)</span> 是 <span class="math inline">\(T\)</span> 的<strong>特征函数</strong>，对应的<strong>特征值</strong> </span>为：</p>
+<p><span class="math display">\[
+H(s)=\int_{\mathbb{R}} h(\tau) e^{-s \tau} d \tau \quad \text { (系统函数) }
+\]</span></p>
+<p><strong>DT 指数信号 <span class="math inline">\(z^{n}\)</span></strong></p>
+<p><span class="math display">\[
+T\left(z^{n}\right)=\sum_{k \in \mathbb{Z}} h[k] z^{n-k}=z^{n} \sum_{k \in \mathbb{Z}} h[k] z^{-k},
+\]</span></p>
+<p><span class="wavy-underline"> <span class="math inline">\(z^{n}\)</span> 是 <span class="math inline">\(T\)</span> 的<strong>特征函数</strong>，对应的<strong>特征值</strong> </span>为：</p>
+<p><span class="math display">\[
+H(z)=\sum_{k \in \mathbb{Z}} h[k] z^{-k} \quad \text { (系统函数) }
+\]</span></p>
+</section>
+<section id="对特征函数线性组合的响应" class="level2">
+<h2 class="anchored" data-anchor-id="对特征函数线性组合的响应">对特征函数线性组合的响应</h2>
+<p><strong>CT (连续时间)</strong></p>
+<p><span class="math display">\[
+T\left(\sum_{k} a_{k} e^{s_{k} t}\right)=\sum_{k} a_{k} H\left(s_{k}\right) e^{s_{k} t}
+\]</span></p>
+<p><strong>DT (离散时间)</strong></p>
+<p><span class="math display">\[
+T\left(\sum_{k} a_{k} z_{k}^{n}\right)=\sum_{k} a_{k} H\left(z_{k}\right) z_{k}^{n}
+\]</span></p>
+<p>输入 vs.&nbsp;输出</p>
+<ul>
+<li>相同的指数函数的线性组合</li>
+<li>系数发生变化：<span class="math inline">\(\left\{a_{k}\right\} \mapsto\left\{H\left(s_{k}\right) a_{k}\right\} /\left\{H\left(z_{k}\right) a_{k}\right\}\)</span></li>
+</ul>
+</section>
+<section id="基变换-信号与系统-1" class="level2">
+<h2 class="anchored" data-anchor-id="基变换-信号与系统-1">基变换 (信号与系统)</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">标准基</th>
+<th style="text-align: center;"><span class="math inline">\(A\)</span> 的”特征基”</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>基向量</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\left\{\mathbf{e}_{1}, \ldots, \mathbf{e}_{n}\right\}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\left\{v_{1}, \ldots, v_{n}\right\}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>分解</strong></td>
+<td style="text-align: center;"><span class="math inline">\(x=\sum_{k=1}^{n} x_{k} \mathbf{e}_{k}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(x=\sum_{k=1}^{n} a_{k} v_{k}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong><span class="math inline">\(A\)</span> 作用下的像</strong></td>
+<td style="text-align: center;"><span class="math inline">\(A x=\sum_{k=1}^{n} x_{k} \mathbf{f}_{k}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(A x=\sum_{k=1}^{n} a_{k} \lambda_{k} v_{k}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>对照： <br></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">DT</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;">标准基</th>
+<th style="text-align: left;">“特征基”</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">基向量</td>
+<td style="text-align: left;"><span class="math inline">\(\left\{\delta_{k}: k \in \mathbb{Z}\right\}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(z^n\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">分解</td>
+<td style="text-align: left;"><span class="math inline">\(x=\sum_{k \in \mathbb{Z}} x[k] \delta_{k}\)</span></td>
+<td style="text-align: left;">傅里叶/Z 变换</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="math inline">\(T\)</span> 作用下的像</td>
+<td style="text-align: left;"><span class="math inline">\(T(x)=\sum_{k \in \mathbb{Z}} x[k] h_{k}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(H(z) z^n\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CT</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><strong>“标准基”</strong></td>
+<td style="text-align: left;"><strong>“特征基”</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">基向量</td>
+<td style="text-align: left;"><span class="math inline">\(\left\{\delta_{\tau}: \tau \in \mathbb{R}\right\}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(e^{st}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">分解</td>
+<td style="text-align: left;"><span class="math inline">\(x=\int_{\mathbb{R}} x(\tau) \delta_{\tau} d \tau\)</span></td>
+<td style="text-align: left;">傅里叶/拉普拉斯变换</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="math inline">\(T\)</span> 作用下的像</td>
+<td style="text-align: left;"><span class="math inline">\(T(x)=\int_{\mathbb{R}} x(\tau) h_{\tau} d \tau\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(H(s) e^{st}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="问题" class="level2">
+<h2 class="anchored" data-anchor-id="问题">问题</h2>
+<ul>
+<li>哪些函数可以是指数函数的线性组合？</li>
+<li>如何找到系数 <span class="math inline">\(a_{k}\)</span>？</li>
+</ul>
+<p>傅里叶分析重点关注 CT 中的 <span class="math inline">\(e^{j \omega t}\)</span> 和 DT 中的 <span class="math inline">\(e^{j \omega n}\)</span>。</p>
+</section>
+<section id="toc1" class="level2">
+<h2 class="anchored" data-anchor-id="toc1">目录</h2>
+<ul>
+<li><a href="#sec31">1. 线性时不变系统对复指数信号的响应</a></li>
+<li><a href="#sec32"><strong>2. 连续时间周期信号的傅里叶级数表示</strong></a></li>
+<li><a href="#sec33">3. 连续时间傅里叶级数的收敛</a></li>
+<li><a href="#sec34">4. 连续时间傅里叶级数的性质</a></li>
+<li><a href="#35">5. 离散时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec36">6. 离散时间傅里叶级数的性质</a></li>
+<li><a href="#sec37">7. 傅里叶级数与线性时不变系统</a></li>
+<li><a href="#sec38">8. 滤波</a>
+<ul>
+<li><a href="#sec381">频率成形滤波器</a></li>
+<li><a href="#sec382">频率选择性滤波器</a></li>
+<li><a href="#sec383">用微分方程描述的连续时间滤波器</a></li>
+<li><a href="#sec383">用差分方程描述的离散时间滤波器</a></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="sec32" class="level1">
+<h1>2. 连续时间周期信号的傅里叶级数表示</h1>
+<section id="ct-傅里叶级数" class="level2">
+<h2 class="anchored" data-anchor-id="ct-傅里叶级数">CT 傅里叶级数</h2>
+<p>回顾：CT 信号是周期的，周期为 <span class="math inline">\(T\)</span>，如果：</p>
+<p><span class="math display">\[
+x=\tau_{T} x \quad \text { 或 } \quad x(t)=x(t+T), \forall t \in \mathbb{R}
+\]</span></p>
+<ul>
+<li>基波周期 <span class="math inline">\(T\)</span>：最小的正周期</li>
+<li>基波频率 <span class="math inline">\(\omega_{0}=\frac{2 \pi}{T}\)</span></li>
+</ul>
+<p><span class="math inline">\(\sin \left(\omega_{0} t\right), \cos \left(\omega_{0} t\right), e^{j \omega_{0} t}\)</span> 都是基频为 <span class="math inline">\(\omega_{0}\)</span> 的周期信号。 傅里叶级数用<strong>谐波相关 (harmonically related)</strong> 的正弦波或复指数信号表示周期信号：</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; x(t)=a_{0}+\sum_{k=1}^{\infty}\left[a_{k} \cos \left(k \omega_{0} t\right)+b_{k} \sin \left(k \omega_{0} t\right)\right] \\
+&amp; x(t)=\sum_{k=-\infty}^{\infty} c_{k} e^{j k \omega_{0} t}
+\end{aligned}
+\]</span></p>
+<!-- ## 约瑟夫·傅里叶 (Joseph Fourier)
+
+1807, Mémoire sur la propagation de la chaleur dans les corps solides (关于热在固体中传播的论文)
+
+1822, Théorie analytique de la chaleur (热的解析理论)
+
+![](imglink/42d286b0-1293-4bd1-b498-da763b255ab3-11.png)
+![](imglink/42d286b0-1293-4bd1-b498-da763b255ab3-11_2.png) -->
+</section>
+<section id="谐波-harmonics" class="level2">
+<h2 class="anchored" data-anchor-id="谐波-harmonics">谐波 (Harmonics)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/Harmonics.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="谐波-harmonics-1" class="level2">
+<h2 class="anchored" data-anchor-id="谐波-harmonics-1">谐波 (Harmonics)</h2>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-13.png" class="img-fluid" style="width:55.0%"></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-13_3.png" class="img-fluid" style="width:55.0%"></p>
+<p><img src="imglink/Harmonics2.png" class="img-fluid" style="width:58.0%"></p>
+</section>
+<section id="谐波的正交归一性-orthonormality" class="level2">
+<h2 class="anchored" data-anchor-id="谐波的正交归一性-orthonormality">谐波的正交归一性 (Orthonormality)</h2>
+<p>回顾对于 <span class="math inline">\(k \neq 0\)</span>，</p>
+<p><span class="math display">\[
+\int_{a}^{b} e^{j k \omega_{0} t} d t=\frac{e^{j k \omega_{0} b}-e^{j k \omega_{0} a}}{j k \omega_{0}}
+\]</span></p>
+<p>由于 <span class="math inline">\(e^{j k \omega_{0} t}\)</span> 具有周期 <span class="math inline">\(T\)</span>，在任意一个周期内：</p>
+<p><span class="math display">\[
+\frac{1}{T} \int_{T} e^{j k \omega_{0} t} d t=\frac{1}{T} \int_{t_{0}}^{t_{0}+T} e^{j k \omega_{0} t} d t=\delta[k]
+\]</span></p>
+<p>定义两个周期为 <span class="math inline">\(T\)</span> 的信号的<strong>内积 (inner product)</strong> 为：</p>
+<p><span class="math display">\[
+\langle f, g\rangle=\frac{1}{T} \int_{T} f(t) \overline{g(t)} d t
+\]</span></p>
+<p><span class="math inline">\(\left\{e^{j k \omega_{0} t}: k \in \mathbb{Z}\right\}\)</span> 是一个正交归一的函数系：</p>
+<p><span class="math display">\[
+\left\langle e^{j k \omega_{0} t}, e^{j m \omega_{0} t}\right\rangle=\frac{1}{T} \int_{T} e^{j(k-m) \omega_{0} t} d t=\delta_{k m}=\delta[k-m]
+\]</span></p>
+</section>
+<section id="谐波的正交性-orthogonality" class="level2">
+<h2 class="anchored" data-anchor-id="谐波的正交性-orthogonality">谐波的正交性 (Orthogonality)</h2>
+<p>对于正弦和余弦函数：</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \left\langle\sin \left(k \omega_{0} t\right), \sin \left(m \omega_{0} t\right)\right\rangle=\frac{1}{2} \delta[k-m]-\frac{1}{2} \delta[k+m] \\
+&amp; \left\langle\cos \left(k \omega_{0} t\right), \cos \left(m \omega_{0} t\right)\right\rangle=\frac{1}{2} \delta[k-m]+\frac{1}{2} \delta[k+m] \\
+&amp; \left\langle\sin \left(k \omega_{0} t\right), \cos \left(m \omega_{0} t\right)\right\rangle=0
+\end{aligned}
+\]</span></p>
+<p><strong>证明</strong>： 使用欧拉公式和 <span class="math inline">\(\left\{e^{i k \omega_{0} t}: k \in \mathbb{Z}\right\}\)</span> 的正交归一性。</p>
+</section>
+<section id="谐波的正交性-图示" class="level2">
+<h2 class="anchored" data-anchor-id="谐波的正交性-图示">谐波的正交性 (图示)</h2>
+<p><span class="math display">\[
+\begin{gathered}
+\sin \left(\omega_{0} t\right) \\
+\sin \left(2 \omega_{0} t\right)
+\end{gathered}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-16_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \sin \left(\omega_{0} t\right) \\
+&amp; \cos \left(\omega_{0} t\right)
+\end{aligned}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-16.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="傅里叶系数-fourier-coefficients" class="level2">
+<h2 class="anchored" data-anchor-id="傅里叶系数-fourier-coefficients">傅里叶系数 (Fourier Coefficients)</h2>
+<p>假设 <span class="math inline">\(x\)</span> 周期为 <span class="math inline">\(T\)</span> 且有傅里叶级数表示：</p>
+<p><span class="math display">\[
+x(t)=\sum_{k=-\infty}^{\infty} c_{k} e^{j k \omega_{0} t}, \quad \omega_{0}=\frac{2 \pi}{T}
+\]</span></p>
+<p>利用 <span class="math inline">\(\left\{e^{j k \omega_{0} t}\right\}\)</span> 的正交归一性求解傅里叶系数：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\left\langle x, e^{j m \omega_{0} t}\right\rangle &amp; =\left\langle\sum_{k=-\infty}^{\infty} c_{k} e^{j k \omega_{0} t}, e^{j m \omega_{0} t}\right\rangle \\
+&amp; =\sum_{k=-\infty}^{\infty} c_{k}\left\langle e^{j k \omega_{0} t}, e^{j m \omega_{0} t}\right\rangle \\
+&amp; =\sum_{k=-\infty}^{\infty} c_{k} \delta[m-k]=c_{m}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="复数傅里叶级数" class="level2">
+<h2 class="anchored" data-anchor-id="复数傅里叶级数">复数傅里叶级数</h2>
+<p><strong>综合方程 (Synthesis equation)</strong></p>
+<p><span class="math display">\[
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \frac{2 \pi}{T} t}
+\]</span></p>
+<p><span class="math inline">\(N\)</span> 次部分和： <span class="math display">\[
+S_{N}(x)(t)=\sum_{k=-N}^{N} \hat{x}[k] e^{i k \omega_{0} t}
+\]</span></p>
+<p><strong>分析方程 (Analysis equation)</strong></p>
+<p><span class="math display">\[
+\hat{x}[k]=\left\langle x, e^{j k \omega_{0} t}\right\rangle=\frac{1}{T} \int_{T} x(t) e^{-j k \omega_{0} t} d t=\frac{1}{T} \int_{T} x(t) e^{-j k \frac{2 \pi}{T} t} d t
+\]</span></p>
+</section>
+<section id="三角傅里叶级数" class="level2">
+<h2 class="anchored" data-anchor-id="三角傅里叶级数">三角傅里叶级数</h2>
+<p>对于正弦和余弦：</p>
+<ul>
+<li><p>正弦与正弦正交</p></li>
+<li><p>余弦与余弦正交</p></li>
+<li><p>正弦与余弦正交</p></li>
+</ul>
+<p><strong>综合方程</strong></p>
+<p><span class="math display">\[
+x(t)=a_{0}+\sum_{k=1}^{\infty}\left[a_{k} \cos \left(k \omega_{0} t\right)+b_{k} \sin \left(k \omega_{0} t\right)\right]
+\]</span></p>
+<p><strong>分析方程</strong></p>
+<p><span class="math display">\[
+a_{k}=\frac{2-\delta[k]}{T} \int_{T} x(t) \cos \left(k \omega_{0} t\right) d t, \quad b_{k}=\frac{2}{T} \int_{T} x(t) \sin \left(k \omega_{0} t\right) d t
+\]</span></p>
+</section>
+<section id="两种形式的等价性" class="level2">
+<h2 class="anchored" data-anchor-id="两种形式的等价性">两种形式的等价性</h2>
+<p><strong>复数形式</strong> <span class="math display">\[
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<p><strong>三角形式</strong> <span class="math display">\[
+x(t)=a_{0}+\sum_{k=1}^{\infty}\left[a_{k} \cos \left(k \omega_{0} t\right)+b_{k} \sin \left(k \omega_{0} t\right)\right]
+\]</span></p>
+<p><strong>系数转换 (通过欧拉公式)</strong></p>
+<p><span class="math display">\[
+\left\{\begin{array}{ll}
+a_{0}=\hat{x}[0] \\
+a_{k}=\hat{x}[k]+\hat{x}[-k], \\
+b_{k}=j(\hat{x}[k]-\hat{x}[-k]),
+\end{array} \quad k \geq 1 \quad  \begin{cases}\hat{x}[0]=a_{0} \\
+\hat{x}[k]=\frac{1}{2}\left(a_{k}-j b_{k}\right), &amp; k \geq 1 \\
+\hat{x}[k]=\frac{1}{2}\left(a_{k}+j b_{-k}\right), &amp; k \leq-1\end{cases}\right.
+\]</span></p>
+<p>复数形式中的负频率是为了数学上的方便引入的，没有直接的物理意义。</p>
+</section>
+<section id="例子" class="level2">
+<h2 class="anchored" data-anchor-id="例子">例子</h2>
+<p>例子：<span class="math inline">\(x(t)=e^{j \omega_{0} t}, \hat{x}[k]=\delta[k-1]\)</span></p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p>频谱 <span class="math inline">\(\hat{x}[k]\)</span></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-21_2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>例子：<span class="math inline">\(x(t)=\cos \left(\omega_{0} t+\phi\right)=\frac{e^{i \phi}}{2} e^{j \omega_{0} t}+\frac{e^{-j \phi}}{2} e^{-j \omega_{0} t}\)</span>，</p>
+<p>显然： <span class="math display">\[
+\hat{x}[1]=\frac{1}{2} e^{j \phi}, \quad, \hat{x}[-1]=\frac{1}{2} e^{-j \phi}, \quad \hat{x}[k]=0, k \neq \pm 1
+\]</span></p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p><br></p>
+<p>幅值谱 <span class="math inline">\(|\hat{x}[k]|\)</span></p>
+<p><br></p>
+<p><br></p>
+<p>相位谱 <span class="math inline">\(\arg \hat{x}[k]\)</span></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-21.png" class="img-fluid"></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-21_3.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="例子三角波-triangle-wave" class="level2">
+<h2 class="anchored" data-anchor-id="例子三角波-triangle-wave">例子：三角波 (Triangle Wave)</h2>
+<p>在一个周期内，</p>
+<p><span class="math display">\[
+x(t)=1-\frac{2|t|}{T}, \quad|t| \leq \frac{T}{2}
+\]</span></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-22.png" class="img-fluid"></p>
+<p>傅里叶系数：</p>
+<p><span class="math display">\[
+k=0, \quad \hat{x}[0]=\frac{1}{T} \int_{-T / 2}^{T / 2}\left(1-\frac{2|t|}{T}\right) d t=\frac{1}{2}
+\]</span></p>
+<p><span class="math inline">\(k \neq 0, k\)</span> 为奇数,<span class="math inline">\(\quad \hat{x}[k]=\frac{1}{T} \int_{-T / 2}^{T / 2}\left(1-\frac{2|t|}{T}\right) e^{-j k \omega_{0} t} d t=\frac{2}{\pi^{2} k^{2}}\)</span> <span class="math inline">\(k \neq 0, k\)</span> 为偶数, <span class="math inline">\(\quad \hat{x}[k]=0\)</span></p>
+</section>
+<section id="例子三角波频谱" class="level2">
+<h2 class="anchored" data-anchor-id="例子三角波频谱">例子：三角波频谱</h2>
+<p><span class="math display">\[
+\hat{x}[k]= \begin{cases}\frac{1}{2}, &amp; k=0 \\ \frac{2}{\pi^{2} k^{2}}, &amp; k \neq 0 \text { 奇数 } \\ 0, &amp; k \neq 0 \text { 偶数 }\end{cases}
+\]</span></p>
+<p>固定 <span class="math inline">\(T\)</span> 的频谱，频率间隔 <span class="math inline">\(\Delta \omega=\frac{2 \pi}{T}， \omega_{k}=k \frac{2 \pi}{T}\)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-23.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="例子三角波合成-n0" class="level2">
+<h2 class="anchored" data-anchor-id="例子三角波合成-n0">例子：三角波合成 (<span class="math inline">\(N=0\)</span>)</h2>
+<p><span class="math display">\[
+S_{0}(x)(t)=\sum_{k=-0}^{0} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-24.png" class="img-fluid"></p>
+</section>
+<section id="例子三角波合成-n1" class="level2">
+<h2 class="anchored" data-anchor-id="例子三角波合成-n1">例子：三角波合成 (<span class="math inline">\(N=1\)</span>)</h2>
+<p><span class="math display">\[
+S_{1}(x)(t)=\sum_{k=-1}^{1} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-25.png" class="img-fluid"></p>
+</section>
+<section id="例子三角波合成-n3" class="level2">
+<h2 class="anchored" data-anchor-id="例子三角波合成-n3">例子：三角波合成 (<span class="math inline">\(N=3\)</span>)</h2>
+<p><span class="math display">\[
+S_{3}(x)(t)=\sum_{k=-3}^{3} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-26.png" class="img-fluid"></p>
+</section>
+<section id="例子三角波合成-n5" class="level2">
+<h2 class="anchored" data-anchor-id="例子三角波合成-n5">例子：三角波合成 (<span class="math inline">\(N=5\)</span>)</h2>
+<p><span class="math display">\[
+S_{5}(x)(t)=\sum_{k=-5}^{5} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-27.png" class="img-fluid"></p>
+</section>
+<section id="例子三角波合成-n7" class="level2">
+<h2 class="anchored" data-anchor-id="例子三角波合成-n7">例子：三角波合成 (<span class="math inline">\(N=7\)</span>)</h2>
+<p><span class="math display">\[
+S_{7}(x)(t)=\sum_{k=-7}^{7} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-28.png" class="img-fluid"></p>
+</section>
+<section id="例子三角波合成-n9" class="level2">
+<h2 class="anchored" data-anchor-id="例子三角波合成-n9">例子：三角波合成 (<span class="math inline">\(N=9\)</span>)</h2>
+<p><span class="math display">\[
+S_{9}(x)(t)=\sum_{k=-9}^{9} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-29.png" class="img-fluid"></p>
+</section>
+<section id="例子三角波合成-n19" class="level2">
+<h2 class="anchored" data-anchor-id="例子三角波合成-n19">例子：三角波合成 (<span class="math inline">\(N=19\)</span>)</h2>
+<p><span class="math display">\[
+S_{19}(x)(t)=\sum_{k=-19}^{19} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-30.png" class="img-fluid"></p>
+</section>
+<section id="例子周期方波-periodic-square-wave" class="level2">
+<h2 class="anchored" data-anchor-id="例子周期方波-periodic-square-wave">例子：周期方波 (Periodic Square Wave)</h2>
+<p>在一个周期内，</p>
+<p><span class="math display">\[
+x(t)= \begin{cases}1, &amp; |t|&lt;T_{1} \\ 0, &amp; T_{1}&lt;|t|&lt;T / 2\end{cases}
+\]</span></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-31.png" class="img-fluid"></p>
+<p>傅里叶系数：</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+k=0, &amp; \hat{x}[0]=\frac{1}{T} \int_{-T_{1}}^{T_{1}} 1 d t=\frac{2 T_{1}}{T} \\
+k \neq 0, &amp; \hat{x}[k]=\frac{1}{T} \int_{-T_{1}}^{T_{1}} e^{-j k \omega_{0} t} d t=\frac{2 \sin \left(k \omega_{0} T_{1}\right)}{k \omega_{0} T}=\frac{\sin \left(k \omega_{0} T_{1}\right)}{k \pi}
+\end{array}
+\]</span></p>
+</section>
+<section id="例子周期方波频谱" class="level2">
+<h2 class="anchored" data-anchor-id="例子周期方波频谱">例子：周期方波频谱</h2>
+<p><span class="math display">\[
+\hat{x}[k]=\frac{\sin \left(k \frac{2 \pi T_{1}}{T}\right)}{k \pi}=\frac{2 \sin \left(\omega_{k} T_{1}\right)}{\omega_{k} T}
+\]</span></p>
+<p>固定 <span class="math inline">\(T\)</span>，不同 <span class="math inline">\(T_{1}\)</span> 的频谱：</p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:90%;">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-32_3.png" class="img-fluid"></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-32_2.png" class="img-fluid"></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-32.png" class="img-fluid"></p>
+</div><div class="column" style="width:5%;">
+
+</div>
+</div>
+</section>
+<section id="例子周期方波频谱-不同-t" class="level2">
+<h2 class="anchored" data-anchor-id="例子周期方波频谱-不同-t">例子：周期方波频谱 (不同 <span class="math inline">\(T\)</span>)</h2>
+<p><span class="math display">\[
+\hat{x}[k]=\frac{\sin \left(k \frac{2 \pi T_{1}}{T}\right)}{k \pi}=\frac{2 \sin \left(\omega_{k} T_{1}\right)}{\omega_{k} T}
+\]</span></p>
+<p>固定 <span class="math inline">\(T_{1}\)</span>，不同 <span class="math inline">\(T\)</span> 的频谱：</p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:5%;">
+
+</div><div class="column" style="width:90%;">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-33_3.png" class="img-fluid"></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-33_2.png" class="img-fluid"></p>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-33.png" class="img-fluid"></p>
+</div><div class="column" style="width:5%;">
+
+</div>
+</div>
+</section>
+<section id="例子方波合成-n0" class="level2">
+<h2 class="anchored" data-anchor-id="例子方波合成-n0">例子：方波合成 (<span class="math inline">\(N=0\)</span>)</h2>
+<p><span class="math display">\[
+S_{0}(x)(t)=\sum_{k=-0}^{0} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-34.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="例子方波合成-n1" class="level2">
+<h2 class="anchored" data-anchor-id="例子方波合成-n1">例子：方波合成 (<span class="math inline">\(N=1\)</span>)</h2>
+<p><span class="math display">\[
+S_{1}(x)(t)=\sum_{k=-1}^{1} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-35.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="例子方波合成-n3" class="level2">
+<h2 class="anchored" data-anchor-id="例子方波合成-n3">例子：方波合成 (<span class="math inline">\(N=3\)</span>)</h2>
+<p><span class="math display">\[
+S_{3}(x)(t)=\sum_{k=-3}^{3} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-36.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="例子方波合成-n5" class="level2">
+<h2 class="anchored" data-anchor-id="例子方波合成-n5">例子：方波合成 (<span class="math inline">\(N=5\)</span>)</h2>
+<p><span class="math display">\[
+S_{5}(x)(t)=\sum_{k=-5}^{5} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-37.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="例子方波合成-n7" class="level2">
+<h2 class="anchored" data-anchor-id="例子方波合成-n7">例子：方波合成 (<span class="math inline">\(N=7\)</span>)</h2>
+<p><span class="math display">\[
+S_{7}(x)(t)=\sum_{k=-7}^{7} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-38.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="例子方波合成-n9" class="level2">
+<h2 class="anchored" data-anchor-id="例子方波合成-n9">例子：方波合成 (<span class="math inline">\(N=9\)</span>)</h2>
+<p><span class="math display">\[
+S_{9}(x)(t)=\sum_{k=-9}^{9} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-39.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="例子方波合成-n13" class="level2">
+<h2 class="anchored" data-anchor-id="例子方波合成-n13">例子：方波合成 (<span class="math inline">\(N=13\)</span>)</h2>
+<p><span class="math display">\[
+S_{13}(x)(t)=\sum_{k=-13}^{13} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-40.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="例子方波合成-n19" class="level2">
+<h2 class="anchored" data-anchor-id="例子方波合成-n19">例子：方波合成 (<span class="math inline">\(N=19\)</span>)</h2>
+<p><span class="math display">\[
+S_{19}(x)(t)=\sum_{k=-19}^{19} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-41.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="例子方波合成-n29" class="level2">
+<h2 class="anchored" data-anchor-id="例子方波合成-n29">例子：方波合成 (<span class="math inline">\(N=29\)</span>)</h2>
+<p><span class="math display">\[
+S_{29}(x)(t)=\sum_{k=-29}^{29} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-42.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="例子方波合成-n39" class="level2">
+<h2 class="anchored" data-anchor-id="例子方波合成-n39">例子：方波合成 (<span class="math inline">\(N=39\)</span>)</h2>
+<p><span class="math display">\[
+S_{39}(x)(t)=\sum_{k=-39}^{39} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-43.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="吉布斯现象-gibbs-phenomenon" class="level2">
+<h2 class="anchored" data-anchor-id="吉布斯现象-gibbs-phenomenon">吉布斯现象 (Gibbs Phenomenon)</h2>
+<p>傅里叶级数的部分和在跳变间断点处“振铃”</p>
+<ul>
+<li>随着项数增加，过冲越来越靠近间断点</li>
+<li>过冲幅度趋近于跳变幅度的 <span class="math inline">\(\approx 9 \%\)</span></li>
+</ul>
+<p><img src="imglink/42d286b0-1293-4bd1-b498-da763b255ab3-44.png" class="img-fluid"></p>
+</section>
+<section id="toc2" class="level2">
+<h2 class="anchored" data-anchor-id="toc2">目录</h2>
+<ul>
+<li><a href="#sec31">1. 线性时不变系统对复指数信号的响应</a></li>
+<li><a href="#sec32">2. 连续时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec33"><strong>3. 连续时间傅里叶级数的收敛</strong></a></li>
+<li><a href="#sec34">4. 连续时间傅里叶级数的性质</a></li>
+<li><a href="#35">5. 离散时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec36">6. 离散时间傅里叶级数的性质</a></li>
+<li><a href="#sec37">7. 傅里叶级数与线性时不变系统</a></li>
+<li><a href="#sec38">8. 滤波</a>
+<ul>
+<li><a href="#sec381">频率成形滤波器</a></li>
+<li><a href="#sec382">频率选择性滤波器</a></li>
+<li><a href="#sec383">用微分方程描述的连续时间滤波器</a></li>
+<li><a href="#sec383">用差分方程描述的离散时间滤波器</a></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="sec33" class="level1">
+<h1>3. 连续时间傅里叶级数的收敛</h1>
+<section id="帕塞瓦尔恒等式-帕塞瓦尔公式parsevals-identity" class="level2">
+<h2 class="anchored" data-anchor-id="帕塞瓦尔恒等式-帕塞瓦尔公式parsevals-identity">帕塞瓦尔恒等式 (帕塞瓦尔公式，Parseval’s Identity)</h2>
+<p>对于具有有限 <strong>2-范数</strong> 的信号的傅里叶系数：</p>
+<p><span class="math display">\[
+\sum_{k=-\infty}^{\infty}|\hat{x}[k]|^{2}=\|x\|^{2}=\frac{1}{T} \int_{T}|x(t)|^{2} d t
+\]</span> 解释：能量守恒</p>
+<ul>
+<li><span class="math inline">\(|\hat{x}[k]|^{2}\)</span> 是第 <span class="math inline">\(k\)</span> 次谐波分量的平均功率</li>
+<li><span class="math inline">\(\|x\|^{2}\)</span> 是 <span class="math inline">\(x\)</span> 的平均功率</li>
+<li>总功率是所有分量功率之和</li>
+</ul>
+<p>定理：傅里叶级数在均方意义下收敛</p>
+<p><span class="math display">\[
+\lim _{N \rightarrow \infty}\left\|x-S_{N}(x)\right\|=0
+\]</span></p>
+<p>注意：均方收敛并不意味着逐点收敛。</p>
+<p><br></p>
+<p>如何证明？</p>
+<!-- ## 柯西-施瓦茨不等式 (Cauchy-Schwarz Inequality)
+
+$$
+|\langle x, y\rangle| \leq\|x\| \cdot\|y\|
+$$
+
+证明：如果 $\|y\|=0$，则 $y=0$ 且 $\langle x, y\rangle=\|x\| \cdot\|y\|$。现在假设 $\|y\| \neq 0$。对于任意 $\lambda \in \mathbb{C}$，
+
+$$
+0 \leq\langle x-\lambda y, x-\lambda y\rangle=\|x\|^{2}-\lambda \overline{\langle x, y\rangle}-\bar{\lambda}\langle x, y\rangle+|\lambda|^{2}\|y\|^{2}
+$$
+
+令 $\lambda=\langle x, y\rangle /\|y\|^{2}$，
+
+$$
+0 \leq\|x\|^{2}-\frac{|\langle x, y\rangle|^{2}}{\|y\|^{2}}-\frac{|\langle x, y\rangle|^{2}}{\|y\|^{2}}+\frac{|\langle x, y\rangle|^{2}}{\|y\|^{2}} \Longrightarrow|\langle x, y\rangle| \leq\|x\| \cdot\|y\|
+$$
+
+积分形式：
+
+$$
+\left|\int_{\mathbb{R}} x(t) \overline{y(t)} d t\right| \leq \sqrt{\int_{\mathbb{R}}|x(t)|^{2} d t} \cdot \sqrt{\int_{\mathbb{R}}|y(t)|^{2} d t}
+$$ -->
+</section>
+<section id="内积空间中的正交归一系" class="level2">
+<h2 class="anchored" data-anchor-id="内积空间中的正交归一系">内积空间中的正交归一系</h2>
+<p>如果 <span class="math inline">\(\langle x, y\rangle=0\)</span>，则两个向量 <span class="math inline">\(x, y \in V\)</span> 是<strong>正交</strong>的。 如果 <span class="math inline">\(\|x\|=1\)</span> 或 <span class="math inline">\(\langle x, x\rangle=1\)</span>，则向量 <span class="math inline">\(x \in V\)</span> 是<strong>单位向量</strong>。 如果对于 <span class="math inline">\(m \neq k\)</span>，<span class="math inline">\(\left\langle x_{k}, x_{m}\right\rangle=0\)</span>，则 <span class="math inline">\(\left\{x_{k}\right\}\)</span> 是<strong>正交系</strong>。 如果 <span class="math inline">\(\left\langle e_{k}, e_{m}\right\rangle=\delta_{k m}=\delta[k-m]\)</span>，则 <span class="math inline">\(\left\{e_{k}\right\}\)</span> 是<strong>正交归一系 (orthonormal system)</strong>。</p>
+<p>令 <span class="math inline">\(e_{k}(t)=e^{j k \frac{2 \pi}{T} t}\)</span>。回顾 <span class="math inline">\(\left\{e_{k}: k \in \mathbb{Z}\right\}\)</span> 是正交归一系：</p>
+<p><span class="math display">\[
+\left\langle e_{k}, e_{m}\right\rangle=\delta[k-m]
+\]</span></p>
+<p>给定正交归一系 <span class="math inline">\(\left\{e_{k}\right\}\)</span>，假设</p>
+<p><span class="math display">\[
+x=\sum_{k} c_{k} e_{k}
+\]</span></p>
+<p>通过与 <span class="math inline">\(e_{m}\)</span> 做内积来求系数：</p>
+<p><span class="math display">\[
+\left\langle x, e_{m}\right\rangle=\left\langle\sum_{k} c_{k} e_{k}, e_{m}\right\rangle=\sum_{k} c_{k}\left\langle e_{k}, e_{m}\right\rangle=\sum_{k} c_{k} \delta[k-m]=c_{m}
+\]</span></p>
+<p>广义傅里叶级数：</p>
+<p><span class="math display">\[
+x=\sum_{k}\left\langle x, e_{k}\right\rangle e_{k}
+\]</span></p>
+<p>这就是我们要做的傅里叶级数展开。</p>
+</section>
+<section id="最佳均方逼近-best-mean-square-approximation" class="level2">
+<h2 class="anchored" data-anchor-id="最佳均方逼近-best-mean-square-approximation">最佳均方逼近 (Best Mean-square Approximation)</h2>
+<p>用 <span class="math inline">\(\operatorname{span}\left\{e_{1}, \ldots, e_{n}\right\}\)</span> 中的元素逼近 <span class="math inline">\(x\)</span> 的均方误差，即用形式为 <span class="math inline">\(y=\sum_{k=1}^{n} a_{k} e_{k}\)</span> 的元素：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\|x-y\|^{2} &amp; =\left\langle x-\sum_{k=1}^{n} a_{k} e_{k}, x-\sum_{k=1}^{n} a_{k} e_{k}\right\rangle \\
+&amp; =\|x\|^{2}-\sum_{k=1}^{n} a_{k}\left\langle e_{k}, x\right\rangle-\sum_{k=1}^{n} \bar{a}_{k}\left\langle x, e_{k}\right\rangle+\sum_{k=1}^{n}\left|a_{k}\right|^{2} \\
+&amp; =\|x\|^{2}-2 \sum_{k=1}^{n} \operatorname{Re}\left(\bar{a}_{k}\left\langle x, e_{k}\right\rangle\right)+\sum_{k=1}^{n}\left|a_{k}\right|^{2} \\
+&amp; \geq\|x\|^{2}-2 \sum_{k=1}^{n}\left|a_{k}\right| \cdot\left|\left\langle x, e_{k},\right\rangle\right|+\sum_{k=1}^{n}\left|a_{k}\right|^{2} \quad(\text { 使用 }|\operatorname{Re} z| \leq|z|) \\
+&amp; =\|x\|^{2}-\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2}+\sum_{k=1}^{n}\left(\left|a_{k}\right|-\left|\left\langle x, e_{k},\right\rangle\right|\right)^{2}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="最佳均方逼近-续" class="level2">
+<h2 class="anchored" data-anchor-id="最佳均方逼近-续">最佳均方逼近 (续)</h2>
+<p>逼近的均方误差：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\|x-y\|^{2} &amp; \stackrel{(1)}{\geq}\|x\|^{2}-\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2}+\sum_{k=1}^{n}\left(\left|a_{k}\right|-\left|\left\langle x, e_{k},\right\rangle\right|\right)^{2} \\
+&amp; \stackrel{(2)}{\geq}\|x\|^{2}-\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2}
+\end{aligned}
+\]</span></p>
+<p>当且仅当 <span class="math inline">\(a_{k}=\left\langle x, e_{k}\right\rangle\)</span> 时达到最小均方误差。</p>
+<ul>
+<li><ol type="1">
+<li>处取等号要求 <span class="math inline">\(\arg a_{k}=\arg \left\langle x, e_{k}\right\rangle\)</span></li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>处取等号要求 <span class="math inline">\(\left|a_{k}\right|=\left|\left\langle x, e_{k}\right\rangle\right|\)</span></li>
+</ol></li>
+</ul>
+<section id="最佳均方逼近" class="level3">
+<h3 class="anchored" data-anchor-id="最佳均方逼近">最佳均方逼近</h3>
+<p>给定一个正交归一系统 <span class="math inline">\(\left\{e_{1}, \ldots, e_{n}\right\}\)</span>, 用由<span class="math inline">\(\operatorname{span}\left\{e_{1}, \ldots, e_{n}\right\}\)</span>张成的空间中的元素来逼近<span class="math inline">\(x\)</span>时，其均方意义下的最佳逼近（best mean-square approximation）是</p>
+<p><span class="math display">\[
+y=\sum_{k=1}^{n}\left\langle x, e_{k}\right\rangle e_{k},
+\]</span></p>
+<p>并且其均方误差达到最小值</p>
+<p><span class="math display">\[
+\|x-y\|^{2}=\|x\|^{2}-\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2} .
+\]</span></p>
+</section>
+</section>
+<section id="傅里叶技术和最佳均方逼近" class="level2">
+<h2 class="anchored" data-anchor-id="傅里叶技术和最佳均方逼近">傅里叶技术和最佳均方逼近</h2>
+<p><strong>综合方程 (Synthesis equation)</strong></p>
+<p><span class="math display">\[
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \frac{2 \pi}{T} t}
+\]</span></p>
+<p><span class="math inline">\(N\)</span> 次部分和： <span class="math display">\[
+S_{N}(x)(t)=\sum_{k=-N}^{N} \hat{x}[k] e^{i k \omega_{0} t}
+\]</span></p>
+<p><strong>分析方程 (Analysis equation)</strong></p>
+<p><span class="math display">\[
+\hat{x}[k]=\left\langle x, e^{j k \omega_{0} t}\right\rangle=\frac{1}{T} \int_{T} x(t) e^{-j k \omega_{0} t} d t=\frac{1}{T} \int_{T} x(t) e^{-j k \frac{2 \pi}{T} t} d t
+\]</span></p>
+<p>傅里叶部分和 <span class="math inline">\(S_{N}(x)=\sum_{k=-N}^{N} \hat{x}[k] e^{j k \omega_{0} t}\)</span> 是最佳均方逼近：</p>
+<p><span class="math display">\[
+\left\|x-S_{N}(x)\right\|^{2}=\min _{a_{k},-N \leq k \leq N}\left\|x-\sum_{k=-N}^{N} a_{k} e^{j k \omega_{0} t}\right\|^{2}
+\]</span></p>
+<!-- ## 贝塞尔不等式 (Bessel's Inequality)
+
+最小均方误差：
+
+$$
+\left\|x-\sum_{k=1}^{n}\left\langle x, e_{k}\right\rangle e_{k}\right\|^{2}=\|x\|^{2}-\sum_{k=1}^{n}\left|\left\langle x, e_{k}\right\rangle\right|^{2}
+$$
+
+贝塞尔不等式：
+
+$$
+\sum_{k}\left|\left\langle x, e_{k}\right\rangle\right|^{2} \leq\|x\|^{2}
+$$
+
+对于具有有限 2-范数的信号的傅里叶系数：
+
+$$
+\sum_{k=-\infty}^{\infty}|\hat{x}[k]|^{2} \leq\|x\|^{2}
+$$
+
+推论：$\lim _{k \rightarrow \infty} \hat{x}[k]=0$ -->
+</section>
+<section id="帕塞瓦尔恒等式帕塞瓦尔公式" class="level2">
+<h2 class="anchored" data-anchor-id="帕塞瓦尔恒等式帕塞瓦尔公式">帕塞瓦尔恒等式（帕塞瓦尔公式）</h2>
+<p>对于具有有限 <strong>2-范数</strong> 的信号的傅里叶系数：</p>
+<p><span class="math display">\[
+\sum_{k=-\infty}^{\infty}|\hat{x}[k]|^{2}=\|x\|^{2}=\frac{1}{T} \int_{T}|x(t)|^{2} d t
+\]</span></p>
+<p>解释：能量守恒</p>
+<ul>
+<li><span class="math inline">\(|\hat{x}[k]|^{2}\)</span> 是第 <span class="math inline">\(k\)</span> 次谐波分量的平均功率</li>
+<li><span class="math inline">\(\|x\|^{2}\)</span> 是 <span class="math inline">\(x\)</span> 的平均功率</li>
+<li>总功率是所有分量功率之和</li>
+</ul>
+<p>定理：傅里叶级数在均方意义下收敛</p>
+<p><span class="math display">\[
+\lim _{N \rightarrow \infty}\left\|x-S_{N}(x)\right\|=0
+\]</span></p>
+<p>已经证明了最佳逼近，能否保证误差为零？</p>
+</section>
+<section id="帕塞瓦尔恒等式帕塞瓦尔公式-1" class="level2">
+<h2 class="anchored" data-anchor-id="帕塞瓦尔恒等式帕塞瓦尔公式-1">帕塞瓦尔恒等式（帕塞瓦尔公式）</h2>
+<section id="最佳均方逼近的几何意义" class="level3">
+<h3 class="anchored" data-anchor-id="最佳均方逼近的几何意义">最佳均方逼近的几何意义</h3>
+<p>子空间 <span class="math inline">\(\left\{e_{1}, \ldots, e_{n}\right\}\)</span> 上的正交投影高维勾股定理（毕达哥拉斯定理） <span class="math display">\[\|x\|^2 = \sum_{k=1}^{n} |\langle x, e_k \rangle|^2 + \left\| x - \sum_{k=1}^{n} \langle x, e_k \rangle e_k \right\|^2， \quad y=\sum_{k=1}^{n} \langle x, e_k \rangle e_k\]</span></p>
+<p><img src="imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-04.png" class="img-fluid" style="width:80.0%"></p>
+<p>思考：当<span class="math inline">\(n-&gt;\infty\)</span>?</p>
+</section>
+</section>
+<section id="帕塞瓦尔恒等式帕塞瓦尔公式-2" class="level2">
+<h2 class="anchored" data-anchor-id="帕塞瓦尔恒等式帕塞瓦尔公式-2">帕塞瓦尔恒等式（帕塞瓦尔公式）</h2>
+<section id="完备正交规范序列" class="level3">
+<h3 class="anchored" data-anchor-id="完备正交规范序列">完备正交规范序列</h3>
+<p>在 Hilbert 空间 <span class="math inline">\(H\)</span> 中，如果每一个元素 <span class="math inline">\(x \in H\)</span> 都可以进行如下展开，则称标准正交序列 <span class="math inline">\(\{e_k : k \in \mathbb{N}\}\)</span> 是<strong>完备的</strong> (Complete)：</p>
+<p><span class="math display">\[x = \sum_{k=1}^{\infty} \langle x, e_k \rangle e_k\]</span></p>
+<p>这意味着该序列的部分和在范数意义下收敛于 <span class="math inline">\(x\)</span>，即：</p>
+<p><span class="math display">\[\lim_{n \to \infty} \left\| x - \sum_{k=1}^{n} \langle x, e_k \rangle e_k \right\| = 0\]</span></p>
+<ul>
+<li><strong>标准正交基 (Orthonormal Basis)</strong>：一个完备的标准正交序列也被称为该 Hilbert 空间 <span class="math inline">\(H\)</span> 的标准正交基。</li>
+<li><strong>系数定义</strong>：展开式中的系数 <span class="math inline">\(\langle x, e_k \rangle\)</span> 称为 <span class="math inline">\(x\)</span> 关于基 <span class="math inline">\(\{e_k\}\)</span> 的傅里叶系数或坐标。</li>
+</ul>
+<!-- ## 帕塞瓦尔公式
+
+若 $\{e_k : k \in \mathbb{N}\}$ 是 Hilbert 空间 $H$ 的一个标准正交基，则有：
+
+$$\|x\|^2 = \sum_{k=1}^{\infty} |\langle x, e_k \rangle|^2$$
+
+### 证明
+
+**根据高维勾股定理（毕达哥拉斯定理）：**
+
+$$\|x\|^2 = \sum_{k=1}^{n} |\langle x, e_k \rangle|^2 + \left\| x - \sum_{k=1}^{n} \langle x, e_k \rangle e_k \right\|^2$$
+
+令 $n \to \infty$，根据标准正交基的定义，最后一项（残差项）趋于零。
+
+结论：
+
+希尔伯特空间 $H$ 同构于 $\ell_2$ 空间，其映射关系为 $x \leftrightarrow \{\langle x, e_k \rangle : k \in \mathbb{N}\}$，并且满足：
+
+$$\langle x, y \rangle = \sum_{k=1}^{\infty} \langle x, e_k \rangle \overline{\langle y, e_k \rangle}$$
+
+## 帕塞瓦尔恒等式
+
+### 证明
+
+利用 $x$ 和 $y$ 在标准正交基 $\{e_k\}$ 下的展开式：
+
+$$\begin{aligned}
+\langle x, y \rangle &= \left\langle \sum_{k} \langle x, e_k \rangle e_k, \sum_{m} \langle y, e_m \rangle e_m \right\rangle \\
+&= \sum_{k} \langle x, e_k \rangle \sum_{m} \overline{\langle y, e_m \rangle} \langle e_k, e_m \rangle \\
+&= \sum_{k} \langle x, e_k \rangle \sum_{m} \overline{\langle y, e_m \rangle} \delta[k - m] \\
+&= \sum_{k} \langle x, e_k \rangle \overline{\langle y, e_k \rangle}
+\end{aligned}$$
+
+
+**注意：** 当 $x = y$ 时，我们重新得到了 Parseval 等式：
+$$\|x\|^2 = \sum_{k=1}^{\infty} |\langle x, e_k \rangle|^2$$ -->
+</section>
+</section>
+<section id="傅里叶级数的均方收敛" class="level2">
+<h2 class="anchored" data-anchor-id="傅里叶级数的均方收敛">傅里叶级数的均方收敛</h2>
+<section id="定理" class="level3">
+<h3 class="anchored" data-anchor-id="定理">定理</h3>
+<p>集合 <span class="math inline">\(\{e^{j k \frac{2\pi}{T} t} : k \in \mathbb{Z}\}\)</span> 是 <span class="math inline">\(L_2(T)\)</span> 空间的标准正交基。对于任何 <span class="math inline">\(x \in L_2(T)\)</span>，其傅里叶级数在<strong>均方意义</strong>下收敛，即在 <span class="math inline">\(L_2\)</span> 范数下满足：</p>
+<p><span class="math display">\[\lim_{N \to \infty} \|x - S_N(x)\| = 0\]</span></p>
+</section>
+<section id="parseval-公式-帕塞瓦尔恒等式" class="level3">
+<h3 class="anchored" data-anchor-id="parseval-公式-帕塞瓦尔恒等式">Parseval 公式 (帕塞瓦尔恒等式)</h3>
+<p><span class="math display">\[\sum_{k=-\infty}^{\infty} |\hat{x}[k]|^2 = \|x\|^2 = \frac{1}{T} \int_{T} |x(t)|^2 dt\]</span></p>
+</section>
+<section id="物理阐释能量守恒-energy-conservation" class="level3">
+<h3 class="anchored" data-anchor-id="物理阐释能量守恒-energy-conservation">物理阐释：能量守恒 (Energy Conservation)</h3>
+<ul>
+<li><strong><span class="math inline">\(|\hat{x}[k]|^2\)</span></strong>：第 <span class="math inline">\(k\)</span> 次谐波分量的<strong>平均功率</strong>。</li>
+<li><strong><span class="math inline">\(\|x\|^2\)</span></strong>：信号 <span class="math inline">\(x\)</span> 的<strong>总平均功率</strong>。</li>
+</ul>
+</section>
+</section>
+<section id="傅里叶级数的均方收敛-1" class="level2">
+<h2 class="anchored" data-anchor-id="傅里叶级数的均方收敛-1">傅里叶级数的均方收敛</h2>
+<section id="核心解读" class="level3">
+<h3 class="anchored" data-anchor-id="核心解读">核心解读</h3>
+<ol type="1">
+<li><p><strong>均方收敛 vs 逐点收敛</strong>： 这是一个非常重要的警示。即使傅里叶级数捕获了信号的所有“能量”（均方收敛），但在信号的跳变点（不连续点）附近，它可能仍然无法完全匹配信号的具体数值（即著名的 <strong>Gibbs 现象</strong>）。</p></li>
+<li><p><strong>频谱的本质</strong>： Parseval 等式建立了时域和频域之间的桥梁。它告诉我们，计算信号的功率既可以在时域（对平方求积分），也可以在频域（对系数平方求和）。在工程上，这意味着能量在变换过程中既没有丢失也没有凭空产生。</p></li>
+<li><p><strong>正交性的威力</strong>： 之所以能写成这种简单的平方和形式，完全归功于复指数函数 <span class="math inline">\(\{e^{j k \omega_0 t}\}\)</span> 之间的相互<strong>正交性</strong>。</p></li>
+</ol>
+<!-- ## $L_2$ 信号的傅里叶级数 (Fourier Series of $L_2$ Signals)
+
+周期函数与双向无限序列之间的对应关系；时域 vs. 频域
+ 
+$$x \stackrel{\mathcal{FS}}{\longleftrightarrow} \hat{x} \quad \text{或 (or)} \quad x(t) \stackrel{\mathcal{FS}}{\longleftrightarrow} \hat{x}[k]$$
+
+傅里叶级数是 $L_2$ 信号的 Hilbert 空间与 $\ell_2$ 傅里叶系数的 Hilbert 空间之间的同构映射
+
+$$\begin{aligned}
+\mathcal{FS} : L_2(T) &\to \ell_2 \\
+x &\mapsto \hat{x}
+\end{aligned}$$
+
+将会看到离散时间傅里叶变换从 $\hat{x}$ 映射到 $x$。Parseval 定理
+
+$$\langle x, y \rangle_{L_2(T)} = \langle \hat{x}, \hat{y} \rangle_{\ell_2}$$ -->
+<!-- ## 部分和的积分表示
+
+不失一般性，关注  $T=2 \pi$ 和 $\omega_{0}=1$
+
+$$
+\begin{aligned}
+S_{N}(x)(t) & =\sum_{k=-N}^{N} \hat{x}[k] e^{j k t} \\
+& =\sum_{k=-N}^{N}\left(\frac{1}{2 \pi} \int_{2 \pi} x(\tau) e^{-j k \tau} d \tau\right) e^{j k t} \\
+& =\frac{1}{2 \pi} \int_{2 \pi} x(\tau) \sum_{k=-N}^{N} e^{j k(t-\tau)} d \tau \\
+& =\frac{1}{2 \pi} \int_{2 \pi} x(\tau) D_{N}(t-\tau) d \tau=\left(x * \frac{D_{N}}{2 \pi}\right)(t)
+\end{aligned}
+$$
+
+其中 $D_N$ 是 Dirichlet 核 (Dirichlet kernel)
+
+$$
+D_{N}(t)=\sum_{k=-N}^{N} e^{j k t}=\frac{\sin \left(\left(N+\frac{1}{2}\right) t\right)}{\sin (t / 2)}
+$$
+
+## 狄利克雷核
+
+不同 $N$ 取值下的 $\frac{D_N}{2\pi}$ 图像
+
+:::: {.columns style="text-align: center;"}
+
+::: {.column width="33%"}
+
+![](imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-18_2.png)
+
+$N=4$
+:::
+
+::: {.column width="34%"}
+![](imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-18.png)
+
+$N=8$
+ 
+:::
+
+::: {.column width="33%"}
+![](imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-18_3.png)
+
+$N=16$
+:::
+
+
+::::
+
+如果 $\frac{D_N}{2\pi} \to \delta$，那么至少对于连续函数 $x$，将会有 $S_N(x) = x * \frac{D_N}{2\pi} \to x * \delta = x$。
+ 
+不幸的是，存在连续函数 $x$，其傅里叶部分和 $S_N(x)$ 当 $N \to \infty$ 时，在某些点 $t$ 处根本不收敛，更不用说在这些点收敛到 $x(t)$ 了。
+
+
+
+
+## 逐点收敛
+
+**定理。** 若 $x$ 是可微的，则对于所有 $t$，$\lim_{N \to \infty} S_N(x)(t) = x(t)$。
+
+**证明。** 固定 $t$。定义：
+
+$$
+F(\tau) = \begin{cases} 
+\frac{x(t-\tau) - x(t)}{\sin(\tau/2)}, & \tau \neq 0 \\
+-2x'(t), & \tau = 0 
+\end{cases}
+$$
+
+其在 $[-\pi, \pi]$ 上是连续的。注意 $\frac{1}{2\pi} \int_{-\pi}^{\pi} D_N(\tau) d\tau = 1$。
+
+$$\begin{aligned}
+S_N(x)(t) - x(t) &= \frac{1}{2\pi} \int_{-\pi}^{\pi} x(t - \tau) D_N(\tau) d\tau - \frac{1}{2\pi} \int_{-\pi}^{\pi} x(t) D_N(\tau) d\tau \\
+&= \frac{1}{2\pi} \int_{-\pi}^{\pi} [x(t - \tau) - x(t)] D_N(\tau) d\tau \\
+&= \frac{1}{2\pi} \int_{-\pi}^{\pi} F(\tau) \sin \left( \left(N + \frac{1}{2}\right) \tau \right) d\tau
+\end{aligned}$$ -->
+</section>
+</section>
+<section id="狄利克雷判别法" class="level2">
+<h2 class="anchored" data-anchor-id="狄利克雷判别法">狄利克雷判别法</h2>
+<p><strong>定理</strong>：如果 <span class="math inline">\(x\)</span> 满足以下 <strong>狄利克雷条件 (Dirichlet conditions)</strong>：</p>
+<ol type="1">
+<li><span class="math inline">\(x\)</span> 是有界的，即 <span class="math inline">\(\|x\|_\infty &lt; \infty\)</span>；</li>
+<li><span class="math inline">\(x\)</span> 是分段单调的，即存在周期的有限划分，使得 <span class="math inline">\(x\)</span> 在每个区间段上都是单调的（有限个极值点）；</li>
+<li>在任何有限区间内，只有有限个不连续点，在这些不连续点上，函数是有限值。</li>
+</ol>
+<p>那么：</p>
+<p><span class="math display">\[\lim_{N \to \infty} S_N(x)(t) = \frac{x(t_+) + x(t_-)}{2}\]</span></p>
+<p><strong>示例：</strong></p>
+<p><span class="math display">\[\lim_{N \to \infty} S_N(x)(t) = \begin{cases} 1, &amp; t \in (n, n + \frac{1}{2}), \\ -1, &amp; t \in (n - \frac{1}{2}, n), \\ 0, &amp; t = \frac{n}{2}, \end{cases} \quad n \in \mathbb{Z}\]</span></p>
+</section>
+<section id="toc3" class="level2">
+<h2 class="anchored" data-anchor-id="toc3">目录</h2>
+<ul>
+<li><a href="#sec31">1. 线性时不变系统对复指数信号的响应</a></li>
+<li><a href="#sec32">2. 连续时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec33">3. 连续时间傅里叶级数的收敛</a></li>
+<li><a href="#sec34"><strong>4. 连续时间傅里叶级数的性质</strong></a></li>
+<li><a href="#35">5. 离散时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec36">6. 离散时间傅里叶级数的性质</a></li>
+<li><a href="#sec37">7. 傅里叶级数与线性时不变系统</a></li>
+<li><a href="#sec38">8. 滤波</a>
+<ul>
+<li><a href="#sec381">频率成形滤波器</a></li>
+<li><a href="#sec382">频率选择性滤波器</a></li>
+<li><a href="#sec383">用微分方程描述的连续时间滤波器</a></li>
+<li><a href="#sec383">用差分方程描述的离散时间滤波器</a></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="sec34" class="level1">
+<h1>4. 连续时间傅里叶级数的性质</h1>
+<!-- ## CT 傅里叶级数的性质
+
+傅里叶级数建立了周期函数与双无限序列之间的对应关系：
+
+$$
+x \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x} \quad \text { 或 } \quad x(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[k]
+$$
+
+**线性 (Linearity)**
+如果 $x, y$ 具有相同的周期 $T$，那么它们的线性组合 $a x+b y$ 也是，并且：
+
+$$
+\widehat{a x+b y}=a \hat{x}+b \hat{y}
+$$
+
+证明：
+
+$$
+\begin{aligned}
+(\widehat{a x+b y})[k] & =\left\langle a x+b y, e^{j k \omega_{0} t}\right\rangle \\
+& =a\left\langle x, e^{j k \omega_{0} t}\right\rangle+b\left\langle y, e^{j k \omega_{0} t}\right\rangle \\
+& =a \hat{x}[k]+b \hat{y}[k]
+\end{aligned}
+$$
+
+## CT 傅里叶级数的性质
+
+**时移 (Time shifting)**
+如果 $x$ 周期为 $T$ 且 $\omega_{0}=\frac{2 \pi}{T}$，
+
+$$
+\widehat{\tau_{t_{0}} x}=E_{-\omega_{0} t_{0}} \hat{x} \quad \text { 或 } \quad x\left(t-t_{0}\right) \stackrel{\mathcal{F S}}{\longleftrightarrow} e^{-j k \omega_{0} t_{0}} \hat{x}[k]
+$$
+
+其中 $\left(E_{a} \hat{x}\right)[k]=e^{j a k} \hat{x}[k]$
+**时移 ⟺ 频率上的线性相位变化**
+
+证明：
+
+$$
+\begin{aligned}
+\left(\widehat{\tau_{t_{0}}} x\right)[k] & =\left\langle\tau_{t_{0}} x, e^{j k \omega_{0} t}\right\rangle=\left\langle x, \tau_{-t_{0}} e^{j k \omega_{0} t}\right\rangle \\
+& =\left\langle x, e^{j k \omega_{0}\left(t+t_{0}\right)}\right\rangle=\left\langle x, e^{j k \omega_{0} t_{0}} e^{j k \omega_{0} t}\right\rangle \\
+& =e^{-j k \omega_{0} t_{0}}\left\langle x, e^{j k \omega_{0} t}\right\rangle=e^{-j k \omega_{0} t_{0}} \hat{x}[k]=\left(E_{-\omega_{0} t_{0}} \hat{x}\right)[k]
+\end{aligned}
+$$
+
+例子：$\cos (t)=\frac{1}{2} e^{j t}+\frac{1}{2} e^{-j t}, \sin (t)=\cos \left(t-\frac{\pi}{2}\right)=\frac{-j}{2} e^{j t}+\frac{j}{2} e^{-j t}$
+
+<div style="position:absolute; right:-150px; bottom:-40px; font-size:0.6em;">
+[返回目录](#toc4)
+</div> -->
+<!-- ## 傅里叶级数 (回顾)
+
+周期为 $T$ 且 $\omega_{0}=\frac{2 \pi}{T}$ 的信号 $x$ 的傅里叶级数：
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+$$
+
+周期函数与双无限序列之间的对应关系；时域 vs. 频域：
+
+$$
+x \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x} \quad \text { 或 } \quad x(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[k]
+$$
+
+- $\hat{x}$ 由 $x$ 在“基” $\left\{e^{j k \omega_{0} t}\right\}$ 下的展开系数组成
+- 仅凭 $\hat{x}$ 不能唯一确定 $x$，
+- 还需要知道基函数，或者等价地，知道周期 $T$ 或基频 $\omega_{0}$
+- 相同的系数配合不同的基（周期）会给出不同的函数（稍后详述）
+ -->
+<section id="线性-linearity" class="level2">
+<h2 class="anchored" data-anchor-id="线性-linearity">线性 (Linearity)</h2>
+<p>如果 <span class="math inline">\(x, y\)</span> 具有相同的周期 <span class="math inline">\(T\)</span>，那么它们的线性组合 <span class="math inline">\(a x+b y\)</span> 也是，并且：</p>
+<p><span class="math display">\[
+\widehat{a x+b y}=a \hat{x}+b \hat{y}
+\]</span></p>
+<p>证明：</p>
+<p><span class="math display">\[
+\begin{aligned}
+(\widehat{a x+b y})[k] &amp; =\left\langle a x+b y, e^{j k \omega_{0} t}\right\rangle \\
+&amp; =a\left\langle x, e^{j k \omega_{0} t}\right\rangle+b\left\langle y, e^{j k \omega_{0} t}\right\rangle \\
+&amp; =a \hat{x}[k]+b \hat{y}[k]
+\end{aligned}
+\]</span></p>
+<p>另一种证明思路：</p>
+<p><span class="math display">\[
+\left.\begin{array}{l}
+x(t)=\sum_{k} \hat{x}[k] e^{j k \omega_{0} t} \\
+y(t)=\sum_{k} \hat{y}[k] e^{j k \omega_{0} t}
+\end{array}\right\} \Longrightarrow a x(t)+b y(t)=\sum_{k}(a \hat{x}[k]+b \hat{y}[k]) e^{j k \omega_{0} t}
+\]</span></p>
+</section>
+<section id="时移-time-shifting" class="level2">
+<h2 class="anchored" data-anchor-id="时移-time-shifting">时移 (Time Shifting)</h2>
+<p>如果 <span class="math inline">\(x\)</span> 周期为 <span class="math inline">\(T\)</span> 且 <span class="math inline">\(\omega_{0}=\frac{2 \pi}{T}\)</span>，</p>
+<p><span class="math display">\[
+\widehat{\tau_{t_{0}} x}=E_{-\omega_{0} t_{0}} \hat{x} \quad \text { 或 } \quad x\left(t-t_{0}\right) \stackrel{\mathcal{F S}}{\longleftrightarrow} e^{-j k \omega_{0} t_{0}} \hat{x}[k]
+\]</span></p>
+<p>其中 <span class="math inline">\(\left(E_{a} \hat{x}\right)[k]=e^{j a k} \hat{x}[k]\)</span></p>
+<p><strong>时移 ⟺ 频率上的线性相位变化</strong></p>
+<p>证明：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\left(\widehat{\tau_{t_{0}}} x\right)[k] &amp; =\left\langle\tau_{t_{0}} x, e^{j k \omega_{0} t}\right\rangle=\left\langle x, \tau_{-t_{0}} e^{j k \omega_{0} t}\right\rangle \\
+&amp; =\left\langle x, e^{j k \omega_{0}\left(t+t_{0}\right)}\right\rangle=\left\langle x, e^{j k \omega_{0} t_{0}} e^{j k \omega_{0} t}\right\rangle \\
+&amp; =e^{-j k \omega_{0} t_{0}}\left\langle x, e^{j k \omega_{0} t}\right\rangle=e^{-j k \omega_{0} t_{0}} \hat{x}[k]=\left(E_{-\omega_{0} t_{0}} \hat{x}\right)[k]
+\end{aligned}
+\]</span></p>
+<p>例子：<span class="math inline">\(\cos (t)=\frac{1}{2} e^{j t}+\frac{1}{2} e^{-j t}, \sin (t)=\cos \left(t-\frac{\pi}{2}\right)=\frac{-j}{2} e^{j t}+\frac{j}{2} e^{-j t}\)</span></p>
+</section>
+<section id="频移-frequency-shifting" class="level2">
+<h2 class="anchored" data-anchor-id="频移-frequency-shifting">频移 (Frequency Shifting)</h2>
+<p>如果 <span class="math inline">\(x\)</span> 周期为 <span class="math inline">\(T\)</span> 且 <span class="math inline">\(\omega_{0}=\frac{2 \pi}{T}\)</span>，</p>
+<p><span class="math display">\[
+\widehat{E_{m \omega_{0}} x}=\tau_{m} \hat{x} \quad \text { 或 } \quad e^{j m \omega_{0} t} x(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[k-m]
+\]</span></p>
+<p>其中 <span class="math inline">\(\left(E_{a} x\right)(t)=e^{j a t} x(t)\)</span></p>
+<p><strong>谐波指数调制 ⟹ 频移</strong></p>
+<p>证明：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\left(\widehat{E_{m \omega_{0}}} x\right)[k] &amp; =\left\langle E_{m \omega_{0}} x, e^{j k \omega_{0} t}\right\rangle=\left\langle x, E_{-m \omega_{0}} e^{j k \omega_{0} t}\right\rangle \\
+&amp; =\left\langle x, e^{j(k-m) \omega_{0} t}\right\rangle=\hat{x}[k-m]
+\end{aligned}
+\]</span></p>
+<p>注意：用非谐波指数信号进行调制可能会改变基频，甚至导致非周期信号。</p>
+</section>
+<section id="频移示例" class="level2">
+<h2 class="anchored" data-anchor-id="频移示例">频移示例</h2>
+<p>例子：<span class="math inline">\(x(t)=1+\cos \left(\omega_{0} t\right)=1+\frac{1}{2} e^{j \omega_{0} t}+\frac{1}{2} e^{-j \omega_{0} t}\)</span></p>
+<p><span class="math display">\[
+y(t)=e^{j 3 \omega_{0} t} x(t)=e^{j 3 \omega_{0} t}+\frac{1}{2} e^{j 4 \omega_{0} t}+\frac{1}{2} e^{j 2 \omega_{0} t}
+\]</span></p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-07_3.png" class="img-fluid"></p>
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-07.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-07_4.png" class="img-fluid"></p>
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-07_2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="频移示例-1" class="level2">
+<h2 class="anchored" data-anchor-id="频移示例-1">频移示例</h2>
+<p>例子：<span class="math inline">\(x(t)=1+\cos \left(\omega_{0} t\right)=1+\frac{1}{2} e^{j \omega_{0} t}+\frac{1}{2} e^{-j \omega_{0} t}\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+z(t)=\cos \left(3 \omega_{0} t\right) x(t)=\operatorname{Re} y(t) &amp; =\frac{1}{2} e^{j 3 \omega_{0} t}+\frac{1}{4} e^{j 4 \omega_{0} t}+\frac{1}{4} e^{j 2 \omega_{0} t} \\
+&amp; +\frac{1}{2} e^{-j 3 \omega_{0} t}+\frac{1}{4} e^{-j 4 \omega_{0} t}+\frac{1}{4} e^{-j 2 \omega_{0} t}
+\end{aligned}
+\]</span></p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-08_3.png" class="img-fluid"></p>
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-08_2.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-08_4.png" class="img-fluid"></p>
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-08.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="时间反转-time-reversal" class="level2">
+<h2 class="anchored" data-anchor-id="时间反转-time-reversal">时间反转 (Time Reversal)</h2>
+<p>如果 <span class="math inline">\(x\)</span> 周期为 <span class="math inline">\(T\)</span>，</p>
+<p><span class="math display">\[
+\widehat{R x}=R \hat{x} \quad \text { 或 } \quad x(-t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[-k]
+\]</span></p>
+<p>时间反转与傅里叶级数可交换</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-09.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>证明：</p>
+<p><span class="math display">\[
+(\widehat{R x})[k]=\left\langle R x, e^{j k \omega_{0} t}\right\rangle=\left\langle x, R e^{j k \omega_{0} t}\right\rangle=\left\langle x, e^{-j k \omega_{0} t}\right\rangle=\hat{x}[-k]
+\]</span></p>
+<p>推论：傅里叶级数保持奇/偶对称性，即 <span class="math inline">\(x\)</span> 偶 <span class="math inline">\(\Longleftrightarrow \hat{x}\)</span> 偶，<span class="math inline">\(\quad x\)</span> 奇 <span class="math inline">\(\Longleftrightarrow \hat{x}\)</span> 奇</p>
+</section>
+<section id="时间缩放-time-scaling" class="level2">
+<h2 class="anchored" data-anchor-id="时间缩放-time-scaling">时间缩放 (Time Scaling)</h2>
+<p>如果 <span class="math inline">\(x\)</span> 周期为 <span class="math inline">\(T\)</span>，那么 <span class="math inline">\(S_{a} x\)</span> 周期为 <span class="math inline">\(T / a\)</span></p>
+<p><span class="math display">\[
+\widehat{S_{a} x}=\hat{x} \quad \text { 或 } \quad x(a t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \hat{x}[k]
+\]</span></p>
+<p>时间缩放保持傅里叶系数不变，但改变基频</p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:40%;">
+<span class="math display">\[\begin{aligned}
+x(t) &amp; =\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t} \\
+x(a t) &amp; =\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k\left(a \omega_{0}\right) t}
+\end{aligned}\]</span>
+</div><div class="column" style="width:30%;">
+<p><br> <img src="imglink/timescaling.png" class="img-fluid quarto-figure quarto-figure-left"></p>
+</div><div class="column" style="width:30%;">
+
+</div>
+</div>
+</section>
+<section id="时间缩放" class="level2">
+<h2 class="anchored" data-anchor-id="时间缩放">时间缩放</h2>
+<p><span class="math display">\[
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<p>对比 <span class="math inline">\(\quad x(a t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k\left(a \omega_{0}\right) t}\)</span></p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-11.png" class="img-fluid"></p>
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-11_4.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-11_2.png" class="img-fluid"></p>
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-11_3.png" class="img-fluid"></p>
+</div>
+</div>
+<p>时域压缩 ⟺ 频域（基频）扩展</p>
+<p>时域扩展 ⟹ 频域（基频）压缩</p>
+</section>
+<section id="微分-differentiation" class="level2">
+<h2 class="anchored" data-anchor-id="微分-differentiation">微分 (Differentiation)</h2>
+<p>如果 <span class="math inline">\(x\)</span> 周期为 <span class="math inline">\(T\)</span>，那么其导数 <span class="math inline">\(x^{\prime}\)</span> 也是，且</p>
+<p><span class="math display">\[
+\widehat{x^{\prime}}=M_{\omega_{0}} \hat{x} \quad \text { 或 } \quad x^{\prime}(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} j k \omega_{0} \hat{x}[k]
+\]</span></p>
+<p>其中 <span class="math inline">\(\left(M_{a} \hat{x}\right)[k]=j a k \hat{x}[k]\)</span> <strong>时域微分 ⟹ 频域乘以 <span class="math inline">\(j k \omega_{0}\)</span></strong></p>
+<p>证明：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\widehat{x^{\prime}}[k] &amp; =\frac{1}{T} \int_{T} x^{\prime}(t) e^{-j k \omega_{0} t} d t \\
+&amp; =\left.\frac{1}{T}\left[x(t) e^{-j k \omega_{0} t}\right]\right|_{0} ^{T}+j k \omega_{0}\left(\frac{1}{T} \int_{T} x(t) e^{-j k \omega_{0} t} d t\right)=j k \omega_{0} \hat{x}[k]
+\end{aligned}
+\]</span></p>
+<p>或者，逐项求导：</p>
+<p><span class="math display">\[
+x(t)=\sum_{k} \hat{x}[k] e^{j k \omega_{0} t} \Longrightarrow x^{\prime}(t)=\sum_{k} j k \omega_{0} \hat{x}[k] e^{-j k \omega_{0} t}
+\]</span></p>
+</section>
+<section id="积分-integration" class="level2">
+<h2 class="anchored" data-anchor-id="积分-integration">积分 (Integration)</h2>
+<p>如果 <span class="math inline">\(x\)</span> 周期为 <span class="math inline">\(T\)</span> 且有傅里叶级数</p>
+<p><span class="math display">\[
+x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \omega_{0} t}
+\]</span></p>
+<p>逐项积分：</p>
+<p><span class="math display">\[
+\begin{aligned}
+y(t) \triangleq \int_{0}^{t} x(s) d s &amp; =\hat{x}[0] t+\sum_{k \neq 0} \hat{x}[k] \frac{e^{j k \omega_{0} t}-1}{j k \omega_{0}} \\
+&amp; =\hat{x}[0] t-\sum_{k \neq 0} \frac{\hat{x}[k]}{j k \omega_{0}}+\sum_{k \neq 0} \frac{1}{j k \omega_{0}} \hat{x}[k] e^{j k \omega_{0} t}
+\end{aligned}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(y\)</span> 是周期的，当且仅当 <span class="math inline">\(\hat{x}[0]=0\)</span>，即 <span class="math inline">\(x\)</span> 没有直流分量</p></li>
+<li><p>如果 <span class="math inline">\(\hat{x}[0]=0, y\)</span> 周期为 <span class="math inline">\(T\)</span>， <span class="math inline">\(\hat{y}[k]=\frac{1}{j k \omega_{0}} \hat{x}[k] \quad \text { 对于 } k \neq 0\)</span></p></li>
+<li><p><strong><span class="math inline">\(\sum_{k \neq 0} \frac{\hat{x}[k]}{j k \omega_{0}}\)</span> 去哪里了?</strong></p></li>
+</ul>
+<div class="fragment">
+<section id="直流分量" class="level3">
+<h3 class="anchored" data-anchor-id="直流分量">直流分量</h3>
+</section>
+</div>
+</section>
+<section id="例子三角波" class="level2">
+<h2 class="anchored" data-anchor-id="例子三角波">例子：三角波</h2>
+<p><img src="imglink/9070b8cb-a2bd-4c7b-959f-e6b33147f2c9-14.png" class="img-fluid"></p>
+</section>
+<section id="乘法-multiplication" class="level2">
+<h2 class="anchored" data-anchor-id="乘法-multiplication">乘法 (Multiplication)</h2>
+<p>如果 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 具有相同的周期 <span class="math inline">\(T\)</span>，那么它们的乘积 <span class="math inline">\(x y\)</span> 也是，且</p>
+<p><span class="math display">\[
+\begin{gathered}
+\widehat{x y}=\hat{x} * \hat{y} \quad \text { 或 } \quad x(t) y(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} \sum_{m=-\infty}^{\infty} \hat{x}[m] \hat{y}[k-m] \\
+\text { 时域乘法 } \Longleftrightarrow \text { 频域卷积 }
+\end{gathered}
+\]</span></p>
+<p>证明：</p>
+<p><span class="math display">\[
+\begin{aligned}
+x(t) y(t) &amp; =\left(\sum_{m=-\infty}^{\infty} \hat{x}[m] e^{j m \omega_{0} t}\right)\left(\sum_{\ell=-\infty}^{\infty} \hat{y}[\ell] e^{j \ell \omega_{0} t}\right) \\
+&amp; =\sum_{m=-\infty}^{\infty} \sum_{\ell=-\infty}^{\infty} \hat{x}[m] \hat{y}[\ell] e^{j(m+\ell) \omega_{0} t} \\
+&amp; =\sum_{k=-\infty}^{\infty}\left(\sum_{m=-\infty}^{\infty} \hat{x}[m] \hat{y}[k-m]\right) e^{j k \omega_{0} t} \quad(k=m+\ell)
+\end{aligned}
+\]</span></p>
+</section>
+<section id="周期卷积-periodic-convolution" class="level2">
+<h2 class="anchored" data-anchor-id="周期卷积-periodic-convolution">周期卷积 (Periodic Convolution)</h2>
+<p>具有相同周期 <span class="math inline">\(T\)</span> 的 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 的周期卷积 <span class="math inline">\(x * y\)</span> 定义为：</p>
+<p><span class="math display">\[
+(x * y)(t)=\int_{T} x(\tau) y(t-\tau) d \tau
+\]</span></p>
+<p>性质：</p>
+<ul>
+<li>交换律</li>
+</ul>
+<p><span class="math display">\[
+x * y=y * x
+\]</span></p>
+<ul>
+<li>结合律</li>
+</ul>
+<p><span class="math display">\[
+(x * y) * z=x *(y * z)
+\]</span></p>
+<ul>
+<li>双线性</li>
+</ul>
+<p><span class="math display">\[
+\left(\sum_{i} a_{i} x_{i}\right) *\left(\sum_{j} b_{j} y_{j}\right)=\sum_{i, j} a_{i} b_{j}\left(x_{i} * y_{j}\right)
+\]</span></p>
+</section>
+<section id="周期卷积性质" class="level2">
+<h2 class="anchored" data-anchor-id="周期卷积性质">周期卷积性质</h2>
+<p>傅里叶系数满足</p>
+<p><span class="math display">\[
+\widehat{x * y}=T \hat{x} \hat{y} \quad \text { 或 } \quad(x * y)(t) \stackrel{\mathcal{F S}}{\longleftrightarrow} T \hat{x}[k] \hat{y}[k]
+\]</span></p>
+<p><strong>时域卷积 ⟹ 频域乘法</strong></p>
+<p>证明：</p>
+<p><span class="math display">\[
+\begin{aligned}
+(\widehat{x * y})[k] &amp; =\frac{1}{T} \int_{T}(x * y)(t) e^{-j k \omega_{0} t} d t \\
+&amp; =\frac{1}{T} \int_{T}\left(\int_{T} x(\tau) y(t-\tau) d \tau\right) e^{-j k \omega_{0} t} d t \\
+&amp; =\int_{T} x(\tau)\left(\frac{1}{T} \int_{T} y(t-\tau) e^{-j k \omega_{0} t} d t\right) d \tau \\
+&amp; =\int_{T} x(\tau)\left(e^{-j k \omega_{0} \tau} \hat{y}[k]\right) d \tau=T \hat{x}[k] \hat{y}[k]
+\end{aligned}
+\]</span></p>
+</section>
+<section id="共轭与对称-conjugation-and-symmetry" class="level2">
+<h2 class="anchored" data-anchor-id="共轭与对称-conjugation-and-symmetry">共轭与对称 (Conjugation and Symmetry)</h2>
+<p>如果 <span class="math inline">\(x\)</span> 周期为 <span class="math inline">\(T\)</span>，那么其复共轭 <span class="math inline">\(\bar{x}=x^{*}\)</span> 也是，且</p>
+<p><span class="math display">\[
+\widehat{x^{*}}=R \hat{x}^{*} \quad \text { 或 } \quad x^{*}(t) \stackrel{\mathcal{F S}}{\longleftrightarrow}(\hat{x}[-k])^{*}
+\]</span></p>
+<p>证明：</p>
+<p><span class="math display">\[
+\widehat{x^{*}}[k]=\left\langle x^{*}, e^{j k \omega_{0} t}\right\rangle=\overline{\left\langle x, e^{-j k \omega_{0} t}\right\rangle}=\overline{\hat{x}[-k]}
+\]</span></p>
+<p>推论：如果 <span class="math inline">\(x\)</span> 是实信号，则 <span class="math inline">\(\hat{x}\)</span> 是共轭对称的，即</p>
+<p><span class="math display">\[
+\hat{x}[-k]=\overline{\hat{x}[k]}
+\]</span></p>
+<p>推论：如果 <span class="math inline">\(x\)</span> 是实偶信号，则 <span class="math inline">\(\hat{x}\)</span> 也是实偶信号</p>
+<p><span class="math display">\[
+\hat{x}[k]=\hat{x}[-k]=\overline{\hat{x}[k]}
+\]</span></p>
+<p>推论：如果 <span class="math inline">\(x\)</span> 是实奇信号，则 <span class="math inline">\(\hat{x}\)</span> 是纯虚奇信号</p>
+<p><span class="math display">\[
+-\hat{x}[k]=\hat{x}[-k]=\overline{\hat{x}[k]}
+\]</span></p>
+</section>
+<section id="周期冲激串狄拉克梳状函数" class="level2">
+<h2 class="anchored" data-anchor-id="周期冲激串狄拉克梳状函数">周期冲激串（狄拉克梳状函数）</h2>
+<p><span class="math display">\[
+x(t)=\sum_{k=-\infty}^{\infty} \delta(t-k T)
+\]</span></p>
+<p><img src="imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-23.png" class="img-fluid"></p>
+<p>对于“足够好”的函数，例如<span class="math inline">\(\phi\)</span>,具有紧支撑的无限可微函数：</p>
+<p><span class="math display">\[
+\begin{gathered}
+(\phi * x)(t)=\sum_{k=-\infty}^{\infty} \phi(t-k T) \\
+\int_{\mathbb{R}} \phi(t) x(t) d t=\sum_{k=-\infty}^{\infty} \int_{\mathbb{R}} \phi(t) \delta(t-k T) d t=\sum_{k=-\infty}^{\infty} \phi(k T)
+\end{gathered}
+\]</span></p>
+</section>
+<section id="周期冲激串狄拉克梳状函数-1" class="level2">
+<h2 class="anchored" data-anchor-id="周期冲激串狄拉克梳状函数-1">周期冲激串（狄拉克梳状函数）</h2>
+<p><span class="math display">\[
+x(t)=\sum_{k=-\infty}^{\infty} \delta(t-k T)
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-24.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p>傅里叶系数：</p>
+<p><span class="math display">\[
+\hat{x}[k]=\frac{1}{T} \int_{-T / 2}^{T / 2} \delta(t) e^{-j k \frac{2 \pi}{T} t} d t=\frac{1}{T}
+\]</span></p>
+<p>傅里叶级数：</p>
+<p><span class="math display">\[
+x(t)=\sum_{k=-\infty}^{\infty} \frac{1}{T} e^{j k \frac{2 \pi}{T} t}=\lim _{N \rightarrow \infty} \frac{1}{T} D_{N}\left(\frac{2 \pi}{T} t\right)
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p>其中 <span class="math inline">\(D_{N}\)</span> 是狄利克雷核。</p>
+<p><span class="math display">\[
+D_{N}(t)=\sum_{k=-N}^{N} e^{j k t}=\frac{\sin \left(\left(N+\frac{1}{2}\right) t\right)}{\sin (t / 2)}
+\]</span></p>
+</div>
+</div>
+</section>
+<section id="周期冲激串狄拉克梳状函数-2" class="level2">
+<h2 class="anchored" data-anchor-id="周期冲激串狄拉克梳状函数-2">周期冲激串（狄拉克梳状函数）</h2>
+<p><span class="math display">\[
+x(t)=\sum_{k=-\infty}^{\infty} \delta(t-k T)=\sum_{k=-\infty}^{\infty} \frac{1}{T} e^{j k \frac{2 \pi}{T} t}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-25_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-25.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<!-- ## 周期冲激列
+
+$$
+\begin{aligned}
+\int_{\mathbb{R}} \phi(t) x(t) d t & =\lim _{N \rightarrow \infty} \frac{1}{T} \int_{\mathbb{R}} \phi(t) D_{N}\left(-\frac{2 \pi}{T} t\right) d t \quad\left(D_{N} \text { is even }\right) \\
+& =\lim _{N \rightarrow \infty} \frac{1}{2 \pi} \int_{\mathbb{R}} \phi\left(-\frac{T}{2 \pi} t\right) D_{N}(t) d t \\
+& =\lim _{N \rightarrow \infty} \sum_{k=-\infty}^{\infty} \frac{1}{2 \pi} \int_{(2 k-1) \pi}^{(2 k+1) \pi} \phi\left(-\frac{T}{2 \pi} t\right) D_{N}(t) d t \\
+& =\sum_{k=-\infty}^{\infty} \lim _{N \rightarrow \infty} \frac{1}{2 \pi} \int_{-\pi}^{\pi} \phi\left(\frac{T}{2 \pi}(2 \pi k-t)\right) D_{N}(t-2 k \pi) d t \\
+& \left.=\sum_{k=-\infty}^{\infty} \lim _{N \rightarrow \infty} \frac{1}{2 \pi} \int_{-\pi}^{\pi} \phi\left(\frac{T}{2 \pi}(2 \pi k-t)\right)_{\left(D_{N}\right.} \text { is } 2 \pi \text {-periodic }\right) \\
+& =\sum_{k=-\infty}^{\infty} \lim _{N \rightarrow \infty} S_{N}(\phi)(k T)=\sum_{k=-\infty}^{\infty} \phi(k T)
+\end{aligned}
+$$ -->
+</section>
+<section id="与周期方波的关系" class="level2">
+<h2 class="anchored" data-anchor-id="与周期方波的关系">与周期方波的关系</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-27_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-27.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p><span class="math display">\[
+\begin{aligned}
+r^{\prime}(t) &amp; =x\left(t+T_{1}\right)-x\left(t-T_{1}\right) \\
+\widehat{r^{\prime}}[k] &amp; =\left(e^{j k \omega_{0} T_{1}}-e^{-j k \omega_{0} T_{1}}\right) \hat{x}[k]=\frac{2 j \sin \left(k \omega_{0} T_{1}\right)}{T} \\
+\hat{r}[k] &amp; =\frac{1}{j k \omega_{0}} \widehat{r^{\prime}}[k]=\frac{\sin \left(k \omega_{0} T_{1}\right)}{k \pi}, \quad k \neq 0
+\end{aligned}
+\]</span></p>
+</section>
+<section id="toc4" class="level2">
+<h2 class="anchored" data-anchor-id="toc4">目录</h2>
+<ul>
+<li><a href="#sec31">1. 线性时不变系统对复指数信号的响应</a></li>
+<li><a href="#sec32">2. 连续时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec33">3. 连续时间傅里叶级数的收敛</a></li>
+<li><a href="#sec34">4. 连续时间傅里叶级数的性质</a></li>
+<li><a href="#35"><strong>5. 离散时间周期信号的傅里叶级数表示</strong></a></li>
+<li><a href="#sec36">6. 离散时间傅里叶级数的性质</a></li>
+<li><a href="#sec37">7. 傅里叶级数与线性时不变系统</a></li>
+<li><a href="#sec38">8. 滤波</a>
+<ul>
+<li><a href="#sec381">频率成形滤波器</a></li>
+<li><a href="#sec382">频率选择性滤波器</a></li>
+<li><a href="#sec383">用微分方程描述的连续时间滤波器</a></li>
+<li><a href="#sec383">用差分方程描述的离散时间滤波器</a></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="sec35" class="level1">
+<h1>5. 离散时间周期信号的傅里叶级数表示</h1>
+<section id="dt-周期信号" class="level2">
+<h2 class="anchored" data-anchor-id="dt-周期信号">DT 周期信号</h2>
+<p>回顾：DT 信号是周期的，周期为 <span class="math inline">\(N\)</span>，如果</p>
+<p><span class="math display">\[
+x=\tau_{N} x \quad \text { 或 } \quad x[n]=x[n+N], \forall n \in \mathbb{Z}
+\]</span></p>
+<ul>
+<li>基波周期 <span class="math inline">\(N\)</span>：最小的正周期</li>
+<li>基频 <span class="math inline">\(\begin{cases}\frac{2 \pi}{N}, &amp; \text { 如果 } N&gt;1 \\ 0, &amp; \text { 如果 } N=1\end{cases}\)</span></li>
+</ul>
+<p>复指数信号 <span class="math inline">\(\phi_{N}^{k}[n]=e^{j k \frac{2 \pi}{N} n}=e^{j k \omega_{0} n}\)</span> 是周期的，具有：</p>
+<ul>
+<li>周期 <span class="math inline">\(N\)</span> 和基波周期 <span class="math inline">\(\frac{N}{\operatorname{gcd}(N, k)}\)</span></li>
+<li>基频 <span class="math inline">\(\omega_{k}= \begin{cases}0, &amp; \text { 如果 } N \mid k \\ \omega_{0} \cdot \operatorname{gcd}(k, N), &amp; \text { 其他 }\end{cases}\)</span>，总是 <span class="math inline">\(\omega_{0}=\frac{2 \pi}{N}\)</span> 的整数倍</li>
+</ul>
+</section>
+<section id="dt-傅里叶基的有限性" class="level2">
+<h2 class="anchored" data-anchor-id="dt-傅里叶基的有限性">DT 傅里叶基的有限性</h2>
+<p>傅里叶级数用谐波相关的复指数 <span class="math inline">\(\phi_{N}^{k}\)</span> 表示 <span class="math inline">\(N\)</span>-周期信号</p>
+<p><span class="math display">\[
+x=\sum_{k} c_{k} \phi_{N}^{k}, \quad \text { 或 } \quad x[n]=\sum_{k} c_{k} \phi_{N}^{k}[n]=\sum_{k} c_{k} e^{j k \frac{2 \pi}{N} n}
+\]</span></p>
+<p>与 CT 情况的关键区别：<span class="math inline">\(\phi_{N}^{k+r N}=\phi_{N}^{k}\)</span>，所以只有 <span class="math inline">\(N\)</span> 个不同的 <span class="math inline">\(\phi_{N}^{k}\)</span>，傅里叶基是有限的，即</p>
+<p><span class="math display">\[
+\left\{\phi_{N}^{k}: k \in \mathbb{Z}\right\}=\left\{\phi_{N}^{k}: k \in[N]\right\}
+\]</span></p>
+<p>其中 <span class="math inline">\([N]=\{0,1, \ldots, N-1\}\)</span>。</p>
+<p>证明：对于 <span class="math inline">\(r \in \mathbb{Z}\)</span>， <span class="math display">\[
+\phi_{N}^{k+r N}[n]=e^{j(k+r N) \frac{2 \pi}{N} n}=e^{j k \frac{2 \pi}{N} n} e^{j r 2 \pi n}=e^{j k \frac{2 \pi}{N} n}=\phi_{N}^{k}[n]
+\]</span></p>
+</section>
+<section id="dt-傅里叶基的有限性-图示" class="level2">
+<h2 class="anchored" data-anchor-id="dt-傅里叶基的有限性-图示">DT 傅里叶基的有限性 (图示)</h2>
+<p><span class="math inline">\(\phi_{N}^{k}\)</span> 示例， <span class="math inline">\(N=8\)</span> 和 <span class="math inline">\(k=0,1, \ldots, 8\)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/finitness.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="傅里叶系数的确定" class="level2">
+<h2 class="anchored" data-anchor-id="傅里叶系数的确定">傅里叶系数的确定</h2>
+<p>周期序列 <span class="math inline">\(x[n]\)</span>，其周期为 <span class="math inline">\(N\)</span>，<span class="math inline">\(x[n]\)</span>可以表示为 <span class="math display">\[
+x=\sum_{k \in[N]} a_{k} e^{j k \frac{2 \pi}{N} n}
+\]</span>这些系数 <span class="math inline">\(a_k\)</span>取值如何确定？这个问题实质上就是要求得一组线性联立方程的解。 显然：</p>
+<p><span class="math display">\[
+\begin{aligned}
+x[0] &amp;= \sum_{k \in[N]} a_k \\
+x[1] &amp;= \sum_{k \in[N]} a_k e^{j 2\pi k / N} \\
+&amp;\vdots \\
+x[N-1] &amp;= \sum_{k \in[N]} a_k e^{j 2\pi k (N-1) / N}
+\end{aligned}
+\]</span></p>
+<p>这样，当 <span class="math inline">\(k\)</span> 在 <span class="math inline">\(N\)</span> 个连续整数值变化时，对应于 <span class="math inline">\(N\)</span> 个未知系数 <span class="math inline">\(a_k\)</span> 的 <span class="math inline">\(N\)</span> 个线性方程。上面的<span class="math inline">\(N\)</span>个方程组相互独立，可以利用<span class="math inline">\(x[0]\)</span>，<span class="math inline">\(x[1]\)</span>,…<span class="math inline">\(x[N-1]\)</span>求出系数<span class="math inline">\(a_k\)</span></p>
+</section>
+<section id="谐波的正交归一性" class="level2">
+<h2 class="anchored" data-anchor-id="谐波的正交归一性">谐波的正交归一性</h2>
+<p>DT 傅里叶级数</p>
+<p><span class="math display">\[
+x=\sum_{k \in[N]} \hat{x}[k] \phi_{N}^{k}, \quad \text { 或 } \quad x[n]=\sum_{k \in[N]} \hat{x}[k] e^{j k \frac{2 \pi}{N} n}
+\]</span></p>
+<p>求和可以在任意 <span class="math inline">\(N\)</span> 个连续整数上进行。 定义两个周期为 <span class="math inline">\(N\)</span> 的信号的内积为</p>
+<p><span class="math display">\[
+\langle x, y\rangle=\frac{1}{N} \sum_{n \in[N]} x[n] \overline{y[n]}
+\]</span></p>
+<p>这与 <span class="math inline">\(\mathbb{C}^{N}\)</span> 中的内积相同（差一个因子 <span class="math inline">\(N^{-1}\)</span>）。 <span class="math inline">\(\left\{\phi_{N}^{k}: k \in[N]\right\}\)</span> 是正交归一函数系</p>
+<p><span class="math display">\[
+\left\langle\phi_{N}^{k}, \phi_{N}^{m}\right\rangle=\delta_{k m}=\delta[k-m]
+\]</span></p>
+</section>
+<section id="谐波正交归一性的证明" class="level2">
+<h2 class="anchored" data-anchor-id="谐波正交归一性的证明">谐波正交归一性的证明</h2>
+<p><span class="math display">\[
+\left\langle\phi_{N}^{k}, \phi_{N}^{m}\right\rangle=\frac{1}{N} \sum_{n \in[N]} e^{j k \frac{2 \pi}{N} n} e^{-j m \frac{2 \pi}{N} n}=\frac{1}{N} \sum_{n=0}^{N-1} e^{j(k-m) \frac{2 \pi}{N} n}
+\]</span></p>
+<p>如果 <span class="math inline">\(k=m\)</span>，</p>
+<p><span class="math display">\[
+\left\langle\phi_{N}^{k}, \phi_{N}^{m}\right\rangle=\frac{1}{N} \sum_{k=0}^{N-1} 1=1
+\]</span></p>
+<p>如果 <span class="math inline">\(k \neq m\)</span>，由于 <span class="math inline">\(|k-m| \leq N-1, e^{j(k-m) \frac{2 \pi}{N}} \neq 1\)</span>。利用等比数列求和公式：</p>
+<p><span class="math display">\[
+\left\langle\phi_{N}^{k}, \phi_{N}^{m}\right\rangle=\frac{1}{N} \sum_{n=0}^{N-1} e^{j(k-m) \frac{2 \pi}{N} n}=\frac{1}{N} \frac{1-e^{j(k-m) \frac{2 \pi}{N} N}}{1-e^{j(k-m) \frac{2 \pi}{N}}}=0
+\]</span></p>
+</section>
+<section id="傅里叶系数" class="level2">
+<h2 class="anchored" data-anchor-id="傅里叶系数">傅里叶系数</h2>
+<p>假设 <span class="math inline">\(x\)</span> 周期为 <span class="math inline">\(N\)</span>，利用正交性求解系数：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\left\langle x, \phi_{N}^{m}\right\rangle &amp; =\left\langle\sum_{k \in[N]} \hat{x}[k] \phi_{N}^{k}, \phi_{N}^{m}\right\rangle=\sum_{k \in[N]} \hat{x}[k]\left\langle\phi_{N}^{k}, \phi_{N}^{m}\right\rangle \\
+&amp; =\sum_{k \in[N]} \hat{x}[k] \delta[m-k]=\hat{x}[m]
+\end{aligned}
+\]</span></p>
+<p>可以将 <span class="math inline">\(\hat{x}\)</span> 视为 <span class="math inline">\(N\)</span>-周期信号，因为：</p>
+<p><span class="math display">\[
+\hat{x}[m+r N] \triangleq\left\langle x, \phi_{N}^{m+r N}\right\rangle=\left\langle x, \phi_{N}^{m}\right\rangle=\hat{x}[m]
+\]</span></p>
+<p>但在傅里叶级数中只使用 <span class="math inline">\(N\)</span> 个连续的值！</p>
+</section>
+<section id="dt-傅里叶级数公式" class="level2">
+<h2 class="anchored" data-anchor-id="dt-傅里叶级数公式">DT 傅里叶级数公式</h2>
+<p><strong>综合方程 (Synthesis equation)</strong></p>
+<p><span class="math display">\[
+x[n]=\sum_{k \in[N]} \hat{x}[k] \phi_{N}^{k}[n]=\sum_{k \in[N]} \hat{x}[k] e^{j k \frac{2 \pi}{N} n}
+\]</span></p>
+<p><strong>分析方程 (Analysis equation)</strong></p>
+<p><span class="math display">\[
+\hat{x}[k]=\left\langle x, \phi_{N}^{k}\right\rangle=\frac{1}{N} \sum_{n \in[N]} x[n] e^{-j k \frac{2 \pi}{N} n}
+\]</span></p>
+<p><span class="math inline">\(\hat{x}[k]\)</span>称为<span class="math inline">\(x[n]\)</span>的<strong>频谱系数(Spectral Coefficient)</strong>。</p>
+<p>由于所有求和都是有限的，不存在收敛问题！</p>
+</section>
+<section id="例子-1" class="level2">
+<h2 class="anchored" data-anchor-id="例子-1">例子</h2>
+<p><span class="math inline">\(x[n]=\cos \left(\frac{6 \pi}{5} n+\frac{\pi}{5}\right)\)</span>，周期 <span class="math inline">\(N=5\)</span>。</p>
+<p>基频<span class="math inline">\(\omega_0=\frac{2 \pi}{N}=\frac{2 \pi}{5}\)</span></p>
+<p>展开为复指数： <span class="math inline">\(x[n]=\frac{e^{j \frac{\pi}{5}}}{2} e^{j 3 \frac{2 \pi}{5} n}+\frac{e^{-j \frac{\pi}{5}}}{2} e^{-j 3 \frac{2 \pi}{5} n}\)</span></p>
+<p>系数： <span class="math inline">\(\hat{x}[3]=\frac{1}{2} e^{j \frac{\pi}{5}} ; \quad \hat{x}[2]=\hat{x}[-3]=\frac{1}{2} e^{-j \frac{\pi}{5}} ; \quad \hat{x}[0]=\hat{x}[1]=\hat{x}[4]=0\)</span></p>
+<p><span class="math inline">\(\hat{x}[k]\)</span> 以 <span class="math inline">\(N=5\)</span> 为周期重复。</p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:10%;">
+<p><span class="math display">\[x[n]\]</span></p>
+<p><br> <br> <br> <br></p>
+<p><span class="math display">\[|\hat{x}[n]|\]</span></p>
+<p><span class="math display">\[Arg\hat{x}[n]\]</span></p>
+</div><div class="column" style="width:90%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-20.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-20_2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="例子周期方波-periodic-square-wave-1" class="level2">
+<h2 class="anchored" data-anchor-id="例子周期方波-periodic-square-wave-1">例子：周期方波 (Periodic Square Wave)</h2>
+<p>周期为 <span class="math inline">\(N\)</span> 的方波，在一个周期内：</p>
+<p><span class="math display">\[
+x[n]= \begin{cases}1, &amp; -N_{1} \leq n \leq N_{1} \\ 0, &amp; N_{1}&lt;n&lt;N-N_{1}\end{cases}
+\]</span></p>
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-21.png" class="img-fluid"></p>
+<p>傅里叶系数：</p>
+<p><span class="math display">\[
+\hat{x}[k]=\frac{1}{N} \sum_{n=-N_{1}}^{N_{1}} e^{-j k \frac{2 \pi}{N} n}
+\]</span></p>
+<p>如果 <span class="math inline">\(k\)</span> 是 <span class="math inline">\(N\)</span> 的整数倍, <span class="math inline">\(\hat{x}[k]=\frac{2 N_{1}+1}{N}\)</span></p>
+</section>
+<section id="例子周期方波-续" class="level2">
+<h2 class="anchored" data-anchor-id="例子周期方波-续">例子：周期方波 (续)</h2>
+<p>如果 <span class="math inline">\(k\)</span> 不是 <span class="math inline">\(N\)</span> 的整数倍，则 <span class="math inline">\(e^{-j k \frac{2 \pi}{N}} \neq 1\)</span>。使用等比数列求和：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\hat{x}[k] &amp; =\frac{1}{N} \frac{e^{j k \frac{2 \pi}{N} N_{1}}-e^{-j k \frac{2 \pi}{N}\left(N_{1}+1\right)}}{1-e^{-j k \frac{2 \pi}{N}}} \\
+&amp; =\frac{1}{N} \frac{\sin \left(k \frac{2 \pi}{N}\left(N_{1}+\frac{1}{2}\right)\right)}{\sin \left(k \frac{\pi}{N}\right)}
+\end{aligned}
+\]</span></p>
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-23.png" class="img-fluid"></p>
+</section>
+<section id="dt-傅里叶级数矩阵形式" class="level2">
+<h2 class="anchored" data-anchor-id="dt-傅里叶级数矩阵形式">DT 傅里叶级数：矩阵形式</h2>
+<p>综合方程可以写成矩阵乘法：</p>
+<p><span class="math display">\[
+x[n]=\sum_{k=0}^{N-1} W_{N}^{k n} \hat{x}[k], \quad \text { 其中 } W_{N}=e^{j k \frac{2 \pi}{N}}
+\]</span></p>
+<p><span class="math display">\[
+x=\mathbf{F} \hat{x}, \quad \text { 其中 } \mathbf{F}=\left(\phi_{N}^{0}, \phi_{N}^{1}, \ldots, \phi_{N}^{N-1}\right)
+\]</span></p>
+<p>分析方程：</p>
+<p><span class="math display">\[
+\hat{x}=\mathbf{F}^{-1} x=\frac{1}{N} \mathbf{F}^{H} x
+\]</span></p>
+<p>其中 <span class="math inline">\(\mathbf{F}^{H}=(\overline{\mathbf{F}})^{T}\)</span> 是 <span class="math inline">\(\mathbf{F}\)</span> 的共轭转置 (Hermitian transpose)。</p>
+</section>
+<section id="toc5" class="level2">
+<h2 class="anchored" data-anchor-id="toc5">目录</h2>
+<ul>
+<li><a href="#sec31"><strong>1. 线性时不变系统对复指数信号的响应</strong></a></li>
+<li><a href="#sec32">2. 连续时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec33">3. 连续时间傅里叶级数的收敛</a></li>
+<li><a href="#sec34">4. 连续时间傅里叶级数的性质</a></li>
+<li><a href="#35">5. 离散时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec36"><strong>6. 离散时间傅里叶级数的性质</strong></a></li>
+<li><a href="#sec37">7. 傅里叶级数与线性时不变系统</a></li>
+<li><a href="#sec38">8. 滤波</a>
+<ul>
+<li><a href="#sec381">频率成形滤波器</a></li>
+<li><a href="#sec382">频率选择性滤波器</a></li>
+<li><a href="#sec383">用微分方程描述的连续时间滤波器</a></li>
+<li><a href="#sec383">用差分方程描述的离散时间滤波器</a></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="sec36" class="level1">
+<h1>6. 离散时间傅里叶级数的性质</h1>
+<section id="dt-傅里叶级数-dt-fourier-series" class="level2">
+<h2 class="anchored" data-anchor-id="dt-傅里叶级数-dt-fourier-series">DT 傅里叶级数 (DT Fourier Series)</h2>
+<p>周期为 <span class="math inline">\(N\)</span> 的信号 <span class="math inline">\(x\)</span> 的 DTFS：</p>
+<p><span class="math display">\[
+x[n]=\sum_{k \in[N]} \hat{x}[k] e^{j k \omega_{0} n}, \quad \omega_{0}=\frac{2 \pi}{N}
+\]</span></p>
+<p>对应关系：</p>
+<p><span class="math display">\[
+x \stackrel{\text { DTFS }}{\longleftrightarrow} \hat{x} \quad \text { 或 } \quad x[n] \stackrel{\text { DTFS }}{\longleftrightarrow} \hat{x}[k]
+\]</span></p>
+<p>同一信号的两种等价表示： - 时域：<span class="math inline">\(x[n]\)</span> - 频域：<span class="math inline">\(\hat{x}[k]\)</span></p>
+</section>
+<section id="线性时移与频移" class="level2">
+<h2 class="anchored" data-anchor-id="线性时移与频移">线性、时移与频移</h2>
+<p><strong>线性 (Linearity)</strong> <span class="math display">\[
+\widehat{a x+b y}=a \hat{x}+b \hat{y}
+\]</span></p>
+<p><strong>时移 (Time shifting)</strong> <span class="math display">\[
+x\left[n-n_{0}\right] \stackrel{\text { DTFS }}{\longleftrightarrow} e^{-j k \omega_{0} n_{0}} \hat{x}[k]
+\]</span></p>
+<p><strong>频移 (Frequency shifting)</strong> <span class="math display">\[
+e^{j m \omega_{0} n} x[n] \stackrel{\text { DTFS }}{\longleftrightarrow} \hat{x}[k-m]
+\]</span></p>
+</section>
+<section id="其它性质" class="level2">
+<h2 class="anchored" data-anchor-id="其它性质">其它性质</h2>
+<p><strong>时间反转 (Time reversal)</strong> <span class="math display">\[
+x[-n] \stackrel{\text { DTFS }}{\longleftrightarrow} \hat{x}[-k]
+\]</span></p>
+<p><strong>共轭 (Conjugation)</strong> <span class="math display">\[
+x^{*}[n] \stackrel{\text { DTFS }}{\longleftrightarrow}(\hat{x}[-k])^{*}
+\]</span></p>
+<p><strong>对称性 (Symmetry)</strong> - <span class="math inline">\(x\)</span> 实 <span class="math inline">\(\Longleftrightarrow \hat{x}[-k]=\overline{\hat{x}[k]}\)</span> (共轭对称) - <span class="math inline">\(x\)</span> 实偶 <span class="math inline">\(\Longleftrightarrow \hat{x}\)</span> 实偶</p>
+</section>
+<section id="时间缩放-time-scaling-1" class="level2">
+<h2 class="anchored" data-anchor-id="时间缩放-time-scaling-1">时间缩放 (Time Scaling)</h2>
+<p>定义上采样信号 <span class="math inline">\(x_{(m)}\)</span>：</p>
+<p><span class="math display">\[
+x_{(m)}[n]= \begin{cases}x[n / m], &amp; \text { 如果 } n \text { 是 } m \text { 的倍数 } \\ 0, &amp; \text { 其他 }\end{cases}
+\]</span></p>
+<p>如果 <span class="math inline">\(x\)</span> 周期为 <span class="math inline">\(N\)</span>，则 <span class="math inline">\(x_{(m)}\)</span> 周期为 <span class="math inline">\(m N\)</span>，且：</p>
+<p><span class="math display">\[
+\widehat{x_{(m)}}=\frac{1}{m} \hat{x} \quad \text { 或 } \quad x_{(m)}[n] \stackrel{\text { DTFS }}{\longleftrightarrow} \frac{1}{m} \hat{x}[k]
+\]</span></p>
+</section>
+<section id="一阶差分与累加求和" class="level2">
+<h2 class="anchored" data-anchor-id="一阶差分与累加求和">一阶差分与累加求和</h2>
+<p><strong>一阶（后向）差分</strong> (First difference) <span class="math display">\[
+x[n]-x[n-1] \stackrel{\text { DTFS }}{\longleftrightarrow}\left(1-e^{-j k \frac{2 \pi}{N}}\right) \hat{x}[k]
+\]</span></p>
+<p><strong>累加求和</strong> (Running sum) <span class="math display">\[
+y[n]=\sum_{m=n_{0}}^{n} x[m]
+\]</span> - <span class="math inline">\(y\)</span> 是周期的当且仅当 <span class="math inline">\(\hat{x}[0]=0\)</span>（无直流分量） - 如果 <span class="math inline">\(\hat{x}[0]=0\)</span>， <span class="math display">\[
+\hat{y}[k]=\frac{1}{1-e^{-j k \frac{2 \pi}{N}}} \hat{x}[k] \quad \text { 对于 } k \neq 0
+\]</span></p>
+</section>
+<section id="乘法-multiplication-1" class="level2">
+<h2 class="anchored" data-anchor-id="乘法-multiplication-1">乘法 (Multiplication)</h2>
+<p>时域乘法 <span class="math inline">\(\Longleftrightarrow\)</span> 频域周期卷积</p>
+<p><span class="math display">\[
+x[n] y[n] \stackrel{\text { DTFS }}{\longleftrightarrow} \sum_{m \in[N]} \hat{x}[m] \hat{y}[k-m]
+\]</span></p>
+</section>
+<section id="周期卷积-periodic-convolution-1" class="level2">
+<h2 class="anchored" data-anchor-id="周期卷积-periodic-convolution-1">周期卷积 (Periodic Convolution)</h2>
+<p>相同周期 <span class="math inline">\(N\)</span> 的 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 的周期卷积：</p>
+<p><span class="math display">\[
+(x * y)[n]=\sum_{m \in[N]} x[m] y[n-m]
+\]</span></p>
+<p>性质： - 交换律、结合律、双线性</p>
+<p><strong>时域卷积 <span class="math inline">\(\Longrightarrow\)</span> 频域乘法</strong></p>
+<p><span class="math display">\[
+(x * y)[n] \stackrel{\text { DTFS }}{\longleftrightarrow} N \hat{x}[k] \hat{y}[k]
+\]</span></p>
+</section>
+<section id="toc6" class="level2">
+<h2 class="anchored" data-anchor-id="toc6">目录</h2>
+<ul>
+<li><a href="#sec31">1. 线性时不变系统对复指数信号的响应</a></li>
+<li><a href="#sec32">2. 连续时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec33">3. 连续时间傅里叶级数的收敛</a></li>
+<li><a href="#sec34">4. 连续时间傅里叶级数的性质</a></li>
+<li><a href="#35">5. 离散时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec36">6. 离散时间傅里叶级数的性质</a></li>
+<li><a href="#sec37"><strong>7. 傅里叶级数与线性时不变系统</strong></a></li>
+<li><a href="#sec38">8. 滤波</a>
+<ul>
+<li><a href="#sec381">频率成形滤波器</a></li>
+<li><a href="#sec382">频率选择性滤波器</a></li>
+<li><a href="#sec383">用微分方程描述的连续时间滤波器</a></li>
+<li><a href="#sec383">用差分方程描述的离散时间滤波器</a></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="sec37" class="level1">
+<h1>7. 傅里叶级数与线性时不变系统</h1>
+<section id="线性时不变系统对复指数信号的响应" class="level2">
+<h2 class="anchored" data-anchor-id="线性时不变系统对复指数信号的响应">线性时不变系统对复指数信号的响应</h2>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p><strong>CT (连续时间)</strong></p>
+<p><span class="math display">\[
+T\left(\sum_{k} a_{k} e^{s_{k} t}\right)=\sum_{k} a_{k} H\left(s_{k}\right) e^{s_{k} t}
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><strong>DT (离散时间)</strong> <span class="math display">\[
+T\left(\sum_{k} a_{k} z_{k}^{n}\right)=\sum_{k} a_{k} H\left(z_{k}\right) z_{k}^{n}
+\]</span></p>
+</div>
+</div>
+<p>其中 <span class="math display">\[H(s)=\int_{-\infty}^{+\infty} h(\tau) e^{-s\tau} d \tau  \qquad  H(z)=\sum_{k = - \infty}^{+\infty} h(k) z^{-k}\]</span></p>
+<p>当<span class="math inline">\(s\)</span>或<span class="math inline">\(z\)</span>是一般复数时，<span class="math inline">\(H(s)\)</span>和<span class="math inline">\(H(z)\)</span>就称为该系统的<strong>系统函数(System Function)</strong>。</p>
+<div class="hud">
+<p>本章和下一章：重点在<span class="math inline">\(Rs[s]=0\)</span>的特殊情况。即<span class="math inline">\(s=j \omega\)</span>。</p>
+<p>对于离散时间信号系统，重点在<span class="math inline">\(|z|=1\)</span>的<span class="math inline">\(z\)</span>值上。即<span class="math inline">\(z=e^{j \omega}\)</span>,<span class="math inline">\(z^n=e^{j \omega n}\)</span>。</p>
+</div>
+<p>因此，系统函数就简化为 <span class="math display">\[H(j \omega)=\int_{-\infty}^{+\infty} h(t)  e^{-j \omega t} d t \qquad H(j \omega)=\sum_{k = - \infty}^{+\infty} H(n) e^{j \omega n}\]</span></p>
+</section>
+<section id="线性时不变系统对复指数信号的响应-1" class="level2">
+<h2 class="anchored" data-anchor-id="线性时不变系统对复指数信号的响应-1">线性时不变系统对复指数信号的响应</h2>
+<p>连续时间系统示例：有一个周期信号 <span class="math inline">\(x(t)\)</span>，其基波频率为 <span class="math inline">\(\omega_0 = 2\pi\)</span>。该信号可以写成如下傅里叶级数的形式： <span class="math display">\[
+x(t) = \sum_{k=-3}^{+3} a_k e^{jk2\pi t}
+\]</span> 其中：<span class="math inline">\(a_0 = 1\)</span>，<span class="math inline">\(a_1 = a_{-1} = \frac{1}{4}\)</span> ，<span class="math inline">\(a_2 = a_{-2} = \frac{1}{2}\)</span>，<span class="math inline">\(a_3 = a_{-3} = \frac{1}{3}\)</span> 将<span class="math inline">\(x(t)\)</span>作为线性时不变（LTI）系统的输入信号，该系统的单位冲激响应为：</p>
+<p><span class="math display">\[
+h(t) = e^{-t}u(t)
+\]</span></p>
+<section id="求解响应-hjomega" class="level3">
+<h3 class="anchored" data-anchor-id="求解响应-hjomega">求解响应 <span class="math inline">\(H(j\omega)\)</span></h3>
+<p>为了计算输出 <span class="math inline">\(y(t)\)</span> 的傅里叶级数系数，首先要求出系统的响应：</p>
+<p><span class="math display">\[
+H(j\omega) = \int_{0}^{\infty} e^{-\tau}e^{-j\omega \tau} d\tau = -\left. \frac{1}{1 + j\omega}e^{-\tau}e^{-j\omega \tau} \right|_{0}^{\infty} = \frac{1}{1 + j\omega}
+\]</span></p>
+</section>
+</section>
+<section id="线性时不变系统对复指数信号的响应-2" class="level2">
+<h2 class="anchored" data-anchor-id="线性时不变系统对复指数信号的响应-2">线性时不变系统对复指数信号的响应</h2>
+<section id="输出信号-yt-的表示" class="level3">
+<h3 class="anchored" data-anchor-id="输出信号-yt-的表示">输出信号 <span class="math inline">\(y(t)\)</span> 的表示</h3>
+<p>输入信号 <span class="math inline">\(\omega_0 = 2\pi\)</span>，因此可得输出信号的表示式为：</p>
+<p><span class="math display">\[
+y(t) = \sum_{k=-3}^{+3} b_k e^{jk2\pi t}
+\]</span></p>
+<p>由于 <span class="math inline">\(b_k = a_k H(jk2\pi)\)</span>，根据输入信号 <span class="math inline">\(a_k\)</span> 的值，可得各谐波系数：</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">谐波次数 <span class="math inline">\(k\)</span></th>
+<th style="text-align: left;">正频率分量 <span class="math inline">\(b_k\)</span></th>
+<th style="text-align: left;">负频率分量 <span class="math inline">\(b_{-k}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>0</strong></td>
+<td style="text-align: left;"><span class="math inline">\(b_0 = 1\)</span></td>
+<td style="text-align: left;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: left;"><span class="math inline">\(b_1 = \frac{1}{4}\left( \frac{1}{1 + j2\pi} \right)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(b_{-1} = \frac{1}{4}\left( \frac{1}{1 - j2\pi} \right)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;"><span class="math inline">\(b_2 = \frac{1}{2}\left( \frac{1}{1 + j4\pi} \right)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(b_{-2} = \frac{1}{2}\left( \frac{1}{1 - j4\pi} \right)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;"><span class="math inline">\(b_3 = \frac{1}{3}\left( \frac{1}{1 + j6\pi} \right)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(b_{-3} = \frac{1}{3}\left( \frac{1}{1 - j6\pi} \right)\)</span></td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>注意：</strong> <span class="math inline">\(y(t)\)</span> 一定是实值信号，即 <span class="math inline">\(b_k^* = b_{-k}\)</span>，这满足实信号在频域的共轭对称性。</p>
+</blockquote>
+</section>
+</section>
+<section id="线性时不变系统对复指数信号的响应-3" class="level2">
+<h2 class="anchored" data-anchor-id="线性时不变系统对复指数信号的响应-3">线性时不变系统对复指数信号的响应</h2>
+<section id="三角函数形式的表达" class="level3">
+<h3 class="anchored" data-anchor-id="三角函数形式的表达">三角函数形式的表达</h3>
+<p><span class="math inline">\(y(t)\)</span> 也可以表示成以下两种等价形式：</p>
+<p><strong>形式一：幅相式</strong>: <span class="math inline">\(y(t) = 1 + 2 \sum_{k=1}^{3} D_k \cos(2\pi kt + \theta_k)\)</span></p>
+<p><strong>形式二：正余弦式</strong>: <span class="math inline">\(y(t) = 1 + 2 \sum_{k=1}^{3} [E_k \cos 2\pi kt - F_k \sin 2\pi kt]\)</span></p>
+<p>其中系数关系为：<span class="math inline">\(b_k = D_k e^{j\theta_k} = E_k + jF_k\)</span>。</p>
+</section>
+<section id="数值计算示例-k1" class="level3">
+<h3 class="anchored" data-anchor-id="数值计算示例-k1">数值计算示例 (<span class="math inline">\(k=1\)</span>)</h3>
+<p>对于基波分量，各项参数计算如下：</p>
+<ul>
+<li><strong>幅度 <span class="math inline">\(D_1\)</span></strong>: <span class="math inline">\(D_1 = |b_1| = \frac{1}{4\sqrt{1 + 4\pi^2}}\)</span></li>
+<li><strong>相位 <span class="math inline">\(\theta_1\)</span></strong>: <span class="math inline">\(\theta_1 = \angle b_1 = -\arctan(2\pi)\)</span></li>
+<li><strong>实部 <span class="math inline">\(E_1\)</span></strong>: <span class="math inline">\(E_1 = \text{Re}\{b_1\} = \frac{1}{4(1 + 4\pi^2)}\)</span></li>
+<li><strong>虚部 <span class="math inline">\(F_1\)</span></strong>: <span class="math inline">\(F_1 = \text{Im}\{b_1\} = -\frac{\pi}{2(1 + 4\pi^2)}\)</span></li>
+</ul>
+<div class="hud">
+<p>仅改变了信号的幅值和相位</p>
+</div>
+</section>
+</section>
+<section id="线性时不变系统对复指数信号的响应-4" class="level2">
+<h2 class="anchored" data-anchor-id="线性时不变系统对复指数信号的响应-4">线性时不变系统对复指数信号的响应</h2>
+<p>离散时间系统示例：考虑一个线性时不变系统，其单位脉冲响应为 <span class="math inline">\(h[n] = \alpha^n u[n]\)</span>，其中 <span class="math inline">\(-1 &lt; \alpha &lt; 1\)</span>。输入信号为：</p>
+<p><span class="math display">\[
+x[n] = \cos\left( \frac{2\pi n}{N} \right)
+\]</span></p>
+<section id="输入信号的傅里叶级数表示" class="level3">
+<h3 class="anchored" data-anchor-id="输入信号的傅里叶级数表示">1. 输入信号的傅里叶级数表示</h3>
+<p>利用欧拉公式，<span class="math inline">\(x[n]\)</span> 可以写成复指数形式：</p>
+<p><span class="math display">\[
+x[n] = \frac{1}{2} e^{j(2\pi/N)n} + \frac{1}{2} e^{-j(2\pi/N)n}
+\]</span></p>
+</section>
+<section id="求解响应-hejomega" class="level3">
+<h3 class="anchored" data-anchor-id="求解响应-hejomega">2. 求解响应 <span class="math inline">\(H(e^{j\omega})\)</span></h3>
+<p>系统的响应为单位脉冲响应的离散时间傅里叶变换：</p>
+<p><span class="math display">\[
+H(e^{j\omega}) = \sum_{n=0}^{\infty} \alpha^n e^{-j\omega n} = \sum_{n=0}^{\infty} (\alpha e^{-j\omega})^n
+\]</span></p>
+<p>利用等比级数求和公式（几何级数收敛条件为 <span class="math inline">\(|\alpha e^{-j\omega}| &lt; 1\)</span>），得：</p>
+<p><span class="math display">\[
+H(e^{j\omega}) = \frac{1}{1 - \alpha e^{-j\omega}}
+\]</span></p>
+</section>
+</section>
+<section id="线性时不变系统对复指数信号的响应-5" class="level2">
+<h2 class="anchored" data-anchor-id="线性时不变系统对复指数信号的响应-5">线性时不变系统对复指数信号的响应</h2>
+<section id="输出信号-yn-的计算" class="level3">
+<h3 class="anchored" data-anchor-id="输出信号-yn-的计算">3. 输出信号 <span class="math inline">\(y[n]\)</span> 的计算</h3>
+<p>利用线性系统的频率响应特性，输出的傅里叶级数为：</p>
+<p><span class="math display">\[
+\begin{aligned}
+y[n] &amp;= \frac{1}{2} H(e^{j2\pi/N}) e^{j(2\pi/N)n} + \frac{1}{2} H(e^{-j2\pi/N}) e^{-j(2\pi/N)n} \\
+&amp;= \frac{1}{2} \left( \frac{1}{1 - \alpha e^{-j2\pi/N}} \right) e^{j(2\pi/N)n} + \frac{1}{2} \left( \frac{1}{1 - \alpha e^{j2\pi/N}} \right) e^{-j(2\pi/N)n}
+\end{aligned}
+\]</span></p>
+<p>若记频率响应的极坐标形式为： <span class="math display">\[\frac{1}{1 - \alpha e^{-j2\pi/N}} = r e^{j\theta}\]</span></p>
+<p>则上式可化简为实数余弦形式： <span class="math display">\[y[n] = r \cos\left( \frac{2\pi}{N} n + \theta \right) \]</span></p>
+<hr>
+</section>
+<section id="数值示例-n4" class="level3">
+<h3 class="anchored" data-anchor-id="数值示例-n4">4. 数值示例 (<span class="math inline">\(N=4\)</span>)</h3>
+<p>若设定周期 <span class="math inline">\(N=4\)</span>，则频率响应为：</p>
+<p><span class="math display">\[
+\frac{1}{1 - \alpha e^{-j2\pi/4}} = \frac{1}{1 - \alpha e^{-j\pi/2}} = \frac{1}{1 + \alpha j} = \frac{1}{\sqrt{1 + \alpha^2}} e^{j(-\arctan \alpha)}
+\]</span></p>
+<p>因此，输出信号为：</p>
+<p><span class="math display">\[
+y[n] = \frac{1}{\sqrt{1 + \alpha^2}} \cos\left( \frac{\pi n}{2} - \arctan \alpha \right)
+\]</span></p>
+</section>
+</section>
+<section id="toc7" class="level2">
+<h2 class="anchored" data-anchor-id="toc7">目录</h2>
+<ul>
+<li><a href="#sec31">1. 线性时不变系统对复指数信号的响应</a></li>
+<li><a href="#sec32">2. 连续时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec33">3. 连续时间傅里叶级数的收敛</a></li>
+<li><a href="#sec34">4. 连续时间傅里叶级数的性质</a></li>
+<li><a href="#35">5. 离散时间周期信号的傅里叶级数表示</a></li>
+<li><a href="#sec36">6. 离散时间傅里叶级数的性质</a></li>
+<li><a href="#sec37">7. 傅里叶级数与线性时不变系统</a></li>
+<li><a href="#sec38"><strong>8. 滤波</strong></a>
+<ul>
+<li><a href="#sec381">频率成形滤波器</a></li>
+<li><a href="#sec382">频率选择性滤波器</a></li>
+<li><a href="#sec383">用微分方程描述的连续时间滤波器</a></li>
+<li><a href="#sec383">用差分方程描述的离散时间滤波器</a></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="sec38" class="level1">
+<h1>8. 滤波</h1>
+<section id="频率响应" class="level2">
+<h2 class="anchored" data-anchor-id="频率响应">频率响应</h2>
+<p>回顾连续时间（CT）线性时不变（LTI）系统对指数输入 <span class="math inline">\(e^{st}\)</span> 的响应：</p>
+<p><span class="math display">\[T \left( \sum_{k} a_k e^{s_k t} \right) = \sum_{k} a_k H(s_k) e^{s_k t}\]</span></p>
+<p>其中 <span class="math inline">\(H(s)\)</span> 是<strong>系统函数</strong>（System Function）：</p>
+<p><span class="math display">\[H(s) = \int_{\mathbb{R}} h(t) e^{-st} dt\]</span></p>
+<p>当限定 <span class="math inline">\(s = j\omega\)</span> 时，<span class="math inline">\(H(j\omega)\)</span> 作为 <span class="math inline">\(\omega\)</span> 的函数被称为系统的<strong>频率响应</strong>（Frequency Response）：</p>
+<p><span class="math display">\[H(j\omega) = \int_{\mathbb{R}} h(t) e^{-j\omega t} dt\]</span></p>
+<p>其中：</p>
+<p><span class="math inline">\(\left|H\left(e^{j \omega}\right)\right|\)</span>称为<strong>幅值响应 (Magnitude Response):</strong></p>
+<p><span class="math inline">\(\arg H\left(e^{j \omega}\right)\)</span>称为<strong>相位响应 (Phase Response):</strong></p>
+</section>
+<section id="滤波" class="level2">
+<h2 class="anchored" data-anchor-id="滤波">滤波</h2>
+<p>傅里叶级数表示下的周期输入 <span class="math inline">\(x\)</span>：</p>
+<p><span class="math display">\[x(t) = \sum_{k=-\infty}^{\infty} \hat{x}[k] e^{jk\omega_0 t}\]</span></p>
+<p>具有频率响应 <span class="math inline">\(H(j\omega)\)</span> 的 LTI 系统的输出：</p>
+<p><span class="math display">\[y(t) = T \left( \sum_{k=-\infty}^{\infty} \hat{x}[k] e^{jk\omega_0 t} \right) = \sum_{k=-\infty}^{\infty} H(j k \omega_0) \hat{x}[k] e^{j k \omega_0 t}\]</span></p>
+<p>输出信号是周期性的且具有相同的周期，其傅里叶系数的关系为：</p>
+<p><span class="math display">\[\hat{y}[k] = H(j k \omega_0) \hat{x}[k]\]</span></p>
+<p><strong>滤波</strong>：改变频率分量的相对幅度的大小，或者完全消除某些频率分量。</p>
+<ul>
+<li><p><strong>频率成形滤波器</strong>：用于改变频谱形状的线性时不变系统</p></li>
+<li><p><strong>频率选择性滤波器</strong>：用于基本无失真通过某些频率，而显著衰减或消除另一些频率的线性时不变系统</p></li>
+<li><p><strong>不能</strong>产生新的频率分量。（线性时不变系统）</p></li>
+<li><p><strong>只能</strong>缩放现有分量的幅度或移动其相位。（线性时不变系统）</p></li>
+</ul>
+</section>
+<section id="sec381" class="level2">
+<h2 class="anchored" data-anchor-id="sec381">频率成形滤波器 (Frequency-shaping filters)</h2>
+<p>这类滤波器会改变频谱的形状。</p>
+<ul>
+<li><strong>例如：均衡器 (Equalizer)</strong></li>
+</ul>
+<p><img src="imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-32.png" class="img-fluid"></p>
+</section>
+<section id="频率成形滤波器" class="level2">
+<h2 class="anchored" data-anchor-id="频率成形滤波器">频率成形滤波器</h2>
+<p><video src="imglink/EQ.webm" class="img-fluid" controls=""><a href="imglink/EQ.webm">Video</a></video></p>
+</section>
+<section id="频率成形滤波器-1" class="level2">
+<h2 class="anchored" data-anchor-id="频率成形滤波器-1">频率成形滤波器</h2>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p><strong>示例</strong>：微分器 <span class="math inline">\(T(x) = x'\)</span> 的频率响应为：</p>
+<p><span class="math display">\[H(j\omega) = j\omega\]</span></p>
+<p>对于周期输入信号：</p>
+<p><span class="math display">\[x(t) = \sum_{k=-\infty}^{\infty} \hat{x}[k] e^{jk\omega_0 t}\]</span></p>
+<p>其输出信号为：</p>
+<p><span class="math display">\[y(t) = \sum_{k=-\infty}^{\infty} jk\omega_0 \hat{x}[k] e^{jk\omega_0 t}\]</span></p>
+<p>傅里叶系数的关系如下：</p>
+<p><span class="math display">\[\hat{y}[k] = jk\omega_0 \hat{x}[k]\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-31.png" class="img-fluid"></p>
+<p><img src="imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-31_2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="频率成形滤波器-2" class="level2">
+<h2 class="anchored" data-anchor-id="频率成形滤波器-2">频率成形滤波器</h2>
+<section id="控制系统-回路整形" class="level3">
+<h3 class="anchored" data-anchor-id="控制系统-回路整形">控制系统-回路整形</h3>
+<p><img src="imglink/loopshaping.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="频率选择性滤波器" class="level2">
+<h2 class="anchored" data-anchor-id="频率选择性滤波器">频率选择性滤波器</h2>
+<p>基本无失真通过某些频率，而显著衰减或消除另一些频率的线性时不变系统.</p>
+<section id="理想频率选择性滤波器" class="level3">
+<h3 class="anchored" data-anchor-id="理想频率选择性滤波器">理想频率选择性滤波器</h3>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:33%;">
+<p>理想低通滤波器</p>
+<p><span class="math display">\[
+H(j \omega)= \begin{cases}1, &amp; |\omega| \leq \omega_{c} \\ 0, &amp; \text { 其他 }\end{cases}
+\]</span></p>
+<p><span class="math inline">\(\omega_{c}\)</span> : 截止频率 <img src="imglink/ideallowpassfilter.png" class="img-fluid"></p>
+</div><div class="column" style="width:34%;">
+<p>理想高通滤波器</p>
+<p><span class="math display">\[
+H(j \omega)= \begin{cases}1, &amp; |\omega| \geq \omega_{c} \\ 0, &amp; \text { 其他 }\end{cases}
+\]</span></p>
+<p><span class="math inline">\(\omega_{c}\)</span> : 截止频率 <img src="imglink/idealhighpassfilter.png" class="img-fluid"></p>
+</div><div class="column" style="width:33%;">
+<p>理想带通滤波器</p>
+<p><span class="math display">\[
+H(j \omega)= \begin{cases}1, &amp; \omega_{c 1} \leq|\omega| \leq \omega_{c 2} \\ 0, &amp; \text { 其他s }\end{cases}
+\]</span></p>
+<p><span class="math inline">\(\omega_{c 1}\)</span> : 下截止频率， <span class="math inline">\(\omega_{c 2}\)</span> : 上截止频率 <img src="imglink/4cb8e742-a9ce-42fa-a004-42de4559e768-35.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec383" class="level2">
+<h2 class="anchored" data-anchor-id="sec383">用微分方程描述的连续时间滤波器</h2>
+<section id="简单-rc-低通滤波器" class="level3">
+<h3 class="anchored" data-anchor-id="简单-rc-低通滤波器">简单 RC 低通滤波器</h3>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p>常微分方程 (ODE)</p>
+<p><span class="math display">\[
+R C \frac{d v_{C}(t)}{d t}+v_{C}(t)=v_{S}(t)
+\]</span></p>
+<p>对于输入 <span class="math inline">\(v_{S}(t)=e^{j \omega t}\)</span>，输出为</p>
+<p><span class="math display">\[
+v_{C}(t)=H(j \omega) e^{j \omega t}
+\]</span></p>
+<p>频率响应 <span class="math inline">\(H(j \omega)=\frac{1}{1+R C j \omega}\)</span></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-06.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="简单-rc-低通滤波器-1" class="level2">
+<h2 class="anchored" data-anchor-id="简单-rc-低通滤波器-1">简单 RC 低通滤波器</h2>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p>频率响应</p>
+<p><span class="math display">\[
+H(j \omega)=\frac{1}{1+R C j \omega}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+|H(j \omega)| &amp; =\frac{1}{\sqrt{1+(R C \omega)^{2}}} \\
+\arg H(j \omega) &amp; =-\arctan (R C \omega)
+\end{aligned}
+\]</span> <br> <br> 非理想低通滤波器：通过低频，衰减高频。</p>
+<p><span class="math inline">\(R C\)</span> 越大 <span class="math inline">\(\Longrightarrow\)</span> 通过的低频范围越小。</p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-07.png" class="img-fluid"></p>
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-07_2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="简单-rc-低通滤波器-2" class="level2">
+<h2 class="anchored" data-anchor-id="简单-rc-低通滤波器-2">简单 RC 低通滤波器</h2>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p>冲激响应</p>
+<p><span class="math display">\[
+h(t)=\frac{1}{R C} e^{-t / R C} u(t)
+\]</span></p>
+<p>阶跃响应</p>
+<p><span class="math display">\[
+s(t)=(h * u)(t)=\left(1-e^{-t / R C}\right) u(t)
+\]</span></p>
+<p>时间常数 <span class="math inline">\(\tau=R C\)</span></p>
+<ul>
+<li><span class="math inline">\(\tau\)</span> 越大，响应越迟缓 (sluggish)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-08.png" class="img-fluid"></p>
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-08_2.png" class="img-fluid"></p>
+</div>
+</div>
+<section id="权衡-tradeoff" class="level3">
+<h3 class="anchored" data-anchor-id="权衡-tradeoff">权衡 (Tradeoff)</h3>
+<ul>
+<li><span class="math inline">\(\tau\)</span> 越大：通过的高频越少，响应越迟缓</li>
+<li><span class="math inline">\(\tau\)</span> 越小：通过的高频越多，响应越快</li>
+</ul>
+</section>
+</section>
+<section id="简单-rc-高通滤波器" class="level2">
+<h2 class="anchored" data-anchor-id="简单-rc-高通滤波器">简单 RC 高通滤波器</h2>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p>ODE</p>
+<p><span class="math inline">\(R C \frac{d v_{R}(t)}{d t}+v_{R}(t)=R C \frac{d v_{S}(t)}{d t}\)</span></p>
+<p>对于输入 <span class="math inline">\(v_{S}(t)=e^{j \omega t}\)</span>，输出为</p>
+<p><span class="math display">\[
+v_{R}(t)=H(j \omega) e^{j \omega t}
+\]</span></p>
+<p>频率响应 <span class="math inline">\(\quad H(j \omega)=\frac{j \omega R C}{1+j \omega R C}\)</span></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-09.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="简单-rc-高通滤波器-1" class="level2">
+<h2 class="anchored" data-anchor-id="简单-rc-高通滤波器-1">简单 RC 高通滤波器</h2>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p>频率响应</p>
+<p><span class="math display">\[
+H(j \omega)=\frac{j \omega R C}{1+j \omega R C}
+\]</span></p>
+<p><span class="math display">\[
+|H(j \omega)|=\frac{|\omega| R C}{\sqrt{1+(R C \omega)^{2}}}
+\]</span></p>
+<p><span class="math display">\[
+\arg H(j \omega)=\arctan \frac{1}{R C \omega}
+\]</span></p>
+<p>非理想高通滤波器：通过高频，衰减低频。</p>
+<p><span class="math inline">\(R C\)</span> 越大 <span class="math inline">\(\Longrightarrow\)</span> 通过的低频范围越大。</p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-10.png" class="img-fluid"></p>
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-10_2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="简单-rc-高通滤波器-2" class="level2">
+<h2 class="anchored" data-anchor-id="简单-rc-高通滤波器-2">简单 RC 高通滤波器</h2>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p>阶跃响应</p>
+<p><span class="math display">\[
+s(t)=e^{-t / R C} u(t)
+\]</span></p>
+<p><br></p>
+<p>冲激响应</p>
+<p><span class="math display">\[
+h(t)=s^{\prime}(t)=\delta(t)-\frac{1}{R C} e^{-t / R C} u(t)
+\]</span></p>
+<p>时间常数 <span class="math inline">\(\tau=R C\)</span></p>
+<ul>
+<li><span class="math inline">\(\tau\)</span> 越大，响应越迟缓</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-11_2.png" class="img-fluid"></p>
+<p><img src="imglink/1086b18a-e1fd-43f2-95c8-7e053e314ef6-11.png" class="img-fluid"></p>
+</div>
+</div>
+<p>观察：</p>
+<ul>
+<li><span class="math inline">\(\tau\)</span> 越大，通过的低频越多，响应越迟缓</li>
+<li><span class="math inline">\(\tau\)</span> 越小，通过的低频越少，响应越快</li>
+</ul>
+</section>
+<section id="sec384" class="level2">
+<h2 class="anchored" data-anchor-id="sec384">用差分方程描述的连续时间滤波器</h2>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p><span class="math inline">\(N\)</span>-周期序列离散时间傅里叶级数（Discrete Time Fourier Series, DTFS）变换对</p>
+<p><strong>分析公式</strong></p>
+<p><span class="math display">\[
+\hat{x}[k]=\frac{1}{N} \sum_{n \in[N]} x[n] e^{-j k \frac{2 \pi}{N} n}
+\]</span></p>
+<p><strong>综合公式</strong></p>
+<p><span class="math display">\[
+x[n]=\sum_{k \in[N]} \hat{x}[k] e^{j k \frac{2 \pi}{N} n}
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p>有限长度<span class="math inline">\(N\)</span>序列的离散傅里叶变换（Discrete Fourier Tranform, DFT）对(详细内容见第五章)</p>
+<p><strong>DFT</strong></p>
+<p><span class="math display">\[
+X[k]=\sum_{n=0}^{N-1} x[n] e^{-j k \frac{2 \pi}{N} n}
+\]</span></p>
+<p><strong>逆 DFT</strong></p>
+<p><span class="math display">\[
+x[n]=\frac{1}{N} \sum_{k=0}^{N-1} X[k] e^{j k \frac{2 \pi}{N} n}
+\]</span></p>
+</div>
+</div>
+<p>这两组方程本质上是相同的，差别仅在于一个常数因子<span class="math inline">\(\frac{1}{N}\)</span>; 都可以通过<strong>快速傅里叶变换 (FFT)</strong>实现高效计算</p>
+</section>
+<section id="频率响应-1" class="level2">
+<h2 class="anchored" data-anchor-id="频率响应-1">频率响应</h2>
+<p>回顾离散时间 (DT) 线性时不变量 (LTI) 系统对指数输入 <span class="math inline">\(z^n\)</span> 的响应：</p>
+<p><span class="math display">\[T\left( \sum_{k} a_k z_k^n \right) = \sum_{k} a_k H(z_k) z_k^n\]</span></p>
+<p>其中 <span class="math inline">\(H(z)\)</span> 是<strong>系统函数</strong>：</p>
+<p><span class="math display">\[H(z) = \sum_{n=-\infty}^{\infty} h[n] z^{-n}\]</span></p>
+<p>当限定 <span class="math inline">\(z = e^{j\omega}\)</span> 时，<span class="math inline">\(H(e^{j\omega})\)</span> 作为 <span class="math inline">\(\omega\)</span> 的函数被称为系统的<strong>频率响应</strong>：</p>
+<p><span class="math display">\[H(e^{j\omega}) = \sum_{n=-\infty}^{\infty} h[n] e^{-j\omega n}\]</span></p>
+</section>
+<section id="频率响应-2" class="level2">
+<h2 class="anchored" data-anchor-id="频率响应-2">频率响应</h2>
+<p>周期输入 <span class="math inline">\(x\)</span> 的傅里叶级数表示：</p>
+<p><span class="math display">\[x[n] = \sum_{k \in [N]} \hat{x}[k] e^{j k \omega_0 n}, \quad \text{其中 } \omega_0 = \frac{2\pi}{N}\]</span></p>
+<p>频率响应为 <span class="math inline">\(H(e^{j\omega})\)</span> 的 LTI 系统的输出：</p>
+<p><span class="math display">\[y[n] = T \left( \sum_{k \in [N]} \hat{x}[k] e^{j k \omega_0 n} \right) = \sum_{k \in [N]} H(e^{j k \omega_0}) \hat{x}[k] e^{j k \omega_0 n}\]</span></p>
+<p>输出信号具有相同的周期，其傅里叶系数之间的关系为：</p>
+<p><span class="math display">\[\hat{y}[k] = H(e^{j k \omega_0}) \hat{x}[k]\]</span></p>
+<!-- ## 滤波
+
+**滤波**会改变频率分量的相对幅度，或者完全消除某些频率分量。
+
+### LTI 系统作为滤波器
+在线性时不变量 (LTI) 系统中，正如连续时间 (CT) 情况一样，系统扮演着滤波器的角色。频率整形 (Frequency-shaping) 与频率选择性 (Frequency-selective) 滤波器的共同点在于：
+
+* **无法创造**新的频率分量。
+* **只能缩放**现有分量的幅度或偏移其相位。
+
+### 非线性滤波器示例 (Examples of Nonlinear Filter)
+
+非线性滤波器不遵循 LTI 系统的上述限制，可以产生新的频率分量。
+
+* **极大值滤波器 (Max filter)**:
+    $$y[n] = \max_{-n_1 \leq k \leq n_2} x[n + k]$$
+* **中值滤波器 (Median filter)**:
+    $$y[n] = \text{median} \{x[n - n_1], \dots, x[n + n_2]\}$$ -->
+<section id="离散时间-dt-信号的频率" class="level3">
+<h3 class="anchored" data-anchor-id="离散时间-dt-信号的频率">离散时间 (DT) 信号的频率</h3>
+<p>回顾离散时间信号的特性：只需考虑长度为 <span class="math inline">\(2\pi\)</span> 的频率区间即可，例如 <span class="math inline">\([0, 2\pi)\)</span> 或 <span class="math inline">\((-\pi, \pi]\)</span>。</p>
+</section>
+</section>
+<section id="离散时间信号中的高频与低频" class="level2">
+<h2 class="anchored" data-anchor-id="离散时间信号中的高频与低频">离散时间信号中的高频与低频</h2>
+<p>高频分布在 <span class="math inline">\((2k + 1)\pi\)</span> 附近，低频分布在 <span class="math inline">\(2k\pi\)</span> 附近。</p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:33%;">
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-13_7.png" class="img-fluid"></p>
+<p><span class="math inline">\(\phi_{N}^{0}[n]=\cos (0 \cdot n)=1\)</span></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-13_9.png" class="img-fluid"></p>
+<p><span class="math inline">\(\phi_{N}^{3}[n]=\cos (3 \pi n / 4)\)</span></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-13_3.png" class="img-fluid"></p>
+<p><span class="math inline">\(\phi_{N}^{6}[n]=\cos (3 \pi n / 2)\)</span></p>
+</div><div class="column" style="width:34%;">
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-13_5.png" class="img-fluid"></p>
+<p><span class="math inline">\(\phi_{N}^{1}[n]=\cos (\pi n / 4)\)</span></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-13_6.png" class="img-fluid"></p>
+<p><span class="math inline">\(\phi_{N}^{4}[n]=\cos (\pi n)\)</span></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-13_2.png" class="img-fluid"></p>
+<p><span class="math inline">\(\phi_{N}^{7}[n]=\cos (7 \pi n / 4)\)</span></p>
+</div><div class="column" style="width:33%;">
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-13_4.png" class="img-fluid"></p>
+<p><span class="math inline">\(\phi_{N}^{2}[n]=\cos (\pi n / 2)\)</span></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-13_8.png" class="img-fluid"></p>
+<p><span class="math inline">\(\phi_{N}^{5}[n]=\cos (5 \pi n / 4)\)</span></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-13.png" class="img-fluid"></p>
+<p><span class="math inline">\(\phi_{N}^{8}[n]=\cos (2 \pi n)=1\)</span></p>
+</div>
+</div>
+</section>
+<section id="离散时间频率" class="level2">
+<h2 class="anchored" data-anchor-id="离散时间频率">离散时间频率</h2>
+<p><span class="math inline">\(N\)</span> 周期信号的离散频率特性：</p>
+<ul>
+<li><strong>单位圆上的等间隔点</strong>：频率分量均匀分布在复平面的单位圆上。</li>
+<li><strong>低频靠近 <span class="math inline">\(1\)</span>，高频靠近 <span class="math inline">\(-1\)</span></strong>：
+<ul>
+<li>当 <span class="math inline">\(z = e^{j\omega} \approx 1\)</span>（即 <span class="math inline">\(\omega \approx 2k\pi\)</span>）时，对应低频。</li>
+<li>当 <span class="math inline">\(z = e^{j\omega} \approx -1\)</span>（即 <span class="math inline">\(\omega \approx (2k+1)\pi\)</span>）时，对应高频。</li>
+</ul></li>
+</ul>
+<p><br></p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-14.png" class="img-fluid" style="width:60.0%"></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-14_2.png" class="img-fluid" style="width:60.0%"></p>
+</div>
+</div>
+</section>
+<section id="理想频率选择性滤波器-1" class="level2">
+<h2 class="anchored" data-anchor-id="理想频率选择性滤波器-1">理想频率选择性滤波器</h2>
+<p>理想低通滤波器</p>
+<p><span class="math display">\[
+H\left(e^{j \omega}\right)= \begin{cases}1, &amp; |\omega| \leq \omega_{c} \\ 0, &amp; \omega_{c}&lt;|\omega| \leq \pi\end{cases}
+\]</span></p>
+<p><span class="math inline">\(\omega_{c}\)</span> : 截止频率</p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-15.png" class="img-fluid"></p>
+</section>
+<section id="理想频率选择性滤波器-2" class="level2">
+<h2 class="anchored" data-anchor-id="理想频率选择性滤波器-2">理想频率选择性滤波器</h2>
+<p>理想高通滤波器</p>
+<p><span class="math display">\[
+H\left(e^{j \omega}\right)= \begin{cases}1, &amp; \omega_{c} \leq|\omega| \leq \pi \\ 0, &amp; |\omega|&lt;\left|\omega_{c}\right|\end{cases}
+\]</span></p>
+<p><span class="math inline">\(\omega_{c}\)</span> : 截止频率</p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-16.png" class="img-fluid"></p>
+</section>
+<section id="理想频率选择性滤波器-3" class="level2">
+<h2 class="anchored" data-anchor-id="理想频率选择性滤波器-3">理想频率选择性滤波器</h2>
+<p>理想带通滤波器</p>
+<p><span class="math display">\[
+H\left(e^{j \omega}\right)= \begin{cases}1, &amp; \omega_{c 1} \leq|\omega| \leq \omega_{c 2} \\ 0, &amp; |\omega|&lt;\omega_{c 1} \text { or } \omega_{c 2}&lt;|\omega| \leq \pi\end{cases}
+\]</span></p>
+<p><span class="math inline">\(\omega_{c 1}\)</span> : 下截止频率， <span class="math inline">\(\omega_{c 2}\)</span> : 上截止频率</p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-17.png" class="img-fluid"></p>
+</section>
+<section id="一阶递归离散时间滤波器" class="level2">
+<h2 class="anchored" data-anchor-id="一阶递归离散时间滤波器">一阶递归离散时间滤波器</h2>
+<p><span class="math display">\[
+y[n]-a y[n-1]=x[n]
+\]</span></p>
+<p>对于输入信号 <span class="math inline">\(x[n]=e^{j \omega n}\)</span>，系统的输出为 <span class="math inline">\(y[n]=H\left(e^{j \omega}\right) e^{j \omega n}\)</span>。</p>
+<p>当 <span class="math inline">\(|a|&lt;1\)</span> 时，<strong>频率响应</strong>（Frequency response）有明确定义：</p>
+<p><span class="math display">\[
+H\left(e^{j \omega}\right)=\frac{1}{1-a e^{-j \omega}}, \quad|a|&lt;1
+\]</span></p>
+<p>若将系数 <span class="math inline">\(a\)</span> 表示为极坐标形式 <span class="math inline">\(a=|a| e^{j \phi}\)</span>，则：</p>
+<p><strong>幅值响应 (Magnitude Response):</strong> <span class="math display">\[
+\left|H\left(e^{j \omega}\right)\right|=\frac{1}{\sqrt{1+|a|^{2}-2|a| \cos (\omega-\phi)}}
+\]</span></p>
+<p><strong>相位响应 (Phase Response):</strong> <span class="math display">\[
+\arg H\left(e^{j \omega}\right)=\arctan \frac{-|a| \sin (\omega-\phi)}{1-|a| \cos (\omega-\phi)}
+\]</span></p>
+</section>
+<section id="一阶递归离散时间滤波器-1" class="level2">
+<h2 class="anchored" data-anchor-id="一阶递归离散时间滤波器-1">一阶递归离散时间滤波器</h2>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p>对于 <span class="math inline">\(a&gt;0\)</span>, 低通滤波器 (指数平滑) <img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-19.png" class="img-fluid"></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-19_3.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p>对于 <span class="math inline">\(a&lt;0\)</span>, 高通滤波器</p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-19_2.png" class="img-fluid"></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-19_4.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="一阶递归离散时间滤波器-2" class="level2">
+<h2 class="anchored" data-anchor-id="一阶递归离散时间滤波器-2">一阶递归离散时间滤波器</h2>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<section id="单位脉冲响应-iir-滤波器" class="level3">
+<h3 class="anchored" data-anchor-id="单位脉冲响应-iir-滤波器">单位脉冲响应 (IIR 滤波器)</h3>
+<p><span class="math display">\[
+\begin{gathered}
+h[n]=a^{n} u[n] \\
+H\left(e^{j \omega}\right)=\sum_{n=0}^{\infty}\left(a e^{-j \omega}\right)^{n}=\frac{1}{1-a e^{-j \omega}}
+\end{gathered}
+\]</span></p>
+<p>为了保证级数<strong>收敛</strong>（Convergence），需要满足条件：<span class="math inline">\(|a|&lt;1\)</span>。</p>
+</section>
+<section id="阶跃响应-step-response" class="level3">
+<h3 class="anchored" data-anchor-id="阶跃响应-step-response">阶跃响应 (Step Response)</h3>
+<p><span class="math display">\[
+s[n]=(h * u)[n]=\frac{1-a^{n+1}}{1-a} u[n]
+\]</span></p>
+</section>
+<section id="性能权衡-tradeoff" class="level3">
+<h3 class="anchored" data-anchor-id="性能权衡-tradeoff">性能权衡 (Tradeoff)</h3>
+<ul>
+<li><strong><span class="math inline">\(|a|\)</span> 较大时</strong>：通带越窄（选择性更好），但响应速度越慢（时域拖尾更长）。</li>
+<li><strong><span class="math inline">\(|a|\)</span> 较小时</strong>：响应速度越快，但通带越宽（滤波效果较弱）。</li>
+</ul>
+</section>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-20_2.png" class="img-fluid"></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-20_3.png" class="img-fluid"></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-20.png" class="img-fluid"></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-20_4.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="滑动平均作为低通滤波器" class="level2">
+<h2 class="anchored" data-anchor-id="滑动平均作为低通滤波器">滑动平均作为低通滤波器</h2>
+<p><span class="math display">\[
+y[n]=\frac{1}{M_{1}+M_{2}+1} \sum_{k=-M_{1}}^{M_{2}} x[n-k]
+\]</span></p>
+<p>脉冲响应 (FIR 滤波器)</p>
+<p><span class="math display">\[
+h[n]=\frac{1}{M_{1}+M_{2}+1} \sum_{k=-M_{1}}^{M_{2}} \delta[n-k]
+\]</span></p>
+<p>频率响应</p>
+<p><span class="math display">\[
+H\left(e^{j \omega}\right)=\frac{1}{M_{1}+M_{2}+1} \sum_{k=-M_{1}}^{M_{2}} e^{-j k \omega}=\frac{e^{j \frac{M_{1}-M_{2}}{2} \omega}}{M_{1}+M_{2}+1} \frac{\sin \left(\frac{M_{1}+M_{2}+1}{2} \omega\right)}{\sin \frac{\omega}{2}}
+\]</span></p>
+</section>
+<section id="滑动平均作为低通滤波器-1" class="level2">
+<h2 class="anchored" data-anchor-id="滑动平均作为低通滤波器-1">滑动平均作为低通滤波器</h2>
+<p><span class="math inline">\(M_{1}=0, M_{2}=1\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+y[n] &amp; =\frac{1}{2}(x[n]+x[n-1]) \\
+h[n] &amp; =\frac{1}{2}(\delta[n]+\delta[n-1]) \\
+H\left(e^{j \omega}\right) &amp; =e^{-j \frac{\omega}{2}} \cos \frac{\omega}{2}
+\end{aligned}
+\]</span></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-22.png" class="img-fluid"></p>
+<p>验证以下结论：</p>
+<ul>
+<li>若输入 <span class="math inline">\(x[n]=K e^{j 0 \cdot n}\)</span>，则输出 <span class="math inline">\(y[n]=x[n]\)</span>。</li>
+<li>若输入 <span class="math inline">\(x[n]=K e^{j \pi n}=K(-1)^{n}\)</span>，则输出 <span class="math inline">\(y[n]=0\)</span>。</li>
+</ul>
+</section>
+<section id="滑动平均作为低通滤波器-2" class="level2">
+<h2 class="anchored" data-anchor-id="滑动平均作为低通滤波器-2">滑动平均作为低通滤波器</h2>
+<p><span class="math inline">\(M_{1}=M_{2}=1\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+y[n] &amp; =\frac{1}{3}(x[n+1]+x[n]+x[n-1]) \\
+h[n] &amp; =\frac{1}{3}(\delta[n+1]+\delta[n]+\delta[n-1]) \\
+H\left(e^{j \omega}\right) &amp; =\frac{\sin \left(\frac{3}{2} \omega\right)}{3 \sin \frac{\omega}{2}}=\frac{1}{3}+\frac{2}{3} \cos \omega
+\end{aligned}
+\]</span></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-23.png" class="img-fluid"></p>
+</section>
+<section id="滑动平均作为低通滤波器-3" class="level2">
+<h2 class="anchored" data-anchor-id="滑动平均作为低通滤波器-3">滑动平均作为低通滤波器</h2>
+<p><span class="math display">\[
+H\left(e^{j \omega}\right)=\frac{e^{j \frac{M_{1}-M_{2}}{2} \omega}}{M_{1}+M_{2}+1} \frac{\sin \left(\frac{M_{1}+M_{2}+1}{2} \omega\right)}{\sin \frac{\omega}{2}}
+\]</span></p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<p><br> <br> <br> <span class="math display">\[
+M_{1}+M_{2}+1=11
+\]</span> <br> <br> <span class="math display">\[
+M_{1}+M_{2}+1=41
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-24_2.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-24.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(M_1 + M_2\)</span> 越大，通带越窄，输出越平滑。</p>
+</section>
+<section id="滑动平均作为低通滤波器-4" class="level2">
+<h2 class="anchored" data-anchor-id="滑动平均作为低通滤波器-4">滑动平均作为低通滤波器</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imglink/movingaveragelowfilter.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="滑动平均作为低通滤波器-5" class="level2">
+<h2 class="anchored" data-anchor-id="滑动平均作为低通滤波器-5">滑动平均作为低通滤波器</h2>
+<section id="非因果系统-noncausal" class="level3">
+<h3 class="anchored" data-anchor-id="非因果系统-noncausal">非因果系统 (Noncausal)</h3>
+<p><span class="math display">\[
+y_{1}[n]=\frac{1}{2 M+1} \sum_{k=-M}^{M} x[n-k]
+\]</span></p>
+</section>
+<section id="因果系统-causal" class="level3">
+<h3 class="anchored" data-anchor-id="因果系统-causal">因果系统 (Causal)</h3>
+<p><span class="math display">\[
+y_{2}[n]=\frac{1}{2 M+1} \sum_{k=0}^{2 M} x[n-k]
+\]</span></p>
+<p>注：<span class="math inline">\(y_{2}=\tau_{M} y_{1}\)</span>（即 <span class="math inline">\(y_2\)</span> 是 <span class="math inline">\(y_1\)</span> 延迟了 <span class="math inline">\(M\)</span> 个样本的结果）。</p>
+</section>
+<section id="对于实时系统-real-time-system" class="level3">
+<h3 class="anchored" data-anchor-id="对于实时系统-real-time-system">对于实时系统 (Real-time system)</h3>
+<ul>
+<li><strong>非因果版本不可实现</strong>：因为它需要利用“未来”的样本点。</li>
+<li><strong>因果版本可实现</strong>：仅利用当前及过去的样本点。</li>
+<li><strong>性能权衡</strong>：<span class="math inline">\(M\)</span> 越大，通带越窄，输出越平滑，但<strong>延迟越长</strong>，响应越<strong>迟缓</strong>。</li>
+</ul>
+</section>
+</section>
+<section id="一阶差分作为高通滤波器" class="level2">
+<h2 class="anchored" data-anchor-id="一阶差分作为高通滤波器">一阶差分作为高通滤波器</h2>
+<p>缩放一阶差分（平减一阶差分）</p>
+<p><span class="math display">\[
+y[n]=\frac{1}{2}(x[n]-x[n-1])
+\]</span></p>
+<p>脉冲响应 (FIR滤波器)</p>
+<p><span class="math display">\[
+h[n]=\frac{1}{2}(\delta[n]-\delta[n-1])
+\]</span></p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:50%;">
+<section id="频率响应-frequency-response" class="level3">
+<h3 class="anchored" data-anchor-id="频率响应-frequency-response">频率响应 (Frequency Response)</h3>
+<p><span class="math display">\[
+\begin{aligned}
+H\left(e^{j \omega}\right) &amp; =\frac{1}{2}\left(1-e^{-j \omega}\right)=j e^{-j \frac{\omega}{2}} \sin \frac{\omega}{2} \\
+\left|H\left(e^{j \omega}\right)\right| &amp; =\left|\sin \frac{\omega}{2}\right|
+\end{aligned}
+\]</span></p>
+</section>
+<section id="结论验证-verification" class="level3">
+<h3 class="anchored" data-anchor-id="结论验证-verification">结论验证 (Verification)</h3>
+<ul>
+<li>若输入 <span class="math inline">\(x[n]=K e^{j 0 \cdot n}\)</span>（直流分量），则输出 <span class="math inline">\(y[n]=0\)</span>。</li>
+<li>若输入 <span class="math inline">\(x[n]=K e^{j \pi n}=K(-1)^{n}\)</span>（最高频分量），则输出 <span class="math inline">\(y[n]=x[n]\)</span>。</li>
+</ul>
+</section>
+</div><div class="column" style="width:50%;">
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-27.png" class="img-fluid"></p>
+<p><img src="imglink/f0d10ac8-9b51-40af-8373-7a211a98e620-27_2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="一阶差分用于边缘检测" class="level2">
+<h2 class="anchored" data-anchor-id="一阶差分用于边缘检测">一阶差分用于边缘检测</h2>
+<p>Sobel 算子是一种离散微分算子，结合了<strong>高斯平滑</strong>和<strong>一阶差分</strong>。它通过计算图像亮度函数的梯度近似值来寻找边缘。</p>
+<div class="columns" style="text-align: center;">
+<div class="column" style="width:60%;">
+<p>差分方程形式 对于图像中的像素 <span class="math inline">\(x[i, j]\)</span>，其水平和垂直方向的梯度 <span class="math inline">\(G_x\)</span> 和 <span class="math inline">\(G_y\)</span> 可由以下差分方程定义：</p>
+<p><strong>水平梯度 (检测垂直边缘):</strong> <span class="math display">\[
+\begin{aligned}
+G_x[i, j] = \ &amp;1 \cdot x[i-1, j+1] + 2 \cdot x[i, j+1] + 1 \cdot x[i+1, j+1] \\
+&amp;- (1 \cdot x[i-1, j-1] + 2 \cdot x[i, j-1] + 1 \cdot x[i+1, j-1])
+\end{aligned}
+\]</span></p>
+<p><strong>垂直梯度 (检测水平边缘):</strong> <span class="math display">\[
+\begin{aligned}
+G_y[i, j] = \ &amp;1 \cdot x[i+1, j-1] + 2 \cdot x[i+1, j] + 1 \cdot x[i+1, j+1] \\
+&amp;- (1 \cdot x[i-1, j-1] + 2 \cdot x[i-1, j] + 1 \cdot x[i-1, j+1])
+\end{aligned}
+\]</span> 上述方程对应的卷积核矩阵形式如下：</p>
+<p><span class="math display">\[
+K_x = \begin{bmatrix} -1 &amp; 0 &amp; 1 \\ -2 &amp; 0 &amp; 2 \\ -1 &amp; 0 &amp; 1 \end{bmatrix}, \quad
+K_y = \begin{bmatrix} -1 &amp; -2 &amp; -1 \\ 0 &amp; 0 &amp; 0 \\ 1 &amp; 2 &amp; 1 \end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:40%;">
+<p><img src="imglink/cityroad.png" class="img-fluid" style="width:100.0%"></p>
+<p><img src="imglink/cityroadedge.png" class="img-fluid" style="width:120.0%"></p>
+</div>
+</div>
+</section>
+<section id="作业" class="level2">
+<h2 class="anchored" data-anchor-id="作业">作业</h2>
+<ol type="1">
+<li>3.3</li>
+<li>3.6</li>
+<li>3.12</li>
+<li>3.16</li>
+<li>3.20</li>
+<li>计算机作业：用Python Jupyter 完成程序理解、修改或设计，具体见乐学平台。</li>
+</ol>
+<hr>
+<section style="
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+">
+<div style="transform: translateY(10vh);">
+<h1>
+第三章 <br>周期信号的傅里叶级数表示 <br> 完
+</h1>
+</div>
+</section>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

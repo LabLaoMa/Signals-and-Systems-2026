@@ -1,0 +1,171 @@
+---
+title: "分布理论中的0与狄拉克函数乘积问题"
+format: html
+---
+
+## 问题
+
+我们讨论：
+
+$$
+0 \cdot \delta(t) = ?
+$$
+
+---
+
+## 结论
+
+$$
+\boxed{0 \cdot \delta(t) = 0}
+$$
+
+这里的 $0$ 是**零分布（zero distribution）**。
+
+---
+
+## 一、分布定义下的严格解释
+
+在分布理论中，一个分布 $T$ 通过其对任意测试函数 $\varphi(t)$ 的作用来定义：
+
+$$
+\langle T, \varphi \rangle
+$$
+
+现在考虑：
+
+$$
+\langle 0 \cdot \delta(t), \varphi(t) \rangle
+$$
+
+根据分布与函数的乘法定义：
+
+$$
+= \langle \delta(t), 0 \cdot \varphi(t) \rangle
+$$
+
+$$
+= \langle \delta(t), 0 \rangle = 0
+$$
+
+因此对任意 $\varphi$ 都成立：
+
+$$
+0 \cdot \delta(t) \equiv 0
+$$
+
+---
+
+## 二、为什么这个问题容易产生困惑？
+
+直觉上可能会认为：
+
+- $\delta(t)$ 在 $t=0$ “无限大”
+- $0 \cdot \infty$ 似乎是不确定形式
+
+但关键在于：
+
+> $\delta(t)$ **不是函数，而是分布（线性泛函）**
+
+其定义是：
+
+$$
+\langle \delta, \varphi \rangle = \varphi(0)
+$$
+
+因此：
+
+- $\delta(t)$ 没有“数值”
+- 不存在“$\infty$”这一说法
+
+---
+
+## 三、类似但更有代表性的例子
+
+### 1. $t \cdot \delta(t)$
+
+$$
+\langle t\delta(t), \varphi(t) \rangle
+=
+\langle \delta(t), t\varphi(t) \rangle
+=
+0
+$$
+
+因此：
+
+$$
+\boxed{t \cdot \delta(t) = 0}
+$$
+
+---
+
+### 2. 不合法的例子
+
+$$
+\frac{1}{t} \cdot \delta(t)
+$$
+
+❌ **未定义**
+
+原因：
+
+- $\frac{1}{t}$ 在 $t=0$ 不连续
+- 无法与 $\delta$ 相乘
+
+---
+
+## 四、一般规律
+
+若 $f(t)$ 在 $t=0$ 连续，则：
+
+$$
+\boxed{
+f(t)\,\delta(t) = f(0)\,\delta(t)
+}
+$$
+
+---
+
+### 推论
+
+- $0 \cdot \delta(t) = 0$
+- $t \cdot \delta(t) = 0$
+- $\cos t \cdot \delta(t) = \delta(t)$
+
+---
+
+## 五、本质理解
+
+可以将 $\delta(t)$ 理解为一个“取值算子”：
+
+$$
+f(t)\delta(t)
+\quad \longrightarrow \quad
+f(0)
+$$
+
+因此：
+
+$$
+0 \cdot \delta(t)
+\Rightarrow f(0)=0
+\Rightarrow 0
+$$
+
+---
+
+## 六、进一步思考（讨论题）
+
+计算：
+
+$$
+t \cdot \delta'(t)
+$$
+
+提示：使用分布求导定义
+
+$$
+\langle \delta', \varphi \rangle = -\varphi'(0)
+$$
+
+---

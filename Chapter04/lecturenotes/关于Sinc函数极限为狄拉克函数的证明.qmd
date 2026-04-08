@@ -1,0 +1,91 @@
+---
+title: "广义函数视角下的 $delta$ 函数定义与 $sinc$ 函数极限分析"
+author: "Gemini AI"
+date: "2026-04-06"
+format:
+  html:
+    toc: true
+    code-fold: true
+    math: katex
+---
+
+## 1. 广义函数的核心定义思路：从“作用”出发
+
+定义广义函数（Generalized Functions）的核心在于**范式转移**：从关心函数在某一点的“取值”，转向关心它对“测试函数”产生的**作用**。
+
+### 1.1 从映射到泛函
+在经典分析中，函数是 $x \to f(x)$ 的映射。但在处理 $\delta$ 函数这种“奇异对象”时，点值定义失效了。
+
+* **测试函数空间 ($\mathcal{D}$)**：定义一组性质极好的函数 $\phi(x)$（通常为无穷阶可导且紧支撑）。
+* **泛函定义**：广义函数 $f$ 被定义为一个连续线性泛函，记作 $\langle f, \phi \rangle$。
+
+> **类比**：如果你看不见一个物体，但你可以用各种形状的“探针”（测试函数）去触碰它并测量反馈。当探针穷尽时，物体的性状就被唯一确定了。
+
+---
+
+## 2. 以狄拉克 $\delta$ 函数为例
+
+### 2.1 经典近似的直观理解
+我们常用“面积为 1”的矩形脉冲来近似 $\delta$ 函数：
+$$f_\epsilon(x) = \frac{1}{\epsilon} \text{rect}\left(\frac{x}{\epsilon}\right)$$
+当 $\epsilon \to 0$ 时，高度趋向无穷，宽度趋向零。在经典微积分中，这个极限函数在 $x=0$ 处没有意义。
+
+
+
+### 2.2 广义函数视角的严谨定义
+我们不看极限本身的形状，而看它在积分号下的表现：
+$$\langle \delta, \phi \rangle = \int_{-\infty}^{\infty} \delta(x)\phi(x)dx = \phi(0)$$
+**结论**：$\delta$ 函数在广义函数意义下就是一个**采样算子**，它的全部物理意义在于提取测试函数在原点的值。
+
+---
+
+## 3. $sinc$ 函数极限的广义函数分析
+
+分析极限 $\lim_{T \to \infty} \frac{\sin(\omega T)}{\pi \omega}$。
+
+### 3.1 弱收敛证明
+要证明该极限等于 $\delta(\omega)$，需考察其对测试函数 $\phi(\omega)$ 的作用：
+
+$$I = \lim_{T \to \infty} \int_{-\infty}^{\infty} \frac{\sin(\omega T)}{\pi \omega} \phi(\omega) d\omega$$
+
+**推导过程：**
+
+1.  **变量代换**：令 $u = \omega T$，则 $d\omega = du/T$。
+    $$I = \lim_{T \to \infty} \int_{-\infty}^{\infty} \frac{\sin u}{\pi (u/T)} \phi\left(\frac{u}{T}\right) \frac{du}{T} = \lim_{T \to \infty} \int_{-\infty}^{\infty} \frac{\sin u}{\pi u} \phi\left(\frac{u}{T}\right) du$$
+2.  **取极限**：由于 $\phi$ 连续，当 $T \to \infty$ 时，$\phi(u/T) \to \phi(0)$。
+    $$I = \frac{\phi(0)}{\pi} \int_{-\infty}^{\infty} \frac{\sin u}{u} du$$
+3.  **狄利克雷积分**：利用 $\int_{-\infty}^{\infty} \frac{\sin u}{u} du = \pi$。
+    $$I = \frac{\phi(0)}{\pi} \cdot \pi = \phi(0)$$
+
+**结论**：在广义函数意义下，$\frac{\sin(\omega T)}{\pi \omega} \xrightarrow{w} \delta(\omega)$。
+
+
+
+---
+
+## 4. 傅里叶逆变换视角
+
+利用广义函数的思路，我们可以重新审视频域上的“全通”信号。
+
+### 4.1 矩形窗的极限
+考虑频域矩形波 $G_T(\omega) = \text{rect}(\frac{\omega}{2T})$，其傅里叶逆变换为：
+$$\mathcal{F}^{-1}\{G_T(\omega)\} = \frac{\sin(tT)}{\pi t}$$
+
+### 4.2 物理意义
+当 $T \to \infty$ 时：
+* **频域**：$G_T(\omega) \to 1$ （涵盖所有频率，常数信号）。
+* **时域**：$\frac{\sin(tT)}{\pi t} \to \delta(t)$。
+
+这完美符合对偶性：**频域的平坦对应时域的极度集中。**
+
+---
+
+## 5. 总结比较
+
+| 特性 | 经典函数思维 | 广义函数 (分布) 思维 |
+| :--- | :--- | :--- |
+| **关注点** | 局部取值 $f(x)$ | 整体作用 $\langle f, \phi \rangle$ |
+| **$sinc$ 极限** | 震荡不收敛 | 弱收敛于 $\delta$ |
+| **处理手段** | 极限点态值 | 分部积分、作用转移、测试函数采样 |
+
+**核心哲学**：放弃对“本体形状”的执念，通过对象与外界的“交互效应”来定义对象。****

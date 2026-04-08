@@ -4155,7 +4155,7 @@
     "href": "Chapter04_V4.html#动机示例周期方波-3",
     "title": "第四章 连续时间傅里叶变换",
     "section": "动机示例：周期方波",
-    "text": "动机示例：周期方波\n对于包络线 \\(X(j\\omega)\\) ，\n\\[\n\\begin{aligned}\nX(j\\omega_k) &= T\\hat{x}_T[k] \\\\\n&= \\int_{-T/2}^{T/2} x_T(t)e^{-j\\omega_k t} dt \\\\\n&= \\int_{-T/2}^{T/2} x(t)e^{-j\\omega_k t} dt \\quad (在 |t| \\le T/2 时，x_T(t) = x(t))  \\\\\n&= \\int_{-\\infty}^{\\infty} x(t)e^{-j\\omega_k t} dt \\quad (在 |t| &gt; T/2 时，x(t) = 0)\n\\end{aligned}\n\\]\n所以，\n\\[\nX(j\\omega) = \\int_{-\\infty}^{\\infty} x(t)e^{-j\\omega t} dt\n\\]"
+    "text": "动机示例：周期方波\n对于\\(X(j\\omega)\\) ，\n\\[\n\\begin{aligned}\nX(j\\omega_k) &= T\\hat{x}_T[k] \\\\\n&= \\int_{-T/2}^{T/2} x_T(t)e^{-j\\omega_k t} dt \\\\\n&= \\int_{-T/2}^{T/2} x(t)e^{-j\\omega_k t} dt \\quad (在 |t| \\le T/2 时，x_T(t) = x(t))  \\\\\n&= \\int_{-\\infty}^{\\infty} x(t)e^{-j\\omega_k t} dt \\quad (在 |t| &gt; T/2 时，x(t) = 0)\n\\end{aligned}\n\\]\n所以，\n\\[\nX(j\\omega) = \\int_{-\\infty}^{\\infty} x(t)e^{-j\\omega t} dt\n\\]"
   },
   {
     "objectID": "Chapter04_V4.html#动机示例周期方波-4",
@@ -4884,5 +4884,1860 @@
     "title": "第四章 连续时间傅里叶变换",
     "section": "作业",
     "text": "作业"
+  },
+  {
+    "objectID": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html",
+    "href": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html",
+    "title": "广义函数视角下的 \\(delta\\) 函数定义与 \\(sinc\\) 函数极限分析",
+    "section": "",
+    "text": "定义广义函数（Generalized Functions）的核心在于范式转移：从关心函数在某一点的“取值”，转向关心它对“测试函数”产生的作用。\n\n\n在经典分析中，函数是 \\(x \\to f(x)\\) 的映射。但在处理 \\(\\delta\\) 函数这种“奇异对象”时，点值定义失效了。\n\n测试函数空间 (\\(\\mathcal{D}\\))：定义一组性质极好的函数 \\(\\phi(x)\\)（通常为无穷阶可导且紧支撑）。\n泛函定义：广义函数 \\(f\\) 被定义为一个连续线性泛函，记作 \\(\\langle f, \\phi \\rangle\\)。\n\n\n类比：如果你看不见一个物体，但你可以用各种形状的“探针”（测试函数）去触碰它并测量反馈。当探针穷尽时，物体的性状就被唯一确定了。"
+  },
+  {
+    "objectID": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html#广义函数的核心定义思路从作用出发",
+    "href": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html#广义函数的核心定义思路从作用出发",
+    "title": "广义函数视角下的 \\(delta\\) 函数定义与 \\(sinc\\) 函数极限分析",
+    "section": "",
+    "text": "定义广义函数（Generalized Functions）的核心在于范式转移：从关心函数在某一点的“取值”，转向关心它对“测试函数”产生的作用。\n\n\n在经典分析中，函数是 \\(x \\to f(x)\\) 的映射。但在处理 \\(\\delta\\) 函数这种“奇异对象”时，点值定义失效了。\n\n测试函数空间 (\\(\\mathcal{D}\\))：定义一组性质极好的函数 \\(\\phi(x)\\)（通常为无穷阶可导且紧支撑）。\n泛函定义：广义函数 \\(f\\) 被定义为一个连续线性泛函，记作 \\(\\langle f, \\phi \\rangle\\)。\n\n\n类比：如果你看不见一个物体，但你可以用各种形状的“探针”（测试函数）去触碰它并测量反馈。当探针穷尽时，物体的性状就被唯一确定了。"
+  },
+  {
+    "objectID": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html#以狄拉克-delta-函数为例",
+    "href": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html#以狄拉克-delta-函数为例",
+    "title": "广义函数视角下的 \\(delta\\) 函数定义与 \\(sinc\\) 函数极限分析",
+    "section": "2. 以狄拉克 \\(\\delta\\) 函数为例",
+    "text": "2. 以狄拉克 \\(\\delta\\) 函数为例\n\n2.1 经典近似的直观理解\n我们常用“面积为 1”的矩形脉冲来近似 \\(\\delta\\) 函数： \\[f_\\epsilon(x) = \\frac{1}{\\epsilon} \\text{rect}\\left(\\frac{x}{\\epsilon}\\right)\\] 当 \\(\\epsilon \\to 0\\) 时，高度趋向无穷，宽度趋向零。在经典微积分中，这个极限函数在 \\(x=0\\) 处没有意义。\n\n\n2.2 广义函数视角的严谨定义\n我们不看极限本身的形状，而看它在积分号下的表现： \\[\\langle \\delta, \\phi \\rangle = \\int_{-\\infty}^{\\infty} \\delta(x)\\phi(x)dx = \\phi(0)\\] 结论：\\(\\delta\\) 函数在广义函数意义下就是一个采样算子，它的全部物理意义在于提取测试函数在原点的值。"
+  },
+  {
+    "objectID": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html#sinc-函数极限的广义函数分析",
+    "href": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html#sinc-函数极限的广义函数分析",
+    "title": "广义函数视角下的 \\(delta\\) 函数定义与 \\(sinc\\) 函数极限分析",
+    "section": "3. \\(sinc\\) 函数极限的广义函数分析",
+    "text": "3. \\(sinc\\) 函数极限的广义函数分析\n分析极限 \\(\\lim_{T \\to \\infty} \\frac{\\sin(\\omega T)}{\\pi \\omega}\\)。\n\n3.1 弱收敛证明\n要证明该极限等于 \\(\\delta(\\omega)\\)，需考察其对测试函数 \\(\\phi(\\omega)\\) 的作用：\n\\[I = \\lim_{T \\to \\infty} \\int_{-\\infty}^{\\infty} \\frac{\\sin(\\omega T)}{\\pi \\omega} \\phi(\\omega) d\\omega\\]\n推导过程：\n\n变量代换：令 \\(u = \\omega T\\)，则 \\(d\\omega = du/T\\)。 \\[I = \\lim_{T \\to \\infty} \\int_{-\\infty}^{\\infty} \\frac{\\sin u}{\\pi (u/T)} \\phi\\left(\\frac{u}{T}\\right) \\frac{du}{T} = \\lim_{T \\to \\infty} \\int_{-\\infty}^{\\infty} \\frac{\\sin u}{\\pi u} \\phi\\left(\\frac{u}{T}\\right) du\\]\n取极限：由于 \\(\\phi\\) 连续，当 \\(T \\to \\infty\\) 时，\\(\\phi(u/T) \\to \\phi(0)\\)。 \\[I = \\frac{\\phi(0)}{\\pi} \\int_{-\\infty}^{\\infty} \\frac{\\sin u}{u} du\\]\n狄利克雷积分：利用 \\(\\int_{-\\infty}^{\\infty} \\frac{\\sin u}{u} du = \\pi\\)。 \\[I = \\frac{\\phi(0)}{\\pi} \\cdot \\pi = \\phi(0)\\]\n\n结论：在广义函数意义下，\\(\\frac{\\sin(\\omega T)}{\\pi \\omega} \\xrightarrow{w} \\delta(\\omega)\\)。"
+  },
+  {
+    "objectID": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html#傅里叶逆变换视角",
+    "href": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html#傅里叶逆变换视角",
+    "title": "广义函数视角下的 \\(delta\\) 函数定义与 \\(sinc\\) 函数极限分析",
+    "section": "4. 傅里叶逆变换视角",
+    "text": "4. 傅里叶逆变换视角\n利用广义函数的思路，我们可以重新审视频域上的“全通”信号。\n\n4.1 矩形窗的极限\n考虑频域矩形波 \\(G_T(\\omega) = \\text{rect}(\\frac{\\omega}{2T})\\)，其傅里叶逆变换为： \\[\\mathcal{F}^{-1}\\{G_T(\\omega)\\} = \\frac{\\sin(tT)}{\\pi t}\\]\n\n\n4.2 物理意义\n当 \\(T \\to \\infty\\) 时： * 频域：\\(G_T(\\omega) \\to 1\\) （涵盖所有频率，常数信号）。 * 时域：\\(\\frac{\\sin(tT)}{\\pi t} \\to \\delta(t)\\)。\n这完美符合对偶性：频域的平坦对应时域的极度集中。"
+  },
+  {
+    "objectID": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html#总结比较",
+    "href": "lecturenotes/关于Sinc函数极限为狄拉克函数的证明.html#总结比较",
+    "title": "广义函数视角下的 \\(delta\\) 函数定义与 \\(sinc\\) 函数极限分析",
+    "section": "5. 总结比较",
+    "text": "5. 总结比较\n\n\n\n特性\n经典函数思维\n广义函数 (分布) 思维\n\n\n\n\n关注点\n局部取值 \\(f(x)\\)\n整体作用 \\(\\langle f, \\phi \\rangle\\)\n\n\n\\(sinc\\) 极限\n震荡不收敛\n弱收敛于 \\(\\delta\\)\n\n\n处理手段\n极限点态值\n分部积分、作用转移、测试函数采样\n\n\n\n核心哲学：放弃对“本体形状”的执念，通过对象与外界的“交互效应”来定义对象。****"
+  },
+  {
+    "objectID": "Chapter04_V4.html",
+    "href": "Chapter04_V4.html",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "",
+    "text": "1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "lecturenotes/分布式的对偶说明.html",
+    "href": "lecturenotes/分布式的对偶说明.html",
+    "title": "从分布理论视角看傅里叶变换的系数 \\(2pi\\)",
+    "section": "",
+    "text": "在广义函数框架下，我们不讨论 \\(f(t)\\) 在某一点的值，而是讨论分布 \\(T\\) 如何作用于一个测试函数 \\(\\phi \\in \\mathcal{S}\\)（Schwartz 空间）。\n这种“作用”记为内积形式： \\[\\langle T, \\phi \\rangle = \\int_{\\mathbb{R}} T(t)\\phi(t)dt\\]"
+  },
+  {
+    "objectID": "lecturenotes/分布式的对偶说明.html#核心定义分布distribution与作用testing",
+    "href": "lecturenotes/分布式的对偶说明.html#核心定义分布distribution与作用testing",
+    "title": "从分布理论视角看傅里叶变换的系数 \\(2pi\\)",
+    "section": "",
+    "text": "在广义函数框架下，我们不讨论 \\(f(t)\\) 在某一点的值，而是讨论分布 \\(T\\) 如何作用于一个测试函数 \\(\\phi \\in \\mathcal{S}\\)（Schwartz 空间）。\n这种“作用”记为内积形式： \\[\\langle T, \\phi \\rangle = \\int_{\\mathbb{R}} T(t)\\phi(t)dt\\]"
+  },
+  {
+    "objectID": "lecturenotes/分布式的对偶说明.html#傅里叶变换的对偶映射定义",
+    "href": "lecturenotes/分布式的对偶说明.html#傅里叶变换的对偶映射定义",
+    "title": "从分布理论视角看傅里叶变换的系数 \\(2pi\\)",
+    "section": "2. 傅里叶变换的对偶映射定义",
+    "text": "2. 傅里叶变换的对偶映射定义\n为了定义广义函数的傅里叶变换 \\(\\mathcal{F}\\{T\\}\\)，我们要求它在对偶空间中满足： \\[\\langle \\mathcal{F}\\{T\\}, \\phi \\rangle = \\langle T, \\mathcal{F}\\{\\phi\\} \\rangle\\]\n这里 \\(\\mathcal{F}\\{\\phi\\}\\) 是对普通函数（测试函数）的标准傅里叶变换： \\[\\Phi(j\\omega) = \\mathcal{F}\\{\\phi\\}(j\\omega) = \\int_{\\mathbb{R}} \\phi(t)e^{-j\\omega t}dt\\]"
+  },
+  {
+    "objectID": "lecturenotes/分布式的对偶说明.html#推导为什么-mathcalf1-2pideltaomega",
+    "href": "lecturenotes/分布式的对偶说明.html#推导为什么-mathcalf1-2pideltaomega",
+    "title": "从分布理论视角看傅里叶变换的系数 \\(2pi\\)",
+    "section": "3. 推导：为什么 \\(\\mathcal{F}\\{1\\} = 2\\pi\\delta(\\omega)\\)？",
+    "text": "3. 推导：为什么 \\(\\mathcal{F}\\{1\\} = 2\\pi\\delta(\\omega)\\)？\n我们令 \\(T = 1\\)（直流分布），根据对偶定义：\n\\[\\langle \\mathcal{F}\\{1\\}, \\phi \\rangle = \\langle 1, \\mathcal{F}\\{\\phi\\} \\rangle\\]\n\n步骤 A：展开右侧积分\n\\[\\langle 1, \\Phi \\rangle = \\int_{\\mathbb{R}} 1 \\cdot \\Phi(j\\omega) d\\omega = \\int_{\\mathbb{R}} \\Phi(j\\omega) d\\omega\\]\n\n\n步骤 B：利用反变换公式的性质\n根据经典的傅里叶反变换定义： \\[\\phi(t) = \\frac{1}{2\\pi} \\int_{\\mathbb{R}} \\Phi(j\\omega)e^{j\\omega t} d\\omega\\]\n令 \\(t = 0\\)，得到： \\[\\phi(0) = \\frac{1}{2\\pi} \\int_{\\mathbb{R}} \\Phi(j\\omega) d\\omega \\implies \\int_{\\mathbb{R}} \\Phi(j\\omega) d\\omega = 2\\pi \\phi(0)\\]\n\n\n步骤 C：映射回分布空间\n将结果代入对偶等式： \\[\\langle \\mathcal{F}\\{1\\}, \\phi \\rangle = 2\\pi \\phi(0)\\]\n根据狄拉克分布 \\(\\delta\\) 的定义 \\(\\langle \\delta, \\phi \\rangle = \\phi(0)\\)，上式可写为： \\[\\langle \\mathcal{F}\\{1\\}, \\phi \\rangle = \\langle 2\\pi \\delta, \\phi \\rangle\\]\n结论： 在分布算子意义上，\\(\\mathcal{F}\\{1\\} = 2\\pi\\delta(\\omega)\\)。"
+  },
+  {
+    "objectID": "lecturenotes/分布式的对偶说明.html#对比为什么-mathcalfdelta-1",
+    "href": "lecturenotes/分布式的对偶说明.html#对比为什么-mathcalfdelta-1",
+    "title": "从分布理论视角看傅里叶变换的系数 \\(2pi\\)",
+    "section": "4. 对比：为什么 \\(\\mathcal{F}\\{\\delta\\} = 1\\)？",
+    "text": "4. 对比：为什么 \\(\\mathcal{F}\\{\\delta\\} = 1\\)？\n同样应用对偶定义，令 \\(T = \\delta(t)\\)：\n\\[\\langle \\mathcal{F}\\{\\delta\\}, \\phi \\rangle = \\langle \\delta, \\mathcal{F}\\{\\phi\\} \\rangle\\]\n\n步骤 A：利用 \\(\\delta\\) 的采样性质\n根据 \\(\\langle \\delta, \\Phi \\rangle = \\Phi(j0)\\)，直接提取频谱在零点的值： \\[\\Phi(j0) = \\left. \\int_{\\mathbb{R}} \\phi(t)e^{-j\\omega t} dt \\right|_{\\omega=0} = \\int_{\\mathbb{R}} \\phi(t) dt\\]\n\n\n步骤 B：映射回分布空间\n积分 \\(\\int \\phi(t) dt\\) 正好是常数分布 \\(1\\) 对测试函数的作用结果： \\[\\int_{\\mathbb{R}} \\phi(t) dt = \\langle 1, \\phi \\rangle\\]\n结论： \\(\\mathcal{F}\\{\\delta\\} = 1\\)。"
+  },
+  {
+    "objectID": "lecturenotes/分布式的对偶说明.html#总结系数不对称的根源",
+    "href": "lecturenotes/分布式的对偶说明.html#总结系数不对称的根源",
+    "title": "从分布理论视角看傅里叶变换的系数 \\(2pi\\)",
+    "section": "总结：系数不对称的根源",
+    "text": "总结：系数不对称的根源\n\n\n\n\n\n\n\n\n\n分布类型 \\(T\\)\n作用过程\n触发的数学机制\n结果\n\n\n\n\n\\(\\delta(t)\\)\n提取 \\(\\Phi(0)\\)\n正变换定义积分 \\(\\int \\phi(t)e^0 dt\\)\n\\(1\\)\n\n\n\\(1\\)\n全积分 \\(\\int \\Phi d\\omega\\)\n反变换系数补偿 \\(2\\pi \\phi(0)\\)\n\\(2\\pi \\delta(\\omega)\\)\n\n\n\n在角频率 \\(\\omega\\) 体系下，“零点取值”与“全轴积分”这一对算子是不完全对称的，缺失的 \\(2\\pi\\) 测度由反变换公式提供。这正是你在截图中看到推导过程在不同地方出现或消失 \\(2\\pi\\) 的数学本质。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#toc0",
+    "href": "Chapter04_V5.html#toc0",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V5.html#动机示例周期方波",
+    "href": "Chapter04_V5.html#动机示例周期方波",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "动机示例：周期方波",
+    "text": "动机示例：周期方波\n在一个周期中,\n\\[\nx_{T}(t)= \\begin{cases}1, & |t|&lt;T_{1} \\\\ 0, & T_{1}&lt;|t|&lt;T / 2\\end{cases}\n\\]\n\n在 \\(\\omega_k = k\\omega_0\\) 处的频率分量满足：\n\\[\nT\\hat{x}_T[k] = \\frac{2 \\sin (k\\omega_0 T_1)}{k\\omega_0} = \\left. \\frac{2 \\sin (\\omega T_1)}{\\omega} \\right|_{\\omega=k\\omega_0}\n\\]\n\\(T\\hat{x}_T[k]\\) 是在 \\(\\omega_k = k\\omega_0\\) 处采样的包络线 \\(X(j\\omega) \\triangleq \\frac{2 \\sin(\\omega T_1)}{\\omega}\\) 的值。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#动机示例周期方波-1",
+    "href": "Chapter04_V5.html#动机示例周期方波-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "动机示例：周期方波",
+    "text": "动机示例：周期方波\n\n\n当 \\(T_1\\) 固定且周期 \\(T\\) 不同时的 \\(X(j\\omega_k)\\)：\n\n离散频率间隔为 \\(\\omega_k = k\\frac{2\\pi}{T}\\)\n图中展示了三种情况：\n\n\\(T = 4T_1\\)\n\\(T = 8T_1\\)\n\\(T = 16T_1\\)\n\n第一个零点位于 \\(\\frac{\\pi}{T_1}\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n结论： 随着 \\(T \\to \\infty\\)，离散频率的采样变得越来越密集。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#动机示例周期方波-2",
+    "href": "Chapter04_V5.html#动机示例周期方波-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "动机示例：周期方波",
+    "text": "动机示例：周期方波\n当 \\(T \\to \\infty\\) 时，\\(x_T(t) \\to x(t) \\triangleq u(t + T_1) - u(t - T_1)\\)，即矩形脉冲 。\n\\[\n\\begin{aligned}\nx_T(t) &= \\sum_{k=-\\infty}^{\\infty} \\hat{x}_T[k] e^{j\\omega_k t} = \\sum_{k=-\\infty}^{\\infty} \\frac{1}{T} X(j\\omega_k) e^{j\\omega_k t} & (T\\hat{x}[k] = X(j\\omega_k))  \\\\\n&= \\sum_{k=-\\infty}^{\\infty} \\frac{\\omega_0}{2\\pi} X(j\\omega_k) e^{j\\omega_k t} & (\\omega_0 = \\frac{2\\pi}{T}) \\\\\n&= \\frac{1}{2\\pi} \\sum_{k=-\\infty}^{\\infty} X(j\\omega_k) e^{j\\omega_k t} \\Delta\\omega & (\\Delta\\omega = \\omega_0)  \\\\\n&\\to \\frac{1}{2\\pi} \\int_{-\\infty}^{\\infty} X(j\\omega) e^{j\\omega t} d\\omega & (\\Delta\\omega = \\omega_0 \\to 0)\n\\end{aligned}\n\\]\n因此：\n\\[\nx(t) = \\frac{1}{2\\pi} \\int_{-\\infty}^{\\infty} X(j\\omega) e^{j\\omega t} d\\omega  \n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#动机示例周期方波-3",
+    "href": "Chapter04_V5.html#动机示例周期方波-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "动机示例：周期方波",
+    "text": "动机示例：周期方波\n对于\\(X(j\\omega)\\) ，\n\\[\n\\begin{aligned}\nX(j\\omega_k) &= T\\hat{x}_T[k] \\\\\n&= \\int_{-T/2}^{T/2} x_T(t)e^{-j\\omega_k t} dt \\\\\n&= \\int_{-T/2}^{T/2} x(t)e^{-j\\omega_k t} dt \\quad (在 |t| \\le T/2 时，x_T(t) = x(t))  \\\\\n&= \\int_{-\\infty}^{\\infty} x(t)e^{-j\\omega_k t} dt \\quad (在 |t| &gt; T/2 时，x(t) = 0)\n\\end{aligned}\n\\]\n所以，\n\\[\nX(j\\omega) = \\int_{-\\infty}^{\\infty} x(t)e^{-j\\omega t} dt\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#动机示例周期方波-4",
+    "href": "Chapter04_V5.html#动机示例周期方波-4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "动机示例：周期方波",
+    "text": "动机示例：周期方波"
+  },
+  {
+    "objectID": "Chapter04_V5.html#非周期信号的连续时间傅里叶变换-ctft",
+    "href": "Chapter04_V5.html#非周期信号的连续时间傅里叶变换-ctft",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "非周期信号的连续时间傅里叶变换 (CTFT)",
+    "text": "非周期信号的连续时间傅里叶变换 (CTFT)\n对于一个支撑集为 \\(\\text{supp } x \\subset [-T_1, T_1]\\) 的非周期信号 \\(x\\)，定义周期为 \\(T &gt; 2T_1\\) 的周期延拓信号：\n\\[x_T(t) = \\sum_{k=-\\infty}^{\\infty} x(t - kT)\\]\n那么\n\\[x(t) = x_T(t), \\quad |t| &lt; \\frac{T}{2}\\]\n当 \\(T \\to \\infty\\) 时，\n\\[x_T(t) \\to x(t), \\quad \\forall t \\in \\mathbb{R}\\]\n\\(x_T\\) 具有傅里叶级数表示：\n\\[x_T(t) = \\sum_{k=-\\infty}^{\\infty} \\hat{x}_T[k]e^{jk\\omega_0 t}, \\quad \\omega_0 = \\frac{2\\pi}{T}\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#非周期信号的连续时间傅里叶变换",
+    "href": "Chapter04_V5.html#非周期信号的连续时间傅里叶变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "非周期信号的连续时间傅里叶变换",
+    "text": "非周期信号的连续时间傅里叶变换\n定义：\n\\[\nX(j\\omega) = \\int_{-\\infty}^{\\infty} x(t)e^{-j\\omega t} dt\n\\]\n\\(X(j\\omega)\\) 是 \\(T\\hat{x}_T[k]\\) 的包络线，\n\\[\n\\begin{aligned}\n\\hat{x}_T[k] &= \\frac{1}{T} \\int_{-\\frac{T}{2}}^{\\frac{T}{2}} x_T(t)e^{-jk\\omega_0 t} dt = \\frac{1}{T} \\int_{-\\frac{T}{2}}^{\\frac{T}{2}} x(t)e^{-jk\\omega_0 t} dt \\\\\n&= \\frac{1}{T} \\int_{-\\infty}^{\\infty} x(t)e^{-jk\\omega_0 t} dt = \\frac{1}{T} X(jk\\omega_0) = \\frac{\\omega_0}{2\\pi} X(jk\\omega_0)\n\\end{aligned}\n\\]\n所以：\n\\[\n\\begin{aligned}\nx(t) &= \\lim_{T \\to \\infty} x_T(t) = \\lim_{T \\to \\infty} \\sum_{k=-\\infty}^{\\infty} \\frac{\\omega_0}{2\\pi} X(jk\\omega_0)e^{jk\\omega_0 t} \\\\\n&= \\frac{1}{2\\pi} \\int_{-\\infty}^{\\infty} X(j\\omega)e^{j\\omega t} d\\omega\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#连续时间傅里叶变换对",
+    "href": "Chapter04_V5.html#连续时间傅里叶变换对",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "连续时间傅里叶变换对",
+    "text": "连续时间傅里叶变换对\n傅里叶变换（分析方程） ： \\[X(j\\omega) = \\mathcal{F}(x)(j\\omega) = \\int_{-\\infty}^{\\infty} x(t) e^{-j\\omega t} dt\\] * \\(X(j\\omega)\\) 被称为 \\(x(t)\\) 的频谱 。\n逆傅里叶变换（综合方程） ： \\[x(t) = \\mathcal{F}^{-1}(X)(t) = \\frac{1}{2\\pi} \\int_{-\\infty}^{\\infty} X(j\\omega) e^{j\\omega t} d\\omega\\] * 这是在连续频率上的复指数信号的叠加；\n\n频率 \\(\\omega\\) 具有“幅度” \\(X(j\\omega) \\frac{d\\omega}{2\\pi}\\) 。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#等价表示与应用",
+    "href": "Chapter04_V5.html#等价表示与应用",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "等价表示与应用",
+    "text": "等价表示与应用\n同一信号的两种等价表示：\n\n时域 vs. 频域：\\(x(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega)\\)\n\n其他领域的应用：\n\n概率论：具有密度函数 \\(p(x)\\) 的随机变量 \\(X\\) 的特征函数 \\[\n\\varphi_{X}(t)=\\mathbb{E}\\left[e^{j t X}\\right]=\\int_{-\\infty}^{\\infty} p(x) e^{j x t} d x\n\\]\n量子力学：\n\n位置表示：波函数 \\(\\psi(x)\\)（\\(|\\psi(x)|^{2}\\) 是在位置 \\(x\\) 发现粒子的概率密度）\n动量表示：\\(\\Psi(p)\\) \\[\n\\Psi(p)=\\frac{1}{\\sqrt{2 \\pi \\hbar}} \\int_{-\\infty}^{\\infty} \\psi(x) e^{-j p x / \\hbar} d x\n\\]\n\\(|\\Psi(p)|^{2}\\) 是发现具有动量 \\(p\\) 的粒子的概率密度"
+  },
+  {
+    "objectID": "Chapter04_V5.html#l_1-信号的定义",
+    "href": "Chapter04_V5.html#l_1-信号的定义",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "\\(L_{1}\\) 信号的定义",
+    "text": "\\(L_{1}\\) 信号的定义\n回顾微积分，对于实值函数 \\(x\\)，广义积分定义为：\n\\[\n\\int_{\\mathbb{R}} x(t) d t \\triangleq \\lim _{T_{1}, T_{2} \\rightarrow \\infty} \\int_{-T_{1}}^{T_{2}} x(t) d t\n\\]\n如果 \\(x \\in L_{1}(\\mathbb{R})\\)，即 \\(\\|x\\|_{1}=\\int_{\\mathbb{R}}|x(t)| d t&lt;\\infty\\)，则该积分是定义良好 (well-defined) 的。 对于复值函数 \\(x=u+j v\\) 同样适用，因为 \\(|u|,|v| \\leq|x|\\)。\n对于信号 \\(x \\in L_{1}(\\mathbb{R})\\)：\n\n\\(x(t) e^{-j \\omega t} \\in L_{1}(\\mathbb{R})\\)，因为 \\(\\left|x(t) e^{-j \\omega t}\\right|=|x(t)|\\)。\n对于每个 \\(\\omega\\)，傅里叶变换 \\(X(j \\omega)\\) 都是定义良好的广义积分。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子右边衰减指数信号",
+    "href": "Chapter04_V5.html#例子右边衰减指数信号",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：右边衰减指数信号",
+    "text": "例子：右边衰减指数信号\n\n\n\\[\nx(t)=e^{-a t} u(t), \\quad a&gt;0\n\\]\n\n\\[\n\\begin{aligned}\nX(j \\omega) & =\\int_{0}^{\\infty} e^{-(a+j \\omega) t} d t \\\\\n& =-\\left.\\frac{1}{a+j \\omega} e^{-(a+j \\omega) t}\\right|_{0} ^{\\infty}=\\frac{1}{a+j \\omega}\n\\end{aligned}\n\\]\n(注：该公式也适用于实部 \\(\\operatorname{Re} a&gt;0\\) 的复数 \\(a\\))\n对于 \\(a&gt;0\\)： \\[\n|X(j \\omega)|=\\frac{1}{\\sqrt{a^{2}+\\omega^{2}}}, \\quad \\arg X(j \\omega)=-\\arctan \\frac{\\omega}{a}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子双边衰减指数信号",
+    "href": "Chapter04_V5.html#例子双边衰减指数信号",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：双边衰减指数信号",
+    "text": "例子：双边衰减指数信号\n\n\n\\[\nx(t)=e^{-a|t|}, \\quad a&gt;0\n\\]\n\\[\n\\begin{aligned}\nX(j \\omega) & =\\int_{-\\infty}^{\\infty} e^{-a|t|} e^{-j \\omega t} d t \\\\\n& =\\int_{-\\infty}^{0} e^{(a-j \\omega) t} d t+\\int_{0}^{\\infty} e^{-(a+j \\omega) t} d t \\\\\n& =\\frac{1}{a-j \\omega}+\\frac{1}{a+j \\omega}=\\frac{2 a}{a^{2}+\\omega^{2}}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子高斯信号-gaussian",
+    "href": "Chapter04_V5.html#例子高斯信号-gaussian",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：高斯信号 (Gaussian)",
+    "text": "例子：高斯信号 (Gaussian)\n对于 \\(a&gt;0\\)，\n\\[\nx(t)=e^{-a t^{2}} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega)=\\sqrt{\\frac{\\pi}{a}} e^{-\\frac{\\omega^{2}}{4 a}}\n\\]\n\n特别地，如果 \\(a=1/2\\)： \\[\nx(t)=e^{-\\frac{1}{2} t^{2}} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega)=\\sqrt{2 \\pi} e^{-\\frac{1}{2} \\omega^{2}}\n\\] 即高斯函数是傅里叶变换的特征函数。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#高斯信号变换证明",
+    "href": "Chapter04_V5.html#高斯信号变换证明",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "高斯信号变换证明",
+    "text": "高斯信号变换证明\n利用微分方程和分部积分证明：\n\\[\n\\begin{aligned}\n\\frac{d}{d \\omega} X(j \\omega) & =\\int_{-\\infty}^{\\infty} e^{-a t^{2}}(-j t) e^{-j \\omega t} d t=\\frac{j}{2 a} \\int_{-\\infty}^{\\infty}\\left(\\frac{d}{d t} e^{-a t^{2}}\\right) e^{-j \\omega t} d t \\\\\n&=-\\frac{j}{2 a} \\int_{-\\infty}^{\\infty} e^{-a t^{2}}\\left(\\frac{d}{d t} e^{-j \\omega t}\\right) d t \\quad \\text { (分部积分) } \\\\\n&=-\\frac{\\omega}{2 a} X(j \\omega)\n\\end{aligned}\n\\]\n解微分方程 \\(\\frac{d}{d \\omega} X(j \\omega)=-\\frac{\\omega}{2 a} X(j \\omega)\\) 并利用 \\(X(0)=\\sqrt{\\pi/a}\\) 可得结果。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#l_1-信号的傅里叶逆变换",
+    "href": "Chapter04_V5.html#l_1-信号的傅里叶逆变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "\\(L_{1}\\) 信号的傅里叶逆变换",
+    "text": "\\(L_{1}\\) 信号的傅里叶逆变换\n给定 \\(X(j\\omega)\\)，逆变换是否等于 \\(x(t)\\)？\n\\[\nx(t) \\stackrel{?}{=} \\mathcal{F}^{-1}\\{X\\}(t)=\\frac{1}{2 \\pi} \\int_{-\\infty}^{\\infty} X(j \\omega) e^{j \\omega t} d \\omega\n\\]\n定理：如果 \\(x \\in L_{1}(\\mathbb{R})\\) 是连续的，且 \\(X=\\mathcal{F}\\{x\\} \\in L_{1}(\\mathbb{R})\\)，那么 \\(x=\\mathcal{F}^{-1}\\{X\\}\\)。 - 例如：双边衰减指数，高斯信号。\n注意：对于 \\(x \\in L_1\\)，其变换 \\(X\\) 不一定属于 \\(L_1\\)。 - 例如：单边衰减指数，矩形脉冲。\n主值积分：通常将逆变换解释为柯西主值 (Principal Value)： \\[\n\\lim _{W \\rightarrow \\infty} \\frac{1}{2 \\pi} \\int_{-W}^{W} X(j \\omega) e^{j \\omega t} d \\omega\n\\]\n狄利克雷定理：如果 \\(x \\in L_1\\) 且满足狄利克雷条件，逆变换收敛于 \\(\\frac{x\\left(t_{+}\\right)+x\\left(t_{-}\\right)}{2}\\)（吉布斯现象）。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子矩形脉冲-rectangular-pulse",
+    "href": "Chapter04_V5.html#例子矩形脉冲-rectangular-pulse",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：矩形脉冲 (Rectangular Pulse)",
+    "text": "例子：矩形脉冲 (Rectangular Pulse)\n\n\n\\[\nx(t)=u(t+T)-u(t-T)\n\\]\n\\[\nX(j \\omega)=\\int_{-T}^{T} e^{-j \\omega t} d t=\\frac{2 \\sin (\\omega T)}{\\omega}\\]\n当 \\(T \\rightarrow \\infty\\) 时：\n\n频域：\\(\\frac{\\sin (\\omega T)}{\\pi \\omega} \\rightarrow \\delta(\\omega)\\)\n时域：\\(x(t) \\rightarrow 1\\) (直流信号)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子理想低通滤波器",
+    "href": "Chapter04_V5.html#例子理想低通滤波器",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：理想低通滤波器",
+    "text": "例子：理想低通滤波器\n\n\n频率响应： \\[\nH(j \\omega)=u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\n\\]\n冲激响应（逆变换）： \\[\nh(t)=\\frac{1}{2 \\pi} \\int_{-\\omega_{c}}^{\\omega_{c}} e^{j \\omega t} d \\omega=\\frac{\\sin \\left(\\omega_{c} t\\right)}{\\pi t}\n\\]\n注意：\\(h(t) \\notin L_{1}(\\mathbb{R})\\) 但 \\(H(j \\omega) \\in L_{1}(\\mathbb{R})\\)。\n\n\n\n当 \\(\\omega_{c} \\rightarrow \\infty\\) 时，\n\n时域：\\(h(t) \\rightarrow \\delta(t)\\)\n频域：\\(H(j \\omega) \\rightarrow 1\\)（通过所有频率）"
+  },
+  {
+    "objectID": "Chapter04_V5.html#对偶性-duality",
+    "href": "Chapter04_V5.html#对偶性-duality",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性 (Duality)",
+    "text": "对偶性 (Duality)\n\n\n时间脉冲 \\(\\leftrightarrow\\) 频域 Sinc\n时间 Sinc \\(\\leftrightarrow\\) 频域脉冲 (低通滤波器)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#广义傅里叶变换定义",
+    "href": "Chapter04_V5.html#广义傅里叶变换定义",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "广义傅里叶变换定义",
+    "text": "广义傅里叶变换定义\n如果 \\(x_n \\rightarrow x\\)，定义 \\(x\\) 的傅里叶变换为： \\[\nX(j \\omega)=\\mathcal{F}\\{x\\} \\triangleq \\lim _{n} \\mathcal{F}\\left\\{x_{n}\\right\\}\n\\]\n更正式地，基于分布/广义函数理论，对于测试函数 \\(\\phi\\)： \\[\n\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) \\phi(\\omega) d \\omega=\\int_{\\mathbb{R}} x(t) \\Phi(j t) d t\n\\]\n施瓦兹空间 (Schwarz Space) \\(\\mathcal{S}\\)：\n\n无穷可微且速降 (rapidly decreasing) 的函数空间。\n例如：高斯函数 \\(g(t)=e^{-a t^{2}} \\in \\mathcal{S}\\)。\n性质：\\(\\phi \\in \\mathcal{S} \\Longrightarrow \\Phi \\in \\mathcal{S}\\)。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子单位冲激-delta",
+    "href": "Chapter04_V5.html#例子单位冲激-delta",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：单位冲激 \\(\\delta\\)",
+    "text": "例子：单位冲激 \\(\\delta\\)\n方法 1：作为理想低通滤波器的极限。 \\[\nh_{W}(t)=\\frac{\\sin (W t)}{\\pi t} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} H_{W}(j \\omega)=u(\\omega+W)-u(\\omega-W)\n\\] 当 \\(W \\rightarrow \\infty\\)，\\(h_W \\to \\delta\\)，且 \\(H_W \\to 1\\)。 \\[\n\\therefore \\mathcal{F}\\{\\delta\\}=1\n\\]\n方法 2：使用广义定义。 \\[\n\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) \\phi(\\omega) d \\omega=\\int_{\\mathbb{R}} \\delta(t) \\Phi(j t) d t=\\Phi(0)=\\int_{\\mathbb{R}} 1 \\cdot \\phi(\\omega) d \\omega\n\\] 因此 \\(X(j\\omega)=1\\)。 \\(\\delta\\) 具有白色频谱 (white spectrum)，包含等量的所有频率。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子直流信号-1",
+    "href": "Chapter04_V5.html#例子直流信号-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：直流信号 1",
+    "text": "例子：直流信号 1\n方法 1：作为矩形脉冲的极限。 \\[\nx_{T}(t) \\longleftrightarrow X_{T}(j \\omega)=\\frac{2 \\sin (\\omega T)}{\\omega}\n\\] 当 \\(T \\rightarrow \\infty\\)，\\(x_T \\to 1\\)，且 \\(X_T \\to 2\\pi\\delta(\\omega)\\)。 \\[\n\\therefore \\mathcal{F}\\{1\\}=2 \\pi \\delta(\\omega)\n\\]\n方法 2：使用广义定义。 \\[\n\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) \\phi(\\omega) d \\omega=\\int_{\\mathbb{R}} 1 \\cdot \\Phi(j t) d t=2 \\pi \\phi(0)=\\int_{\\mathbb{R}} 2 \\pi \\delta(\\omega) \\phi(\\omega) d \\omega\n\\] 也就是： \\[2\\pi\\delta(\\omega) = \\int_{-\\infty}^{\\infty} e^{-j\\omega t} dt\\] 直流信号的频谱是零频率处的冲激！"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子复指数信号",
+    "href": "Chapter04_V5.html#例子复指数信号",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：复指数信号",
+    "text": "例子：复指数信号\n令 \\(x(t)=e^{j \\omega_{0} t}\\)。  根据 \\[2\\pi\\delta(\\omega) = \\int_{-\\infty}^{\\infty} e^{-j\\omega t} dt\\] 可以得到： \\[2\\pi\\delta(\\omega - \\omega_0) = \\int_{\\mathbb{R}} e^{j(\\omega_0 - \\omega)t} dt\\]\n因此： \\[\n\\mathcal{F}\\{e^{j \\omega_{0} t}\\} = 2 \\pi \\delta\\left(\\omega-\\omega_{0}\\right)\n\\]\n\\(e^{j \\omega_{0} t}\\) 的频谱是 \\(\\omega_{0}\\) 处的冲激。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#周期信号的傅里叶变换",
+    "href": "Chapter04_V5.html#周期信号的傅里叶变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "周期信号的傅里叶变换",
+    "text": "周期信号的傅里叶变换\n周期信号的频谱\n基频为 \\(\\omega_0\\) 的周期信号具有傅里叶级数： \\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]\n利用线性和复指数的变换： \\[\n\\begin{aligned}\nX(j \\omega) & =\\mathcal{F}\\left\\{\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\omega_{0} t}\\right\\} \\\\\n& =\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] \\mathcal{F}\\left\\{e^{j k \\omega_{0} t}\\right\\} \\\\\n& =\\sum_{k=-\\infty}^{\\infty} 2 \\pi \\hat{x}[k] \\delta\\left(\\omega-k \\omega_{0}\\right)\n\\end{aligned}\n\\]\n结论：周期信号的频谱由谐波相关频率处的冲激组成！冲激的面积是 \\(2\\pi\\) 乘以傅里叶级数系数。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子正弦和余弦",
+    "href": "Chapter04_V5.html#例子正弦和余弦",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：正弦和余弦",
+    "text": "例子：正弦和余弦\n\n\n余弦：\\(x(t) = \\cos(\\omega_0 t) = \\frac{1}{2} e^{j \\omega_{0} t}+\\frac{1}{2} e^{-j \\omega_{0} t}\\) \\[\nX(j \\omega) = \\pi \\delta\\left(\\omega-\\omega_{0}\\right)+\\pi \\delta\\left(\\omega+\\omega_{0}\\right)\n\\]\n正弦：\\(x(t) = \\sin(\\omega_0 t) = \\frac{1}{2j} e^{j \\omega_{0} t}-\\frac{1}{2j} e^{-j \\omega_{0} t}\\) \\[\nX(j \\omega) = \\frac{\\pi}{j} \\delta\\left(\\omega-\\omega_{0}\\right)-\\frac{\\pi}{j} \\delta\\left(\\omega+\\omega_{0}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子周期方波",
+    "href": "Chapter04_V5.html#例子周期方波",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：周期方波",
+    "text": "例子：周期方波\n\n\n\n\n\n\n\n\\[\n\\hat{x}[k]=\\frac{Sin(k\\omega t)}{k \\pi}\n\\]\n\n\\[\nX(j \\omega)=\\sum_{k=-\\infty}^{\\infty}\\frac{2 Sin(k\\omega t)}{k } \\delta(\\omega-k\\omega_0)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子周期冲激串",
+    "href": "Chapter04_V5.html#例子周期冲激串",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：周期冲激串",
+    "text": "例子：周期冲激串\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\delta(t-k T)\n\\]\n傅里叶系数 \\(\\hat{x}[k] = 1/T\\)。 傅里叶变换：\n\\[\nX(j \\omega)=\\sum_{k=-\\infty}^{\\infty} \\frac{2 \\pi}{T} \\delta\\left(\\omega-k \\frac{2 \\pi}{T}\\right)\n\\]\n时域中的冲激串 \\(\\longleftrightarrow\\) 频域中的冲激串。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#toc1",
+    "href": "Chapter04_V5.html#toc1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V5.html#回顾l_1mathbbr-函数的傅里叶变换",
+    "href": "Chapter04_V5.html#回顾l_1mathbbr-函数的傅里叶变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾：\\(L_1(\\mathbb{R})\\) 函数的傅里叶变换",
+    "text": "回顾：\\(L_1(\\mathbb{R})\\) 函数的傅里叶变换\n作为主值（Principal values）的傅里叶变换及其逆变换：\n\\[\n\\mathcal{F}\\{x\\}(j\\omega) = \\lim_{T \\to \\infty} \\int_{-T}^{T} x(t)e^{-j\\omega t} dt\n\\]\n\\[\n\\mathcal{F}^{-1}(X)(t) = \\lim_{W \\to \\infty} \\frac{1}{2 \\pi} \\int_{-W}^{W} X(j\\omega)e^{j\\omega t} d\\omega\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#回顾-l_1mathbbr-函数的傅里叶变换",
+    "href": "Chapter04_V5.html#回顾-l_1mathbbr-函数的傅里叶变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾: \\(L_1(\\mathbb{R})\\) 函数的傅里叶变换",
+    "text": "回顾: \\(L_1(\\mathbb{R})\\) 函数的傅里叶变换\n傅里叶变换对\n\n\n\n\n\n\n\n\ncase\n\\(x(t)\\)\n\\(X(j \\omega)\\)\n\n\n\n\n1\n\\(e^{-a t} u(t), \\quad \\operatorname{Re} a&gt;0\\)\n\\(\\frac{1}{a+j \\omega}\\)\n\n\n3\n\\(e^{-a\\|t\\|}, \\quad \\operatorname{Re} a&gt;0\\)\n\\(\\frac{2 a}{a^{2}+\\omega^{2}}\\)\n\n\n3\n\\(e^{-a t^{2}}, \\quad a&gt;0\\)\n\\(\\sqrt{\\frac{\\pi}{a}} e^{-\\frac{\\omega^{2}}{4 a}}\\)\n\n\n1\n\\(u(t+T)-u(t-T)\\)\n\\(\\frac{2 \\sin (\\omega T)}{\\omega}\\)\n\n\n2\n\\(\\frac{\\sin \\left(\\omega_{c} t\\right)}{\\pi t}\\)\n\\(u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\\)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#回顾-广义函数的傅里叶变换",
+    "href": "Chapter04_V5.html#回顾-广义函数的傅里叶变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾: 广义函数的傅里叶变换",
+    "text": "回顾: 广义函数的傅里叶变换\n施瓦茨空间 (Schwartz space) \\(\\mathcal{S} = \\mathcal{S}(\\mathbb{R})\\)，即快速递减函数空间：\n\\[\\mathcal{S} = \\{ \\phi \\in C^\\infty(\\mathbb{R}) : \\|\\phi\\|_{\\ell,k} &lt; \\infty, \\forall \\ell, k \\in \\mathbb{N} \\}\\]\n其中 \\(\\|\\phi\\|_{\\ell,k} = \\sup_{t \\in \\mathbb{R}} |t^\\ell \\phi^{(k)}(t)|\\)。注意 \\(\\mathcal{F}\\{\\mathcal{S}\\} = \\mathcal{S}\\)。\n缓增广义函数 (Tempered distributions) 的傅里叶变换定义如下：\n\\[(x, \\phi) \\triangleq \\int_{\\mathbb{R}} x(\\xi)\\phi(\\xi)d\\xi\\]\n\n如果在广义函数意义下 \\(x_n \\to x\\)，那么其傅里叶变换定义为：\\(\\mathcal{F}\\{x\\} \\triangleq \\lim_{n} \\mathcal{F}\\{x_n\\}\\)（广义函数意义下）。\n\n\\[(x, \\phi) = \\lim_{n} (x_n, \\phi) \\Longrightarrow (\\mathcal{F}\\{x\\}, \\phi) \\triangleq \\lim_{n} (\\mathcal{F}\\{x_n\\}, \\phi), \\quad \\forall \\phi \\in \\mathcal{S}\\]\n\n或者，另一种等价定义为： \\[(\\mathcal{F}\\{x\\}, \\phi) \\triangleq (x, \\mathcal{F}\\{\\phi\\}), \\quad \\forall \\phi \\in \\mathcal{S}\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#回顾-广义函数的傅里叶变换-1",
+    "href": "Chapter04_V5.html#回顾-广义函数的傅里叶变换-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾: 广义函数的傅里叶变换",
+    "text": "回顾: 广义函数的傅里叶变换\n傅里叶变换对\n\n\n\n\\(x(t)\\)\n\\(X(j \\omega)\\)\n\n\n\n\n\\(\\delta(t)\\)\n1\n\n\n\\(\\delta\\left(t-t_{0}\\right)\\)\n\\(e^{-j \\omega t_{0}}\\)\n\n\n1\n\\(2 \\pi \\delta(\\omega)\\)\n\n\n\\(e^{j \\omega_{0} t}\\)\n\\(2 \\pi \\delta\\left(\\omega-\\omega_{0}\\right)\\)\n\n\n\n\\[\n\\begin{gathered}\n\\int_{\\mathbb{R}} \\delta\\left(t-t_{0}\\right) e^{-j \\omega t} d t=e^{-j \\omega t_{0}}, \\quad \\int_{\\mathbb{R}} e^{j\\left(\\omega_{1}-\\omega_{2}\\right) t} d t=2 \\pi \\delta\\left(\\omega_{1}-\\omega_{2}\\right) \\\\\n\\int_{\\mathbb{R}} X(j \\omega) e^{j \\omega t} d \\omega=\\int_{\\mathbb{R}} \\int_{\\mathbb{R}} x(\\tau) e^{j \\omega(t-\\tau)} d \\tau d \\omega=\\int_{\\mathbb{R}} x(\\tau) 2 \\pi \\delta(t-\\tau) d \\tau=2 \\pi x(t)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#回顾-fourier-transform-for-periodic-functions",
+    "href": "Chapter04_V5.html#回顾-fourier-transform-for-periodic-functions",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾: Fourier Transform for Periodic Functions",
+    "text": "回顾: Fourier Transform for Periodic Functions\n傅里叶级数 (Fourier series)\n\\[x(t) = \\sum_{k=-\\infty}^{\\infty} \\hat{x}[k]e^{jk\\omega_0 t}\\]\n傅里叶变换 (Fourier transform)\n\\[X(j\\omega) = \\sum_{k=-\\infty}^{\\infty} 2\\pi\\hat{x}[k]\\delta(\\omega - k\\omega_0)\\]\n等价表示 (Equivalent representation)\n\n\\(\\hat{x}[k]\\) 是在 \\(\\omega_k = k\\omega_0\\) 处分量的幅度。\n\\(\\hat{x}[k]\\delta(\\omega - k\\omega_0)\\) 是在 \\(\\omega_k = k\\omega_0\\) 处分量的密度。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#回顾-傅里叶级数与傅里叶变换的关系",
+    "href": "Chapter04_V5.html#回顾-傅里叶级数与傅里叶变换的关系",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾: 傅里叶级数与傅里叶变换的关系",
+    "text": "回顾: 傅里叶级数与傅里叶变换的关系\n\n非周期信号 \\(x\\) 具有长度小于 \\(T\\) 的有限支撑集\n\\(x\\) 的周期延拓为 \\(x_T\\) [cite: 481]：\n\n\\[x_T(t) = \\sum_{k=-\\infty}^{\\infty} x(t - kT)\\]\n注意： 换句话说，\\(x\\) 是周期信号 \\(x_T\\) 的一个周期。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#连续时间傅里叶变换的性质",
+    "href": "Chapter04_V5.html#连续时间傅里叶变换的性质",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "连续时间傅里叶变换的性质",
+    "text": "连续时间傅里叶变换的性质\n线性\n\\[\n\\mathcal{F}\\{a x+b y\\}=a \\mathcal{F}\\{x\\}+b \\mathcal{F}\\{y\\}\n\\]\n时移\n\\[\n\\mathcal{F}\\left\\{\\tau_{t_{0}} x\\right\\}=E_{-t_{0}} \\mathcal{F}\\{x\\} \\quad \\text { or } \\quad x\\left(t-t_{0}\\right) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} e^{-j \\omega t_{0}} X(j \\omega)\n\\]\n其中 \\(\\left(E_{a} f\\right)(s)=e^{j a s} f(s)\\) 证明。\n\\[\n\\int_{\\mathbb{R}} x\\left(t-t_{0}\\right) e^{-j \\omega t} d t=\\int_{\\mathbb{R}} x(s) e^{-j \\omega\\left(s+t_{0}\\right)} d s=e^{-j \\omega t_{0}} \\int_{\\mathbb{R}} x(s) e^{-j \\omega s} d s\n\\]\n频移\n\\[\n\\mathcal{F}\\left\\{E_{\\omega_{0}} x\\right\\}=\\tau_{\\omega_{0}} \\hat{x} \\quad \\text { or } \\quad e^{j \\omega_{0} t} x(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(j\\left(\\omega-\\omega_{0}\\right)\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-多径效应",
+    "href": "Chapter04_V5.html#例-多径效应",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 多径效应",
+    "text": "例: 多径效应\n\n\n发送端 (Transmitter)：\\(x(t)\\)\n接收端 (Receiver)：\\(y(t) = a_0x(t) + a_1x(t - \\tau)\\)\n\\[\n\\begin{aligned}\nY(j \\omega) & =a_{0} X(j \\omega)+a_{1} e^{-j \\omega \\tau} X(j \\omega) \\\\\n& =\\left(a_{0}+a_{1} e^{-j \\omega \\tau}\\right) X(j \\omega)\n\\end{aligned}\n\\]\n令 \\(x(t)=u(t+T)-u(t-T)\\).\n\\[\nX(j \\omega)=\\frac{2 \\sin (\\omega T)}{\\omega}\n\\]\n\\[\nY(j \\omega)=\\left(a_{0}+a_{1} e^{-j \\omega \\tau}\\right) \\frac{2 \\sin (\\omega T)}{\\omega}\n\\]\n对于 \\(a_{0}=a_{1}=1\\),\n\\[\nY(j \\omega)=4 e^{-j \\omega \\tau / 2} \\cos \\left(\\frac{\\omega \\tau}{2}\\right) \\frac{\\sin (\\omega T)}{\\omega}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-调制",
+    "href": "Chapter04_V5.html#例-调制",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 调制",
+    "text": "例: 调制\n\n\n基带信号 (Baseband signal)：\\(x(t)\\)\n已调信号 (Modulated signal)：通常表示为 \\(y(t)\\) 或 \\(s(t)\\) \\[\n\\begin{aligned}\n& y(t)=x(t) \\cos \\left(\\omega_{c} t\\right)=\\frac{1}{2} x(t)\\left(e^{j \\omega_{c} t}+e^{-j \\omega_{c} t}\\right) \\\\\n& Y(j \\omega)=\\frac{1}{2} X\\left(j\\left(\\omega-\\omega_{c}\\right)\\right)+\\frac{1}{2} X\\left(j\\left(\\omega+\\omega_{c}\\right)\\right)\n\\end{aligned}\n\\]\n对于 \\(x(t)=u(t+T)-u(t-T)\\),\n\\[\nY(j \\omega)=\\frac{\\sin \\left(\\left(\\omega-\\omega_{c}\\right) T\\right)}{\\omega-\\omega_{c}}+\\frac{\\sin \\left(\\left(\\omega+\\omega_{c}\\right) T\\right)}{\\omega+\\omega_{c}}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#连续时间傅里叶变换的性质-1",
+    "href": "Chapter04_V5.html#连续时间傅里叶变换的性质-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "连续时间傅里叶变换的性质",
+    "text": "连续时间傅里叶变换的性质\n时间反转\n\\[\n\\mathcal{F}\\{R x\\}=R \\mathcal{F}\\{x\\} \\quad \\text { or } \\quad x(-t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(-j \\omega)\n\\]\n共轭\n\\[\n\\mathcal{F}\\left\\{x^{*}\\right\\}=R \\overline{\\mathcal{F}\\{x\\}} \\quad \\text { or } \\quad x^{*}(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X^{*}(-j \\omega)\n\\]\n证明：\n\\(\\mathcal{F} \\{x^*\\}(j\\omega) = \\int_{\\mathbb{R}} x^*(t)e^{-j\\omega t} dt = \\left( \\int_{\\mathbb{R}} x(t)e^{j\\omega t} dt \\right)^* = X^*(-j\\omega)\\) 对称性\n\n\\(x\\) 为偶函数 \\(\\iff X\\) 为偶函数； \\(x\\) 为奇函数 \\(\\iff X\\) 为奇函数\n\\(x\\) 为实信号 \\(\\iff X(-j\\omega) = X^*(j\\omega)\\)（共轭对称性）\n\\(x\\) 为实且偶 \\(\\iff X\\) 为实且偶\n\\(x\\) 为实且奇 \\(\\iff X\\) 为纯虚且奇"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例",
+    "href": "Chapter04_V5.html#例",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\n\n对于 \\(a&gt;0\\),\n\\[\nx(t)= \\begin{cases}e^{-a t}, & t&gt;0 \\\\ -e^{a t}, & t&lt;0\\end{cases}\n\\]\n令 \\(y(t)=e^{-a t} u(t)\\), 而且\n\\[\nY(j \\omega)=\\frac{1}{a+j \\omega}\n\\]\n由于 \\(x(t)=y(t)-y(-t)\\).\n\\[\n\\begin{aligned}\nX(j \\omega) & =Y(j \\omega)-Y(-j \\omega) \\\\\n& =\\frac{1}{a+j \\omega}-\\frac{1}{a-j \\omega}=\\frac{-2 j \\omega}{a^{2}+\\omega^{2}}\n\\end{aligned}\n\\]\n\\(x\\) 为实且奇 \\(\\iff X\\) 为纯虚且奇"
+  },
+  {
+    "objectID": "Chapter04_V5.html#时间与频率尺度变换",
+    "href": "Chapter04_V5.html#时间与频率尺度变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "时间与频率尺度变换",
+    "text": "时间与频率尺度变换\n对于 \\(a \\neq 0\\),\n\\[\n\\mathcal{F}\\left\\{S_{a} x\\right\\}=\\frac{1}{|a|} S_{\\frac{1}{a}} \\mathcal{F}\\{x\\} \\quad \\text { or } \\quad x(a t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{|a|} X\\left(\\frac{j \\omega}{a}\\right)\n\\]\n证明。通过变量替换 \\(\\tau = at\\)。\n对于 \\(a &gt; 0\\)：\n\\[\n\\int_{-\\infty}^{\\infty} x(at)e^{-j\\omega t} dt = \\int_{-\\infty}^{\\infty} x(\\tau)e^{-j\\frac{\\omega}{a}\\tau} \\frac{d\\tau}{a} = \\frac{1}{a} X\\left( \\frac{j\\omega}{a} \\right)\n\\]\n对于 \\(a &lt; 0\\)：\n\\[\n\\int_{-\\infty}^{\\infty} x(at)e^{-j\\omega t} dt = \\int_{\\infty}^{-\\infty} x(\\tau)e^{-j\\frac{\\omega}{a}\\tau} \\frac{d\\tau}{a} = -\\frac{1}{a} X\\left( \\frac{j\\omega}{a} \\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#时间与频率尺度变换-1",
+    "href": "Chapter04_V5.html#时间与频率尺度变换-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "时间与频率尺度变换",
+    "text": "时间与频率尺度变换\n\\[\n\\mathcal{F}\\left\\{S_{a} x\\right\\}=\\frac{1}{|a|} S_{\\frac{1}{a}} \\mathcal{F}\\{x\\} \\quad \\text { or } \\quad x(a t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{|a|} X\\left(\\frac{j \\omega}{a}\\right)\n\\]\n傅里叶变换的尺度变换性质体现了时域与频域之间的倒数关系：\n\n\n时域压缩 \\(\\Longrightarrow\\) 频域扩展：\n时域扩展 \\(\\Longrightarrow\\) 频域压缩：\n\n\n音频实例：\n\n播放速度加快（时域压缩）：听起来音调变高（Higher pitch）。\n播放速度放慢（时域扩展）：听起来音调变低（Lower pitch）。\n\n\n\n\\[\nx(t)=e^{-(a t)^{2}} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega)=\\frac{\\sqrt{\\pi}}{|a|} e^{-\\frac{1}{4}\\left(\\frac{\\omega}{a}\\right)^{2}}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#微分",
+    "href": "Chapter04_V5.html#微分",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "微分",
+    "text": "微分\n\\[\nx^{\\prime}(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} j \\omega X(j \\omega), \\quad x^{(k)}(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow}(j \\omega)^{k} X(j \\omega)\n\\]\n证明：积分符号下求导 (Differentiate under integral sign)\n利用逆傅里叶变换（合成方程）： \\[x(t) = \\frac{1}{2\\pi} \\int_{\\mathbb{R}} X(j\\omega)e^{j\\omega t} d\\omega \\Longrightarrow x'(t) = \\frac{1}{2\\pi} \\int_{\\mathbb{R}} j\\omega X(j\\omega)e^{j\\omega t} d\\omega\\]\n由此可见，时域中的求导操作对应于频域中乘以 \\(j\\omega\\)。\n微分器及其频率响应\n\\(y = x'\\) 是一个微分器的输出，该系统的频率响应为：\n\\[H(j\\omega) = \\mathcal{F} \\{\\delta'\\} (j\\omega) = \\int_{\\mathbb{R}} \\delta'(t)e^{-j\\omega t} dt = -\\left. \\frac{d}{dt} e^{-j\\omega t} \\right|_0 = j\\omega\\]\n\n\n滤波器特性分析\n根据关系式 \\(Y(j\\omega) = H(j\\omega)X(j\\omega)\\)，微分器具有以下滤波特性：\n\n放大高频分量：由于 \\(|H(j\\omega)| = |\\omega|\\)，随着频率 \\(\\omega\\) 增加，增益线性增加。\n抑制低频分量：频率越低，增益越小。\n完全消除直流 (DC) 分量：在 \\(\\omega = 0\\) 处，\\(H(j0) = 0\\)，因此信号中的常数部分会被完全滤除。\n\n\n\n\n总结\n微分器本质上是一个高通滤波器。它对信号中的突变（高频）非常敏感，常用于边缘检测；但同时也会放大信号中的高频噪声。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#积分",
+    "href": "Chapter04_V5.html#积分",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "积分",
+    "text": "积分\n\\[\ny(t)=\\int_{-\\infty}^{t} x(\\tau) d \\tau \\stackrel{\\mathcal{F}}{\\longleftrightarrow} Y(j \\omega)=\\frac{1}{j \\omega} X(j \\omega)+\\pi X(0) \\delta(\\omega)\n\\]\n由于 \\(x(t) = y'(t)\\)，根据微分性质可知： \\[X(j\\omega) = j\\omega Y(j\\omega) \\Longrightarrow Y(j\\omega) = \\frac{1}{j\\omega} X(j\\omega) \\quad (\\text{对于 } \\omega \\neq 0)\\]\n直流 (DC) 分量的直观分析\n直观地看，\\(y(t)\\) 具有直流分量。其平均值 \\(\\bar{y}\\) 计算如下：\n\\[\n\\begin{aligned}\n\\bar{y} &= \\lim_{T \\to \\infty} \\frac{1}{2T} \\int_{-T}^{T} y(t) dt = \\lim_{T \\to \\infty} \\frac{1}{2T} \\int_{-T}^{T} \\int_{\\mathbb{R}} x(\\tau)u(t - \\tau) d\\tau dt \\\\\n&= \\int_{\\mathbb{R}} x(\\tau) \\left( \\lim_{T \\to \\infty} \\frac{1}{2T} \\int_{-T}^{T} u(t - \\tau) dt \\right) d\\tau = \\frac{1}{2} X(0)\n\\end{aligned}\n\\]\n因此，\\(Y\\) 还包含一个由直流分量产生的冲激项： \\[2\\pi \\bar{y} \\delta(\\omega) = \\pi X(0) \\delta(\\omega)\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#积分-1",
+    "href": "Chapter04_V5.html#积分-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "积分",
+    "text": "积分\n\n\n例. 单位阶跃函数\n\\[\n\\begin{gathered}\nu(t)=\\int_{-\\infty}^{t} \\delta(\\tau) d \\tau \\\\\nU(j \\omega)=\\frac{1}{j \\omega} \\mathcal{F}\\{\\delta\\}(j \\omega)+\\pi \\mathcal{F}\\{\\delta\\}(0) \\delta(\\omega) \\\\\n=\\frac{1}{j \\omega}+\\pi \\delta(\\omega)\n\\end{gathered}\n\\]\n例. 符号函数\n\\[\n\\operatorname{sgn}(t)= \\begin{cases}1, & t&gt;0 \\\\ -1 & t&lt;0\\end{cases}\n\\]\n由于 \\(\\operatorname{sgn}=2 u-1\\),\n\\[\n\\mathcal{F}\\{\\operatorname{sgn}\\}(j \\omega)=2 U(j \\omega)-2 \\pi \\delta(\\omega)=\\frac{2}{j \\omega}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#积分-2",
+    "href": "Chapter04_V5.html#积分-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "积分",
+    "text": "积分\n例. 单位斜坡函数 \\(u_{-2}(t)=t u(t)\\)\n\\[\nu_{-2}(t)=\\int_{-\\infty}^{t} u(\\tau) d \\tau\n\\]\n积分性质（积分 property）建议 \\(\\mathcal{F} \\{u_{-2}\\}(j\\omega) = \\frac{1}{j\\omega}U(j\\omega) + \\pi U(0)\\delta(\\omega)\\)。 代入阶跃函数 \\(u(t)\\) 的变换 \\(U(j\\omega) = \\frac{1}{j\\omega} + \\pi\\delta(\\omega)\\)，可得：\n\\[\\mathcal{F} \\{u_{-2}\\}(j\\omega) = -\\frac{1}{\\omega^2} + \\frac{\\pi}{j\\omega}\\delta(\\omega) + \\pi U(0)\\delta(\\omega)\\]\n遇到的问题：定义不明确\n但是，\\(U(0) = \\frac{1}{j0} + \\pi\\delta(0)\\) 是什么？\\(\\frac{\\pi}{j\\omega}\\delta(\\omega)\\) 又是什么？ 这些在数学上定义不明确（Not well-defined）！\n因此，积分性质在此处不适用！\n正确结果与经验法则\n我们将看到： \\[\\mathcal{F} \\{u_{-2}\\} = -\\frac{1}{\\omega^2} + j\\pi\\delta'(\\omega)\\]\n经验法则（Rule of thumb）： 积分性质仅在公式定义明确（Well-defined）的情况下才适用。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#积分-3",
+    "href": "Chapter04_V5.html#积分-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "积分",
+    "text": "积分\n例\n\n\n\\[x(t)=\\left(1-\\frac{2|t|}{T}\\right)\\left[u\\left(t+\\frac{T}{2}\\right)-u\\left(t-\\frac{T}{2}\\right)\\right]\\]\n\\[X_{2}(j \\omega)=\\frac{2}{T}\\left[e^{j \\frac{\\omega T}{2}}-2+e^{-j \\frac{\\omega T}{2}}\\right]=-\\frac{8}{T} \\sin ^{2}\\left(\\frac{\\omega T}{4}\\right)\\] \\[X_{1}(j \\omega)=\\frac{X_{2}(j \\omega)}{j \\omega}+\\pi X_{2}(0) \\delta(\\omega)=-\\frac{8 \\sin ^{2}\\left(\\frac{\\omega T}{4}\\right)}{j \\omega T}\\]\n\\[X(j \\omega)=\\frac{X_{1}(j \\omega)}{j \\omega}+\\pi X_{1}(0) \\delta(\\omega)=\\frac{8 \\sin ^{2}\\left(\\frac{\\omega T}{4}\\right)}{\\omega^{2} T}\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-符号函数-sgn",
+    "href": "Chapter04_V5.html#例-符号函数-sgn",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 符号函数 sgn",
+    "text": "例: 符号函数 sgn\n\\[\nx(t)=\\operatorname{sgn}(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega)=\\frac{2}{j \\omega}\n\\]\n广义函数（分布）的理解\n\n\\(x\\) 和 \\(X\\) 均不属于 \\(L_1(\\mathbb{R})\\) 空间，上述内容应在广义函数（分布）的意义下进行解释，即： \\[(X, \\phi) = (x, \\mathcal{F}\\{\\phi\\}), \\quad \\forall \\phi \\in \\mathcal{S}\\] 或者通过逼近序列 \\(x_n \\to x\\) 来定义： \\[(X, \\phi) = \\lim_{n} (X_n, \\phi), \\quad \\forall \\phi \\in \\mathcal{S}\\]\n\n柯西主值 (Cauchy Principal Value)\n\n由于 \\(\\frac{2}{j\\omega}\\) 在 \\(\\omega = 0\\) 处不可积，因此 \\(X\\) 应被解释为主值，通常记作 \\(X(j\\omega) = \\text{pv} \\left( \\frac{2}{j\\omega} \\right)\\)，即： \\[(X, \\phi) = \\int_{\\mathbb{R}} \\text{pv} \\left( \\frac{2}{j\\omega} \\right) \\phi(\\omega) d\\omega \\triangleq \\lim_{\\epsilon \\to 0} \\int_{|\\omega| \\ge \\epsilon} \\frac{2}{j\\omega} \\phi(\\omega) d\\omega\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-符号函数-sgn-1",
+    "href": "Chapter04_V5.html#例-符号函数-sgn-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 符号函数 sgn",
+    "text": "例: 符号函数 sgn\n断言（Claim）：下方的柯西主值定义是定义明确的（well-defined）：\n\\[\n\\int_{\\mathbb{R}} \\text{pv} \\left( \\frac{1}{\\omega} \\right) \\phi(\\omega) d\\omega \\triangleq \\lim_{\\epsilon \\to 0} \\int_{|\\omega| \\ge \\epsilon} \\frac{1}{\\omega} \\phi(\\omega) d\\omega\n\\]\n证明：\n\n\\(\\int_{|\\omega| \\ge 1} \\frac{1}{\\omega} \\phi(\\omega) d\\omega\\) 是定义明确的，因为测试函数 \\(\\phi\\) 是快速递减的（rapidly decreasing）。\n由于在对称区间上的积分 \\(\\int_{1 \\ge |\\omega| \\ge \\epsilon} \\frac{1}{\\omega} d\\omega = 0\\)（利用 \\(1/\\omega\\) 的奇对称性），我们可以写出：\n\n\\[\n\\int_{1 \\ge |\\omega| \\ge \\epsilon} \\frac{1}{\\omega} \\phi(\\omega) d\\omega = \\int_{1 \\ge |\\omega| \\ge \\epsilon} \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} d\\omega\n\\]\n\n根据中值定理（Intermediate Value Theorem / Mean Value Theorem），存在 \\(\\xi\\) 使得： \\[\\left| \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} \\right| = |\\phi'(\\xi)| \\le \\|\\phi\\|_{0,1}\\]\n因此，我们可以得到以下估计：\n\n\\[\n\\left| \\int_{1 \\ge |\\omega| \\ge \\epsilon} \\frac{1}{\\omega} \\phi(\\omega) d\\omega \\right| = \\int_{1 \\ge |\\omega| \\ge \\epsilon} \\left| \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} \\right| d\\omega \\le 2 \\|\\phi\\|_{0,1}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-符号函数-sgn-2",
+    "href": "Chapter04_V5.html#例-符号函数-sgn-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 符号函数 sgn",
+    "text": "例: 符号函数 sgn\n断言 (Claim)： \\[\\mathcal{F}\\{\\text{sgn}\\}(j\\omega) = \\text{pv} \\left( \\frac{2}{j\\omega} \\right)\\]\n证明： 令 \\(x_a(t) = \\text{sgn}(t)e^{-a|t|}\\)，其中 \\(a &gt; 0\\)。 当 \\(a \\to 0\\) 时，\\(x_a \\to x\\) 在逐点意义及广义函数意义下均成立（将极限移至积分符号内是合法的）：\n\\[\\lim_{a \\to 0} \\int_{\\mathbb{R}} x_a(t)\\phi(t) = \\int_{\\mathbb{R}} \\lim_{a \\to 0} x_a(t)\\phi(t) = \\int_{\\mathbb{R}} x(t)\\phi(t)dt\\]\n回顾 (Recall)： \\[X_a(j\\omega) = \\frac{-2j\\omega}{a^2 + \\omega^2}\\]\n对于 \\(\\omega \\neq 0\\)，当 \\(a \\to 0\\) 时，\\(X_a(j\\omega) \\to \\frac{2}{j\\omega}\\) 在逐点意义下成立。但我们需要证明：\n\\[\\int_{\\mathbb{R}} X_a(j\\omega)\\phi(\\omega)d\\omega \\to \\int_{\\mathbb{R}} \\text{pv} \\left( \\frac{2}{j\\omega} \\right) \\phi(\\omega)d\\omega\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-符号函数-sgn-3",
+    "href": "Chapter04_V5.html#例-符号函数-sgn-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 符号函数 sgn",
+    "text": "例: 符号函数 sgn\n断言 (Claim)： \\[\n\\lim_{a \\to 0} \\int_{\\mathbb{R}} \\frac{\\omega}{a^2 + \\omega^2} \\phi(\\omega) d\\omega = \\lim_{\\epsilon \\to 0} \\int_{|\\omega| \\ge \\epsilon} \\frac{1}{\\omega} \\phi(\\omega) d\\omega\n\\]\n证明：\n由于 \\(\\frac{\\omega}{a^2 + \\omega^2} \\phi(\\omega) \\in L_1(\\mathbb{R})\\)，\n\\[\n\\int_{\\mathbb{R}} \\frac{\\omega}{a^2 + \\omega^2} \\phi(\\omega) d\\omega = \\lim_{\\epsilon \\to 0} \\int_{|\\omega| \\ge \\epsilon} \\frac{\\omega}{a^2 + \\omega^2} \\phi(\\omega) d\\omega\n\\]\n需要证明：\n\\(\\lim_{a \\to 0} \\lim_{\\epsilon \\to 0} |J| = 0\\)，其中：\n\\[\nJ = \\int_{|\\omega| \\ge \\epsilon} \\left( \\frac{\\omega}{a^2 + \\omega^2} - \\frac{1}{\\omega} \\right) \\phi(\\omega) d\\omega = \\int_{|\\omega| \\ge \\epsilon} \\frac{-a^2}{\\omega (a^2 + \\omega^2)} \\phi(\\omega) d\\omega\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-符号函数-sgn-4",
+    "href": "Chapter04_V5.html#例-符号函数-sgn-4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 符号函数 sgn",
+    "text": "例: 符号函数 sgn\n证明（续）。利用 \\(0 = \\int_{|\\omega| \\ge \\epsilon} \\frac{-a^2}{\\omega(a^2 + \\omega^2)} d\\omega\\)，我们得到：\n\\[J = \\int_{|\\omega| \\ge \\epsilon} \\frac{-a^2}{a^2 + \\omega^2} \\cdot \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} d\\omega\\]\n根据中值定理，\\(\\left| \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} \\right| = |\\phi'(\\xi)| \\le \\|\\phi\\|_{0,1}\\)。\n那么误差项 \\(J\\) 的绝对值满足：\n\\[\n\\begin{aligned}\n|J| &\\le \\int_{|\\omega| \\ge \\epsilon} \\left| \\frac{-a^2}{a^2 + \\omega^2} \\cdot \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} \\right| d\\omega \\le \\int_{|\\omega| \\ge \\epsilon} \\frac{a^2}{a^2 + \\omega^2} \\|\\phi\\|_{0,1} d\\omega \\\\\n&\\le \\int_{\\mathbb{R}} \\frac{a^2}{a^2 + \\omega^2} \\|\\phi\\|_{0,1} d\\omega = a\\pi \\|\\phi\\|_{0,1}\n\\end{aligned}\n\\]\n因此：\n\\[\\lim_{a \\to 0} \\lim_{\\epsilon \\to 0} |J| = 0\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-单位阶跃函数",
+    "href": "Chapter04_V5.html#例-单位阶跃函数",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 单位阶跃函数",
+    "text": "例: 单位阶跃函数\n\\[u(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} U(j\\omega) = \\frac{1}{j\\omega} + \\pi\\delta(\\omega)\\]\n注：更准确地说，\\(U(j\\omega) = \\text{pv}\\left(\\frac{1}{j\\omega}\\right) + \\pi\\delta(\\omega)\\) 。\n证明方法：利用符号函数性质\n已知 \\(u(t) = \\frac{1}{2}\\text{sgn}(t) + \\frac{1}{2}\\) 。根据线性性质：\n\\[\n\\begin{aligned}\nU(j\\omega) &= \\frac{1}{2}\\mathcal{F}\\{\\text{sgn}\\}(j\\omega) + \\frac{1}{2}\\mathcal{F}\\{1\\}(j\\omega) \\\\\n&= \\frac{1}{2}\\left(\\frac{2}{j\\omega}\\right) + \\frac{1}{2}(2\\pi\\delta(\\omega)) \\\\\n&= \\frac{1}{2\\pi} + \\pi\\delta(\\omega)\n\\end{aligned}\n\\]\n备注：关于逼近法的警示\n可以使用逼近法，但必须保持谨慎 ：\n\n设 \\(x_a(t) = e^{-at}u(t), a &gt; 0\\) [cite: 61, 165]。注意当 \\(a \\to 0\\) 时，\\(x_a \\to u\\) 在逐点及广义函数（分布）意义下成立 。\n对于 \\(\\omega \\neq 0\\)，当 \\(a \\downarrow 0\\) 时，\\(X_a(j\\omega) = \\frac{1}{a + j\\omega} \\to \\frac{1}{j\\omega}\\) 在逐点意义下成立 。\n容易误导的结论：直接判定 \\(U(j\\omega) = \\frac{1}{j\\omega}\\) 。\n关键点：我们真正需要的是在广义函数（分布）意义下的收敛性 ！"
+  },
+  {
+    "objectID": "Chapter04_V5.html#对偶性",
+    "href": "Chapter04_V5.html#对偶性",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{f\\}(\\eta) & =\\int_{\\mathbb{R}} f(\\xi) e^{-j \\eta \\xi} d \\xi \\\\\n\\mathcal{F}^{-1}\\{f\\}(\\eta) & =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} f(\\xi) e^{j \\eta \\xi} d \\xi\n\\end{aligned}\n\\] 正变换与逆变换公式形式基本一致，区别仅在于： * 复指数指数部分的符号不同 ； * 存在一个常数因子 \\(\\frac{1}{2\\pi}\\)\n\\[\n\\mathcal{F}\\{f\\}(\\eta)=\\int_{\\mathbb{R}} f(\\xi) e^{-j \\eta \\xi} d \\xi=\\int_{\\mathbb{R}} f(-\\xi) e^{j \\eta \\xi} d \\xi=\\mathcal{F}^{-1}\\{2 \\pi R f\\}(\\eta)\n\\]\n对偶性\n\\[\nf \\stackrel{\\mathcal{F}}{\\longleftrightarrow} g \\Longleftrightarrow g \\stackrel{\\mathcal{F}}{\\Longleftrightarrow} 2 \\pi R f \\Longleftrightarrow R g \\stackrel{\\mathcal{F}}{\\Longleftrightarrow} 2 \\pi f\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#对偶性-1",
+    "href": "Chapter04_V5.html#对偶性-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{f\\}(\\eta) & =\\int_{\\mathbb{R}} f(\\xi) e^{-j \\eta \\xi} d \\xi \\\\\n\\mathcal{F}^{-1}\\{f\\}(\\eta) & =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} f(\\xi) e^{j \\eta \\xi} d \\xi\n\\end{aligned}\n\\]\n正变换与逆变换公式形式基本一致，区别仅在于： * 复指数指数部分的符号不同 ；\n\\[\n\\overline{\\mathcal{F}\\{f\\}}=\\left(\\int_{\\mathbb{R}} f(\\xi) e^{-j \\eta \\xi} d \\xi\\right)^{*}=\\int_{\\mathbb{R}} f^{*}(\\xi) e^{j \\eta \\xi} d \\xi=\\mathcal{F}^{-1}\\left\\{2 \\pi f^{*}\\right\\}\n\\]\n对偶性\n\\[\nf \\stackrel{\\mathcal{F}}{\\longleftrightarrow} g \\quad \\Longleftrightarrow \\quad g^{*} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} 2 \\pi f^{*}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#对偶性-2",
+    "href": "Chapter04_V5.html#对偶性-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n\\[\nu(t+a)-u(t-a) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{2 \\sin (a \\omega)}{\\omega}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#对偶性-3",
+    "href": "Chapter04_V5.html#对偶性-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n示例：\\(x(t) = \\frac{1}{t}\\) 的傅里叶变换\n例：\\(x(t) = \\frac{1}{t}\\)（更准确地说，应为 \\(\\text{pv}\\left(\\frac{1}{t}\\right)\\) [cite: 66]）。\n已知符号函数的变换： \\[\\text{sgn}(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{j\\omega}\\]\n利用对偶性 (By Duality)\n\\[-\\frac{1}{jt} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} 2\\pi \\text{sgn}(\\omega)\\]\n操作步骤： * 交换左侧 (LHS) 和右侧 (RHS)，同时交换 \\(\\omega\\) 和 \\(t\\) ； * 执行以下操作之一（但不要同时执行）： * 两边取复共轭 [cite: 66]； * 替换 \\(\\omega \\to -\\omega\\) 或 \\(t \\to -t\\) [cite: 66]； * 将右侧 (RHS) 乘以 \\(2\\pi\\) 。\n利用线性性质 (By Linearity)\n最终得到变换对： \\[\\frac{1}{t} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} -j2\\pi \\text{sgn}(\\omega)\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#对偶性-4",
+    "href": "Chapter04_V5.html#对偶性-4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n示例：\\(x(t) = \\frac{1}{1+t^2}\\) 的傅里叶变换\n例：已知 \\(x(t) = \\frac{1}{1+t^2}\\) 。\n已知双边衰减指数信号的变换： \\[e^{-|t|} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{2}{1+\\omega^{2}}\\]\n利用对偶性 (By Duality)\n\\[\\frac{2}{1+t^{2}} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} 2 \\pi e^{-|\\omega|}\\]\n操作步骤： * 交换左侧 (LHS) 和右侧 (RHS)，同时交换 \\(\\omega\\) 和 \\(t\\) ；\n\n执行以下操作之一（但不要同时执行） ：\n\n两边取复共轭 ；\n替换 \\(\\omega \\rightarrow-\\omega\\) 或 \\(t \\rightarrow-t\\) ；\n\n将右侧 (RHS) 乘以 \\(2\\pi\\) 。\n\n利用线性性质 (By Linearity)\n最终得到变换对： \\[\\frac{1}{1+t^{2}} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\pi e^{-|\\omega|}\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#对偶性-5",
+    "href": "Chapter04_V5.html#对偶性-5",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n频域微分\n\\[\n-j t x(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{d X(j \\omega)}{d \\omega}\n\\]\n证明。 积分符号内求导\n\\[\nX(j \\omega)=\\int_{\\mathbb{R}} x(t) e^{-j \\omega t} d t \\Longrightarrow \\frac{d X(j \\omega)}{d \\omega}=\\int_{\\mathbb{R}}(-j t) x(t) e^{-j \\omega t} d t\n\\]\n例. 单位斜坡函数 \\(u_{-2}=t u(t)\\)\n\\[\n\\mathcal{F}\\left\\{u_{-2}\\right\\}=j \\mathcal{F}\\{-j t u\\}=j \\frac{d U(j \\omega)}{d \\omega}=-\\frac{1}{\\omega^{2}}+j \\pi \\delta^{\\prime}(\\omega)\n\\]\n频域积分\n\\[\n-\\frac{1}{j t} x(t)+\\pi x(0) \\delta(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\int_{-\\infty}^{\\omega} X(j \\lambda) d \\lambda\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#帕塞瓦尔恒等式",
+    "href": "Chapter04_V5.html#帕塞瓦尔恒等式",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "帕塞瓦尔恒等式",
+    "text": "帕塞瓦尔恒等式\n定理。 若 \\(x \\in L_{2}(\\mathbb{R}), X=\\mathcal{F}\\{x\\}\\), 那么\n\\[\n\\|x\\|_{2}^{2}=\\frac{1}{2 \\pi}\\|X\\|_{2}^{2}, \\quad \\text { or } \\quad \\int_{\\mathbb{R}}|x(t)|^{2} d t=\\frac{1}{2 \\pi} \\int_{\\mathbb{R}}|X(j \\omega)|^{2} d \\omega\n\\]\n注意 \\(\\omega\\) 是角频率 \\(\\frac{\\omega}{2 \\pi}\\) 是频率\n\\[\n\\int_{\\mathbb{R}}|x(t)|^{2} d t=\\int_{\\mathbb{R}}|X(j \\omega)|^{2} \\frac{d \\omega}{2 \\pi}\n\\]\n物理解释: 能量守恒\n\n\\(|x(t)|^{2}\\)：功率 (Power)，或单位时间（秒）内的能量。\n\\(|X(j \\omega)|^{2}\\)：单位频率（赫兹）内的能量 (Energy per unit frequency)。\n\\(|X(j \\omega)|^{2}\\) 被称为：能量密度谱 (Energy Density Spectrum)。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#帕塞瓦尔恒等式-1",
+    "href": "Chapter04_V5.html#帕塞瓦尔恒等式-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "帕塞瓦尔恒等式",
+    "text": "帕塞瓦尔恒等式\n定理。 若 \\(x, y \\in L_{2}(\\mathbb{R}), X=\\mathcal{F}\\{x\\}, Y=\\mathcal{F}\\{y\\}\\), 那么 \\(\\langle x, y\\rangle=\\frac{1}{2 \\pi}\\langle X, Y\\rangle, \\quad\\) or \\(\\quad \\int_{\\mathbb{R}} x(t) y^{*}(t) d t=\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) Y^{*}(j \\omega) d \\omega\\)\n证明：\n\\[\n\\begin{aligned}\n\\int_{\\mathbb{R}} x(t) y^{*}(t) d t & =\\int_{\\mathbb{R}} x(t)\\left(\\frac{1}{2 \\pi} \\int_{R} Y(j \\omega) e^{j \\omega t} d \\omega\\right)^{*} d t \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} x(t) \\int_{R} Y^{*}(j \\omega) e^{-j \\omega t} d \\omega d t \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}}\\left(\\int_{\\mathbb{R}} x(t) e^{-j \\omega t} d t\\right) Y^{*}(j \\omega) d \\omega \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) Y^{*}(j \\omega) d \\omega\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#帕塞瓦尔恒等式-2",
+    "href": "Chapter04_V5.html#帕塞瓦尔恒等式-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "帕塞瓦尔恒等式",
+    "text": "帕塞瓦尔恒等式\n例.\n\\[\n\\frac{\\sin (W t)}{\\pi t} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} u(\\omega+W)-u(\\omega-W)\n\\]\n利用帕塞瓦尔恒等式\n\\[\n\\begin{aligned}\n\\int_{\\mathbb{R}} \\frac{\\sin ^{2}(W t)}{\\pi^{2} t^{2}} d t & =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}}|u(\\omega+W)-u(\\omega-W)|^{2} d \\omega \\\\\n& =\\frac{1}{2 \\pi} \\int_{-W}^{W} d \\omega \\\\\n& =\\frac{W}{\\pi}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#toc2",
+    "href": "Chapter04_V5.html#toc2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V5.html#卷积",
+    "href": "Chapter04_V5.html#卷积",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "卷积",
+    "text": "卷积\n对于具有以下特征的线性时不变 (LTI) 系统 \\(T\\)：\n\n冲击响应 \\(h\\)\n频率响应 \\(H(j\\omega) = \\int_{\\mathbb{R}} h(t)e^{-j\\omega t} dt = \\mathcal{F}\\{h\\}\\)，\\(e^{j\\omega t}\\) 是对应于特征值 \\(H(j\\omega)\\) 的特征函数：\n\n\\[T (e^{j\\omega t}) = H(j\\omega)e^{j\\omega t}\\]\n输入 \\(x\\) 是 \\(e^{j\\omega t}\\) 的线性叠加：\n\\[x(t) = \\frac{1}{2\\pi} \\int_{\\mathbb{R}} X(j\\omega)e^{j\\omega t} d\\omega\\]\n输出\n\\[\n\\begin{aligned}\ny(t) & =(x * h)(t)=T\\left(\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) e^{j \\omega t} d \\omega\\right) \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) T\\left(e^{j \\omega t}\\right) d \\omega=\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) H(j \\omega) e^{j \\omega t} d \\omega\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#卷积性质",
+    "href": "Chapter04_V5.html#卷积性质",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "卷积性质",
+    "text": "卷积性质\n\\[\n\\mathcal{F}\\{x * y\\}=\\mathcal{F}\\{x\\} \\mathcal{F}\\{y\\}, \\quad \\text { or } \\quad(x * y)(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega) Y(j \\omega)\n\\]\n时域卷积 ⟹ 频域相乘\n证明：\n\\[\n\\begin{aligned}\n\\int_{\\mathbb{R}}(x * y)(t) e^{-j \\omega t} d t & =\\int_{\\mathbb{R}} \\int_{\\mathbb{R}} x(\\tau) y(t-\\tau) e^{-j \\omega t} d \\tau d t \\\\\n& =\\int_{\\mathbb{R}} x(\\tau)\\left(\\int_{\\mathbb{R}} y(t-\\tau) e^{-j \\omega t} d t\\right) d \\tau \\\\\n& =\\int_{\\mathbb{R}} x(\\tau) Y(j \\omega) e^{-j \\omega \\tau} d \\tau \\\\\n& =Y(j \\omega) \\int_{\\mathbb{R}} x(\\tau) e^{-j \\omega \\tau} d \\tau \\\\\n& =Y(j \\omega) X(j \\omega)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-1",
+    "href": "Chapter04_V5.html#例-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\n\n\\[\n\\begin{gathered}\nx(t)=\\left(1-\\frac{2|t|}{T}\\right)\\left[u\\left(t+\\frac{T}{2}\\right)-u\\left(t-\\frac{T}{2}\\right)\\right] \\\\\nx=x_{1} * x_{1}\n\\end{gathered}\n\\]\n\\[\n\\begin{gathered}\nX_{1}(j \\omega)=\\sqrt{\\frac{2}{T}} \\cdot \\frac{2 \\sin \\left(\\frac{\\omega T}{4}\\right)}{\\omega} \\\\\nX(j \\omega)=X_{1}^{2}(j \\omega)=\\frac{8 \\sin ^{2}\\left(\\frac{\\omega T}{4}\\right)}{\\omega^{2} T}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#lti-系统的频率响应",
+    "href": "Chapter04_V5.html#lti-系统的频率响应",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "LTI 系统的频率响应",
+    "text": "LTI 系统的频率响应\n线性时不变系统 \\(T\\)\n\n完全由 冲激响应 \\(h\\)描述\n\n\\[\ny=T(x)=h * x\n\\]\n\n若频率响应 \\(H = \\mathcal{F}\\{h\\}\\) 有定义，则系统也可由其完全表征\nBIBO 稳定系统，\\(h \\in L_{1}(\\mathbb{R})\\)\n其他系统：恒等系统 \\(h = \\delta\\)，微分器 \\(h = \\delta', \\dots\\)\n\n通常，卷积性质意味着：\n\\[Y = \\mathcal{F}\\{y\\} = HX = \\mathcal{F}\\{h\\}\\mathcal{F}\\{x\\}\\]\n与其计算 \\(x * h\\)，不如计算：\n\\[y = \\mathcal{F}^{-1}(\\mathcal{F}\\{h\\}\\mathcal{F}\\{x\\})\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#lti-系统的频率响应-1",
+    "href": "Chapter04_V5.html#lti-系统的频率响应-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "LTI 系统的频率响应",
+    "text": "LTI 系统的频率响应\n\n\n\n\n\n\n\n\n\n\\(h(t)\\)\n\\(H(j \\omega)\\)\n\n\n\n\nid\n\\(\\delta(t)\\)\n1\n\n\n\\(\\tau_{t_{0}}\\)\n\\(\\delta\\left(t-t_{0}\\right)\\)\n\\(e^{-j \\omega t_{0}}\\)\n\n\n\\(\\frac{d}{d t}\\)\n\\(\\delta^{\\prime}(t)\\)\n\\(j \\omega\\)\n\n\n\\(\\int_{-\\infty}^{t}\\)\n\\(u(t)\\)\n\\(\\frac{1}{j \\omega}+\\pi \\delta(\\omega)\\)\n\n\n理想低通滤波器\n\\(\\frac{\\sin \\left(\\omega_{c} t\\right)}{\\pi t}\\)\n\\(u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\\)\n\n\n1阶低通滤波器\n\\(\\frac{1}{\\tau} e^{-t / \\tau} u(t)\\)\n\\(\\frac{1}{1+j \\tau \\omega}\\)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-2",
+    "href": "Chapter04_V5.html#例-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n例. 微分性质\n\\[\n\\begin{gathered}\ny=x^{\\prime}=x * \\delta^{\\prime} \\\\\nY(j \\omega)=X(j \\omega) \\mathcal{F}\\left\\{\\delta^{\\prime}\\right\\}=j \\omega X(j \\omega)\n\\end{gathered}\n\\]\n例. 积分性质\n\\[\n\\begin{gathered}\ny(t)=\\int_{-\\infty}^{t} x(\\tau) d \\tau=(x * u)(t) \\\\\nY(j \\omega)=X(j \\omega) U(j \\omega)=X(j \\omega)\\left[\\frac{1}{j \\omega}+\\pi \\delta(\\omega)\\right]=\\frac{1}{j \\omega} X(j \\omega)+\\pi X(0) \\delta(\\omega)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-3",
+    "href": "Chapter04_V5.html#例-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n单位斜坡函数 \\(u_{-2}(t) = tu(t) = (u * u)(t)\\)。卷积性质表明：\n\\[\\mathcal{F} \\{u_{-2}\\}(j\\omega) = U^{2}(j\\omega) = -\\frac{1}{\\omega^{2}} + \\frac{2\\pi}{j\\omega} \\delta(\\omega) + \\pi^{2} \\delta(\\omega) \\delta(\\omega)\\]\n但是 \\(\\frac{\\pi}{j\\omega} \\delta(\\omega)\\) 和 \\(\\delta(\\omega) \\delta(\\omega)\\) 并没有明确定义！已知 \\(\\mathcal{F} \\{u_{-2}\\} = -\\frac{1}{\\omega^{2}} + j\\pi \\delta'(\\omega)\\)。此处卷积性质不适用！\n经验法则： 仅当公式有明确定义时才适用。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-4",
+    "href": "Chapter04_V5.html#例-4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n冲激响应为 \\(h(t) = e^{-at}u(t)\\) 的 LTI 系统对输入 \\(x(t) = e^{-bt}u(t)\\) 的响应，\\(a, b &gt; 0\\)：\n方法 1. 直接卷积 \\(y = x * h\\)\n方法 2. 在初始静止条件下求解以下常微分方程 (ODE)： \\[y'(t) + ay(t) = e^{-bt}u(t)\\]\n方法 3. 傅里叶变换\n\\[H(j\\omega) = \\frac{1}{a + j\\omega}, X(j\\omega) = \\frac{1}{b + j\\omega} \\implies Y(j\\omega) = \\frac{1}{(a + j\\omega)(b + j\\omega)}\\]\n若 \\(a \\neq b\\)： \\[Y(j\\omega) = \\frac{1}{b-a} \\left( \\frac{1}{a+j\\omega} - \\frac{1}{b+j\\omega} \\right) \\implies y(t) = \\frac{1}{b-a} (e^{-at} - e^{-bt})u(t)\\]\n若 \\(a = b\\)： \\[Y(j\\omega) = -\\frac{d}{da} \\left( \\frac{1}{a+j\\omega} \\right) \\implies y(t) = -\\frac{d}{da} e^{-at}u(t) = te^{-at}u(t)\\] 也可以使用 \\(Y(j\\omega) = j\\frac{d}{d\\omega} \\left( \\frac{1}{a+j\\omega} \\right)\\) 和微分性质。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-5",
+    "href": "Chapter04_V5.html#例-5",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n冲激响应为 \\(h(t)=e^{-a t} u(t)\\)的 LTI 系统对输入 \\(x(t)=\\cos \\left(\\omega_{0} t\\right)的响应, a&gt;0\\). 频率响应\n\\[\nH(j \\omega)=\\frac{1}{a+j \\omega}=\\frac{1}{\\sqrt{a^{2}+\\omega^{2}}} e^{-j \\arctan \\frac{\\omega}{a}}\n\\]\n方法 1. 使用特征函数性质\n\\[\n\\begin{gathered}\nx(t)=\\frac{1}{2} e^{j \\omega_{0} t}+\\frac{1}{2} e^{-j \\omega_{0} t} \\\\\ny(t)=\\frac{1}{2} H\\left(j \\omega_{0}\\right) e^{j \\omega_{0} t}+\\frac{1}{2} H\\left(-j \\omega_{0}\\right) e^{-j \\omega_{0} t}=\\operatorname{Re} \\frac{e^{j \\omega_{0} t}}{a+j \\omega_{0}} \\\\\n=\\frac{a \\cos \\left(\\omega_{0} t\\right)+\\omega_{0} \\sin \\left(\\omega_{0} t\\right)}{a^{2}+\\omega_{0}^{2}}=\\frac{1}{\\sqrt{a^{2}+\\omega_{0}^{2}}} \\cos \\left(\\omega_{0} t-\\arctan \\frac{\\omega_{0}}{a}\\right)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-6",
+    "href": "Chapter04_V5.html#例-6",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n冲激响应为 \\(h(t)=e^{-a t} u(t)\\) 的LTI 系统对输入 \\(x(t)=\\cos \\left(\\omega_{0} t\\right)\\)的响应.\n频率响应\n\\[\nH(j \\omega)=\\frac{1}{a+j \\omega}=\\frac{1}{\\sqrt{a^{2}+\\omega^{2}}} e^{-j \\arctan \\frac{\\omega}{a}}\n\\]\n方法 2. 采用\\(X\\)的傅里叶变换\n\\[\n\\begin{gathered}\nX(j \\omega)=\\pi \\delta\\left(\\omega-\\omega_{0}\\right)+\\pi \\delta\\left(\\omega+\\omega_{0}\\right) \\\\\nY(j \\omega)=\\pi H\\left(j \\omega_{0}\\right) \\delta\\left(\\omega-\\omega_{0}\\right)+\\pi H\\left(-j \\omega_{0}\\right) \\delta\\left(\\omega+\\omega_{0}\\right) \\\\\ny(t)=\\frac{1}{2} H\\left(j \\omega_{0}\\right) e^{j \\omega_{0} t}+\\frac{1}{2} H\\left(-j \\omega_{0}\\right) e^{-j \\omega_{0} t}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-7",
+    "href": "Chapter04_V5.html#例-7",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n冲激响应为 \\(h(t)\\)的理想低通滤波器对输入信号\\(x(t)\\)的响应.\n\\[\nh(t)=\\frac{\\sin \\left(\\omega_{c} t\\right)}{\\pi t}, \\quad x(t)=\\frac{\\sin \\left(\\omega_{i} t\\right)}{\\pi t}\n\\]\n傅里叶变换\n\\[\n\\begin{aligned}\n& X(j \\omega)=u\\left(\\omega+\\omega_{i}\\right)-u\\left(\\omega-\\omega_{i}\\right) \\\\\n& H(j \\omega)=u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\n\\end{aligned}\n\\]\n用 \\(Y(j \\omega)=X(j \\omega) H(j \\omega)\\),\n\\[\nY(j \\omega)=\\left\\{\\begin{array}{ll}\nX(j \\omega), & \\text { if } \\omega_{i} \\leq \\omega_{c} \\\\\nH(j \\omega), & \\text { if } \\omega_{i}&gt;\\omega_{c}\n\\end{array} \\Longrightarrow y(t)= \\begin{cases}x(t), & \\text { if } \\omega_{i} \\leq \\omega_{c} \\\\\nh(t), & \\text { if } \\omega_{i}&gt;\\omega_{c}\\end{cases}\\right.\n\\]\n注：两个sinc函数的卷积是另一个 sinc函数。"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-8",
+    "href": "Chapter04_V5.html#例-8",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n高斯信号的卷积是另一个高斯信号:\n\\[\nx_{i}(t)=\\frac{1}{\\sqrt{2 \\pi \\sigma_{i}^{2}}} \\exp \\left(-\\frac{\\left(t-\\mu_{i}\\right)^{2}}{2 \\sigma_{i}^{2}}\\right)\n\\]\n傅里叶变 (特征函数的复共轭)\n\\[\nX_{i}(j \\omega)=\\exp \\left(-i \\mu_{i} \\omega-\\frac{\\sigma_{i}^{2}}{2} \\omega^{2}\\right)\n\\]\n对于 \\(y=x_{1} * x_{2}\\),\n\\[\n\\begin{gathered}\nY(j \\omega)=X_{1}(j \\omega) X_{2}(j \\omega)=\\exp \\left(-i\\left(\\mu_{1}+\\mu_{2}\\right) \\omega-\\frac{\\sigma_{1}^{2}+\\sigma_{2}^{2}}{2} \\omega^{2}\\right) \\\\\ny(t)=\\frac{1}{\\sqrt{2 \\pi\\left(\\sigma_{1}^{2}+\\sigma_{2}^{2}\\right)}} \\exp \\left(-\\frac{\\left(t-\\mu_{1}-\\mu_{2}\\right)^{2}}{2\\left(\\sigma_{1}^{2}+\\sigma_{2}^{2}\\right)}\\right)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#系统连接",
+    "href": "Chapter04_V5.html#系统连接",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "系统连接",
+    "text": "系统连接\n线性时不变系统的串联\n\\[\ny=\\left(x * h_{1}\\right) * h_{2}=x *\\left(h_{1} * h_{2}\\right)=\\left(x * h_{2}\\right) * h_{1}\n\\]\n\\[\nh=h_{1} * h_{2}\n\\]\n\n对 LTI 系统而言，处理顺序通常不影响结果"
+  },
+  {
+    "objectID": "Chapter04_V5.html#系统连接-1",
+    "href": "Chapter04_V5.html#系统连接-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "系统连接",
+    "text": "系统连接\n线性时不变系统的串联\n\\[\nY=\\left(X H_{1}\\right) H_{2}=X\\left(H_{1} H_{2}\\right)=\\left(X H_{2}\\right) H_{1}\n\\]\n\n对 LTI 系统而言，处理顺序通常不影响结果"
+  },
+  {
+    "objectID": "Chapter04_V5.html#系统连接-2",
+    "href": "Chapter04_V5.html#系统连接-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "系统连接",
+    "text": "系统连接\n线性时不变系统的并联\n\\[\nh=h_{1}+h_{2}\n\\]\n\n\\[\nH=H_{1}+H_{2}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#系统连接-3",
+    "href": "Chapter04_V5.html#系统连接-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "系统连接",
+    "text": "系统连接\n线性时不变系统的反馈连接\n\\[\n\\begin{gathered}\ny=h_{1} *\\left(x-h_{2} * y\\right) \\\\\nh=?\n\\end{gathered}\n\\]\n\n\\[\n\\begin{aligned}\nY & =H_{1} X-H_{1} H_{2} Y \\\\\nH & =\\frac{Y}{X}=\\frac{H_{1}}{1+H_{1} H_{2}}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#toc3",
+    "href": "Chapter04_V5.html#toc3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V5.html#卷积性质的对偶",
+    "href": "Chapter04_V5.html#卷积性质的对偶",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "卷积性质的对偶",
+    "text": "卷积性质的对偶\n\\[\n\\mathcal{F}\\{x y\\}=\\frac{1}{2 \\pi} \\mathcal{F}\\{x\\} * \\mathcal{F}\\{y\\}, \\text { or } x(t) y(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\theta) Y(j(\\omega-\\theta)) d \\theta\n\\]\n时域相乘 ⟹ 频域卷积\n证明。 令 \\(Z(j \\omega)=\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\theta) Y(j(\\omega-\\theta)) d \\theta\\)\n\\[\n\\begin{aligned}\n\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} Z(j \\omega) e^{j \\omega t} d \\omega & =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} \\frac{1}{2 \\pi}\\left(\\int_{\\mathbb{R}} X(j \\theta) Y(j(\\omega-\\theta)) d \\theta\\right) e^{j \\omega t} d \\omega \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\theta) \\frac{1}{2 \\pi}\\left(\\int_{\\mathbb{R}} Y(j(\\omega-\\theta)) e^{j \\omega t} d \\omega\\right) d \\theta \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\theta) y(t) e^{j \\theta t} d \\theta=x(t) y(t)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-调制-1",
+    "href": "Chapter04_V5.html#例-调制-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 调制",
+    "text": "例: 调制\n\n\n基带信号 \\(x(t)\\) 载波信号\n\\[\n\\begin{aligned}\n& p(t)=\\cos \\left(\\omega_{c} t\\right) \\\\\n& P(j \\omega)=\\pi \\delta\\left(\\omega-\\omega_{c}\\right)+\\pi \\delta\\left(\\omega+\\omega_{c}\\right)\n\\end{aligned}\n\\]\n调制信号\n\\[\n\\begin{aligned}\n& y(t)=x(t) p(t) \\\\\n& Y(j \\omega)=\\frac{1}{2} X\\left(j\\left(\\omega-\\omega_{c}\\right)\\right)+\\frac{1}{2} X\\left(j\\left(\\omega+\\omega_{c}\\right)\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-解调",
+    "href": "Chapter04_V5.html#例-解调",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 解调",
+    "text": "例: 解调\n\n\n调制信号 \\(y(t)\\)\n载波\n\\[\n\\begin{aligned}\n& p(t)=\\cos \\left(\\omega_{c} t\\right) \\\\\n& P(j \\omega)=\\pi \\delta\\left(\\omega-\\omega_{c}\\right)+\\pi \\delta\\left(\\omega+\\omega_{c}\\right)\n\\end{aligned}\n\\]\n解调\n\\[\n\\begin{aligned}\n& z(t)=y(t) p(t) \\\\\n& \\quad=\\frac{1}{2} x(t)+\\frac{1}{2} x(t) \\cos \\left(2 \\omega_{c} t\\right) \\\\\n& R(j \\omega)=Z(j \\omega) H_{\\text {lowpass }}(j \\omega) \\\\\n& r(t)=x(t)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#理想-am-通信系统",
+    "href": "Chapter04_V5.html#理想-am-通信系统",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "理想 AM 通信系统",
+    "text": "理想 AM 通信系统"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-9",
+    "href": "Chapter04_V5.html#例-9",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\n\n\\[\n\\begin{gathered}\nx(t)=\\frac{\\sin t \\cdot \\sin \\frac{t}{2}}{\\pi t^{2}}=\\pi x_{1}(t) x_{2}(t) \\\\\nx_{1}(t)=\\frac{\\sin t}{\\pi t} \\\\\nx_{2}(t)=\\frac{\\sin \\frac{t}{2}}{\\pi t} \\\\\nX=\\frac{1}{2} X_{1} * X_{2}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#toc4",
+    "href": "Chapter04_V5.html#toc4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V5.html#傅里叶变换性质",
+    "href": "Chapter04_V5.html#傅里叶变换性质",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "傅里叶变换性质",
+    "text": "傅里叶变换性质\n\n\n\n\n\n\n\n\n\n节号\n性质\n非周期信号\n傅里叶变换\n\n\n\n\n\n\n\\(x(t)\\)\n\\(X(j\\omega)\\)\n\n\n\n\n\\(y(t)\\)\n\\(Y(j\\omega)\\)\n\n\n4.3.1\n线性\n\\(ax(t) + by(t)\\)\n\\(aX(j\\omega) + bY(j\\omega)\\)\n\n\n4.3.2\n时移\n\\(x(t - t_0)\\)\n\\(e^{-j\\omega t_0} X(j\\omega)\\)\n\n\n4.3.6\n频移\n\\(e^{j\\omega_0 t} x(t)\\)\n\\(X(j(\\omega - \\omega_0))\\)\n\n\n4.3.3\n共轭\n\\(x^*(t)\\)\n\\(X^*(-j\\omega)\\)\n\n\n4.3.5\n时间反转\n\\(x(-t)\\)\n\\(X(-j\\omega)\\)\n\n\n4.3.5\n时间与频率尺度变换\n\\(x(at)\\)\n\\(\\frac{1}{|a|} X\\left(\\frac{j\\omega}{a}\\right)\\)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#傅里叶变换性质续",
+    "href": "Chapter04_V5.html#傅里叶变换性质续",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "傅里叶变换性质（续）",
+    "text": "傅里叶变换性质（续）\n\n\n\n\n\n\n\n\n\n节号\n性质\n非周期信号\n傅里叶变换\n\n\n\n\n4.4\n卷积\n\\(x(t) * y(t)\\)\n\\(X(j\\omega) Y(j\\omega)\\)\n\n\n4.5\n相乘\n\\(x(t) y(t)\\)\n\\(\\frac{1}{2\\pi} \\int_{-\\infty}^{+\\infty} X(j\\theta) Y(j(\\omega - \\theta)) d\\theta\\)\n\n\n4.3.4\n时域微分\n\\(\\frac{d}{dt}x(t)\\)\n\\(j\\omega X(j\\omega)\\)\n\n\n4.3.4\n积分\n\\(\\int_{-\\infty}^{t} x(t) dt\\)\n\\(\\frac{1}{j\\omega} X(j\\omega) + \\pi X(0) \\delta(\\omega)\\)\n\n\n4.3.6\n频域微分\n\\(tx(t)\\)\n\\(j \\frac{d}{d\\omega} X(j\\omega)\\)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#傅里叶变换性质-1",
+    "href": "Chapter04_V5.html#傅里叶变换性质-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "傅里叶变换性质",
+    "text": "傅里叶变换性质\n\n\n\n\n\n\n\n\n\n节号\n性质\n非周期信号\n傅里叶变换\n\n\n\n\n4.3.3\n实信号的共轭对称性\n\\(x(t)\\) 为实信号\n\\(\\begin{cases} X(j\\omega) = X^*(-j\\omega) \\\\ Re\\{X(j\\omega)\\} = Re\\{X(-j\\omega)\\} \\\\ Im\\{X(j\\omega)\\} = -Im\\{X(-j\\omega)\\} \\\\ |X(j\\omega)| = |X(-j\\omega)| \\\\ \\measuredangle X(j\\omega) = -\\measuredangle X(-j\\omega) \\end{cases}\\)\n\n\n4.3.3\n实偶信号的对称性\n\\(x(t)\\) 为实偶信号\n\\(X(j\\omega)\\) 为实偶\n\n\n4.3.3\n实奇信号的对称性\n\\(x(t)\\) 为实奇信号\n\\(X(j\\omega)\\) 为纯虚奇\n\n\n4.3.3\n实信号的奇偶分解\n\\(\\begin{cases} x_e(t) = Ev\\{x(t)\\} \\\\ x_o(t) = Od\\{x(t)\\} \\end{cases}\\)\n\\(\\begin{cases} Re\\{X(j\\omega)\\} \\\\ jIm\\{X(j\\omega)\\} \\end{cases}\\)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#基本傅里叶变换对-12",
+    "href": "Chapter04_V5.html#基本傅里叶变换对-12",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "基本傅里叶变换对 (1/2)",
+    "text": "基本傅里叶变换对 (1/2)\n\n\n\n\n\n\n\n\n信号\n傅里叶变换\n傅里叶级数系数 (若为周期的)\n\n\n\n\n\\(\\sum_{k=-\\infty}^{+\\infty} a_k e^{j k \\omega_0 t}\\)\n\\(2\\pi \\sum_{k=-\\infty}^{+\\infty} a_k \\delta(\\omega - k \\omega_0)\\)\n\\(a_k\\)\n\n\n\\(e^{j k \\omega_0 t}\\)\n\\(2\\pi \\delta(\\omega - k \\omega_0)\\)\n\\(a_1 = 1, a_k = 0, \\text{其余 } k\\)\n\n\n\\(\\cos \\omega_0 t\\)\n\\(\\pi [\\delta(\\omega - \\omega_0) + \\delta(\\omega + \\omega_0)]\\)\n\\(a_1 = a_{-1} = \\frac{1}{2}, a_k = 0, \\text{其余 } k\\)\n\n\n\\(\\sin \\omega_0 t\\)\n\\(\\frac{\\pi}{j} [\\delta(\\omega - \\omega_0) - \\delta(\\omega + \\omega_0)]\\)\n\\(a_1 = -a_{-1} = \\frac{1}{2j}, a_k = 0, \\text{其余 } k\\)\n\n\n\\(x(t) = 1\\)\n\\(2\\pi \\delta(\\omega)\\)\n\\(a_0 = 1, a_k = 0, k \\neq 0\\)\n\n\n周期方波 \\(x(t) = \\begin{cases} 1, & |t| &lt; T_1 \\\\ 0, & T_1 &lt; |t| \\le \\frac{T}{2} \\end{cases}\\)\n\\(\\sum_{k=-\\infty}^{+\\infty} \\frac{2 \\sin k \\omega_0 T_1}{k} \\delta(\\omega - k \\omega_0)\\)\n\\(\\frac{\\omega_0 T_1}{\\pi} \\text{sinc} \\left( \\frac{k \\omega_0 T_1}{\\pi} \\right) = \\frac{\\sin k \\omega_0 T_1}{k \\pi}\\)\n\n\n\\(\\sum_{n=-\\infty}^{+\\infty} \\delta(t - nT)\\)\n\\(\\frac{2\\pi}{T} \\sum_{k=-\\infty}^{+\\infty} \\delta\\left(\\omega - \\frac{2\\pi k}{T}\\right)\\)\n\\(a_k = \\frac{1}{T}, \\text{对全部 } k\\)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#基本傅里叶变换对-22",
+    "href": "Chapter04_V5.html#基本傅里叶变换对-22",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "基本傅里叶变换对 (2/2)",
+    "text": "基本傅里叶变换对 (2/2)\n\n\n\n\n\n\n\n\n信号\n傅里叶变换\n傅里叶级数系数\n\n\n\n\n\\(x(t) = \\begin{cases} 1, & |t| &lt; T_1 \\\\ 0, & |t| &gt; T_1 \\end{cases}\\)\n\\(\\frac{2 \\sin \\omega T_1}{\\omega}\\)\n—\n\n\n\\(\\frac{\\sin Wt}{\\pi t}\\)\n\\(X(j\\omega) = \\begin{cases} 1, & |\\omega| &lt; W \\\\ 0, & |\\omega| &gt; W \\end{cases}\\)\n—\n\n\n\\(\\delta(t)\\)\n\\(1\\)\n—\n\n\n\\(u(t)\\)\n\\(\\frac{1}{j\\omega} + \\pi \\delta(\\omega)\\)\n—\n\n\n\\(\\delta(t - t_0)\\)\n\\(e^{-j\\omega t_0}\\)\n—\n\n\n\\(e^{-at} u(t), \\text{Re}\\{a\\} &gt; 0\\)\n\\(\\frac{1}{a + j\\omega}\\)\n—\n\n\n\\(t e^{-at} u(t), \\text{Re}\\{a\\} &gt; 0\\)\n\\(\\frac{1}{(a + j\\omega)^2}\\)\n—\n\n\n\\(\\frac{t^{n-1}}{(n-1)!} e^{-at} u(t), \\text{Re}\\{a\\} &gt; 0\\)\n\\(\\frac{1}{(a + j\\omega)^n}\\)\n—"
+  },
+  {
+    "objectID": "Chapter04_V5.html#toc5",
+    "href": "Chapter04_V5.html#toc5",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V5.html#线性常系数微分方程",
+    "href": "Chapter04_V5.html#线性常系数微分方程",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "线性常系数微分方程",
+    "text": "线性常系数微分方程\n由以下公式描述的LTI系统\n\\[\n\\sum_{k=0}^{N} a_{k} \\frac{d^{k} y}{d t^{k}}=\\sum_{k=0}^{M} b_{k} \\frac{d^{k} x}{d t^{k}}\n\\]\n方法 1. 使用特征函数\n\\[\nx(t)=e^{j \\omega t} \\Longrightarrow y(t)=H(j \\omega) e^{j \\omega t}\n\\]\n带入到ODE中\n\\[\n\\begin{gathered}\n\\sum_{k=0}^{N} a_{k} H(j \\omega)(j \\omega)^{k} e^{j \\omega t}=\\sum_{k=0}^{M} b_{k}(j \\omega)^{k} e^{j \\omega t} \\\\\nH(j \\omega)=\\frac{\\sum_{k=0}^{M} b_{k}(j \\omega)^{k}}{\\sum_{k=0}^{N} a_{k}(j \\omega)^{k}}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#线性常系数微分方程-1",
+    "href": "Chapter04_V5.html#线性常系数微分方程-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "线性常系数微分方程",
+    "text": "线性常系数微分方程\n方法 2. 两边取傅里叶变换\n\\[\n\\mathcal{F}\\left\\{\\sum_{k=0}^{N} a_{k} \\frac{d^{k} y}{d t^{k}}\\right\\}=\\mathcal{F}\\left\\{\\sum_{k=0}^{M} b_{k} \\frac{d^{k} x}{d t^{k}}\\right\\}\n\\]\n通过线性和微分性质\n\\[\n\\sum_{k=0}^{N} a_{k}(j \\omega)^{k} Y(j \\omega)=\\sum_{k=0}^{M} b_{k}(j \\omega)^{k} X(j \\omega)\n\\]\n通过卷积性质\n\\[\nH(j \\omega)=\\frac{Y(j \\omega)}{X(j \\omega)}=\\frac{\\sum_{k=0}^{M} b_{k}(j \\omega)^{k}}{\\sum_{k=0}^{N} a_{k}(j \\omega)^{k}}\n\\]\n频率响应是 \\(j \\omega\\)的有理函数"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-10",
+    "href": "Chapter04_V5.html#例-10",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\\[\ny^{\\prime \\prime}+4 y^{\\prime}+3 y=x^{\\prime}+2 x\n\\]\n频率响应\n\\[\nH(j \\omega)=\\frac{j \\omega+2}{(j \\omega)^{2}+4(j \\omega)+3}\n\\]\n进行部分分式展开 \\[\nH(j \\omega)=\\frac{j \\omega+2}{(j \\omega+1)(j \\omega+3)}=\\frac{1 / 2}{j \\omega+1}+\\frac{1 / 2}{j \\omega+3}\n\\]\n做傅里叶逆变换求冲激响应\n\\[\nh(t)=\\frac{1}{2} e^{-t} u(t)+\\frac{1}{2} e^{-3 t} u(t)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例-11",
+    "href": "Chapter04_V5.html#例-11",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\\[\ny^{\\prime \\prime}+4 y^{\\prime}+3 y=x^{\\prime}+2 x\n\\]\n求零状态响应，\\(x(t)=e^{-t} u(t)\\)\n\\[\nY(j \\omega)=H(j \\omega) X(j \\omega)=\\frac{j \\omega+2}{(j \\omega+1)(j \\omega+3)} \\cdot \\frac{1}{j \\omega+1}=\\frac{j \\omega+2}{(j \\omega+1)^{2}(j \\omega+3)}\n\\]\n通过部分分式展开\n\\[\nY(j \\omega)=\\frac{1 / 4}{j \\omega+1}+\\frac{1 / 2}{(j \\omega+1)^{2}}-\\frac{1 / 4}{j \\omega+3}\n\\]\n做傅里叶逆变换求零状态响应\n\\[\ny(t)=\\left(\\frac{1}{4} e^{-t}+\\frac{1}{2} t e^{-t}-\\frac{1}{4} e^{-3 t}\\right) u(t)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#frac1j-omegaan的傅里叶逆变换",
+    "href": "Chapter04_V5.html#frac1j-omegaan的傅里叶逆变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "\\(\\frac{1}{(j \\omega+a)^{n}}\\)的傅里叶逆变换",
+    "text": "\\(\\frac{1}{(j \\omega+a)^{n}}\\)的傅里叶逆变换\n回顾\n\\[\ne^{-a t} u(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{a+j \\omega}\n\\]\n注\n\\[\nj^{n-1} \\frac{d^{n-1}}{d \\omega^{n-1}}\\left(\\frac{1}{a+j \\omega}\\right)=\\left(j \\frac{d}{d \\omega}\\right)^{n-1}\\left(\\frac{1}{a+j \\omega}\\right)=\\frac{(n-1)!}{(a+j \\omega)^{n}}\n\\]\n回顾频域微分性质\n\\[\nt x(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} j \\frac{d}{d \\omega} X(j \\omega)\n\\]\n\\(n-1\\)微分后：\n\\[\n\\frac{t^{n-1}}{(n-1)!} e^{-a t} u(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{(a+j \\omega)^{n}}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#部分分式展开",
+    "href": "Chapter04_V5.html#部分分式展开",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n有理函数\n\\[\nR(s)=\\frac{P(s)}{Q(s)}=\\frac{\\sum_{k=0}^{M} b_{k} s^{k}}{\\sum_{k=0}^{N} a_{k} s^{k}}\n\\]\n当分子次数\\(M\\)小于分母次数\\(N\\) 时，该函数为有理真分数；否则为非有理真分数。非有理真分数可以通过多项式长除法分解为‘多项式 + 有理真分数’的形式。\n\\[\nR(s)=P_{0}(s)+\\frac{P_{1}(s)}{Q(s)}\n\\]\n其中 \\(\\operatorname{deg} P_{1}&lt;\\operatorname{deg} Q\\)\n例.\n\\[\n\\frac{s^{3}+5 s^{2}+8 s+5}{s^{2}+4 s+3}=s+1+\\frac{s+2}{s^{2}+4 s+3}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#部分分式展开-1",
+    "href": "Chapter04_V5.html#部分分式展开-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例 (长除法).\n通过长除法，可以将一个假分式有理函数分解为一个多项式与一个真分式之和：\n\\[\\frac{s^3 + 5s^2 + 8s + 5}{s^2 + 4s + 3} = s + 1 + \\frac{s + 2}{s^2 + 4s + 3}\\]\n计算过程\n\\[\n\\begin{array}{r}\ns + 1 \\\\\ns^2 + 4s + 3 \\enclose{longdiv}{s^3 + 5s^2 + 8s + 5} \\\\\n\\underline{-(s^3 + 4s^2 + 3s)} \\phantom{0000} \\\\\ns^2 + 5s + 5 \\\\\n\\underline{-(s^2 + 4s + 3)} \\\\\ns + 2\n\\end{array}\n\\]\n结果说明： * 商 (Quotient): \\(s + 1\\) * 余式 (Remainder): \\(s + 2\\) * 除式 (Divisor): \\(s^2 + 4s + 3\\)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#部分分式展开-2",
+    "href": "Chapter04_V5.html#部分分式展开-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n考虑真分式有理函数 \\(R(s)=P(s) / Q(s)\\)。\n分母 \\(Q(s)\\) 具有 \\(r\\) 个互不相同的根 \\(a_{1}, \\ldots, a_{r} \\in \\mathbb{C}\\)，其因式分解形式为\n\\[\nQ(s)=\\prod_{i=1}^{r}\\left(s-a_{i}\\right)^{N_{i}}\n\\]\n\\(R(s)\\) 有如下部分分式展开\n\\[\nR(s)=\\sum_{i=1}^{r} \\sum_{k_{i}=1}^{N_{i}} \\frac{A_{i, k_{i}}}{\\left(s-a_{i}\\right)^{k_{i}}}\n\\]\n通过以下方式求解系数：\n\n通分 (Reducing to common denominator)\n比较分子系数 (Comparing coefficients of numerators)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#部分分式展开-3",
+    "href": "Chapter04_V5.html#部分分式展开-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例.\n\\[\nR(s)=\\frac{s+2}{(s+1)^{2}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{2,1}}{s+3}\n\\]\nRHS为\n\\[\n\\begin{aligned}\n& \\frac{A_{1,1}(s+1)(s+3)+A_{1,2}(s+3)+A_{2,1}(s+1)^{2}}{(s+1)^{2}(s+3)} \\\\\n& =\\frac{\\left(A_{1,1}+A_{2,1}\\right) s^{2}+\\left(4 A_{1,1}+A_{1,2}+2 A_{2,1}\\right) s+\\left(3 A_{1,1}+3 A_{1,2}+A_{2,1}\\right)}{(s+1)^{2}(s+3)} \\\\\n& \\left\\{\\begin{array} { r l }\n{ A _ { 1 , 1 } + A _ { 2 , 1 } } & { = 0 } \\\\\n{ 4 A _ { 1 , 1 } + A _ { 1 , 2 } + 2 A _ { 2 , 1 } } & { = 1 } \\\\\n{ 3 A _ { 1 , 1 } + 3 A _ { 1 , 2 } + A _ { 2 , 1 } } & { = 2 }\n\\end{array} \\Rightarrow \\left\\{\\begin{array}{l}\nA_{1,1}=1 / 4 \\\\\nA_{1,2}=1 / 2 \\\\\nA_{2,1}=-1 / 4\n\\end{array}\\right.\\right.\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#部分分式展开-4",
+    "href": "Chapter04_V5.html#部分分式展开-4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\nR(s)=\\sum_{i=1}^{r} \\sum_{k_{i}=1}^{N_{i}} \\frac{A_{i, k_{i}}}{\\left(s-a_{i}\\right)^{k_{i}}}\n\\]\n两边同时乘以 \\(\\left(s-a_{j}\\right)^{N_{j}}\\),\n\\[\n\\left(s-a_{j}\\right)^{N_{j}} R(s)=\\sum_{k_{j}=1}^{N_{j}} A_{j, k_{j}}\\left(s-a_{j}\\right)^{N_{j}-k_{j}}+\\left(s-a_{j}\\right)^{N_{j}} R_{j}(s)\n\\]\n其中 \\(R_{j}(s)=\\sum_{i \\neq j} \\sum_{k_{i}=1}^{N_{i}} \\frac{A_{i, k_{i}}}{\\left(s-a_{i}\\right)^{k_{i}}}\\). 对于 \\(k&lt;N_{j}\\),\n\\[\n\\begin{aligned}\n\\frac{d^{k}}{d s^{k}}\\left[\\left(s-a_{j}\\right)^{N_{j}} R(s)\\right] & =\\sum_{k_{j}=0}^{N_{j}-k} A_{j, k_{j}} \\frac{\\left(N_{j}-k_{j}\\right)!}{\\left(N_{j}-k_{j}-k\\right)!}\\left(s-a_{j}\\right)^{N_{j}-k_{j}-k} \\\\\n& +\\sum_{\\ell=0}^{k}\\binom{k}{\\ell} \\frac{N_{j}!}{\\left(N_{j}-\\ell\\right)!}\\left(s-a_{j}\\right)^{N_{j}-\\ell} R_{j}^{(\\ell)}(s)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#部分分式展开-5",
+    "href": "Chapter04_V5.html#部分分式展开-5",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\n\\begin{aligned}\n\\frac{d^{k}}{d s^{k}}\\left[\\left(s-a_{j}\\right)^{N_{j}} R(s)\\right] & =\\sum_{k_{j}=0}^{N_{j}-k} A_{j, k_{j}} \\frac{\\left(N_{j}-k_{j}\\right)!}{\\left(N_{j}-k_{j}-k\\right)!}\\left(s-a_{j}\\right)^{N_{j}-k_{j}-k} \\\\\n& +\\sum_{\\ell=0}^{k}\\binom{k}{\\ell} \\frac{N_{j}!}{\\left(N_{j}-\\ell\\right)!}\\left(s-a_{j}\\right)^{N_{j}-\\ell} R_{j}^{(\\ell)}(s)\n\\end{aligned}\n\\]\n在 \\(s=a_{j}\\)求值,\n\\[\n\\left.\\left[\\frac{d^{k}}{d s^{k}}\\left[\\left(s-a_{j}\\right)^{N_{j}} R(s)\\right]\\right]\\right|_{s=a_{j}}=A_{j, N_{j}-k} k!\n\\]\n用 \\(N_{j}-k\\) 替换\\(k\\) ,\n\\[\nA_{j, k}=\\left.\\frac{1}{\\left(N_{j}-k\\right)!}\\left[\\frac{d^{N_{j}-k}}{d s^{N_{j}-k}}\\left[\\left(s-a_{j}\\right)^{N_{j}} R(s)\\right]\\right]\\right|_{s=a_{j}}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#部分分式展开-6",
+    "href": "Chapter04_V5.html#部分分式展开-6",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例.\n\\[\nR(s)=\\frac{s+2}{(s+1)^{2}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{2,1}}{s+3}\n\\]\n求 \\(A_{2,1}\\)\n\n两边同时乘以 \\(s+3\\),\n\n\\[\n(s+3) R(s)=\\frac{s+2}{(s+1)^{2}}=\\frac{A_{1,1}(s+3)}{s+1}+\\frac{A_{1,2}(s+3)}{(s+1)^{2}}+A_{2,1}\n\\]\n\n带入 \\(s=-3\\),\n\n\\[\nA_{2,1}=\\left.\\frac{s+2}{(s+1)^{2}}\\right|_{s=-3}=-\\frac{1}{4}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#部分分式展开-7",
+    "href": "Chapter04_V5.html#部分分式展开-7",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例 (cont’d).\n\\[\nR(s)=\\frac{s+2}{(s+1)^{2}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{2,1}}{s+3}\n\\]\n求 \\(A_{1,2}\\)\n\n两边同时乘以 \\((s+1)^{2}\\),\n\n\\[\n(s+1)^{2} R(s)=\\frac{s+2}{s+3}=A_{1,1}(s+1)+A_{1,2}+\\frac{A_{2,1}(s+1)^{2}}{s+3}\n\\]\n2 . 代入 \\(s=-1\\), \\(A_{1,2}=\\left.\\frac{s+2}{s+3}\\right|_{s=-1}=\\frac{1}{2}\\)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#部分分式展开-8",
+    "href": "Chapter04_V5.html#部分分式展开-8",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例 (cont’d).\n\\[\nR(s)=\\frac{s+2}{(s+1)^{2}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{2,1}}{s+3}\n\\]\n求 \\(A_{1,1}\\)\n\n两边同时乘以 \\((s+1)^{2}\\),\n\n\\[\n(s+1)^{2} R(s)=\\frac{s+2}{s+3}=A_{1,1}(s+1)+A_{1,2}+\\frac{A_{2,1}(s+1)^{2}}{s+3}\n\\]\n\n对 \\(s\\)求一阶导数,\n\n\\[\n\\frac{d}{d s}\\left(\\frac{s+2}{s+3}\\right)=\\frac{1}{(s+3)^{2}}=A_{1,1}+\\frac{d}{d s}\\left(\\frac{A_{2,1}(s+1)^{2}}{s+3}\\right)\n\\]\n\n代入\\(s=-1\\), \\(A_{1,1}=\\left.\\frac{1}{(s+3)^{2}}\\right|_{s=-1}=\\frac{1}{4}\\)"
+  },
+  {
+    "objectID": "Chapter04_V5.html#部分分式展开-9",
+    "href": "Chapter04_V5.html#部分分式展开-9",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例.\n\\[\nR(s)=\\frac{1}{(s+1)^{3}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{1,3}}{(s+1)^{3}}+\\frac{A_{2,1}}{s+3}\n\\]\n\n\\(A_{2,1}\\)\n\n\\[\n\\begin{gathered}\n(s+3) R(s)=\\frac{1}{(s+1)^{3}}=\\frac{A_{1,1}(s+3)}{s+1}+\\frac{A_{1,2}(s+3)}{(s+1)^{2}}+\\frac{A_{1,3}(s+3)}{(s+1)^{3}}+A_{2,1} \\\\\nA_{2,1}=\\left.\\frac{1}{(s+1)^{3}}\\right|_{s=-3}=-\\frac{1}{8}\n\\end{gathered}\n\\]\n\n\\(A_{1,3}\\)\n\n\\[\n\\begin{gathered}\n(s+1)^{3} R(s)=\\frac{1}{s+3}=A_{1,1}(s+1)^{2}+A_{1,2}(s+1)+A_{1,3}+\\frac{A_{2,1}(s+1)^{3}}{s+3} \\\\\nA_{1,3}=\\left.\\frac{1}{s+3}\\right|_{s=-1}=\\frac{1}{2}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#部分分式展开-10",
+    "href": "Chapter04_V5.html#部分分式展开-10",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例 (cont’d).\n\\[\nR(s)=\\frac{1}{(s+1)^{3}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{1,3}}{(s+1)^{3}}+\\frac{A_{2,1}}{s+3}\n\\]\n\n\\(A_{1,2}\\)\n\n\\[\n\\begin{gathered}\n(s+1)^{3} R(s)=\\frac{1}{s+3}=A_{1,1}(s+1)^{2}+A_{1,2}(s+1)+A_{1,3}+\\frac{A_{2,1}(s+1)^{3}}{s+3} \\\\\nA_{1,2}=\\left.\\frac{d}{d s}\\left(\\frac{1}{s+3}\\right)\\right|_{s=-1}=-\\left.\\frac{1}{(s+3)^{2}}\\right|_{s=-1}=-\\frac{1}{4}\n\\end{gathered}\n\\]\n\n\\(A_{1,1}\\)\n\n\\[\n2 A_{1,1}=\\left.\\frac{d^{2}}{d s^{2}}\\left(\\frac{1}{s+3}\\right)\\right|_{s=-1}=\\left.\\frac{2}{(s+3)^{3}}\\right|_{s=-1}=\\frac{1}{8} \\Longrightarrow A_{1,1}=\\frac{1}{16}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V5.html#作业",
+    "href": "Chapter04_V5.html#作业",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "作业",
+    "text": "作业"
+  },
+  {
+    "objectID": "Chapter04_V5.html#例子复指数信号-1",
+    "href": "Chapter04_V5.html#例子复指数信号-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：复指数信号",
+    "text": "例子：复指数信号\n连续时间傅里叶变换（CT Fourier transform）可以被看作是向连续“基”函数空间的“正交”展开：\n\\[X(j\\omega) = \\langle x, e^{j\\omega t} \\rangle = \\int_{\\mathbb{R}} x(t) \\overline{e^{j\\omega t}} dt\\] \\[2\\pi\\delta(\\omega_1 - \\omega_2) = \\int_{\\mathbb{R}} e^{j(\\omega_1 - \\omega_2)t} dt = \\int_{\\mathbb{R}} e^{j\\omega_1 t} \\overline{e^{j\\omega_2 t}} dt\\] * \\(e^{j\\omega_1 t}\\) 与 \\(e^{j\\omega_2 t}\\) 是正交的，如果 \\(\\omega_1 \\neq \\omega_2\\)。\n以及\n\\[x(t) = \\frac{1}{2\\pi} \\int_{\\mathbb{R}} \\langle x, e^{j\\omega t} \\rangle e^{j\\omega t} d\\omega\\]"
+  },
+  {
+    "objectID": "lecturenotes/广义函数傅里叶变换的对偶理论分析.html",
+    "href": "lecturenotes/广义函数傅里叶变换的对偶理论分析.html",
+    "title": "广义函数傅里叶变换的对偶理论分析",
+    "section": "",
+    "text": "在广义函数（分布）理论中，傅里叶变换 \\(\\hat{x}\\)（或记作 \\(\\mathcal{F}x\\)）并不是通过直接积分定义的，而是通过其在测试函数空间上的对偶关系定义的。\n\n\n\\[\\langle \\hat{x}, \\phi \\rangle = \\langle x, \\hat{\\phi} \\rangle\\] [cite: 18]\n其中各项的具体含义如下表：\n\n\n\n\n\n\n\n\n\n位置\n符号\n定义域\n具体含义与计算形式\n\n\n\n\n左侧第一项\n\\(\\hat{x}\\)\n频域 (\\(\\omega\\))\n待求的频谱分布。\n\n\n左侧第二项\n\\(\\phi\\)\n频域 (\\(\\omega\\))\n测试函数 \\(\\phi(\\omega)\\)。\n\n\n右侧第一项\n\\(x\\)\n时域 (\\(t\\))\n原信号分布。例如例3中的 \\(e^{j\\omega_0 t}\\)。 [cite: 21, 22]\n\n\n右侧第二项\n\\(\\hat{\\phi}\\)\n时域 (\\(t\\))\n投影测试函数。计算公式为：\\(\\int_{-\\infty}^{\\infty} \\phi(\\omega) e^{-j\\omega t} d\\omega\\)。\n\n\n\n\n注意：右侧的 \\(\\hat{\\phi}\\) 必须使用正傅里叶变换（指数项为 \\(-j\\omega t\\)）。这是由算子的伴随性推导出的必然结果，而非人为随意选取。"
+  },
+  {
+    "objectID": "lecturenotes/广义函数傅里叶变换的对偶理论分析.html#分布对偶理论定义",
+    "href": "lecturenotes/广义函数傅里叶变换的对偶理论分析.html#分布对偶理论定义",
+    "title": "广义函数傅里叶变换的对偶理论分析",
+    "section": "",
+    "text": "在广义函数（分布）理论中，傅里叶变换 \\(\\hat{x}\\)（或记作 \\(\\mathcal{F}x\\)）并不是通过直接积分定义的，而是通过其在测试函数空间上的对偶关系定义的。\n\n\n\\[\\langle \\hat{x}, \\phi \\rangle = \\langle x, \\hat{\\phi} \\rangle\\] [cite: 18]\n其中各项的具体含义如下表：\n\n\n\n\n\n\n\n\n\n位置\n符号\n定义域\n具体含义与计算形式\n\n\n\n\n左侧第一项\n\\(\\hat{x}\\)\n频域 (\\(\\omega\\))\n待求的频谱分布。\n\n\n左侧第二项\n\\(\\phi\\)\n频域 (\\(\\omega\\))\n测试函数 \\(\\phi(\\omega)\\)。\n\n\n右侧第一项\n\\(x\\)\n时域 (\\(t\\))\n原信号分布。例如例3中的 \\(e^{j\\omega_0 t}\\)。 [cite: 21, 22]\n\n\n右侧第二项\n\\(\\hat{\\phi}\\)\n时域 (\\(t\\))\n投影测试函数。计算公式为：\\(\\int_{-\\infty}^{\\infty} \\phi(\\omega) e^{-j\\omega t} d\\omega\\)。\n\n\n\n\n注意：右侧的 \\(\\hat{\\phi}\\) 必须使用正傅里叶变换（指数项为 \\(-j\\omega t\\)）。这是由算子的伴随性推导出的必然结果，而非人为随意选取。"
+  },
+  {
+    "objectID": "lecturenotes/广义函数傅里叶变换的对偶理论分析.html#具体的推导公式流程",
+    "href": "lecturenotes/广义函数傅里叶变换的对偶理论分析.html#具体的推导公式流程",
+    "title": "广义函数傅里叶变换的对偶理论分析",
+    "section": "2. 具体的推导公式流程",
+    "text": "2. 具体的推导公式流程\n以推导复指数信号 \\(x(t) = e^{j\\omega_0 t}\\) 为例，严格的对偶计算步骤如下：\n\n步骤 A：写入内积定义\n\\[\\langle \\hat{x}, \\phi \\rangle = \\int_{-\\infty}^{\\infty} x(t) \\hat{\\phi}(t) dt\\]\n\n\n步骤 B：代入具体函数\n\\[\\langle \\hat{x}, \\phi \\rangle = \\int_{-\\infty}^{\\infty} e^{j\\omega_0 t} \\left[ \\int_{-\\infty}^{\\infty} \\phi(\\omega) e^{-j\\omega t} d\\omega \\right] dt\\]\n\n\n步骤 C：交换积分次序与合并指数\n\\[\\langle \\hat{x}, \\phi \\rangle = \\int_{-\\infty}^{\\infty} \\phi(\\omega) \\left[ \\int_{-\\infty}^{\\infty} e^{-j(\\omega - \\omega_0) t} dt \\right] d\\omega\\]\n\n\n步骤 D：利用 \\(\\delta\\) 函数定义提取采样点\n根据 \\(\\int e^{-j\\Omega t} dt = 2\\pi \\delta(\\Omega)\\)，上式变为： \\[\\langle \\hat{x}, \\phi \\rangle = \\int_{-\\infty}^{\\infty} \\phi(\\omega) \\cdot 2\\pi \\delta(\\omega - \\omega_0) d\\omega = 2\\pi \\phi(\\omega_0)\\]\n由此得出正确结论：\\(\\hat{x}(\\omega) = 2\\pi \\delta(\\omega - \\omega_0)\\)。"
+  },
+  {
+    "objectID": "lecturenotes/广义函数傅里叶变换的对偶理论分析.html#例-3-错误原因深度总结",
+    "href": "lecturenotes/广义函数傅里叶变换的对偶理论分析.html#例-3-错误原因深度总结",
+    "title": "广义函数傅里叶变换的对偶理论分析",
+    "section": "3. 例 3 错误原因深度总结",
+    "text": "3. 例 3 错误原因深度总结\n根据文档 的描述，例 3 的分析被判定为“显然不对”，其根本错误在于计算右边内积时的代数处理失误。\n\nA. 忽略了信号自带的相位偏移\n例 2 的成功（\\(x=1\\)）是因为其频谱落在原点 \\(\\phi(0)\\) [cite: 16]。例 3 试图机械类比例 2 的结果，却忽略了 \\(x(t) = e^{j\\omega_0 t}\\) 本身携带的频率分量会与测试变换核 \\(e^{-j\\omega t}\\) 产生偏移作用。\n\n\nB. 指数项合并逻辑断裂\n在推导步骤 中，作者在处理 \\(e^{j\\omega t}\\) 与 \\(e^{-j\\omega t}\\) 的关系时出现了混乱： * 错误的共轭直觉：可能错误地将右侧 \\(\\hat{\\phi}\\) 理解为反变换（误用 \\(+j\\omega t\\)），导致最终 \\(\\delta\\) 函数符号反转。 * 计算抵消失败：未能正确执行上述“步骤 C”中的指数合并，导致无法将结果定位到正确的采样点 \\(\\phi(\\omega_0)\\)。\n\n\nC. 结论形式化\n例 3 最终给出的形式 \\((jw) = 2\\pi\\delta(\\dots)\\) [cite: 27] 既违背了对偶定义的计算结果，也未能正确反映频域平移的物理事实。"
+  },
+  {
+    "objectID": "lecturenotes/广义函数傅里叶变换的对偶理论分析.html#结论",
+    "href": "lecturenotes/广义函数傅里叶变换的对偶理论分析.html#结论",
+    "title": "广义函数傅里叶变换的对偶理论分析",
+    "section": "4. 结论",
+    "text": "4. 结论\n分布对偶理论要求： 1. 左侧：频域内积 \\(\\langle \\hat{x}, \\phi \\rangle\\) 对应频谱对测试函数的加权。 2. 右侧：时域内积 \\(\\langle x, \\hat{\\phi} \\rangle\\) 中，\\(x\\) 保持原样，\\(\\hat{\\phi}\\) 必须使用负指数核。\n例 3 的失败在于未能严谨处理时域内积中信号相位与变换核相位的代数叠加。"
+  },
+  {
+    "objectID": "Chapter04_V6.html",
+    "href": "Chapter04_V6.html",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "",
+    "text": "1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V6.html#toc0",
+    "href": "Chapter04_V6.html#toc0",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V6.html#动机示例周期方波",
+    "href": "Chapter04_V6.html#动机示例周期方波",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "动机示例：周期方波",
+    "text": "动机示例：周期方波\n在一个周期中,\n\\[\nx_{T}(t)= \\begin{cases}1, & |t|&lt;T_{1} \\\\ 0, & T_{1}&lt;|t|&lt;T / 2\\end{cases}\n\\]\n\n在 \\(\\omega_k = k\\omega_0\\) 处的频率分量满足：\n\\[\nT\\hat{x}_T[k] = \\frac{2 \\sin (k\\omega_0 T_1)}{k\\omega_0} = \\left. \\frac{2 \\sin (\\omega T_1)}{\\omega} \\right|_{\\omega=k\\omega_0}\n\\]\n\\(T\\hat{x}_T[k]\\) 是在 \\(\\omega_k = k\\omega_0\\) 处采样的包络线 \\(X(j\\omega) \\triangleq \\frac{2 \\sin(\\omega T_1)}{\\omega}\\) 的值。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#动机示例周期方波-1",
+    "href": "Chapter04_V6.html#动机示例周期方波-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "动机示例：周期方波",
+    "text": "动机示例：周期方波\n\n\n当 \\(T_1\\) 固定且周期 \\(T\\) 不同时的 \\(X(j\\omega_k)\\)：\n\n离散频率间隔为 \\(\\omega_k = k\\frac{2\\pi}{T}\\)\n图中展示了三种情况：\n\n\\(T = 4T_1\\)\n\\(T = 8T_1\\)\n\\(T = 16T_1\\)\n\n第一个零点位于 \\(\\frac{\\pi}{T_1}\\)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n结论： 随着 \\(T \\to \\infty\\)，离散频率的采样变得越来越密集。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#动机示例周期方波-2",
+    "href": "Chapter04_V6.html#动机示例周期方波-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "动机示例：周期方波",
+    "text": "动机示例：周期方波\n当 \\(T \\to \\infty\\) 时，\\(x_T(t) \\to x(t) \\triangleq u(t + T_1) - u(t - T_1)\\)，即矩形脉冲 。\n\\[\n\\begin{aligned}\nx_T(t) &= \\sum_{k=-\\infty}^{\\infty} \\hat{x}_T[k] e^{j\\omega_k t} = \\sum_{k=-\\infty}^{\\infty} \\frac{1}{T} X(j\\omega_k) e^{j\\omega_k t} & (T\\hat{x}[k] = X(j\\omega_k))  \\\\\n&= \\sum_{k=-\\infty}^{\\infty} \\frac{\\omega_0}{2\\pi} X(j\\omega_k) e^{j\\omega_k t} & (\\omega_0 = \\frac{2\\pi}{T}) \\\\\n&= \\frac{1}{2\\pi} \\sum_{k=-\\infty}^{\\infty} X(j\\omega_k) e^{j\\omega_k t} \\Delta\\omega & (\\Delta\\omega = \\omega_0)  \\\\\n&\\to \\frac{1}{2\\pi} \\int_{-\\infty}^{\\infty} X(j\\omega) e^{j\\omega t} d\\omega & (\\Delta\\omega = \\omega_0 \\to 0)\n\\end{aligned}\n\\]\n因此：\n\\[\nx(t) = \\frac{1}{2\\pi} \\int_{-\\infty}^{\\infty} X(j\\omega) e^{j\\omega t} d\\omega  \n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#动机示例周期方波-3",
+    "href": "Chapter04_V6.html#动机示例周期方波-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "动机示例：周期方波",
+    "text": "动机示例：周期方波\n对于\\(X(j\\omega)\\) ，\n\\[\n\\begin{aligned}\nX(j\\omega_k) &= T\\hat{x}_T[k] \\\\\n&= \\int_{-T/2}^{T/2} x_T(t)e^{-j\\omega_k t} dt \\\\\n&= \\int_{-T/2}^{T/2} x(t)e^{-j\\omega_k t} dt \\quad (在 |t| \\le T/2 时，x_T(t) = x(t))  \\\\\n&= \\int_{-\\infty}^{\\infty} x(t)e^{-j\\omega_k t} dt \\quad (在 |t| &gt; T/2 时，x(t) = 0)\n\\end{aligned}\n\\]\n所以，\n\\[\nX(j\\omega) = \\int_{-\\infty}^{\\infty} x(t)e^{-j\\omega t} dt\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#动机示例周期方波-4",
+    "href": "Chapter04_V6.html#动机示例周期方波-4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "动机示例：周期方波",
+    "text": "动机示例：周期方波"
+  },
+  {
+    "objectID": "Chapter04_V6.html#非周期信号的连续时间傅里叶变换-ctft",
+    "href": "Chapter04_V6.html#非周期信号的连续时间傅里叶变换-ctft",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "非周期信号的连续时间傅里叶变换 (CTFT)",
+    "text": "非周期信号的连续时间傅里叶变换 (CTFT)\n对于一个支撑集为 \\(\\text{supp } x \\subset [-T_1, T_1]\\) 的非周期信号 \\(x\\)，定义周期为 \\(T &gt; 2T_1\\) 的周期延拓信号：\n\\[x_T(t) = \\sum_{k=-\\infty}^{\\infty} x(t - kT)\\]\n那么\n\\[x(t) = x_T(t), \\quad |t| &lt; \\frac{T}{2}\\]\n当 \\(T \\to \\infty\\) 时，\n\\[x_T(t) \\to x(t), \\quad \\forall t \\in \\mathbb{R}\\]\n\\(x_T\\) 具有傅里叶级数表示：\n\\[x_T(t) = \\sum_{k=-\\infty}^{\\infty} \\hat{x}_T[k]e^{jk\\omega_0 t}, \\quad \\omega_0 = \\frac{2\\pi}{T}\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#非周期信号的连续时间傅里叶变换",
+    "href": "Chapter04_V6.html#非周期信号的连续时间傅里叶变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "非周期信号的连续时间傅里叶变换",
+    "text": "非周期信号的连续时间傅里叶变换\n定义：\n\\[\nX(j\\omega) = \\int_{-\\infty}^{\\infty} x(t)e^{-j\\omega t} dt\n\\]\n\\(X(j\\omega)\\) 是 \\(T\\hat{x}_T[k]\\) 的包络线，\n\\[\n\\begin{aligned}\n\\hat{x}_T[k] &= \\frac{1}{T} \\int_{-\\frac{T}{2}}^{\\frac{T}{2}} x_T(t)e^{-jk\\omega_0 t} dt = \\frac{1}{T} \\int_{-\\frac{T}{2}}^{\\frac{T}{2}} x(t)e^{-jk\\omega_0 t} dt \\\\\n&= \\frac{1}{T} \\int_{-\\infty}^{\\infty} x(t)e^{-jk\\omega_0 t} dt = \\frac{1}{T} X(jk\\omega_0) = \\frac{\\omega_0}{2\\pi} X(jk\\omega_0)\n\\end{aligned}\n\\]\n所以：\n\\[\n\\begin{aligned}\nx(t) &= \\lim_{T \\to \\infty} x_T(t) = \\lim_{T \\to \\infty} \\sum_{k=-\\infty}^{\\infty} \\frac{\\omega_0}{2\\pi} X(jk\\omega_0)e^{jk\\omega_0 t} \\\\\n&= \\frac{1}{2\\pi} \\int_{-\\infty}^{\\infty} X(j\\omega)e^{j\\omega t} d\\omega\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#连续时间傅里叶变换对",
+    "href": "Chapter04_V6.html#连续时间傅里叶变换对",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "连续时间傅里叶变换对",
+    "text": "连续时间傅里叶变换对\n傅里叶变换（分析方程） ： \\[X(j\\omega) = \\mathcal{F}(x)(j\\omega) = \\int_{-\\infty}^{\\infty} x(t) e^{-j\\omega t} dt\\] * \\(X(j\\omega)\\) 被称为 \\(x(t)\\) 的频谱 。\n逆傅里叶变换（综合方程） ： \\[x(t) = \\mathcal{F}^{-1}(X)(t) = \\frac{1}{2\\pi} \\int_{-\\infty}^{\\infty} X(j\\omega) e^{j\\omega t} d\\omega\\] * 这是在连续频率上的复指数信号的叠加；\n\n频率 \\(\\omega\\) 具有“幅度” \\(X(j\\omega) \\frac{d\\omega}{2\\pi}\\) 。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#等价表示与应用",
+    "href": "Chapter04_V6.html#等价表示与应用",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "等价表示与应用",
+    "text": "等价表示与应用\n同一信号的两种等价表示：\n\n时域 vs. 频域：\\(x(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega)\\)\n\n其他领域的应用：\n\n概率论：具有密度函数 \\(p(x)\\) 的随机变量 \\(X\\) 的特征函数 \\[\n\\varphi_{X}(t)=\\mathbb{E}\\left[e^{j t X}\\right]=\\int_{-\\infty}^{\\infty} p(x) e^{j x t} d x\n\\]\n量子力学：\n\n位置表示：波函数 \\(\\psi(x)\\)（\\(|\\psi(x)|^{2}\\) 是在位置 \\(x\\) 发现粒子的概率密度）\n动量表示：\\(\\Psi(p)\\) \\[\n\\Psi(p)=\\frac{1}{\\sqrt{2 \\pi \\hbar}} \\int_{-\\infty}^{\\infty} \\psi(x) e^{-j p x / \\hbar} d x\n\\]\n\\(|\\Psi(p)|^{2}\\) 是发现具有动量 \\(p\\) 的粒子的概率密度"
+  },
+  {
+    "objectID": "Chapter04_V6.html#l_1-信号的定义",
+    "href": "Chapter04_V6.html#l_1-信号的定义",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "\\(L_{1}\\) 信号的定义",
+    "text": "\\(L_{1}\\) 信号的定义\n回顾微积分，对于实值函数 \\(x\\)，广义积分定义为：\n\\[\n\\int_{\\mathbb{R}} x(t) d t \\triangleq \\lim _{T_{1}, T_{2} \\rightarrow \\infty} \\int_{-T_{1}}^{T_{2}} x(t) d t\n\\]\n如果 \\(x \\in L_{1}(\\mathbb{R})\\)，即 \\(\\|x\\|_{1}=\\int_{\\mathbb{R}}|x(t)| d t&lt;\\infty\\)，则该积分是定义良好 (well-defined) 的。 对于复值函数 \\(x=u+j v\\) 同样适用，因为 \\(|u|,|v| \\leq|x|\\)。\n对于信号 \\(x \\in L_{1}(\\mathbb{R})\\)：\n\n\\(x(t) e^{-j \\omega t} \\in L_{1}(\\mathbb{R})\\)，因为 \\(\\left|x(t) e^{-j \\omega t}\\right|=|x(t)|\\)。\n对于每个 \\(\\omega\\)，傅里叶变换 \\(X(j \\omega)\\) 都是定义良好的广义积分。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子右边衰减指数信号",
+    "href": "Chapter04_V6.html#例子右边衰减指数信号",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：右边衰减指数信号",
+    "text": "例子：右边衰减指数信号\n\n\n\\[\nx(t)=e^{-a t} u(t), \\quad a&gt;0\n\\]\n\n\\[\n\\begin{aligned}\nX(j \\omega) & =\\int_{0}^{\\infty} e^{-(a+j \\omega) t} d t \\\\\n& =-\\left.\\frac{1}{a+j \\omega} e^{-(a+j \\omega) t}\\right|_{0} ^{\\infty}=\\frac{1}{a+j \\omega}\n\\end{aligned}\n\\]\n(注：该公式也适用于实部 \\(\\operatorname{Re} a&gt;0\\) 的复数 \\(a\\))\n对于 \\(a&gt;0\\)： \\[\n|X(j \\omega)|=\\frac{1}{\\sqrt{a^{2}+\\omega^{2}}}, \\quad \\arg X(j \\omega)=-\\arctan \\frac{\\omega}{a}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子双边衰减指数信号",
+    "href": "Chapter04_V6.html#例子双边衰减指数信号",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：双边衰减指数信号",
+    "text": "例子：双边衰减指数信号\n\n\n\\[\nx(t)=e^{-a|t|}, \\quad a&gt;0\n\\]\n\\[\n\\begin{aligned}\nX(j \\omega) & =\\int_{-\\infty}^{\\infty} e^{-a|t|} e^{-j \\omega t} d t \\\\\n& =\\int_{-\\infty}^{0} e^{(a-j \\omega) t} d t+\\int_{0}^{\\infty} e^{-(a+j \\omega) t} d t \\\\\n& =\\frac{1}{a-j \\omega}+\\frac{1}{a+j \\omega}=\\frac{2 a}{a^{2}+\\omega^{2}}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子高斯信号-gaussian",
+    "href": "Chapter04_V6.html#例子高斯信号-gaussian",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：高斯信号 (Gaussian)",
+    "text": "例子：高斯信号 (Gaussian)\n对于 \\(a&gt;0\\)，\n\\[\nx(t)=e^{-a t^{2}} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega)=\\sqrt{\\frac{\\pi}{a}} e^{-\\frac{\\omega^{2}}{4 a}}\n\\]\n\n特别地，如果 \\(a=1/2\\)： \\[\nx(t)=e^{-\\frac{1}{2} t^{2}} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega)=\\sqrt{2 \\pi} e^{-\\frac{1}{2} \\omega^{2}}\n\\] 即高斯函数是傅里叶变换的特征函数。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#高斯信号变换证明",
+    "href": "Chapter04_V6.html#高斯信号变换证明",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "高斯信号变换证明",
+    "text": "高斯信号变换证明\n利用微分方程和分部积分证明：\n\\[\n\\begin{aligned}\n\\frac{d}{d \\omega} X(j \\omega) & =\\int_{-\\infty}^{\\infty} e^{-a t^{2}}(-j t) e^{-j \\omega t} d t=\\frac{j}{2 a} \\int_{-\\infty}^{\\infty}\\left(\\frac{d}{d t} e^{-a t^{2}}\\right) e^{-j \\omega t} d t \\\\\n&=-\\frac{j}{2 a} \\int_{-\\infty}^{\\infty} e^{-a t^{2}}\\left(\\frac{d}{d t} e^{-j \\omega t}\\right) d t \\quad \\text { (分部积分) } \\\\\n&=-\\frac{\\omega}{2 a} X(j \\omega)\n\\end{aligned}\n\\]\n解微分方程 \\(\\frac{d}{d \\omega} X(j \\omega)=-\\frac{\\omega}{2 a} X(j \\omega)\\) 并利用 \\(X(0)=\\sqrt{\\pi/a}\\) 可得结果。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#l_1-信号的傅里叶逆变换",
+    "href": "Chapter04_V6.html#l_1-信号的傅里叶逆变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "\\(L_{1}\\) 信号的傅里叶逆变换",
+    "text": "\\(L_{1}\\) 信号的傅里叶逆变换\n给定 \\(X(j\\omega)\\)，逆变换是否等于 \\(x(t)\\)？\n\\[\nx(t) \\stackrel{?}{=} \\mathcal{F}^{-1}\\{X\\}(t)=\\frac{1}{2 \\pi} \\int_{-\\infty}^{\\infty} X(j \\omega) e^{j \\omega t} d \\omega\n\\]\n定理：如果 \\(x \\in L_{1}(\\mathbb{R})\\) 是连续的，且 \\(X=\\mathcal{F}\\{x\\} \\in L_{1}(\\mathbb{R})\\)，那么 \\(x=\\mathcal{F}^{-1}\\{X\\}\\)。 - 例如：双边衰减指数，高斯信号。\n注意：对于 \\(x \\in L_1\\)，其变换 \\(X\\) 不一定属于 \\(L_1\\)。 - 例如：单边衰减指数，矩形脉冲。\n主值积分：通常将逆变换解释为柯西主值 (Principal Value)： \\[\n\\lim _{W \\rightarrow \\infty} \\frac{1}{2 \\pi} \\int_{-W}^{W} X(j \\omega) e^{j \\omega t} d \\omega\n\\]\n狄利克雷定理：如果 \\(x \\in L_1\\) 且满足狄利克雷条件，逆变换收敛于 \\(\\frac{x\\left(t_{+}\\right)+x\\left(t_{-}\\right)}{2}\\)（吉布斯现象）。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子矩形脉冲-rectangular-pulse",
+    "href": "Chapter04_V6.html#例子矩形脉冲-rectangular-pulse",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：矩形脉冲 (Rectangular Pulse)",
+    "text": "例子：矩形脉冲 (Rectangular Pulse)\n\n\n\\[\nx(t)=u(t+T)-u(t-T)\n\\]\n\\[\nX(j \\omega)=\\int_{-T}^{T} e^{-j \\omega t} d t=\\frac{2 \\sin (\\omega T)}{\\omega}\\]\n当 \\(T \\rightarrow \\infty\\) 时：\n\n频域：\\(\\frac{\\sin (\\omega T)}{\\pi \\omega} \\rightarrow \\delta(\\omega)\\)\n时域：\\(x(t) \\rightarrow 1\\) (直流信号)"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子理想低通滤波器",
+    "href": "Chapter04_V6.html#例子理想低通滤波器",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：理想低通滤波器",
+    "text": "例子：理想低通滤波器\n\n\n频率响应： \\[\nH(j \\omega)=u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\n\\]\n冲激响应（逆变换）： \\[\nh(t)=\\frac{1}{2 \\pi} \\int_{-\\omega_{c}}^{\\omega_{c}} e^{j \\omega t} d \\omega=\\frac{\\sin \\left(\\omega_{c} t\\right)}{\\pi t}\n\\]\n注意：\\(h(t) \\notin L_{1}(\\mathbb{R})\\) 但 \\(H(j \\omega) \\in L_{1}(\\mathbb{R})\\)。\n\n\n\n当 \\(\\omega_{c} \\rightarrow \\infty\\) 时，\n\n时域：\\(h(t) \\rightarrow \\delta(t)\\)\n频域：\\(H(j \\omega) \\rightarrow 1\\)（通过所有频率）"
+  },
+  {
+    "objectID": "Chapter04_V6.html#对偶性-duality",
+    "href": "Chapter04_V6.html#对偶性-duality",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性 (Duality)",
+    "text": "对偶性 (Duality)\n\n\n时间脉冲 \\(\\leftrightarrow\\) 频域 Sinc\n时间 Sinc \\(\\leftrightarrow\\) 频域脉冲 (低通滤波器)"
+  },
+  {
+    "objectID": "Chapter04_V6.html#广义傅里叶变换定义",
+    "href": "Chapter04_V6.html#广义傅里叶变换定义",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "广义傅里叶变换定义",
+    "text": "广义傅里叶变换定义\n如果 \\(x_n \\rightarrow x\\)，定义 \\(x\\) 的傅里叶变换为： \\[\nX(j \\omega)=\\mathcal{F}\\{x\\} \\triangleq \\lim _{n} \\mathcal{F}\\left\\{x_{n}\\right\\}\n\\]\n更正式地，基于分布/广义函数理论，对于测试函数 \\(\\phi\\)： \\[\n\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) \\phi(\\omega) d \\omega=\\int_{\\mathbb{R}} x(t) \\Phi(j t) d t\n\\]\n施瓦兹空间 (Schwarz Space) \\(\\mathcal{S}\\)：\n\n无穷可微且速降 (rapidly decreasing) 的函数空间。\n例如：高斯函数 \\(g(t)=e^{-a t^{2}} \\in \\mathcal{S}\\)。\n性质：\\(\\phi \\in \\mathcal{S} \\Longrightarrow \\Phi \\in \\mathcal{S}\\)。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子单位冲激-delta",
+    "href": "Chapter04_V6.html#例子单位冲激-delta",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：单位冲激 \\(\\delta\\)",
+    "text": "例子：单位冲激 \\(\\delta\\)\n方法 1：作为理想低通滤波器的极限。 \\[\nh_{W}(t)=\\frac{\\sin (W t)}{\\pi t} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} H_{W}(j \\omega)=u(\\omega+W)-u(\\omega-W)\n\\] 当 \\(W \\rightarrow \\infty\\)，\\(h_W \\to \\delta\\)，且 \\(H_W \\to 1\\)。 \\[\n\\therefore \\mathcal{F}\\{\\delta\\}=1\n\\]\n方法 2：使用广义定义。 \\[\n\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) \\phi(\\omega) d \\omega=\\int_{\\mathbb{R}} \\delta(t) \\Phi(j t) d t=\\Phi(0)=\\int_{\\mathbb{R}} 1 \\cdot \\phi(\\omega) d \\omega\n\\] 因此 \\(X(j\\omega)=1\\)。 \\(\\delta\\) 具有白色频谱 (white spectrum)，包含等量的所有频率。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子直流信号-1",
+    "href": "Chapter04_V6.html#例子直流信号-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：直流信号 1",
+    "text": "例子：直流信号 1\n方法 1：作为矩形脉冲的极限。 \\[\nx_{T}(t) \\longleftrightarrow X_{T}(j \\omega)=\\frac{2 \\sin (\\omega T)}{\\omega}\n\\] 当 \\(T \\rightarrow \\infty\\)，\\(x_T \\to 1\\)，且 \\(X_T \\to 2\\pi\\delta(\\omega)\\)。 \\[\n\\therefore \\mathcal{F}\\{1\\}=2 \\pi \\delta(\\omega)\n\\]\n方法 2：使用广义定义。 \\[\n\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) \\phi(\\omega) d \\omega=\\int_{\\mathbb{R}} 1 \\cdot \\Phi(j t) d t=2 \\pi \\phi(0)=\\int_{\\mathbb{R}} 2 \\pi \\delta(\\omega) \\phi(\\omega) d \\omega\n\\] 也就是： \\[2\\pi\\delta(\\omega) = \\int_{-\\infty}^{\\infty} e^{-j\\omega t} dt\\] 直流信号的频谱是零频率处的冲激！"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子复指数信号",
+    "href": "Chapter04_V6.html#例子复指数信号",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：复指数信号",
+    "text": "例子：复指数信号\n令 \\(x(t)=e^{j \\omega_{0} t}\\)。  根据 \\[2\\pi\\delta(\\omega) = \\int_{-\\infty}^{\\infty} e^{-j\\omega t} dt\\] 可以得到： \\[2\\pi\\delta(\\omega - \\omega_0) = \\int_{\\mathbb{R}} e^{j(\\omega_0 - \\omega)t} dt\\]\n因此： \\[\n\\mathcal{F}\\{e^{j \\omega_{0} t}\\} = 2 \\pi \\delta\\left(\\omega-\\omega_{0}\\right)\n\\]\n\\(e^{j \\omega_{0} t}\\) 的频谱是 \\(\\omega_{0}\\) 处的冲激。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子复指数信号-1",
+    "href": "Chapter04_V6.html#例子复指数信号-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：复指数信号",
+    "text": "例子：复指数信号\n连续时间傅里叶变换（CT Fourier transform）可以被看作是向连续“基”函数空间的“正交”展开：\n\\[X(j\\omega) = \\langle x, e^{j\\omega t} \\rangle = \\int_{\\mathbb{R}} x(t) \\overline{e^{j\\omega t}} dt\\] \\[2\\pi\\delta(\\omega_1 - \\omega_2) = \\int_{\\mathbb{R}} e^{j(\\omega_1 - \\omega_2)t} dt = \\int_{\\mathbb{R}} e^{j\\omega_1 t} \\overline{e^{j\\omega_2 t}} dt\\] * \\(e^{j\\omega_1 t}\\) 与 \\(e^{j\\omega_2 t}\\) 是正交的，如果 \\(\\omega_1 \\neq \\omega_2\\)。\n以及\n\\[x(t) = \\frac{1}{2\\pi} \\int_{\\mathbb{R}} \\langle x, e^{j\\omega t} \\rangle e^{j\\omega t} d\\omega\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#周期信号的傅里叶变换",
+    "href": "Chapter04_V6.html#周期信号的傅里叶变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "周期信号的傅里叶变换",
+    "text": "周期信号的傅里叶变换\n周期信号的频谱\n基频为 \\(\\omega_0\\) 的周期信号具有傅里叶级数： \\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\omega_{0} t}\n\\]\n利用线性和复指数的变换： \\[\n\\begin{aligned}\nX(j \\omega) & =\\mathcal{F}\\left\\{\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\omega_{0} t}\\right\\} \\\\\n& =\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] \\mathcal{F}\\left\\{e^{j k \\omega_{0} t}\\right\\} \\\\\n& =\\sum_{k=-\\infty}^{\\infty} 2 \\pi \\hat{x}[k] \\delta\\left(\\omega-k \\omega_{0}\\right)\n\\end{aligned}\n\\]\n结论：周期信号的频谱由谐波相关频率处的冲激组成！冲激的面积是 \\(2\\pi\\) 乘以傅里叶级数系数。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子正弦和余弦",
+    "href": "Chapter04_V6.html#例子正弦和余弦",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：正弦和余弦",
+    "text": "例子：正弦和余弦\n\n\n余弦：\\(x(t) = \\cos(\\omega_0 t) = \\frac{1}{2} e^{j \\omega_{0} t}+\\frac{1}{2} e^{-j \\omega_{0} t}\\) \\[\nX(j \\omega) = \\pi \\delta\\left(\\omega-\\omega_{0}\\right)+\\pi \\delta\\left(\\omega+\\omega_{0}\\right)\n\\]\n正弦：\\(x(t) = \\sin(\\omega_0 t) = \\frac{1}{2j} e^{j \\omega_{0} t}-\\frac{1}{2j} e^{-j \\omega_{0} t}\\) \\[\nX(j \\omega) = \\frac{\\pi}{j} \\delta\\left(\\omega-\\omega_{0}\\right)-\\frac{\\pi}{j} \\delta\\left(\\omega+\\omega_{0}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子周期方波",
+    "href": "Chapter04_V6.html#例子周期方波",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：周期方波",
+    "text": "例子：周期方波\n\n\n\n\n\n\n\n\\[\n\\hat{x}[k]=\\frac{\\sin(k\\omega T_1)}{k \\pi}\n\\]\n\n\\[\nX(j \\omega)=\\sum_{k=-\\infty}^{\\infty}\\frac{2 \\sin(k\\omega T_1)}{k } \\delta(\\omega-k\\omega_0)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例子周期冲激串",
+    "href": "Chapter04_V6.html#例子周期冲激串",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例子：周期冲激串",
+    "text": "例子：周期冲激串\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\delta(t-k T)\n\\]\n傅里叶系数 \\(\\hat{x}[k] = 1/T\\)。 傅里叶变换：\n\\[\nX(j \\omega)=\\sum_{k=-\\infty}^{\\infty} \\frac{2 \\pi}{T} \\delta\\left(\\omega-k \\frac{2 \\pi}{T}\\right)\n\\]\n时域中的冲激串 \\(\\longleftrightarrow\\) 频域中的冲激串。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#toc1",
+    "href": "Chapter04_V6.html#toc1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V6.html#回顾l_1mathbbr-函数的傅里叶变换",
+    "href": "Chapter04_V6.html#回顾l_1mathbbr-函数的傅里叶变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾：\\(L_1(\\mathbb{R})\\) 函数的傅里叶变换",
+    "text": "回顾：\\(L_1(\\mathbb{R})\\) 函数的傅里叶变换\n作为主值（Principal values）的傅里叶变换及其逆变换：\n\\[\n\\mathcal{F}\\{x\\}(j\\omega) = \\lim_{T \\to \\infty} \\int_{-T}^{T} x(t)e^{-j\\omega t} dt\n\\]\n\\[\n\\mathcal{F}^{-1}(X)(t) = \\lim_{W \\to \\infty} \\frac{1}{2 \\pi} \\int_{-W}^{W} X(j\\omega)e^{j\\omega t} d\\omega\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#回顾-l_1mathbbr-函数的傅里叶变换",
+    "href": "Chapter04_V6.html#回顾-l_1mathbbr-函数的傅里叶变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾: \\(L_1(\\mathbb{R})\\) 函数的傅里叶变换",
+    "text": "回顾: \\(L_1(\\mathbb{R})\\) 函数的傅里叶变换\n傅里叶变换对\n\n\n\n\n\n\n\n\ncase\n\\(x(t)\\)\n\\(X(j \\omega)\\)\n\n\n\n\n1\n\\(e^{-a t} u(t), \\quad \\operatorname{Re} a&gt;0\\)\n\\(\\frac{1}{a+j \\omega}\\)\n\n\n3\n\\(e^{-a\\|t\\|}, \\quad \\operatorname{Re} a&gt;0\\)\n\\(\\frac{2 a}{a^{2}+\\omega^{2}}\\)\n\n\n3\n\\(e^{-a t^{2}}, \\quad a&gt;0\\)\n\\(\\sqrt{\\frac{\\pi}{a}} e^{-\\frac{\\omega^{2}}{4 a}}\\)\n\n\n1\n\\(u(t+T)-u(t-T)\\)\n\\(\\frac{2 \\sin (\\omega T)}{\\omega}\\)\n\n\n2\n\\(\\frac{\\sin \\left(\\omega_{c} t\\right)}{\\pi t}\\)\n\\(u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\\)"
+  },
+  {
+    "objectID": "Chapter04_V6.html#回顾-广义函数的傅里叶变换",
+    "href": "Chapter04_V6.html#回顾-广义函数的傅里叶变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾: 广义函数的傅里叶变换",
+    "text": "回顾: 广义函数的傅里叶变换\n施瓦茨空间 (Schwartz space) \\(\\mathcal{S} = \\mathcal{S}(\\mathbb{R})\\)，即快速递减函数空间：\n\\[\\mathcal{S} = \\{ \\phi \\in C^\\infty(\\mathbb{R}) : \\|\\phi\\|_{\\ell,k} &lt; \\infty, \\forall \\ell, k \\in \\mathbb{N} \\}\\]\n其中 \\(\\|\\phi\\|_{\\ell,k} = \\sup_{t \\in \\mathbb{R}} |t^\\ell \\phi^{(k)}(t)|\\)。注意 \\(\\mathcal{F}\\{\\mathcal{S}\\} = \\mathcal{S}\\)。\n缓增广义函数 (Tempered distributions) 的傅里叶变换定义如下：\n\\[(x, \\phi) \\triangleq \\int_{\\mathbb{R}} x(\\xi)\\phi(\\xi)d\\xi\\]\n\n如果在广义函数意义下 \\(x_n \\to x\\)，那么其傅里叶变换定义为：\\(\\mathcal{F}\\{x\\} \\triangleq \\lim_{n} \\mathcal{F}\\{x_n\\}\\)（广义函数意义下）。\n\n\\[(x, \\phi) = \\lim_{n} (x_n, \\phi) \\Longrightarrow (\\mathcal{F}\\{x\\}, \\phi) \\triangleq \\lim_{n} (\\mathcal{F}\\{x_n\\}, \\phi), \\quad \\forall \\phi \\in \\mathcal{S}\\]\n\n或者，另一种等价定义为： \\[(\\mathcal{F}\\{x\\}, \\phi) \\triangleq (x, \\mathcal{F}\\{\\phi\\}), \\quad \\forall \\phi \\in \\mathcal{S}\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#回顾-广义函数的傅里叶变换-1",
+    "href": "Chapter04_V6.html#回顾-广义函数的傅里叶变换-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾: 广义函数的傅里叶变换",
+    "text": "回顾: 广义函数的傅里叶变换\n傅里叶变换对\n\n\n\n\\(x(t)\\)\n\\(X(j \\omega)\\)\n\n\n\n\n\\(\\delta(t)\\)\n1\n\n\n\\(\\delta\\left(t-t_{0}\\right)\\)\n\\(e^{-j \\omega t_{0}}\\)\n\n\n1\n\\(2 \\pi \\delta(\\omega)\\)\n\n\n\\(e^{j \\omega_{0} t}\\)\n\\(2 \\pi \\delta\\left(\\omega-\\omega_{0}\\right)\\)\n\n\n\n\\[\n\\begin{gathered}\n\\int_{\\mathbb{R}} \\delta\\left(t-t_{0}\\right) e^{-j \\omega t} d t=e^{-j \\omega t_{0}}, \\quad \\int_{\\mathbb{R}} e^{j\\left(\\omega_{1}-\\omega_{2}\\right) t} d t=2 \\pi \\delta\\left(\\omega_{1}-\\omega_{2}\\right) \\\\\n\\int_{\\mathbb{R}} X(j \\omega) e^{j \\omega t} d \\omega=\\int_{\\mathbb{R}} \\int_{\\mathbb{R}} x(\\tau) e^{j \\omega(t-\\tau)} d \\tau d \\omega=\\int_{\\mathbb{R}} x(\\tau) 2 \\pi \\delta(t-\\tau) d \\tau=2 \\pi x(t)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#回顾-fourier-transform-for-periodic-functions",
+    "href": "Chapter04_V6.html#回顾-fourier-transform-for-periodic-functions",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾: Fourier Transform for Periodic Functions",
+    "text": "回顾: Fourier Transform for Periodic Functions\n傅里叶级数 (Fourier series)\n\\[x(t) = \\sum_{k=-\\infty}^{\\infty} \\hat{x}[k]e^{jk\\omega_0 t}\\]\n傅里叶变换 (Fourier transform)\n\\[X(j\\omega) = \\sum_{k=-\\infty}^{\\infty} 2\\pi\\hat{x}[k]\\delta(\\omega - k\\omega_0)\\]\n等价表示 (Equivalent representation)\n\n\\(\\hat{x}[k]\\) 是在 \\(\\omega_k = k\\omega_0\\) 处分量的幅度。\n\\(\\hat{x}[k]\\delta(\\omega - k\\omega_0)\\) 是在 \\(\\omega_k = k\\omega_0\\) 处分量的密度。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#回顾-傅里叶级数与傅里叶变换的关系",
+    "href": "Chapter04_V6.html#回顾-傅里叶级数与傅里叶变换的关系",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "回顾: 傅里叶级数与傅里叶变换的关系",
+    "text": "回顾: 傅里叶级数与傅里叶变换的关系\n\n非周期信号 \\(x\\) 具有长度小于 \\(T\\) 的有限支撑集\n\\(x\\) 的周期延拓为 \\(x_T\\) [cite: 481]：\n\n\\[x_T(t) = \\sum_{k=-\\infty}^{\\infty} x(t - kT)\\]\n注意： 换句话说，\\(x\\) 是周期信号 \\(x_T\\) 的一个周期。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#连续时间傅里叶变换的性质",
+    "href": "Chapter04_V6.html#连续时间傅里叶变换的性质",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "连续时间傅里叶变换的性质",
+    "text": "连续时间傅里叶变换的性质\n线性\n\\[\n\\mathcal{F}\\{a x+b y\\}=a \\mathcal{F}\\{x\\}+b \\mathcal{F}\\{y\\}\n\\]\n时移\n\\[\n\\mathcal{F}\\left\\{\\tau_{t_{0}} x\\right\\}=E_{-t_{0}} \\mathcal{F}\\{x\\} \\quad \\text { 或 } \\quad x\\left(t-t_{0}\\right) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} e^{-j \\omega t_{0}} X(j \\omega)\n\\]\n其中 \\(\\left(E_{a} f\\right)(s)=e^{j a s} f(s)\\) 证明。\n\\[\n\\int_{\\mathbb{R}} x\\left(t-t_{0}\\right) e^{-j \\omega t} d t=\\int_{\\mathbb{R}} x(s) e^{-j \\omega\\left(s+t_{0}\\right)} d s=e^{-j \\omega t_{0}} \\int_{\\mathbb{R}} x(s) e^{-j \\omega s} d s\n\\]\n频移\n\\[\n\\mathcal{F}\\left\\{E_{\\omega_{0}} x\\right\\}=\\tau_{\\omega_{0}} \\hat{x} \\quad \\text { 或 } \\quad e^{j \\omega_{0} t} x(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(j\\left(\\omega-\\omega_{0}\\right)\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-多径效应",
+    "href": "Chapter04_V6.html#例-多径效应",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 多径效应",
+    "text": "例: 多径效应\n\n\n发送端 (Transmitter)：\\(x(t)\\)\n接收端 (Receiver)：\\(y(t) = a_0x(t) + a_1x(t - \\tau)\\)\n\\[\n\\begin{aligned}\nY(j \\omega) & =a_{0} X(j \\omega)+a_{1} e^{-j \\omega \\tau} X(j \\omega) \\\\\n& =\\left(a_{0}+a_{1} e^{-j \\omega \\tau}\\right) X(j \\omega)\n\\end{aligned}\n\\]\n令 \\(x(t)=u(t+T)-u(t-T)\\).\n\\[\nX(j \\omega)=\\frac{2 \\sin (\\omega T)}{\\omega}\n\\]\n\\[\nY(j \\omega)=\\left(a_{0}+a_{1} e^{-j \\omega \\tau}\\right) \\frac{2 \\sin (\\omega T)}{\\omega}\n\\]\n对于 \\(a_{0}=a_{1}=1\\),\n\\[\nY(j \\omega)=4 e^{-j \\omega \\tau / 2} \\cos \\left(\\frac{\\omega \\tau}{2}\\right) \\frac{\\sin (\\omega T)}{\\omega}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-调制",
+    "href": "Chapter04_V6.html#例-调制",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 调制",
+    "text": "例: 调制\n\n\n基带信号 (Baseband signal)：\\(x(t)\\)\n已调信号 (Modulated signal)：通常表示为 \\(y(t)\\) 或 \\(s(t)\\) \\[\n\\begin{aligned}\n& y(t)=x(t) \\cos \\left(\\omega_{c} t\\right)=\\frac{1}{2} x(t)\\left(e^{j \\omega_{c} t}+e^{-j \\omega_{c} t}\\right) \\\\\n& Y(j \\omega)=\\frac{1}{2} X\\left(j\\left(\\omega-\\omega_{c}\\right)\\right)+\\frac{1}{2} X\\left(j\\left(\\omega+\\omega_{c}\\right)\\right)\n\\end{aligned}\n\\]\n对于 \\(x(t)=u(t+T)-u(t-T)\\),\n\\[\nY(j \\omega)=\\frac{\\sin \\left(\\left(\\omega-\\omega_{c}\\right) T\\right)}{\\omega-\\omega_{c}}+\\frac{\\sin \\left(\\left(\\omega+\\omega_{c}\\right) T\\right)}{\\omega+\\omega_{c}}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#连续时间傅里叶变换的性质-1",
+    "href": "Chapter04_V6.html#连续时间傅里叶变换的性质-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "连续时间傅里叶变换的性质",
+    "text": "连续时间傅里叶变换的性质\n时间反转\n\\[\n\\mathcal{F}\\{R x\\}=R \\mathcal{F}\\{x\\} \\quad \\text { 或 } \\quad x(-t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(-j \\omega)\n\\]\n共轭\n\\[\n\\mathcal{F}\\left\\{x^{*}\\right\\}=R \\overline{\\mathcal{F}\\{x\\}} \\quad \\text { 或 } \\quad x^{*}(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X^{*}(-j \\omega)\n\\]\n证明：\n\\(\\mathcal{F} \\{x^*\\}(j\\omega) = \\int_{\\mathbb{R}} x^*(t)e^{-j\\omega t} dt = \\left( \\int_{\\mathbb{R}} x(t)e^{j\\omega t} dt \\right)^* = X^*(-j\\omega)\\) 对称性\n\n\\(x\\) 为偶函数 \\(\\iff X\\) 为偶函数； \\(x\\) 为奇函数 \\(\\iff X\\) 为奇函数\n\\(x\\) 为实信号 \\(\\iff X(-j\\omega) = X^*(j\\omega)\\)（共轭对称性）\n\\(x\\) 为实且偶 \\(\\iff X\\) 为实且偶\n\\(x\\) 为实且奇 \\(\\iff X\\) 为纯虚且奇"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例",
+    "href": "Chapter04_V6.html#例",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\n\n对于 \\(a&gt;0\\),\n\\[\nx(t)= \\begin{cases}e^{-a t}, & t&gt;0 \\\\ -e^{a t}, & t&lt;0\\end{cases}\n\\]\n令 \\(y(t)=e^{-a t} u(t)\\), 而且\n\\[\nY(j \\omega)=\\frac{1}{a+j \\omega}\n\\]\n由于 \\(x(t)=y(t)-y(-t)\\).\n\\[\n\\begin{aligned}\nX(j \\omega) & =Y(j \\omega)-Y(-j \\omega) \\\\\n& =\\frac{1}{a+j \\omega}-\\frac{1}{a-j \\omega}=\\frac{-2 j \\omega}{a^{2}+\\omega^{2}}\n\\end{aligned}\n\\]\n\\(x\\) 为实且奇 \\(\\iff X\\) 为纯虚且奇"
+  },
+  {
+    "objectID": "Chapter04_V6.html#时间与频率尺度变换",
+    "href": "Chapter04_V6.html#时间与频率尺度变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "时间与频率尺度变换",
+    "text": "时间与频率尺度变换\n对于 \\(a \\neq 0\\),\n\\[\n\\mathcal{F}\\left\\{S_{a} x\\right\\}=\\frac{1}{|a|} S_{\\frac{1}{a}} \\mathcal{F}\\{x\\} \\quad \\text { 或 } \\quad x(a t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{|a|} X\\left(\\frac{j \\omega}{a}\\right)\n\\]\n证明。通过变量替换 \\(\\tau = at\\)。\n对于 \\(a &gt; 0\\)：\n\\[\n\\int_{-\\infty}^{\\infty} x(at)e^{-j\\omega t} dt = \\int_{-\\infty}^{\\infty} x(\\tau)e^{-j\\frac{\\omega}{a}\\tau} \\frac{d\\tau}{a} = \\frac{1}{a} X\\left( \\frac{j\\omega}{a} \\right)\n\\]\n对于 \\(a &lt; 0\\)：\n\\[\n\\int_{-\\infty}^{\\infty} x(at)e^{-j\\omega t} dt = \\int_{\\infty}^{-\\infty} x(\\tau)e^{-j\\frac{\\omega}{a}\\tau} \\frac{d\\tau}{a} = -\\frac{1}{a} X\\left( \\frac{j\\omega}{a} \\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#时间与频率尺度变换-1",
+    "href": "Chapter04_V6.html#时间与频率尺度变换-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "时间与频率尺度变换",
+    "text": "时间与频率尺度变换\n\\[\n\\mathcal{F}\\left\\{S_{a} x\\right\\}=\\frac{1}{|a|} S_{\\frac{1}{a}} \\mathcal{F}\\{x\\} \\quad \\text { 或 } \\quad x(a t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{|a|} X\\left(\\frac{j \\omega}{a}\\right)\n\\]\n傅里叶变换的尺度变换性质体现了时域与频域之间的倒数关系：\n\n\n\n\n时域压缩 \\(\\Longrightarrow\\) 频域扩展：\n时域扩展 \\(\\Longrightarrow\\) 频域压缩：\n\n\n音频实例：\n\n\n播放速度加快（时域压缩）：音调变高（Higher pitch）。\n播放速度放慢（时域扩展）：音调变低（Lower pitch）。\n\n\n\n\n\\[\nx(t)=e^{-(a t)^{2}} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega)=\\frac{\\sqrt{\\pi}}{|a|} e^{-\\frac{1}{4}\\left(\\frac{\\omega}{a}\\right)^{2}}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#微分",
+    "href": "Chapter04_V6.html#微分",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "微分",
+    "text": "微分\n\\[\nx^{\\prime}(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} j \\omega X(j \\omega), \\quad x^{(k)}(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow}(j \\omega)^{k} X(j \\omega)\n\\]\n证明：积分符号下求导\n利用逆傅里叶变换（合成方程）： \\[x(t) = \\frac{1}{2\\pi} \\int_{\\mathbb{R}} X(j\\omega)e^{j\\omega t} d\\omega \\Longrightarrow x'(t) = \\frac{1}{2\\pi} \\int_{\\mathbb{R}} j\\omega X(j\\omega)e^{j\\omega t} d\\omega\\]\n由此可见，时域中的求导操作对应于频域中乘以 \\(j\\omega\\)。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#积分",
+    "href": "Chapter04_V6.html#积分",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "积分",
+    "text": "积分\n\\[\ny(t)=\\int_{-\\infty}^{t} x(\\tau) d \\tau \\stackrel{\\mathcal{F}}{\\longleftrightarrow} Y(j \\omega)=\\frac{1}{j \\omega} X(j \\omega)+\\pi X(0) \\delta(\\omega)\n\\]\n由于 \\(x(t) = y'(t)\\)，根据微分性质可知： \\[X(j\\omega) = j\\omega Y(j\\omega) \\Longrightarrow Y(j\\omega) = \\frac{1}{j\\omega} X(j\\omega) \\quad (\\text{对于 } \\omega \\neq 0)\\]\n直观地看，\\(y(t)\\) 具有直流分量。其平均值 \\(\\bar{y}\\) 计算如下：\n\\[\n\\begin{aligned}\n\\bar{y} &= \\lim_{T \\to \\infty} \\frac{1}{2T} \\int_{-T}^{T} y(t) dt = \\lim_{T \\to \\infty} \\frac{1}{2T} \\int_{-T}^{T} \\int_{\\mathbb{R}} x(\\tau)u(t - \\tau) d\\tau dt \\\\\n&= \\int_{\\mathbb{R}} x(\\tau) \\left( \\lim_{T \\to \\infty} \\frac{1}{2T} \\int_{-T}^{T} u(t - \\tau) dt \\right) d\\tau = \\frac{1}{2} X(0)\n\\end{aligned}\n\\]\n因此，\\(Y\\) 还包含一个由直流分量产生的冲激项： \\[2\\pi \\bar{y} \\delta(\\omega) = \\pi X(0) \\delta(\\omega)\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#积分-1",
+    "href": "Chapter04_V6.html#积分-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "积分",
+    "text": "积分\n\n\n例. 单位阶跃函数\n\\[\n\\begin{gathered}\nu(t)=\\int_{-\\infty}^{t} \\delta(\\tau) d \\tau \\\\\nU(j \\omega)=\\frac{1}{j \\omega} \\mathcal{F}\\{\\delta\\}(j \\omega)+\\pi \\mathcal{F}\\{\\delta\\}(0) \\delta(\\omega) \\\\\n=\\frac{1}{j \\omega}+\\pi \\delta(\\omega)\n\\end{gathered}\n\\]\n例. 符号函数\n\\[\n\\operatorname{sgn}(t)= \\begin{cases}1, & t&gt;0 \\\\ -1 & t&lt;0\\end{cases}\n\\]\n由于 \\(\\operatorname{sgn}=2 u-1\\),\n\\[\n\\mathcal{F}\\{\\operatorname{sgn}\\}(j \\omega)=2 U(j \\omega)-2 \\pi \\delta(\\omega)=\\frac{2}{j \\omega}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#积分-2",
+    "href": "Chapter04_V6.html#积分-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "积分",
+    "text": "积分\n例. 单位斜坡函数 \\(u_{-2}(t)=t u(t)\\)\n\\[\nu_{-2}(t)=\\int_{-\\infty}^{t} u(\\tau) d \\tau\n\\]\n根据积分性质： \\(\\mathcal{F} \\{u_{-2}\\}(j\\omega) = \\frac{1}{j\\omega}U(j\\omega) + \\pi U(0)\\delta(\\omega)\\)。 代入阶跃函数 \\(u(t)\\) 的变换 \\(U(j\\omega) = \\frac{1}{j\\omega} + \\pi\\delta(\\omega)\\)，可得：\n\\[\\mathcal{F} \\{u_{-2}\\}(j\\omega) = -\\frac{1}{\\omega^2} + \\frac{\\pi}{j\\omega}\\delta(\\omega) + \\pi U(0)\\delta(\\omega)\\]\n\\(U(0) = \\frac{1}{j0} + \\pi\\delta(0)\\) 在数学上没有定义！\\(\\frac{\\pi}{j\\omega}\\delta(\\omega)\\)在\\(\\omega=0\\)处如何理解？\n因此，积分性质在此处不适用！"
+  },
+  {
+    "objectID": "Chapter04_V6.html#积分-3",
+    "href": "Chapter04_V6.html#积分-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "积分",
+    "text": "积分\n正确结果\n\\[\\mathcal{F} \\{u_{-2}\\} = -\\frac{1}{\\omega^2} + j\\pi\\delta'(\\omega)\\]\n可以由两种方式进行计算: 频域微分和广义函数的方法"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-符号函数-sgn",
+    "href": "Chapter04_V6.html#例-符号函数-sgn",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 符号函数 sgn",
+    "text": "例: 符号函数 sgn\n\\[\nx(t)=\\operatorname{sgn}(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega)=\\frac{2}{j \\omega}\n\\]\n广义函数（分布）的理解\n\n\\(x\\) 和 \\(X\\) 均不属于 \\(L_1(\\mathbb{R})\\) 空间，上述内容应在广义函数（分布）的意义下进行解释，即： \\[(X, \\phi) = (x, \\mathcal{F}\\{\\phi\\}), \\quad \\forall \\phi \\in \\mathcal{S}\\] 或者通过逼近序列 \\(x_n \\to x\\) 来定义： \\[(X, \\phi) = \\lim_{n} (X_n, \\phi), \\quad \\forall \\phi \\in \\mathcal{S}\\]\n\n柯西主值 (Cauchy Principal Value)\n\n由于 \\(\\frac{2}{j\\omega}\\) 在 \\(\\omega = 0\\) 处不可积，因此 \\(X\\) 应被解释为主值，通常记作 \\(X(j\\omega) = \\text{pv} \\left( \\frac{2}{j\\omega} \\right)\\)，即： \\[(X, \\phi) = \\int_{\\mathbb{R}} \\text{pv} \\left( \\frac{2}{j\\omega} \\right) \\phi(\\omega) d\\omega \\triangleq \\lim_{\\epsilon \\to 0} \\int_{|\\omega| \\ge \\epsilon} \\frac{2}{j\\omega} \\phi(\\omega) d\\omega\\]\n主值分布是通过对称去除奇点邻域，并取极限，从而将本来不可积的奇异函数扩展为分布的一种方式。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-符号函数-sgn-1",
+    "href": "Chapter04_V6.html#例-符号函数-sgn-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 符号函数 sgn",
+    "text": "例: 符号函数 sgn\n命题：以下的柯西主值定义是”良定义”的：\n\\[\n\\int_{\\mathbb{R}} \\text{pv} \\left( \\frac{1}{\\omega} \\right) \\phi(\\omega) d\\omega \\triangleq \\lim_{\\epsilon \\to 0} \\int_{|\\omega| \\ge \\epsilon} \\frac{1}{\\omega} \\phi(\\omega) d\\omega\n\\]\n证明：\n\n\\(\\int_{|\\omega| \\ge 1} \\frac{1}{\\omega} \\phi(\\omega) d\\omega\\) 是良定义的，因为测试函数 \\(\\phi\\) 是快速递减的。\n由于在对称区间上的积分 \\(\\int_{1 \\ge |\\omega| \\ge \\epsilon} \\frac{1}{\\omega} d\\omega = 0\\)（利用 \\(1/\\omega\\) 的奇对称性），我们可以写出：\n\n\\[\n\\int_{1 \\ge |\\omega| \\ge \\epsilon} \\frac{1}{\\omega} \\phi(\\omega) d\\omega = \\int_{1 \\ge |\\omega| \\ge \\epsilon} \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} d\\omega\n\\]\n\n根据中值定理，存在 \\(\\xi\\) 使得：\\(\\left| \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} \\right| = |\\phi'(\\xi)| \\le \\|\\phi\\|_{0,1}\\)\n因此，我们可以得到以下估计：\n\n\\[\n\\left| \\int_{1 \\ge |\\omega| \\ge \\epsilon} \\frac{1}{\\omega} \\phi(\\omega) d\\omega \\right| = \\int_{1 \\ge |\\omega| \\ge \\epsilon} \\left| \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} \\right| d\\omega \\le 2 \\|\\phi\\|_{0,1}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-符号函数-sgn-2",
+    "href": "Chapter04_V6.html#例-符号函数-sgn-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 符号函数 sgn",
+    "text": "例: 符号函数 sgn\n命题： \\[\\mathcal{F}\\{\\text{sgn}\\}(j\\omega) = \\text{pv} \\left( \\frac{2}{j\\omega} \\right)\\]\n证明： 令 \\(x_a(t) = \\text{sgn}(t)e^{-a|t|}\\)，其中 \\(a &gt; 0\\)。 当 \\(a \\to 0\\) 时，\\(x_a \\to x\\) 在逐点意义及广义函数意义下均成立（将极限移至积分符号内是合法的）：\n\\[\\lim_{a \\to 0} \\int_{\\mathbb{R}} x_a(t)\\phi(t) = \\int_{\\mathbb{R}} \\lim_{a \\to 0} x_a(t)\\phi(t) = \\int_{\\mathbb{R}} x(t)\\phi(t)dt\\]\n回顾： \\[X_a(j\\omega) = \\frac{-2j\\omega}{a^2 + \\omega^2}\\]\n对于 \\(\\omega \\neq 0\\)，当 \\(a \\to 0\\) 时，\\(X_a(j\\omega) \\to \\frac{2}{j\\omega}\\) 在逐点意义下成立。但我们需要证明：\n\\[\\int_{\\mathbb{R}} X_a(j\\omega)\\phi(\\omega)d\\omega \\to \\int_{\\mathbb{R}} \\text{pv} \\left( \\frac{2}{j\\omega} \\right) \\phi(\\omega)d\\omega\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-符号函数-sgn-3",
+    "href": "Chapter04_V6.html#例-符号函数-sgn-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 符号函数 sgn",
+    "text": "例: 符号函数 sgn\n命题： \\[\n\\lim_{a \\to 0} \\int_{\\mathbb{R}} \\frac{\\omega}{a^2 + \\omega^2} \\phi(\\omega) d\\omega = \\lim_{\\epsilon \\to 0} \\int_{|\\omega| \\ge \\epsilon} \\frac{1}{\\omega} \\phi(\\omega) d\\omega\n\\]\n证明：\n由于 \\(\\frac{\\omega}{a^2 + \\omega^2} \\phi(\\omega) \\in L_1(\\mathbb{R})\\)，\n\\[\n\\int_{\\mathbb{R}} \\frac{\\omega}{a^2 + \\omega^2} \\phi(\\omega) d\\omega = \\lim_{\\epsilon \\to 0} \\int_{|\\omega| \\ge \\epsilon} \\frac{\\omega}{a^2 + \\omega^2} \\phi(\\omega) d\\omega\n\\]\n需要证明：\n\\(\\lim_{a \\to 0} \\lim_{\\epsilon \\to 0} |J| = 0\\)，其中：\n\\[\nJ = \\int_{|\\omega| \\ge \\epsilon} \\left( \\frac{\\omega}{a^2 + \\omega^2} - \\frac{1}{\\omega} \\right) \\phi(\\omega) d\\omega = \\int_{|\\omega| \\ge \\epsilon} \\frac{-a^2}{\\omega (a^2 + \\omega^2)} \\phi(\\omega) d\\omega\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-符号函数-sgn-4",
+    "href": "Chapter04_V6.html#例-符号函数-sgn-4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 符号函数 sgn",
+    "text": "例: 符号函数 sgn\n证明（续）。利用 \\(0 = \\int_{|\\omega| \\ge \\epsilon} \\frac{-a^2}{\\omega(a^2 + \\omega^2)} d\\omega\\)，我们得到：\n\\[J = \\int_{|\\omega| \\ge \\epsilon} \\frac{-a^2}{a^2 + \\omega^2} \\cdot \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} d\\omega\\]\n根据中值定理，\\(\\left| \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} \\right| = |\\phi'(\\xi)| \\le \\|\\phi\\|_{0,1}\\)。\n那么误差项 \\(J\\) 的绝对值满足：\n\\[\n\\begin{aligned}\n|J| &\\le \\int_{|\\omega| \\ge \\epsilon} \\left| \\frac{-a^2}{a^2 + \\omega^2} \\cdot \\frac{\\phi(\\omega) - \\phi(0)}{\\omega} \\right| d\\omega \\le \\int_{|\\omega| \\ge \\epsilon} \\frac{a^2}{a^2 + \\omega^2} \\|\\phi\\|_{0,1} d\\omega \\\\\n&\\le \\int_{\\mathbb{R}} \\frac{a^2}{a^2 + \\omega^2} \\|\\phi\\|_{0,1} d\\omega = a\\pi \\|\\phi\\|_{0,1}\n\\end{aligned}\n\\]\n因此：\n\\[\\lim_{a \\to 0} \\lim_{\\epsilon \\to 0} |J| = 0\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-单位阶跃函数",
+    "href": "Chapter04_V6.html#例-单位阶跃函数",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 单位阶跃函数",
+    "text": "例: 单位阶跃函数\n\\[u(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} U(j\\omega) = \\frac{1}{j\\omega} + \\pi\\delta(\\omega)\\]\n注：更准确地说，\\(U(j\\omega) = \\text{pv}\\left(\\frac{1}{j\\omega}\\right) + \\pi\\delta(\\omega)\\) 。\n证明方法：利用符号函数性质\n\n已知 \\(u(t) = \\frac{1}{2}\\text{sgn}(t) + \\frac{1}{2}\\) 。根据线性性质：\n\\[\n\\begin{aligned}\nU(j\\omega) &= \\frac{1}{2}\\mathcal{F}\\{\\text{sgn}\\}(j\\omega) + \\frac{1}{2}\\mathcal{F}\\{1\\}(j\\omega) \\\\\n&= \\frac{1}{2}\\left(\\frac{2}{j\\omega}\\right) + \\frac{1}{2}(2\\pi\\delta(\\omega)) \\\\\n&= \\frac{1}{2\\pi} + \\pi\\delta(\\omega)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#对偶性",
+    "href": "Chapter04_V6.html#对偶性",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{f\\}(\\eta) & =\\int_{\\mathbb{R}} f(\\xi) e^{-j \\eta \\xi} d \\xi \\\\\n\\mathcal{F}^{-1}\\{f\\}(\\eta) & =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} f(\\xi) e^{j \\eta \\xi} d \\xi\n\\end{aligned}\n\\]\n正变换与逆变换公式形式基本一致，区别仅在于：\n\n复指数部分的符号不同\n存在一个常数因子 \\(\\frac{1}{2\\pi}\\)\n\n\\[\n\\mathcal{F}\\{f\\}(\\eta)=\\int_{\\mathbb{R}} f(\\xi) e^{-j \\eta \\xi} d \\xi=\\int_{\\mathbb{R}} f(-\\xi) e^{j \\eta \\xi} d \\xi=\\mathcal{F}^{-1}\\{2 \\pi R f\\}(\\eta)\n\\]\n对偶性\n\\[\nf \\stackrel{\\mathcal{F}}{\\longleftrightarrow} g \\Longleftrightarrow g \\stackrel{\\mathcal{F}}{\\Longleftrightarrow} 2 \\pi R f \\Longleftrightarrow R g \\stackrel{\\mathcal{F}}{\\Longleftrightarrow} 2 \\pi f\n\\]\n根据对偶性原理，若 \\(f(t) \\xleftrightarrow{\\mathcal{F}} g(\\omega)\\)，则 \\(g(t) \\xleftrightarrow{\\mathcal{F}} 2\\pi f(-\\omega)\\)。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#对偶性-1",
+    "href": "Chapter04_V6.html#对偶性-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{f\\}(\\eta) & =\\int_{\\mathbb{R}} f(\\xi) e^{-j \\eta \\xi} d \\xi \\\\\n\\mathcal{F}^{-1}\\{f\\}(\\eta) & =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} f(\\xi) e^{j \\eta \\xi} d \\xi\n\\end{aligned}\n\\]\n正变换与逆变换公式形式基本一致，区别仅在于：\n\n复指数部分的符号不同\n存在一个常数因子 \\(\\frac{1}{2\\pi}\\)\n\n\\[\n\\overline{\\mathcal{F}\\{f\\}}=\\left(\\int_{\\mathbb{R}} f(\\xi) e^{-j \\eta \\xi} d \\xi\\right)^{*}=\\int_{\\mathbb{R}} f^{*}(\\xi) e^{j \\eta \\xi} d \\xi=\\mathcal{F}^{-1}\\left\\{2 \\pi f^{*}\\right\\}\n\\]\n对偶性\n\\[\nf \\stackrel{\\mathcal{F}}{\\longleftrightarrow} g \\quad \\Longleftrightarrow \\quad g^{*} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} 2 \\pi f^{*}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#对偶性-2",
+    "href": "Chapter04_V6.html#对偶性-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n\\[\nu(t+a)-u(t-a) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{2 \\sin (a \\omega)}{\\omega}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#对偶性-3",
+    "href": "Chapter04_V6.html#对偶性-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n例：\\(x(t) = \\frac{1}{t}\\)（更准确地表述为 \\(\\text{pv}\\left(\\frac{1}{t}\\right)\\)）。\n已知符号函数的变换：\\(\\text{sgn}(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{2}{j\\omega}\\)\n利用对偶性\n\n交换左侧和右侧，同时交换 \\(\\omega\\) 和 \\(t\\) ；\n执行以下操作（但不同时执行）：\n\n两边取复共轭；\n替换 \\(\\omega \\to -\\omega\\) 或 \\(t \\to -t\\)；\n\n将右侧 乘以 \\(2\\pi\\) 。 \\[\\frac{2}{jt} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} 2\\pi \\text{sgn}(-\\omega)\\]\n\n利用线性性质，最终得到变换对： \\[\\frac{1}{t} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} -j\\pi \\text{sgn}(\\omega)\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#对偶性-4",
+    "href": "Chapter04_V6.html#对偶性-4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n例：已知 \\(x(t) = \\frac{1}{1+t^2}\\) 。\n双边衰减指数信号的变换：\\(e^{-|t|} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{2}{1+\\omega^{2}}\\)\n利用对偶性\n操作步骤： * 交换左侧和右侧，同时交换 \\(\\omega\\) 和 \\(t\\) ；\n\n执行以下操作（但不同时执行） ：\n\n两边取复共轭 ；\n替换 \\(\\omega \\rightarrow-\\omega\\) 或 \\(t \\rightarrow-t\\) ；\n\n将右侧乘以 \\(2\\pi\\) 。 \\[\\frac{2}{1+t^{2}} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} 2 \\pi e^{-|\\omega|}\\]\n\n利用线性性质，最终得到变换对： \\[\\frac{1}{1+t^{2}} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\pi e^{-|\\omega|}\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#对偶性-5",
+    "href": "Chapter04_V6.html#对偶性-5",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "对偶性",
+    "text": "对偶性\n频域微分\n\\[\n-j t x(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{d X(j \\omega)}{d \\omega}\n\\]\n证明。 积分符号内求导\n\\[\nX(j \\omega)=\\int_{\\mathbb{R}} x(t) e^{-j \\omega t} d t \\Longrightarrow \\frac{d X(j \\omega)}{d \\omega}=\\int_{\\mathbb{R}}(-j t) x(t) e^{-j \\omega t} d t\n\\]\n例. 单位斜坡函数 \\(u_{-2}=t u(t)\\)\n\\[\n\\mathcal{F}\\left\\{u_{-2}\\right\\}=j \\mathcal{F}\\{-j t u\\}=j \\frac{d U(j \\omega)}{d \\omega}=-\\frac{1}{\\omega^{2}}+j \\pi \\delta^{\\prime}(\\omega)\n\\]\n频域积分\n\\[\n-\\frac{1}{j t} x(t)+\\pi x(0) \\delta(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\int_{-\\infty}^{\\omega} X(j \\lambda) d \\lambda\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#帕塞瓦尔恒等式",
+    "href": "Chapter04_V6.html#帕塞瓦尔恒等式",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "帕塞瓦尔恒等式",
+    "text": "帕塞瓦尔恒等式\n定理: 若 \\(x \\in L_{2}(\\mathbb{R}), X=\\mathcal{F}\\{x\\}\\), 那么\n\\[\n\\|x\\|_{2}^{2}=\\frac{1}{2 \\pi}\\|X\\|_{2}^{2}, \\quad \\text { 或 } \\quad \\int_{\\mathbb{R}}|x(t)|^{2} d t=\\frac{1}{2 \\pi} \\int_{\\mathbb{R}}|X(j \\omega)|^{2} d \\omega\n\\]\n注意 \\(\\omega\\) 是角频率 \\(\\frac{\\omega}{2 \\pi}\\) 是频率\n\\[\n\\int_{\\mathbb{R}}|x(t)|^{2} d t=\\int_{\\mathbb{R}}|X(j \\omega)|^{2} \\frac{d \\omega}{2 \\pi}\n\\]\n物理解释: 能量守恒\n\n\\(|x(t)|^{2}\\)：功率 (Power)，或单位时间（秒）内的能量。\n\\(|X(j \\omega)|^{2}\\)：单位频率（赫兹）内的能量 (Energy per unit frequency)。\n\\(|X(j \\omega)|^{2}\\) 被称为：能量密度谱 (Energy Density Spectrum)。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#帕塞瓦尔恒等式-1",
+    "href": "Chapter04_V6.html#帕塞瓦尔恒等式-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "帕塞瓦尔恒等式",
+    "text": "帕塞瓦尔恒等式\n定理。 若 \\(x, y \\in L_{2}(\\mathbb{R}), X=\\mathcal{F}\\{x\\}, Y=\\mathcal{F}\\{y\\}\\),  那么 \\[\\langle x, y\\rangle=\\frac{1}{2 \\pi}\\langle X, Y\\rangle, \\quad {或}  \\quad \\int_{\\mathbb{R}} x(t) y^{*}(t) d t=\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) Y^{*}(j \\omega) d \\omega\\]\n证明：\n\\[\n\\begin{aligned}\n\\int_{\\mathbb{R}} x(t) y^{*}(t) d t & =\\int_{\\mathbb{R}} x(t)\\left(\\frac{1}{2 \\pi} \\int_{R} Y(j \\omega) e^{j \\omega t} d \\omega\\right)^{*} d t \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} x(t) \\int_{R} Y^{*}(j \\omega) e^{-j \\omega t} d \\omega d t \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}}\\left(\\int_{\\mathbb{R}} x(t) e^{-j \\omega t} d t\\right) Y^{*}(j \\omega) d \\omega \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) Y^{*}(j \\omega) d \\omega\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#帕塞瓦尔恒等式-2",
+    "href": "Chapter04_V6.html#帕塞瓦尔恒等式-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "帕塞瓦尔恒等式",
+    "text": "帕塞瓦尔恒等式\n例.\n\\[\n\\frac{\\sin (W t)}{\\pi t} \\stackrel{\\mathcal{F}}{\\longleftrightarrow} u(\\omega+W)-u(\\omega-W)\n\\]\n利用帕塞瓦尔恒等式\n\\[\n\\begin{aligned}\n\\int_{\\mathbb{R}} \\frac{\\sin ^{2}(W t)}{\\pi^{2} t^{2}} d t & =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}}|u(\\omega+W)-u(\\omega-W)|^{2} d \\omega \\\\\n& =\\frac{1}{2 \\pi} \\int_{-W}^{W} d \\omega \\\\\n& =\\frac{W}{\\pi}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#toc2",
+    "href": "Chapter04_V6.html#toc2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V6.html#卷积",
+    "href": "Chapter04_V6.html#卷积",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "卷积",
+    "text": "卷积\n对于具有以下特征的线性时不变 (LTI) 系统 \\(T\\)：\n\n冲击响应 \\(h\\)\n频率响应 \\(H(j\\omega) = \\int_{\\mathbb{R}} h(t)e^{-j\\omega t} dt = \\mathcal{F}\\{h\\}\\)，\\(e^{j\\omega t}\\) 是对应于特征值 \\(H(j\\omega)\\) 的特征函数：\n\n\\[T (e^{j\\omega t}) = H(j\\omega)e^{j\\omega t}\\]\n输入 \\(x\\) 是 \\(e^{j\\omega t}\\) 的线性叠加：\n\\[x(t) = \\frac{1}{2\\pi} \\int_{\\mathbb{R}} X(j\\omega)e^{j\\omega t} d\\omega\\]\n输出\n\\[\n\\begin{aligned}\ny(t) & =(x * h)(t)=T\\left(\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) e^{j \\omega t} d \\omega\\right) \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) T\\left(e^{j \\omega t}\\right) d \\omega=\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\omega) H(j \\omega) e^{j \\omega t} d \\omega\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#卷积性质",
+    "href": "Chapter04_V6.html#卷积性质",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "卷积性质",
+    "text": "卷积性质\n\\[\n\\mathcal{F}\\{x * y\\}=\\mathcal{F}\\{x\\} \\mathcal{F}\\{y\\}, \\quad \\text { 或 } \\quad(x * y)(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(j \\omega) Y(j \\omega)\n\\]\n时域卷积 ⟹ 频域相乘\n证明：\n\\[\n\\begin{aligned}\n\\int_{\\mathbb{R}}(x * y)(t) e^{-j \\omega t} d t & =\\int_{\\mathbb{R}} \\int_{\\mathbb{R}} x(\\tau) y(t-\\tau) e^{-j \\omega t} d \\tau d t \\\\\n& =\\int_{\\mathbb{R}} x(\\tau)\\left(\\int_{\\mathbb{R}} y(t-\\tau) e^{-j \\omega t} d t\\right) d \\tau \\\\\n& =\\int_{\\mathbb{R}} x(\\tau) Y(j \\omega) e^{-j \\omega \\tau} d \\tau \\\\\n& =Y(j \\omega) \\int_{\\mathbb{R}} x(\\tau) e^{-j \\omega \\tau} d \\tau \\\\\n& =Y(j \\omega) X(j \\omega)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-1",
+    "href": "Chapter04_V6.html#例-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\n\n\\[\n\\begin{gathered}\nx(t)=\\left(1-\\frac{2|t|}{T}\\right)\\left[u\\left(t+\\frac{T}{2}\\right)-u\\left(t-\\frac{T}{2}\\right)\\right] \\\\\nx=x_{1} * x_{1}\n\\end{gathered}\n\\]\n\\[\n\\begin{gathered}\nX_{1}(j \\omega)=\\sqrt{\\frac{2}{T}} \\cdot \\frac{2 \\sin \\left(\\frac{\\omega T}{4}\\right)}{\\omega} \\\\\nX(j \\omega)=X_{1}^{2}(j \\omega)=\\frac{8 \\sin ^{2}\\left(\\frac{\\omega T}{4}\\right)}{\\omega^{2} T}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#lti-系统的频率响应",
+    "href": "Chapter04_V6.html#lti-系统的频率响应",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "LTI 系统的频率响应",
+    "text": "LTI 系统的频率响应\n线性时不变系统 \\(T\\)\n\n完全由 冲激响应 \\(h\\)描述\n\n\\[\ny=T(x)=h * x\n\\]\n\n若频率响应 \\(H = \\mathcal{F}\\{h\\}\\) 有定义，则系统也可由其完全表征\nBIBO 稳定系统，\\(h \\in L_{1}(\\mathbb{R})\\)\n其他系统：恒等系统 \\(h = \\delta\\)，微分器 \\(h = \\delta', \\dots\\)\n\n通常，卷积性质意味着：\n\\[Y = \\mathcal{F}\\{y\\} = HX = \\mathcal{F}\\{h\\}\\mathcal{F}\\{x\\}\\]\n与其计算 \\(x * h\\)，不如计算：\n\\[y = \\mathcal{F}^{-1}(\\mathcal{F}\\{h\\}\\mathcal{F}\\{x\\})\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#lti-系统的频率响应-1",
+    "href": "Chapter04_V6.html#lti-系统的频率响应-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "LTI 系统的频率响应",
+    "text": "LTI 系统的频率响应\n\n\n\n\n\n\n\n\n\n\\(h(t)\\)\n\\(H(j \\omega)\\)\n\n\n\n\n\n\\(\\delta(t)\\)\n1\n\n\n\\(\\tau_{t_{0}}\\)\n\\(\\delta\\left(t-t_{0}\\right)\\)\n\\(e^{-j \\omega t_{0}}\\)\n\n\n\\(\\frac{d}{d t}\\)\n\\(\\delta^{\\prime}(t)\\)\n\\(j \\omega\\)\n\n\n\\(\\int_{-\\infty}^{t}\\)\n\\(u(t)\\)\n\\(\\frac{1}{j \\omega}+\\pi \\delta(\\omega)\\)\n\n\n理想低通滤波器\n\\(\\frac{\\sin \\left(\\omega_{c} t\\right)}{\\pi t}\\)\n\\(u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\\)\n\n\n1阶低通滤波器\n\\(\\frac{1}{\\tau} e^{-t / \\tau} u(t)\\)\n\\(\\frac{1}{1+j \\tau \\omega}\\)"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-2",
+    "href": "Chapter04_V6.html#例-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n冲激响应为 \\(h(t) = e^{-at}u(t)\\) 的 LTI 系统对输入 \\(x(t) = e^{-bt}u(t)\\) 的响应，\\(a, b &gt; 0\\)：\n方法 1. 直接卷积 \\(y = x * h\\)\n方法 2. 在初始松弛条件下求解以下常微分方程 (ODE)： \\[y'(t) + ay(t) = e^{-bt}u(t)\\]\n方法 3. 傅里叶变换\n\\[H(j\\omega) = \\frac{1}{a + j\\omega}, X(j\\omega) = \\frac{1}{b + j\\omega} \\implies Y(j\\omega) = \\frac{1}{(a + j\\omega)(b + j\\omega)}\\]\n若 \\(a \\neq b\\)： \\[Y(j\\omega) = \\frac{1}{b-a} \\left( \\frac{1}{a+j\\omega} - \\frac{1}{b+j\\omega} \\right) \\implies y(t) = \\frac{1}{b-a} (e^{-at} - e^{-bt})u(t)\\]\n若 \\(a = b\\)： \\[Y(j\\omega) = -\\frac{d}{da} \\left( \\frac{1}{a+j\\omega} \\right) \\implies y(t) = -\\frac{d}{da} e^{-at}u(t) = te^{-at}u(t)\\] 也可以使用 \\(Y(j\\omega) = j\\frac{d}{d\\omega} \\left( \\frac{1}{a+j\\omega} \\right)\\) 和微分性质。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-3",
+    "href": "Chapter04_V6.html#例-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n冲激响应为 \\(h(t)=e^{-a t} u(t)\\)的 LTI 系统对输入 \\(x(t)=\\cos \\left(\\omega_{0} t\\right)的响应, a&gt;0\\). 频率响应\n\\[\nH(j \\omega)=\\frac{1}{a+j \\omega}=\\frac{1}{\\sqrt{a^{2}+\\omega^{2}}} e^{-j \\arctan \\frac{\\omega}{a}}\n\\]\n方法 1. 使用特征函数性质\n\\[\n\\begin{gathered}\nx(t)=\\frac{1}{2} e^{j \\omega_{0} t}+\\frac{1}{2} e^{-j \\omega_{0} t} \\\\\ny(t)=\\frac{1}{2} H\\left(j \\omega_{0}\\right) e^{j \\omega_{0} t}+\\frac{1}{2} H\\left(-j \\omega_{0}\\right) e^{-j \\omega_{0} t}=\\operatorname{Re} \\frac{e^{j \\omega_{0} t}}{a+j \\omega_{0}} \\\\\n=\\frac{a \\cos \\left(\\omega_{0} t\\right)+\\omega_{0} \\sin \\left(\\omega_{0} t\\right)}{a^{2}+\\omega_{0}^{2}}=\\frac{1}{\\sqrt{a^{2}+\\omega_{0}^{2}}} \\cos \\left(\\omega_{0} t-\\arctan \\frac{\\omega_{0}}{a}\\right)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-4",
+    "href": "Chapter04_V6.html#例-4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n冲激响应为 \\(h(t)=e^{-a t} u(t)\\) 的LTI 系统对输入 \\(x(t)=\\cos \\left(\\omega_{0} t\\right)\\)的响应.\n频率响应\n\\[\nH(j \\omega)=\\frac{1}{a+j \\omega}=\\frac{1}{\\sqrt{a^{2}+\\omega^{2}}} e^{-j \\arctan \\frac{\\omega}{a}}\n\\]\n方法 2. 采用\\(X\\)的傅里叶变换\n\\[\n\\begin{gathered}\nX(j \\omega)=\\pi \\delta\\left(\\omega-\\omega_{0}\\right)+\\pi \\delta\\left(\\omega+\\omega_{0}\\right) \\\\\nY(j \\omega)=\\pi H\\left(j \\omega_{0}\\right) \\delta\\left(\\omega-\\omega_{0}\\right)+\\pi H\\left(-j \\omega_{0}\\right) \\delta\\left(\\omega+\\omega_{0}\\right) \\\\\ny(t)=\\frac{1}{2} H\\left(j \\omega_{0}\\right) e^{j \\omega_{0} t}+\\frac{1}{2} H\\left(-j \\omega_{0}\\right) e^{-j \\omega_{0} t}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-5",
+    "href": "Chapter04_V6.html#例-5",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n冲激响应为 \\(h(t)\\)的理想低通滤波器对输入信号\\(x(t)\\)的响应.\n\\[\nh(t)=\\frac{\\sin \\left(\\omega_{c} t\\right)}{\\pi t}, \\quad x(t)=\\frac{\\sin \\left(\\omega_{i} t\\right)}{\\pi t}\n\\]\n傅里叶变换\n\\[\n\\begin{aligned}\n& X(j \\omega)=u\\left(\\omega+\\omega_{i}\\right)-u\\left(\\omega-\\omega_{i}\\right) \\\\\n& H(j \\omega)=u\\left(\\omega+\\omega_{c}\\right)-u\\left(\\omega-\\omega_{c}\\right)\n\\end{aligned}\n\\]\n用 \\(Y(j \\omega)=X(j \\omega) H(j \\omega)\\),\n\\[\nY(j \\omega)=\\left\\{\\begin{array}{ll}\nX(j \\omega), & \\text { if } \\omega_{i} \\leq \\omega_{c} \\\\\nH(j \\omega), & \\text { if } \\omega_{i}&gt;\\omega_{c}\n\\end{array} \\Longrightarrow y(t)= \\begin{cases}x(t), & \\text { if } \\omega_{i} \\leq \\omega_{c} \\\\\nh(t), & \\text { if } \\omega_{i}&gt;\\omega_{c}\\end{cases}\\right.\n\\]\n注：两个sinc函数的卷积是另一个 sinc函数。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-6",
+    "href": "Chapter04_V6.html#例-6",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n高斯信号的卷积是另一个高斯信号:\n\\[\nx_{i}(t)=\\frac{1}{\\sqrt{2 \\pi \\sigma_{i}^{2}}} \\exp \\left(-\\frac{\\left(t-\\mu_{i}\\right)^{2}}{2 \\sigma_{i}^{2}}\\right)\n\\]\n傅里叶变 (特征函数的复共轭)\n\\[\nX_{i}(j \\omega)=\\exp \\left(-i \\mu_{i} \\omega-\\frac{\\sigma_{i}^{2}}{2} \\omega^{2}\\right)\n\\]\n对于 \\(y=x_{1} * x_{2}\\),\n\\[\n\\begin{gathered}\nY(j \\omega)=X_{1}(j \\omega) X_{2}(j \\omega)=\\exp \\left(-i\\left(\\mu_{1}+\\mu_{2}\\right) \\omega-\\frac{\\sigma_{1}^{2}+\\sigma_{2}^{2}}{2} \\omega^{2}\\right) \\\\\ny(t)=\\frac{1}{\\sqrt{2 \\pi\\left(\\sigma_{1}^{2}+\\sigma_{2}^{2}\\right)}} \\exp \\left(-\\frac{\\left(t-\\mu_{1}-\\mu_{2}\\right)^{2}}{2\\left(\\sigma_{1}^{2}+\\sigma_{2}^{2}\\right)}\\right)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-7",
+    "href": "Chapter04_V6.html#例-7",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\n\n\\[\n\\begin{gathered}\nx(t)=\\frac{\\sin t \\cdot \\sin \\frac{t}{2}}{\\pi t^{2}}=\\pi x_{1}(t) x_{2}(t) \\\\\nx_{1}(t)=\\frac{\\sin t}{\\pi t} \\\\\nx_{2}(t)=\\frac{\\sin \\frac{t}{2}}{\\pi t} \\\\\nX=\\frac{1}{2} X_{1} * X_{2}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-8",
+    "href": "Chapter04_V6.html#例-8",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\\[\ny^{\\prime \\prime}+4 y^{\\prime}+3 y=x^{\\prime}+2 x\n\\]\n频率响应\n\\[\nH(j \\omega)=\\frac{j \\omega+2}{(j \\omega)^{2}+4(j \\omega)+3}\n\\]\n进行部分分式展开 \\[\nH(j \\omega)=\\frac{j \\omega+2}{(j \\omega+1)(j \\omega+3)}=\\frac{1 / 2}{j \\omega+1}+\\frac{1 / 2}{j \\omega+3}\n\\]\n做傅里叶逆变换求冲激响应\n\\[\nh(t)=\\frac{1}{2} e^{-t} u(t)+\\frac{1}{2} e^{-3 t} u(t)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#系统连接",
+    "href": "Chapter04_V6.html#系统连接",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "系统连接",
+    "text": "系统连接\n线性时不变系统的串联\n\\[\ny=\\left(x * h_{1}\\right) * h_{2}=x *\\left(h_{1} * h_{2}\\right)=\\left(x * h_{2}\\right) * h_{1}\n\\]\n\\[\nh=h_{1} * h_{2}\n\\]\n\n对 LTI 系统而言，处理顺序通常不影响结果"
+  },
+  {
+    "objectID": "Chapter04_V6.html#系统连接-1",
+    "href": "Chapter04_V6.html#系统连接-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "系统连接",
+    "text": "系统连接\n线性时不变系统的串联\n\\[\nY=\\left(X H_{1}\\right) H_{2}=X\\left(H_{1} H_{2}\\right)=\\left(X H_{2}\\right) H_{1}\n\\]\n\n对 LTI 系统而言，处理顺序通常不影响结果"
+  },
+  {
+    "objectID": "Chapter04_V6.html#系统连接-2",
+    "href": "Chapter04_V6.html#系统连接-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "系统连接",
+    "text": "系统连接\n线性时不变系统的并联\n\\[\nh=h_{1}+h_{2}\n\\]\n\n\\[\nH=H_{1}+H_{2}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#系统连接-3",
+    "href": "Chapter04_V6.html#系统连接-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "系统连接",
+    "text": "系统连接\n线性时不变系统的反馈连接\n\n\n\n\\[\n\\begin{gathered}\ny=h_{1} *\\left(x-h_{2} * y\\right) \\\\\nh=?\n\\end{gathered}\n\\]    \n\\[\n\\begin{aligned}\nY & =H_{1} X-H_{1} H_{2} Y \\\\\nH & =\\frac{Y}{X}=\\frac{H_{1}}{1+H_{1} H_{2}}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#toc3",
+    "href": "Chapter04_V6.html#toc3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V6.html#卷积性质的对偶",
+    "href": "Chapter04_V6.html#卷积性质的对偶",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "卷积性质的对偶",
+    "text": "卷积性质的对偶\n\\[\n\\mathcal{F}\\{x y\\}=\\frac{1}{2 \\pi} \\mathcal{F}\\{x\\} * \\mathcal{F}\\{y\\}, \\text { 或 } x(t) y(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\theta) Y(j(\\omega-\\theta)) d \\theta\n\\]\n时域相乘 ⟹ 频域卷积\n证明。 令 \\(Z(j \\omega)=\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\theta) Y(j(\\omega-\\theta)) d \\theta\\)\n\\[\n\\begin{aligned}\n\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} Z(j \\omega) e^{j \\omega t} d \\omega & =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} \\frac{1}{2 \\pi}\\left(\\int_{\\mathbb{R}} X(j \\theta) Y(j(\\omega-\\theta)) d \\theta\\right) e^{j \\omega t} d \\omega \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\theta) \\frac{1}{2 \\pi}\\left(\\int_{\\mathbb{R}} Y(j(\\omega-\\theta)) e^{j \\omega t} d \\omega\\right) d \\theta \\\\\n& =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} X(j \\theta) y(t) e^{j \\theta t} d \\theta=x(t) y(t)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-调制-1",
+    "href": "Chapter04_V6.html#例-调制-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 调制",
+    "text": "例: 调制\n\n\n基带信号 \\(x(t)\\)\n\n载波信号\n\\[\n\\begin{aligned}\n& p(t)=\\cos \\left(\\omega_{c} t\\right) \\\\\n& P(j \\omega)=\\pi \\delta\\left(\\omega-\\omega_{c}\\right)+\\pi \\delta\\left(\\omega+\\omega_{c}\\right)\n\\end{aligned}\n\\]\n调制信号\n\\[\n\\begin{aligned}\n& y(t)=x(t) p(t) \\\\\n& Y(j \\omega)=\\frac{1}{2} X\\left(j\\left(\\omega-\\omega_{c}\\right)\\right)+\\frac{1}{2} X\\left(j\\left(\\omega+\\omega_{c}\\right)\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-解调",
+    "href": "Chapter04_V6.html#例-解调",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 解调",
+    "text": "例: 解调\n\n\n调制信号 \\(y(t)\\)\n\n载波\n\\[\n\\begin{aligned}\n& p(t)=\\cos \\left(\\omega_{c} t\\right) \\\\\n& P(j \\omega)=\\pi \\delta\\left(\\omega-\\omega_{c}\\right)+\\pi \\delta\\left(\\omega+\\omega_{c}\\right)\n\\end{aligned}\n\\]\n解调\n\\[\n\\begin{aligned}\n& z(t)=y(t) p(t) \\\\\n& \\quad=\\frac{1}{2} x(t)+\\frac{1}{2} x(t) \\cos \\left(2 \\omega_{c} t\\right) \\\\\n& R(j \\omega)=Z(j \\omega) H_{\\text {lowpass }}(j \\omega) \\\\\n& r(t)=x(t)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#理想-am-通信系统",
+    "href": "Chapter04_V6.html#理想-am-通信系统",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "理想 AM 通信系统",
+    "text": "理想 AM 通信系统"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-9",
+    "href": "Chapter04_V6.html#例-9",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\\[\ny^{\\prime \\prime}+4 y^{\\prime}+3 y=x^{\\prime}+2 x\n\\]\n求零状态响应，\\(x(t)=e^{-t} u(t)\\)\n\\[\nY(j \\omega)=H(j \\omega) X(j \\omega)=\\frac{j \\omega+2}{(j \\omega+1)(j \\omega+3)} \\cdot \\frac{1}{j \\omega+1}=\\frac{j \\omega+2}{(j \\omega+1)^{2}(j \\omega+3)}\n\\]\n通过部分分式展开\n\\[\nY(j \\omega)=\\frac{1 / 4}{j \\omega+1}+\\frac{1 / 2}{(j \\omega+1)^{2}}-\\frac{1 / 4}{j \\omega+3}\n\\]\n做傅里叶逆变换求零状态响应\n\\[\ny(t)=\\left(\\frac{1}{4} e^{-t}+\\frac{1}{2} t e^{-t}-\\frac{1}{4} e^{-3 t}\\right) u(t)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#toc4",
+    "href": "Chapter04_V6.html#toc4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V6.html#傅里叶变换性质",
+    "href": "Chapter04_V6.html#傅里叶变换性质",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "傅里叶变换性质",
+    "text": "傅里叶变换性质\n\n\n\n\n\n\n\n\n\n节号\n性质\n非周期信号\n傅里叶变换\n\n\n\n\n\n\n\\(x(t)\\)\n\\(X(j\\omega)\\)\n\n\n\n\n\\(y(t)\\)\n\\(Y(j\\omega)\\)\n\n\n4.3.1\n线性\n\\(ax(t) + by(t)\\)\n\\(aX(j\\omega) + bY(j\\omega)\\)\n\n\n4.3.2\n时移\n\\(x(t - t_0)\\)\n\\(e^{-j\\omega t_0} X(j\\omega)\\)\n\n\n4.3.6\n频移\n\\(e^{j\\omega_0 t} x(t)\\)\n\\(X(j(\\omega - \\omega_0))\\)\n\n\n4.3.3\n共轭\n\\(x^*(t)\\)\n\\(X^*(-j\\omega)\\)\n\n\n4.3.5\n时间反转\n\\(x(-t)\\)\n\\(X(-j\\omega)\\)\n\n\n4.3.5\n时间与频率尺度变换\n\\(x(at)\\)\n\\(\\frac{1}{|a|} X\\left(\\frac{j\\omega}{a}\\right)\\)"
+  },
+  {
+    "objectID": "Chapter04_V6.html#傅里叶变换性质续",
+    "href": "Chapter04_V6.html#傅里叶变换性质续",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "傅里叶变换性质（续）",
+    "text": "傅里叶变换性质（续）\n\n\n\n\n\n\n\n\n\n节号\n性质\n非周期信号\n傅里叶变换\n\n\n\n\n4.4\n卷积\n\\(x(t) * y(t)\\)\n\\(X(j\\omega) Y(j\\omega)\\)\n\n\n4.5\n相乘\n\\(x(t) y(t)\\)\n\\(\\frac{1}{2\\pi} \\int_{-\\infty}^{+\\infty} X(j\\theta) Y(j(\\omega - \\theta)) d\\theta\\)\n\n\n4.3.4\n时域微分\n\\(\\frac{d}{dt}x(t)\\)\n\\(j\\omega X(j\\omega)\\)\n\n\n4.3.4\n积分\n\\(\\int_{-\\infty}^{t} x(t) dt\\)\n\\(\\frac{1}{j\\omega} X(j\\omega) + \\pi X(0) \\delta(\\omega)\\)\n\n\n4.3.6\n频域微分\n\\(tx(t)\\)\n\\(j \\frac{d}{d\\omega} X(j\\omega)\\)"
+  },
+  {
+    "objectID": "Chapter04_V6.html#傅里叶变换性质-1",
+    "href": "Chapter04_V6.html#傅里叶变换性质-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "傅里叶变换性质",
+    "text": "傅里叶变换性质\n\n\n\n\n\n\n\n\n\n节号\n性质\n非周期信号\n傅里叶变换\n\n\n\n\n4.3.3\n实信号的共轭对称性\n\\(x(t)\\) 为实信号\n\\(\\begin{cases} X(j\\omega) = X^*(-j\\omega) \\\\ Re\\{X(j\\omega)\\} = Re\\{X(-j\\omega)\\} \\\\ Im\\{X(j\\omega)\\} = -Im\\{X(-j\\omega)\\} \\\\ |X(j\\omega)| = |X(-j\\omega)| \\\\ \\measuredangle X(j\\omega) = -\\measuredangle X(-j\\omega) \\end{cases}\\)\n\n\n4.3.3\n实偶信号的对称性\n\\(x(t)\\) 为实偶信号\n\\(X(j\\omega)\\) 为实偶\n\n\n4.3.3\n实奇信号的对称性\n\\(x(t)\\) 为实奇信号\n\\(X(j\\omega)\\) 为纯虚奇\n\n\n4.3.3\n实信号的奇偶分解\n\\(\\begin{cases} x_e(t) = Ev\\{x(t)\\} \\\\ x_o(t) = Od\\{x(t)\\} \\end{cases}\\)\n\\(\\begin{cases} Re\\{X(j\\omega)\\} \\\\ jIm\\{X(j\\omega)\\} \\end{cases}\\)"
+  },
+  {
+    "objectID": "Chapter04_V6.html#基本傅里叶变换对-12",
+    "href": "Chapter04_V6.html#基本傅里叶变换对-12",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "基本傅里叶变换对 (1/2)",
+    "text": "基本傅里叶变换对 (1/2)\n\n\n\n\n\n\n\n\n信号\n傅里叶变换\n傅里叶级数系数 (若为周期的)\n\n\n\n\n\\(\\sum_{k=-\\infty}^{+\\infty} a_k e^{j k \\omega_0 t}\\)\n\\(2\\pi \\sum_{k=-\\infty}^{+\\infty} a_k \\delta(\\omega - k \\omega_0)\\)\n\\(a_k\\)\n\n\n\\(e^{j k \\omega_0 t}\\)\n\\(2\\pi \\delta(\\omega - k \\omega_0)\\)\n\\(a_1 = 1, a_k = 0, \\text{其余 } k\\)\n\n\n\\(\\cos \\omega_0 t\\)\n\\(\\pi [\\delta(\\omega - \\omega_0) + \\delta(\\omega + \\omega_0)]\\)\n\\(a_1 = a_{-1} = \\frac{1}{2}, a_k = 0, \\text{其余 } k\\)\n\n\n\\(\\sin \\omega_0 t\\)\n\\(\\frac{\\pi}{j} [\\delta(\\omega - \\omega_0) - \\delta(\\omega + \\omega_0)]\\)\n\\(a_1 = -a_{-1} = \\frac{1}{2j}, a_k = 0, \\text{其余 } k\\)\n\n\n\\(x(t) = 1\\)\n\\(2\\pi \\delta(\\omega)\\)\n\\(a_0 = 1, a_k = 0, k \\neq 0\\)\n\n\n周期方波 \\(x(t) = \\begin{cases} 1, & |t| &lt; T_1 \\\\ 0, & T_1 &lt; |t| \\le \\frac{T}{2} \\end{cases}\\)\n\\(\\sum_{k=-\\infty}^{+\\infty} \\frac{2 \\sin k \\omega_0 T_1}{k} \\delta(\\omega - k \\omega_0)\\)\n\\(\\frac{\\omega_0 T_1}{\\pi} \\text{sinc} \\left( \\frac{k \\omega_0 T_1}{\\pi} \\right) = \\frac{\\sin k \\omega_0 T_1}{k \\pi}\\)\n\n\n\\(\\sum_{n=-\\infty}^{+\\infty} \\delta(t - nT)\\)\n\\(\\frac{2\\pi}{T} \\sum_{k=-\\infty}^{+\\infty} \\delta\\left(\\omega - \\frac{2\\pi k}{T}\\right)\\)\n\\(a_k = \\frac{1}{T}, \\text{对全部 } k\\)"
+  },
+  {
+    "objectID": "Chapter04_V6.html#基本傅里叶变换对-22",
+    "href": "Chapter04_V6.html#基本傅里叶变换对-22",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "基本傅里叶变换对 (2/2)",
+    "text": "基本傅里叶变换对 (2/2)\n\n\n\n\n\n\n\n\n信号\n傅里叶变换\n傅里叶级数系数\n\n\n\n\n\\(x(t) = \\begin{cases} 1, & |t| &lt; T_1 \\\\ 0, & |t| &gt; T_1 \\end{cases}\\)\n\\(\\frac{2 \\sin \\omega T_1}{\\omega}\\)\n—\n\n\n\\(\\frac{\\sin Wt}{\\pi t}\\)\n\\(X(j\\omega) = \\begin{cases} 1, & |\\omega| &lt; W \\\\ 0, & |\\omega| &gt; W \\end{cases}\\)\n—\n\n\n\\(\\delta(t)\\)\n\\(1\\)\n—\n\n\n\\(u(t)\\)\n\\(\\frac{1}{j\\omega} + \\pi \\delta(\\omega)\\)\n—\n\n\n\\(\\delta(t - t_0)\\)\n\\(e^{-j\\omega t_0}\\)\n—\n\n\n\\(e^{-at} u(t), \\text{Re}\\{a\\} &gt; 0\\)\n\\(\\frac{1}{a + j\\omega}\\)\n—\n\n\n\\(t e^{-at} u(t), \\text{Re}\\{a\\} &gt; 0\\)\n\\(\\frac{1}{(a + j\\omega)^2}\\)\n—\n\n\n\\(\\frac{t^{n-1}}{(n-1)!} e^{-at} u(t), \\text{Re}\\{a\\} &gt; 0\\)\n\\(\\frac{1}{(a + j\\omega)^n}\\)\n—"
+  },
+  {
+    "objectID": "Chapter04_V6.html#toc5",
+    "href": "Chapter04_V6.html#toc5",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "目录",
+    "text": "目录\n\n1. 非周期信号的表示：连续时间傅里叶变换\n2. 连续时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 由线性常系数微分方程表征的系统"
+  },
+  {
+    "objectID": "Chapter04_V6.html#线性常系数微分方程",
+    "href": "Chapter04_V6.html#线性常系数微分方程",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "线性常系数微分方程",
+    "text": "线性常系数微分方程\n由以下公式描述的LTI系统\n\\[\n\\sum_{k=0}^{N} a_{k} \\frac{d^{k} y}{d t^{k}}=\\sum_{k=0}^{M} b_{k} \\frac{d^{k} x}{d t^{k}}\n\\]\n方法 1. 使用特征函数\n\\[\nx(t)=e^{j \\omega t} \\Longrightarrow y(t)=H(j \\omega) e^{j \\omega t}\n\\]\n带入到ODE中\n\\[\n\\begin{gathered}\n\\sum_{k=0}^{N} a_{k} H(j \\omega)(j \\omega)^{k} e^{j \\omega t}=\\sum_{k=0}^{M} b_{k}(j \\omega)^{k} e^{j \\omega t} \\\\\nH(j \\omega)=\\frac{\\sum_{k=0}^{M} b_{k}(j \\omega)^{k}}{\\sum_{k=0}^{N} a_{k}(j \\omega)^{k}}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#线性常系数微分方程-1",
+    "href": "Chapter04_V6.html#线性常系数微分方程-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "线性常系数微分方程",
+    "text": "线性常系数微分方程\n方法 2. 两边取傅里叶变换\n\\[\n\\mathcal{F}\\left\\{\\sum_{k=0}^{N} a_{k} \\frac{d^{k} y}{d t^{k}}\\right\\}=\\mathcal{F}\\left\\{\\sum_{k=0}^{M} b_{k} \\frac{d^{k} x}{d t^{k}}\\right\\}\n\\]\n通过线性和微分性质\n\\[\n\\sum_{k=0}^{N} a_{k}(j \\omega)^{k} Y(j \\omega)=\\sum_{k=0}^{M} b_{k}(j \\omega)^{k} X(j \\omega)\n\\]\n通过卷积性质\n\\[\nH(j \\omega)=\\frac{Y(j \\omega)}{X(j \\omega)}=\\frac{\\sum_{k=0}^{M} b_{k}(j \\omega)^{k}}{\\sum_{k=0}^{N} a_{k}(j \\omega)^{k}}\n\\]\n频率响应是 \\(j \\omega\\)的有理函数"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-10",
+    "href": "Chapter04_V6.html#例-10",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\\[\ny^{\\prime \\prime}+4 y^{\\prime}+3 y=x^{\\prime}+2 x\n\\]\n频率响应\n\\[\nH(j \\omega)=\\frac{j \\omega+2}{(j \\omega)^{2}+4(j \\omega)+3}\n\\]\n进行部分分式展开 \\[\nH(j \\omega)=\\frac{j \\omega+2}{(j \\omega+1)(j \\omega+3)}=\\frac{1 / 2}{j \\omega+1}+\\frac{1 / 2}{j \\omega+3}\n\\]\n做傅里叶逆变换求冲激响应\n\\[\nh(t)=\\frac{1}{2} e^{-t} u(t)+\\frac{1}{2} e^{-3 t} u(t)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-11",
+    "href": "Chapter04_V6.html#例-11",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例",
+    "text": "例\n\\[\ny^{\\prime \\prime}+4 y^{\\prime}+3 y=x^{\\prime}+2 x\n\\]\n求零状态响应，\\(x(t)=e^{-t} u(t)\\)\n\\[\nY(j \\omega)=H(j \\omega) X(j \\omega)=\\frac{j \\omega+2}{(j \\omega+1)(j \\omega+3)} \\cdot \\frac{1}{j \\omega+1}=\\frac{j \\omega+2}{(j \\omega+1)^{2}(j \\omega+3)}\n\\]\n通过部分分式展开\n\\[\nY(j \\omega)=\\frac{1 / 4}{j \\omega+1}+\\frac{1 / 2}{(j \\omega+1)^{2}}-\\frac{1 / 4}{j \\omega+3}\n\\]\n做傅里叶逆变换求零状态响应\n\\[\ny(t)=\\left(\\frac{1}{4} e^{-t}+\\frac{1}{2} t e^{-t}-\\frac{1}{4} e^{-3 t}\\right) u(t)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#frac1j-omegaan的傅里叶逆变换",
+    "href": "Chapter04_V6.html#frac1j-omegaan的傅里叶逆变换",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "\\(\\frac{1}{(j \\omega+a)^{n}}\\)的傅里叶逆变换",
+    "text": "\\(\\frac{1}{(j \\omega+a)^{n}}\\)的傅里叶逆变换\n回顾\n\\[\ne^{-a t} u(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{a+j \\omega}\n\\]\n注\n\\[\nj^{n-1} \\frac{d^{n-1}}{d \\omega^{n-1}}\\left(\\frac{1}{a+j \\omega}\\right)=\\left(j \\frac{d}{d \\omega}\\right)^{n-1}\\left(\\frac{1}{a+j \\omega}\\right)=\\frac{(n-1)!}{(a+j \\omega)^{n}}\n\\]\n回顾频域微分性质\n\\[\nt x(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} j \\frac{d}{d \\omega} X(j \\omega)\n\\]\n\\(n-1\\)微分后：\n\\[\n\\frac{t^{n-1}}{(n-1)!} e^{-a t} u(t) \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{(a+j \\omega)^{n}}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#部分分式展开",
+    "href": "Chapter04_V6.html#部分分式展开",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n有理函数\n\\[\nR(s)=\\frac{P(s)}{Q(s)}=\\frac{\\sum_{k=0}^{M} b_{k} s^{k}}{\\sum_{k=0}^{N} a_{k} s^{k}}\n\\]\n当分子次数\\(M\\)小于分母次数\\(N\\) 时，该函数为有理真分数；否则为非有理真分数。非有理真分数可以通过多项式长除法分解为‘多项式 + 有理真分数’的形式。\n\\[\nR(s)=P_{0}(s)+\\frac{P_{1}(s)}{Q(s)}\n\\]\n其中 \\(\\operatorname{deg} P_{1}&lt;\\operatorname{deg} Q\\)\n例.\n\\[\n\\frac{s^{3}+5 s^{2}+8 s+5}{s^{2}+4 s+3}=s+1+\\frac{s+2}{s^{2}+4 s+3}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#部分分式展开-1",
+    "href": "Chapter04_V6.html#部分分式展开-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例 (长除法): 通过长除法，可以将一个假分式有理函数分解为一个多项式与一个真分式之和：\n\\[\\frac{s^3 + 5s^2 + 8s + 5}{s^2 + 4s + 3} = s + 1 + \\frac{s + 2}{s^2 + 4s + 3}\\]\n计算过程\n\\[\n\\begin{array}{r}\ns + 1 \\\\\ns^2 + 4s + 3 \\enclose{longdiv}{s^3 + 5s^2 + 8s + 5} \\\\\n\\underline{-(s^3 + 4s^2 + 3s)} \\phantom{0000} \\\\\ns^2 + 5s + 5 \\\\\n\\underline{-(s^2 + 4s + 3)} \\\\\ns + 2\n\\end{array}\n\\]\n结果说明：\n\n商: \\(s + 1\\)\n余式 : \\(s + 2\\)\n除式 : \\(s^2 + 4s + 3\\)"
+  },
+  {
+    "objectID": "Chapter04_V6.html#部分分式展开-2",
+    "href": "Chapter04_V6.html#部分分式展开-2",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n考虑真分式有理函数 \\(R(s)=P(s) / Q(s)\\)。\n分母 \\(Q(s)\\) 具有 \\(r\\) 个互不相同的根 \\(a_{1}, \\ldots, a_{r} \\in \\mathbb{C}\\)，其因式分解形式为\n\\[\nQ(s)=\\prod_{i=1}^{r}\\left(s-a_{i}\\right)^{N_{i}}\n\\]\n\\(R(s)\\) 有如下部分分式展开\n\\[\nR(s)=\\sum_{i=1}^{r} \\sum_{k_{i}=1}^{N_{i}} \\frac{A_{i, k_{i}}}{\\left(s-a_{i}\\right)^{k_{i}}}\n\\]\n通过以下方式求解系数：\n\n通分\n\n比较分子系数"
+  },
+  {
+    "objectID": "Chapter04_V6.html#部分分式展开-3",
+    "href": "Chapter04_V6.html#部分分式展开-3",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例.\n\\[\nR(s)=\\frac{s+2}{(s+1)^{2}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{2,1}}{s+3}\n\\]\n右侧为\n\\[\n\\begin{aligned}\n& \\frac{A_{1,1}(s+1)(s+3)+A_{1,2}(s+3)+A_{2,1}(s+1)^{2}}{(s+1)^{2}(s+3)} \\\\\n& =\\frac{\\left(A_{1,1}+A_{2,1}\\right) s^{2}+\\left(4 A_{1,1}+A_{1,2}+2 A_{2,1}\\right) s+\\left(3 A_{1,1}+3 A_{1,2}+A_{2,1}\\right)}{(s+1)^{2}(s+3)} \\\\\n& \\left\\{\\begin{array} { r l }\n{ A _ { 1 , 1 } + A _ { 2 , 1 } } & { = 0 } \\\\\n{ 4 A _ { 1 , 1 } + A _ { 1 , 2 } + 2 A _ { 2 , 1 } } & { = 1 } \\\\\n{ 3 A _ { 1 , 1 } + 3 A _ { 1 , 2 } + A _ { 2 , 1 } } & { = 2 }\n\\end{array} \\Rightarrow \\left\\{\\begin{array}{l}\nA_{1,1}=1 / 4 \\\\\nA_{1,2}=1 / 2 \\\\\nA_{2,1}=-1 / 4\n\\end{array}\\right.\\right.\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#部分分式展开-4",
+    "href": "Chapter04_V6.html#部分分式展开-4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\nR(s)=\\sum_{i=1}^{r} \\sum_{k_{i}=1}^{N_{i}} \\frac{A_{i, k_{i}}}{\\left(s-a_{i}\\right)^{k_{i}}}\n\\]\n两边同时乘以 \\(\\left(s-a_{j}\\right)^{N_{j}}\\),\n\\[\n\\left(s-a_{j}\\right)^{N_{j}} R(s)=\\sum_{k_{j}=1}^{N_{j}} A_{j, k_{j}}\\left(s-a_{j}\\right)^{N_{j}-k_{j}}+\\left(s-a_{j}\\right)^{N_{j}} R_{j}(s)\n\\]\n其中 \\(R_{j}(s)=\\sum_{i \\neq j} \\sum_{k_{i}=1}^{N_{i}} \\frac{A_{i, k_{i}}}{\\left(s-a_{i}\\right)^{k_{i}}}\\). 对于 \\(k&lt;N_{j}\\),\n\\[\n\\begin{aligned}\n\\frac{d^{k}}{d s^{k}}\\left[\\left(s-a_{j}\\right)^{N_{j}} R(s)\\right] & =\\sum_{k_{j}=0}^{N_{j}-k} A_{j, k_{j}} \\frac{\\left(N_{j}-k_{j}\\right)!}{\\left(N_{j}-k_{j}-k\\right)!}\\left(s-a_{j}\\right)^{N_{j}-k_{j}-k} \\\\\n& +\\sum_{\\ell=0}^{k}\\binom{k}{\\ell} \\frac{N_{j}!}{\\left(N_{j}-\\ell\\right)!}\\left(s-a_{j}\\right)^{N_{j}-\\ell} R_{j}^{(\\ell)}(s)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#部分分式展开-5",
+    "href": "Chapter04_V6.html#部分分式展开-5",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n\\[\n\\begin{aligned}\n\\frac{d^{k}}{d s^{k}}\\left[\\left(s-a_{j}\\right)^{N_{j}} R(s)\\right] & =\\sum_{k_{j}=0}^{N_{j}-k} A_{j, k_{j}} \\frac{\\left(N_{j}-k_{j}\\right)!}{\\left(N_{j}-k_{j}-k\\right)!}\\left(s-a_{j}\\right)^{N_{j}-k_{j}-k} \\\\\n& +\\sum_{\\ell=0}^{k}\\binom{k}{\\ell} \\frac{N_{j}!}{\\left(N_{j}-\\ell\\right)!}\\left(s-a_{j}\\right)^{N_{j}-\\ell} R_{j}^{(\\ell)}(s)\n\\end{aligned}\n\\]\n在 \\(s=a_{j}\\)求值,\n\\[\n\\left.\\left[\\frac{d^{k}}{d s^{k}}\\left[\\left(s-a_{j}\\right)^{N_{j}} R(s)\\right]\\right]\\right|_{s=a_{j}}=A_{j, N_{j}-k} k!\n\\]\n用 \\(N_{j}-k\\) 替换\\(k\\) ,\n\\[\nA_{j, k}=\\left.\\frac{1}{\\left(N_{j}-k\\right)!}\\left[\\frac{d^{N_{j}-k}}{d s^{N_{j}-k}}\\left[\\left(s-a_{j}\\right)^{N_{j}} R(s)\\right]\\right]\\right|_{s=a_{j}}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#部分分式展开-6",
+    "href": "Chapter04_V6.html#部分分式展开-6",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例.\n\\[\nR(s)=\\frac{s+2}{(s+1)^{2}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{2,1}}{s+3}\n\\]\n求 \\(A_{2,1}\\)\n\n两边同时乘以 \\(s+3\\),\n\n\\[\n(s+3) R(s)=\\frac{s+2}{(s+1)^{2}}=\\frac{A_{1,1}(s+3)}{s+1}+\\frac{A_{1,2}(s+3)}{(s+1)^{2}}+A_{2,1}\n\\]\n\n带入 \\(s=-3\\),\n\n\\[\nA_{2,1}=\\left.\\frac{s+2}{(s+1)^{2}}\\right|_{s=-3}=-\\frac{1}{4}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#部分分式展开-7",
+    "href": "Chapter04_V6.html#部分分式展开-7",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例 (续).\n\\[\nR(s)=\\frac{s+2}{(s+1)^{2}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{2,1}}{s+3}\n\\]\n求 \\(A_{1,2}\\)\n\n两边同时乘以 \\((s+1)^{2}\\),\n\n\\[\n(s+1)^{2} R(s)=\\frac{s+2}{s+3}=A_{1,1}(s+1)+A_{1,2}+\\frac{A_{2,1}(s+1)^{2}}{s+3}\n\\]\n2 . 代入 \\(s=-1\\), \\(A_{1,2}=\\left.\\frac{s+2}{s+3}\\right|_{s=-1}=\\frac{1}{2}\\)"
+  },
+  {
+    "objectID": "Chapter04_V6.html#部分分式展开-8",
+    "href": "Chapter04_V6.html#部分分式展开-8",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例 (续).\n\\[\nR(s)=\\frac{s+2}{(s+1)^{2}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{2,1}}{s+3}\n\\]\n求 \\(A_{1,1}\\)\n\n两边同时乘以 \\((s+1)^{2}\\),\n\n\\[\n(s+1)^{2} R(s)=\\frac{s+2}{s+3}=A_{1,1}(s+1)+A_{1,2}+\\frac{A_{2,1}(s+1)^{2}}{s+3}\n\\]\n\n对 \\(s\\)求一阶导数,\n\n\\[\n\\frac{d}{d s}\\left(\\frac{s+2}{s+3}\\right)=\\frac{1}{(s+3)^{2}}=A_{1,1}+\\frac{d}{d s}\\left(\\frac{A_{2,1}(s+1)^{2}}{s+3}\\right)\n\\]\n\n代入\\(s=-1\\), \\(A_{1,1}=\\left.\\frac{1}{(s+3)^{2}}\\right|_{s=-1}=\\frac{1}{4}\\)"
+  },
+  {
+    "objectID": "Chapter04_V6.html#部分分式展开-9",
+    "href": "Chapter04_V6.html#部分分式展开-9",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例.\n\\[\nR(s)=\\frac{1}{(s+1)^{3}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{1,3}}{(s+1)^{3}}+\\frac{A_{2,1}}{s+3}\n\\]\n\n\\(A_{2,1}\\)\n\n\\[\n\\begin{gathered}\n(s+3) R(s)=\\frac{1}{(s+1)^{3}}=\\frac{A_{1,1}(s+3)}{s+1}+\\frac{A_{1,2}(s+3)}{(s+1)^{2}}+\\frac{A_{1,3}(s+3)}{(s+1)^{3}}+A_{2,1} \\\\\nA_{2,1}=\\left.\\frac{1}{(s+1)^{3}}\\right|_{s=-3}=-\\frac{1}{8}\n\\end{gathered}\n\\]\n\n\\(A_{1,3}\\)\n\n\\[\n\\begin{gathered}\n(s+1)^{3} R(s)=\\frac{1}{s+3}=A_{1,1}(s+1)^{2}+A_{1,2}(s+1)+A_{1,3}+\\frac{A_{2,1}(s+1)^{3}}{s+3} \\\\\nA_{1,3}=\\left.\\frac{1}{s+3}\\right|_{s=-1}=\\frac{1}{2}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#部分分式展开-10",
+    "href": "Chapter04_V6.html#部分分式展开-10",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "部分分式展开",
+    "text": "部分分式展开\n例 (续).\n\\[\nR(s)=\\frac{1}{(s+1)^{3}(s+3)}=\\frac{A_{1,1}}{s+1}+\\frac{A_{1,2}}{(s+1)^{2}}+\\frac{A_{1,3}}{(s+1)^{3}}+\\frac{A_{2,1}}{s+3}\n\\]\n\n\\(A_{1,2}\\)\n\n\\[\n\\begin{gathered}\n(s+1)^{3} R(s)=\\frac{1}{s+3}=A_{1,1}(s+1)^{2}+A_{1,2}(s+1)+A_{1,3}+\\frac{A_{2,1}(s+1)^{3}}{s+3} \\\\\nA_{1,2}=\\left.\\frac{d}{d s}\\left(\\frac{1}{s+3}\\right)\\right|_{s=-1}=-\\left.\\frac{1}{(s+3)^{2}}\\right|_{s=-1}=-\\frac{1}{4}\n\\end{gathered}\n\\]\n\n\\(A_{1,1}\\)\n\n\\[\n2 A_{1,1}=\\left.\\frac{d^{2}}{d s^{2}}\\left(\\frac{1}{s+3}\\right)\\right|_{s=-1}=\\left.\\frac{2}{(s+3)^{3}}\\right|_{s=-1}=\\frac{1}{8} \\Longrightarrow A_{1,1}=\\frac{1}{16}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#作业",
+    "href": "Chapter04_V6.html#作业",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "作业",
+    "text": "作业"
+  },
+  {
+    "objectID": "Chapter04_V6.html#经典傅里叶变换的局限性",
+    "href": "Chapter04_V6.html#经典傅里叶变换的局限性",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "经典傅里叶变换的局限性",
+    "text": "经典傅里叶变换的局限性\n为什么需要扩展定义？\n\n\\(L_1\\) 条件的限制：经典定义要求 \\(x(t) \\in L_1(\\mathbb{R})\\)，即 \\(\\int_{-\\infty}^{\\infty} |x(t)| dt &lt; \\infty\\)。\n工程常用信号的缺失：\n\n常数信号 \\(x(t) = 1\\)\n单位阶跃信号 \\(u(t)\\)\n周期信号 \\(\\cos(\\omega_0 t)\\)\n理想脉冲 \\(\\delta(t)\\)（并非传统意义上的函数）\n\n\n核心矛盾：这些信号的积分定义不收敛，但其物理频域特性确实存在。我们需要一种分布（Distributional）意义下的定义。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#施瓦茨空间-mathcals-与缓增分布",
+    "href": "Chapter04_V6.html#施瓦茨空间-mathcals-与缓增分布",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "施瓦茨空间 \\(\\mathcal{S}\\) 与缓增分布",
+    "text": "施瓦茨空间 \\(\\mathcal{S}\\) 与缓增分布\n测试函数空间 \\(\\mathcal{S}(\\mathbb{R})\\)\n定义 \\(\\phi(t)\\) 为施瓦茨函数（快速递减函数），需满足： \\[\\phi \\in C^\\infty(\\mathbb{R}) \\quad \\text{且} \\quad \\|\\phi\\|_{\\ell,k} = \\sup_{t \\in \\mathbb{R}} |t^\\ell \\phi^{(k)}(t)| &lt; \\infty, \\quad \\forall \\ell, k \\in \\mathbb{N}\\]\n重要性质：傅里叶变换的自守性\n若 \\(\\phi \\in \\mathcal{S}\\)，则其傅里叶变换 \\(\\Phi = \\mathcal{F}\\{\\phi\\} \\in \\mathcal{S}\\)。\n\n例如：高斯函数 \\(g(t)=e^{-a t^{2}} \\in \\mathcal{S}\\)。\n\n缓增分布空间 \\(\\mathcal{S}'\\)\n\n信号 \\(x\\) 被视为作用在测试函数上的线性泛函。\n内积记号：\\(\\langle x, \\phi \\rangle \\triangleq \\int_{\\mathbb{R}} x(t) \\phi(t) dt\\)。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#广义傅里叶变换的解析定义",
+    "href": "Chapter04_V6.html#广义傅里叶变换的解析定义",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "广义傅里叶变换的解析定义",
+    "text": "广义傅里叶变换的解析定义\n定义策略：伴随性质平移\n对于 \\(L_1\\) 信号，由 Parseval 等式推广出的对偶性质为： \\[\\int_{\\mathbb{R}} \\mathcal{F}\\{x\\}(j\\omega) \\phi(\\omega) d\\omega = \\int_{\\mathbb{R}} x(t) \\mathcal{F}\\{\\phi\\}(jt) dt\\]\n形式化定义\n对于广义函数 \\(x \\in \\mathcal{S}'\\)，其傅里叶变换 \\(X = \\mathcal{F}\\{x\\}\\) 定义为满足下式的唯一广义函数： \\[\\langle X, \\phi \\rangle \\triangleq \\langle x, \\Phi \\rangle, \\quad \\forall \\phi \\in \\mathcal{S}\\] 其中 \\(\\Phi(jt) =\\frac{1}{2 \\pi} \\int_{\\mathbb{R}} \\phi(\\omega) e^{-j\\omega t} d\\omega\\)。\n\n物理含义：我们不定义 \\(X\\) 在某一点的取值，而是定义 \\(X\\) 如何作用于“好”的测试函数。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#逆变换与分布意义下的收敛",
+    "href": "Chapter04_V6.html#逆变换与分布意义下的收敛",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "逆变换与分布意义下的收敛",
+    "text": "逆变换与分布意义下的收敛\n广义逆变换 (Inverse Transform)\n类似地，定义逆变换 \\(\\mathcal{F}^{-1}\\) 满足： \\[\\langle \\mathcal{F}^{-1}\\{X\\}, \\phi \\rangle \\triangleq \\langle X, \\mathcal{F}^{-1}\\{\\phi\\} \\rangle\\] 由此保证了算子的一致性：\\(\\mathcal{F}^{-1}\\{\\mathcal{F}\\{x\\}\\} = x\\)。\n分布收敛定理 (Convergence in \\(\\mathcal{S}'\\))\n若信号序列 \\(x_n\\) 在分布意义下收敛于 \\(x\\)（即 \\(\\forall \\phi, \\langle x_n, \\phi \\rangle \\to \\langle x, \\phi \\rangle\\)），则： \\[\\mathcal{F} \\left\\{ \\lim_{n \\to \\infty} x_n \\right\\} = \\lim_{n \\to \\infty} \\mathcal{F}\\{x_n\\}\\]\n应用举例： 通过令 \\(x_n(t) = e^{-t^2/n^2} \\to 1\\)，可严谨推导出： \\[\\mathcal{F}\\{1\\} = 2\\pi \\delta(\\omega)\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#基于分布对偶理论的定义",
+    "href": "Chapter04_V6.html#基于分布对偶理论的定义",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "基于分布对偶理论的定义",
+    "text": "基于分布对偶理论的定义\n具体来说，在广义函数（分布）理论中，傅里叶变换（记作 \\(\\mathcal{F}x\\)）并不是通过直接积分定义的，而是通过其在测试函数空间上的对偶关系定义的。\n核心定义式\n\\[\\langle \\mathcal{F}x, \\phi \\rangle = \\langle x, \\mathcal{F}\\phi \\rangle\\]\n其中各项的具体含义如下表：\n\n\n\n\n\n\n\n\n\n位置\n符号\n定义域\n具体含义与计算形式\n\n\n\n\n左侧第一项\n\\(\\mathcal{F}x\\)\n频域 (\\(\\omega\\))\n待求的频谱分布。\n\n\n左侧第二项\n\\(\\phi\\)\n频域 (\\(\\omega\\))\n测试函数 \\(\\phi(\\omega)\\)。\n\n\n右侧第一项\n\\(x\\)\n时域 (\\(t\\))\n原信号分布。\n\n\n右侧第二项\n\\(\\mathcal{F}\\phi\\)\n时域 (\\(t\\))\n投影测试函数。计算公式为：\\(\\frac{1}{2 \\pi} \\int_{-\\infty}^{\\infty} \\phi(\\omega) e^{-j\\omega t} d\\omega\\)。\n\n\n\n\n注意：右侧的 \\(\\mathcal{F}{\\phi}\\) 必须使用傅里叶正变换（指数项为 \\(-j\\omega t\\)）"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-多路径效应",
+    "href": "Chapter04_V6.html#例-多路径效应",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 多路径效应",
+    "text": "例: 多路径效应\n\n\n发送端 (Transmitter)：\\(x(t)\\)\n接收端 (Receiver)：\\(y(t) = a_0x(t) + a_1x(t - \\tau)\\)\n\\[\n\\begin{aligned}\nY(j \\omega) & =a_{0} X(j \\omega)+a_{1} e^{-j \\omega \\tau} X(j \\omega) \\\\\n& =\\left(a_{0}+a_{1} e^{-j \\omega \\tau}\\right) X(j \\omega)\n\\end{aligned}\n\\]\n令 \\(x(t)=u(t+T)-u(t-T)\\).\n\\[\nX(j \\omega)=\\frac{2 \\sin (\\omega T)}{\\omega}\n\\]\n\\[\nY(j \\omega)=\\left(a_{0}+a_{1} e^{-j \\omega \\tau}\\right) \\frac{2 \\sin (\\omega T)}{\\omega}\n\\]\n对于 \\(a_{0}=a_{1}=1\\),\n\\[\nY(j \\omega)=4 e^{-j \\omega \\tau / 2} \\cos \\left(\\frac{\\omega \\tau}{2}\\right) \\frac{\\sin (\\omega T)}{\\omega}\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#微分-1",
+    "href": "Chapter04_V6.html#微分-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "微分",
+    "text": "微分\n\\(y = x'\\) 是一个微分器的输出，该系统的频率响应为：\n\\[H(j\\omega) = \\mathcal{F} \\{\\delta'\\} (j\\omega) = \\int_{\\mathbb{R}} \\delta'(t)e^{-j\\omega t} dt = -\\left. \\frac{d}{dt} e^{-j\\omega t} \\right|_0 = j\\omega\\]\n\n\n微分器具有以下滤波特性：\n\n放大高频分量：由于 \\(|H(j\\omega)| = |\\omega|\\)，随着频率 \\(\\omega\\) 增加，增益线性增加。\n抑制低频分量：频率越低，增益越小。\n完全消除直流 (DC) 分量：在 \\(\\omega = 0\\) 处，\\(H(j0) = 0\\)，因此信号中的常数部分会被完全滤除。\n\n\n\n\n微分器本质上是一个高通滤波器。它对信号中的突变（高频）非常敏感，常用于边缘检测；但同时也会放大信号中的高频噪声。"
+  },
+  {
+    "objectID": "Chapter04_V6.html#例-单位阶跃函数-1",
+    "href": "Chapter04_V6.html#例-单位阶跃函数-1",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "例: 单位阶跃函数",
+    "text": "例: 单位阶跃函数\n关于逼近法的警示\n可以使用逼近法，但必须注意的是 ：\n\n设 \\(x_a(t) = e^{-at}u(t), a &gt; 0\\)。  注意当 \\(a \\to 0\\) 时，\\(x_a \\to u\\) 在逐点及广义函数（分布）意义下成立 。\n\n\n\n对于 \\(\\omega \\neq 0\\)，当 \\(a \\downarrow 0\\) 时，\\(X_a(j\\omega) = \\frac{1}{a + j\\omega} \\to \\frac{1}{j\\omega}\\) 在逐点意义下成立 。\n\n\n\n容易误导的结论：直接判定 \\(U(j\\omega) = \\frac{1}{j\\omega}\\) 。\n\n\n\n关键点：我们真正需要的是在广义函数（分布）意义下的收敛性 ！"
+  },
+  {
+    "objectID": "Chapter04_V6.html#积分-4",
+    "href": "Chapter04_V6.html#积分-4",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "积分",
+    "text": "积分\n例\n\n\n\\[x(t)=\\left(1-\\frac{2|t|}{T}\\right)\\left[u\\left(t+\\frac{T}{2}\\right)-u\\left(t-\\frac{T}{2}\\right)\\right]\\]\n\\[X_{2}(j \\omega)=\\frac{2}{T}\\left[e^{j \\frac{\\omega T}{2}}-2+e^{-j \\frac{\\omega T}{2}}\\right]=-\\frac{8}{T} \\sin ^{2}\\left(\\frac{\\omega T}{4}\\right)\\] \\[X_{1}(j \\omega)=\\frac{X_{2}(j \\omega)}{j \\omega}+\\pi X_{2}(0) \\delta(\\omega)=-\\frac{8 \\sin ^{2}\\left(\\frac{\\omega T}{4}\\right)}{j \\omega T}\\]\n\\[X(j \\omega)=\\frac{X_{1}(j \\omega)}{j \\omega}+\\pi X_{1}(0) \\delta(\\omega)=\\frac{8 \\sin ^{2}\\left(\\frac{\\omega T}{4}\\right)}{\\omega^{2} T}\\]"
+  },
+  {
+    "objectID": "二阶积分与频域经验法则.html",
+    "href": "二阶积分与频域经验法则.html",
+    "title": "二阶积分与频域经验法则",
+    "section": "",
+    "text": "在信号处理的符号系统中，\\(u_n(t)\\) 通常表示单位阶跃函数的阶数： * \\(u_0(t) = \\delta(t)\\) （单位脉冲） * \\(u_{-1}(t) = u(t)\\) （单位阶跃，即 \\(\\delta(t)\\) 的一次积分） * \\(u_{-2}(t) = r(t)\\) （单位斜坡函数，即 \\(u(t)\\) 的积分，定义为 \\(t \\cdot u(t)\\)）\n因此，截图中的公式实际上是在讨论斜坡函数 \\(t \\cdot u(t)\\) 的傅里叶变换。"
+  },
+  {
+    "objectID": "二阶积分与频域经验法则.html#什么是-u_-2t",
+    "href": "二阶积分与频域经验法则.html#什么是-u_-2t",
+    "title": "二阶积分与频域经验法则",
+    "section": "",
+    "text": "在信号处理的符号系统中，\\(u_n(t)\\) 通常表示单位阶跃函数的阶数： * \\(u_0(t) = \\delta(t)\\) （单位脉冲） * \\(u_{-1}(t) = u(t)\\) （单位阶跃，即 \\(\\delta(t)\\) 的一次积分） * \\(u_{-2}(t) = r(t)\\) （单位斜坡函数，即 \\(u(t)\\) 的积分，定义为 \\(t \\cdot u(t)\\)）\n因此，截图中的公式实际上是在讨论斜坡函数 \\(t \\cdot u(t)\\) 的傅里叶变换。"
+  },
+  {
+    "objectID": "二阶积分与频域经验法则.html#公式解析",
+    "href": "二阶积分与频域经验法则.html#公式解析",
+    "title": "二阶积分与频域经验法则",
+    "section": "2. 公式解析",
+    "text": "2. 公式解析\n公式给出： \\[\\mathcal{F}\\{u_{-2}\\} = -\\frac{1}{\\omega^2} + j\\pi\\delta'(\\omega)\\]\n\n2.1 为什么是 \\(-\\frac{1}{\\omega^2}\\)？\n根据频率积分性质，每积分一次，频域就要乘以 \\(\\frac{1}{j\\omega}\\)。 对于 \\(u(t)\\)，其主要部分是 \\(\\frac{1}{j\\omega}\\)。再积分一次： \\[\\frac{1}{j\\omega} \\cdot \\frac{1}{j\\omega} = \\frac{1}{j^2\\omega^2} = -\\frac{1}{\\omega^2}\\] 这代表了信号的变动部分。\n\n\n2.2 奇异项 \\(j\\pi\\delta'(\\omega)\\) 的来源\n这是推导中最容易出错的地方。 * \\(u(t)\\) 的变换包含 \\(\\pi\\delta(\\omega)\\)（直流修正）。 * 当你对这个包含 \\(\\delta(\\omega)\\) 的项再次积分（或在时域乘以 \\(t\\)）时，根据频域微分性质 \\(\\mathcal{F}\\{t \\cdot f(t)\\} = j \\frac{d}{d\\omega} F(j\\omega)\\)。 * 对 \\(\\pi\\delta(\\omega)\\) 求导，就产生了 \\(\\delta'(\\omega)\\)（冲击偶，Doublet）。\n这个项的存在是为了在数学上满足信号在 \\(t \\to \\infty\\) 时发散的特性。"
+  },
+  {
+    "objectID": "二阶积分与频域经验法则.html#经验法则rule-of-thumb的含义",
+    "href": "二阶积分与频域经验法则.html#经验法则rule-of-thumb的含义",
+    "title": "二阶积分与频域经验法则",
+    "section": "3. 经验法则（Rule of Thumb）的含义",
+    "text": "3. 经验法则（Rule of Thumb）的含义\n\n“积分性质仅在公式定义明确的情况下才适用。”\n\n这句话是一个重要的警示，主要针对以下陷阱：\n\n盲目套用公式：很多人会错误地认为 \\(\\int f(t) dt\\) 的变换仅仅是 \\(F(j\\omega)/j\\omega\\)。但如果 \\(F(0) \\neq 0\\)（即原信号有直流分量），漏掉 \\(\\pi F(0)\\delta(\\omega)\\) 项会导致结果完全错误。\n收敛性问题：斜坡函数 \\(u_{-2}(t)\\) 在 \\(t \\to \\infty\\) 时是趋于无穷的。在严格的经典傅里叶变换定义下，它是不收敛的。我们之所以能写出这个公式，是基于广义函数理论。\n高阶奇异性：随着积分阶数加深（如 \\(u_{-3}, u_{-4}\\)），零频处的奇异性会越来越复杂（出现 \\(\\delta''\\) 等）。此时，常规的“除以 \\(j\\omega\\)”经验法则往往会丢失掉这些支撑边界条件的脉冲项。"
+  },
+  {
+    "objectID": "二阶积分与频域经验法则.html#总结",
+    "href": "二阶积分与频域经验法则.html#总结",
+    "title": "二阶积分与频域经验法则",
+    "section": "总结",
+    "text": "总结\n如果你直接套用初等课本的积分公式，你可能只会得到 \\(-\\frac{1}{\\omega^2}\\)。但截图中的结果提醒我们：处理含有直流分量的信号积分时，必须考虑到零频处的“脉冲及其导数”贡献，否则无法还原信号的时域特征。"
+  },
+  {
+    "objectID": "lecturenotes/积分的直流分量.html",
+    "href": "lecturenotes/积分的直流分量.html",
+    "title": "信号积分的直流分量推导详解",
+    "section": "",
+    "text": "信号的积分 \\(y(t) = \\int_{-\\infty}^{t} x(\\tau) d\\tau\\) 在线性非时变（LTI）系统视角下，可以看作是输入信号 \\(x(t)\\) 与单位阶跃函数 \\(u(t)\\) 的卷积：\n\\[y(t) = x(t) * u(t) = \\int_{-\\infty}^{\\infty} x(\\tau) u(t - \\tau) d\\tau\\]\n由于 \\(u(t-\\tau)\\) 仅在 \\(\\tau &lt; t\\) 时为 \\(1\\)，其余为 \\(0\\)，因此该卷积定义式与原积分限完全等价。"
+  },
+  {
+    "objectID": "lecturenotes/积分的直流分量.html#核心概念积分即卷积",
+    "href": "lecturenotes/积分的直流分量.html#核心概念积分即卷积",
+    "title": "信号积分的直流分量推导详解",
+    "section": "",
+    "text": "信号的积分 \\(y(t) = \\int_{-\\infty}^{t} x(\\tau) d\\tau\\) 在线性非时变（LTI）系统视角下，可以看作是输入信号 \\(x(t)\\) 与单位阶跃函数 \\(u(t)\\) 的卷积：\n\\[y(t) = x(t) * u(t) = \\int_{-\\infty}^{\\infty} x(\\tau) u(t - \\tau) d\\tau\\]\n由于 \\(u(t-\\tau)\\) 仅在 \\(\\tau &lt; t\\) 时为 \\(1\\)，其余为 \\(0\\)，因此该卷积定义式与原积分限完全等价。"
+  },
+  {
+    "objectID": "lecturenotes/积分的直流分量.html#关键步骤计算平均值-bary",
+    "href": "lecturenotes/积分的直流分量.html#关键步骤计算平均值-bary",
+    "title": "信号积分的直流分量推导详解",
+    "section": "2. 关键步骤：计算平均值 \\(\\bar{y}\\)",
+    "text": "2. 关键步骤：计算平均值 \\(\\bar{y}\\)\n为了确定频域中的冲击项（直流分量），我们需要计算积分结果 \\(y(t)\\) 在无穷时间轴上的平均值 \\(\\bar{y}\\)。\n\n2.1 展开推导\n利用卷积形式，我们将 \\(\\bar{y}\\) 定义为时域极限：\n\\[\\bar{y} = \\lim_{T \\to \\infty} \\frac{1}{2T} \\int_{-T}^{T} y(t) dt = \\lim_{T \\to \\infty} \\frac{1}{2T} \\int_{-T}^{T} \\left[ \\int_{\\mathbb{R}} x(\\tau)u(t - \\tau)d\\tau \\right] dt\\]\n交换积分次序：\n\\[\\bar{y} = \\int_{\\mathbb{R}} x(\\tau) \\left( \\lim_{T \\to \\infty} \\frac{1}{2T} \\int_{-T}^{T} u(t - \\tau)dt \\right) d\\tau\\]\n\n\n2.2 阶跃函数的空间占比\n括号内的项 \\(\\lim_{T \\to \\infty} \\frac{1}{2T} \\int_{-T}^{T} u(t - \\tau)dt\\) 的物理意义是：观察一个延迟后的阶跃信号在无限长时间内的“占空比”。\n\n对于单位阶跃函数 \\(u(t)\\)，它在 \\(t&gt;0\\) 时为 \\(1\\)，在 \\(t&lt;0\\) 时为 \\(0\\)。\n在范围 \\([-T, T]\\) 内，虽然有 \\(\\tau\\) 的偏移，但当 \\(T \\to \\infty\\) 时，该偏移忽略不计。\n函数有约一半的时间处于“高电平”，一半时间处于“零电平”。\n\n因此，该极限恒等于 \\(\\frac{1}{2}\\)。"
+  },
+  {
+    "objectID": "lecturenotes/积分的直流分量.html#结论直流分量与-x0-的关系",
+    "href": "lecturenotes/积分的直流分量.html#结论直流分量与-x0-的关系",
+    "title": "信号积分的直流分量推导详解",
+    "section": "3. 结论：直流分量与 \\(X(0)\\) 的关系",
+    "text": "3. 结论：直流分量与 \\(X(0)\\) 的关系\n将结果代回原式：\n\\[\\bar{y} = \\int_{\\mathbb{R}} x(\\tau) \\cdot \\frac{1}{2} d\\tau = \\frac{1}{2} \\int_{-\\infty}^{\\infty} x(\\tau) d\\tau\\]\n根据傅里叶变换的定义 \\(X(j\\omega) = \\int_{-\\infty}^{\\infty} x(t)e^{-j\\omega t}dt\\)，当 \\(\\omega = 0\\) 时： \\[X(0) = \\int_{-\\infty}^{\\infty} x(t) dt\\]\n故得出积分信号的平均值（直流偏置）为： \\[\\bar{y} = \\frac{1}{2} X(0)\\]\n\n4. 频域表达\n在频域中，直流分量表现为一个位于零频处的冲击函数。根据直流分量与傅里叶变换的关系： \\[直流项 = 2\\pi \\bar{y} \\delta(\\omega) = 2\\pi \\cdot \\left( \\frac{1}{2} X(0) \\right) \\delta(\\omega) = \\pi X(0) \\delta(\\omega)\\]\n这就是为什么积分的傅里叶变换公式中，除了 \\(\\frac{1}{j\\omega}X(j\\omega)\\) 之外，还有一个由于阶跃信号带来的修正项 \\(\\pi X(0)\\delta(\\omega)\\)。"
+  },
+  {
+    "objectID": "lecturenotes/0与狄拉克函数乘积的思考.html",
+    "href": "lecturenotes/0与狄拉克函数乘积的思考.html",
+    "title": "分布理论中的0与狄拉克函数乘积问题",
+    "section": "",
+    "text": "我们讨论：\n\\[\n0 \\cdot \\delta(t) = ?\n\\]"
+  },
+  {
+    "objectID": "lecturenotes/0与狄拉克函数乘积的思考.html#问题",
+    "href": "lecturenotes/0与狄拉克函数乘积的思考.html#问题",
+    "title": "分布理论中的0与狄拉克函数乘积问题",
+    "section": "",
+    "text": "我们讨论：\n\\[\n0 \\cdot \\delta(t) = ?\n\\]"
+  },
+  {
+    "objectID": "lecturenotes/0与狄拉克函数乘积的思考.html#结论",
+    "href": "lecturenotes/0与狄拉克函数乘积的思考.html#结论",
+    "title": "分布理论中的0与狄拉克函数乘积问题",
+    "section": "结论",
+    "text": "结论\n\\[\n\\boxed{0 \\cdot \\delta(t) = 0}\n\\]\n这里的 \\(0\\) 是零分布（zero distribution）。"
+  },
+  {
+    "objectID": "lecturenotes/0与狄拉克函数乘积的思考.html#一分布定义下的严格解释",
+    "href": "lecturenotes/0与狄拉克函数乘积的思考.html#一分布定义下的严格解释",
+    "title": "分布理论中的0与狄拉克函数乘积问题",
+    "section": "一、分布定义下的严格解释",
+    "text": "一、分布定义下的严格解释\n在分布理论中，一个分布 \\(T\\) 通过其对任意测试函数 \\(\\varphi(t)\\) 的作用来定义：\n\\[\n\\langle T, \\varphi \\rangle\n\\]\n现在考虑：\n\\[\n\\langle 0 \\cdot \\delta(t), \\varphi(t) \\rangle\n\\]\n根据分布与函数的乘法定义：\n\\[\n= \\langle \\delta(t), 0 \\cdot \\varphi(t) \\rangle\n\\]\n\\[\n= \\langle \\delta(t), 0 \\rangle = 0\n\\]\n因此对任意 \\(\\varphi\\) 都成立：\n\\[\n0 \\cdot \\delta(t) \\equiv 0\n\\]"
+  },
+  {
+    "objectID": "lecturenotes/0与狄拉克函数乘积的思考.html#二为什么这个问题容易产生困惑",
+    "href": "lecturenotes/0与狄拉克函数乘积的思考.html#二为什么这个问题容易产生困惑",
+    "title": "分布理论中的0与狄拉克函数乘积问题",
+    "section": "二、为什么这个问题容易产生困惑？",
+    "text": "二、为什么这个问题容易产生困惑？\n直觉上可能会认为：\n\n\\(\\delta(t)\\) 在 \\(t=0\\) “无限大”\n\\(0 \\cdot \\infty\\) 似乎是不确定形式\n\n但关键在于：\n\n\\(\\delta(t)\\) 不是函数，而是分布（线性泛函）\n\n其定义是：\n\\[\n\\langle \\delta, \\varphi \\rangle = \\varphi(0)\n\\]\n因此：\n\n\\(\\delta(t)\\) 没有“数值”\n不存在“\\(\\infty\\)”这一说法"
+  },
+  {
+    "objectID": "lecturenotes/0与狄拉克函数乘积的思考.html#三类似但更有代表性的例子",
+    "href": "lecturenotes/0与狄拉克函数乘积的思考.html#三类似但更有代表性的例子",
+    "title": "分布理论中的0与狄拉克函数乘积问题",
+    "section": "三、类似但更有代表性的例子",
+    "text": "三、类似但更有代表性的例子\n\n1. \\(t \\cdot \\delta(t)\\)\n\\[\n\\langle t\\delta(t), \\varphi(t) \\rangle\n=\n\\langle \\delta(t), t\\varphi(t) \\rangle\n=\n0\n\\]\n因此：\n\\[\n\\boxed{t \\cdot \\delta(t) = 0}\n\\]\n\n\n\n2. 不合法的例子\n\\[\n\\frac{1}{t} \\cdot \\delta(t)\n\\]\n❌ 未定义\n原因：\n\n\\(\\frac{1}{t}\\) 在 \\(t=0\\) 不连续\n无法与 \\(\\delta\\) 相乘"
+  },
+  {
+    "objectID": "lecturenotes/0与狄拉克函数乘积的思考.html#四一般规律",
+    "href": "lecturenotes/0与狄拉克函数乘积的思考.html#四一般规律",
+    "title": "分布理论中的0与狄拉克函数乘积问题",
+    "section": "四、一般规律",
+    "text": "四、一般规律\n若 \\(f(t)\\) 在 \\(t=0\\) 连续，则：\n\\[\n\\boxed{\nf(t)\\,\\delta(t) = f(0)\\,\\delta(t)\n}\n\\]\n\n\n推论\n\n\\(0 \\cdot \\delta(t) = 0\\)\n\\(t \\cdot \\delta(t) = 0\\)\n\\(\\cos t \\cdot \\delta(t) = \\delta(t)\\)"
+  },
+  {
+    "objectID": "lecturenotes/0与狄拉克函数乘积的思考.html#五本质理解",
+    "href": "lecturenotes/0与狄拉克函数乘积的思考.html#五本质理解",
+    "title": "分布理论中的0与狄拉克函数乘积问题",
+    "section": "五、本质理解",
+    "text": "五、本质理解\n可以将 \\(\\delta(t)\\) 理解为一个“取值算子”：\n\\[\nf(t)\\delta(t)\n\\quad \\longrightarrow \\quad\nf(0)\n\\]\n因此：\n\\[\n0 \\cdot \\delta(t)\n\\Rightarrow f(0)=0\n\\Rightarrow 0\n\\]"
+  },
+  {
+    "objectID": "lecturenotes/0与狄拉克函数乘积的思考.html#六进一步思考讨论题",
+    "href": "lecturenotes/0与狄拉克函数乘积的思考.html#六进一步思考讨论题",
+    "title": "分布理论中的0与狄拉克函数乘积问题",
+    "section": "六、进一步思考（讨论题）",
+    "text": "六、进一步思考（讨论题）\n计算：\n\\[\nt \\cdot \\delta'(t)\n\\]\n提示：使用分布求导定义\n\\[\n\\langle \\delta', \\varphi \\rangle = -\\varphi'(0)\n\\]"
+  },
+  {
+    "objectID": "Chapter04_V6.html#基于分布对偶理论的定义续",
+    "href": "Chapter04_V6.html#基于分布对偶理论的定义续",
+    "title": "第四章 连续时间傅里叶变换",
+    "section": "基于分布对偶理论的定义(续)",
+    "text": "基于分布对偶理论的定义(续)\n另一种对偶形式\n\\[\\langle X, \\mathcal{F^{-1}}\\Phi \\rangle = \\langle \\mathcal{F^{-1}}X, \\Phi \\rangle\\]\n其中各项的具体含义如下表：\n\n\n\n\n\n\n\n\n\n位置\n符号\n定义域\n具体含义与计算形式\n\n\n\n\n左侧第一项\n\\(X\\)\n频域 (\\(\\omega\\))\n待求的频谱分布。\n\n\n左侧第二项\n\\(\\mathcal{F^{-1}}\\Phi\\)\n频域 (\\(\\omega\\))\n投影测试函数 计算公式为：\\(\\int_{-\\infty}^{\\infty} \\Phi(t) e^{j\\omega t} d t\\)。\n\n\n右侧第一项\n\\(\\mathcal{F^{-1}}X\\)\n时域 (\\(t\\))\n原信号分布。\n\n\n右侧第二项\n\\(\\Phi\\)\n时域 (\\(t\\))\n测试函数。\n\n\n\n\n注意：左侧的 \\(\\mathcal{F^{-1}}\\Phi\\) 必须使用傅里叶逆变换（指数项为 \\(j\\omega t\\)）"
   }
 ]
