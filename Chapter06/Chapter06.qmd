@@ -53,6 +53,57 @@ execute:
 - [6. 一阶与二阶离散时间系统](#sec66)
 - [7. 系统的时域和频域分析实例](#sec67)
 
+## 傅里叶变换的模–相位表示 {#sec61}
+
+$$
+X(j \omega)=|X(j \omega)| e^{j \arg X(j \omega)}, \quad X\left(e^{j \omega}\right)=\left|X\left(e^{j \omega}\right)\right| e^{j \arg X\left(e^{j \omega}\right)}
+$$
+
+傅里叶变换是将信号分解为复指数（“波”）的叠加
+
+- $|X|$ 表示各频率分量的幅值
+- $\arg X$ 表示各频率分量的相位
+
+相位 $\arg X$ 包含关于信号的重要信息
+
+- 决定各分量是相长叠加还是相消叠加
+- 即使幅度谱相同，微小的相位变化也会导致信号波形显著不同
+
+
+$x(t)=1+\frac{1}{2} \cos \left(2 \pi t+\phi_{1}\right)  +\cos \left(4 \pi t+\phi_{2}\right)+\frac{2}{3} \cos \left(6 \pi t+\phi_{3}\right)$
+
+:::: {.columns style="text-align: center;"}
+
+::: {.column width="50%"}
+
+$$
+\begin{array}{ll}
+\phi_{1}=0, \phi_{2}=0, \phi_{3}=0 & \\
+\phi_{1}=4, \phi_{2}=8, \phi_{3}=12 & \\
+\phi_{1}=6, \phi_{2}=-2.7, \phi_{3}=0.93 & \\
+\phi_{1}=1.2, \phi_{2}=4.1, \phi_{3}=-7.02 &
+\end{array}
+$$
+ 
+:::
+
+::: {.column width="50%"}
+
+![](imglink/01.png){fig-align=left, width=28%}
+
+:::
+
+::::
+
+## 幅值与相位
+
+![](imglink/MagnPhaseresults.png){fig-align=center}
+
+上面一行，分别为：$X$、$|X|$和$\arg X$
+
+下面一行，分别为：$\mathcal{F}^{-1}(|X|)$、$\mathcal{F}^{-1}(\arg X)$
+
+
 ## 目录 {#toc1}
 
 - [1. 傅里叶变换的模和相位表示](#sec61)
@@ -63,158 +114,33 @@ execute:
 - [6. 一阶与二阶离散时间系统](#sec66)
 - [7. 系统的时域和频域分析实例](#sec67)
 
-## 目录 {#toc2}
 
-- [1. 傅里叶变换的模和相位表示](#sec61)
-- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
-- [**3. 理想频率选择性滤波器的时域特性**](#sec63)
-- [4. 非理想频率选择性滤波器的时域特性](#sec64)
-- [5. 一阶与二阶连续时间系统](#sec65)
-- [6. 一阶与二阶离散时间系统](#sec66)
-- [7. 系统的时域和频域分析实例](#sec67)
 
-## 目录 {#toc3}
-
-- [1. 傅里叶变换的模和相位表示](#sec61)
-- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
-- [3. 理想频率选择性滤波器的时域特性](#sec63)
-- [**4. 非理想频率选择性滤波器的时域特性**](#sec64)
-- [5. 一阶与二阶连续时间系统](#sec65)
-- [6. 一阶与二阶离散时间系统](#sec66)
-- [7. 系统的时域和频域分析实例](#sec67)
-
-## 目录 {#toc4}
-
-- [1. 傅里叶变换的模和相位表示](#sec61)
-- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
-- [3. 理想频率选择性滤波器的时域特性](#sec63)
-- [4. 非理想频率选择性滤波器的时域特性](#sec64)
-- [**5. 一阶与二阶连续时间系统**](#sec65)
-- [6. 一阶与二阶离散时间系统](#sec66)
-- [7. 系统的时域和频域分析实例](#sec67)
-
-## 目录 {#toc5}
-
-- [1. 傅里叶变换的模和相位表示](#sec61)
-- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
-- [3. 理想频率选择性滤波器的时域特性](#sec63)
-- [4. 非理想频率选择性滤波器的时域特性](#sec64)
-- [5. 一阶与二阶连续时间系统](#sec65)
-- [**6. 一阶与二阶离散时间系统**](#sec66)
-- [7. 系统的时域和频域分析实例](#sec67)
-
-## 目录 {#toc6}
-
-- [1. 傅里叶变换的模和相位表示](#sec61)
-- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
-- [3. 理想频率选择性滤波器的时域特性](#sec63)
-- [4. 非理想频率选择性滤波器的时域特性](#sec64)
-- [5. 一阶与二阶连续时间系统](#sec65)
-- [6. 一阶与二阶离散时间系统](#sec66)
-- [**7. 系统的时域和频域分析实例**](#sec67)
-
-## 目录
-
-1. 傅里叶变换的幅度–相位表示
-2. 不确定性原理
-3. 傅里叶表示之间的关系
-
-傅里叶变换的幅度–相位表示
-
-$$
-X(j \omega)=|X(j \omega)| e^{j \arg X(j \omega)}, \quad X\left(e^{j \omega}\right)=\left|X\left(e^{j \omega}\right)\right| e^{j \arg X\left(e^{j \omega}\right)}
-$$
-
-回顾：傅里叶变换是将信号分解为复指数（“波”）的叠加
-
-- $|X|$ 表示各频率分量的幅值
-- $\arg X$ 表示各频率分量的相位
-
-相位 $\arg X$ 包含关于信号的重要信息
-
-- 决定各分量是相长叠加还是相消叠加
-- 即使幅度谱相同，微小的相位变化也会导致信号波形显著不同
-
-相位信息的重要性
-
-$$
-\begin{array}{ll}
-x(t)=1+\frac{1}{2} \cos \left(2 \pi t+\phi_{1}\right) & +\cos \left(4 \pi t+\phi_{2}\right)+\frac{2}{3} \cos \left(6 \pi t+\phi_{3}\right) \\
-\phi_{1}=0, \phi_{2}=0, \phi_{3}=0 & \\
-\phi_{1}=4, \phi_{2}=8, \phi_{3}=12 & \\
-\phi_{1}=6, \phi_{2}=-2.7, \phi_{3}=0.93 &
-\end{array}
-$$
-
-## 幅度与相位的比较
-
-## 汉字“中文”的波形 $x$
-
-## 幅度谱与相位谱 $|X|, \arg X$（DFT）
-
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-05.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-05_2.png)
-
-## 幅度与相位的比较
-
-## 汉字“中文”的波形 $x$
-
-## 幅度谱与相位谱 $|X|, \arg X$（DFT）
-
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-06_2.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-06.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-06_3.png)
-
-## 幅度与相位的比较
-
-汉字“中文”的波形 $x$
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07_6.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07_3.png)
-
-仅利用幅度谱重构的波形 $\mathcal{F}^{-1}\{|X|\}$
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07_4.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07.png)
-
-仅利用相位谱重构的波形 $\mathcal{F}^{-1}\left\{e^{j \arg X}\right\}$
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07_5.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-07_2.png)
-
-幅度与相位的比较
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-08_5.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-08.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-08_2.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-08_3.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-08_4.png)
-
-上排：$X,|X|, \arg X$
-
-下排：
-$\mathcal{F}^{-1}\{|X|\},\ \mathcal{F}^{-1}\left\{e^{j \arg X}\right\}$
-
-## 频率响应的幅度–相位表示
+## LTI系统频率响应的模–相位表示
 
 对于线性时不变系统
 
 $$
 Y(j \omega)=H(j \omega) X(j \omega), \quad Y\left(e^{j \omega}\right)=H\left(e^{j \omega}\right) X\left(e^{j \omega}\right)
 $$
-
-因此
+其中，$H（j \omega）=|H(j \omega)| e^{j \arg H(j \omega)}$,$|H(j \omega)|$ 为幅值响应，$e^{j \arg H(j \omega)}$为相位响应。
 
 $$
-|Y|=|H| \cdot|X|, \quad |H| \text{ 表示系统的增益 }
+|Y|=|H| \cdot|X|, \quad |H| \text{系统的幅值响应，也称系统的增益(gain) }
 $$
 
 以及
 
 $$
-\arg Y=\arg H+\arg X, \quad \arg H \text{ 表示系统引入的相移 }
+\arg Y=\arg H+\arg X, \quad \arg H \text{表示系统引入的相移(phase shift) }
 $$
 
 LTI 系统带来的影响，可能是我们希望得到的，也可能不是。
 
 - 在滤波中，我们往往希望系统产生特定效果；
-- 若这种影响不是我们想要的，则称为失真。
+- 若这种影响不是我们想要的，则称为失真(distortion)。
+- 总的来说，失真包含幅度失真和相位失真两种。
+- 模拟信号一旦发生失真，在以后的处理中，将保持这种失真-失真信号的继承性。
 
 例：无失真传输
 
@@ -258,18 +184,15 @@ $$
 
 对于输入
 
-$$
-x(t)=\sum_{k=0}^{3} \cos (2 k \pi t)=1+\cos (2 \pi t)+\cos (4 \pi t)+\cos (6 \pi t)
-$$
+$x(t)=\sum_{k=0}^{3} \cos (2 k \pi t)=1+\cos (2 \pi t)+\cos (4 \pi t)+\cos (6 \pi t)$
 
 输出为
 
-$$
-y(t)=\sum_{k=0}^{3} \cos (2 k \pi t-k \pi)=x\left(t-\frac{1}{2}\right)
-$$
+$y(t)=\sum_{k=0}^{3} \cos (2 k \pi t-k \pi)=x\left(t-\frac{1}{2}\right)$
 
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-11_2.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-11.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-11_2.png){fig-align=center}
+
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-11.png){fig-align=center}
 
 ## 线性相位
 
@@ -281,18 +204,15 @@ $$
 
 对于输入
 
-$$
-x[n]=\cos \left(\frac{\pi}{3} n\right)
-$$
+$x[n]=\cos \left(\frac{\pi}{3} n\right)$
 
 输出为
 
-$$
-y[n]=\sum_{m=-\infty}^{\infty} \cos \left(\frac{\pi}{3} m\right) \operatorname{sinc}\left(n-n_{0}-m\right)=\cos \left(\frac{\pi}{3}\left[n-\frac{1}{2}\right)\right]
-$$
+$y[n]=\sum_{m=-\infty}^{\infty} \cos \left(\frac{\pi}{3} m\right) \operatorname{sinc}\left(n-n_{0}-m\right)=\cos \left(\frac{\pi}{3}\left[n-\frac{1}{2}\right)\right]$
 
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-12_2.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-12.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-12_2.png){fig-align=center}
+
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-12.png){fig-align=center}
 
 ## 非线性相位
 
@@ -302,18 +222,15 @@ $$
 
 对于输入
 
-$$
-x(t)=\sum_{k=0}^{3} \cos (2 k \pi t)=1+\cos (2 \pi t)+\cos (4 \pi t)+\cos (6 \pi t)
-$$
+$x(t)=\sum_{k=0}^{3} \cos (2 k \pi t)=1+\cos (2 \pi t)+\cos (4 \pi t)+\cos (6 \pi t)$
 
 输出为
 
-$$
-y(t)=\sum_{k=0}^{3} \cos [2 k \pi t-\arctan (2 k \pi)]
-$$
+$y(t)=\sum_{k=0}^{3} \cos [2 k \pi t-\arctan (2 k \pi)]$
 
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-13.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-13_2.png)
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-13.png){fig-align=center}
+
+![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-13_2.png){fig-align=center}
 
 ## 群时延
 
@@ -326,7 +243,7 @@ $$
 对相位作线性近似
 
 $$
-\arg H(j \omega) \approx \arg H\left(j \omega_{0}\right)-\tau\left(\omega_{0}\right)\left(\omega-\omega_{0}\right)=\phi_{0}-\tau\left(\omega_{0}\right) \omega
+\arg H(j \omega) \approx \arg H\left(j \omega_{0}\right)-\tau\left(\omega_{0}\right)\left(\omega-\omega_{0}\right)=-\phi_{0}-\tau\left(\omega_{0}\right) \omega
 $$
 
 其中，在频率 $\omega$ 处的群时延定义为
@@ -336,7 +253,7 @@ $$
 $$
 
 如果当 $\left|\omega-\omega_{0}\right| \leq \Delta \omega$ 时，$|H(j \omega)| \approx\left|H\left(j \omega_{0}\right)\right|$，
-$Y(j \omega) \approx\left|H\left(j \omega_{0}\right)\right| X(j \omega) e^{j \phi_{0}-j \tau\left(\omega_{0}\right) \omega} \Longrightarrow y(t) \approx\left|H\left(j \omega_{0}\right)\right| e^{j \phi_{0}} x\left(t-\tau\left(\omega_{0}\right)\right)$
+$Y(j \omega) \approx\left|H\left(j \omega_{0}\right)\right| X(j \omega) e^{-j \phi_{0}-j \tau\left(\omega_{0}\right) \omega} \Longrightarrow y(t) \approx\left|H\left(j \omega_{0}\right)\right| e^{-j \phi_{0}} x\left(t-\tau\left(\omega_{0}\right)\right)$
 
 ## 群时延
 
@@ -348,12 +265,66 @@ $$
 $x(t)=\sum_{k=9}^{11} \cos \left(\frac{k \pi}{10} t\right)=\operatorname{Re} z(t)=\frac{1}{2} z(t)+\frac{1}{2} \bar{z}(t)$，其中 $z(t)=\sum_{k=9}^{11} e^{j \frac{k \pi}{10} t}$，输出近似为
 
 $$
-y(t) \approx \frac{1}{2} e^{j \phi_{0}} z\left(t-\tau_{0}\right)+\frac{1}{2} e^{-j \phi_{0}} \bar{z}\left(t-\tau_{0}\right)=\operatorname{Re}\left[e^{j \phi_{0}} z\left(t-\tau_{0}\right)\right]
+y(t) \approx \frac{1}{2} e^{-j \phi_{0}} z\left(t-\tau_{0}\right)+\frac{1}{2} e^{j \phi_{0}} \bar{z}\left(t-\tau_{0}\right)=\operatorname{Re}\left[e^{-j \phi_{0}} z\left(t-\tau_{0}\right)\right]
 $$
 
 其中，$\phi_{0}=-\arctan \pi+\frac{\pi}{1+\pi^{2}}$，$\tau_{0}=\frac{1}{1+\pi^{2}}$。
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-15.png)
-![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-15_2.png)
+
+![](imglink/groupdelay.png){fig-align=center, width=30%}
+
+## 目录 {#toc2}
+
+- [1. 傅里叶变换的模和相位表示](#sec61)
+- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
+- [**3. 理想频率选择性滤波器的时域特性**](#sec63)
+- [4. 非理想频率选择性滤波器的时域特性](#sec64)
+- [5. 一阶与二阶连续时间系统](#sec65)
+- [6. 一阶与二阶离散时间系统](#sec66)
+- [7. 系统的时域和频域分析实例](#sec67)
+
+
+
+## 目录 {#toc3}
+
+- [1. 傅里叶变换的模和相位表示](#sec61)
+- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
+- [3. 理想频率选择性滤波器的时域特性](#sec63)
+- [**4. 非理想频率选择性滤波器的时域特性**](#sec64)
+- [5. 一阶与二阶连续时间系统](#sec65)
+- [6. 一阶与二阶离散时间系统](#sec66)
+- [7. 系统的时域和频域分析实例](#sec67)
+
+## 目录 {#toc4}
+
+- [1. 傅里叶变换的模和相位表示](#sec61)
+- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
+- [3. 理想频率选择性滤波器的时域特性](#sec63)
+- [4. 非理想频率选择性滤波器的时域特性](#sec64)
+- [**5. 一阶与二阶连续时间系统**](#sec65)
+- [6. 一阶与二阶离散时间系统](#sec66)
+- [7. 系统的时域和频域分析实例](#sec67)
+
+## 目录 {#toc5}
+
+- [1. 傅里叶变换的模和相位表示](#sec61)
+- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
+- [3. 理想频率选择性滤波器的时域特性](#sec63)
+- [4. 非理想频率选择性滤波器的时域特性](#sec64)
+- [5. 一阶与二阶连续时间系统](#sec65)
+- [**6. 一阶与二阶离散时间系统**](#sec66)
+- [7. 系统的时域和频域分析实例](#sec67)
+
+## 目录 {#toc6}
+
+- [1. 傅里叶变换的模和相位表示](#sec61)
+- [2. 线性时不变系统频率响应的模和相位表示](#sec62)
+- [3. 理想频率选择性滤波器的时域特性](#sec63)
+- [4. 非理想频率选择性滤波器的时域特性](#sec64)
+- [5. 一阶与二阶连续时间系统](#sec65)
+- [6. 一阶与二阶离散时间系统](#sec66)
+- [**7. 系统的时域和频域分析实例**](#sec67)
+
+
 
 ## 目录
 

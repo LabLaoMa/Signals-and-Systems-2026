@@ -1,0 +1,69 @@
+---
+title: "从 L1 信号到广义函数的傅里叶变换"
+subtitle: "信号与系统：理论进阶"
+format: 
+  revealjs:
+    theme: simple
+    latex-macros: true
+---
+
+## 1. 经典傅里叶变换的局限性
+
+### 为什么需要扩展定义？
+
+- **$L_1$ 条件的限制**：经典定义要求 $x(t) \in L_1(\mathbb{R})$，即 $\int_{-\infty}^{\infty} |x(t)| dt < \infty$。
+- **工程常用信号的缺失**：
+  - 常数信号 $x(t) = 1$
+  - 单位阶跃信号 $u(t)$
+  - 周期信号 $\cos(\omega_0 t)$
+  - 理想脉冲 $\delta(t)$（并非传统意义上的函数）
+
+**核心矛盾**：这些信号的积分定义不收敛，但其物理频域特性确实存在。我们需要一种**分布（Distributional）**意义下的定义。
+
+---
+
+## 2. 工具：施瓦茨空间 $\mathcal{S}$ 与缓增分布
+
+### 测试函数空间 $\mathcal{S}(\mathbb{R})$
+定义 $\phi(t)$ 为**施瓦茨函数**（快速递减函数），需满足：
+$$\phi \in C^\infty(\mathbb{R}) \quad \text{且} \quad \|\phi\|_{\ell,k} = \sup_{t \in \mathbb{R}} |t^\ell \phi^{(k)}(t)| < \infty, \quad \forall \ell, k \in \mathbb{N}$$
+
+### 重要性质：傅里叶变换的自守性
+
+若 $\phi \in \mathcal{S}$，则其傅里叶变换 $\Phi = \mathcal{F}\{\phi\} \in \mathcal{S}$。
+
+### 缓增分布空间 $\mathcal{S}'$
+- 信号 $x$ 被视为作用在测试函数上的**线性泛函**。
+- **内积记号**：$\langle x, \phi \rangle \triangleq \int_{\mathbb{R}} x(t) \phi(t) dt$。
+
+---
+
+## 3. 广义傅里叶变换的解析定义
+
+### 定义策略：伴随性质平移
+对于 $L_1$ 信号，由 Parseval 等式推广出的对偶性质为：
+$$\int_{\mathbb{R}} \mathcal{F}\{x\}(j\omega) \phi(\omega) d\omega = \int_{\mathbb{R}} x(t) \mathcal{F}\{\phi\}(jt) dt$$
+
+### 形式化定义
+对于广义函数 $x \in \mathcal{S}'$，其傅里叶变换 $X = \mathcal{F}\{x\}$ 定义为满足下式的唯一广义函数：
+$$\langle X, \phi \rangle \triangleq \langle x, \Phi \rangle, \quad \forall \phi \in \mathcal{S}$$
+其中 $\Phi(jt) = \int_{\mathbb{R}} \phi(\omega) e^{-j\omega t} d\omega$。
+
+> **物理含义**：我们不定义 $X$ 在某一点的取值，而是定义 $X$ 如何作用于“好”的测试函数。
+
+---
+
+## 4. 逆变换与分布意义下的收敛
+
+### 广义逆变换 (Inverse Transform)
+类似地，定义逆变换 $\mathcal{F}^{-1}$ 满足：
+$$\langle \mathcal{F}^{-1}\{X\}, \phi \rangle \triangleq \langle X, \mathcal{F}^{-1}\{\phi\} \rangle$$
+由此保证了算子的一致性：$\mathcal{F}^{-1}\{\mathcal{F}\{x\}\} = x$。
+
+### 分布收敛定理 (Convergence in $\mathcal{S}'$)
+若信号序列 $x_n$ 在分布意义下收敛于 $x$（即 $\forall \phi, \langle x_n, \phi \rangle \to \langle x, \phi \rangle$），则：
+$$\mathcal{F} \left\{ \lim_{n \to \infty} x_n \right\} = \lim_{n \to \infty} \mathcal{F}\{x_n\}$$
+
+**应用举例**：
+通过令 $x_n(t) = e^{-t^2/n^2} \to 1$，可严谨推导出：
+$$\mathcal{F}\{1\} = 2\pi \delta(\omega)$$

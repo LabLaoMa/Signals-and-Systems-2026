@@ -477,18 +477,18 @@ $$
 ## 施瓦茨空间 $\mathcal{S}$ 与缓增分布
 
 ### 测试函数空间 $\mathcal{S}(\mathbb{R})$
-定义 $\phi(t)$ 为**施瓦茨函数**（快速递减函数），需满足：
-$$\phi \in C^\infty(\mathbb{R}) \quad \text{且} \quad \|\phi\|_{\ell,k} = \sup_{t \in \mathbb{R}} |t^\ell \phi^{(k)}(t)| < \infty, \quad \forall \ell, k \in \mathbb{N}$$
+定义 $\Phi(t)$ 为**施瓦茨函数**（快速递减函数），需满足：
+$$\Phi \in C^\infty(\mathbb{R}) \quad \text{且} \quad \|\Phi\|_{\ell,k} = \sup_{t \in \mathbb{R}} |t^\ell \Phi^{(k)}(t)| < \infty, \quad \forall \ell, k \in \mathbb{N}$$
 
 ### 重要性质：傅里叶变换的自守性
 
-若 $\phi \in \mathcal{S}$，则其傅里叶变换 $\Phi = \mathcal{F}\{\phi\} \in \mathcal{S}$。
+若 $\Phi \in \mathcal{S}$，则其傅里叶变换 $\phi = \mathcal{F}\{\Phi\} \in \mathcal{S}$。
 
 - 例如：高斯函数 $g(t)=e^{-a t^{2}} \in \mathcal{S}$。
 
 ### 缓增分布空间 $\mathcal{S}'$
 - 信号 $x$ 被视为作用在测试函数上的**线性泛函**。
-- **内积记号**：$\langle x, \phi \rangle \triangleq \int_{\mathbb{R}} x(t) \phi(t) dt$。
+- **内积记号**：$\langle x, \Phi \rangle \triangleq \int_{\mathbb{R}} x(t) \Phi(t) dt$。
 
 
 ## 广义傅里叶变换的解析定义
@@ -500,7 +500,8 @@ $$\int_{\mathbb{R}} \mathcal{F}\{x\}(j\omega) \phi(\omega) d\omega = \int_{\math
 ### 形式化定义
 对于广义函数 $x \in \mathcal{S}'$，其傅里叶变换 $X = \mathcal{F}\{x\}$ 定义为满足下式的唯一广义函数：
 $$\langle X, \phi \rangle \triangleq \langle x, \Phi \rangle, \quad \forall \phi \in \mathcal{S}$$
-其中 $\Phi(jt) =\frac{1}{2 \pi} \int_{\mathbb{R}} \phi(\omega) e^{-j\omega t} d\omega$。
+其中 $\Phi(jt) = \int_{\mathbb{R}} \phi(\omega) e^{-j\omega t} d\omega$。
+
 
 > **物理含义**：我们不定义 $X$ 在某一点的取值，而是定义 $X$ 如何作用于“好”的测试函数。
 
@@ -509,7 +510,7 @@ $$\langle X, \phi \rangle \triangleq \langle x, \Phi \rangle, \quad \forall \phi
 
 ### 广义逆变换 (Inverse Transform)
 类似地，定义逆变换 $\mathcal{F}^{-1}$ 满足：
-$$\langle \mathcal{F}^{-1}\{X\}, \phi \rangle \triangleq \langle X, \mathcal{F}^{-1}\{\phi\} \rangle$$
+$$\langle \mathcal{F}^{-1}\{x\}, \phi \rangle \triangleq \langle x, \mathcal{F}^{-1}\{\phi\} \rangle \quad {或} \quad \langle X, \mathcal{F^{-1}}\Phi \rangle = \langle \mathcal{F^{-1}}X, \Phi \rangle$$
 由此保证了算子的一致性：$\mathcal{F}^{-1}\{\mathcal{F}\{x\}\} = x$。
 
 ### 分布收敛定理 (Convergence in $\mathcal{S}'$)
@@ -526,32 +527,32 @@ $$\mathcal{F}\{1\} = 2\pi \delta(\omega)$$
 具体来说，在广义函数（分布）理论中，傅里叶变换（记作 $\mathcal{F}x$）并不是通过直接积分定义的，而是通过其在测试函数空间上的**对偶关系**定义的。
 
 ### 核心定义式
-$$\langle \mathcal{F}x, \phi \rangle = \langle x, \mathcal{F}\phi \rangle$$ 
+$$\langle X(j \omega), \phi(\omega) \rangle \triangleq \langle x(t), \Phi(t) \rangle \quad   : \quad  \langle \mathcal{F}x, \phi \rangle = \langle x, \mathcal{F}\phi \rangle$$ 
 
 其中各项的具体含义如下表：
 
 | 位置 | 符号 | 定义域 | 具体含义与计算形式 |
 | :--- | :--- | :--- | :--- |
 | **左侧第一项** | $\mathcal{F}x$ | 频域 ($\omega$) | **待求的频谱分布**。 |
-| **左侧第二项** | $\phi$ | 频域 ($\omega$) | **测试函数** $\phi(\omega)$。 |
-| **右侧第一项** | $x$ | 时域 ($t$) | **原信号分布**。   |
-| **右侧第二项** | $\mathcal{F}\phi$ | 时域 ($t$) | **投影测试函数**。计算公式为：$\frac{1}{2 \pi} \int_{-\infty}^{\infty} \phi(\omega) e^{-j\omega t} d\omega$。 |
+| **左侧第二项** | $\phi$ | 频域 ($\omega$) | **测试函数** $\phi(\omega)$ |
+| **右侧第一项** | $x$ | 时域 ($t$) | **原信号分布**   |
+| **右侧第二项** | $\mathcal{F}\phi$ | 时域 ($t$) | **投影测试函数**。计算公式为：$\Phi(t)=\int_{-\infty}^{\infty} \phi(\omega) e^{-j\omega t} d\omega$ |
 
 > **注意**：右侧的 $\mathcal{F}{\phi}$ 必须使用**傅里叶正变换**（指数项为 $-j\omega t$）
 
 ## 基于分布对偶理论的定义(续)
 
 ### 另一种对偶形式
-$$\langle X, \mathcal{F^{-1}}\Phi \rangle = \langle \mathcal{F^{-1}}X, \Phi \rangle$$ 
+$$\langle X(j \omega), \phi(\omega) \rangle \triangleq \langle x(t), \Phi(t) \rangle \quad   :\quad \langle X, \mathcal{F^{-1}}\Phi \rangle = \langle \mathcal{F^{-1}}X, \Phi \rangle$$ 
 
 其中各项的具体含义如下表：
 
 | 位置 | 符号 | 定义域 | 具体含义与计算形式 |
 | :--- | :--- | :--- | :--- |
 | **左侧第一项** | $X$ | 频域 ($\omega$) | **待求的频谱分布**。 |
-| **左侧第二项** | $\mathcal{F^{-1}}\Phi$ | 频域 ($\omega$) | **投影测试函数** 计算公式为：$\int_{-\infty}^{\infty} \Phi(t) e^{j\omega t} d t$。  |
-| **右侧第一项** | $\mathcal{F^{-1}}X$ | 时域 ($t$) | **原信号分布**。   |
-| **右侧第二项** | $\Phi$ | 时域 ($t$) | **测试函数**。|
+| **左侧第二项** | $\mathcal{F^{-1}}\Phi$ | 频域 ($\omega$) | **投影测试函数** 计算公式为：$\phi(\omega)=\frac{1}{2 \pi}\int_{-\infty}^{\infty} \Phi(t) e^{j\omega t} d t$  |
+| **右侧第一项** | $\mathcal{F^{-1}}X$ | 时域 ($t$) | **原信号分布**   |
+| **右侧第二项** | $\Phi$ | 时域 ($t$) | **测试函数**|
 
 > **注意**：左侧的 $\mathcal{F^{-1}}\Phi$ 必须使用**傅里叶逆变换**（指数项为 $j\omega t$）
 
@@ -568,7 +569,7 @@ $$
 
 **方法 2**：使用广义定义。
 $$
-\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) \phi(\omega) d \omega=\int_{\mathbb{R}} \delta(t) \Phi(j t) d t=\Phi(0)=\int_{\mathbb{R}} 1 \cdot \phi(\omega) d \omega
+\int_{\mathbb{R}} X(j \omega) \phi(\omega) d \omega=\int_{\mathbb{R}} \delta(t) \Phi(j t) d t=\Phi(0)=\int_{\mathbb{R}} 1 \cdot \phi(\omega) d \omega
 $$
 因此 $X(j\omega)=1$。
 $\delta$ 具有**白色频谱 (white spectrum)**，包含等量的所有频率。
@@ -586,7 +587,7 @@ $$
 
 **方法 2**：使用广义定义。
 $$
-\frac{1}{2 \pi} \int_{\mathbb{R}} X(j \omega) \phi(\omega) d \omega=\int_{\mathbb{R}} 1 \cdot \Phi(j t) d t=2 \pi \phi(0)=\int_{\mathbb{R}} 2 \pi \delta(\omega) \phi(\omega) d \omega
+\int_{\mathbb{R}} X(j \omega) \phi(\omega) d \omega=\int_{\mathbb{R}} 1 \cdot \Phi(j t) d t=2 \pi \phi(0)=\int_{\mathbb{R}} 2 \pi \delta(\omega) \phi(\omega) d \omega
 $$
 也就是：
 $$2\pi\delta(\omega) = \int_{-\infty}^{\infty} e^{-j\omega t} dt$$
@@ -621,6 +622,7 @@ $e^{j \omega_{0} t}$ 的频谱是 $\omega_{0}$ 处的冲激。
 
 $$X(j\omega) = \langle x, e^{j\omega t} \rangle = \int_{\mathbb{R}} x(t) \overline{e^{j\omega t}} dt$$
 $$2\pi\delta(\omega_1 - \omega_2) = \int_{\mathbb{R}} e^{j(\omega_1 - \omega_2)t} dt = \int_{\mathbb{R}} e^{j\omega_1 t} \overline{e^{j\omega_2 t}} dt$$
+
 * $e^{j\omega_1 t}$ 与 $e^{j\omega_2 t}$ 是正交的，如果 $\omega_1 \neq \omega_2$。
 
 
@@ -1093,6 +1095,10 @@ $$
 ![](imglink/tfscaling.png){width=100%}
 :::
 ::::
+
+:::{.hud }
+**实际应用-超宽带(UWB，Ultra-Wideband)测距和定位**： TOF（TOA）测距，测距误差 $\Delta d \approx c / B$（$c$ 为光速，$B$ 为带宽），脉冲持续时间在纳秒级，厘米级定位。。
+:::
 
 ## 微分
 

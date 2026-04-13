@@ -859,5 +859,117 @@
     "title": "第二章 线性时不变系统",
     "section": "作业",
     "text": "作业\n\n2.4\n2.11\n2.17\n2.23\n计算机作业：用Python Jupyter 完成程序设计，具体见乐学平台。"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#题目要求",
+    "href": "courseworks/第二章习题.html#题目要求",
+    "title": "信号与系统 第二章习题",
+    "section": "题目要求",
+    "text": "题目要求\n计算并画出 \\(y[n] = x[n] * h[n]\\)，其中：\n\\[\nx[n] = \\begin{cases} 1, & 3 \\le n \\le 8 \\\\ 0, & \\text{其他} \\end{cases}\n\\]\n\\[\nh[n] = \\begin{cases} 1, & 4 \\le n \\le 15 \\\\ 0, & \\text{其他} \\end{cases}\n\\]"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#卷积范围与性质分析",
+    "href": "courseworks/第二章习题.html#卷积范围与性质分析",
+    "title": "信号与系统 第二章习题",
+    "section": "1. 卷积范围与性质分析",
+    "text": "1. 卷积范围与性质分析\n\n信号长度：\n\n\\(x[n]\\) 的长度 \\(L_1 = 8 - 3 + 1 = 6\\)\n\\(h[n]\\) 的长度 \\(L_2 = 15 - 4 + 1 = 12\\)\n\n非零范围：\n\n起点：\\(n_{start} = 3 + 4 = 7\\)\n终点：\\(n_{end} = 8 + 15 = 23\\)\n\n波形特征： 由于两个信号都是矩形脉冲，卷积结果为一个梯形。其最大值为 \\(\\min(L_1, L_2) = 6\\)。"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#数值计算过程",
+    "href": "courseworks/第二章习题.html#数值计算过程",
+    "title": "信号与系统 第二章习题",
+    "section": "2. 数值计算过程",
+    "text": "2. 数值计算过程\n根据重叠情况分段讨论：\n\n\n\n\\(n\\) 的范围\n状态\n计算式\n\\(y[n]\\)\n\n\n\n\n\\(n &lt; 7\\)\n无重叠\n\\(0\\)\n\\(0\\)\n\n\n\\(7 \\le n \\le 12\\)\n逐渐进入\n\\(\\sum_{k=3}^{n-4} 1\\)\n\\(n-6\\)\n\n\n\\(13 \\le n \\le 18\\)\n完全进入(平顶)\n\\(\\sum_{k=3}^{8} 1\\)\n\\(6\\)\n\n\n\\(19 \\le n \\le 23\\)\n逐渐离开\n\\(\\sum_{k=n-15}^{8} 1\\)\n\\(24-n\\)\n\n\n\\(n &gt; 23\\)\n完全离开\n\\(0\\)\n\\(0\\)"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#卷积波形图-yn",
+    "href": "courseworks/第二章习题.html#卷积波形图-yn",
+    "title": "信号与系统 第二章习题",
+    "section": "3. 卷积波形图 \\(y[n]\\)",
+    "text": "3. 卷积波形图 \\(y[n]\\)\n\n\nCode\nsignalData = {\n  const y = [];\n  for (let n = 5; n &lt;= 25; n++) {\n    let val = 0;\n    if (n &gt;= 7 && n &lt;= 12) val = n - 6;\n    else if (n &gt;= 13 && n &lt;= 18) val = 6;\n    else if (n &gt;= 19 && n &lt;= 23) val = 24 - n;\n    y.push({ n: n, value: val });\n  }\n  return y;\n}\n\n// 2. 在 Plot 中同步修改引用\nPlot.plot({\n  grid: true,\n  y: { label: \"y[n]\", domain: [0, 7] },\n  x: { label: \"n\", ticks: Array.from({length: 21}, (_, i) =&gt; i + 5) },\n  marks: [\n    // 确保这里也改成了 signalData\n    Plot.ruleX(signalData, {x: \"n\", y: \"value\", strokeWidth: 2}), \n    Plot.dot(signalData, {x: \"n\", y: \"value\", fill: \"steelblue\", r: 4}),\n    Plot.ruleY([0])\n  ]\n})"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#section",
+    "href": "courseworks/第二章习题.html#section",
+    "title": "信号与系统 第二章习题",
+    "section": "2.4",
+    "text": "2.4\n计算并画出 \\(y[n] = x[n] * h[n]\\)，其中：\n\\[\nx[n] = \\begin{cases} 1, & 3 \\le n \\le 8 \\\\ 0, & \\text{其他} \\end{cases}\n\\]\n\\[\nh[n] = \\begin{cases} 1, & 4 \\le n \\le 15 \\\\ 0, & \\text{其他} \\end{cases}\n\\]"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#section-1",
+    "href": "courseworks/第二章习题.html#section-1",
+    "title": "信号与系统 第二章习题",
+    "section": "2.11",
+    "text": "2.11\n已知信号： - \\(x(t) = u(t-3) - u(t-5)\\) （宽度为 2 的矩形脉冲） - \\(h(t) = e^{-3t}u(t)\\) （指数衰减信号）\n我们需要求解： 1. \\(y(t) = x(t) * h(t)\\) 2. \\(g(t) = \\frac{dx(t)}{dt} * h(t)\\) 3. 两者的关系"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#a-计算-yt-xt-ht",
+    "href": "courseworks/第二章习题.html#a-计算-yt-xt-ht",
+    "title": "信号与系统 第二章习题",
+    "section": "(a) 计算 \\(y(t) = x(t) * h(t)\\)",
+    "text": "(a) 计算 \\(y(t) = x(t) * h(t)\\)\n利用卷积的线性移位性质。先求单位阶跃信号的卷积： \\[f(t) = u(t) * (e^{-3t}u(t)) = \\int_{0}^{t} e^{-3\\tau} d\\tau = \\frac{1}{3}(1 - e^{-3t})u(t)\\]\n根据 \\(x(t) = u(t-3) - u(t-5)\\)，代入得： \\[y(t) = \\frac{1}{3}(1 - e^{-3(t-3)})u(t-3) - \\frac{1}{3}(1 - e^{-3(t-5)})u(t-5)\\]"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#b-计算-gt-fracdxtdt-ht",
+    "href": "courseworks/第二章习题.html#b-计算-gt-fracdxtdt-ht",
+    "title": "信号与系统 第二章习题",
+    "section": "(b) 计算 \\(g(t) = \\frac{dx(t)}{dt} * h(t)\\)",
+    "text": "(b) 计算 \\(g(t) = \\frac{dx(t)}{dt} * h(t)\\)\n首先对 \\(x(t)\\) 求导，得到一对冲击信号： \\[\\frac{dx(t)}{dt} = \\delta(t-3) - \\delta(t-5)\\]\n利用冲击信号的卷积性质 \\(\\delta(t-t_0) * h(t) = h(t-t_0)\\)： \\[g(t) = h(t-3) - h(t-5)\\] \\[g(t) = e^{-3(t-3)}u(t-3) - e^{-3(t-5)}u(t-5)\\]"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#c-gt-与-yt-的关系",
+    "href": "courseworks/第二章习题.html#c-gt-与-yt-的关系",
+    "title": "信号与系统 第二章习题",
+    "section": "(c) \\(g(t)\\) 与 \\(y(t)\\) 的关系",
+    "text": "(c) \\(g(t)\\) 与 \\(y(t)\\) 的关系\n根据卷积的微分性质： \\[\\frac{d}{dt}[x(t) * h(t)] = \\frac{dx(t)}{dt} * h(t)\\]\n因此得出结论： \\(g(t)\\) 是 \\(y(t)\\) 对时间 \\(t\\) 的一阶导数，即： \\[g(t) = \\frac{dy(t)}{dt}\\]"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#波形演示-ojs",
+    "href": "courseworks/第二章习题.html#波形演示-ojs",
+    "title": "信号与系统 第二章习题",
+    "section": "波形演示 (OJS)",
+    "text": "波形演示 (OJS)\n下图中，蓝色曲线为卷积结果 \\(y(t)\\)，红色曲线为其导数 \\(g(t)\\)。\n\n\nCode\nviewof timeRange = Inputs.range([0, 10], {step: 0.1, label: \"时间范围\", value: 10});\n\n// 2. 生成时间序列（改用更通用的方式，或者保留 d3 但确保变量名唯一）\nt_vals = Array.from({ length: timeRange / 0.05 }, (_, i) =&gt; i * 0.05);\n\n// 3. 【关键修改】将 data 改为 timeData，避免与之前的单元格冲突\ntimeData = t_vals.map(t =&gt; {\n  const y = (t &lt; 3) ? 0 : \n            (t &lt; 5) ? (1/3)*(1 - Math.exp(-3*(t-3))) : \n            (1/3)*(1 - Math.exp(-3*(t-3))) - (1/3)*(1 - Math.exp(-3*(t-5)));\n  \n  const g = (t &lt; 3) ? 0 : \n            (t &lt; 5) ? Math.exp(-3*(t-3)) : \n            Math.exp(-3*(t-3)) - Math.exp(-3*(t-5));\n            \n  return { t, y, g };\n});\n\n// 4. 绘图\nPlot.plot({\n  grid: true,\n  y: {label: \"幅度\"},\n  marks: [\n    // 确保这里全部指向 timeData\n    Plot.lineY(timeData, {x: \"t\", y: \"y\", stroke: \"steelblue\"}),\n    Plot.lineY(timeData, {x: \"t\", y: \"g\", stroke: \"red\", strokeDasharray: \"4,2\"}),\n    Plot.ruleY([0]),\n    Plot.text([{t: 4, y: 0.35, label: \"y(t)\"}], {x: \"t\", y: \"y\", text: \"label\", fill: \"steelblue\"}),\n    Plot.text([{t: 3.5, g: 0.8, label: \"g(t)\"}], {x: \"t\", y: \"g\", text: \"label\", fill: \"red\"})\n  ]\n})"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#section-2",
+    "href": "courseworks/第二章习题.html#section-2",
+    "title": "信号与系统 第二章习题",
+    "section": "2.17",
+    "text": "2.17\n考虑一个由一阶微分方程描述的线性时不变（LTI）系统：\n\\[\\frac{d}{dt}y(t) + 4y(t) = x(t)\\]\n初始条件：系统满足初始松弛（Initial Rest），即若 \\(x(t)=0, t &lt; t_0\\)，则 \\(y(t)=0, t &lt; t_0\\)。这意味着系统是因果的。"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#a-复指数激励响应",
+    "href": "courseworks/第二章习题.html#a-复指数激励响应",
+    "title": "信号与系统 第二章习题",
+    "section": "2. (a) 复指数激励响应",
+    "text": "2. (a) 复指数激励响应\n当输入为 \\(x(t) = e^{(-1+3j)t}u(t)\\) 时：\n系统函数\n由微分方程可知，系统函数为： \\[H(s) = \\frac{1}{s + 4}\\]\n特解计算\n令 \\(s = -1 + 3j\\)，代入系统函数： \\[H(-1+3j) = \\frac{1}{(-1+3j)+4} = \\frac{1}{3+3j} = \\frac{1-j}{6}\\]\n全响应（暂态 + 稳态）\n\\[y(t) = \\frac{1-j}{6} \\left( e^{(-1+3j)t} - e^{-4t} \\right) u(t)\\]"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#b-实数激励响应",
+    "href": "courseworks/第二章习题.html#b-实数激励响应",
+    "title": "信号与系统 第二章习题",
+    "section": "3. (b) 实数激励响应",
+    "text": "3. (b) 实数激励响应\n当输入为 \\(x(t) = e^{-t}\\cos(3t)u(t)\\) 时，利用线性性质： \\[x(t) = \\text{Re}\\{ e^{(-1+3j)t} u(t) \\}\\]\n因此输出为 (a) 小题结果的实部： \\[y(t) = \\text{Re} \\left\\{ \\frac{1-j}{6} \\left( e^{(-1+3j)t} - e^{-4t} \\right) \\right\\} u(t)\\]\n化简结果\n\\[y(t) = \\frac{1}{6} \\left[ e^{-t}(\\cos 3t + \\sin 3t) - e^{-4t} \\right] u(t)\\]"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#波形仿真-ojs",
+    "href": "courseworks/第二章习题.html#波形仿真-ojs",
+    "title": "信号与系统 第二章习题",
+    "section": "4. 波形仿真 (OJS)",
+    "text": "4. 波形仿真 (OJS)\n下面的图表展示了输入信号 \\(x(t)\\)（实线）与系统响应 \\(y(t)\\)（虚线）的对比。\n\n\nCode\nviewof t_end = Inputs.range([1, 5], {step: 0.1, label: \"显示时长 (s)\", value: 3});\n\nt_points = d3.range(0, t_end, 0.02);\n\nplot_data = t_points.map(t =&gt; {\n  const x = Math.exp(-t) * Math.cos(3 * t);\n  const y = (1/6) * (Math.exp(-t) * (Math.cos(3*t) + Math.sin(3*t)) - Math.exp(-4*t));\n  return [\n    { t, val: x, type: \"输入 x(t)\" },\n    { t, val: y, type: \"输出 y(t)\" }\n  ];\n}).flat();\n\nPlot.plot({\n  grid: true,\n  color: { legend: true },\n  marks: [\n    Plot.lineY(plot_data, {\n      x: \"t\", \n      y: \"val\", \n      stroke: \"type\", \n      strokeDasharray: d =&gt; d.type === \"输出 y(t)\" ? \"4,2\" : \"0\"\n    }),\n    Plot.ruleY([0])\n  ]\n})"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#section-3",
+    "href": "courseworks/第二章习题.html#section-3",
+    "title": "信号与系统 第二章习题",
+    "section": "2.23",
+    "text": "2.23\n已知 \\(y(t) = x(t) * h(t)\\)，其中 \\(x(t) = \\sum_{k=-\\infty}^{+\\infty} \\delta(t - kT)\\)。\n利用卷积的移位性质： \\[y(t) = \\sum_{k=-\\infty}^{+\\infty} h(t - kT)\\]\n这是信号 \\(h(t)\\) 的周期延拓。"
+  },
+  {
+    "objectID": "courseworks/第二章习题.html#交互式波形观察",
+    "href": "courseworks/第二章习题.html#交互式波形观察",
+    "title": "信号与系统 第二章习题",
+    "section": "交互式波形观察",
+    "text": "交互式波形观察\n你可以调节下方的 \\(T\\) 值，观察 \\(T=4, 2, 1.5, 1\\) 时波形的演变。\n\n\nCode\nviewof T = Inputs.range([0.8, 4], {step: 0.1, label: \"周期 T\", value: 4});\n\nt_range = d3.range(-5, 5, 0.02);\n\n// 定义三角脉冲 h(t)\nfunction h(t) {\n  return Math.max(0, 1 - Math.abs(t));\n}\n\n// 计算叠加后的 y(t)\ndata = t_range.map(t =&gt; {\n  let sum = 0;\n  for (let k = -10; k &lt;= 10; k++) {\n    sum += h(t - k * T);\n  }\n  return { t, y: sum };\n});\n\nPlot.plot({\n  grid: true,\n  y: { domain: [0, 1.5], label: \"y(t)\" },\n  x: { label: \"t\" },\n  marks: [\n    Plot.lineY(data, {x: \"t\", y: \"y\", stroke: \"red\"}),\n    Plot.ruleY([0])\n  ]\n})"
   }
 ]

@@ -1,0 +1,725 @@
+---
+title: "EL331 信号与系统 · 第27讲（中文版）"
+subtitle: "留数法与 Z 变换"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+1. 利用留数计算定积分
+2. $Z$-transform
+3. Properties of $Z$-transform
+4. Analysis of DT LTI Systems by Z 变换
+$\int_{-\infty}^{\infty} R(x) d x$
+$R(x)=\frac{N(x)}{D(x)}$ is a rational function of $x$, where $N, D$ are polynomials with $\operatorname{deg} D \geq \operatorname{deg} N+2$, and $R$ has no singularity on the real axis.
+5. Pick a $r$ large enough s.t. the upper half disk centered at 0 contains all the singularities $z_{1}, \ldots, z_{K}$, of $R(z)$ in the upper half plane (we don't care about those in the lower half plane)
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-03.jpg?height=272&width=416&top_left_y=237&top_left_x=843)
+6. $\int_{-r}^{r} R(x) d x+\int_{C_{r}} R(z) d z=j 2 \pi \sum_{k=1}^{K} \operatorname{Res}\left(R, z_{k}\right)$
+7. $\lim _{r \rightarrow \infty} \int_{C_{r}} R(z) d z=0$ by the condition $\operatorname{deg} D \geq \operatorname{deg} N+2$
+8. $\int_{-\infty}^{\infty} R(x) d x=j 2 \pi \sum_{k=1}^{K} \operatorname{Res}\left(R, z_{k}\right)$
+
+$$
+\int_{-\infty}^{\infty} R(x) d x
+$$
+
+引理. Suppose $f(z)$ is continuous on $D=\left\{z: R<|z|<\infty, \theta_{1} \leq \arg z \leq \theta_{2}\right\}$, where $0 \leq \theta_{1}<\theta_{2} \leq 2 \pi$. Let $\gamma_{r}$ be the $\operatorname{arc} z(t)=r e^{j \theta}, r>R, \theta \in\left[\theta_{1}, \theta_{2}\right]$. If $\limsup _{D \ni z \rightarrow \infty} z f(z)=0$, then
+
+$$
+\lim _{r \rightarrow \infty} \int_{\gamma_{r}} f(z) d z=0
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-04.jpg?height=319&width=423&top_left_y=110&top_left_x=798)
+
+证明. Since $\limsup _{D \ni z \rightarrow \infty} z f(z)=0$, given any $\epsilon>0$, there exists an $R_{\epsilon}$ s.t. $|z f(z)|<\frac{\epsilon}{\theta_{2}-\theta_{1}}$ for $z \in D$ and $|z|>R_{0}$. For $r>R_{0}$,
+
+$$
+\left|\int_{\gamma_{r}} f(z) d z\right| \leq \int_{\gamma_{r}}|f(z)| d s \leq \int_{\gamma_{r}} \frac{\epsilon}{\left(\theta_{2}-\theta_{1}\right) r} d s=\epsilon
+$$
+
+NB. Item 3 of the previous slide follows from the lemma with $\theta_{1}=0$ and $\theta_{2}=\pi$.
+
+## 例
+
+Evaluate $I=\int_{-\infty}^{\infty} \frac{x^{2} d x}{\left(x^{2}+a^{2}\right)\left(x^{2}+b^{2}\right)}$, where $a, b>0$
+Solution. $R(z)=\frac{z^{2}}{\left(z^{2}+a^{2}\right)\left(z^{2}+b^{2}\right)}$ has four simple poles at $z= \pm j a, \pm j b$. Two of them, $j a, j b$, are in the upper half plane. The residues are
+
+$$
+\begin{aligned}
+\operatorname{Res}(R, j a) & =\lim _{z \rightarrow j a}(z-j a) R(z)=\frac{a}{2 j\left(a^{2}-b^{2}\right)} \\
+\operatorname{Res}(R, j b) & =\lim _{z \rightarrow j b}(z-j a b) R(z)=\frac{-b}{2 j\left(a^{2}-b^{2}\right)}
+\end{aligned}
+$$
+
+Thus
+
+$$
+I=j 2 \pi[\operatorname{Res}(R, j a)+\operatorname{Res}(R, j b)]=\frac{\pi}{a+b}
+$$
+
+$\int_{-\infty}^{\infty} R(x) e^{j a x} d x(a>0)$
+$R(x)=\frac{N(x)}{D(x)}$ is a rational function of $x$, where $\operatorname{deg} D \geq \operatorname{deg} N+1$, and $R$ has no singularity on the real axis.
+
+1. Pick a $r$ large enough s.t. the upper half disk centered at 0 contains all the singularities $z_{1}, \ldots, z_{K}$, of $R(z)$ in the upper half plane
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-06.jpg?height=270&width=414&top_left_y=181&top_left_x=820)
+2. $\int_{-r}^{r} R(x) e^{j a x} d x+\int_{C_{r}} R(z) e^{j a z} d z=j 2 \pi \sum_{k=1}^{K} \operatorname{Res}\left[R(z) e^{j a z}, z_{k}\right]$
+3. $\lim _{r \rightarrow \infty} \int_{C_{r}} R(z) e^{j a z} d z=0$ by the condition $\operatorname{deg} D \geq \operatorname{deg} N+1$ and Jordan's 引理
+4. $\int_{-\infty}^{\infty} R(x) e^{j a x} d x=j 2 \pi \sum_{k=1}^{K} \operatorname{Res}\left[R(z) e^{j a z}, z_{k}\right]$
+
+NB. If $a<0$, use the lower half disk instead.
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-06.jpg?height=263&width=419&top_left_y=674&top_left_x=818)
+
+## Jordan's 引理
+
+引理. Suppose $f(z)$ is continuous on $D=\{z: R<|z|<\infty, \mid \mathrm{m} z \geq 0\}$. If $\lim _{D \ni z \rightarrow \infty} f(z)=0$, and $a>0$, then
+
+$$
+\lim _{r \rightarrow \infty} \int_{C_{r}} f(z) e^{j a z} d z=0
+$$
+
+where $C_{r}$ is $z(t)=r e^{j \theta}, r>R, \theta \in[0, \pi]$.
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-07.jpg?height=318&width=412&top_left_y=84&top_left_x=807)
+
+证明. Let $I_{r}=\int_{C_{r}} f(z) e^{j a z} d z$ and $M_{r}=\max _{z \in C_{r}}|f(z)|$. Then
+
+$$
+\left|I_{r}\right| \leq \int_{\gamma_{r}}\left|f(z) e^{j a z}\right| d s \leq M_{r} \int_{0}^{\pi} e^{-a r \sin \theta} r d \theta=2 M_{r} \int_{0}^{\pi / 2} e^{-a r \sin \theta} r d \theta
+$$
+
+Using $\sin \theta \geq \frac{2}{\pi} \theta$ for $\theta \in\left[0, \frac{\pi}{2}\right]$ and $\lim _{r \rightarrow \infty} M_{r}=0$,
+
+$$
+\left|I_{r}\right| \leq 2 M_{r} \int_{0}^{\pi / 2} e^{-a r \frac{2}{\pi} \theta} r d \theta=\frac{\pi M_{r}}{a}\left(1-e^{-a r}\right) \rightarrow 0, \text { as } r \rightarrow \infty
+$$
+
+NB. If $a<0$, the lemma still holds if we replace $D$ and $C_{r}$ by $\{z: R<|z|<\infty, \operatorname{Im} z \leq 0\}$ and $z(t)=r e^{-j \theta}, r>R, \theta \in[0, \pi]$.
+
+## 例
+
+Evaluate $I=\int_{0}^{\infty} \frac{x \sin x}{x^{2}+a^{2}} d x$, where $a>0$
+Solution. $R(z)=\frac{z}{z^{2}+a^{2}}$ has two simple poles at $z= \pm j a$. The pole $j a$ is in the upper half plane,
+
+$$
+\operatorname{Res}\left[R(z) e^{j z}, j a\right]=\lim _{z \rightarrow j a}(z-j a) R(z) e^{j z}=\frac{e^{-a}}{2}
+$$
+
+Thus
+
+$$
+\int_{-\infty}^{\infty} \frac{x e^{j x}}{x^{2}+a^{2}} d x=j 2 \pi \operatorname{Res}\left[R(z) e^{j z}, j a\right]=j \pi e^{-a}
+$$
+
+Since $\frac{x \sin x}{x^{2}+a^{2}}$ is even,
+
+$$
+I=\frac{1}{2} \int_{-\infty}^{\infty} \frac{x \sin x}{x^{2}+a^{2}} d x=\frac{1}{2} \operatorname{lm} \int_{-\infty}^{\infty} \frac{x e^{j x}}{x^{2}+a^{2}} d x=\frac{\pi}{2} e^{-a}
+$$
+
+## 例
+
+Find the inverse CTFT of $X(j \omega)=\frac{1}{a+j \omega}$, where $a>0$
+Solution.
+
+$$
+x(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} \frac{1}{a+j \omega} e^{j \omega t} d \omega
+$$
+
+$R(z)=\frac{1}{a+j z}$ has a simple poles at $z=j a$ in the upper half plane.
+For $t>0$,
+
+$$
+\begin{aligned}
+x(t) & =\frac{1}{2 \pi} \int_{-\infty}^{\infty} R(\omega) e^{j \omega t} d \omega=j \operatorname{Res}\left[R(z) e^{j z t}, j a\right] \\
+& =j \lim _{z \rightarrow j a}(z-j a) R(z) e^{j z t}=e^{-a t}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-09.jpg?height=198&width=319&top_left_y=399&top_left_x=931)
+
+For $t<0, R(z)$ is analytic in the lower half plane, so
+
+$$
+x(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} R(\omega) e^{j \omega t} d \omega=0
+$$
+
+Therefore, $x(t)=e^{-a t} u(t)$.
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-09.jpg?height=260&width=319&top_left_y=661&top_left_x=931)
+
+## 目录
+
+1. 利用留数计算定积分
+2. $Z$-transform
+3. Properties of $Z$-transform
+4. Analysis of DT LTI Systems by Z 变换
+
+## Z 变换
+
+Recall the response of a DT LTI system to the input $x[n]=z^{n}$ is
+
+$$
+y[n]=(x * h)[n]=H(z) z^{n}
+$$
+
+where $h$ is the impulse response of the system and
+
+$$
+H(z)=\sum_{k=-\infty}^{\infty} h[k] z^{-k}
+$$
+
+The system function $H(z)$ is called the $z$-transform of $h$.
+In general, the $z$-transform of a DT signal $x[n]$ is
+
+$$
+X(z)=\sum_{n=-\infty}^{\infty} x[n] z^{-n}
+$$
+
+also denoted by
+
+$$
+X=Z\{x\}, \quad \text { or } \quad x[n] \stackrel{Z}{\longleftrightarrow} X(z)
+$$
+
+## Z 变换
+
+Note
+
+$$
+X(z)=\sum_{n=-\infty}^{\infty} x[n] z^{-n}=\sum_{n=-\infty}^{\infty} c_{n} z^{n}
+$$
+
+is a Laurent series at $z=0$ whose coefficient for $z^{n}$ is $c_{n}=x[-n]$.
+As a Laurent series, the $z$-transform converges on an annulus centered at $z=0$, called its region of convergence (ROC)
+
+## Relation with DTFT
+
+$$
+z=r e^{j \omega} \Longrightarrow X\left(r e^{j \omega}\right)=\sum_{n=-\infty}^{\infty}\left\{x[n] r^{-n}\right\} e^{-j \omega n}=\mathcal{F}\left\{x[n] r^{-n}\right\}
+$$
+
+If the ROC includes the unit circle, setting $r=1$ yields
+
+$$
+\left.X(z)\right|_{z=e^{j \omega}}=X\left(e^{j \omega}\right)=\mathcal{F}\{x\}\left(e^{j \omega}\right)
+$$
+
+## 例
+
+For $x[n]=a^{n} u[n]$,
+
+$$
+X(z)=\sum_{n=0}^{\infty} a^{n} z^{-n}=\frac{1}{1-a z^{-1}}=\frac{z}{z-a},
+$$
+
+with $\mathrm{ROC}|z|>|a|$.
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-13.jpg?height=370&width=391&top_left_y=88&top_left_x=845)
+
+If $|a|<1$, the ROC contains the unit circle,
+
+$$
+\mathcal{F}\{x\}\left(e^{j \omega}\right)=X\left(e^{j \omega}\right)=\frac{1}{1-a e^{-j \omega}}
+$$
+
+If $|a|>1$, the DTFT does not exist.
+If $|a|=1$, the DTFT exists as a distribution,
+
+$$
+\mathcal{F}\{x\}\left(e^{j \omega}\right) \neq\left. X(z)\right|_{z=e^{j \omega}}
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-13.jpg?height=372&width=391&top_left_y=525&top_left_x=845)
+
+## 例
+
+For $x[n]=-a^{n} u[-n-1]$,
+
+$$
+X(z)=-\sum_{n=-\infty}^{-1} a^{n} z^{-n}=\frac{1}{1-a z^{-1}}=\frac{z}{z-a},
+$$
+
+with $\mathrm{ROC}|z|<|a|$.
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-14.jpg?height=372&width=393&top_left_y=88&top_left_x=843)
+
+If $|a|>1$, the ROC contains the unit circle,
+
+$$
+\mathcal{F}\{x\}\left(e^{j \omega}\right)=X\left(e^{j \omega}\right)=\frac{1}{1-a e^{-j \omega}}
+$$
+
+If $|a|<1$, the DTFT does not exist.
+If $|a|=1$, the DTFT exists as a distribution,
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-14.jpg?height=370&width=391&top_left_y=525&top_left_x=845)
+
+$$
+\mathcal{F}\{x\}\left(e^{j \omega}\right) \neq\left. X(z)\right|_{z=e^{j \omega}}
+$$
+
+收敛域（ROC）的重要性
+
+$$
+x_{1}[n]=a^{n} u[n] \stackrel{z}{\longleftrightarrow} X_{1}(z)=\frac{z}{z-a},|z|>|a|
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-15.jpg?height=374&width=393&top_left_y=84&top_left_x=843)
+
+$$
+x_{2}[n]=-a^{n} u[-n-1] \stackrel{z}{\longleftrightarrow} X_{2}(z)=\frac{z}{z-a},|z|<|a| \quad \text { Im }
+$$
+
+Different signals can have the same $X(z)$ but different ROCs, consistent with the fact a function has different Laurent series in different annuli of analyticity.
+
+Always specify ROC for $z$-transforms!
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-15.jpg?height=332&width=393&top_left_y=567&top_left_x=843)
+
+## 例
+
+For $x[n]=7\left(\frac{1}{3}\right)^{n} u[n]-6\left(\frac{1}{2}\right)^{n} u[n]$,
+
+$$
+\begin{aligned}
+X(z) & =\sum_{n=0}^{\infty}\left[7\left(\frac{1}{3}\right)^{n}-6\left(\frac{1}{2}\right)^{n}\right] z^{-n} \\
+& =\frac{7}{1-\frac{1}{3} z^{-1}}-\frac{6}{1-\frac{1}{2} z^{-1}} \\
+& =\frac{1-\frac{3}{2} z^{-1}}{\left(1-\frac{1}{3} z^{-1}\right)\left(1-\frac{1}{2} z^{-1}\right)} \\
+& =\frac{z\left(z-\frac{3}{2}\right)}{\left(z-\frac{1}{3}\right)\left(z-\frac{1}{2}\right)}
+\end{aligned}
+$$
+
+with ROC $|z|>\frac{1}{2}$.
+
+$$
+R=\limsup _{n \rightarrow \infty} \sqrt[n]{|x[n]|}=\frac{1}{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-16.jpg?height=535&width=666&top_left_y=346&top_left_x=579)
+
+## 例
+
+For $x[n]=\left(\frac{1}{3}\right)^{n} \sin \left(\frac{\pi}{4} n\right) u[n]=\frac{1}{2 j}\left(\frac{1}{3} e^{j \frac{\pi}{4}}\right)^{n} u[n]-\frac{1}{2 j}\left(\frac{1}{3} e^{-j \frac{\pi}{4}}\right)^{n} u[n]$,
+
+$$
+\begin{aligned}
+X(z) & =\frac{1}{2 j} \frac{1}{1-\frac{1}{3} e^{j \frac{\pi}{4}} z^{-1}}-\frac{1}{2 j} \frac{1}{1-\frac{1}{3} e^{-j \frac{\pi}{4}} z^{-1}} \\
+& =\frac{\frac{1}{3 \sqrt{2}} z}{\left(z-\frac{1}{3} e^{j \frac{\pi}{4}}\right)\left(z-\frac{1}{3} e^{-j \frac{\pi}{4}}\right)}
+\end{aligned}
+$$
+
+with $\operatorname{ROC}|z|>\frac{1}{3}$.
+Simple poles at $z=\frac{1}{3} e^{j \frac{\pi}{4}}$ and $z=\frac{1}{3} e^{-j \frac{\pi}{4}}$
+A simple zero at $z=0$
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-17.jpg?height=409&width=433&top_left_y=350&top_left_x=794)
+
+By $\zeta=\frac{1}{z}, X(\zeta)=\frac{\frac{1}{3 \sqrt{2}} \zeta}{\left(1-\frac{1}{3} e^{j \frac{\pi}{4}} \zeta\right)\left(1-\frac{1}{3} e^{-j \frac{\pi}{4}} \zeta\right)}$, so $X(z)$ also has a simple zero at $\infty$.
+
+## 有理 Z 变换
+
+A rational transform $X$ has the following form
+
+$$
+X(z)=\frac{N(z)}{D(z)}
+$$
+
+where $N, D$ are polynomials that are coprime, i.e. they have no common factors of degree $\geq 1$.
+By the Fundamental Theorem of Algebra,
+
+$$
+X(z)=A \frac{\prod_{k=1}^{n}\left(z-z_{k}\right)}{\prod_{k=1}^{m}\left(z-p_{k}\right)}
+$$
+
+with the convention $\prod_{k=1}^{0} \cdot=1$.
+
+- $z_{1}, \ldots, z_{n}$ are the finite zeros of $X$
+- $p_{1}, \ldots, p_{m}$ are the finite poles of $X$
+- If $n>m, X$ has a pole of order $n-m$ at $\infty$
+- If $n<m, X$ has a zero of order $m-n$ at $\infty$
+
+
+## 有理 Z 变换
+
+A rational function $X$ is determined by its zeros and poles in $\mathbb{C}$, including their orders, up to a multiplicative constant factor.
+
+A rational $z$-transform is determined by its pole-zero plot and ROC, up to a multiplicative constant factor.
+
+例.
+
+$$
+X(z)=A \frac{(z+2)\left(z-e^{j \frac{\pi}{6}}\right)}{\left(z-\frac{3}{2}\right)\left(z-\frac{1}{2} e^{j \frac{5 \pi}{4}}\right)\left(z-2 e^{-j \frac{\pi}{4}}\right)}
+$$
+
+Four possibilities for ROC
+
+- $|z|<1 / 2$
+- $1 / 2<|z|<3 / 2$
+- $3 / 2<|z|<2$
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-19.jpg?height=511&width=533&top_left_y=350&top_left_x=721)
+- $2<|z|<\infty$
+
+
+## ROC 的性质
+
+- The $\mathrm{ROC}^{1}$ of $X(z)$ is an annulus $R_{1}<|z|<R_{2}$
+- $X(z)$ is analytic in the ROC
+- If $x$ is of finite duration, then $R_{1}=0$ and $R_{2}=\infty$
+
+$$
+X(z)=\sum_{n=N_{1}}^{N_{2}} x[n] z^{-n}, \quad \text { where } x\left[N_{1}\right] \neq 0, x\left[N_{2}\right] \neq 0
+$$
+
+- if $x$ causal, i.e. $N_{1} \geq 0, \mathrm{ROC}=\overline{\mathbb{C}} \backslash\{0\}$
+- if $x$ is anticausal, i.e. $N_{2} \leq 0, \mathrm{ROC}=\mathbb{C}$
+- if $x$ is neither causal nor anticausal, $\mathrm{ROC}=\mathbb{C} \backslash\{0\}$
+
+[^0]
+## ROC 的性质
+
+- If $x[n]$ is left-sided, then $R_{1}=0$
+- If $x[n]$ is right-sided, then $R_{2}=\infty$
+- If $x[n]$ is two-sided, then $R_{1}>0$ and $R_{2}<\infty$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-21.jpg?height=314&width=332&top_left_y=399&top_left_x=97)
+left-sided
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-21.jpg?height=314&width=333&top_left_y=399&top_left_x=488)
+right-sided
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-21.jpg?height=314&width=331&top_left_y=401&top_left_x=883)
+two-sided
+
+## ROC 的性质
+
+- If $X(z)$ is rational, the ROC is bounded by poles or extends to 0 (inward) or $\infty$ (outward).
+- If $x[n]$ is also right-sided, then $R_{2}=\infty$ and $R_{1}=\max _{k}\left|p_{k}\right|$, where $p_{k}$ are the poles in $\mathbb{C}$, e.g. region IV
+- If $x[n]$ is also left-sided, then $R_{1}=0$ and $R_{2}=\min _{k}\left|p_{k}\right|$, where $p_{k}$ are the poles in $\mathbb{C} \backslash\{0\}$, e.g. region I
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-22.jpg?height=520&width=535&top_left_y=275&top_left_x=692)
+
+
+## Inverse $Z$-transform
+
+Recall $x[n]$ is the coefficient of $z^{-n}$ in the Laurent series of $X(z)$,
+
+$$
+X(z)=\sum_{n=-\infty}^{\infty} x[n] z^{-n}=\sum_{n=-\infty}^{\infty} c_{n} z^{n}
+$$
+
+For any positively oriented circle $C$ centered at 0 in the ROC,
+
+$$
+x[n]=c_{-n}=\frac{1}{j 2 \pi} \int_{C} \frac{X(z)}{z^{-n+1}} d z=\frac{1}{j 2 \pi} \int_{C} X(z) z^{n-1} d z
+$$
+
+which can be evaluated directly or using the Residue Theorem.
+Alternatively, we can use any other method to find the Laurent series expansion of $X(z)$, e.g. partial fraction expansion, and power series expansion for some known functions.
+Remember $x[n]$ is the coefficient of $z^{-n}$, not $z^{n}$ !
+
+## 目录
+
+1. 利用留数计算定积分
+2. $Z$-transform
+3. Properties of $Z$-transform
+4. Analysis of DT LTI Systems by Z 变换
+
+## Properties of $Z$-transform
+
+线性性质
+If
+
+$$
+\begin{array}{ll}
+x[n] \stackrel{z}{\longleftrightarrow} X(z) & \text { with } \mathrm{ROC}_{1} \\
+y[n] \stackrel{z}{\longleftrightarrow} Y(z) & \text { with } \mathrm{ROC}_{2}
+\end{array}
+$$
+
+then
+
+$$
+a x[n]+b y[n] \stackrel{z}{\longleftrightarrow} a X(z)+b Y(z) \text { with } \mathrm{ROC} \supset \mathrm{ROC}_{1} \cap \mathrm{ROC}_{2}
+$$
+
+时移性质
+If
+
+$$
+x[n] \stackrel{z}{\longleftrightarrow} X(z), \quad R_{1}<|z|<R_{2}
+$$
+
+then
+
+$$
+x\left[n-n_{0}\right] \stackrel{z}{\longleftrightarrow} z^{-n_{0}} X(z), \quad R_{1}<|z|<R_{2}
+$$
+
+NB. The convergence property at 0 and $\infty$ may change.
+
+## Properties of $Z$-transform
+
+Scaling in the $z$-domain
+If
+
+$$
+x[n] \stackrel{z}{\longleftrightarrow} X(z), \quad R_{1}<|z|<R_{2}
+$$
+
+then for $z_{0} \neq 0$,
+
+$$
+z_{0}^{n} x[n] \stackrel{z}{\longleftrightarrow} X\left(\frac{z}{z_{0}}\right), \quad\left|z_{0}\right| R_{1}<|z|<\left|z_{0}\right| R_{2}
+$$
+
+## 时间反转
+
+If
+
+$$
+x[n] \stackrel{z}{\longleftrightarrow} X(z), \quad R_{1}<|z|<R_{2}
+$$
+
+then
+
+$$
+x[-n] \stackrel{z}{\longleftrightarrow} X\left(z^{-1}\right), \quad \frac{1}{R_{2}}<|z|<\frac{1}{R_{1}}
+$$
+
+## Properties of $Z$-transform
+
+Time expansion
+Recall the time expansion of $x$ is
+
+$$
+x_{(k)}[n]= \begin{cases}x[n / k], & \text { if } k \mid n \\ 0, & \text { otherwise }\end{cases}
+$$
+
+If
+
+$$
+x[n] \stackrel{z}{\longleftrightarrow} X(z), \quad R_{1}<|z|<R_{2}
+$$
+
+then
+
+$$
+x_{(k)}[n] \stackrel{z}{\longleftrightarrow} X\left(z^{k}\right), \quad R_{1}^{1 / k}<|z|<R_{2}^{1 / k}
+$$
+
+Conjugation
+If
+
+$$
+x[n] \stackrel{z}{\longleftrightarrow} X(z), \quad R_{1}<|z|<R_{2}
+$$
+
+then
+
+$$
+x^{*}[n] \stackrel{z}{\longleftrightarrow} X^{*}\left(z^{*}\right), \quad R_{1}<|z|<R_{2}
+$$
+
+## Properties of $Z$-transform
+
+Differentiation in the $z$-domain
+If
+
+$$
+x[n] \stackrel{z}{\longleftrightarrow} X(z), \quad R_{1}<|z|<R_{2}
+$$
+
+then
+
+$$
+n x[n] \stackrel{z}{\longleftrightarrow}-z \frac{d}{d z} X(z), \quad R_{1}<|z|<R_{2}
+$$
+
+This follows from term-by-term differentiation of Laurent series.
+例.
+
+$$
+\begin{aligned}
+& \text { ple. } \\
+& \qquad \frac{1}{1-a z^{-1}}=\sum_{n=0}^{\infty} a^{n} z^{-n}, \quad|z|>|a| \\
+& \frac{d}{d z} \frac{1}{1-a z^{-1}}=\sum_{n=0}^{\infty}(-n) a^{n} z^{-n-1}, \quad|z|>|a| \\
+& \frac{a z^{-1}}{\left(1-a z^{-1}\right)^{2}}=-z \frac{d}{d z} \frac{1}{1-a z^{-1}}=\sum_{n=0}^{\infty} n a^{n} z^{-n}, \quad|z|>|a|
+\end{aligned}
+$$
+
+## Properties of Z 变换
+
+Initial Value Theorem. If $x$ is causal, i.e. $x[n]=0$ for $n<0$, then
+
+$$
+x[0]=\lim _{z \rightarrow \infty} X(z)
+$$
+
+证明.
+
+$$
+\lim _{z \rightarrow \infty} X(z)=\lim _{z \rightarrow \infty} \sum_{n=0}^{\infty} x[n] z^{-n}=\lim _{\zeta \rightarrow 0} \sum_{n=0}^{\infty} x[n] \zeta^{n} \stackrel{(*)}{=} X_{1}(0)=x[0]
+$$
+
+where ( $*$ ) follows from the continuity of $X_{1}(\zeta)=\sum_{n=0}^{\infty} x[n] \zeta^{n}$.
+例. For $x[n]=7\left(\frac{1}{3}\right)^{n} u[n]-6\left(\frac{1}{2}\right)^{n} u[n]$,
+
+$$
+X(z)=\frac{z\left(z-\frac{3}{2}\right)}{\left(z-\frac{1}{3}\right)\left(z-\frac{1}{2}\right)}, \quad|z|>\frac{1}{2}
+$$
+
+We can verify
+
+$$
+x[0]=1=\lim _{z \rightarrow \infty} X(z)
+$$
+
+## Properties of Z 变换
+
+Final Value Theorem. If $x$ is causal, and the ROC contains the unit circle, then
+
+$$
+\lim _{n \rightarrow \infty} x[n]=\lim _{z \rightarrow 1}(z-1) X(z)
+$$
+
+证明.
+
+$$
+(z-1) X(z)=(z-1) \sum_{n=0}^{\infty} x[n] z^{-n}=z x[0]+\sum_{n=0}^{\infty}(x[n+1]-x[n]) z^{-n}
+$$
+
+Let $z \rightarrow 1$,
+
+$$
+\begin{aligned}
+\lim _{z \rightarrow 1}(z-1) X(z) & \stackrel{(*)}{=} x[0]+\sum_{n=0}^{\infty}(x[n+1]-x[n]) \\
+& =x[0]+\lim _{N \rightarrow \infty} \sum_{n=0}^{N-1}(x[n+1]-x[n])=\lim _{N \rightarrow \infty} x[N]
+\end{aligned}
+$$
+
+where ( $*$ ) follows from the uniform convergence of the series.
+NB. The condition can be relaxed by Abel's Theorem.
+
+## Properties of Z 变换
+
+卷积性质
+If
+
+$$
+\begin{array}{ll}
+x[n] \stackrel{z}{\longleftrightarrow} X(z) & \text { with } \mathrm{ROC}_{1} \\
+y[n] \stackrel{z}{\longleftrightarrow} Y(z) & \text { with } \mathrm{ROC}_{2}
+\end{array}
+$$
+
+then
+
+$$
+(x * y)[n] \stackrel{z}{\longleftrightarrow} X(z) Y(z) \quad \text { with } \mathrm{ROC} \supset \mathrm{ROC}_{1} \cap \mathrm{ROC}_{2}
+$$
+
+证明.
+
+$$
+X(z) Y(z)=\sum_{n=-\infty}^{\infty} \sum_{m=-\infty}^{\infty} x[n] y[m] z^{-(n+m)}=\sum_{k=-\infty}^{\infty} c[k] z^{-k}
+$$
+
+Collecting terms of the same power $z^{-k}$
+
+$$
+c[k]=\sum_{n+m=k} x[n] y[m]=\sum_{n=-\infty}^{\infty} x[n] y[k-n]=(x * y)[k]
+$$
+
+## 目录
+
+## 1. 利用留数计算定积分
+
+2. Z 变换
+
+## 3. Properties of $Z$-transform
+
+4. Analysis of DT LTI Systems by Z 变换
+
+## DT System Function
+
+Recall the response of a DT LTI system to the input $x[n]$ is
+
+$$
+y[n]=(x * h)[n]
+$$
+
+where $h$ is the impulse response of the system.
+If $x$ and $h$ have $z$-transforms, the convolution property implies
+
+$$
+Y(z)=X(z) H(z)
+$$
+
+in their common ROC.
+If the ROC has a nonempty interior point, the system function (aka transfer function) $H(z)$ uniquely determines $h$ and hence system properties through the Laurent series expansion
+
+$$
+H(z)=\sum_{n=-\infty}^{\infty} h[n] z^{-n}
+$$
+
+## 因果性
+
+Recall $h$ is right-sided iff the ROC of $H(z)$ is the exterior of a circle, i.e. $R_{1}<|z|<\infty$
+
+$$
+H(z)=\sum_{n=N_{1}}^{\infty} h[n] z^{-n}
+$$
+
+The following conditions are equivalent
+
+1. $N_{1} \geq 0$
+2. $H\left(z^{-1}\right)=\sum_{n=N_{1}}^{\infty} h[n] z^{n}$ is a convergent power series on $|z|<\frac{1}{R^{1}}$
+3. 0 is a removable singularity of $H\left(z^{-1}\right)$
+4. $\infty$ is removable singularity of $H(z)$
+5. $\lim _{z \rightarrow 0} H\left(z^{-1}\right)$ exists and is finite
+6. $\lim _{z \rightarrow \infty} H(z)$ exists and is finite ${ }^{2}$
+[^1]
+## 因果性
+
+An LTI system with system function $H(z)$ is causal iff
+
+1. the ROC is the exterior of a circle
+2. $\lim _{z \rightarrow \infty} H(z)$ exists and is finite
+
+$$
+\text { causal } \Longleftrightarrow \mathbf{R O C} \text { is the exterior of a circle including } \infty
+$$
+
+An LTI system with rational system function $H(z)=\frac{N(z)}{D(z)}$ is causal iff
+
+1. the ROC is $|z|>|p|$, where $p$ is the outermost pole
+2. $\operatorname{deg} D \geq \operatorname{deg} N$
+
+例. $H(z)=\frac{z^{3}-2 z^{2}-z}{z^{2}+\frac{1}{4} z+\frac{1}{8}}$ cannot be the system function of a causal system.
+
+## 稳定性
+
+Recall an LTI system is stable iff its impulse response $h \in \ell_{1}$, i.e.
+
+$$
+\sum_{n=-\infty}^{\infty}|h[n]|<\infty
+$$
+
+i.e. $H(z)$ converges absolutely on the unit circle $|z|=1$, so its ROC $R_{1}<|z|<R_{2}$ must satisfy $R_{1}<1<R_{2}$.
+
+$$
+\text { stable } \Longleftrightarrow \mathbf{R O C} \text { includes the unit circle }|z|=1
+$$
+
+A causal LTI system with rational system function $H(z)$ is stable iff all its poles are inside the unit circle.
+
+例. A causal system with $H(z)=\frac{1}{1-a z^{-1}}$ is stable iff $|a|<1$
+例. A system with $H(z)=\frac{1}{1-a z^{-1}}$ where $|a|>1$ and ROC $|z|<|a|$ is also stable, but it is noncausal.
+
+
+[^0]:    ${ }^{1} X$ may also converge at some points on the boundary, but for simplicity, we do not include them in the ROC, except for 0 and $\infty$.
+
+[^1]:    ${ }^{2}$ This is the more precise statement of $\infty \in$ ROC.

@@ -13144,5 +13144,145 @@
     "title": "第三章 周期信号的傅里叶级数表示",
     "section": "作业",
     "text": "作业\n\n3.3\n3.6\n3.12\n3.16\n3.20\n计算机作业：用Python Jupyter 完成程序理解、修改或设计，具体见乐学平台。\n\n\n\n\n\n第三章 周期信号的傅里叶级数表示  完"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#section",
+    "href": "courseworks/信号与系统第三章习题.html#section",
+    "title": "信号与系统第三章习题",
+    "section": "3.3",
+    "text": "3.3\n对于下面的连续时间周期信号： \\[x(t) = 2 + \\cos\\left(\\frac{2\\pi}{3}t\\right) + 4\\sin\\left(\\frac{5\\pi}{3}t\\right)\\]\n\n求基波频率 \\(\\omega_0\\)\n求傅里叶级数系数 \\(a_k\\)，使其表示为： \\[x(t) = \\sum_{k=-\\infty}^{\\infty} a_k e^{jk\\omega_0t}\\]"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#确定基波频率-omega_0",
+    "href": "courseworks/信号与系统第三章习题.html#确定基波频率-omega_0",
+    "title": "信号与系统第三章习题",
+    "section": "1. 确定基波频率 \\(\\omega_0\\)",
+    "text": "1. 确定基波频率 \\(\\omega_0\\)\n首先提取各分量的角频率： - 直流分量：\\(\\omega = 0\\) - 余弦项：\\(\\omega_1 = \\frac{2\\pi}{3}\\) - 正弦项：\\(\\omega_2 = \\frac{5\\pi}{3}\\)\n基波频率 是所有频率成分的最大公约数（GCD）： \\[\\omega_0 = \\text{GCD}\\left(\\frac{2\\pi}{3}, \\frac{5\\pi}{3}\\right) = \\frac{\\pi}{3}\\]\n由此确定各分量对应的谐波次数 \\(k\\)： - \\(\\omega_1 = 2 \\cdot (\\frac{\\pi}{3}) \\implies k = \\pm 2\\) - \\(\\omega_2 = 5 \\cdot (\\frac{\\pi}{3}) \\implies k = \\pm 5\\)"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#展开为复指数形式",
+    "href": "courseworks/信号与系统第三章习题.html#展开为复指数形式",
+    "title": "信号与系统第三章习题",
+    "section": "2. 展开为复指数形式",
+    "text": "2. 展开为复指数形式\n利用欧拉公式展开三角函数：\n\\[x(t) = 2 + \\underbrace{\\frac{1}{2}\\left(e^{j\\frac{2\\pi}{3}t} + e^{-j\\frac{2\\pi}{3}t}\\right)}_{\\cos \\text{项}} + \\underbrace{\\frac{4}{2j}\\left(e^{j\\frac{5\\pi}{3}t} - e^{-j\\frac{5\\pi}{3}t}\\right)}_{\\sin \\text{项}}\\]\n代入 \\(\\omega_0 = \\frac{\\pi}{3}\\) 并整理（注意 \\(1/j = -j\\)）：\n\\[x(t) = 2 + \\frac{1}{2}e^{j2\\omega_0t} + \\frac{1}{2}e^{-j2\\omega_0t} - 2je^{j5\\omega_0t} + 2je^{-j5\\omega_0t}\\]"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#确定系数-a_k",
+    "href": "courseworks/信号与系统第三章习题.html#确定系数-a_k",
+    "title": "信号与系统第三章习题",
+    "section": "3. 确定系数 \\(a_k\\)",
+    "text": "3. 确定系数 \\(a_k\\)\n通过观察法对照标准公式，得出非零系数：\n\n\n\n\\(k\\)\n\\(a_k\\)\n来源分量\n\n\n\n\n0\n\\(2\\)\n直流 (DC)\n\n\n2\n\\(1/2\\)\n\\(\\cos\\) 项\n\n\n-2\n\\(1/2\\)\n\\(\\cos\\) 项\n\n\n5\n\\(-2j\\)\n\\(\\sin\\) 项\n\n\n-5\n\\(2j\\)\n\\(\\sin\\) 项\n\n\n\n其余所有 \\(a_k = 0\\)。"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#总结",
+    "href": "courseworks/信号与系统第三章习题.html#总结",
+    "title": "信号与系统第三章习题",
+    "section": "总结",
+    "text": "总结\n\n基波频率： \\(\\omega_0 = \\frac{\\pi}{3}\\)\n信号对称性观察： - \\(a_0\\) 为实数。\n\n因为 \\(x(t)\\) 是实信号，所以系数满足共轭对称性 \\(a_k = a_{-k}^*\\)。\n观察结果：\\(a_2 = a_{-2} = 1/2\\)（实数且相等），\\(a_5 = -2j\\) 且 \\(a_{-5} = 2j\\)（互为共轭）。"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#section-1",
+    "href": "courseworks/信号与系统第三章习题.html#section-1",
+    "title": "信号与系统第三章习题",
+    "section": "3.6",
+    "text": "3.6\n在判断信号特性时，傅里叶级数系数 \\(a_k\\) 满足以下对应关系：\n\n实值信号：\\(a_k = a_{-k}^*\\) （共轭对称）\n实偶信号：\\(a_k = a_{-k}\\) 且 \\(a_k\\) 为实数\n实奇信号：\\(a_k = -a_{-k}\\) 且 \\(a_k\\) 为纯虚数"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#信号-x_1t-分析",
+    "href": "courseworks/信号与系统第三章习题.html#信号-x_1t-分析",
+    "title": "信号与系统第三章习题",
+    "section": "信号 \\(x_1(t)\\) 分析",
+    "text": "信号 \\(x_1(t)\\) 分析\n\\[x_1(t) = \\sum_{k=0}^{100} \\left(\\frac{1}{2}\\right)^k e^{jk\\frac{2\\pi}{50}t}\\]\n\n系数特点：当 \\(k &lt; 0\\) 时，\\(a_k = 0\\)。\n(a) 是否为实值？\n\n实值信号要求 \\(a_k = a_{-k}^*\\)。\n这里 \\(a_1 = 1/2\\)，但 \\(a_{-1} = 0\\)，显然 \\(a_1 \\neq a_{-1}^*\\)。\n结论：不是实值信号。\n\n(b) 是否为偶函数？\n\n偶函数要求 \\(a_k = a_{-k}\\)。同理不满足。\n结论：不是偶函数。"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#信号-x_2t-分析",
+    "href": "courseworks/信号与系统第三章习题.html#信号-x_2t-分析",
+    "title": "信号与系统第三章习题",
+    "section": "信号 \\(x_2(t)\\) 分析",
+    "text": "信号 \\(x_2(t)\\) 分析\n\\[x_2(t) = \\sum_{k=-100}^{100} \\cos(k\\pi) e^{jk\\frac{2\\pi}{50}t}\\]\n\n系数特点：\\(a_k = \\cos(k\\pi) = (-1)^k\\)。\n(a) 是否为实值？\n\n\\(a_k\\) 是实数，且 \\(a_{-k} = (-1)^{-k} = (-1)^k = a_k\\)。\n因为 \\(a_k\\) 是实数且 \\(a_k = a_{-k}\\)，自然满足 \\(a_k = a_{-k}^*\\)。\n结论：是实值信号。\n\n(b) 是否为偶函数？\n\n满足 \\(a_k = a_{-k}\\)。\n结论：是偶函数（且是实偶函数）。"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#信号-x_3t-分析",
+    "href": "courseworks/信号与系统第三章习题.html#信号-x_3t-分析",
+    "title": "信号与系统第三章习题",
+    "section": "信号 \\(x_3(t)\\) 分析",
+    "text": "信号 \\(x_3(t)\\) 分析\n\\[x_3(t) = \\sum_{k=-100}^{100} j\\sin\\left(\\frac{k\\pi}{2}\\right) e^{jk\\frac{2\\pi}{50}t}\\]\n\n系数特点：\\(a_k = j\\sin\\left(\\frac{k\\pi}{2}\\right)\\)。\n(a) 是否为实值？\n\n验证 \\(a_{-k}^*\\)： \\(a_{-k} = j\\sin\\left(-\\frac{k\\pi}{2}\\right) = -j\\sin\\left(\\frac{k\\pi}{2}\\right)\\) \\(a_{-k}^* = [-j\\sin\\left(\\frac{k\\pi}{2}\\right)]^* = +j\\sin\\left(\\frac{k\\pi}{2}\\right) = a_k\\)\n结论：是实值信号。\n\n(b) 是否为偶函数？\n\n\\(a_1 = j\\)，而 \\(a_{-1} = -j\\)。\\(a_k \\neq a_{-k}\\)。\n注意：由于 \\(a_k\\) 是纯虚数且奇对称（\\(a_k = -a_{-k}\\)），它实际上是一个实奇信号。\n结论：不是偶函数。"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#最终结论汇总",
+    "href": "courseworks/信号与系统第三章习题.html#最终结论汇总",
+    "title": "信号与系统第三章习题",
+    "section": "最终结论汇总",
+    "text": "最终结论汇总\n\n\n\n信号\n(a) 实值性\n(b) 偶函数性\n备注\n\n\n\n\n\\(x_1(t)\\)\n否\n否\n复信号\n\n\n\\(x_2(t)\\)\n是\n是\n实偶信号\n\n\n\\(x_3(t)\\)\n是\n否\n实奇信号"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#section-2",
+    "href": "courseworks/信号与系统第三章习题.html#section-2",
+    "title": "信号与系统第三章习题",
+    "section": "3.12",
+    "text": "3.12\n已知两个周期为 \\(N=4\\) 的序列： - \\(x_1[n] \\longleftrightarrow a_k\\) - \\(x_2[n] \\longleftrightarrow b_k\\)\n其中系数分别为： - \\(a_0=1, a_1=2, a_2=2, a_3=1\\) - \\(b_0=b_1=b_2=b_3=1\\)\n求 \\(g[n] = x_1[n]x_2[n]\\) 的傅里叶级数系数 \\(c_k\\)。"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#离散时间傅里叶级数相乘性质",
+    "href": "courseworks/信号与系统第三章习题.html#离散时间傅里叶级数相乘性质",
+    "title": "信号与系统第三章习题",
+    "section": "离散时间傅里叶级数：相乘性质",
+    "text": "离散时间傅里叶级数：相乘性质\n根据 DTFS 性质表（表 3.1），若 \\(g[n] = x_1[n]x_2[n]\\)，则其对应的级数系数 \\(c_k\\) 为：\n\\[c_k = \\sum_{l=\\langle N \\rangle} a_l b_{k-l}\\]\n由于周期 \\(N=4\\)，这是一个长度为 4 的周期卷积： \\[c_k = \\sum_{l=0}^{3} a_l b_{k-l}\\]"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#特殊情况b_k-的影响",
+    "href": "courseworks/信号与系统第三章习题.html#特殊情况b_k-的影响",
+    "title": "信号与系统第三章习题",
+    "section": "特殊情况：\\(b_k\\) 的影响",
+    "text": "特殊情况：\\(b_k\\) 的影响\n观察 \\(b_k\\) 的值： \\[b_k = 1, \\quad \\text{对于所有 } k\\]\n这意味着 \\(b_{k-l}\\) 永远等于 1。 对于任何 \\(k\\)，求和公式简化为：\n\\[c_k = \\sum_{l=0}^{3} a_l \\cdot 1 = a_0 + a_1 + a_2 + a_3\\]"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#数值计算",
+    "href": "courseworks/信号与系统第三章习题.html#数值计算",
+    "title": "信号与系统第三章习题",
+    "section": "数值计算",
+    "text": "数值计算\n代入已知数值： - \\(a_0 = 1\\) - \\(a_1 = 2\\) - \\(a_2 = 2\\) - \\(a_3 = 1\\)\n计算结果： \\[c_k = 1 + 2 + 2 + 1 = 6\\]"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#最终结论",
+    "href": "courseworks/信号与系统第三章习题.html#最终结论",
+    "title": "信号与系统第三章习题",
+    "section": "最终结论",
+    "text": "最终结论\n对于所有的 \\(k\\)，信号 \\(g[n]\\) 的傅里叶级数系数均为：\n\\[c_k = 6\\]\n解析思考： 1. 为什么 \\(c_k\\) 是常数？因为 \\(b_k=1\\) 对应的是时域的一个脉冲信号 \\(x_2[n] = 4\\delta[n]\\)（在 \\(N=4\\) 周期内）。 2. \\(x_1[n]\\) 乘以一个脉冲，在时域变得非常“尖锐”，反映在频域则是其频谱分量平铺开来。"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#题目3.20",
+    "href": "courseworks/信号与系统第三章习题.html#题目3.20",
+    "title": "信号与系统第三章习题",
+    "section": "题目3.20",
+    "text": "题目3.20\n图 P3.20 展示了一个串联 RLC 电路： - 输入：电压源 \\(x(t)\\) - 输出：电容器两端的电压 \\(y(t)\\) - 元件参数：\\(R=1\\,\\Omega\\), \\(L=1\\,\\text{H}\\), \\(C=1\\,\\text{F}\\)"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#a-建立微分方程",
+    "href": "courseworks/信号与系统第三章习题.html#a-建立微分方程",
+    "title": "信号与系统第三章习题",
+    "section": "(a) 建立微分方程",
+    "text": "(a) 建立微分方程\n根据基尔霍夫电压定律（KVL），回路电压方程为： \\[x(t) = Ri(t) + L\\frac{di(t)}{dt} + y(t)\\]\n由于 \\(y(t)\\) 是电容电压，电流 \\(i(t)\\) 与 \\(y(t)\\) 的关系为： \\[i(t) = C\\frac{dy(t)}{dt}\\]\n代入 KVL 方程： \\[x(t) = RC\\frac{dy(t)}{dt} + LC\\frac{d^2y(t)}{dt^2} + y(t)\\]\n代入参数 \\(R=1, L=1, C=1\\)： \\[\\frac{d^2y(t)}{dt^2} + \\frac{dy(t)}{dt} + y(t) = x(t)\\]"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#b-求系统频率响应-hjomega",
+    "href": "courseworks/信号与系统第三章习题.html#b-求系统频率响应-hjomega",
+    "title": "信号与系统第三章习题",
+    "section": "(b) 求系统频率响应 \\(H(j\\omega)\\)",
+    "text": "(b) 求系统频率响应 \\(H(j\\omega)\\)\n当输入为 \\(x(t) = e^{j\\omega t}\\) 时，由于系统是线性的，输出必为 \\(y(t) = H(j\\omega)e^{j\\omega t}\\)。\n对微分方程两边进行傅里叶变换（或代入算子 \\(d/dt \\to j\\omega\\)）： \\[(j\\omega)^2 Y(j\\omega) + (j\\omega) Y(j\\omega) + Y(j\\omega) = X(j\\omega)\\]\n整理得频率响应： \\[H(j\\omega) = \\frac{Y(j\\omega)}{X(j\\omega)} = \\frac{1}{(j\\omega)^2 + j\\omega + 1} = \\frac{1}{1 - \\omega^2 + j\\omega}\\]"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#c-求当-xt-sint-时的输出",
+    "href": "courseworks/信号与系统第三章习题.html#c-求当-xt-sint-时的输出",
+    "title": "信号与系统第三章习题",
+    "section": "(c) 求当 \\(x(t) = \\sin(t)\\) 时的输出",
+    "text": "(c) 求当 \\(x(t) = \\sin(t)\\) 时的输出\n当 \\(x(t) = \\sin(t)\\) 时，其角频率 \\(\\omega = 1\\)。\n\n计算在此频率下的响应： \\[H(j1) = \\frac{1}{1 - 1^2 + j(1)} = \\frac{1}{j} = -j\\]\n转换为极坐标形式： \\[H(j1) = 1 \\cdot e^{-j\\frac{\\pi}{2}}\\] 即：幅度 \\(|H(j1)| = 1\\)，相位 \\(\\angle H(j1) = -\\pi/2\\)。\n得出输出信号： \\[y(t) = |H(j1)| \\sin(t + \\angle H(j1)) = 1 \\cdot \\sin(t - \\frac{\\pi}{2})\\] 利用三角函数公式，也可写为： \\[y(t) = -\\cos(t)\\]"
+  },
+  {
+    "objectID": "courseworks/信号与系统第三章习题.html#结论汇总",
+    "href": "courseworks/信号与系统第三章习题.html#结论汇总",
+    "title": "信号与系统第三章习题",
+    "section": "结论汇总",
+    "text": "结论汇总\n\n微分方程：\\(\\frac{d^2y(t)}{dt^2} + \\frac{dy(t)}{dt} + y(t) = x(t)\\)\n频率响应：\\(H(j\\omega) = \\frac{1}{1 - \\omega^2 + j\\omega}\\)\n正弦激励输出：\\(y(t) = -\\cos(t)\\)"
   }
 ]
