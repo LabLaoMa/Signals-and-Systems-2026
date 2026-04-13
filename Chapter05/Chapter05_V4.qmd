@@ -99,7 +99,7 @@ $$
 ![](imglink/159772dd-711e-4cf6-b135-d8485880c667-05.png){fig-align=center}
 
 $$
-\hat{x}_{N}[k]=\left\langle x_{N}, e^{j k \frac{2 \pi}{N} n}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \frac{2 \pi}{N} n}=\frac{1}{N} X\left(e^{j k \omega_{0} n}\right)
+\hat{x}_{N}[k]=\left\langle x_{N}, e^{j k \frac{2 \pi}{N} n}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \frac{2 \pi}{N} n}=\frac{1}{N} X\left(e^{j k \omega_{0} }\right)
 $$
 
 其中
@@ -121,7 +121,7 @@ $$
 ![](imglink/159772dd-711e-4cf6-b135-d8485880c667-06.png){fig-align=center}
 
 $$
-\hat{x}_{N}[k]=\left\langle x_{N}, e^{jk \frac{2 \pi}{N} n}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-jk \frac{2 \pi}{N} n}=\frac{1}{N} X\left(e^{j k \omega_{0} n}\right)
+\hat{x}_{N}[k]=\left\langle x_{N}, e^{jk \frac{2 \pi}{N} n}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-jk \frac{2 \pi}{N} n}=\frac{1}{N} X\left(e^{j k \omega_{0} }\right)
 $$
 
 其中
@@ -252,8 +252,8 @@ $N$ 周期信号的离散频率
 - 在单位圆上均匀分布的点
 - 低频靠近 $1$；高频靠近 $-1$
 
-![](imglink/159772dd-711e-4cf6-b135-d8485880c667-11.png){width=45%}
-![](imglink/159772dd-711e-4cf6-b135-d8485880c667-11_2.png){width=45%}
+![](imglink/159772dd-711e-4cf6-b135-d8485880c667-11.png){width=40%}
+![](imglink/159772dd-711e-4cf6-b135-d8485880c667-11_2.png){width=40%}
 
 
 ## 离散时间信号的高频与低频
@@ -317,7 +317,146 @@ $$
 
 ::::
 
+## 交互演示
 
+
+
+```{ojs}
+//| panel: sidebar
+viewof a = Inputs.range([-0.95, 0.95], {value: 0.5, step: 0.05, label: "参数 a:"})
+viewof type = Inputs.radio(["单边 (aⁿu[n])", "双边 (a|^n|)"], {value: "单边 (aⁿu[n])", label: "序列类型:"})
+
+
+//| panel: fill
+// 计算数据
+data = {
+  const n = d3.range(-15, 16);
+  const w = d3.range(-2 * Math.PI, 2 * Math.PI, 0.05);
+  
+  // 时域信号
+  const x = n.map(nv => {
+    if (type === "单边 (aⁿu[n])") {
+        return nv >= 0 ? Math.pow(a, nv) : 0;
+    } else {
+        return Math.pow(a, Math.abs(nv));
+    }
+  });
+
+  // 频域幅度谱
+  const spectrum = w.map(wv => {
+    if (type === "单边 (aⁿu[n])") {
+        // |X(e^jw)| = 1 / sqrt(1 - 2acosw + a^2)
+        return 1 / Math.sqrt(1 - 2 * a * Math.cos(wv) + a * a);
+    } else {
+        // X(e^jw) = (1 - a^2) / (1 - 2acosw + a^2)
+        return (1 - a * a) / (1 - 2 * a * Math.cos(wv) + a * a);
+    }
+  });
+
+  return { n, x, w, spectrum };
+}
+
+// 绘制时域图
+Plot.plot({
+  height: 250,
+  title: "时域序列 x[n]",
+  x: { label: "n" },
+  y: { domain: [-1.1, 1.1] },
+  marks: [
+    Plot.ruleY([0]),
+    Plot.dot(data.n.map((d, i) => ({n: d, x: data.x[i]})), {x: "n", y: "x", fill: "steelblue"}),
+    Plot.ruleX(data.n.map((d, i) => ({n: d, x: data.x[i]})), {x: "n", y1: 0, y2: "x", stroke: "steelblue"})
+  ]
+})
+
+// 绘制频域图
+Plot.plot({
+  height: 250,
+  title: "幅度谱 |X(e^jω)|",
+  x: { label: "ω (rad)", tickFormat: d => (d / Math.PI).toFixed(1) + "π" },
+  y: { label: "Magnitude" },
+  marks: [
+    Plot.ruleY([0]),
+    Plot.line(data.w.map((d, i) => ({w: d, s: data.spectrum[i]})), {x: "w", y: "s", stroke: "red"}),
+    Plot.areaY(data.w.map((d, i) => ({w: d, s: data.spectrum[i]})), {x: "w", y: "s", fill: "red", fillOpacity: 0.1})
+  ]
+})
+
+```
+
+
+<!-- ## 交互演示：参数 $a$ 对频谱的影响
+
+```{shinylive-python}
+#| standalone: true
+#| viewerHeight: 600
+
+import numpy as np
+import matplotlib.pyplot as plt
+from shiny import App, render, ui
+
+# 定义 UI 界面
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+            ui.input_slider("a", "参数 a (衰减系数)", -0.95, 0.95, 0.5, step=0.05),
+            ui.markdown("""
+            **教学重点：**
+            - $a > 0$: 低通 (平滑)
+            - $a < 0$: 高通 (震荡)
+            - $|a| \to 1$: 能量更集中
+            """)
+        ),
+        ui.output_plot("dtft_plot"),
+    )
+)
+
+# 定义服务器逻辑
+def server(input, output, session):
+    @output
+    @render.plot
+    def dtft_plot():
+        a = input.a()
+        n = np.arange(-15, 16)
+        w = np.linspace(-2 * np.pi, 2 * np.pi, 500)
+        
+        # 1. 单边序列
+        x1 = np.where(n >= 0, a**n, 0)
+        X1_abs = 1 / np.sqrt(1 - 2*a*np.cos(w) + a**2)
+        
+        # 2. 双边序列
+        x2 = a**np.abs(n)
+        X2 = (1 - a**2) / (1 - 2*a*np.cos(w) + a**2)
+
+        fig, axs = plt.subplots(2, 2, figsize=(10, 8))
+        
+        # 时域 Stem 图
+        axs[0, 0].stem(n, x1)
+        axs[0, 0].set_title(r"Single-sided: $a^n u[n]$")
+        axs[0, 0].set_ylim(-1.1, 1.1)
+        
+        axs[0, 1].stem(n, x2)
+        axs[0, 1].set_title(r"Double-sided: $a^{|n|}$")
+        axs[0, 1].set_ylim(-1.1, 1.1)
+
+        # 频域 幅度谱
+        axs[1, 0].plot(w/np.pi, X1_abs, 'r')
+        axs[1, 0].set_title(r"Magnitude $|X_1(e^{j\omega})|$")
+        axs[1, 0].set_xlabel(r"$\omega$ ($\pi$ rad)")
+        
+        axs[1, 1].plot(w/np.pi, X2, 'g')
+        axs[1, 1].set_title(r"Magnitude $X_2(e^{j\omega})$")
+        axs[1, 1].set_xlabel(r"$\omega$ ($\pi$ rad)")
+        
+        for ax in axs[1]:
+            ax.grid(True, alpha=0.3)
+            ax.set_xticks([-2, -1, 0, 1, 2])
+            
+        plt.tight_layout()
+        return fig
+
+app = App(app_ui, server)
+``` -->
 
 
 ## 例：矩形脉冲
@@ -334,7 +473,7 @@ $$
 
 ![](imglink/159772dd-711e-4cf6-b135-d8485880c667-15_2.png){fig-align=center}
 
-Dirichlet 核（周期情形）是 sinc 函数（非周期情形）在离散时间中的对应物
+Dirichlet 核（周期情形）是 sinc 函数（非周期情形）在离散时间中的对应变换
 注意：$N_{1}=0 \Longrightarrow x[n]=\delta[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)=1$
 
 ## DTFT 的收敛性
@@ -378,6 +517,7 @@ $$
 ## 作为广义函数的收敛
 
 复指数信号 $x[n]=e^{j \omega_{0} n}$ 不属于 $\ell_{1}$ 也不属于 $\ell_{2}$。
+
 （平移后的）Dirichlet 核
 
 $$
@@ -603,24 +743,18 @@ $$
 定义 $x_{(m)}$ 为
 
 $$
-x_{(m)}[n]= \begin{cases}x[n / m], & \text { if } n \text { 是 } m  \text {的倍数} \\ 0, & \text { 其他 }\end{cases}
+x_{(m)}[n]= \begin{cases}x[n / m], & \text { 若 } n \text { 是 } m  \text {的倍数} \\ 0, & \text { 其他 }\end{cases}
 $$
 
-![](imglink/159772dd-711e-4cf6-b135-d8485880c667-30.png){fig-align=center}
+![](imglink/159772dd-711e-4cf6-b135-d8485880c667-30.png){width=25%, fig-align=center}
 
-![](imglink/159772dd-711e-4cf6-b135-d8485880c667-30_2.png){fig-align=center}
+![](imglink/159772dd-711e-4cf6-b135-d8485880c667-30_2.png){width=25%, fig-align=center}
 
-若
-
-$$
-x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)
-$$
-
-then
-
-$$
-x_{(m)}[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j m \omega}\right)
-$$
+若:
+$x[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right)$,
+则有：
+$x_{(m)}[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j m \omega}\right)
+$
 
 证明。
 
@@ -802,6 +936,12 @@ $$
 $$
 y[n]-a y[n-1]=b^{n} u[n]
 $$
+
+## 例
+
+求冲激响应为 $h[n]=a^{n} u[n]$ 的 LTI 系统在输入 $x[n]=b^{n} u[n]$ 下的响应，其中 $|a|<1,|b|<1$
+<br>
+<br>
 
 方法 3：使用傅里叶变换。
 
@@ -1014,6 +1154,7 @@ $$
 
 本表总结了离散时间常见信号的 **傅里叶变换 (DTFT)** 以及 **傅里叶级数系数 ($a_k$)**。注意 DTFT 频谱具有 $2\pi$ 的周期性。
 
+::: {style="font-size: 0.8em; line-height: 1.2;"}
 | 信号 (Signal) | 傅里叶变换 (DTFT) | 傅里叶级数系数 $a_k$ (若为周期的) |
 | :--- | :--- | :--- |
 | $\displaystyle \sum_{k=\langle N \rangle} a_k e^{jk(2\pi/N)n}$ | $2\pi \displaystyle \sum_{k=-\infty}^{+\infty} a_k \delta\left(\omega - \frac{2\pi k}{N}\right)$ | $a_k$ |
@@ -1021,10 +1162,11 @@ $$
 | $\cos \omega_0 n$ | $\pi \displaystyle \sum_{l=-\infty}^{+\infty} \left\{ \delta(\omega - \omega_0 - 2\pi l) + \delta(\omega + \omega_0 - 2\pi l) \right\}$ | (a) $\omega_0 = \frac{2\pi m}{N}$ 时：<br> $a_k = \begin{cases} \frac{1}{2}, & k=\pm m, \pm m \pm N, \dots \\ 0, & \text{其他} \end{cases}$ <br> (b) $\frac{\omega_0}{2\pi}$ 无理数表明信号是非周期的 |
 | $\sin \omega_0 n$ | $\frac{\pi}{j} \displaystyle \sum_{l=-\infty}^{+\infty} \left\{ \delta(\omega - \omega_0 - 2\pi l) - \delta(\omega + \omega_0 - 2\pi l) \right\}$ | (a) $\omega_0 = \frac{2\pi r}{N}$ 时：<br> $a_k = \begin{cases} \frac{1}{2j}, & k=r, r\pm N, \dots \\ -\frac{1}{2j}, & k=-r, -r\pm N, \dots \\ 0, & \text{其他} \end{cases}$ <br> (b) $\frac{\omega_0}{2\pi}$ 无理数表明信号是非周期的 |
 | $x[n] = 1$ | $2\pi \displaystyle \sum_{l=-\infty}^{+\infty} \delta(\omega - 2\pi l)$ | $a_k = \begin{cases} 1, & k=0, \pm N, \pm 2N, \dots \\ 0, & \text{其他} \end{cases}$ |
+:::
 
 ## (教材)表 5.2 基本傅里叶变换对（续表）
 
-本表列出了离散时间常用信号的 **傅里叶变换 (DTFT)** 以及相关的 **傅里叶级数系数 ($a_k$)**。
+::: {style="font-size: 0.75em; line-height: 1.2;"}
 
 | 信号 (Signal) | 傅里叶变换 (DTFT) | 傅里叶级数系数 $a_k$ (若为周期的) |
 | :--- | :--- | :--- |
@@ -1038,6 +1180,7 @@ $$
 | $\delta[n - n_0]$ | $e^{-j\omega n_0}$ | — |
 | $(n+1) a^n u[n], |a| < 1$ | $\displaystyle \frac{1}{(1 - ae^{-j\omega})^2}$ | — |
 | $\displaystyle \frac{(n+r-1)!}{n!(r-1)!} a^n u[n], |a| < 1$ | $\displaystyle \frac{1}{(1 - ae^{-j\omega})^r}$ | — |
+:::
 
 ## 目录 {#toc5}
 
@@ -1054,19 +1197,25 @@ $$
 * 周期信号 $x[n]$ 的傅里叶级数系数 $a_k$ 本身也是一个**周期序列**。
   
 * 既然 $a_k$ 是周期的，我们就可以反过来将 $a_k$ 看作时域信号，对其再次展开傅里叶级数。
-* 
+
 * 这意味着时域中的某种操作（如平移、卷积），在频域中一定存在结构完全对称的操作。
 
 考虑两个周期均为 $N$ 的周期序列 $f[m]$ 和 $g[r]$，通过下式联系：
 $$f[m] = \frac{1}{N} \sum_{r=\langle N \rangle} g[r]e^{-j r(2\pi/N)m}$$
 
+:::: {.columns style="text-align: center;"}
+
+::: {.column width="50%"}
 ### 情况 A：正向变换
 若令 $m=k, r=n$，则公式变为标准的 DTFS 分析公式：
 $$g[n] \overset{FS}{\longleftrightarrow} f[k]$$
-
+:::
+::: {.column width="50%"}
 ### 情况 B：反向变换
 若令 $m=n, r=-k$，经过代换可得：
 $$f[n] \overset{FS}{\longleftrightarrow} \frac{1}{N}g[-k]$$
+:::
+::::
 **结论**：序列 $a_k$ 的傅里叶级数系数是 $(1/N)x[-n]$，即原信号时间反转并缩放后的值。
 
 ---
@@ -1084,7 +1233,7 @@ $$f[n] \overset{FS}{\longleftrightarrow} \frac{1}{N}g[-k]$$
 * **时域相乘**：$\displaystyle x[n]y[n] \overset{FS}{\longleftrightarrow} \sum_{l=\langle N \rangle} a_l b_{k-l}$
 
 ## (教材)表 5.3 傅里叶级数与傅里叶变换综合
-
+::: {style="font-size: 0.8em; line-height: 1.5;"}
 该表揭示了时域特性（连续/离散、周期/非周期）与频域特性之间的对应关系。
 
 | | 连续时间 (Continuous-Time) | | 离散时间 (Discrete-Time) | |
@@ -1096,8 +1245,50 @@ $$f[n] \overset{FS}{\longleftrightarrow} \frac{1}{N}g[-k]$$
 | **傅里叶变换 (FT/DTFT)** | $x(t) = \displaystyle \frac{1}{2\pi} \int_{-\infty}^{+\infty} X(j\omega) e^{j\omega t} d\omega$ | $X(j\omega) = \displaystyle \int_{-\infty}^{+\infty} x(t) e^{-j\omega t} dt$ | $x[n] = \displaystyle \frac{1}{2\pi} \int_{2\pi} X(e^{j\omega}) e^{j\omega n} d\omega$ | $X(e^{j\omega}) = \displaystyle \sum_{n=-\infty}^{+\infty} x[n] e^{-j\omega n}$ |
 | | 连续时间，在时间上是非周期的 | 连续频率，在频率上是非周期的 | 离散时间，在时间上是非周期的 | 连续频率，在频率上是周期的 |
 | | $\leftarrow$ 对偶 $\rightarrow$ | | | |
-
+:::
 ---
+
+<!-- ## 表 5.3 傅里叶级数与傅里叶变换综合对比
+
+该表揭示了**时域特性**（连续/离散、周期/非周期）与**频域特性**之间的对应关系。
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### 连续时间 (Continuous-Time)
+
+**傅里叶级数 (FS)** *时域周期 $\leftrightarrow$ 频域离散*
+$$x(t) = \sum_{k=-\infty}^{+\infty} a_k e^{j k \omega_0 t} \longleftrightarrow a_k = \frac{1}{T_0} \int_{T_0} x(t) e^{-j k \omega_0 t} dt$$
+
+**傅里叶变换 (FT)** *时域非周期 $\leftrightarrow$ 频域连续*
+$$x(t) = \frac{1}{2\pi} \int_{-\infty}^{+\infty} X(j\omega) e^{j\omega t} d\omega \longleftrightarrow X(j\omega) = \int_{-\infty}^{+\infty} x(t) e^{-j\omega t} dt$$
+:::
+
+::: {.column width="50%"}
+### 离散时间 (Discrete-Time)
+
+**离散傅里叶级数 (DTFS)** *时域周期 $\leftrightarrow$ 频域周期且离散*
+$$x[n] = \sum_{k=\langle N \rangle} a_k e^{j k \frac{2\pi}{N} n} \longleftrightarrow a_k = \frac{1}{N} \sum_{n=\langle N \rangle} x[n] e^{-j k \frac{2\pi}{N} n}$$
+
+**离散时间傅里叶变换 (DTFT)** *时域离散 $\leftrightarrow$ 频域周期*
+$$x[n] = \frac{1}{2\pi} \int_{2\pi} X(e^{j\omega}) e^{j\omega n} d\omega \longleftrightarrow X(e^{j\omega}) = \sum_{n=-\infty}^{+\infty} x[n] e^{-j\omega n}$$
+:::
+
+::::
+
+--- -->
+
+### 对偶性 (Duality) 总结
+
+| 特性 | 时域 (Time) | 频域 (Frequency) | 对应变换 |
+|------|------------|-----------------|---------|
+| **周期性** | 周期 (Periodic) | **离散 (Discrete)** | FS / DTFS |
+| **离散性** | 离散 (Discrete) | **周期 (Periodic)** | DTFT / DTFS |
+| **连续性** | 连续 (Continuous) | **非周期 (Aperiodic)** | FT / FS |
+
+> **核心结论**：
+> 1. 一个域的**周期性**对应另一个域的**离散性**。
+> 2. **DTFT** 与 **FS** 在数学结构上互为对偶（Sum 与 Integral 角色互换）。
 
 ### 核心对偶规律总结
 
@@ -1197,7 +1388,8 @@ $$
 
 ## 例
 
-Find 响应 to $x[n]=\left(\frac{1}{4}\right)^{n} u[n]$.
+计算系统对信号 $x[n]=\left(\frac{1}{4}\right)^{n} u[n]$ 的响应。
+
 响应的傅里叶变换为
 
 $$
