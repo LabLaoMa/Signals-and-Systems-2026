@@ -1,0 +1,758 @@
+---
+title: "EL331 信号与系统 · 第28讲（中文版）"
+subtitle: "Z 变换、系统因果性与稳定性"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+1. 利用 Z 变换分析 DT LTI 系统
+
+## 2. 框图表示
+
+## 3. 单边 Z 变换
+
+## 离散时间系统函数
+
+Recall the response of a DT LTI system to the input $x[n]$ is
+
+$$
+y[n]=(x * h)[n]
+$$
+
+where $h$ is the impulse response of the system.
+If $x$ and $h$ have $z$-transforms, the convolution property implies
+
+$$
+Y(z)=X(z) H(z)
+$$
+
+in their common ROC.
+If the ROC has a nonempty interior point, the system function (aka transfer function) $H(z)$ uniquely determines $h$ and hence system properties through the Laurent series expansion
+
+$$
+H(z)=\sum_{n=-\infty}^{\infty} h[n] z^{-n}
+$$
+
+## 因果性
+
+Recall $h$ is right-sided iff its ROC is the exterior of a circle, i.e. $R_{1}<|z|<\infty$
+
+$$
+H(z)=\sum_{n=N_{1}}^{\infty} h[n] z^{-n}
+$$
+
+The following conditions are equivalent
+
+1. $N_{1} \geq 0$
+2. $H\left(z^{-1}\right)=\sum_{n=N_{1}}^{\infty} h[n] z^{n}$ is a convergent power series on $|z|<\frac{1}{R^{1}}$
+3. 0 is a removable singularity of $H\left(z^{-1}\right)$
+4. $\infty$ is removable singularity of $H(z)$
+5. $\lim _{z \rightarrow 0} H\left(z^{-1}\right)$ exists and is finite
+6. $\lim _{z \rightarrow \infty} H(z)$ exists and is finite ${ }^{1}$
+[^0]
+## 因果性
+
+An LTI system with system function $H(z)$ is causal iff
+
+1. the ROC is the exterior of a circle
+2. $\lim _{z \rightarrow \infty} H(z)$ exists and is finite
+
+$$
+\text { causal } \Longleftrightarrow \mathbf{R O C} \text { is the exterior of a circle including } \infty
+$$
+
+An LTI system with rational system function $H(z)=\frac{N(z)}{D(z)}$ is causal iff
+
+1. the ROC is $|z|>|p|$, where $p$ is the outermost pole
+2. $\operatorname{deg} D \geq \operatorname{deg} N$
+
+例. $H(z)=\frac{z^{3}-2 z^{2}-z}{z^{2}+\frac{1}{4} z+\frac{1}{8}}$ cannot be the system function of a causal system.
+
+## 稳定性
+
+Recall an LTI system is stable iff its impulse response $h \in \ell_{1}$, i.e.
+
+$$
+\sum_{n=-\infty}^{\infty}|h[n]|<\infty
+$$
+
+i.e. $H(z)$ converges absolutely on the unit circle $|z|=1$, so its ROC $R_{1}<|z|<R_{2}$ must satisfy $R_{1}<1<R_{2}$.
+stable $\Longleftrightarrow \mathbf{R O C}$ includes the unit circle $|z|=1$
+
+A causal LTI system with rational system function $H(z)$ is stable iff all its poles are inside the unit circle.
+
+例. A causal system with $H(z)=\frac{1}{1-a z^{-1}}$ is stable iff $|a|<1$
+例. A system with $H(z)=\frac{1}{1-a z^{-1}}$ where $|a|>1$ and ROC $|z|<|a|$ is also stable, but it is noncausal.
+
+例
+
+$$
+H(z)=\frac{1}{2}\left[\frac{z}{z-\frac{3}{2}}-\frac{z}{z+\frac{1}{2}}\right]
+$$
+
+There are two poles $p_{1}=-\frac{1}{2}$ and $p_{2}=\frac{3}{2}$.
+
+1. $|z|>\frac{3}{2}$, causal, unstable
+
+$$
+h_{1}[n]=\frac{1}{2}\left(\frac{3}{2}\right)^{n} u[n]-\frac{1}{2}\left(-\frac{1}{2}\right)^{n} u[n]
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-07.jpg?height=412&width=432&top_left_y=88&top_left_x=807)
+2. $\frac{1}{2}<|z|<\frac{3}{2}$, noncausal, stable
+
+$$
+h_{2}[n]=-\frac{1}{2}\left(\frac{3}{2}\right)^{n} u[-n-1]-\frac{1}{2}\left(-\frac{1}{2}\right)^{n} u[n]
+$$
+
+3. $|z|<\frac{1}{2}$, noncausal, unstable
+
+$$
+h_{3}[n]=-\frac{1}{2}\left(\frac{3}{2}\right)^{n} u[-n-1]+\frac{1}{2}\left(-\frac{1}{2}\right)^{n} u[-n-1]
+$$
+
+## 线性常系数差分方程
+
+LTI system with input and output related by
+
+$$
+\sum_{k=0}^{N} a_{k} y[n-k]=\sum_{k=0}^{M} b_{k} x[n-k]
+$$
+
+Take $z$-transform of both sides
+
+$$
+\sum_{k=0}^{N} a_{k} z^{-k} Y(z)=\sum_{k=0}^{M} b_{k} z^{-k} X(z)
+$$
+
+so
+
+$$
+H(z)=\frac{Y(z)}{X(z)}=\frac{\sum_{k=0}^{M} b_{k} z^{-k}}{\sum_{k=0}^{N} a_{k} z^{-k}}
+$$
+
+System function is always rational
+差分方程 does not specify ROC! Need additional conditions (e.g. stability, causality) to determine $h[n]$.
+
+## 例
+
+Consider LTI system with input and output related by
+
+$$
+y[n]-\frac{1}{2} y[n-1]=x[n]+\frac{1}{3} x[n-1]
+$$
+
+System function
+
+$$
+H(z)=\frac{1+\frac{1}{3} z^{-1}}{1-\frac{1}{2} z^{-1}}
+$$
+
+Two possibilities for ROC: $|z|>\frac{1}{2}$ and $|z|<\frac{1}{2}$.
+
+1. If $|z|>\frac{1}{2}$
+
+$$
+\frac{1}{1-\frac{1}{2} z^{-1}}=\sum_{n=0}^{\infty}\left(\frac{1}{2}\right)^{n} z^{-n} \stackrel{z^{-1}}{\longleftrightarrow}\left(\frac{1}{2}\right)^{n} u[n]
+$$
+
+By linearity and time-shifting property,
+
+$$
+h[n]=\left(\frac{1}{2}\right)^{n} u[n]+\frac{1}{3}\left(\frac{1}{2}\right)^{n-1} u[n-1]
+$$
+
+## 例 (cont'd)
+
+Consider LTI system with input and output related by
+
+$$
+y[n]-\frac{1}{2} y[n-1]=x[n]+\frac{1}{3} x[n-1]
+$$
+
+System function
+
+$$
+H(z)=\frac{1+\frac{1}{3} z^{-1}}{1-\frac{1}{2} z^{-1}}
+$$
+
+Two possibilities for ROC: $|z|>\frac{1}{2}$ and $|z|<\frac{1}{2}$.
+2. If $|z|<\frac{1}{2}$
+
+$$
+\frac{1}{1-\frac{1}{2} z^{-1}}=\frac{-2 z}{1-2 z}=-\sum_{n=1}^{\infty} 2^{n} z^{n} \stackrel{z^{-1}}{\longleftrightarrow}-\left(\frac{1}{2}\right)^{n} u[-n-1]
+$$
+
+By linearity and time-shifting property,
+
+$$
+h[n]=-\left(\frac{1}{2}\right)^{n} u[-n-1]-\frac{1}{3}\left(\frac{1}{2}\right)^{n-1} u[-n]
+$$
+
+## 例 (cont'd)
+
+Consider LTI system with input and output related by
+
+$$
+y[n]-\frac{1}{2} y[n-1]=x[n]+\frac{1}{3} x[n-1]
+$$
+
+If we use Fourier transform, then frequency response is
+
+$$
+H\left(e^{j \omega}\right)=\frac{1+\frac{1}{3} e^{-j \omega}}{1-\frac{1}{2} e^{-j \omega}}
+$$
+
+and
+
+$$
+h[n]=\left(\frac{1}{2}\right)^{n} u[n]+\frac{1}{3}\left(\frac{1}{2}\right)^{n-1} u[n-1]
+$$
+
+Why only one possibility?
+
+- Fourier transform method assumes stability, requiring that ROC of $H(z)$ contain the unit circle, i.e. $|z|>\frac{1}{2}$
+- In general, not applicable to unstable systems
+
+
+## 例
+
+Consider LTI system with input and output related by
+
+$$
+y[n]-\frac{3}{4} y[n-1]+\frac{1}{8} y[n-2]=2 x[n]
+$$
+
+System function
+
+$$
+H(z)=\frac{2}{1-\frac{3}{4} z^{-1}+\frac{1}{8} z^{-2}}
+$$
+
+By partial fraction expansion
+
+$$
+H(z)=\frac{2}{\left(1-\frac{1}{2} z^{-1}\right)\left(1-\frac{1}{4} z^{-1}\right)}=\frac{4}{1-\frac{1}{2} z^{-1}}-\frac{2}{1-\frac{1}{4} z^{-1}}
+$$
+
+Take inverse $z$-transform to obtain impulse response
+
+$$
+\begin{cases}h_{1}[n]=4\left(\frac{1}{2}\right)^{n} u[n]-2\left(\frac{1}{4}\right)^{n} u[n], & \text { ROC: }|z|>\frac{1}{2} \\ h_{2}[n]=-4\left(\frac{1}{2}\right)^{n} u[-n-1]-2\left(\frac{1}{4}\right)^{n} u[n], & \text { ROC: } \frac{1}{4}<|z|<\frac{1}{2} \\ h_{3}[n]=-4\left(\frac{1}{2}\right)^{n} u[-n-1]+2\left(\frac{1}{4}\right)^{n} u[-n-1], & \text { ROC: }|z|<\frac{1}{4}\end{cases}
+$$
+
+## 例 (cont'd)
+
+Find response to $x[n]=\left(\frac{1}{4}\right)^{n} u[n]$.
+
+$$
+X(z)=\frac{1}{1-\frac{1}{4} z^{-1}}, \quad|z|>\frac{1}{4}
+$$
+
+$z$-transform of response
+
+$$
+Y(z)=H(z) X(z)=\frac{2}{\left(1-\frac{1}{2} z^{-1}\right)\left(1-\frac{1}{4} z^{-1}\right)} \cdot \frac{1}{1-\frac{1}{4} z^{-1}},
+$$
+
+NB. Output well-defined only for $|z|>\frac{1}{2}$ and $\frac{1}{4}<|z|<\frac{1}{2}$ !
+Exercise. Verify that $h_{3} * x$ is not well-defined.
+By partial fraction expansion (see slides 20-22 of Lecture 19)
+
+$$
+Y(z)=-\frac{4}{1-\frac{1}{4} z^{-1}}-\frac{2}{\left(1-\frac{1}{4} z^{-1}\right)^{2}}+\frac{8}{1-\frac{1}{2} z^{-1}}
+$$
+
+Take inverse $z$-transform to obtain response for first two cases.
+
+Inverse $Z$-transform of $\frac{1}{\left(1-a z^{-1}\right)^{n}}$
+Recall
+
+$$
+\frac{1}{1-a \zeta}=\sum_{n=0}^{\infty} a^{n} \zeta^{n}, \quad|a \zeta|<1
+$$
+
+and
+
+$$
+\frac{1}{1-a \zeta}=-\sum_{n=-\infty}^{-1} a^{n} \zeta^{n}, \quad|a \zeta|>1
+$$
+
+Repeat the derivation on slide 23 of Lecture 19, and let $\zeta=z^{-1}$,
+
+$$
+\binom{n+m-1}{m-1} a^{n} u[n] \stackrel{z}{\longleftrightarrow} \frac{1}{\left(1-a z^{-1}\right)^{m}}, \quad|z|>|a|
+$$
+
+and
+
+$$
+(-1)^{m}\binom{-n-1}{m-1} a^{n} u[-n-m] \stackrel{z}{\longleftrightarrow} \frac{1}{\left(1-a z^{-1}\right)^{m}}, \quad|z|<|a|
+$$
+
+## 例
+
+Causal LTI system described by
+
+$$
+y[n]-\frac{1}{2} y[n-1]=x[n]+\frac{2}{3} x[n-1]
+$$
+
+Find response to $x[n]=\left(-\frac{2}{3}\right)^{n} u[n]$
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-15.jpg?height=339&width=314&top_left_y=48&top_left_x=918)
+
+$$
+\begin{gathered}
+H(z)=\frac{1+\frac{2}{3} z^{-1}}{1-\frac{1}{2} z^{-1}}, \quad|z|>\frac{1}{2} \\
+X(z)=\frac{1}{1+\frac{2}{3} z^{-1}}, \quad|z|>\frac{2}{3} \\
+Y(z)=\frac{1}{1-\frac{1}{2} z^{-1}}, \quad|z|>\frac{1}{2} \Longrightarrow y[n]=\left(\frac{1}{2}\right)^{n} u[n]
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-15.jpg?height=243&width=314&top_left_y=392&top_left_x=918)
+
+ROC of $Y$ is larger than intersection of ROCs of $X$ and $H$ due to pole-zero cancellation at $z=-\frac{2}{3}$.
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-15.jpg?height=297&width=316&top_left_y=638&top_left_x=918)
+
+## 例
+
+Suppose an LTI system satisfies the following,
+
+1. output for input $x_{1}[n]=\left(\frac{1}{6}\right)^{n} u[n]$ is $y_{1}[n]=\left[a\left(\frac{1}{2}\right)^{n}+10\left(\frac{1}{3}\right)^{n}\right] u[n]$
+2. output for input $x_{2}[n]=(-1)^{n}$ is $y_{2}[n]=\frac{7}{4}(-1)^{n}$
+
+Want to find $H(z)$.
+
+$$
+\begin{gathered}
+X_{1}(z)=\frac{1}{1-\frac{1}{6} z^{-1}}, \quad|z|>\frac{1}{6} \\
+Y_{1}(z)=\frac{a}{1-\frac{1}{2} z^{-1}}+\frac{10}{1-\frac{1}{3} z^{-1}}, \quad|z|>\frac{1}{2}
+\end{gathered}
+$$
+
+System function
+
+$$
+H(z)=\frac{Y_{1}(z)}{X_{1}(z)}=\frac{\left[(a+10)-\left(5+\frac{a}{3}\right) z^{-1}\right]\left[1-\frac{1}{6} z^{-1}\right]}{\left(1-\frac{1}{2} z^{-1}\right)\left(1-\frac{1}{3} z^{-1}\right)},
+$$
+
+By 2, $H(-1)=\frac{7}{4} \Longrightarrow a=-9 \Longrightarrow H(z)=\frac{\left(1-2 z^{-1}\right)\left(1-\frac{1}{6} z^{-1}\right)}{\left(1-\frac{1}{2} z^{-1}\right)\left(1-\frac{1}{3} z^{-1}\right)}$
+
+## 例 (cont'd)
+
+Three possibilities for ROC of $H(z)=\frac{\left(1-2 z^{-1}\right)\left(1-\frac{1}{6} z^{-1}\right)}{\left(1-\frac{1}{2} z^{-1}\right)\left(1-\frac{1}{3} z^{-1}\right)}$
+
+- $|z|<\frac{1}{3}$
+- $\frac{1}{3}<|z|<\frac{1}{2}$
+- $|z|>\frac{1}{2}$
+
+By the convolution property, ROC of $Y_{1}$ contains the intersection of the ROCs of $X_{1}$ and $H \Longrightarrow$ ROC of $H$ is $|z|>\frac{1}{2} \Longrightarrow$ stable.
+Also $H(\infty)=1$ is finite ⟹ causal
+
+$$
+H(z)=\frac{1-\frac{13}{6} z^{-1}+\frac{1}{3} z^{-2}}{1-\frac{5}{6} z^{-1}+\frac{1}{6} z^{-2}}
+$$
+
+差分方程
+
+$$
+y[n]-\frac{5}{6} y[n-1]+\frac{1}{6} y[n-2]=x[n]-\frac{13}{6} x[n-1]+\frac{1}{3} x[n-2]
+$$
+
+## 目录
+
+1. 利用 Z 变换分析 DT LTI 系统
+2. 框图表示
+3. 单边 Z 变换
+
+## 系统互连
+
+LTI systems in 串联系统
+
+$$
+Y=\left(X H_{1}\right) H_{2}=X\left(H_{1} H_{2}\right)=\left(X H_{2}\right) H_{1}
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-19.jpg?height=511&width=1159&top_left_y=295&top_left_x=53)
+
+## 系统互连
+
+LTI systems in systems in 并联系统
+
+$$
+h=h_{1}+h_{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-20.jpg?height=338&width=725&top_left_y=206&top_left_x=414)
+
+$$
+H=H_{1}+H_{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-20.jpg?height=334&width=725&top_left_y=561&top_left_x=414)
+
+## 系统互连
+
+LTI systems in systems in 反馈系统
+
+$$
+\begin{gathered}
+y=h_{1} *\left(x-h_{2} * y\right) \\
+h=?
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-21.jpg?height=323&width=769&top_left_y=208&top_left_x=452)
+$Y=H_{1} X-H_{1} H_{2} Y$
+$H=\frac{Y}{X}=\frac{H_{1}}{1+H_{1} H_{2}}$
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-21.jpg?height=320&width=769&top_left_y=581&top_left_x=452)
+
+## 例
+
+Causal LTI systems with system function
+
+$$
+H(z)=\frac{1}{1-a z^{-1}}, \quad|z|>|a|
+$$
+
+Equivalent description by difference equation
+
+$$
+y[n]-a y[n-1]=x[n]
+$$
+
+with initial rest condition.
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-22.jpg?height=281&width=695&top_left_y=623&top_left_x=306)
+
+## 例
+
+Causal LTI systems with system function
+
+$$
+H(z)=\frac{1-b z^{-1}}{1-a z^{-1}}=\left(\frac{1}{1-a z^{-1}}\right)\left(1-b z^{-1}\right), \quad|z|>|a|
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-23.jpg?height=336&width=1031&top_left_y=275&top_left_x=130)
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-23.jpg?height=310&width=1033&top_left_y=625&top_left_x=128)
+
+## 例
+
+Causal LTI systems with system function
+
+$$
+H(z)=\frac{1}{\left(1+\frac{1}{2} z^{-1}\right)\left(1-\frac{1}{4} z^{-1}\right)}=\frac{1}{1+\frac{1}{4} z^{-1}-\frac{1}{8} z^{-2}}
+$$
+
+Equivalent description by different equation
+
+$$
+y[n]+\frac{1}{4} y[n-1]-\frac{1}{8} y[n-2]=x[n]
+$$
+
+Direct form
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-24.jpg?height=420&width=713&top_left_y=501&top_left_x=306)
+
+例 (cont'd)
+Causal LTI systems with system function
+
+$$
+H(z)=\frac{1}{1+\frac{1}{2} z^{-1}} \cdot \frac{1}{1-\frac{1}{4} z^{-1}}
+$$
+
+Cascade form
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-25.jpg?height=247&width=1015&top_left_y=421&top_left_x=155)
+
+例 (cont'd)
+Causal LTI systems with system function
+
+$$
+H(z)=\frac{2 / 3}{1+\frac{1}{2} z^{-1}}+\frac{1 / 3}{1-\frac{1}{4} z^{-1}}
+$$
+
+Parallel form
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-26.jpg?height=544&width=1088&top_left_y=366&top_left_x=106)
+
+## 目录
+
+1. 利用 Z 变换分析 DT LTI 系统
+2. 框图表示
+3. 单边 Z 变换
+
+## 单边 Z 变换
+
+The (bilateral) $z$-transform of a DT signal $x$
+
+$$
+X(z)=\sum_{n=-\infty}^{\infty} x[n] z^{-n}
+$$
+
+The unilateral $z$-transform of $x$ is
+
+$$
+X(z)=\sum_{n=0}^{\infty} x[n] x^{-n}
+$$
+
+also denoted
+
+$$
+X=\mathcal{U} z\{x\}, \quad x[n] \stackrel{u z}{\longleftrightarrow} X(z)
+$$
+
+Note $\mathcal{U} \mathcal{Z}\{x\}=\mathcal{Z}\{x u\}$, where $u$ is the unit step function.
+
+- ROC of $X$ is always the exterior of a circle, including $\infty$
+
+For rational $X(z)=\frac{N(z)}{D(z)}$, we always have $\operatorname{deg} N \leq \operatorname{deg} D$
+
+- $\mathcal{Z}\{x\}=\mathcal{U Z}\{x\}$ iff $x[n]=0$ for $n<0$
+
+
+## 例s
+
+The calculation of unilateral $z$-transforms is almost the same as for bilateral $z$-transforms. Remember to sum over only $n \geq 0$.
+
+例. $x_{1}[n]=a^{n} u[n]$,
+
+$$
+X_{1}(z)=X_{1}(z)=\frac{1}{1-a z^{-1}}, \quad|z|>|a|
+$$
+
+例. $x_{2}[n]=a^{n+1} u[n+1]=x_{1}[n+1]$,
+
+$$
+X_{2}(z)=z X_{1}(z)=\frac{z}{1-a z^{-1}}, \quad|z|>|a|
+$$
+
+But
+
+$$
+X_{2}(z)=\sum_{n=0}^{\infty} x[n] z^{-n}=\sum_{n=0}^{\infty} a^{n+1} z^{-n}=\frac{a}{1-a z^{-1}},|z|>|a|
+$$
+
+## 例s
+
+The calculation of inverse unilateral $z$-transforms is the same as for bilateral $z$-transforms, but we can only recover $x[n]$ for $n \geq 0!$
+例. Given unilateral $z$-transform
+
+$$
+X(z)=\frac{3-\frac{5}{6} z^{-1}}{\left(1-\frac{1}{4} z^{-1}\right)\left(1-\frac{1}{3} z^{-1}\right)}=\frac{1}{1-\frac{1}{4} z^{-1}}+\frac{2}{1-\frac{1}{3} z^{-1}}
+$$
+
+the only possibility for ROC is $|z| \geq \frac{1}{3}$. Thus
+
+$$
+x[n]=\left(\frac{1}{4}\right)^{n}+2\left(\frac{2}{3}\right)^{n}, \quad n \geq 0
+$$
+
+X provides no information about $x[n]$ for $n<0$
+例. $\frac{z^{2}}{z-a}$ is not a valid unilateral $z$-transform, since $\operatorname{deg} D=1<2=\operatorname{deg} N$
+
+Properties of 单边 Z 变换
+Many properties are the same as for bilateral $z$-transform
+
+| Property | Signal | Unilateral $z$-transform |
+| :--- | :--- | :--- |
+| - | $x[n]$ | $X(z)$ |
+| - | $y[n]$ | $y(z)$ |
+| Linearity | $a x[n]+b y[n]$ | $a \mathfrak{X}(z)+b y(z)$ |
+| Scaling in $z$ domain | $z_{0}^{n} x[n]$ | $\mathcal{X}\left(z / z_{0}\right)$ |
+| Time expansion | $x_{(k)}[n]$ | $X\left(z^{k}\right)$ |
+| Conjugation | $x^{*}[n]$ | $X^{*}\left(z^{*}\right)$ |
+| Differentiation in $z$ domain | $n x[n]$ | $-z \frac{d}{d z} \mathcal{X}(z)$ |
+| 初值定理 | $x[0]=\lim _{z \rightarrow \infty} \mathfrak{X}(z)$ |  |
+
+## Properties of Unilateral $z$-transform
+
+Convolution Property. If $x[n]=y[n]=0$ for $n<0$, then
+
+$$
+(x * y)[n] \stackrel{u z}{\longleftrightarrow} X(z) y(z)
+$$
+
+Proof. Note $(x * y)[n]=0$ for $n<0$ and $\mathcal{U} Z\{x\}=Z\{x\}$ if $x=x u$.
+
+$$
+\mathcal{U} z\{x * y\}=\mathcal{Z}\{x * y\}=\mathcal{Z}\{x\} z\{y\}=\mathcal{U} z\{x\} \mathcal{U} z\{y\}
+$$
+
+Caution. The assumption $x[n]=y[n]=0$ for $n<0$ is important!
+例. $x[n]=\delta[n]-\delta[n-1], y[n]=\delta[n+1]$,
+
+$$
+X(z)=1-z^{-1}, \quad y(z)=0
+$$
+
+Note $(x * y)[n]=\delta[n+1]-\delta[n]$, and
+
+$$
+\mathcal{U} z\{x * y\}=-1 \neq \mathfrak{X}(z) y(z)
+$$
+
+## Properties of Unilateral $z$-transform
+
+Time delay.
+
+$$
+x[n-m] \stackrel{u z}{\longleftrightarrow} x^{-m}\left(\mathfrak{X}(z)+\sum_{k=1}^{m} x[-k] z^{k}\right)
+$$
+
+Proof.
+
+$$
+\begin{aligned}
+\mathcal{U} z\{x[n-m]\} & =\sum_{n=0}^{\infty} x[n-m] z^{-n} \\
+& =z^{-m} \sum_{k=-m}^{\infty} x[k] z^{-k} \\
+& =z^{-m}\left(X(z)+\sum_{k=-m}^{-1} x[k] z^{-k}\right)
+\end{aligned}
+$$
+
+## Properties of Unilateral $z$-transform
+
+Time advance.
+
+$$
+x[n+m] \stackrel{u z}{\longleftrightarrow} z^{m}\left(\mathcal{X}(z)-\sum_{k=0}^{m-1} x[k] z^{-k}\right)
+$$
+
+Proof.
+
+$$
+\begin{aligned}
+\mathcal{U} z\{x[n+m]\} & =\sum_{n=0}^{\infty} x[n+m] z^{-n} \\
+& =z^{m} \sum_{k=m}^{\infty} x[k] z^{-k} \\
+& =z^{m}\left(\mathcal{X}(z)-\sum_{k=0}^{m-1} x[k] z^{-k}\right)
+\end{aligned}
+$$
+
+## 线性常系数差分方程
+
+Consider difference equation
+
+$$
+\sum_{k=0}^{N} a_{k} y[n-k]=\sum_{k=0}^{M} b_{k} x[n-k]
+$$
+
+with initial condition $y[-1], y[-2], \ldots, y[-N]$ and causal input, i.e. $x[n]=0$ for $n<0$.
+Take unilateral $z$-transform of both sides
+
+$$
+\sum_{k=0}^{N} a_{k} z^{-k}\left[y(z)+\sum_{\ell=-k}^{-1} y[\ell] z^{-\ell}\right]=\sum_{k=0}^{M} b_{k} z^{-k} \mathfrak{X}(z)
+$$
+
+so
+
+$$
+y(z)=\underbrace{\frac{\sum_{k=0}^{M} b_{k} z^{-k}}{\sum_{k=0}^{N} a_{k} z^{-k}} \mathcal{X}(z)}_{\text {零状态响应 }} \underbrace{-\frac{\sum_{k=0}^{N} a_{k} z^{-k} \sum_{\ell=-k}^{-1} y[\ell] z^{-\ell}}{\sum_{k=0}^{N} a_{k} z^{-k}}}_{\text {零输入响应 }}
+$$
+
+## 例
+
+Consider difference equation
+
+$$
+y[n]+2 y[n-1]=x[n]
+$$
+
+with initial condition $y[-1]=\beta$ and $x[n]=\alpha u[n]$.
+Take unilateral $z$-transform of both sides
+
+$$
+y(z)+2 z^{-1}(y(z)+y[-1] z)=x(z)=\frac{\alpha}{1-z^{-1}}
+$$
+
+so
+
+$$
+y(z)=\underbrace{\frac{1}{1+2 z^{-1}} \cdot \frac{\alpha}{1-z^{-1}}}_{\text {零状态响应 }}+\underbrace{\frac{-2 \beta}{1+2 z^{-1}}}_{\text {零输入响应 }}
+$$
+
+例 (cont'd)
+
+$$
+y(z)=\underbrace{\frac{1}{1+2 z^{-1}} \cdot \frac{\alpha}{1-z^{-1}}}_{\text {零状态响应 }}+\underbrace{\frac{-2 \beta}{1+2 z^{-1}}}_{\text {零输入响应 }}
+$$
+
+Zero-input response. $\alpha=0$
+
+$$
+y_{z i}[n]=-2 \beta(-2)^{n}, \quad n \geq 0
+$$
+
+Zero-state response. $\beta=0$, system at initial rest
+
+$$
+\begin{gathered}
+y_{z s}(z)=\frac{1}{1+2 z^{-1}} \cdot \frac{\alpha}{1-z^{-1}}=\frac{2 \alpha / 3}{1+2 z^{-1}}+\frac{\alpha / 3}{1-z^{-1}} \\
+y_{z s}[n]=\frac{2 \alpha}{3}(-2)^{n}+\frac{\alpha}{3}, \quad n \geq 0
+\end{gathered}
+$$
+
+## 例
+
+## Consider difference equation
+
+$$
+y[n]-y[n-1]-2 y[n-2]=x[n]+2 x[n-2]
+$$
+
+with initial condition $y[-1]=2, y[-2]=-\frac{1}{2}$ and $x[n]=u[n]$.
+
+## Take unilateral $z$-transform of both sides
+
+$$
+y(z)-z^{-1}(y(z)+y[-1] z)-2 z^{-2}\left(y(z)+y[-1] z+y[-2] z^{2}\right)=\left(1+2 z^{-2}\right) \mathfrak{X}(z)
+$$
+
+so
+
+$$
+\begin{aligned}
+y(z) & =\underbrace{\frac{1+2 z^{-2}}{1-z^{-1}-2 z^{-2}} \cdot \frac{1}{1-z^{-1}}}_{\text {零状态响应 }}+\underbrace{\frac{2 z^{-1} y[-1]+y[-1]+2 y[-2]}{1-z^{-1}-2 z^{-2}}}_{\text {零输入响应 }} \\
+& =\underbrace{\frac{1+2 z^{-2}}{\left(1+z^{-1}\right)\left(1-2 z^{-1}\right)\left(1-z^{-1}\right)}}_{\text {零状态响应 }}+\underbrace{\frac{4 z^{-1}+1}{\left(1+z^{-1}\right)\left(1-2 z^{-1}\right)}}_{\text {零输入响应 }}
+\end{aligned}
+$$
+
+## 例 (cont'd)
+
+For the 零输入响应,
+
+$$
+y_{z i}(z)=\frac{4 z^{-1}+1}{\left(1+z^{-1}\right)\left(1-2 z^{-1}\right)}=\frac{-1}{1+z^{-1}}+\frac{2}{1-2 z^{-1}}
+$$
+
+SO
+
+$$
+y_{z i}[n]=2^{n+1}+(-1)^{n+1}, \quad n \geq 0
+$$
+
+For the 零状态响应,
+
+$$
+\begin{aligned}
+y_{z s}(z) & =\frac{1+2 z^{-2}}{\left(1+z^{-1}\right)\left(1-2 z^{-1}\right)\left(1-z^{-1}\right)} \\
+& =\frac{1 / 2}{1+z^{-1}}+\frac{2}{1-2 z^{-1}}+\frac{-3 / 2}{1-z^{-1}}
+\end{aligned}
+$$
+
+So
+
+$$
+y_{z s}[n]=\frac{1}{2}(-1)^{n}+2^{n+1}-\frac{3}{2}, \quad n \geq 0
+$$
+
+
+[^0]:    ${ }^{1}$ This is the more precise statement of $\infty \in$ ROC.

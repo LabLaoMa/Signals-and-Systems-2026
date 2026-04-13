@@ -8,7 +8,7 @@ Time and frequency characterization of signals and systems
 
 - LTI系统频率响应的模和相位表示
 - 线性和非线性相位
-：群时延
+：**群时延**
 －理想频率选择性滤波器的时域特性
 
 
