@@ -1503,5 +1503,33 @@
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "LTI系统频率响应的模–相位表示",
     "text": "LTI系统频率响应的模–相位表示\n对于线性时不变系统\n\\[\nY(j \\omega)=H(j \\omega) X(j \\omega), \\quad Y\\left(e^{j \\omega}\\right)=H\\left(e^{j \\omega}\\right) X\\left(e^{j \\omega}\\right)\n\\] 其中，\\(H（j \\omega）=|H(j \\omega)| e^{j \\arg H(j \\omega)}\\),\\(|H(j \\omega)|\\) 为幅值响应，\\(e^{j \\arg H(j \\omega)}\\)为相位响应。\n\\[\n|Y|=|H| \\cdot|X|, \\quad |H| \\text{系统的幅值响应，也称系统的增益(gain) }\n\\]\n以及\n\\[\n\\arg Y=\\arg H+\\arg X, \\quad \\arg H \\text{表示系统引入的相移(phase shift) }\n\\]\nLTI 系统带来的影响，可能是我们希望得到的，也可能不是。\n\n在滤波中，我们往往希望系统产生特定效果；\n若这种影响不是我们想要的，则称为失真(distortion)。\n总的来说，失真包含幅度失真和相位失真两种。\n模拟信号一旦发生失真，在以后的处理中，将保持这种失真-失真信号的继承性。\n\n例：无失真传输\n\n理想情况下，\\(H(j \\omega)=1\\)，但这对应于非因果系统；\n当 \\(H(j \\omega)=K e^{-j \\omega t_{0}}\\) 时，系统保持波形形状不变，只引入幅值缩放和时延。"
+  },
+  {
+    "objectID": "Chapter06.html#对数模和波特图",
+    "href": "Chapter06.html#对数模和波特图",
+    "title": "第六章 信号与系统的时域和频域特性",
+    "section": "6．2．3 对数模和波特图",
+    "text": "6．2．3 对数模和波特图\n＊相位关系是相加的，而模的关系则涉及 \\(|\\boldsymbol{H}(\\boldsymbol{j} \\omega)|\\) 和 \\(|\\boldsymbol{X}(\\boldsymbol{j} \\omega)|\\) 的相乘。因此，如果傅里叶变换的模是在一个对数幅度上展示的话，那么就有一个相加的关系：\n\\[\n\\log |Y(j \\omega)|=\\log |H(j \\omega)|+\\log |X(j \\omega)|\n\\]\n＊因此，如果有一张输入的傅里叶变换和LTI系统频率响应的对数模和相位图，那么输出的傅里叶变换就可以将两者对数模的图相加和它们的相位图相加来得到。 ＊在一个对数标尺上展现傅里叶变换的模，还能在一个较宽的动态范围上将细节显示出来。\n般所采用的对数标尺是以 \\(20 \\log _{10}\\) 为单位，称之为分贝 （dB）。因此，0dB就对应于频率响应的模等于 1，20dB就对应于10倍的单位增益，－20dB相应于衰减0．1。 －对于连续时间系统，采用对数频率坐标也是很通常的。 \\(\\mathbf{2 0 l o g}_{\\mathbf{1 0}}|\\boldsymbol{H}(\\mathbf{j} \\omega)|\\)和 \\(\\Varangle \\boldsymbol{H}(\\boldsymbol{j} \\omega)\\) 对 \\(\\boldsymbol{\\operatorname { l o g }}_{\\mathbf{1 0}}(\\omega)\\) 作 \n的图称之为波特图。\n 图 6.8 一个典型的波符图（注意，\\(\\omega\\) 是用对数坐标画出的）\n注意，我们在4．3．3节讨论过的，如果 \\(h(t)\\) 是实函数，那么 \\(|\\boldsymbol{H}(\\boldsymbol{j} \\omega)|\\) 是 \\(\\omega\\) 的偶函数，而 \\(K \\boldsymbol{H}(\\boldsymbol{j} \\omega)\\) 是 \\(\\omega\\) 的奇函数。正是这个原因，负 \\(\\omega\\) 部分的图就是多余的了。因此，只需画出频率响应特性在 \\(\\omega&gt;0\\) 对 \\(\\log _{10}(\\omega)\\) 的图就够了。 ＊对数频率坐标，常常可以比线性频率展示宽的多的频率范围。\n\n\n\n1\n2\n3\n4\n5\n6\n7\n\n\n\n\n在离散时间情况下，傅里叶变换和频率响应的模常常也是用dB来表示的。然而，在离散时间情况下对数频率坐标一般是不用的，因为这时要考虑的频率范围就只有 \\(2 \\pi\\) 宽，\\(H\\left(e^{j \\omega}\\right)\\) 是周期的。 ＊注意，对实值 \\(h[n]\\) ，仅需画出 \\([0, \\pi]\\) 范围的 \\(H\\left(e^{j \\omega}\\right)\\)\n 图6．9 一个高敬时间频率的应 \\(H\\left(e^{\\text {mi）}}\\right)\\) 的模和相位的典型作图表示"
+  },
+  {
+    "objectID": "Chapter06.html#对数模和伯德图bode-diagram",
+    "href": "Chapter06.html#对数模和伯德图bode-diagram",
+    "title": "第六章 信号与系统的时域和频域特性",
+    "section": "对数模和伯德图（Bode Diagram）",
+    "text": "对数模和伯德图（Bode Diagram）\n模的关系涉及 \\(|\\boldsymbol{H}(\\boldsymbol{j} \\omega)|\\) 和 \\(|\\boldsymbol{X}(\\boldsymbol{j} \\omega)|\\) 的相乘。因此，如果傅里叶变换的模是在一个对数幅度上展示的话，那么就有一个相加的关系：\n\\[\n\\log |Y(j \\omega)|=\\log |H(j \\omega)|+\\log |X(j \\omega)|\n\\] * 在一个对数标尺上展现傅里叶变换的模，还能在一个较宽的动态范围上将细节显示出来。\n\n\n\n一般所采用的对数标尺是以 \\(20 \\log _{10}\\) 为单位，称之为分贝 （dB）。\n0dB就对应于频率响应的模等于 1\n20dB就对应于10倍的单位增益\n－20dB相应于衰减0．1。\n对于连续时间系统，常采用对数频率坐标。 \\(\\mathbf{2 0 l o g}_{\\mathbf{1 0}}|\\boldsymbol{H}(\\mathbf{j} \\omega)|\\)和 \\(\\arg \\boldsymbol{H}(\\boldsymbol{j} \\omega)\\) 对 \\(\\boldsymbol{\\operatorname { l o g }}_{\\mathbf{1 0}}(\\omega)\\) 作的图称之为伯德图。\n对数频率坐标，常常可以比线性频率展示宽的多的频率范围。"
+  },
+  {
+    "objectID": "Chapter06.html#对数模和伯德图bode-diagram-1",
+    "href": "Chapter06.html#对数模和伯德图bode-diagram-1",
+    "title": "第六章 信号与系统的时域和频域特性",
+    "section": "对数模和伯德图（Bode Diagram）",
+    "text": "对数模和伯德图（Bode Diagram）\n\n\n\n1\n2\n3\n4\n5\n6\n7\n\n\n\n\n在离散时间情况下，傅里叶变换和频率响应的模常常也是用dB来表示的。然而，在离散时间情况下对数频率坐标一般是不用的，因为这时要考虑的频率范围就只有 \\(2 \\pi\\) 宽，\\(H\\left(e^{j \\omega}\\right)\\) 是周期的。 ＊注意，对实值 \\(h[n]\\) ，仅需画出 \\([0, \\pi]\\) 范围的 \\(H\\left(e^{j \\omega}\\right)\\)"
+  },
+  {
+    "objectID": "Chapter06.html#对数模和伯德图bode-diagram-2",
+    "href": "Chapter06.html#对数模和伯德图bode-diagram-2",
+    "title": "第六章 信号与系统的时域和频域特性",
+    "section": "对数模和伯德图（Bode Diagram）",
+    "text": "对数模和伯德图（Bode Diagram）\n\n\n\n1\n2\n3\n4\n5\n6\n7\n\n\n\n\n在离散时间情况下，傅里叶变换和频率响应的模常常也是用dB来表示的。然而，在离散时间情况下对数频率坐标一般是不用的，因为这时要考虑的频率范围就只有 \\(2 \\pi\\) 宽，\\(H\\left(e^{j \\omega}\\right)\\) 是周期的。 ＊注意，对实值 \\(h[n]\\) ，仅需画出 \\([0, \\pi]\\) 范围的 \\(H\\left(e^{j \\omega}\\right)\\)\n 图6．9 一个高敬时间频率的应 \\(H\\left(e^{\\text {mi）}}\\right)\\) 的模和相位的典型作图表示"
   }
 ]

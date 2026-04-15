@@ -537,9 +537,10 @@ x[n]=\frac{1}{2 \pi} \int_{-\pi}^{\pi} X\left(e^{j \omega}\right) e^{j \omega n}
 $$
 
 注意：也可通过对 $e^{j \omega_{0} t}$ 以 $T=1, \omega_{s}=2 \pi$ 采样得到
+
 注意：$x[n]$ 不一定是周期信号！直流分量对应 $\omega_{0}=0$。
 
-## 例：正弦信号
+## 例：余弦信号
 
 $$
 \begin{aligned}
