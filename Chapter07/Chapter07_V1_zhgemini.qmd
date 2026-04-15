@@ -1,0 +1,274 @@
+---
+title: "第五章 离散时间傅里叶变换"
+author: "马越"
+institute: >
+  北京理工大学机械与车辆学院<br> 
+  Email: yuema@bit.edu.cn<br>
+format:
+  revealjs:
+    theme: [simple, custom2.scss]
+    transition: slide
+    slide-number: true
+    incremental: false
+    center: false
+    math: mathjax
+    footer: '<div class="footer-3col"><div class="left">机械与车辆学院 马越</div><div class="center">信号与系统</div><div class="right">2026 春季学期</div></div>'
+    toc: false  
+    titleSelector: 'h1, h2, h3'
+    toc-title: "目录"
+    depth: 3
+    embed-resources: true
+    self-contained-math: true
+---
+
+## 目录 {#toc0}
+
+- [**1. 非周期信号的表示：离散时间傅里叶变换**](#sec51)
+- [2. 离散时间傅里叶变换的性质](#sec52)
+- [3. 卷积性质](#sec53)
+- [4. 乘积性质](#sec54)
+- [5. 变换性质和变换对列表](#sec55)
+- [6. 对偶性](#sec56)
+- [7. 由线性常系数差分方程表征的系统](#sec57)
+
+# 1. 非周期信号的表示：离散时间傅里叶变换 {#sec51}
+
+## 连续时间信号的采样
+
+采样将连续时间 (CT) 信号转换为离散时间 (DT) 信号
+
+连续时间信号
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-03.jpg?height=247&width=521&top_left_y=328&top_left_x=79)
+
+离散时间信号
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-03.jpg?height=249&width=515&top_left_y=326&top_left_x=681)
+
+$T=$ 采样周期，均匀采样是最常用的方式。
+采样技术使得我们可以利用数字电子设备来处理、记录、传输、存储和检索连续时间信号。
+
+- 应用实例：MP3、数字相机、打印机
+
+## 连续时间信号的采样
+
+采样过程会损失信息，不同的信号可能会产生相同的样本序列：
+
+- $x_{1}(t)=\cos \left(\frac{\pi}{3} t\right)$ 与 $x_{2}(t)=\cos \left(\frac{7 \pi}{3} t\right)$ 是不同的信号。
+- 但它们的采样序列 $x_{1}[n]=\cos \left(\frac{\pi}{3} n\right)$ 与 $x_{2}[n]=\cos \left(\frac{7 \pi}{3} n\right)$ 是完全相同的。
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-04.jpg?height=401&width=988&top_left_y=412&top_left_x=135)
+
+**关键问题：** 在什么条件下，我们才能从样本中完全恢复原信号？
+
+## 冲激列采样
+
+**时域分析**
+
+连续时间信号 $x(t)$
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-05.jpg?height=229&width=697&top_left_y=153&top_left_x=508)
+
+单位冲激串：
+$$
+\begin{aligned}
+& p(t)=\sum_{n=-\infty}^{\infty} \delta(t-n T) \\
+& x_{p}(t)=x(t) p(t) \\
+& =\sum_{n=-\infty}^{\infty} x(n T) \delta(t-n T)
+\end{aligned}
+$$
+
+## 冲激列采样
+
+**频域分析**
+
+连续时间信号频谱 $X(j \omega)$
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-06.jpg?height=256&width=582&top_left_y=102&top_left_x=645)
+
+冲激串频谱：
+$$
+\begin{aligned}
+& P(j \omega)=\omega_{s} \sum_{k=-\infty}^{\infty} \delta\left(\omega-k \omega_{s}\right) \\
+& X_{p}(j \omega)=\frac{1}{2 \pi}(X * P)(\omega) \\
+& =\frac{1}{T} \sum_{k=-\infty}^{\infty} X\left(j\left(\omega-k \omega_{s}\right)\right)
+\end{aligned}
+$$
+
+## 冲激列采样
+
+**频域限制与带宽**
+
+带限连续信号：当 $|\omega|>\omega_{M}$ 时，$X(j \omega)=0$。
+
+采样频率 $\omega_{s}=\frac{2 \pi}{T}$
+
+**情况 1：** $\omega_{s}>2 \omega_{M}$
+频谱副本之间没有重叠，可以通过低通滤波器恢复 $X$。
+
+**情况 2：** $\omega_{s}<2 \omega_{M}$
+频谱副本发生重叠（混叠），无法恢复 $X$。
+
+## 采样定理
+
+对于频谱满足 $X(j \omega)=0$（当 $|\omega|>\omega_{M}$ 时）的带限信号 $x(t)$，若满足以下条件，则该信号可由其样本 $x(n T), n \in \mathbb{Z}$ 唯一确定：
+
+$$
+\omega_{s} \triangleq \frac{2 \pi}{T}>2 \omega_{M}, \quad 2 \omega_{M} \text{ 称为 奈奎斯特率 (Nyquist rate)}
+$$
+
+给定样本序列 $\{x(n T)\}, x(t)$ 的重构步骤如下：
+
+1. 构造冲激串信号 $x_{p}(t)=\sum_{n=-\infty}^{\infty} x(n T) \delta(t-n T)$
+2. 将 $x_{p}$ 通过增益为 $T$、截止频率为 $\omega_{c} \in\left(\omega_{M}, \omega_{s}-\omega_{M}\right)$ 的低通滤波器：
+   $$H(j \omega)=T\left[u\left(\omega+\omega_{c}\right)-u\left(\omega-\omega_{c}\right)\right]$$
+3. 滤波器输出 $x_{r}(t)$ 即为原信号 $x(t)$。
+
+## 频域中的重建
+
+- 奈奎斯特频率：$\omega_{M}$
+- 奈奎斯特率：$2 \omega_{M}$
+
+**理想低通滤波器要求：**
+- 增益：$T$
+- 截止频率范围：$\omega_{M}<\omega_{c}<\omega_{s}-\omega_{M}$
+
+## 时域中的重建
+
+低通滤波器的冲激响应：
+$$h(t)=\frac{T \sin \left(\omega_{c} t\right)}{\pi t}$$
+
+通过使用 sinc 函数的带限插值来恢复 $x$：
+$$x(t)=x_{r}(t)=\left(x_{p} * h\right)(t)=\sum_{n=-\infty}^{\infty} x(n T) \frac{T \sin \left(\omega_{c}(t-n T)\right)}{\pi(t-n T)}$$
+
+## 时域中的重建（Whittaker-Shannon）
+
+当设置截止频率 $\omega_{c}=\frac{\omega_{s}}{2}=\frac{\pi}{T}$ 时，得到 **Whittaker-Shannon 插值公式**：
+$$x_{r}(t)=\sum_{n=-\infty}^{\infty} x(n T) \operatorname{sinc}\left(\frac{t-n T}{T}\right), \quad \text{其中 } \operatorname{sinc}(t)=\frac{\sin (\pi t)}{\pi t}$$
+
+该公式实际上是一个正交展开。
+
+---
+
+## 目录
+
+1. 采样定理
+2. 零阶保持与线性插值
+3. 混叠
+
+## 其他插值方法
+
+除了理想的带限插值，实际工程中常用的方法还包括：
+
+- 零阶保持 (Zero-order hold)
+- 线性插值 (一阶保持)
+
+## 零阶保持 (ZOH)
+
+重构信号：
+$$x_{0}(t)=\left(x_{p} * h_{0}\right)(t)=\sum_{n=-\infty}^{\infty} x(n T) h_{0}(t-n T)$$
+
+零阶保持滤波器响应：
+$$H_{0}(j \omega)=e^{-j \omega T / 2} \frac{2 \sin (\omega T / 2)}{\omega}$$
+
+## 线性插值 (一阶保持 FOH)
+
+重构信号：
+$$x_{1}(t)=\left(x_{p} * h_{1}\right)(t)=\sum_{n=-\infty}^{\infty} x(n T) h_{1}(t-n T)$$
+
+一阶保持滤波器响应：
+$$H_{1}(j \omega)=\frac{1}{T}\left[\frac{\sin (\omega T / 2)}{\omega / 2}\right]^{2}$$
+
+---
+
+## 混叠 (Aliasing)
+
+混叠会导致频率“折叠”：
+
+- 当输入频率 $\omega_{0} < \frac{1}{2} \omega_{s}$ 时：可以正确重构。
+- 当输入频率 $\omega_{0} > \frac{1}{2} \omega_{s}$ 时：重构信号会出现错误的频率 $x_{r}(t)=\cos \left(\left(\omega_{s}-\omega_{0}\right) t-\phi\right)$。
+
+**实例：** 在电影中，快速转动的车轮看起来可能转得很慢，甚至反向旋转。
+
+## 抗混叠滤波器 (Anti-aliasing Filter)
+
+在采样之前，先通过滤波器滤除高于 $\frac{\omega_{s}}{2}$ 的频率分量，以防止混叠发生。
+
+---
+
+## DTFT 的卷积性质
+
+$$
+(x * h)[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right) H\left(e^{j \omega}\right)
+$$
+
+**注意：** 这是连续时间傅里叶级数 (CTFS) 乘积性质的对偶。
+
+## LTI 系统的频率响应
+
+LTI 系统 $T$ 可以由以下方式完全表征：
+- 冲激响应 $h$
+- 频率响应 $H=\mathcal{F}\{h\}$（如果 $H$ 存在）
+
+通常，卷积性质意味着：
+$$Y = H X$$
+与其计算繁琐的时域卷积 $x * h$，我们可以通过以下步骤获得输出：
+$$y=\mathcal{F}^{-1}(H \cdot X)$$
+
+## DTFT 的乘积性质
+
+$$
+x[n] y[n] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{2 \pi} X \circledast Y = \frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right) Y\left(e^{j(\omega-\theta)}\right) d \theta
+$$
+
+**注意：** 这是 CTFS 周期卷积性质的对偶。
+
+## 线性常系数差分方程描述的系统
+
+对于由下式描述的 LTI 系统：
+$$\sum_{k=0}^{N} a_{k} y[n-k]=\sum_{k=0}^{M} b_{k} x[n-k]$$
+
+其频率响应 $H(e^{j\omega})$ 是 $e^{-j\omega}$ 的有理函数：
+$$H\left(e^{j \omega}\right)=\frac{\sum_{k=0}^{M} b_{k} e^{-j \omega k}}{\sum_{k=0}^{N} a_{k} e^{-j \omega k}}$$
+
+---
+
+## 抽取 (Decimation)
+
+抽取通过减少样本点来降低采样率：
+1. 先进行采样：$x_{p}[n]=\sum_{k=-\infty}^{\infty} x[k N] \delta[n-k N]$
+2. 得到抽取信号：$x_{b}[n]=x[n N]$
+
+频谱关系：
+$$X_{b}(e^{j \omega}) = X_{p}(e^{j \omega / N})$$
+如果不发生混叠，$X_{b}$ 是 $X$ 在每个周期内的展宽版本。
+
+---
+
+## 连续时间信号的离散时间处理
+
+离散时间处理的优点：
+- 数字电子设备的通用性
+- 较强的抗噪声能力
+
+**实际结构：**
+- **C/D 转换：** 由模数转换器 (ADC) 实现。
+- **离散处理：** 使用 DSP 或计算机。
+- **D/C 转换：** 由数模转换器 (DAC) 实现。
+
+**理想化假设：**
+- 无量化误差
+- C/D 建模为冲激串采样
+- D/C 建模为理想低通重构
+
+## 频率响应映射
+
+整体连续时间系统的等效频率响应 $H_{c}(j \omega)$ 与离散时间频率响应 $H_{d}(e^{j \Omega})$ 的关系：
+$$H_{c}(j \omega)= \begin{cases}H_{d}\left(e^{j \omega T}\right) & |\omega|<\frac{\omega_{s}}{2} \\ 0, & \text{其他}\end{cases}$$
+
+即离散时间系统的频率响应是连续时间响应在频率上的归一化映射：
+$$H_{d}\left(e^{j \Omega}\right)=H_{c}\left(j \frac{\Omega}{T}\right),|\Omega|<\pi$$
+
+---
+
+<section style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+  <div style="transform: translateY(10vh);">
+    <h1>第五章 <br> 离散时间傅里叶变换 <br> 完</h1>
+  </div>
+</section>

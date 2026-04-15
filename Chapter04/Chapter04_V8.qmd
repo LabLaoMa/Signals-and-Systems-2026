@@ -1147,7 +1147,7 @@ $$
 由于 $x(t) = y'(t)$，根据微分性质可知：
 $$X(j\omega) = j\omega Y(j\omega) \Longrightarrow Y(j\omega) = \frac{1}{j\omega} X(j\omega) \quad (\text{对于 } \omega \neq 0)$$
 
-直观地看，$y(t)$ 具有直流分量。其平均值 $\bar{y}$ 计算如下：
+凭直觉判断，$y(t)$ 应该具有直流分量。其平均值 $\bar{y}$ 计算如下：
 
 $$
 \begin{aligned}
@@ -2554,6 +2554,13 @@ $$
 
 ## 作业
 
+1. 4.5 
+
+2. 4.8
+
+3. 4.11 
+
+4. 4.16
  
 
 ---

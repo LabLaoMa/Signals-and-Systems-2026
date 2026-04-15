@@ -89,7 +89,7 @@ $$
 
 ::: {.column width="50%"}
 
-![](imglink/01.png){fig-align=left, width=28%}
+![](imglink/01.png){fig-align=left, width=30%}
 
 :::
 
@@ -255,7 +255,7 @@ $$
 如果当 $\left|\omega-\omega_{0}\right| \leq \Delta \omega$ 时，$|H(j \omega)| \approx\left|H\left(j \omega_{0}\right)\right|$，
 $Y(j \omega) \approx\left|H\left(j \omega_{0}\right)\right| X(j \omega) e^{-j \phi_{0}-j \tau\left(\omega_{0}\right) \omega} \Longrightarrow y(t) \approx\left|H\left(j \omega_{0}\right)\right| e^{-j \phi_{0}} x\left(t-\tau\left(\omega_{0}\right)\right)$
 
-## 群时延
+## **群时延**
 
 $$
 H(j \omega)=e^{-j \arctan \omega} \Longrightarrow \tau(\omega)=\frac{d}{d \omega} \arctan (\omega)=\frac{1}{1+\omega^{2}}
@@ -271,6 +271,56 @@ $$
 其中，$\phi_{0}=-\arctan \pi+\frac{\pi}{1+\pi^{2}}$，$\tau_{0}=\frac{1}{1+\pi^{2}}$。
 
 ![](imglink/groupdelay.png){fig-align=center, width=30%}
+
+## 对数模和伯德图（Bode Diagram）
+
+模的关系涉及 $|\boldsymbol{H}(\boldsymbol{j} \omega)|$ 和 $|\boldsymbol{X}(\boldsymbol{j} \omega)|$ 的相乘。因此，如果傅里叶变换的模是在一个对数幅度上展示的话，那么就有一个相加的关系：
+
+$$
+\log |Y(j \omega)|=\log |H(j \omega)|+\log |X(j \omega)|
+$$
+* 在一个对数标尺上展现傅里叶变换的模，还能在一个较宽的动态范围上将细节显示出来。
+  
+
+
+:::: {.columns style="text-align: center;"}
+
+::: {.column width="50%"}
+
+- 一般所采用的对数标尺是以 $20 \log _{10}$ 为单位，称之为分贝 （dB）。
+
+- 0dB就对应于频率响应的模等于 1
+
+- 20dB就对应于10倍的单位增益
+
+- －20dB相应于衰减0．1。
+
+- 对于连续时间系统，常采用对数频率坐标。 $\mathbf{2 0 l o g}_{\mathbf{1 0}}|\boldsymbol{H}(\mathbf{j} \omega)|$和 $\arg \boldsymbol{H}(\boldsymbol{j} \omega)$ 对 $\boldsymbol{\operatorname { l o g }}_{\mathbf{1 0}}(\omega)$ 作的图称之为伯德图。
+
+- 对数频率坐标，常常可以比线性频率展示宽的多的频率范围。
+:::
+::: {.column width="50%"}
+![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32.jpg?height=590&width=1334&top_left_y=496&top_left_x=1160){width=50%}
+
+![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32.jpg?height=607&width=1328&top_left_y=1171&top_left_x=1160){width=50%}
+:::
+::::
+
+
+
+
+
+
+
+## 对数模和伯德图（Bode Diagram）
+|  |  |  |  |  |  |  |  |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 |  | C
+
+在离散时间情况下，傅里叶变换和频率响应的模常常也是用dB来表示的。然而，在离散时间情况下对数频率坐标一般是不用的，因为这时要考虑的频率范围就只有 $2 \pi$ 宽，$H\left(e^{j \omega}\right)$ 是周期的。
+＊注意，对实值 $h[n]$ ，仅需画出 $[0, \pi]$ 范围的 $H\left(e^{j \omega}\right)$
+
+![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-34.jpg?height=1409&width=1421&top_left_y=213&top_left_x=1067)
 
 ## 目录 {#toc2}
 

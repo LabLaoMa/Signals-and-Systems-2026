@@ -1,0 +1,1212 @@
+---
+title: "第五章 离散时间傅里叶变换"
+author: "马越"
+institute: >
+  北京理工大学机械与车辆学院<br> 
+  Email: yuema@bit.edu.cn<br>
+format:
+  revealjs:
+    theme: [simple, custom2.scss]
+    transition: slide
+    # title-slide-attributes:
+    #   data-background-color: "#0b2a4a"
+    #   data-background-opacity: "0.96"
+    slide-number: true
+    incremental: false
+    center: false
+    # width: 1366
+    # height: 768
+    # margin: 0.02
+    math: mathjax
+    footer: '<div class="footer-3col"><div class="left">机械与车辆学院 马越</div><div class="center">信号与系统</div><div class="right">2026 春季学期</div></div>'
+    toc: false                 # 可以关掉默认的
+    titleSelector: 'h1, h2, h3' # 显示 h3 层级
+    # revealjs-plugins:
+    #  - tableofcontents        # 加载插件
+    toc-title: "目录"     # 中文标题（默认是 Table of Contents）
+    depth: 3          # 显示到几级标题（默认 3，建议 2 或 3）
+    embed-resources: true
+    self-contained-math: true
+    #include-in-header: plugin/myspotlight.html
+    #spotlight_size: 200
+
+    # 封面背景图可选：
+    # background-image: "img/cover.jpg"
+    # background-opacity: 0.22
+  beamer:
+    theme: Madrid
+    fonttheme: structurebold
+    keep-tex: true   # 保留中间生成的 .tex 文件以便微调
+resource-path: ["."]
+execute:
+  echo: false
+---
+
+
+## 目录 {#toc0}
+
+- [**1. 非周期信号的表示：离散时间傅里叶变换**](#sec51)
+- [2. 离散时间傅里叶变换的性质](#sec52)
+- [3. 卷积性质](#sec53)
+- [4. 乘积性质](#sec54)
+- [5. 变换性质和变换对列表](#sec55)
+- [6. 对偶性](#sec56)
+- [7. 由线性常系数差分方程表征的系统](#sec57)
+# 1. 非周期信号的表示：离散时间傅里叶变换{#sec51}
+
+## 连续时间信号的采样
+
+采样将连续时间（CT）信号转换为离散时间（DT）信号
+
+连续时间信号
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-03.jpg?height=247&width=521&top_left_y=328&top_left_x=79)
+
+离散时间信号
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-03.jpg?height=249&width=515&top_left_y=326&top_left_x=681)
+
+$T$ 为采样周期，其中均匀采样最为常见
+使得可以利用数字电子设备对连续时间信号进行处理、记录、传输、存储与读取
+
+- 例如：MP3、数码相机、打印机
+
+
+## 连续时间信号的采样
+
+采样会丢失信息，不同的信号可能得到相同的样本值
+
+- $x_{1}(t)=\cos \left(\frac{\pi}{3} t\right), x_{2}(t)=\cos \left(\frac{7 \pi}{3} t\right)$，二者不同
+- $x_{1}[n]=\cos \left(\frac{\pi}{3} n\right)=x_{2}[n]=\cos \left(\frac{7 \pi}{3} n\right)$，二者完全相同
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-04.jpg?height=401&width=988&top_left_y=412&top_left_x=135)
+
+在什么条件下，我们能够由样本恢复原信号？
+
+## 冲激列采样
+
+时域
+
+连续时间信号 $x(t)$
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-05.jpg?height=229&width=697&top_left_y=153&top_left_x=508)
+冲激列
+
+$$
+\begin{aligned}
+& p(t)=\sum_{n=-\infty}^{\infty} \delta(t-n T) \\
+& x_{p}(t)=x(t) p(t) \\
+& =\sum_{n=-\infty}^{\infty} x(n T) \delta(t-n T)
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-05.jpg?height=172&width=697&top_left_y=430&top_left_x=508)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-05.jpg?height=225&width=697&top_left_y=692&top_left_x=508)
+
+## 冲激列采样
+
+频域
+连续时间信号频谱 $X(j \omega)$
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-06.jpg?height=256&width=582&top_left_y=102&top_left_x=645)
+冲激列
+
+$$
+\begin{aligned}
+& P(j \omega)=\omega_{s} \sum_{k=-\infty}^{\infty} \delta\left(\omega-k \omega_{s}\right) \\
+& X_{p}(j \omega)=\frac{1}{2 \pi}(X * P)(\omega) \\
+& =\frac{1}{T} \sum_{k=-\infty}^{\infty} X\left(j\left(\omega-k \omega_{s}\right)\right)
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-06.jpg?height=279&width=584&top_left_y=403&top_left_x=643)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-06.jpg?height=216&width=580&top_left_y=721&top_left_x=643)
+
+## 冲激列采样
+
+频域
+带限连续时间信号
+当 $|\omega|>\omega_{M}$ 时，$X(j \omega)=0$
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-07.jpg?height=282&width=574&top_left_y=102&top_left_x=645)
+
+采样角频率 $\omega_{s}=\frac{2 \pi}{T}$
+
+情形 1：$\omega_{s}>2 \omega_{M}$，谱的各个副本之间不重叠，因此可通过低通滤波恢复 $X$
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-07.jpg?height=256&width=576&top_left_y=470&top_left_x=643)
+
+情形 2：$\omega_{s}<2 \omega_{M}$，谱副本发生重叠，因此无法恢复 $X$
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-07.jpg?height=207&width=578&top_left_y=732&top_left_x=643)
+
+## 采样定理
+
+若带限连续时间信号 $x(t)$ 的频谱满足当 $|\omega|>\omega_{M}$ 时 $X(j \omega)=0$，则在下述条件下，它可由样本 $x(nT),\ n\in\mathbb{Z}$ 唯一确定：
+
+$$
+\omega_{s} \triangleq \frac{2 \pi}{T}>2 \omega_{M}, \quad 2 \omega_{M} \text { 称为奈奎斯特速率 }
+$$
+
+已知样本集合 $\{x(nT):n\in\mathbb{Z}\}$，则 $x(t)$ 可按如下步骤重建：
+
+1. 构造 $x_{p}(t)=\sum_{n=-\infty}^{\infty} x(n T) \delta(t-n T)$
+2. 令 $x_p$ 通过一个增益为 $T$、截止频率为 $\omega_c\in(\omega_M,\omega_s-\omega_M)$ 的低通滤波器，即
+
+$$
+H(j \omega)=T\left[u\left(\omega+\omega_{c}\right)-u\left(\omega-\omega_{c}\right)\right]
+$$
+
+3. 滤波器输出 $x_r(t)$ 满足 $X_r(j\omega)=X_p(j\omega)H(j\omega)$，并且它与原信号 $x(t)$ 相同
+
+## 频域中的重建
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-09.jpg?height=139&width=658&top_left_y=159&top_left_x=64)
+
+$$
+p(t)=\sum_{n=-\infty}^{\infty} \delta(t-n T)
+$$
+
+- 奈奎斯特频率 $\omega_{M}$
+- 奈奎斯特速率 $2\omega_{M}$
+
+低通滤波器
+
+- 增益 $T$
+- 截止频率
+
+$$
+\omega_{M}<\omega_{c}<\omega_{s}-\omega_{M}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-09.jpg?height=452&width=481&top_left_y=99&top_left_x=738)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-09.jpg?height=354&width=578&top_left_y=372&top_left_x=643)
+
+## 时域中的重建
+
+$$
+x(t) \xrightarrow{\phi} x_{n=-\infty}^{\infty} \delta(t-n T)
+$$
+
+低通滤波器的冲激响应
+
+$$
+h(t)=\frac{T \sin \left(\omega_{c} t\right)}{\pi t}
+$$
+
+可利用 sinc 函数进行带限插值，从而恢复 $x$
+
+$$
+x(t)=x_{r}(t)=\left(x_{p} * h\right)(t)=\sum_{n=-\infty}^{\infty} x(n T) \frac{T \sin \left(\omega_{c}(t-n T)\right)}{\pi(t-n T)}
+$$
+
+## 时域中的重建
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-11.jpg?height=350&width=1155&top_left_y=123&top_left_x=42)
+
+$$
+\omega_{c}=\frac{\omega_{s}}{2}=\frac{\pi}{T}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-11.jpg?height=360&width=1158&top_left_y=581&top_left_x=40)
+
+## 时域中的重建
+
+令 $\omega_c=\frac{\omega_s}{2}$，可得到 Whittaker–Shannon 插值公式
+
+$$
+x_{r}(t)=\sum_{n=-\infty}^{\infty} x(n T) \operatorname{sinc}\left(\frac{t-n T}{T}\right), \quad \text { 其中 } \operatorname{sinc}(t)=\frac{\sin (\pi t)}{\pi t}
+$$
+
+由于
+
+$$
+\operatorname{sinc}\left(\frac{t-n T}{T}\right) \stackrel{\mathcal{F}}{\longleftrightarrow} T e^{-j n T \omega}\left[u\left(\omega+\frac{\pi}{T}\right)-u\left(\omega-\frac{\pi}{T}\right)\right]
+$$
+
+由 Parseval 恒等式（或乘积性质）可得
+
+$$
+\int_{\mathbb{R}} \operatorname{sinc}\left(\frac{t-n T}{T}\right) \operatorname{sinc}\left(\frac{t-m T}{T}\right) d t=\frac{T^{2}}{2 \pi} \int_{-\frac{\pi}{T}}^{\frac{\pi}{T}} e^{j(m-n) T \omega} d \omega=T \delta[n-m]
+$$
+
+Whittaker–Shannon 公式本质上是一个正交展开
+
+## 时域中的重建
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-13.jpg?height=350&width=1155&top_left_y=123&top_left_x=42)
+
+$$
+\omega_{c}=\frac{\omega_{s}}{4}=\frac{\pi}{2 T}>\omega_{M}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-13.jpg?height=328&width=1155&top_left_y=590&top_left_x=42)
+
+## 时域中的重建
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-14.jpg?height=350&width=1155&top_left_y=123&top_left_x=42)
+
+$$
+\omega_{c}=\frac{3 \omega_{s}}{5}<\omega_{s}-\omega_{M}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-14.jpg?height=382&width=1154&top_left_y=561&top_left_x=43)
+
+## 目录
+
+## 1. 采样定理
+
+2. 零阶保持与线性插值
+
+## 3. 混叠
+
+## 其他插值方法
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-16.jpg?height=283&width=544&top_left_y=186&top_left_x=54)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-16.jpg?height=287&width=542&top_left_y=186&top_left_x=653)
+$T$ 为采样周期
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-16.jpg?height=287&width=541&top_left_y=561&top_left_x=653)
+
+## 零阶保持
+
+$$
+x(t) \xrightarrow{p(t)=\sum_{n=-\infty}^{\infty} \delta(t-n T)} \frac{x_{p}(t)}{{ }_{0}^{\mid h_{0}(t)} t} \text { → } x_{0}(t)
+$$
+
+重建信号
+
+$$
+x_{0}(t)=\left(x_{p} * h_{0}\right)(t)=\sum_{n=-\infty}^{\infty} x(n T) h_{0}(t-n T)
+$$
+
+零阶保持滤波器
+
+$$
+H_{0}(j \omega)=e^{-j \omega T / 2} \frac{2 \sin (\omega T / 2)}{\omega}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-17.jpg?height=334&width=624&top_left_y=570&top_left_x=598)
+
+## 零阶保持
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-18.jpg?height=355&width=1209&top_left_y=123&top_left_x=27)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-18.jpg?height=348&width=1201&top_left_y=568&top_left_x=30)
+
+## 线性插值 (First-order Hold)
+
+$$
+x(t) \xrightarrow{p(t)=\sum_{n=-\infty}^{\infty} \delta(t-n T)} x_{p}(t) \longrightarrow x_{0}(t)
+$$
+
+重建信号
+
+$$
+x_{1}(t)=\left(x_{p} * h_{1}\right)(t)=\sum_{n=-\infty}^{\infty} x(n T) h_{1}(t-n T)
+$$
+
+一阶保持滤波器
+
+$$
+H_{1}(j \omega)=\frac{1}{T}\left[\frac{\sin (\omega T / 2)}{\omega / 2}\right]^{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-19.jpg?height=332&width=518&top_left_y=585&top_left_x=718)
+
+## 线性插值
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-20.jpg?height=321&width=1172&top_left_y=123&top_left_x=30)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-20.jpg?height=322&width=1174&top_left_y=521&top_left_x=28)
+
+## 目录
+
+## 1. 采样定理
+
+2. 零阶保持与线性插值
+3. 混叠
+
+## 混叠
+
+混叠会造成频率“折回”
+
+## output frequency
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-22.jpg?height=132&width=427&top_left_y=146&top_left_x=452) input frequency
+
+$$
+\begin{aligned}
+x(t) & =\cos \left(\omega_{0} t+\phi\right) \\
+\omega_{0} & <\frac{1}{2} \omega_{s}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-22.jpg?height=207&width=690&top_left_y=302&top_left_x=462)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-22.jpg?height=172&width=1066&top_left_y=514&top_left_x=82)
+
+$$
+x_{r}(t)=\cos \left(\omega_{0} t+\phi\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-22.jpg?height=159&width=1063&top_left_y=767&top_left_x=82)
+
+## 混叠
+
+混叠会造成频率“折回”
+
+## output frequency
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-23.jpg?height=132&width=427&top_left_y=146&top_left_x=450) input frequency
+
+$$
+\begin{aligned}
+x(t) & =\cos \left(\omega_{0} t+\phi\right) \\
+\omega_{0} & <\frac{1}{2} \omega_{s}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-23.jpg?height=198&width=725&top_left_y=306&top_left_x=425)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-23.jpg?height=172&width=1064&top_left_y=514&top_left_x=84)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-23.jpg?height=230&width=1084&top_left_y=696&top_left_x=64)
+
+## 混叠
+
+混叠会造成频率“折回”
+
+输出频率
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-24.jpg?height=132&width=429&top_left_y=146&top_left_x=448)
+
+$$
+\begin{aligned}
+& (t)=\cos \left(\omega_{0} t+\phi\right) \\
+& \omega_{0}>\frac{1}{2} \omega_{s}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-24.jpg?height=200&width=820&top_left_y=306&top_left_x=339)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-24.jpg?height=172&width=1066&top_left_y=514&top_left_x=82)
+
+$$
+x_{r}(t)=\cos \left(\left(\omega_{s}-\omega_{0}\right) t-\phi\right) \quad X_{p}(j \omega)
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-24.jpg?height=154&width=1066&top_left_y=776&top_left_x=79)
+
+## 混叠
+
+混叠会造成频率“折回”
+
+## output frequency
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-25.jpg?height=132&width=427&top_left_y=146&top_left_x=450) input frequency
+
+$$
+\begin{aligned}
+(t) & =\cos \left(\omega_{0} t+\phi\right) \\
+\omega_{0} & >\frac{1}{2} \omega_{s} \pi e^{-j \phi}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-25.jpg?height=172&width=1059&top_left_y=514&top_left_x=86)
+
+$$
+x_{r}(t)=\cos \left(\left(\omega_{s}-\omega_{0}\right) t-\phi\right) \quad X_{p}(j \omega)
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-25.jpg?height=145&width=1061&top_left_y=776&top_left_x=84)
+
+## 混叠
+
+- $x(t)=\cos \left(\frac{5 \pi}{3} t\right), x[n]=\cos \left(\frac{5 \pi}{3} n\right)=\cos \left(\frac{\pi}{3} n\right)$
+- $x_{r}(t)=\cos \left(\frac{\pi}{3} t\right)$
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-26.jpg?height=252&width=984&top_left_y=241&top_left_x=137)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-26.jpg?height=247&width=984&top_left_y=519&top_left_x=137)
+
+例：在电影画面中，车轮常常看起来转得比实际更慢，甚至方向都可能看反
+
+## 混叠
+
+混叠会造成频率“折回”
+
+## output frequency
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-27.jpg?height=135&width=424&top_left_y=145&top_left_x=450) input frequency
+$x(t)=\cos \left(\omega_{0} t+\phi\right)$
+
+$$
+\omega_{0}=\frac{1}{2} \omega_{s} \quad \pi e^{-j \phi}
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-27.jpg?height=205&width=769&top_left_y=301&top_left_x=384)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-27.jpg?height=172&width=1064&top_left_y=514&top_left_x=82)
+
+$$
+x_{r}(t)=(\cos \phi) \cos \left(\omega_{0} t\right)
+$$
+
+$$
+X_{p}(j \omega)
+$$
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-27.jpg?height=155&width=1066&top_left_y=768&top_left_x=82)
+
+## 混叠
+
+对于更复杂的信号，混叠同样会导致频率折回
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-28.jpg?height=192&width=1052&top_left_y=203&top_left_x=98)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-28.jpg?height=194&width=1064&top_left_y=407&top_left_x=84)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-28.jpg?height=262&width=1071&top_left_y=637&top_left_x=84)
+
+## 混叠
+
+## 混叠 increases as sampling rate decreases
+
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-29.jpg?height=192&width=1052&top_left_y=203&top_left_x=98)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-29.jpg?height=194&width=1064&top_left_y=407&top_left_x=84)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-29.jpg?height=247&width=1071&top_left_y=637&top_left_x=84)
+
+## 抗混叠滤波器
+
+在采样之前，应先滤除高于 $\frac{\omega_s}{2}$ 的频率分量
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-30.jpg?height=246&width=492&top_left_y=206&top_left_x=96)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-30.jpg?height=243&width=483&top_left_y=208&top_left_x=656)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-30.jpg?height=199&width=1060&top_left_y=443&top_left_x=84)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-30.jpg?height=248&width=1072&top_left_y=678&top_left_x=84)
+
+## 抗混叠滤波器
+
+在采样之前，应先滤除高于 $\frac{\omega_s}{2}$ 的频率分量
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-31.jpg?height=246&width=565&top_left_y=206&top_left_x=84)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-31.jpg?height=243&width=485&top_left_y=206&top_left_x=676)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-31.jpg?height=194&width=1064&top_left_y=439&top_left_x=104)
+![](https://cdn.mathpix.com/cropped/5064b8cb-9152-49e8-a068-28861005f52f-31.jpg?height=248&width=1073&top_left_y=678&top_left_x=104)
+
+## DTFT 的卷积性质
+
+$$
+(x * h)[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right) H\left(e^{j \omega}\right)
+$$
+
+注意：这与连续时间傅里叶级数（CTFS）的乘积性质互为对偶
+
+$$
+x(t) y(t) \stackrel{\mathcal{F S}}{\longleftrightarrow}(\hat{x} * \hat{y})[k]
+$$
+
+注意：这与连续时间傅里叶变换（CTFT）的情形类似，只要公式有定义即可。证明如下。
+
+$$
+\begin{aligned}
+\mathcal{F}\{x * h\}\left(e^{j \omega}\right) & =\sum_{n \in \mathbb{Z}}(x * h)[n] e^{-j \omega n}=\sum_{n \in \mathbb{Z}} \sum_{m \in \mathbb{Z}} x[m] h[n-m] e^{-j \omega n} \\
+& =\sum_{m \in \mathbb{Z}} x[m] \sum_{n \in \mathbb{Z}} h[n-m] e^{-j \omega n} \\
+& =\sum_{m \in \mathbb{Z}} x[m] e^{-j \omega m} H\left(e^{j \omega}\right) \\
+& =X\left(e^{j \omega}\right) H\left(e^{j \omega}\right)
+\end{aligned}
+$$
+
+## LTI 系统的频率响应
+
+LTI 系统 $T$
+
+- 可由冲激响应 $h$ 完全表征
+
+$$
+y=T(x)=h * x
+$$
+
+- 若 $H=\mathcal{F}\{h\}$ 有定义，也可由频率响应 $H$ 完全表征
+- 对于 BIBO 稳定系统，有 $h\in\ell_1$
+- 其他系统例如累加器，其 $h=u$，等等
+
+通常由卷积性质可知
+
+$$
+Y=\mathcal{F}\{y\}=H X=\mathcal{F}\{h\} \mathcal{F}\{x\}
+$$
+
+因此，不必直接计算 $x*h$，也可以改为
+
+$$
+y=\mathcal{F}^{-1}(\mathcal{F}\{h\} \mathcal{F}\{x\})
+$$
+
+## 例
+
+求冲激响应为 $h[n]=a^n u[n]$ 的 LTI 系统对输入 $x[n]=b^n u[n]$ 的响应，其中 $|a|<1, |b|<1$
+方法 1：直接卷积 $y=x*h$
+方法 2：在初始静止条件下求解差分方程
+
+$$
+y[n]-a y[n-1]=b^{n} u[n]
+$$
+
+方法 3：傅里叶变换
+
+$$
+H=\frac{1}{1-a e^{-j \omega}}, X=\frac{1}{1-b e^{-j \omega}} \Longrightarrow Y=\frac{1}{\left(1-a e^{-j \omega}\right)\left(1-b e^{-j \omega}\right)}
+$$
+
+若 $a\neq b$， Y\left(e^{j \omega}\right)=\frac{a /(a-b)}{1-a e^{-j \omega}}-\frac{b /(a-b)}{1-b e^{-j \omega}}, \quad y[n]=\frac{1}{a-b}\left(a^{n+1}-b^{n+1}\right) u[n]$
+若 $a=b$， Y\left(e^{j \omega}\right)=\frac{d}{d a}\left(\frac{a}{1-a e^{-j \omega}}\right), y[n]=\frac{d}{d a} a^{n+1} u[n]=(n+1) a^{n} u[n]$
+或者也可利用 $Y\left(e^{j \omega}\right)=\frac{j}{a} e^{j \omega} \frac{d}{d \omega}\left(\frac{a}{1-a e^{-j \omega}}\right)$ and differentiation property
+
+## 例
+
+求冲激响应为 $h[n]=a^n u[n]$ 的 LTI 系统对输入 $x[n]=\cos\left(\omega_0 n\right)$ 的响应，其中 $|a|<1$。
+频率响应
+
+$$
+H\left(e^{j \omega}\right)=\frac{1}{1-a e^{-j \omega}}
+$$
+
+方法 1：利用特征函数性质
+
+$$
+\begin{gathered}
+x[n]=\frac{1}{2} e^{j \omega_{0} n}+\frac{1}{2} e^{-j \omega_{0} n} \\
+y[n]=\frac{1}{2} H\left(e^{j \omega_{0}}\right) e^{j \omega_{0} n}+\frac{1}{2} H\left(e^{-j \omega_{0}}\right) e^{-j \omega_{0} n}=\operatorname{Re} \frac{e^{j \omega_{0} n}}{1-a e^{-j \omega_{0}}} \\
+=\frac{1}{\sqrt{1-2 a \cos \omega_{0}+a^{2}}} \cos \left(\omega_{0} n-\arctan \frac{a \sin \omega_{0}}{1-a \cos \omega_{0}}\right)
+\end{gathered}
+$$
+
+## 例
+
+方法 2：利用 $X$ 的傅里叶变换
+
+$$
+\begin{aligned}
+& X\left(e^{j \omega}\right)=\sum_{k=-\infty}^{\infty}\left[\pi \delta\left(\omega-\omega_{0}+2 k \pi\right)+\pi \delta\left(\omega+\omega_{0}+2 k \pi\right)\right] \\
+& Y\left(e^{j \omega}\right)=\sum_{k=-\infty}^{\infty} \pi H\left(e^{j\left(\omega_{0}-2 k \pi\right)}\right) \delta\left(\omega-\omega_{0}+2 k \pi\right) \\
+& \quad+\sum_{k=-\infty}^{\infty} \pi H\left(e^{-j\left(\omega_{0}+2 k \pi\right)}\right) \delta\left(\omega+\omega_{0}+2 k \pi\right) \\
+& =H\left(e^{j \omega_{0}}\right) \sum_{k=-\infty}^{\infty} \pi \delta\left(\omega-\omega_{0}+2 k \pi\right) \\
+& \quad+H\left(e^{-j \omega_{0}}\right) \sum_{k=-\infty}^{\infty} \pi \delta\left(\omega+\omega_{0}+2 k \pi\right) \\
+& y[n]=\frac{1}{2} H\left(e^{j \omega_{0}}\right) e^{j \omega_{0} n}+\frac{1}{2} H\left(e^{-j \omega_{0}}\right) e^{-j \omega_{0} n}
+\end{aligned}
+$$
+
+## 例: Ideal Bandstop Filter
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-08.jpg?height=354&width=909&top_left_y=119&top_left_x=168)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-08.jpg?height=172&width=1137&top_left_y=505&top_left_x=48)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-08.jpg?height=216&width=1135&top_left_y=712&top_left_x=46)
+
+## 目录
+
+1. DTFT 的卷积性质
+2. DTFT 的乘积性质
+3. 线性常系数差分方程描述的系统
+4. 离散时间信号的采样
+5. 连续时间信号的离散时间处理
+
+## DTFT 的乘积性质
+
+$$
+x[n] y[n] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{2 \pi} X \circledast Y=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right) Y\left(e^{j(\omega-\theta)}\right) d \theta
+$$
+
+注意：这与连续时间傅里叶级数的周期卷积性质互为对偶
+
+$$
+x \circledast y \stackrel{\mathcal{F S}}{\longleftrightarrow} T \hat{x} \hat{y}
+$$
+
+证明：
+
+$$
+\begin{aligned}
+\mathcal{F}\{x y\}\left(e^{j \omega}\right) & =\sum_{n \in \mathbb{Z}} x[n] y[n] e^{-j \omega n}=\sum_{n \in \mathbb{Z}}\left(\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right) e^{j \theta n} d \theta\right) y[n] e^{-j \omega n} \\
+& =\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right)\left(\sum_{n \in \mathbb{Z}} y[n] e^{-j(\omega-\theta) n}\right) d \theta \\
+& =\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right) Y\left(e^{j(\omega-\theta)}\right) d \theta
+\end{aligned}
+$$
+
+## 例
+
+$x[n]=x_{1}[n] x_{2}[n]$, 其中 $x_{1}[n]=\frac{\sin (3 \pi n / 4)}{\pi n}, x_{2}[n]=\frac{\sin (\pi n / 2)}{\pi n}$
+
+$$
+X=\frac{1}{2 \pi} X_{1} \underset{\uparrow}{\circledast} X_{2}=\frac{1}{2 \pi} \tilde{X}_{1} * X_{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-11.jpg?height=167&width=952&top_left_y=406&top_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-11.jpg?height=168&width=951&top_left_y=587&top_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-11.jpg?height=168&width=953&top_left_y=758&top_left_x=141)
+
+## 例
+
+$x[n]=x_{1}[n] x_{2}[n]$, 其中 $x_{1}[n]=\frac{\sin (3 \pi n / 4)}{\pi n}, x_{2}[n]=\frac{\sin (\pi n / 2)}{\pi n}$
+
+$$
+X=\frac{1}{2 \pi} X_{1} \underset{\uparrow}{\circledast} X_{2}=\frac{1}{2 \pi} \tilde{X}_{1} * X_{2}=\frac{1}{2 \pi} \sum_{k=-\infty}^{\infty} \underset{\substack{\uparrow \\ \text { 周期 }}}{\tau_{2 k \pi}\left(\tilde{X}_{1} * \tilde{X}_{2}\right)} \text { 非周期 }
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-12.jpg?height=165&width=951&top_left_y=408&top_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-12.jpg?height=170&width=949&top_left_y=585&top_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-12.jpg?height=168&width=951&top_left_y=758&top_left_x=141)
+
+## 例
+
+$x[n]=x_{1}[n] x_{2}[n]$, 其中 $x_{1}[n]=\frac{\sin (3 \pi n / 4)}{\pi n}, x_{2}[n]=\frac{\sin (\pi n / 2)}{\pi n}$
+
+$$
+X=\frac{1}{2 \pi} X_{1} \circledast X_{2}=\frac{1}{2 \pi} \tilde{X}_{1} * X_{2}=\frac{1}{2 \pi} \sum_{k=-\infty}^{\infty} \underset{\substack{\uparrow \\ \text { 周期 }}}{\tau_{2 k \pi}\left(\tilde{X}_{1} * \tilde{X}_{2}\right)} \text { 非周期 }
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-13.jpg?height=165&width=951&top_left_y=408&top_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-13.jpg?height=170&width=949&top_left_y=585&top_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-13.jpg?height=163&width=955&top_left_y=763&top_left_x=139)
+
+## 例
+
+$x[n]=x_{1}[n] x_{2}[n]$, 其中 $x_{1}[n]=\frac{\sin (3 \pi n / 4)}{\pi n}, x_{2}[n]=\frac{\sin (\pi n / 2)}{\pi n}$
+
+$$
+X=\frac{1}{2 \pi} X_{1} \circledast X_{2}=\frac{1}{2 \pi} \tilde{X}_{1} * X_{2}=\frac{1}{2 \pi} \sum_{k=-\infty}^{\infty} \underset{\substack{\uparrow \\ \text { 周期 }}}{\tau_{2 k \pi}\left(\tilde{X}_{1} * \tilde{X}_{2}\right)} \text { 非周期 }
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-14.jpg?height=165&width=953&top_left_y=408&top_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-14.jpg?height=170&width=951&top_left_y=585&top_left_x=141)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-14.jpg?height=163&width=953&top_left_y=763&top_left_x=141)
+
+## 例: DT Modulation
+
+$$
+y[n]=x[n] c[n], \text { 其中 } c[n]=\cos \left(\omega_{c} n\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-15.jpg?height=181&width=1079&top_left_y=197&top_left_x=69)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-15.jpg?height=170&width=1089&top_left_y=397&top_left_x=59)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-15.jpg?height=185&width=1075&top_left_y=585&top_left_x=71)
+
+频谱副本不重叠时：$\left\{\begin{array}{l}\omega_c>\omega_M \\ \omega_c+\omega_M<\pi\end{array}\right.\quad\Longrightarrow\quad \omega_M<\frac{\pi}{2}$
+
+## 例: DT Demodulation
+
+$$
+z[n]=y[n] c[n], \text { 其中 } c[n]=\cos \left(\omega_{c} n\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-16.jpg?height=190&width=1086&top_left_y=197&top_left_x=64)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-16.jpg?height=181&width=1093&top_left_y=390&top_left_x=57)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-16.jpg?height=263&width=1088&top_left_y=594&top_left_x=62)
+
+选取截止频率 $W\in(\omega_M,2\omega_c-\omega_M)$ 的低通滤波器对 $Y$ 进行滤波，即可恢复 $X$
+
+## 目录
+
+1. DTFT 的卷积性质
+2. DTFT 的乘积性质
+3. 线性常系数差分方程描述的系统
+4. 离散时间信号的采样
+5. 连续时间信号的离散时间处理
+
+## Linear Constant-coefficient Difference Equations
+
+由下式所描述的 LTI 系统的频率响应
+
+$$
+\sum_{k=0}^{N} a_{k} y[n-k]=\sum_{k=0}^{M} b_{k} x[n-k]
+$$
+
+方法 1：利用特征函数性质
+
+$$
+x[n]=e^{j \omega n} \Longrightarrow y[n]=H\left(e^{j \omega}\right) e^{j \omega n}
+$$
+
+代入差分方程可得
+
+$$
+\begin{gathered}
+\sum_{k=0}^{N} a_{k} H\left(e^{j \omega}\right) e^{j \omega(n-k)}=\sum_{k=0}^{M} b_{k} e^{j \omega(n-k)} \\
+H\left(e^{j \omega}\right)=\frac{\sum_{k=0}^{M} b_{k} e^{-j \omega k}}{\sum_{k=0}^{N} a_{k} e^{-j \omega k}}
+\end{gathered}
+$$
+
+## Linear Constant-coefficient Difference Equations
+
+方法 2：对方程两边取傅里叶变换
+
+$$
+\mathcal{F}\left\{\sum_{k=0}^{N} a_{k} y[n-k]\right\}=\mathcal{F}\left\{\sum_{k=0}^{M} b_{k} x[n-k]\right\}
+$$
+
+由线性性质与时移性质可得
+
+$$
+\sum_{k=0}^{N} a_{k} e^{-j \omega k} Y\left(e^{j \omega}\right)=\sum_{k=0}^{M} b_{k} e^{-j \omega k} X\left(e^{j \omega}\right)
+$$
+
+由卷积性质可得
+
+$$
+H\left(e^{j \omega}\right)=\frac{Y\left(e^{j \omega}\right)}{X\left(e^{j \omega}\right)}=\frac{\sum_{k=0}^{M} b_{k} e^{-j \omega k}}{\sum_{k=0}^{N} a_{k} e^{-j \omega k}}
+$$
+
+频率响应是关于 $e^{-j\omega}$ 的有理函数
+
+## 例
+
+考虑如下 LTI 系统
+
+$$
+y[n]-\frac{3}{4} y[n-1]+\frac{1}{8} y[n-2]=2 x[n]
+$$
+
+频率响应
+
+$$
+H\left(e^{j \omega}\right)=\frac{2}{1-\frac{3}{4} e^{-j \omega}+\frac{1}{8} e^{-j 2 \omega}}
+$$
+
+通过部分分式展开
+
+$$
+H\left(e^{j \omega}\right)=\frac{2}{\left(1-\frac{1}{2} e^{-j \omega}\right)\left(1-\frac{1}{4} e^{-j \omega}\right)}=\frac{4}{1-\frac{1}{2} e^{-j \omega}}-\frac{2}{1-\frac{1}{4} e^{-j \omega}}
+$$
+
+取逆傅里叶变换得到冲激响应
+
+$$
+h[n]=4\left(\frac{1}{2}\right)^{n} u[n]-2\left(\frac{1}{4}\right)^{n} u[n]
+$$
+
+## 例
+
+求系统对输入 $x[n]=\left(\frac{1}{4}\right)^n u[n]$ 的响应。
+响应的傅里叶变换
+
+$$
+Y\left(e^{j \omega}\right)=H\left(e^{j \omega}\right) X\left(e^{j \omega}\right)=\frac{2}{\left(1-\frac{1}{2} e^{-j \omega}\right)\left(1-\frac{1}{4} e^{-j \omega}\right)} \cdot \frac{1}{1-\frac{1}{4} e^{-j \omega}}
+$$
+
+通过部分分式展开
+
+$$
+Y\left(e^{j \omega}\right)=-\frac{4}{1-\frac{1}{4} e^{-j \omega}}-\frac{2}{\left(1-\frac{1}{4} e^{-j \omega}\right)^{2}}+\frac{8}{1-\frac{1}{2} e^{-j \omega}}
+$$
+
+取逆傅里叶变换得到响应
+
+$$
+y[n]=\left\{-4\left(\frac{1}{4}\right)^{n}-2(n+1)\left(\frac{1}{4}\right)^{n}+8\left(\frac{1}{2}\right)^{n}\right\} u[n]
+$$
+
+## 部分分式展开
+
+$$
+H\left(e^{j \omega}\right)=\frac{2}{1-\frac{3}{4} e^{-j \omega}+\frac{1}{8} e^{-j 2 \omega}}
+$$
+
+令 $e^{-j\omega}$ 记作 $z$，
+
+$$
+\begin{gathered}
+H\left(z^{-1}\right)=\frac{2}{1-\frac{3}{4} z+\frac{1}{8} z^{2}}=\frac{2}{\left(1-\frac{1}{2} z\right)\left(1-\frac{1}{4} z\right)}=\frac{A}{1-\frac{1}{2} z}+\frac{B}{1-\frac{1}{4} z} \\
+A=\left.\left[\left(1-\frac{1}{2} z\right) H\left(z^{-1}\right)\right]\right|_{z=2}=\left.\frac{2}{1-\frac{1}{4} z}\right|_{z=2}=4 \\
+B=\left.\left[\left(1-\frac{1}{4} z\right) H\left(z^{-1}\right)\right]\right|_{z=4}=\left.\frac{2}{1-\frac{1}{2} z}\right|_{z=4}=-2
+\end{gathered}
+$$
+
+注意：连续时间（CT）中对应项通常写成 $\frac{A}{(s-r)^m}$，而离散时间（DT）中对应项写成 $\frac{A}{(1-rz)^m}$
+
+## 部分分式展开
+
+$$
+Y\left(e^{j \omega}\right)=\frac{2}{\left(1-\frac{1}{2} e^{-j \omega}\right)\left(1-\frac{1}{4} e^{-j \omega}\right)} \cdot \frac{1}{1-\frac{1}{4} e^{-j \omega}}
+$$
+
+令 $e^{-j\omega}$ 记作 $z$，
+
+$$
+Y\left(z^{-1}\right)=\frac{2}{\left(1-\frac{1}{2} z\right)\left(1-\frac{1}{4} z\right)^{2}}=\frac{A_{1,1}}{1-\frac{1}{2} z}+\frac{A_{2,1}}{1-\frac{1}{4} z}+\frac{A_{2,2}}{\left(1-\frac{1}{4} z\right)^{2}}
+$$
+
+为求 $A_{1,1}$
+
+1. 两边同乘 $1-\frac{1}{2}z$，
+
+$$
+\left(1-\frac{1}{2} z\right) Y\left(z^{-1}\right)=\frac{2}{\left(1-\frac{1}{4} z\right)^{2}}=A_{1,1}+\frac{A_{2,1}\left(1-\frac{1}{2} z\right)}{1-\frac{1}{4} z}+\frac{A_{2,2}\left(1-\frac{1}{2} z\right)}{\left(1-\frac{1}{4} z\right)^{2}}
+$$
+
+2. 令 $z=2$，即取 $1-\frac{1}{2}z=0$ 的根
+
+$$
+A_{1,1}=\left.\left[\left(1-\frac{1}{2} z\right) Y\left(z^{-1}\right)\right]\right|_{z=2}=\left.\frac{2}{\left(1-\frac{1}{4} z\right)^{2}}\right|_{z=2}=8
+$$
+
+## 部分分式展开
+
+$$
+Y\left(z^{-1}\right)=\frac{2}{\left(1-\frac{1}{2} z\right)\left(1-\frac{1}{4} z\right)^{2}}=\frac{A_{1,1}}{1-\frac{1}{2} z}+\frac{A_{2,1}}{1-\frac{1}{4} z}+\frac{A_{2,2}}{\left(1-\frac{1}{4} z\right)^{2}}
+$$
+
+为求 $A_{2,2}$
+
+1. 两边同乘 $\left(1-\frac{1}{4}z\right)^2$，
+
+$$
+\left(1-\frac{1}{4} z\right)^{2} Y\left(z^{-1}\right)=\frac{2}{1-\frac{1}{2} z}=\frac{A_{1,1}\left(1-\frac{1}{4} z\right)^{2}}{1-\frac{1}{2} z}+A_{2,1}\left(1-\frac{1}{4} z\right)+A_{2,2}
+$$
+
+2. 令 $z=4$，即取 $1-\frac{1}{4}z=0$ 的根
+
+$$
+A_{2,2}=\left.\left[\left(1-\frac{1}{4} z\right)^{2} Y\left(z^{-1}\right)\right]\right|_{z=4}=\left.\frac{2}{1-\frac{1}{2} z}\right|_{z=4}=-2
+$$
+
+## 部分分式展开
+
+$$
+Y\left(z^{-1}\right)=\frac{2}{\left(1-\frac{1}{2} z\right)\left(1-\frac{1}{4} z\right)^{2}}=\frac{A_{1,1}}{1-\frac{1}{2} z}+\frac{A_{2,1}}{1-\frac{1}{4} z}+\frac{A_{2,2}}{\left(1-\frac{1}{4} z\right)^{2}}
+$$
+
+为求 $A_{2,1}$
+
+1. 两边同乘 $\left(1-\frac{1}{4}z\right)^2$，
+
+$$
+\left(1-\frac{1}{4} z\right)^{2} Y\left(z^{-1}\right)=\frac{2}{1-\frac{1}{2} v}=\frac{A_{1,1}\left(1-\frac{1}{4} z\right)^{2}}{1-\frac{1}{2} z}+A_{2,1}\left(1-\frac{1}{4} z\right)+A_{2,2}
+$$
+
+2. 对等式两边求导
+
+$$
+\frac{d}{d z}\left(1-\frac{1}{4} z\right)^{2} Y\left(z^{-1}\right)=\frac{1}{\left(1-\frac{1}{2} z\right)^{2}}=\frac{d}{d z} \frac{A_{1,1}\left(1-\frac{1}{4} z\right)^{2}}{1-\frac{1}{2} z}+\left(-\frac{\mathbf{1}}{\mathbf{4}}\right) A_{2,1}
+$$
+
+3. 再令 $z=4$，即取 $1-\frac{1}{4}z=0$ 的根
+
+$$
+A_{2,1}=\left.(-4)\left[\frac{d}{d z}\left(1-\frac{1}{4} z\right)^{2} Y\left(z^{-1}\right)\right]\right|_{z=4}=\left.\frac{-4}{\left(1-\frac{1}{2} z\right)^{2}}\right|_{z=4}=-4
+$$
+
+## 逆傅里叶变换 of $\frac{1}{\left(1-a e^{-j \omega}\right)^{n}}$
+
+回顾
+
+$$
+a^{n} u[n] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{1-a e^{-j \omega}}, \quad|a|<1
+$$
+
+即
+
+$$
+\frac{1}{1-a z}=\sum_{n=0}^{\infty} a^{n} z^{n}, \quad z=e^{-j \omega}
+$$
+
+关于 $z$ 求 $m-1$ 次导数
+
+$$
+\frac{(m-1)!a^{m-1}}{(1-a z)^{m}}=\sum_{n=m-1}^{\infty} a^{n} \frac{n!}{(n-m+1)!} z^{n-(m-1)}
+$$
+
+$$
+\frac{1}{(1-a z)^{m}}=\sum_{n=m-1}^{\infty} a^{n-m+1}\binom{n}{m-1} z^{n-m+1}=\sum_{n=0}^{\infty} a^{n}\binom{n+m-1}{m-1} z^{n}
+$$
+
+因此
+
+$$
+\binom{n+m-1}{n} a^{n} u[n] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{\left(1-a e^{-j \omega}\right)^{m}}
+$$
+
+## 目录
+
+1. DTFT 的卷积性质
+2. DTFT 的乘积性质
+3. 线性常系数差分方程描述的系统
+4. 离散时间信号的采样
+5. 连续时间信号的离散时间处理
+
+## 冲激列采样
+
+离散时间信号 $x[n]$
+
+离散时间冲激列
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-28.jpg?height=256&width=695&top_left_y=137&top_left_x=559)
+
+$$
+p[n]=\sum_{k=-\infty}^{\infty} \delta[n-k N]
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-28.jpg?height=183&width=693&top_left_y=425&top_left_x=559)
+
+$$
+\begin{aligned}
+& \text { 采样后的信号 } \\
+& \begin{aligned}
+x_{p}[n] & =x[n] p[n] \\
+& =\sum_{k=-\infty}^{\infty} x[k N] \delta[n-k N]
+\end{aligned}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-28.jpg?height=274&width=693&top_left_y=647&top_left_x=559)
+
+## 冲激列采样
+
+冲激列的频谱
+
+$$
+P\left(e^{j \omega}\right)=\omega_{s} \sum_{k=-\infty}^{\infty} \delta\left(\omega-k \omega_{s}\right), \quad \omega_{s}=\frac{2 \pi}{N}
+$$
+
+采样信号的频谱
+
+$$
+X_{p}=\frac{1}{2 \pi} X \circledast P=\frac{1}{2 \pi} \tilde{X} * P=\frac{1}{2 \pi} X * \tilde{P}
+$$
+
+其中 $\tilde X,\tilde P$ 分别表示 $X,P$ 在一个 $2\pi$ 周期内对应的部分
+
+$$
+X_{p}\left(e^{j \omega}\right)=\frac{1}{N} \sum_{k=-\infty}^{\infty} \tilde{X}\left(e^{j\left(\omega-k \omega_{s}\right)}\right)=\frac{1}{N} \sum_{k=0}^{N-1} X\left(e^{j\left(\omega-k \omega_{s}\right)}\right)
+$$
+
+## 冲激列采样
+
+第一种看法：将 $\tilde X$ 在 $k\omega_s$ 处复制，其中 $k\in\mathbb{Z}$
+
+$$
+X_{p}\left(e^{j \omega}\right)=\frac{1}{N} \sum_{k=-\infty}^{\infty} \tilde{X}\left(e^{j\left(\omega-k \omega_{s}\right)}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-30.jpg?height=169&width=1205&top_left_y=357&top_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-30.jpg?height=161&width=1208&top_left_y=563&top_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-30.jpg?height=174&width=1199&top_left_y=747&top_left_x=42)
+
+## 冲激列采样
+
+第二种看法：将 $X$ 在 $k\omega_s$ 处复制，其中 $k=0,1,\ldots,N-1$
+
+$$
+X_{p}\left(e^{j \omega}\right)=\frac{1}{N} \sum_{k=0}^{N-1} X\left(e^{j\left(\omega-k \omega_{s}\right)}\right)
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-31.jpg?height=176&width=1211&top_left_y=350&top_left_x=39)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-31.jpg?height=163&width=1210&top_left_y=561&top_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-31.jpg?height=180&width=1184&top_left_y=741&top_left_x=39)
+
+## 冲激列采样
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-32.jpg?height=322&width=1206&top_left_y=113&top_left_x=35)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-32.jpg?height=309&width=1210&top_left_y=448&top_left_x=31)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-32.jpg?height=156&width=1204&top_left_y=772&top_left_x=35)
+
+## 离散时间采样定理
+
+若带限离散时间信号 $x[n]$ 的频谱满足对 $\omega_M<|\omega|\le \pi$ 有 $X(e^{j\omega})=0$，则在下述条件下，它可由样本 $x[kN],\ k\in\mathbb{Z}$ 唯一确定：
+
+$$
+\omega_{s} \triangleq \frac{2 \pi}{N}>2 \omega_{M}
+$$
+
+已知样本集合 $\{x[kN]:k\in\mathbb{Z}\}$，则 $x[n]$ 可以按如下方式重建：
+
+1. construct $x_{p}[n]=\sum_{k=-\infty}^{\infty} x[k N] \delta[n-k N]$
+2. 令 $x_p$ 通过一个增益为 $N$、截止频率为 $\omega_c\in(\omega_M,\omega_s-\omega_M)$ 的低通滤波器，即
+
+$$
+H\left(e^{j \omega}\right)=N\left[u\left(\omega+\omega_{c}\right)-u\left(\omega-\omega_{c}\right)\right]
+$$
+
+3. 输出 $x_r[n]$ 满足 $X_r(e^{j\omega})=X_p(e^{j\omega})H(e^{j\omega})$，且与原信号 $x[n]$ 相同
+
+## 时域重建
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-34.jpg?height=261&width=1128&top_left_y=141&top_left_x=46)
+
+低通滤波器的冲激响应
+
+$$
+h[n]=\frac{N \sin \left(\omega_{c} n\right)}{\pi n}
+$$
+
+可利用 sinc 函数进行带限插值，从而恢复 $x$
+
+$$
+x[n]=x_{r}[n]=\left(x_{p} * h\right)[n]=\sum_{k=-\infty}^{\infty} x[k N] \frac{N \sin \left(\omega_{c}(n-k N)\right)}{\pi(n-k N)}
+$$
+
+## 抽取
+
+离散时间信号 $x[n]$
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-35.jpg?height=232&width=702&top_left_y=110&top_left_x=554)
+
+采样后的信号
+
+$$
+x_{p}[n]=\sum_{k=-\infty}^{\infty} x[k N] \delta[n-k N]
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-35.jpg?height=234&width=702&top_left_y=381&top_left_x=554)
+
+抽取后的信号
+
+$$
+x_{b}[n]=x[n N]
+$$
+
+样本数减少
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-35.jpg?height=229&width=684&top_left_y=661&top_left_x=572)
+
+## 抽取
+
+$$
+\begin{aligned}
+X_{b}\left(e^{j \omega}\right) & =\sum_{n \in \mathbb{Z}} x_{b}[n] e^{-j \omega n} \\
+& =\sum_{n \in \mathbb{Z}} x[n N] e^{-j \omega n} \\
+& =\sum_{k \in N \mathbb{Z}} x[k] e^{-j \omega k / N} \quad(k=n N) \\
+& =\sum_{k \in \mathbb{Z}} x_{p}[k] e^{-j \frac{\omega}{N} k} \quad\left(x_{p}[n]=0 \text { for } n \in \mathbb{Z} \backslash N \mathbb{Z}\right) \\
+& =X_{p}\left(e^{j \omega / N}\right)
+\end{aligned}
+$$
+
+回顾：$X_p(e^{j\omega})$ 的周期为 $2\pi/N$，因此 $X_b(e^{j\omega})$ 的周期为 $2\pi$。
+若采样中未发生混叠
+
+- 在每个周期内，$X_b$ 是 $X$ 的拉伸版本
+- $X_b(e^{j\omega})=X_p(e^{j\omega/N})$，但 $X_b(e^{j\omega})\neq X(e^{j\omega/N})$
+
+
+## 抽取
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-37.jpg?height=155&width=1196&top_left_y=138&top_left_x=43)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-37.jpg?height=172&width=1199&top_left_y=333&top_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-37.jpg?height=158&width=1199&top_left_y=531&top_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-37.jpg?height=163&width=1196&top_left_y=753&top_left_x=43)
+
+## 目录
+
+1. DTFT 的卷积性质
+2. DTFT 的乘积性质
+3. 线性常系数差分方程描述的系统
+4. 离散时间信号的采样
+5. 连续时间信号的离散时间处理
+
+## 连续时间信号的离散时间处理
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-39.jpg?height=181&width=1220&top_left_y=116&top_left_x=31)
+
+离散时间处理的优点
+
+- 数字电子设备具有很强的灵活性
+- 对噪声更具鲁棒性
+
+在实际中
+
+- C/D 由模数转换器实现
+- D/C 由数模转换器实现
+
+理想化假设
+
+- 不考虑量化
+- C/D 采用冲激列采样
+- D/C 采用理想重建
+
+
+## 模数转换（C/D）
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-40.jpg?height=289&width=1152&top_left_y=113&top_left_x=51)
+
+假设
+
+- $x_c(t)$ 为带限信号，例如已经过低通滤波
+- 采样频率高于奈奎斯特速率，因此无混叠
+
+连续时间与离散时间频谱之间的关系
+
+$$
+\begin{aligned}
+X_{p}(j \omega) & =\mathrm{CTFT}\left\{\sum_{n \in \mathbb{Z}} x_{c}(n T) \delta(t-n T)\right\} \\
+& =\sum_{n \in \mathbb{Z}} x_{c}(n T) e^{-j \omega T n}=\sum_{n \in \mathbb{Z}} x_{d}[n] e^{-j \omega T n}=X_{d}\left(e^{j \omega T}\right)
+\end{aligned}
+$$
+
+## 模数转换（C/D）
+
+时域
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-41.jpg?height=665&width=564&top_left_y=168&top_left_x=64)
+
+频域
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-41.jpg?height=205&width=525&top_left_y=179&top_left_x=709)
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-41.jpg?height=212&width=525&top_left_y=421&top_left_x=709)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-41.jpg?height=196&width=529&top_left_y=652&top_left_x=705)
+
+从 $x_p$ 到 $x_d$：时间轴与频率轴都做了归一化
+
+## 数模转换（D/C）
+
+模数转换
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-42.jpg?height=252&width=1091&top_left_y=159&top_left_x=48)
+
+连续时间与离散时间频谱之间的关系
+
+$$
+\begin{aligned}
+& Y_{p}(j \omega)=Y_{d}\left(e^{j \omega T}\right) \\
+& Y_{c}(j \omega)= \begin{cases}Y_{p}(j \omega) & |\omega|<\frac{\omega_{s}}{2}=\frac{\omega}{T} \\
+0, & \text { otherwise }\end{cases}
+\end{aligned}
+$$
+
+## 数模转换（D/C）
+
+时域
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-43.jpg?height=665&width=562&top_left_y=168&top_left_x=64)
+
+频域
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-43.jpg?height=201&width=527&top_left_y=179&top_left_x=709)
+
+频域
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-43.jpg?height=212&width=545&top_left_y=408&top_left_x=705)
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-43.jpg?height=212&width=531&top_left_y=625&top_left_x=705)
+
+模数转换的逆过程
+
+## 频率响应
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-44.jpg?height=314&width=1208&top_left_y=137&top_left_x=31)
+
+1. $Y_{d}\left(e^{j \Omega}\right)=H_{d}\left(e^{j \Omega}\right) X_{d}\left(e^{j \Omega}\right)$
+2. $Y_{p}(j \omega)=Y_{d}\left(e^{j \omega T}\right)=H_{d}\left(e^{j \omega T}\right) X_{d}\left(e^{j \omega T}\right)=H_{d}\left(e^{j \omega T}\right) X_{p}(j \omega)$
+3. $Y_{c}(j \omega)=Y_{p}(j \omega) H_{\mathrm{lp}}(j \omega)=H_{d}\left(e^{j \omega T}\right) X_{p}(j \omega) H_{\mathrm{lp}}(j \omega)=H_{d}\left(e^{j \omega T}\right) X_{c}(j \omega)$
+4. $H_{c}(j \omega)= \begin{cases}H_{d}\left(e^{j \omega T}\right) & |\omega|<\frac{\omega_{s}}{2}=\frac{\omega}{T} \\ 0, & \text { otherwise }\end{cases}$
+
+频率响应
+
+$$
+\begin{gathered}
+H_{c}(j \omega)= \begin{cases}H_{d}\left(e^{j \omega T}\right) & |\omega|<\frac{\omega_{s}}{2}=\frac{\omega}{T} \\
+0, & \text { otherwise }\end{cases} \\
+\Longrightarrow H_{d}\left(e^{j \Omega}\right)=H_{c}\left(j \frac{\Omega}{T}\right),|\Omega|<\pi
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-45.jpg?height=209&width=1195&top_left_y=437&top_left_x=44)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-45.jpg?height=199&width=1199&top_left_y=685&top_left_x=42)
+
+## 例: 数字微分器
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-46.jpg?height=372&width=320&top_left_y=137&top_left_x=44)
+
+$$
+\arg H_{c}(j \omega)
+$$
+
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-46.jpg?height=311&width=322&top_left_y=590&top_left_x=42)
+![](https://cdn.mathpix.com/cropped/0372b312-2528-401e-8b17-83b6d8e867cc-46.jpg?height=770&width=817&top_left_y=132&top_left_x=388)
+
+
+## 作业
+
+ 
+
+---
+
+<section style="
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+">
+  <div style="transform: translateY(10vh);">
+<h1>第五章  <br >离散时间傅里叶变换  <br> 完</h1>
+  </div>
+</section>
