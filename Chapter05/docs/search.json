@@ -1775,28 +1775,28 @@
     "href": "Chapter05_V4.html#离散时间傅里叶变换",
     "title": "第五章 离散时间傅里叶变换",
     "section": "离散时间傅里叶变换",
-    "text": "离散时间傅里叶变换\n设 \\(x\\) 是一个非周期离散时间信号，并且 \\(\\operatorname{supp} x \\subset\\left[N_{1}, N_{2}\\right]\\)\n\n\n\n\n\n定义其周期延拓，周期满足 \\(N&gt;N_{2}-N_{1}+1\\)：\n\\[\nx_{N}[n]=\\sum_{k=-\\infty}^{\\infty} x[n+k N]\n\\]\n\\[\nx_{N}[n]\n\\]\n\n\n\n\n\n\\(x\\) 可以看作“周期为无穷大”的周期信号，即 \\(x[n]=\\lim _{N \\rightarrow \\infty} x_{N}[n]\\)"
+    "text": "离散时间傅里叶变换\n将 \\(x_{N}\\) 展开为离散时间傅里叶级数\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j k \\frac{2  \\pi}{N} n}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \\frac{2 \\pi}{N} n}=\\frac{1}{N} X\\left(e^{j k \\omega_{0}n}\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
   },
   {
     "objectID": "Chapter05_V4.html#离散时间傅里叶变换-1",
     "href": "Chapter05_V4.html#离散时间傅里叶变换-1",
     "title": "第五章 离散时间傅里叶变换",
     "section": "离散时间傅里叶变换",
-    "text": "离散时间傅里叶变换\n将 \\(x_{N}\\) 展开为离散时间傅里叶级数\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j k \\frac{2  \\pi}{N} n}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \\frac{2 \\pi}{N} n}=\\frac{1}{N} X\\left(e^{j k \\omega_{0}n}\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+    "text": "离散时间傅里叶变换\n当 \\(N\\) 增大时，离散频率的采样会变得更加稠密\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j k \\frac{2 \\pi}{N} n}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \\frac{2 \\pi}{N} n}=\\frac{1}{N} X\\left(e^{j k \\omega_{0} }\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
   },
   {
     "objectID": "Chapter05_V4.html#离散时间傅里叶变换-2",
     "href": "Chapter05_V4.html#离散时间傅里叶变换-2",
     "title": "第五章 离散时间傅里叶变换",
     "section": "离散时间傅里叶变换",
-    "text": "离散时间傅里叶变换\n当 \\(N\\) 增大时，离散频率的采样会变得更加稠密\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j k \\frac{2 \\pi}{N} n}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \\frac{2 \\pi}{N} n}=\\frac{1}{N} X\\left(e^{j k \\omega_{0} }\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+    "text": "离散时间傅里叶变换\n当 \\(N \\rightarrow \\infty\\) 时，\\(N \\hat{x}[k]\\) 逐渐逼近包络 \\(X\\left(e^{j \\omega}\\right)\\)\n\\[\nx_{N}[n]\n\\]\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{jk \\frac{2 \\pi}{N} n}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-jk \\frac{2 \\pi}{N} n}=\\frac{1}{N} X\\left(e^{j k \\omega_{0} }\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
   },
   {
     "objectID": "Chapter05_V4.html#离散时间傅里叶变换-3",
     "href": "Chapter05_V4.html#离散时间傅里叶变换-3",
     "title": "第五章 离散时间傅里叶变换",
     "section": "离散时间傅里叶变换",
-    "text": "离散时间傅里叶变换\n当 \\(N \\rightarrow \\infty\\) 时，\\(N \\hat{x}[k]\\) 逐渐逼近包络 \\(X\\left(e^{j \\omega}\\right)\\)\n\\[\nx_{N}[n]\n\\]\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{jk \\frac{2 \\pi}{N} n}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-jk \\frac{2 \\pi}{N} n}=\\frac{1}{N} X\\left(e^{j k \\omega_{0} }\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+    "text": "离散时间傅里叶变换\n离散时间傅里叶级数的综合公式为：\n\\[\nx_{N}[n]=\\sum_{k \\in[N]} \\hat{x}[k] e^{j k \\omega_{0} n}=\\frac{1}{N} \\sum_{k=0}^{N-1} X\\left(e^{j k \\omega_{0}}\\right) e^{j k \\omega_{0} n}\n\\]\n令 \\(\\omega_{k}=k \\omega_{0}, \\Delta \\omega=\\omega_{k}-\\omega_{k-1}=\\omega_{0}\\)，\n\\[\nx_{N}[n]=\\frac{1}{2 \\pi} \\sum_{k=0}^{N-1} X\\left(e^{j \\omega_{k}}\\right) e^{j \\omega_{k} n} \\Delta \\omega\n\\]\n当 \\(N \\rightarrow \\infty\\)、\\(\\Delta \\omega \\rightarrow 0\\) 时，上述黎曼和变为积分：\n\\[\nx[n]=\\frac{1}{2 \\pi} \\int_{0}^{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]\n可在任意长度为 \\(2 \\pi\\) 的周期区间上积分"
   },
   {
     "objectID": "Chapter05_V4.html#离散时间傅里叶变换-4",
@@ -1936,7 +1936,7 @@
     "href": "Chapter05_V4.html#离散时间傅里叶变换的性质",
     "title": "第五章 离散时间傅里叶变换",
     "section": "离散时间傅里叶变换的性质",
-    "text": "离散时间傅里叶变换的性质\n周期性\n\\[\nX\\left(e^{j(\\omega+2 \\pi)}\\right)=X\\left(e^{j(\\omega)}\\right)\n\\]\n线性\n\\[\n\\mathcal{F}\\{a x+b y\\}=a \\mathcal{F}\\{x\\}+b \\mathcal{F}\\{y\\}\n\\]\n时移与频移\n若\n\\[\nx[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)\n\\]\n则\n\\[\nx\\left[n-n_{0}\\right] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} e^{-j \\omega n_{0}} X\\left(e^{j \\omega}\\right)\n\\]\n并且\n\\[\ne^{j \\omega_{0} n} x[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j\\left(\\omega-\\omega_{0}\\right)}\\right)\n\\]"
+    "text": "离散时间傅里叶变换的性质\n设\n\\[\nx[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)\n\\]\n时间反转\n\\[\nx[-n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{-j \\omega}\\right)\n\\]\n共轭\n\\[\nx^{*}[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X^{*}\\left(e^{-j \\omega}\\right)\n\\]\n对称性\n\n\\(x\\) 为偶信号 \\(\\Longleftrightarrow X\\) 为偶函数，\\(\\quad x\\) 为奇信号 \\(\\Longleftrightarrow X\\) 为奇函数\n\\(x\\) 为实信号 \\(\\Longleftrightarrow X\\left(e^{-j \\omega}\\right)=X^{*}\\left(e^{j \\omega}\\right)\\)\n\\(x\\) 为实信号 并且 是 偶函数 \\(\\Longleftrightarrow X\\) 是实信号 并且 是偶函数\n\\(x\\) 为实信号 并且 是奇函数 \\(\\Longleftrightarrow X\\) 纯虚信号 并且 是奇函数"
   },
   {
     "objectID": "Chapter05_V4.html#例高通与低通滤波器",
@@ -2125,7 +2125,7 @@
     "href": "Chapter05_V4.html#线性常系数差分方程",
     "title": "第五章 离散时间傅里叶变换",
     "section": "线性常系数差分方程",
-    "text": "线性常系数差分方程\n由下式描述的 LTI 系统，其频率响应为\n\\[\n\\sum_{k=0}^{N} a_{k} y[n-k]=\\sum_{k=0}^{M} b_{k} x[n-k]\n\\]\n方法 1：利用特征函数性质\n\\[\nx[n]=e^{j \\omega n} \\Longrightarrow y[n]=H\\left(e^{j \\omega}\\right) e^{j \\omega n}\n\\]\n代入差分方程得\n\\[\n\\begin{gathered}\n\\sum_{k=0}^{N} a_{k} H\\left(e^{j \\omega}\\right) e^{j \\omega(n-k)}=\\sum_{k=0}^{M} b_{k} e^{j \\omega(n-k)} \\\\\nH\\left(e^{j \\omega}\\right)=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\end{gathered}\n\\]"
+    "text": "线性常系数差分方程\n方法 2：对方程两边取傅里叶变换\n\\[\n\\mathcal{F}\\left\\{\\sum_{k=0}^{N} a_{k} y[n-k]\\right\\}=\\mathcal{F}\\left\\{\\sum_{k=0}^{M} b_{k} x[n-k]\\right\\}\n\\]\n由线性性质和时移性质\n\\[\n\\sum_{k=0}^{N} a_{k} e^{-j \\omega k} Y\\left(e^{j \\omega}\\right)=\\sum_{k=0}^{M} b_{k} e^{-j \\omega k} X\\left(e^{j \\omega}\\right)\n\\]\n由卷积性质\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{Y\\left(e^{j \\omega}\\right)}{X\\left(e^{j \\omega}\\right)}=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\]\n频率响应是关于 \\(e^{-j \\omega}\\) 的有理函数"
   },
   {
     "objectID": "Chapter05_V4.html#线性常系数差分方程-1",
@@ -2315,5 +2315,54 @@
     "title": "第五章 离散时间傅里叶变换",
     "section": "例：余弦信号",
     "text": "例：余弦信号\n\\[\n\\begin{aligned}\nx[n] & =\\cos \\left(\\omega_{0} n+\\phi\\right)=\\frac{e^{j \\phi}}{2} e^{j \\omega_{0} n}+\\frac{e^{-j \\phi}}{2} e^{-j \\omega_{0} n} \\\\\nX\\left(e^{j \\omega}\\right) & =\\sum_{\\ell=-\\infty}^{\\infty} \\pi e^{j \\phi} \\delta\\left(\\omega-\\omega_{0}-2 \\ell \\pi\\right)+\\pi e^{-j \\phi} \\delta\\left(\\omega+\\omega_{0}-2 \\ell \\pi\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V4.html#sec51",
+    "href": "Chapter05_V4.html#sec51",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间傅里叶变换",
+    "text": "离散时间傅里叶变换\n设 \\(x\\) 是一个非周期离散时间信号，并且 \\(\\operatorname{supp} x \\subset\\left[N_{1}, N_{2}\\right]\\)\n\n\n\n\n\n定义其周期延拓，周期满足 \\(N&gt;N_{2}-N_{1}+1\\)：\n\\[\nx_{N}[n]=\\sum_{k=-\\infty}^{\\infty} x[n+k N]\n\\]\n\\[\nx_{N}[n]\n\\]\n\n\n\n\n\n\\(x\\) 可以看作“周期为无穷大”的周期信号，即 \\(x[n]=\\lim _{N \\rightarrow \\infty} x_{N}[n]\\)"
+  },
+  {
+    "objectID": "Chapter05_V4.html#sec52",
+    "href": "Chapter05_V4.html#sec52",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "离散时间傅里叶变换的性质",
+    "text": "离散时间傅里叶变换的性质\n周期性\n\\[\nX\\left(e^{j(\\omega+2 \\pi)}\\right)=X\\left(e^{j(\\omega)}\\right)\n\\]\n线性\n\\[\n\\mathcal{F}\\{a x+b y\\}=a \\mathcal{F}\\{x\\}+b \\mathcal{F}\\{y\\}\n\\]\n时移与频移\n若\n\\[\nx[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right)\n\\]\n则\n\\[\nx\\left[n-n_{0}\\right] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} e^{-j \\omega n_{0}} X\\left(e^{j \\omega}\\right)\n\\]\n并且\n\\[\ne^{j \\omega_{0} n} x[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j\\left(\\omega-\\omega_{0}\\right)}\\right)\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V4.html#sec53",
+    "href": "Chapter05_V4.html#sec53",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "DTFT 的卷积性质",
+    "text": "DTFT 的卷积性质\n\\[\n(x * h)[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\n\\]\n注：这是 CTFS 中乘法性质的对偶形式。\n\\[\nx(t) y(t) \\stackrel{\\mathcal{F S}}{\\longleftrightarrow}(\\hat{x} * \\hat{y})[k]\n\\]\n注：与 CTFT 的情形类似，该公式在相关表达式定义良好时成立。\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{x * h\\}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}}(x * h)[n] e^{-j \\omega n}=\\sum_{n \\in \\mathbb{Z}} \\sum_{m \\in \\mathbb{Z}} x[m] h[n-m] e^{-j \\omega n} \\\\\n& =\\sum_{m \\in \\mathbb{Z}} x[m] \\sum_{n \\in \\mathbb{Z}} h[n-m] e^{-j \\omega n} \\\\\n& =\\sum_{m \\in \\mathbb{Z}} x[m] e^{-j \\omega m} H\\left(e^{j \\omega}\\right) \\\\\n& =X\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V4.html#sec54",
+    "href": "Chapter05_V4.html#sec54",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "DTFT 的乘积性质",
+    "text": "DTFT 的乘积性质\n\\[\nx[n] y[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{2 \\pi} X \\circledast Y=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) Y\\left(e^{j(\\omega-\\theta)}\\right) d \\theta\n\\]\n注：这是 CTFS 中周期卷积性质的对偶形式。\n\\[\nx \\circledast y \\stackrel{\\mathcal{F S}}{\\longleftrightarrow} T \\hat{x} \\hat{y}\n\\]\n证明。\n\\[\n\\begin{aligned}\n\\mathcal{F}\\{x y\\}\\left(e^{j \\omega}\\right) & =\\sum_{n \\in \\mathbb{Z}} x[n] y[n] e^{-j \\omega n}=\\sum_{n \\in \\mathbb{Z}}\\left(\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) e^{j \\theta n} d \\theta\\right) y[n] e^{-j \\omega n} \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right)\\left(\\sum_{n \\in \\mathbb{Z}} y[n] e^{-j(\\omega-\\theta) n}\\right) d \\theta \\\\\n& =\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) Y\\left(e^{j(\\omega-\\theta)}\\right) d \\theta\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter05_V4.html#sec55",
+    "href": "Chapter05_V4.html#sec55",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "(教材)表 5.1 傅里叶变换性质",
+    "text": "(教材)表 5.1 傅里叶变换性质\n设 \\(x[n] \\longleftrightarrow X(e^{j\\omega})\\)，\\(y[n] \\longleftrightarrow Y(e^{j\\omega})\\)。且 \\(X(e^{j\\omega})\\) 与 \\(Y(e^{j\\omega})\\) 均以 \\(2\\pi\\) 为周期。\n\n\n\n\n\n\n\n\n\n章节\n性质\n非周期信号\n傅里叶变换\n\n\n\n\n-\n基本关系\n\\(x[n], y[n]\\)\n周期的，周期为 \\(2\\pi\\)\n\n\n5.3.2\n线性\n\\(ax[n] + by[n]\\)\n\\(aX(e^{j\\omega}) + bY(e^{j\\omega})\\)\n\n\n5.3.3\n时移\n\\(x[n - n_0]\\)\n\\(e^{-j\\omega n_0} X(e^{j\\omega})\\)\n\n\n5.3.3\n频移\n\\(e^{j\\omega_0 n} x[n]\\)\n\\(X(e^{j(\\omega - \\omega_0)})\\)\n\n\n5.3.4\n共轭\n\\(x^*[n]\\)\n\\(X^*(e^{-j\\omega})\\)\n\n\n5.3.6\n时间反转\n\\(x[-n]\\)\n\\(X(e^{-j\\omega})\\)\n\n\n5.3.7\n时域扩展\n\\(x_{(k)}[n] = \\begin{cases} x[n/k], & n \\text{ 为 } k \\text{ 的倍数} \\\\ 0, & n \\text{ 不为 } k \\text{ 的倍数} \\end{cases}\\)\n\\(X(e^{jk\\omega})\\)\n\n\n5.4\n卷积\n\\(x[n] * y[n]\\)\n\\(X(e^{j\\omega}) Y(e^{j\\omega})\\)\n\n\n5.5\n相乘\n\\(x[n] y[n]\\)\n\\(\\frac{1}{2\\pi} \\int_{2\\pi} X(e^{j\\theta}) Y(e^{j(\\omega - \\theta)}) d\\theta\\)\n\n\n5.3.5\n时域差分\n\\(x[n] - x[n - 1]\\)\n\\((1 - e^{-j\\omega}) X(e^{j\\omega})\\)"
+  },
+  {
+    "objectID": "Chapter05_V4.html#sec56",
+    "href": "Chapter05_V4.html#sec56",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "DTFS 的对称与对偶",
+    "text": "DTFS 的对称与对偶\n\n周期信号 \\(x[n]\\) 的傅里叶级数系数 \\(a_k\\) 本身也是一个周期序列。\n既然 \\(a_k\\) 是周期的，我们就可以反过来将 \\(a_k\\) 看作时域信号，对其再次展开傅里叶级数。\n这意味着时域中的某种操作（如平移、卷积），在频域中一定存在结构完全对称的操作。\n\n考虑两个周期均为 \\(N\\) 的周期序列 \\(f[m]\\) 和 \\(g[r]\\)，通过下式联系： \\[f[m] = \\frac{1}{N} \\sum_{r=\\langle N \\rangle} g[r]e^{-j r(2\\pi/N)m}\\]\n\n\n情况 A：正向变换\n若令 \\(m=k, r=n\\)，则公式变为标准的 DTFS 分析公式： \\[g[n] \\overset{FS}{\\longleftrightarrow} f[k]\\]\n\n情况 B：反向变换\n若令 \\(m=n, r=-k\\)，经过代换可得： \\[f[n] \\overset{FS}{\\longleftrightarrow} \\frac{1}{N}g[-k]\\]\n\n结论：序列 \\(a_k\\) 的傅里叶级数系数是 \\((1/N)x[-n]\\)，即原信号时间反转并缩放后的值。"
+  },
+  {
+    "objectID": "Chapter05_V4.html#sec57",
+    "href": "Chapter05_V4.html#sec57",
+    "title": "第五章 离散时间傅里叶变换",
+    "section": "线性常系数差分方程",
+    "text": "线性常系数差分方程\n由下式描述的 LTI 系统，其频率响应为\n\\[\n\\sum_{k=0}^{N} a_{k} y[n-k]=\\sum_{k=0}^{M} b_{k} x[n-k]\n\\]\n方法 1：利用特征函数性质\n\\[\nx[n]=e^{j \\omega n} \\Longrightarrow y[n]=H\\left(e^{j \\omega}\\right) e^{j \\omega n}\n\\]\n代入差分方程得\n\\[\n\\begin{gathered}\n\\sum_{k=0}^{N} a_{k} H\\left(e^{j \\omega}\\right) e^{j \\omega(n-k)}=\\sum_{k=0}^{M} b_{k} e^{j \\omega(n-k)} \\\\\nH\\left(e^{j \\omega}\\right)=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\end{gathered}\n\\]"
   }
 ]

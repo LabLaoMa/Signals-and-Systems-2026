@@ -54,7 +54,7 @@ execute:
 - [7. 由线性常系数差分方程表征的系统](#sec57)
 # 1. 非周期信号的表示：离散时间傅里叶变换{#sec51}
 
-## 离散时间傅里叶变换
+## 离散时间傅里叶变换 {#sec51}
 
 设 $x$ 是一个非周期离散时间信号，并且 $\operatorname{supp} x \subset\left[N_{1}, N_{2}\right]$
 
@@ -118,7 +118,7 @@ $$
 x_{N}[n]
 $$
 
-![](imglink/159772dd-711e-4cf6-b135-d8485880c667-06.png){fig-align=center}
+![](imglink/159772dd-711e-4cf6-b135-d8485880c667-06.png){fig-align=center width=60%}
 
 $$
 \hat{x}_{N}[k]=\left\langle x_{N}, e^{jk \frac{2 \pi}{N} n}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-jk \frac{2 \pi}{N} n}=\frac{1}{N} X\left(e^{j k \omega_{0} }\right)
@@ -635,7 +635,7 @@ $$
 - [6. 对偶性](#sec56)
 - [7. 由线性常系数差分方程表征的系统](#sec57)
 
-## 离散时间傅里叶变换的性质
+## 离散时间傅里叶变换的性质 {#sec52}
 
 **周期性**
 
@@ -876,7 +876,7 @@ $$
 - [6. 对偶性](#sec56)
 - [7. 由线性常系数差分方程表征的系统](#sec57)
 
-## DTFT 的卷积性质
+## DTFT 的卷积性质 {#sec53}
 
 $$
 (x * h)[n] \stackrel{\mathcal{F}}{\longleftrightarrow} X\left(e^{j \omega}\right) H\left(e^{j \omega}\right)
@@ -1006,7 +1006,7 @@ $$
 - [6. 对偶性](#sec56)
 - [7. 由线性常系数差分方程表征的系统](#sec57)
 
-## DTFT 的乘积性质
+## DTFT 的乘积性质 {#sec54}
 
 $$
 x[n] y[n] \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{2 \pi} X \circledast Y=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right) Y\left(e^{j(\omega-\theta)}\right) d \theta
@@ -1122,7 +1122,7 @@ $$
 - [6. 对偶性](#sec56)
 - [7. 由线性常系数差分方程表征的系统](#sec57)
 
-## (教材)表 5.1 傅里叶变换性质
+## (教材)表 5.1 傅里叶变换性质 {#sec55}
 
 设 $x[n] \longleftrightarrow X(e^{j\omega})$，$y[n] \longleftrightarrow Y(e^{j\omega})$。且 $X(e^{j\omega})$ 与 $Y(e^{j\omega})$ 均以 $2\pi$ 为周期。
 
@@ -1193,7 +1193,7 @@ $$
 - [**6. 对偶性**](#sec56)
 - [7. 由线性常系数差分方程表征的系统](#sec57)
 
-## DTFS 的对称与对偶
+## DTFS 的对称与对偶 {#sec56}
 
 * 周期信号 $x[n]$ 的傅里叶级数系数 $a_k$ 本身也是一个**周期序列**。
   
@@ -1316,7 +1316,7 @@ $$x[n] = \frac{1}{2\pi} \int_{2\pi} X(e^{j\omega}) e^{j\omega n} d\omega \longle
 
 
 
-## 线性常系数差分方程
+## 线性常系数差分方程 {#sec57}
 
 由下式描述的 LTI 系统，其频率响应为
 
