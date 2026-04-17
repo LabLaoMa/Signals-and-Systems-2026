@@ -274,10 +274,10 @@ $$
 
 ## 对数模和伯德图（Bode Diagram）
 
-模的关系涉及 $|\boldsymbol{H}(\boldsymbol{j} \omega)|$ 和 $|\boldsymbol{X}(\boldsymbol{j} \omega)|$ 的相乘。因此，如果傅里叶变换的模是在一个对数幅度上展示的话，那么就有一个相加的关系：
+对数模：
 
 $$
-\log |Y(j \omega)|=\log |H(j \omega)|+\log |X(j \omega)|
+ |Y(j \omega)|= |H(j \omega)|  |X(j \omega)| \Longrightarrow \log |Y(j \omega)|=\log |H(j \omega)|+\log |X(j \omega)|
 $$
 * 在一个对数标尺上展现傅里叶变换的模，还能在一个较宽的动态范围上将细节显示出来。
   
@@ -300,9 +300,9 @@ $$
 - 对数频率坐标，常常可以比线性频率展示宽的多的频率范围。
 :::
 ::: {.column width="50%"}
-![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32.jpg?height=590&width=1334&top_left_y=496&top_left_x=1160){width=50%}
+![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32.jpg?height=590&width=1334&top_left_y=496&top_left_x=1160){width=45%}
 
-![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32.jpg?height=607&width=1328&top_left_y=1171&top_left_x=1160){width=50%}
+![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32.jpg?height=607&width=1328&top_left_y=1171&top_left_x=1160){width=45%}
 :::
 ::::
 

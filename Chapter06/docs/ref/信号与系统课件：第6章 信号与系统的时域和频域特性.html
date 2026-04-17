@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-a8da12e74b29c2e7b17644f84b91567b.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.30">
+
+  <title>My Site – quarto-input8973f123288b2a23</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-ca6c53983499909029db778ee07132c3.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="第五章-回顾" class="slide level2">
+<h2>第五章 回顾</h2>
+<p>＊第5章与第4章平行地讨论了DTFT，讨论的基本思路和方法与第4章完全对应，得到的许多结论也很类似。 ：通过对DTFT性质的讨论，揭示了离散时间信号时域与频域特性的关系。不仅看到有许多性质在 CTFT中都有相对应的结论，而且它们也存在一些重要的差别，例如DTFT总是以 <span class="math inline">\(2 \pi\)</span> 为周期的。 ※通过卷积特性的讨论，对LTI系统建立了频域分析的方法。同样地，相乘特性的存在则为离散时间信号的传输技术提供了理论基础。</p>
+<p>对偶性的讨论为进一步认识连续时间信号、离散时间信号、周期信号与非周期信号频域描述的几种工具之间的内在联系，提供了重要的理论根据。深入理解并恰当运用对偶性，对深刻掌握CFS、 DFS、CTFT、DTFT的本质关系有很大帮助。</p>
+</section>
+<section id="可以将对偶关系归纳为如下图表" class="slide level2">
+<h2>可以将对偶关系归纳为如下图表：</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-03.jpg?height=1432&amp;width=2356&amp;top_left_y=340&amp;top_left_x=132"> －与连续时间LTI系统一样，对由LCCDE或由方框图描述的LTI系统，可以很方便的由方程或方框图得到系统的频率响应函数 <span class="math inline">\(\mathrm{H}\left(\mathrm{e}^{\mathrm{j} \omega}\right)\)</span> ，进而实现系统的频域分析。其基本过程和涉及到的问题与连续时间LTI系统的情况也完全类似。</p>
+<p>随着今后进一步的讨论，我们可以看到CFS、 DFS、CTFT、DTFT之间是完全相通的。</p>
+</section>
+<section id="第6章-信号与系统的时域和频域特性" class="slide level2">
+<h2>第6章 信号与系统的时域和频域特性</h2>
+<p>本章主要内容</p>
+<ul>
+<li>傅立叶变换的模与相位。</li>
+<li>LTI系统的幅频特性与相频特性，系统的失真。</li>
+<li>系统的不失真传输条件。</li>
+<li>理想滤波器的频域、时域特性及其不可实现性。</li>
+<li>非理想滤波器的特性及其逼近方式。</li>
+<li>一阶与二阶系统的分析方法，Bode图。</li>
+</ul>
+</section>
+<section id="引言-introduction" class="slide level2">
+<h2>6．0 引言 Introduction</h2>
+<p>在以前的讨论中，已经看到 ∴ 在时域，系统的特性由 <span class="math inline">\(h(t)\)</span> 或 <span class="math inline">\(h(n)\)</span> 描述； ∴ 在频域，系统的特性由 <span class="math inline">\(H\)</span>（ 或 <span class="math inline">\(\quad H\)</span> 䅦述； 工程中设计系统时，往往会对系统的特性从时域角度或频域角度提出某些要求。 ＊在LTI 系统分析中，由于时域中的微分（差分）方程和卷积运算在频域都变成了代数运算，所以利用频域分析往往特别方便。 ＊系统的时域特性与频域特性是相互制约的。在进行系统的分析与设计时，要权衡考虑系统的时域与频域特性。 ＊本章的基本内容旨在建立对系统的时域和频域特性进行综合分析的思想和方法。</p>
+</section>
+<section id="傅里叶变换的模和相位表示" class="slide level2">
+<h2>6.1 傅里叶变换的模和相位表示</h2>
+<p>（The Magnitude－Phase Representation of the Fourier Transform）</p>
+<p>无论CTFT还是DTFT，一般情况下都表现为一个复函数。</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; X(j \omega)=|X(j \omega)| e^{j \mathrm{R} X(j \omega)} \\
+&amp; X\left(e^{j \omega}\right)=\left|X\left(e^{j \omega}\right)\right| e^{j \mathrm{R} X\left(e^{j \omega}\right)}
+\end{aligned}
+\]</span></p>
+<p>这说明：一个信号所携带的全部信息分别包含在其频谱的模和相位中。</p>
+<p>因此，导致信号失真的原因有两种： 1．幅度失真：由于频谱的模改变而引起的失真。各频率分量幅度产生不同程度的衰减。</p>
+<p>2．相位失真：由于频谱的相位改变引起的失真。各频率分量产生的相移不与频率成正比，使响应的各频率分量在时间轴上的相对位置产生变化。 在工程实际中，不同的应用场合，对幅度失真和相位失真有不同的敏感程度，也会有不同的技术指标要求。</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-10.jpg?height=734&amp;width=1161&amp;top_left_y=173&amp;top_left_x=138"> <span class="math inline">\(x\left(t_{1}, t_{2}\right)\)</span></p>
+<p><span class="math inline">\(x\left(t_{1}, t_{2}\right)\)</span> <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-10.jpg?height=740&amp;width=1161&amp;top_left_y=998&amp;top_left_x=138"></p>
+<p>二维傅里叶变换的相位</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-10.jpg?height=734&amp;width=1138&amp;top_left_y=173&amp;top_left_x=1362"> 二维傅里叶变换的模</p>
+<p>模保持，相位为 0 的图</p>
+<p>相位保持，模全1的图 <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-11.jpg?height=734&amp;width=1138&amp;top_left_y=173&amp;top_left_x=1356"> 像</p>
+<p>相位保持，模换为（g）的模 <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-11.jpg?height=728&amp;width=1248&amp;top_left_y=1021&amp;top_left_x=675"></p>
+</section>
+<section id="lti系统频率响应的模和相位表示" class="slide level2">
+<h2>6．2 LTI系统频率响应的模和相位表示</h2>
+<p>（The Magnitude－Phase Representation of the Frequency Response of LTI Systems ） －LTI系统对输入信号所起的作用包括两个方面： 1．改变输入信号各频率分量的幅度； 2．改变输入信号各频率分量的相对相位。</p>
+<p><span class="math display">\[
+\begin{gathered}
+Y(j \omega)=X(j \omega) H(j \omega) \quad Y\left(e^{j \omega}\right)=X\left(e^{j \omega}\right) H\left(e^{j \omega}\right) \\
+|Y(j \omega)|=|X(j \omega) \| H(j \omega)|
+\end{gathered}
+\]</span></p>
+</section>
+<section id="一线性与非线性相位" class="slide level2">
+<h2>一．线性与非线性相位</h2>
+<p>信号在传输过程中，相位特性或幅度特性发生改变都会引起信号波形的改变，即发生失真。当相位特性仅仅是附加一个线性相移时，只引起信号在时间上的平移。如连续时间LTI系统：</p>
+<p><span class="math display">\[
+H(j \omega)=e^{-j \omega t_{0}} \text { 则 } y(t)=x\left(t-t_{0}\right)
+\]</span></p>
+<p>此时并未丟失信号所携带的任何信息，只是发生时间上的延迟，因而在工程应用中是允许的。</p>
+<p>如果系统的相位特性是非线性的，由于不同频率分量受相位特性影响所产生的时移不同，叠加起来一定会变成一个与原来信号很不相同的信号波形。</p>
+<p>对离散时间LTI系统，也有同样的结论。但对线性相位系统，当相位特性的斜率是整数时，只引起信号的时域移位。若相位特性的斜率不是整数，由于离散时间信号的时移量只能是整数，需要采用其他手段实现，其含义也不再是原信号的简单移位。</p>
+</section>
+<section id="二信号的不失真传输条件" class="slide level2">
+<h2>二．信号的不失真传输条件</h2>
+<p>如果系统响应与输入信号满足下列条件，可视为在传输中未发生失真。</p>
+<p><span class="math display">\[
+y(t)=k x\left(t-t_{0}\right) \quad y(n)=k x\left(n-n_{0}\right)
+\]</span></p>
+<p>这就要求系统的频率特性为</p>
+<p><span class="math display">\[
+H(j \omega)=k e^{-j \omega t_{0}} \quad H\left(e^{j \omega}\right)=k e^{-j \omega n_{0}}
+\]</span></p>
+<p>如果一个系统的幅频特性是一个常数，称这种系统为全通系统（有些书上称具有单位增益的系统为全通系统）。</p>
+<p>据此可得出信号传输的不失真条件：</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+h(t)=k \delta\left(t-t_{0}\right) &amp; \text { —时域表征 } \\
+H(j \omega)=k e^{-j \omega t_{0}}, &amp; \text { —频域表征 }
+\end{array}
+\]</span></p>
+<p><span class="math display">\[
+|H(j \omega)|=k, \quad \mathrm{R} H(j \omega)=-\omega t_{0}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-16.jpg?height=347&amp;width=647&amp;top_left_y=969&amp;top_left_x=404"> <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-16.jpg?height=358&amp;width=717&amp;top_left_y=958&amp;top_left_x=1217"></p>
+<p>通常，系统若在被传输信号的带宽范围内满足不失真条件，则认为该系统对此信号是不失真系统。</p>
+</section>
+<section id="三群时延group-delay" class="slide level2">
+<h2>三．群时延（Group Delay）</h2>
+<p>对线性相位系统，系统的相位特性表明了信号的各个频率分量在通过系统时，系统对它所产生的附加相移。相位特性的斜率就是该频率分量在时域产生的时延。</p>
+<p>对非线性相位系统，定义群时延为</p>
+<p><span class="math display">\[
+\tau(\omega)=-\frac{d}{d \omega} \mathrm{R} H(j \omega)
+\]</span></p>
+<p>群时延代表了在以 <span class="math inline">\(\omega_{0}\)</span> 为中心的一个很窄的频带或很少的一组频率上信号所受到的有效公共延时。</p>
+<p>考察一个中心频率为 <span class="math inline">\(\omega\)</span> 的窄带输入信号，一个非线性相位的系统在此窄带范围内，可将其相位的变化近似看成线性的。因此，</p>
+<p><span class="math display">\[
+Y(j \omega)=X(j \omega)|H(j \omega)| e^{-j \phi} e^{-j \omega \alpha}
+\]</span></p>
+<p>该系统对窄带输入信号产生的近似效果就是： 1．由 <span class="math inline">\(H(j \omega)\)</span> 引起的幅度成形；</p>
+<p>2．对应系统在 <span class="math inline">\(\omega_{0}\)</span> 的恒定相位 <span class="math inline">\(\phi\)</span> 的因子 <span class="math inline">\(e^{-j \phi}\)</span> 的影响； 3．对应系统在窄带内的近似线性相位 <span class="math inline">\(\omega \alpha\)</span> 所产生的时延 <span class="math inline">\(\alpha\)</span> 。该时延就是系统在 <span class="math inline">\(\omega=\omega_{0}\)</span> 的群时延。 <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-19.jpg?height=134&amp;width=873&amp;top_left_y=888&amp;top_left_x=265"></p>
+<p>在工程应用中，往往采用对数模特性（或称为 Bode图）来描述系统的频率特性。在对数坐标下，采用对数模，可以给频率特性的表示带来一些方便。这是因为：</p>
+<p>1．可以将模特性的相乘关系变为相加关系； 2．利用对数坐标的非线性，可以展示更宽范围的频率特性，并使低频端更详细而高频端相对粗略；</p>
+<p>3．对连续时间系统，可以方便地建立模特性和相位特性的直线型渐近线。</p>
+<p>工程中广泛应用的有两种对数模： <span class="math inline">\(\ln |H(j \omega)|: \lg \omega \quad\)</span> 单位：奈培（Np） <span class="math inline">\(20 \lg |H(j \omega)|: \lg \omega\)</span> 单位：分贝（dB）（decibel）</p>
+<p>对离散时间系统，由于其有效频率范围只有 <span class="math inline">\(2 \pi\)</span>而且，即使在对数坐标下也不存在直线型的渐近线。因而不采用对数坐标，只采用对数模。</p>
+<p>采用对数模（或Bode图）表示频率特性，对于幅频特性有零点或在某些频段上为零的系统，是不适用的。</p>
+</section>
+<section id="理想频率选择性滤波器" class="slide level2">
+<h2>6.3 理想频率选择性滤波器</h2>
+</section>
+<section id="the-ideal-frequencyselective-filters" class="slide level2">
+<h2>（The Ideal Frequency－Selective Filters）</h2>
+<p>一．滤波 通过系统改变信号中各频率分量的相对大小和相位，甚至完全去除某些频率分量的过程称为滤波。滤波器可分为两大类：</p>
+<p>1．频率成形滤波器（改变各分量的幅度与相位） 2．频率选择性滤波器（去除某些频率分量）</p>
+</section>
+<section id="二理想频率选择性滤波器的频率特性" class="slide level2">
+<h2>二．理想频率选择性滤波器的频率特性</h2>
+<p>理想频率选择性滤波器的频率特性在某一个（或几个）频段内，频率响应为常数，而在其它频段内频率响应等于零。</p>
+<p>理想滤波器可分为低通、高通、带通、带阻。 滤波器允许信号完全通过的频段称为滤波器的通带（pass band），完全不允许信号通过的频段称为阻带（stop band）。</p>
+</section>
+<section id="连续时间理想频率选择性滤波器的频率特性" class="slide level2">
+<h2>连续时间理想频率选择性滤波器的频率特性</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-24.jpg?height=364&amp;width=902&amp;top_left_y=427&amp;top_left_x=334"> 低通</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-24.jpg?height=434&amp;width=988&amp;top_left_y=1038&amp;top_left_x=277"> 带通</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-24.jpg?height=364&amp;width=815&amp;top_left_y=427&amp;top_left_x=1500"> 高通</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-24.jpg?height=422&amp;width=925&amp;top_left_y=1050&amp;top_left_x=1448"> 带阻</p>
+</section>
+<section id="离散时间理想频率选择性滤波器的频率特性" class="slide level2">
+<h2>离散时间理想频率选择性滤波器的频率特性</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-25.jpg?height=393&amp;width=1058&amp;top_left_y=427&amp;top_left_x=230"> 低通</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-25.jpg?height=388&amp;width=953&amp;top_left_y=1131&amp;top_left_x=173"> 带通</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-25.jpg?height=394&amp;width=1011&amp;top_left_y=432&amp;top_left_x=1385"> 高通</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-25.jpg?height=463&amp;width=1017&amp;top_left_y=1125&amp;top_left_x=1344"> 带阻</p>
+<p>各种滤波器的特性都可以从理想低通特性而来。离散时间理想滤波器的特性在 <span class="math inline">\(-\pi\)</span> ：区间上，与相应的连续时间滤波器特性完全相似。</p>
+<p>三．理想滤波器的时域特性 以理想低通滤波器为例</p>
+<p><span class="math display">\[
+H(j \omega)= \begin{cases}1, &amp; |\omega|&lt;\omega_{c} \\ 0, &amp; |\omega|&gt;\omega_{c}\end{cases}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-26.jpg?height=423&amp;width=953&amp;top_left_y=1038&amp;top_left_x=1431"> 连续时间理想低通滤波器</p>
+</section>
+<section id="由傅里叶变换可得" class="slide level2">
+<h2>由傅里叶变换可得：</h2>
+<p><span class="math display">\[
+h(t)=\frac{1}{2 \pi} \int_{-\omega_{c}}^{\omega_{c}} e^{j \omega t} d \omega=\frac{\sin \omega_{c} t}{\pi t}=\frac{\omega_{c}}{\pi} \operatorname{Sa}\left(\omega_{c} t\right)
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-27.jpg?height=988&amp;width=2079&amp;top_left_y=709&amp;top_left_x=265"></p>
+<p>对离散时间理想低通滤波器有：</p>
+<p><span class="math display">\[
+h(n)=\frac{\sin \omega_{c} n}{\pi n}=\frac{\omega_{c}}{\pi} \operatorname{Sa}\left(\omega_{c} n\right)
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-28.jpg?height=982&amp;width=2183&amp;top_left_y=750&amp;top_left_x=190"></p>
+</section>
+<section id="如果理想低通滤波器具有线性相位特性" class="slide level2">
+<h2>如果理想低通滤波器具有线性相位特性</h2>
+<p><span class="math display">\[
+H(j \omega)= \begin{cases}e^{-j \alpha \omega}, &amp; |\omega|&lt;\omega_{c} \\ 0, &amp; |\omega|&gt;\omega_{c}\end{cases}
+\]</span></p>
+<p>则 <span class="math inline">\(h(t)=\frac{\omega_{c}}{\pi} \mathrm{Sa}\left[\omega_{c}(t-\alpha)\right]=\frac{\sin \omega_{c}(t-\alpha)}{\pi(t-\alpha)}\)</span> <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-29.jpg?height=717&amp;width=2050&amp;top_left_y=1067&amp;top_left_x=300"></p>
+</section>
+<section id="理想低通滤波器的单位阶跃响应" class="slide level2">
+<h2>理想低通滤波器的单位阶跃响应</h2>
+<p><span class="math display">\[
+\begin{aligned}
+s(t) &amp; =h(t)^{*} u(t) \\
+&amp; =\int_{-\infty}^{t} \frac{\omega_{c}}{\pi} \frac{\sin \omega_{c} \tau}{\omega_{c} \tau} d \tau=\frac{1}{\pi} \int_{-\infty}^{\omega_{c} t} \frac{\sin x}{x} d x \\
+&amp; =\frac{1}{\pi} \int_{-\infty}^{0} \frac{\sin x}{x} d x+\frac{1}{\pi} \int_{0}^{\omega_{c} t} \frac{\sin x}{x} d x \\
+&amp; =-\frac{1}{\pi} \int_{0}^{-\infty} \frac{\sin x}{x} d x+\frac{1}{\pi} \int_{0}^{\omega_{c} t} \frac{\sin x}{x} d x
+\end{aligned}
+\]</span></p>
+<p>令 <span class="math inline">\(\int_{0}^{x} \frac{\sin \tau}{\tau} d \tau=\operatorname{Si}(x)\)</span> ——正弦积分</p>
+<p>由于</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; x \rightarrow \infty, \operatorname{Si}(x) \rightarrow \frac{\pi}{2} ; \quad x \rightarrow-\infty, \operatorname{Si}(x) \rightarrow-\frac{\pi}{2} \\
+&amp; s(t)=-\frac{1}{\pi} \operatorname{Si}(-\infty)+\frac{1}{\pi} \operatorname{Si}\left(\omega_{c} t\right)=\frac{1}{2}+\frac{1}{\pi} \operatorname{Si}\left(\omega_{c} t\right)
+\end{aligned}
+\]</span></p>
+
+<img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-31.jpg?height=792&amp;width=1946&amp;top_left_y=986&amp;top_left_x=300" class="r-stretch"></section>
+<section id="如果理想低通滤波器具有线性相位特性则" class="slide level2">
+<h2>如果理想低通滤波器具有线性相位特性，则</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-32.jpg?height=641&amp;width=1421&amp;top_left_y=346&amp;top_left_x=46"></p>
+<p>最大值位置：<span class="math inline">\(t_{0}+\frac{\pi}{\omega_{c}}\)</span> 最小值位置：<span class="math inline">\(t_{0}-\frac{\pi}{\omega_{c}}\)</span> <span class="math inline">\(t t_{0}\)</span> 为系统延迟时间 1．上升时间 <span class="math inline">\(t_{r}\)</span> ：输出由最小值到最大值所经历的时间</p>
+<p><span class="math display">\[
+t_{\mathrm{r}}=2 \cdot \frac{\pi}{\omega_{\mathrm{c}}}=\frac{1}{B} \quad B=\frac{\omega_{\mathrm{c}}}{2 \pi}=f_{\mathrm{c}}
+\]</span></p>
+<p><span class="math inline">\(\boldsymbol{B}\)</span> 是将角频率折合为频率的滤波器带宽（截止频率）。 2．阶跃响应的上升时间 <span class="math inline">\(t_{r}\)</span> 与滤波器的截止频率 <span class="math inline">\(B\)</span>（带宽） 成反比 <span class="math inline">\(B t_{\mathrm{r}}=1\)</span> 。</p>
+<p>对离散时间理想低通滤波器，相应有：</p>
+<p><span class="math display">\[
+s(n)=\frac{1}{2}+\frac{1}{\pi} \operatorname{Si}\left(\omega_{c} n\right)
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-33.jpg?height=792&amp;width=2125&amp;top_left_y=721&amp;top_left_x=219"></p>
+<p>从理想滤波器的时域特性可以看出：</p>
+<p>1．理想滤波器是非因果系统。因而是物理不可实现的；</p>
+<p>2．尽管从频域滤波的角度看，理想滤波器的频率特性是最佳的。但它们的时域特性并不是最佳的。 <span class="math inline">\(h(t)\)</span>或 <span class="math inline">\(h(n)\)</span> 都有起伏、旁瓣、主瓣，这表明理想滤波器的时域特性与频域特性并不兼容。</p>
+<p>3．在工程应用中，当要设计一个滤波器时，必须对时域特性和频域特性作出恰当的折中。</p>
+</section>
+<section id="非理想滤波器the-nonideal-filters" class="slide level2">
+<h2>6.4 非理想滤波器（The Nonideal Filters）</h2>
+<p>由于理想滤波器是物理不可实现的，工程应用中就必须寻找一个物理可实现的频率特性去逼近理想特性，这种物理可实现的系统就称为非理想滤波器。</p>
+<p>对理想特性逼近得越精确，实现时付出的代价越大，系统的复杂程度也越高。</p>
+<p>非理想滤波器的频率特性以容限方式给出。</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">理想滤波器特性</th>
+<th style="text-align: left;">非理想滤波器特性</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1．通带绝对平坦，通带</td>
+<td style="text-align: left;">通带内允许有起伏，</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">内衰减为零。</td>
+<td style="text-align: left;">有一定衰减范围 <span class="math inline">\(\pm \delta_{1}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2．阻带绝对平坦，阻带</td>
+<td style="text-align: left;">阻带内允许有起伏，</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">内衰减为 <span class="math inline">\(\infty\)</span></td>
+<td style="text-align: left;">有一定衰减范围 <span class="math inline">\(\delta_{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3．无过渡带。</td>
+<td style="text-align: left;">有一定的过渡带宽度</td>
+</tr>
+</tbody>
+</table>
+
+<img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-37.jpg?height=1092&amp;width=2148&amp;top_left_y=207&amp;top_left_x=242" class="r-stretch"><p>通常将偏离龶位曙益的 称为通帯起伏（或波纹），称为阻带起伏（或波纹），称为通带边缘，为阻带边缘，为过渡带。</p>
+</section>
+<section id="工程实际中常用的逼近方式有" class="slide level2">
+<h2>工程实际中常用的逼近方式有：</h2>
+<p>1．Butterworth滤波器： 通带、阻带均呈单调衰减，也称通带最平伏逼近； 2．Chebyshev滤波器： 通带等起伏阻带单调，或通带单调阻带等起伏； 3．Cauer滤波器：（椭圆函数滤波器） 通带、阻带均等起伏。 它们都从幅频特性出发逼近理想低通的模特性。</p>
+</section>
+<section id="从相位特性出发逼近理想的线性相位特性有" class="slide level2">
+<h2>从相位特性出发，逼近理想的线性相位特性有</h2>
+<p>1．Bassel滤波器： 群时延最平伏逼近； 2．包络时延Chebyshev滤波器： 包络时延等起伏逼近； 3．Gauss滤波器。</p>
+<p>对同一种滤波器，阶数越高，对理想特性逼近得越好，过渡带越窄，但付出的代价是系统越复杂。</p>
+<p>对同样阶数的滤波器，从 Butterworth <span class="math inline">\(\_\_\_\_\)</span> Chebyshev ⟶Cauer，其幅频特性逼近得越来越 好，但阶跃响应的起伏、超量和振荡也越厉害（体现了系统频域特性与时域特性的不兼容）。系统的复杂程度也越来越高，相应地，实现系统所付出的代价也越来越大。</p>
+</section>
+<section id="阶butterworth滤波器与5阶cauer滤波器的比较" class="slide level2">
+<h2>5阶Butterworth滤波器与5阶Cauer滤波器的比较</h2>
+
+<img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-41.jpg?height=1302&amp;width=2165&amp;top_left_y=463&amp;top_left_x=217" class="r-stretch"></section>
+<section id="单位阶跃响应" class="slide level2">
+<h2>单位阶跃响应：</h2>
+
+<img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-42.jpg?height=1268&amp;width=2063&amp;top_left_y=476&amp;top_left_x=276" class="r-stretch"></section>
+<section id="一阶与二阶连续时间系统" class="slide level2">
+<h2>6.5 一阶与二阶连续时间系统</h2>
+</section>
+<section id="firstorder-and-secondorder-continuous-time-systems" class="slide level2">
+<h2>（First－Order and Second－Order Continuous－ Time Systems）</h2>
+<p>对由LCCDE描述的连续时间LTI系统，其频率响应为：</p>
+<p><span class="math display">\[
+H(j \omega)=\frac{\sum_{k=0}^{M} b_{k}(j \omega)^{k}}{\sum_{k=0}^{N} a_{k}(j \omega)^{k}}=\frac{B(j \omega)}{A(j \omega)}
+\]</span></p>
+<p>其中：<span class="math inline">\(a_{k} 、 b_{k}\)</span> 均为实常数。</p>
+<p>此时，可通过对 <span class="math inline">\(B(j \omega)\)</span> 因式分解，将其表示成若干个一阶或二阶有理函数的连乘；或者通过部分分式展开，表示成若干个一阶或二阶有理函数相加。</p>
+<p>这表明：由LCCDE描述的LTI系统可以看成由若干个一阶或二阶系统通过级联或并联构成。因此，一阶和二阶系统是构成任何系统的基本单元。掌握一阶和二阶系统的分析方法就尤为重要。</p>
+<p>一．一阶系统：</p>
+<p>模型：<span class="math inline">\(\tau \frac{d y(t)}{d t}+y(t)=x(t) \quad H(j \omega)=\frac{1}{j \omega \tau+1}\)</span> 1．时域特性：<span class="math inline">\(h(t)=\frac{1}{\tau} e^{-\frac{t}{\tau}} u(t) \quad \tau\)</span> ——时间常数 <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-45.jpg?height=729&amp;width=1698&amp;top_left_y=986&amp;top_left_x=375"></p>
+<p><span class="math display">\[
+s(t)=h(t) * u(t)=\left(1-e^{-\frac{t}{\tau}}\right) u(t)
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-46.jpg?height=976&amp;width=2061&amp;top_left_y=444&amp;top_left_x=219"></p>
+<p>可以看出：<span class="math inline">\(\tau\)</span> 越小，<span class="math inline">\(s(t)\)</span> 上升得越快，系统失真越小。</p>
+<p>2．一阶系统的Bode图：</p>
+<p><span class="math display">\[
+20 \lg |H(j \omega)|=-10 \lg \left[1+(\omega \tau)^{2}\right]
+\]</span></p>
+<p><span class="math display">\[
+H(j \omega)=\frac{1}{j \omega \tau+1}
+\]</span></p>
+<p>当 <span class="math inline">\(\omega \tau=1\)</span> 即 <span class="math inline">\(\omega=1 / \tau\)</span> 时 <span class="math inline">\(20 \lg |H(j \omega)| \approx 0 \mathrm{~dB}\)</span> 当 <span class="math inline">\(\omega \tau\)</span> ？1即 <span class="math inline">\(\omega\)</span> ？ <span class="math inline">\(1 / \tau\)</span> 时</p>
+<p><span class="math display">\[
+20 \lg |H(j \omega)| \approx-20 \lg \omega \tau=-20 \lg \omega-20 \lg \tau
+\]</span></p>
+<p>在对数坐标系下，它是一条直线，斜率为每 10 倍频程－20dB。可见，一阶系统的Bode图有两条直线型渐近线。 <span class="math inline">\(\quad \omega=1\)</span> 称为折断频率。</p>
+<p>当 <span class="math inline">\(\omega=\)</span> 时，准确的对数模为</p>
+<p><span class="math display">\[
+20 \lg |H(j \omega)|=-10 \lg 2 \mathrm{~B}-3 \mathrm{~dB}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-48.jpg?height=1129&amp;width=2187&amp;top_left_y=661&amp;top_left_x=211"></p>
+</section>
+<section id="相频特性" class="slide level2">
+<h2>相频特性：</h2>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \mathrm{R} H(j \omega)=-\operatorname{tg}^{-1}(\omega \tau) \\
+&amp; \omega=\frac{1}{\tau} \text { 时, } \omega \rightarrow 0, \quad \mathrm{R} H(j \omega) \rightarrow 0 \\
+&amp; \omega ? \frac{1}{\tau} \text { 时, } \omega \rightarrow \infty, \quad \mathrm{R} H(j \omega) \rightarrow-\frac{\pi}{2} \\
+&amp; \omega=\frac{1}{\tau} \text { 时, } \quad \mathrm{R} H(j \omega)=-\frac{\pi}{4}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="将其折线化可得相位特性的直线型渐近线" class="slide level2">
+<h2>将其折线化可得相位特性的直线型渐近线：</h2>
+<p><span class="math display">\[
+\mathrm{R} H(j \omega)= \begin{cases}0, &amp; \omega \leq 0.1 / \tau \\ -\frac{\pi}{4}[\lg \omega \tau+1], &amp; \frac{0.1}{\tau} \leq \omega \leq \frac{10}{\tau} \\ -\frac{\pi}{2}, &amp; \omega \geq 10 / \tau\end{cases}
+\]</span></p>
+
+<img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-50.jpg?height=1019&amp;width=2090&amp;top_left_y=758&amp;top_left_x=231" class="r-stretch"></section>
+<section id="二二阶系统" class="slide level2">
+<h2>二．二阶系统：</h2>
+<p>模型：<span class="math inline">\(\frac{d^{2} y(t)}{d t^{2}}+2 \zeta \omega_{n} \frac{d y(t)}{d t}+\omega_{n}{ }^{2} y(t)=\omega_{n}{ }^{2} x(t)\)</span></p>
+<p>如：对RLC串联谐振电路</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-51.jpg?height=474&amp;width=1323&amp;top_left_y=900&amp;top_left_x=282"> 可列出电路方程</p>
+<p><span class="math display">\[
+y^{\prime \prime}(t)+\frac{R}{L} y^{\prime}(t)+\frac{1}{L C} y(t)=\frac{1}{L C} x(t)
+\]</span></p>
+<p><span class="math display">\[
+\zeta=\frac{R}{2} \sqrt{\frac{C}{L}}
+\]</span></p>
+<p>考察由弾簧、阻尼器、质量M组成的减震系统 <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-52.jpg?height=549&amp;width=1871&amp;top_left_y=473&amp;top_left_x=352"></p>
+<p>分析受力 <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-52.jpg?height=284&amp;width=763&amp;top_left_y=1131&amp;top_left_x=756"></p>
+<p>可列出方程</p>
+<p><span class="math display">\[
+M \frac{d^{2} y(t)}{d t^{2}}=x(t)-k y(t)-B y^{\prime}(t)
+\]</span></p>
+<p>即 <span class="math inline">\(\frac{d^{2} y(t)}{d t^{2}}+\frac{B}{M} \frac{d y(t)}{d t}+\frac{k}{M} y(t)=\frac{k}{M} \hat{x}(t)\)</span> 其中 <span class="math inline">\(\hat{x}(t)=\frac{1}{k} x(t) \quad\)</span> 显然，若 <span class="math inline">\(\omega_{n}^{2}=k / M\)</span> <span class="math inline">\(\zeta=\frac{B}{2 \sqrt{k M}}\)</span> 则方程就成为标准形式。 由二阶系统的方程可得系统的频率响应：</p>
+<p><span class="math display">\[
+H(j \omega)=\frac{\omega_{n}^{2}}{(j \omega)^{2}+2 \zeta \omega_{n}(j \omega)+\omega_{n}^{2}}=\frac{1}{\left(j \frac{\omega}{\omega_{n}}\right)^{2}+2 \zeta\left(j \frac{\omega}{\omega_{n}}\right)+1}
+\]</span></p>
+<p><span class="math inline">\(\zeta\)</span> 称为阻尼系数，<span class="math inline">\(\omega_{n}\)</span> 称为无阻尼自然频率</p>
+<p>1．时域特性—冲激响应</p>
+<p><span class="math display">\[
+H(j \omega)=\frac{\omega_{n}^{2}}{(j \omega)^{2}+2 \zeta \omega_{n}(j \omega)+\omega_{n}^{2}}=\frac{\omega_{n}^{2}}{\left(j \omega-c_{1}\right)\left(j \omega-c_{2}\right)}
+\]</span></p>
+<p>（1）<span class="math inline">\(\zeta=0\)</span> 时，<span class="math inline">\(c_{1}=c_{2}^{*}=\)</span> 系统处于无阻尼状态。</p>
+<p><span class="math display">\[
+H(j \omega)=\frac{\omega_{n}^{2}}{(j \omega)^{2}+\omega_{n}^{2}} \quad h(t)=\omega_{n} \sin \left(\omega_{n} t\right) u(t)
+\]</span></p>
+<p>（2）当 <span class="math inline">\(0&lt;\zeta\)</span> 时 <span class="math inline">\(1 \quad, c_{1}\)</span> 为䒾轭复根，系统处于欠阻 尼状态；<span class="math inline">\(c_{1,2}=-\zeta \omega_{n} \pm j \omega_{n} \sqrt{1-\zeta^{2}}\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; H(j \omega)=\frac{M}{j \omega-c_{1}}-\frac{M}{j \omega-c_{2}} \quad M=\frac{\omega_{n}}{2 j \sqrt{1-\zeta^{2}}} \\
+&amp; h(t)=\frac{\omega_{n}}{\sqrt{1-\zeta^{2}}} e^{-\zeta \omega_{n} t} \sin \left(\omega_{n} \sqrt{1-\zeta^{2}} t\right) u(t)
+\end{aligned}
+\]</span></p>
+<p>（3）当 <span class="math inline">\(\zeta\)</span> 时，<span class="math inline">\(c_{1}=c_{2}=-\omega_{n}\)</span> 系统处于临界阻尼状态。</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; H(j \omega)=\frac{\omega_{n}^{2}}{\left(j \omega-c_{1}\right)^{2}}=\frac{\omega_{n}^{2}}{\left(j \omega+\omega_{n}\right)^{2}} \\
+&amp; h(t)=\omega_{n}^{2} t e^{-\omega_{n} t} u(t)
+\end{aligned}
+\]</span></p>
+<p>（4）<span class="math inline">\(\zeta&gt;1\)</span> 时，<span class="math inline">\(c_{1}\)</span> 为实数根，系统为过阻尼状态；</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; c_{1,2}=-\zeta \omega_{n} \pm \omega_{n} \sqrt{\zeta^{2}-1} \\
+&amp; H(j \omega)=\frac{M}{j \omega-c_{1}}-\frac{M}{j \omega-c_{2}} \quad M=\frac{\omega_{n}}{2 \sqrt{\zeta^{2}-1}} \\
+&amp; h(t)=M\left[e^{c_{1} t}-e^{c_{2} t}\right] u(t)
+\end{aligned}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-56.jpg?height=1512&amp;width=2227&amp;top_left_y=177&amp;top_left_x=147"></p>
+</section>
+<section id="时域特性阶跃响应" class="slide level2">
+<h2>1．时域特性—阶跃响应</h2>
+<p>当 <span class="math inline">\(\zeta\)</span> 肘</p>
+<p><span class="math display">\[
+s(t)=h(t) * u(t)=\left[1+M\left(\frac{e^{c_{1} t}}{c_{1}}-\frac{e^{c_{2} t}}{c_{2}}\right)\right] u(t)
+\]</span></p>
+<p>当 <span class="math inline">\(\zeta\)</span> 时，<span class="math inline">\(\quad c_{1}=c_{2}=-\omega_{n}\)</span></p>
+<p><span class="math display">\[
+s(t)=h(t) * u(t)=\left[1-e^{-\omega_{n} t}-\omega_{n} t e^{-\omega_{n} t}\right] u(t)
+\]</span></p>
+<p>当 <span class="math inline">\(0&lt;\zeta\)</span> 时 1 （即欠阻尼状态），阶跃响应既有超量又有震荡； 当 <span class="math inline">\(\zeta\)</span> 二时，在没有超量的情况下，响应最快，即最短的上升时间；随着 的增加，响应越来越慢；</p>
+<p>2．频率特性：</p>
+<p><span class="math display">\[
+\begin{gathered}
+|H(j \omega)|=\frac{1}{\sqrt{\left[1-\left(\frac{\omega}{\omega_{n}}\right)^{2}\right]^{2}+4 \zeta^{2}\left(\frac{\omega}{\omega_{n}}\right)^{2}}} \\
+20 \lg |H(j \omega)|=-10 \lg \left\{\left[1-\left(\frac{\omega}{\omega_{n}}\right)^{2}\right]^{2}+4 \zeta^{2}\left(\frac{\omega}{\omega_{n}}\right)^{2}\right\}
+\end{gathered}
+\]</span></p>
+<p>当 <span class="math inline">\(\omega=\)</span> 时，<span class="math inline">\(\quad 20 \lg |H(j \omega)| \approx 0 \mathrm{~dB}\)</span> 当 <span class="math inline">\(\omega\)</span> ？时，</p>
+<p><span class="math display">\[
+\begin{aligned}
+20 \lg |H(j \omega)| &amp; \approx-10 \lg \left(\frac{\omega}{\omega_{n}}\right)^{4}=-40 \lg \frac{\omega}{\omega_{n}} \\
+&amp; =-40 \lg \omega+40 \lg \omega_{n}
+\end{aligned}
+\]</span></p>
+</section>
+<section id="在对数坐标中可用两条直线表示一条是低频段的" class="slide level2">
+<h2>在对数坐标中可用两条直线表示。一条是低频段的</h2>
+<p>0 dB 线，一条是高频段的斜率为 <span class="math inline">\(-40 \mathrm{~dB} / \mathrm{dec}\)</span> 的直线。在 <span class="math inline">\(\omega=\)</span> 处，两条渐进线相交，因此 称为二阶系统的折转频率。 <span class="math inline">\(\omega=\omega_{n}\)</span> 时，准确的对数模为：</p>
+<p><span class="math display">\[
+20 \lg |H(j \omega)|=-20 \lg 2 \zeta
+\]</span></p>
+
+<img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-59.jpg?height=923&amp;width=1886&amp;top_left_y=913&amp;top_left_x=239" class="r-stretch"><p><span class="math display">\[
+\begin{aligned}
+20 \lg |H(j \omega)| &amp; =-10 \lg \left[1+\left(4 \zeta^{2}-2\right)\left(\frac{\omega}{\omega_{n}}\right)^{2}+\left(\frac{\omega}{\omega_{n}}\right)^{4}\right] \\
+&amp; =-10 \lg \left\{\left[\left(\frac{\omega}{\omega_{n}}\right)^{2}-\left(1-2 \zeta^{2}\right)\right]^{2}+1-\left(1-2 \zeta^{2}\right)^{2}\right\}
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\zeta&lt;0\)</span> 昒 7 幅频特性在 <span class="math inline">\(\quad \omega_{n}^{\text {处出现峰值，峰值为 }}\)</span> →可以目可设评选频放大器，在某一较窄的频率范围内，对一些正弦信号提供放大。用品质因数Q来衡量峰值的尖锐程度：</p>
+<p><span class="math display">\[
+Q=\frac{1}{2 \zeta}
+\]</span></p>
+<p><span class="math inline">\(\zeta&gt;0\)</span> ．时 7 ，系统类似于一阶系统具有低通特性。 <span class="math inline">\(\zeta&lt;0\)</span> ．时 7 随 的减小，逐步过渡为带通特性。 <span class="math inline">\(\zeta=0\)</span> ．时，系统具有最平坦的低通特性。</p>
+</section>
+<section id="相位特性" class="slide level2">
+<h2>相位特性：</h2>
+<p><span class="math display">\[
+\begin{array}{ll}
+\mathrm{R} H(j \omega)=-\tan ^{-1} \frac{2 \zeta \frac{\omega}{\omega_{n}}}{1-\left(\frac{\omega}{\omega_{n}}\right)^{2}} &amp; \omega=\omega_{n} \text { 时 } \omega \rightarrow 0, \mathrm{R} H(j \omega) \rightarrow 0 \\
+\omega=\omega_{n} \text { 时 } \mathrm{R} H(j \omega)=-\frac{\pi}{2} \\
+\omega \rightarrow \infty \text { 时 } \mathrm{R} H(j \omega) \rightarrow-\pi
+\end{array}
+\]</span></p>
+<p>可将其用折线近似为：</p>
+<p><span class="math display">\[
+\mathrm{R} H(j \omega)= \begin{cases}0, &amp; \omega \leq 0.1 \omega_{n} \\ -\frac{\pi}{2}\left[\lg \frac{\omega}{\omega_{n}}+1\right], &amp; 0.1 \omega_{n} \leq \omega \leq 10 \omega_{n} \\ -\pi, &amp; \omega \geq 10 \omega_{n}\end{cases}
+\]</span></p>
+
+<img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-62.jpg?height=1115&amp;width=2160&amp;top_left_y=312&amp;top_left_x=191" class="r-stretch"></section>
+<section id="可见-越小相位的非线性越严重" class="slide level2">
+<h2>可见 越小，相位的非线性越严重。</h2>
+<p>三．有理型频率响应的Bode图：</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text { 对于 } \hat{H}(j \omega) &amp; =j \omega \tau+1 \\
+\hat{H}(j \omega) &amp; =\left(\frac{j \omega}{\omega_{n}}\right)^{2}+2 \zeta\left(\frac{j \omega}{\omega_{n}}\right)+1
+\end{aligned}
+\]</span></p>
+<p>这种频率特性的因子，与一阶、二阶系统的情况相比，其 <span class="math inline">\(H\)</span>（存在倒量关系。即</p>
+<p><span class="math display">\[
+\begin{gathered}
+20 \lg |\hat{H}(j \omega)|=20 \lg \left|\frac{1}{H(j \omega)}\right|=-20 \lg |H(j \omega)| \\
+\operatorname{R} \hat{H}(j \omega)=-\mathrm{R} H(j \omega)
+\end{gathered}
+\]</span></p>
+</section>
+<section id="一阶与二阶离散时间系统" class="slide level2">
+<h2>6.6 一阶与二阶离散时间系统</h2>
+<p>（First－Order and Second－Order Discrete－Time Systems）</p>
+</section>
+<section id="一一阶系统" class="slide level2">
+<h2>一．一阶系统：</h2>
+<p>系统的数学模型：</p>
+<p><span class="math display">\[
+y(n)-a y(n-1)=x(n) \quad|a|&lt;1
+\]</span></p>
+<p>由差分方程可得系统的频率响应：</p>
+<p><span class="math display">\[
+H\left(e^{j \omega}\right)=\frac{1}{1-a e^{-j \omega}}
+\]</span></p>
+</section>
+<section id="时域特性" class="slide level2">
+<h2>1．时域特性：</h2>
+<p>对频率响应做傅立叶反变换可得：</p>
+<p><span class="math display">\[
+h(n)=a^{n} u(n)
+\]</span></p>
+<p>系统的单位阶跃响应为：</p>
+<p><span class="math display">\[
+s(n)=\sum_{k=-\infty}^{n} h(k)=\sum_{k=0}^{n} a^{k}=\frac{1-a^{n+1}}{1-a} u(n)
+\]</span></p>
+<p>据此可作出不同参数情况下系统的单位脉冲响应和单位阶跃响应：</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-66.jpg?height=1517&amp;width=1123&amp;top_left_y=212&amp;top_left_x=128"> (c)</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-66.jpg?height=662&amp;width=1140&amp;top_left_y=212&amp;top_left_x=1359"> (b)</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-66.jpg?height=730&amp;width=1133&amp;top_left_y=1015&amp;top_left_x=1367"> (d)</p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-67.jpg?height=1630&amp;width=2267&amp;top_left_y=171&amp;top_left_x=128"></p>
+</section>
+<section id="由图可以看出" class="slide level2">
+<h2>由图可以看出：</h2>
+<p>－当 <span class="math inline">\(a&gt;0\)</span> 时，随着 <span class="math inline">\(a\)</span> 的增大，系统的单位脉冲响应单调衰减得越来越慢。单位阶跃响应单调上升得越来越慢。 －当 <span class="math inline">\(a&lt;0\)</span> 时，系统的单位脉冲响应和单位阶跃响应都存在振荡。 <span class="math inline">\(|a|\)</span> 越大，振荡的持续期越长；单位脉冲响应衰减得越慢，单位阶跃响应上升得越慢。</p>
+<p>2．频域特性： 由系统的频率响应可以得出：</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \left|H\left(e^{j \omega}\right)\right|=\frac{1}{\sqrt{1+a^{2}-2 a \cos \omega}} \\
+&amp; \operatorname{RH}\left(e^{j \omega}\right)=-\tan ^{-1} \frac{a \sin \omega}{1-a \cos \omega}
+\end{aligned}
+\]</span></p>
+<p>据此可作出不同参数情况下一阶系统的幅频特性和相频特性： <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-70.jpg?height=783&amp;width=2080&amp;top_left_y=209&amp;top_left_x=271"> <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-70.jpg?height=795&amp;width=2072&amp;top_left_y=1006&amp;top_left_x=274"> <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-71.jpg?height=1606&amp;width=2054&amp;top_left_y=192&amp;top_left_x=274"></p>
+</section>
+<section id="二二阶系统-1" class="slide level2">
+<h2>二．二阶系统：</h2>
+<p>数学模型：<span class="math inline">\(y(n)-2 r \cos \theta y(n-1)+r^{2} y(n-2)=x(n)\)</span> 其中 <span class="math inline">\(0&lt;r&lt;1, \quad 0 \leq \theta \leq \pi\)</span> ，</p>
+<p><span class="math display">\[
+H\left(e^{j \omega}\right)=\frac{1}{1-2 r \cos \theta e^{-j \omega}+r^{2} e^{-j 2 \omega}}=\frac{1}{\left[1-r e^{j \theta} e^{-j \omega}\right]\left[1-r e^{-j \theta} e^{-j \omega}\right]}
+\]</span></p>
+<p><span class="math inline">\(\theta \neq 0\)</span> 或 <span class="math inline">\(\pi\)</span> 时，<span class="math inline">\(H\left(\right.\)</span> 有两个不同的极点 <span class="math inline">\(v e^{j \theta} r e^{-j \theta}\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; H\left(e^{j \omega}\right)=\frac{A}{1-r e^{j \theta} e^{-j \omega}}+\frac{B}{1-r e^{-j \theta} e^{-j \omega}} \\
+&amp; \text { 其中 } \quad A=\frac{e^{j \theta}}{2 j \sin \theta} \quad B=\frac{-e^{-j \theta}}{2 j \sin \theta}
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(h(n)=\left[A\left(r e^{j \theta}\right)^{n}+B\left(r e^{-j \theta}\right)^{n}\right] u(n)=r^{n} \frac{\sin (n+1) \theta}{\sin \theta} u(n) r\)</span> 影响衰减速率，<span class="math inline">\(\theta\)</span> 影响振荡频率。 <span class="math inline">\(h(n)\)</span> 为指数衰减的正弦振荡。系统为欠阻尼状态。 <span class="math inline">\(\theta=0\)</span> 时，<span class="math inline">\(H\left(e^{j \omega}\right)=\frac{1}{\left(1-r e^{-j \omega}\right)^{2}} \quad\)</span> 系统为临界阻尼。 <span class="math inline">\(h(n)=(n+1) r^{n} u(n) \quad h(n)\)</span> 单调变化，无振荡。 <span class="math inline">\(\theta=\pi\)</span> 时，<span class="math inline">\(\quad H\left(e^{j \omega}\right)=\frac{1}{\left(1+r e^{-j \omega}\right)^{2}}\)</span> 系统为欠阻尼。 <span class="math inline">\(h(n)=(n+1)(-r)^{n} u(n) \quad h(n)\)</span> 振荡最剧烈。</p>
+</section>
+<section id="系统的单位脉冲响应" class="slide level2">
+<h2>系统的单位脉冲响应：</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-74.jpg?height=309&amp;width=679&amp;top_left_y=777&amp;top_left_x=195"></th>
+<th style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-74.jpg?height=271&amp;width=685&amp;top_left_y=774&amp;top_left_x=975"> <br> 0 n</th>
+<th style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-74.jpg?height=262&amp;width=632&amp;top_left_y=777&amp;top_left_x=1752"> <br> 0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-74.jpg?height=338&amp;width=682&amp;top_left_y=1315&amp;top_left_x=194"></td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{r}=\frac{1}{2}\)</span><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-74.jpg?height=233&amp;width=685&amp;top_left_y=1420&amp;top_left_x=975"></td>
+<td style="text-align: left;"><span class="math inline">\(r=\frac{3}{4}\)</span><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-74.jpg?height=236&amp;width=678&amp;top_left_y=1420&amp;top_left_x=1755"></td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">47 <br> 4 <br> 4</th>
+<th style="text-align: left;">↓ <span class="math inline">\(\frac{1}{2}\)</span></th>
+<th style="text-align: left;">: <span class="math inline">\(\_\_\_\_\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">I <span class="math inline">\(\_\_\_\_\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{7}{8}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{2}\)</span> <span class="math inline">\(\_\_\_\_\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(4^{ \pm}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(4^{ \pm 2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(y\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="系统的单位阶跃响应" class="slide level2">
+<h2>系统的单位阶跃响应：</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-76.jpg?height=1233&amp;width=2359&amp;top_left_y=478&amp;top_left_x=140"></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(\mathrm{s}[\mathrm{n}]\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(\mathrm{s}[\mathrm{n}]\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(\mathrm{s}[\mathrm{n}]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-77.jpg?height=88&amp;width=398&amp;top_left_y=251&amp;top_left_x=300"></td>
+<td style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-77.jpg?height=91&amp;width=398&amp;top_left_y=248&amp;top_left_x=1101"></td>
+<td style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-77.jpg?height=91&amp;width=400&amp;top_left_y=248&amp;top_left_x=1885"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(3 \quad \theta=\frac{\pi}{2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(3 \quad \theta=\frac{\pi}{2}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(3 \quad \theta=\frac{\pi}{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1 <br> 0 <br> n</td>
+<td style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-77.jpg?height=172&amp;width=599&amp;top_left_y=524&amp;top_left_x=1098"></td>
+<td style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-77.jpg?height=162&amp;width=666&amp;top_left_y=529&amp;top_left_x=1780"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">s[n]</td>
+<td style="text-align: left;">s[n]</td>
+<td style="text-align: left;"><span class="math inline">\(s[\mathrm{n}]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">4 -</td>
+<td style="text-align: left;">4+</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\({ }_{0}^{1}\)</span> I[ [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ]</td>
+<td style="text-align: left;"><span class="math inline">\({ }_{0}^{1}\)</span> || ||||||||||||||||||||||||||||||||||||||||</td>
+<td style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-77.jpg?height=155&amp;width=666&amp;top_left_y=1082&amp;top_left_x=1780"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(s[\mathrm{n}]\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{s}[\mathrm{n}]\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\mathrm{s}[\mathrm{n}]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">4 卜</td>
+<td style="text-align: left;">4 - <span class="math inline">\(\quad r=\frac{3}{4}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-77.jpg?height=180&amp;width=567&amp;top_left_y=1595&amp;top_left_x=1882"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="由图可以看出-1" class="slide level2">
+<h2>由图可以看出：</h2>
+<p>1．当系统处于欠阻尼状态时，即 <span class="math inline">\(0&lt;\theta \leq \pi\)</span> 时，系统的单位冲激响应和单位阶跃响应都存在振荡和超量。 <span class="math inline">\(\theta\)</span> 越接近 <span class="math inline">\(\pi\)</span> ，振荡的频率越高。</p>
+<p>2．在欠阻尼状态下，<span class="math inline">\(r\)</span> 影响着单位冲激响应和单位阶跃响应的变化速率。 <span class="math inline">\(r\)</span> 越接近1，单位冲激响应衰减得越慢，单位阶跃响应上升得越慢，出现的振荡也越明显。</p>
+<p>根据不同的 <span class="math inline">\(\theta\)</span> 和 <span class="math inline">\(r\)</span> 可作出系统的频率特性： <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-79.jpg?height=735&amp;width=2243&amp;top_left_y=184&amp;top_left_x=229"></p>
+<p><span class="math display">\[
+\theta=0
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-79.jpg?height=846&amp;width=2300&amp;top_left_y=947&amp;top_left_x=184"> <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-80.jpg?height=1599&amp;width=2327&amp;top_left_y=194&amp;top_left_x=161"> <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-81.jpg?height=759&amp;width=2341&amp;top_left_y=194&amp;top_left_x=133"></p>
+<p><span class="math display">\[
+\theta=\frac{\pi}{2}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-81.jpg?height=705&amp;width=2344&amp;top_left_y=1106&amp;top_left_x=130"> <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-82.jpg?height=749&amp;width=2339&amp;top_left_y=207&amp;top_left_x=138"></p>
+<p><span class="math display">\[
+\theta=\frac{3 \pi}{4}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-82.jpg?height=444&amp;width=252&amp;top_left_y=1111&amp;top_left_x=135"></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; r=\frac{3}{4} \\
+&amp; r=\frac{1}{2} \\
+&amp; r=\frac{1}{4}
+\end{aligned}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-83.jpg?height=757&amp;width=2362&amp;top_left_y=186&amp;top_left_x=133"> <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-83.jpg?height=774&amp;width=2360&amp;top_left_y=1037&amp;top_left_x=130"></p>
+</section>
+<section id="由图可以看出-2" class="slide level2">
+<h2>由图可以看出：</h2>
+<p>1．<span class="math inline">\(r\)</span> 越大，幅频特性的峰越尖锐，系统的带宽越窄；<span class="math inline">\(r\)</span> 越小，幅频特性越平坦，系统带宽越宽。</p>
+<p>2．系统幅频特性的峰值总是出现在 <span class="math inline">\(\theta\)</span> 值的附近，随着 <span class="math inline">\(\theta\)</span> 从 <span class="math inline">\(0: \pi\)</span> 变化，系统经历了从低通特性 ⟶带通特性—高通特性的变化过程。</p>
+<p>3．系统具有非线性相位特性。 总之：<span class="math inline">\(\theta\)</span> 影响系统频响的峰值位置，<span class="math inline">\(r\)</span> 影响峰值的大小，其作用分别类似于连续系统的 <span class="math inline">\(\omega_{n}\)</span> 和 <span class="math inline">\(\zeta\)</span></p>
+<p>二阶系统也可以处在过阻尼状态，此时系统有两个实数极点。将 <span class="math inline">\(H\left(e^{j \omega}\right)\)</span> 展开成部分分式有：</p>
+<p><span class="math display">\[
+H\left(e^{j \omega}\right)=\frac{1}{\left(1-d_{1} e^{-j \omega}\right)\left(1-d_{2} e^{-j \omega}\right)}=\frac{A}{\left(1-d_{1} e^{-j \omega}\right)}+\frac{B}{\left(1-d_{2} e^{-j \omega}\right)}
+\]</span></p>
+<p>其中 <span class="math inline">\(A=\frac{d_{1}}{d_{1}-d_{2}}\)</span></p>
+<p><span class="math display">\[
+B=\frac{d_{2}}{d_{2}-d_{1}}
+\]</span></p>
+<p>此时相当于两个一阶系统级联。当 <span class="math inline">\(d_{1}&gt;0, d_{2}&gt;0\)</span>时，系统为过阻尼状态；当 <span class="math inline">\(d_{1}&lt;0, d_{2}&lt;0\)</span> 时，系统为欠阻尼状态。其他情况，系统状态 将取决于绝对值大的极点（主时间常数）是正值还是负值。</p>
+</section>
+<section id="系统的时域分析与频域分析举例" class="slide level2">
+<h2>6.7 系统的时域分析与频域分析举例</h2>
+</section>
+<section id="examples-of-timeand-frequencydomain-analysis-of-systems" class="slide level2">
+<h2>Examples of Time－and Frequency－Domain Analysis of Systems</h2>
+<p>一．汽车减震系统： 系统模型为：</p>
+<p><span class="math display">\[
+M \frac{d^{2} y(t)}{d t^{2}}+b \frac{d y(t)}{d t}+k y(t)=k x(t)+b \frac{d x(t)}{d t}
+\]</span></p>
+<p>类似于前面讨论过的二阶系统，其中</p>
+<p><span class="math display">\[
+\omega_{n}=\sqrt{\frac{k}{M}} \quad 2 \zeta \omega_{n}=\frac{b}{M}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-87.jpg?height=1086&amp;width=2315&amp;top_left_y=213&amp;top_left_x=173"></p>
+<p>从频域看，越小，越有利于滤除路面不平所造成的影响。但 越小，时域特性变化越慢。</p>
+<p>从时域角度看，希望响应时间尽可能快，并且不要出现震荡和超量，因此应该要求 <span class="math inline">\(\zeta\)</span> ○但 时，系统的频率特性并不是最佳。</p>
+<p>对系统的时域特性和频域特性综合折中考虑，是工程应用中很重要的问题。</p>
+<p>二．FIR滤波器： 离散时间滤波器可以分为IIR和FIR两大类。 考察如下的动平均滤波器：</p>
+<p><span class="math display">\[
+y(n)=\frac{1}{N+M+1} \sum_{k=-N}^{M} x(n-k)
+\]</span></p>
+<p>它是一个FIR系统，其频率响应为：</p>
+<p><span class="math display">\[
+H\left(e^{j \omega}\right)=\frac{1}{N+M+1} \sum_{k=-N}^{M} e^{-j \omega k}=\frac{1}{N+M+1} \frac{\sin \frac{N+M+1}{2} \omega}{\sin \frac{\omega}{2}} e^{j \frac{N-M}{2} \omega}
+\]</span></p>
+<p>更一般的情况，可加权的动平均滤波器可表示为：</p>
+<p><span class="math display">\[
+y(n)=\sum_{k=-N}^{M} b_{k} x(n-k)
+\]</span></p>
+<p>选择不同的加权序列 <span class="math inline">\(b_{k}\)</span> ，即可改变滤波器的特性。 <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-90.jpg?height=1497&amp;width=2222&amp;top_left_y=244&amp;top_left_x=205"> <img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-91.jpg?height=1505&amp;width=2267&amp;top_left_y=235&amp;top_left_x=181"></p>
+<p><span class="math display">\[
+y(n)=\sum_{k=-N}^{N} h_{k} x(n-k) \quad h(n)= \begin{cases}\frac{\sin (2 \pi n / 33)}{\pi n}, &amp; |n| \leq 32 \\ 0, &amp; |n|&gt;32\end{cases}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-92.jpg?height=942&amp;width=2281&amp;top_left_y=773&amp;top_left_x=207"> （a）</p>
+</section>
+<section id="该fir滤波器的幅频特性对数模" class="slide level2">
+<h2>该FIR滤波器的幅频特性（对数模）：</h2>
+
+<img data-src="https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-93.jpg?height=1335&amp;width=2331&amp;top_left_y=435&amp;top_left_x=169" class="r-stretch"></section>
+<section id="小结-summary" class="slide level2">
+<h2>6.8 小结 Summary</h2>
+<p>＊从傅里叶变换的模和相位表示出发，研究了信号在传输中发生失真的原因和失真的种类。建立了信号传输的不失真条件。 ＊介绍了滤波与滤波器的基本概念，理想频率选择性滤波器的频率特性和时域特性，理想滤波器的不可实现性，非理想滤波器的概念及工程中常用的逼近方式。 ＊讨论了连续时间和离散时间一阶、二阶系统的时域和频域特性的分析方法，及连续时间一阶、二阶系统Bode图的绘制。 ＊以汽车减震系统和动平均FIR滤波器为例，简单介绍了在工程应用中时域－频域、幅频－相频特性要折衷权衡考虑的思想。</p>
+
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'visible',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

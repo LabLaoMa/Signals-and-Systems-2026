@@ -78,17 +78,19 @@ $x$ 可以看作“周期为无穷大”的周期信号，即 $x[n]=\lim _{N \ri
 
 将 $x_{N}$ 展开为离散时间傅里叶级数
 
-![](imglink/159772dd-711e-4cf6-b135-d8485880c667-04.png){fig-align=center}
+![](imglink/159772dd-711e-4cf6-b135-d8485880c667-04.png){fig-align=center width=50%}
 
 $$
-\hat{x}_{N}[k]=\left\langle x_{N}, e^{j k \frac{2  \pi}{N} n}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \frac{2 \pi}{N} n}=\frac{1}{N} X\left(e^{j k \omega_{0}n}\right)
+\hat{x}_{N}[k]=\left\langle x_{N}, e^{j k \frac{2  \pi}{N} n}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \frac{2 \pi}{N} n}=\frac{1}{N} X\left(e^{j k \omega_{0}}\right)
 $$
 
-其中
+为了简化表达，我们取记号：
 
 $$
 X\left(e^{j \omega}\right)=\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \omega n}=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}, \quad \omega_{0}=\frac{2 \pi}{N}
 $$
+需要注意的是，$X\left(e^{j \omega}\right)$中的$\omega$是连续变量，$X\left(e^{j k \omega_{0} }\right)$是在离散点$k\omega_{0}$处的值。
+
 
 ![](imglink/159772dd-711e-4cf6-b135-d8485880c667-04_2.png){fig-align=center}
 
@@ -96,14 +98,13 @@ $$
 
 当 $N$ 增大时，离散频率的采样会变得更加稠密
 
-![](imglink/159772dd-711e-4cf6-b135-d8485880c667-05.png){fig-align=center}
+![](imglink/159772dd-711e-4cf6-b135-d8485880c667-05.png){fig-align=center width=50%}
 
 $$
 \hat{x}_{N}[k]=\left\langle x_{N}, e^{j k \frac{2 \pi}{N} n}\right\rangle=\frac{1}{N} \sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \frac{2 \pi}{N} n}=\frac{1}{N} X\left(e^{j k \omega_{0} }\right)
 $$
 
 其中
-
 $$
 X\left(e^{j \omega}\right)=\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \omega n}=\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}, \quad \omega_{0}=\frac{2 \pi}{N}
 $$
@@ -216,12 +217,12 @@ x(t)=\sum_{k=-\infty}^{\infty} \hat{x}[k] e^{j k \frac{2 \pi}{T} t}
 $$
 :::
 ::::
-$$
+<!-- $$
 \begin{aligned}
 & \text { 连续变量 } \xrightarrow{\text { CTFS }} \text { 双向无限序列 } \\
 & \text { 周期函数 }
 \end{aligned} \xrightarrow[\text { DTFT }]{\leftarrow} \text { 双向映射 }
-$$
+$$ -->
 
 <!-- ## 离散时间信号的高频与低频
 
@@ -491,6 +492,9 @@ $$
 $$
 
 因此，傅里叶变换 $X$ 是一致连续的。
+
+<br>
+
 定理：若 $x \in \ell_{2}$，则 $X_{N}$ 在 $L_{2}$ 意义下收敛到 $X$，即
 
 $$
@@ -609,7 +613,7 @@ $$
 \int_{-\frac{\pi}{N}}^{2 \pi-\frac{\pi}{N}} \sum_{k=0}^{N-1} \hat{x}_{N}[k] \delta\left(\omega-\frac{2 k \pi}{N}\right) e^{j \omega n} d \omega=\sum_{k=0}^{N-1} \hat{x}_{N}[k] e^{j \frac{2 k \pi}{N} n}=x_{N}[n]
 $$
 
-最后一个等号实际上就是离散时间傅里叶级数（DTFS）的综合公式，因此（该推导）得到了验证。
+最后一个等号实际上就是离散时间傅里叶级数（DTFS）的综合公式，因此下面的DTFT综合公式得到验证。
 
 $$
 x_{N}[n]=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \omega}\right) e^{j \omega n} d \omega
@@ -684,8 +688,11 @@ H_{\mathrm{hp}}\left(e^{j \omega}\right)=H_{\mathrm{lp}}\left(e^{j(\omega-\pi)}\
 $$
 
 利用低通滤波器实现高通滤波 $y=x * h_{\mathrm{hp}}$
+
 (1) $x_{1}[n]=(-1)^{n} x[n]$；
+
 (2) $y_{1}=x_{1} * h_{\mathrm{lp}}$；
+
 (3) $y[n]=(-1)^{n} y_{1}[n]$
 
 ## 离散时间傅里叶变换的性质
@@ -1534,6 +1541,18 @@ $$
 
 ## 作业
 
+- 书面作业
+1. 5.1
+
+2. 5.4
+
+3. 5.7 
+
+4. 5.13
+
+5. 5.20
+
+- 程序作业：见乐学平台
  
 
 ---

@@ -1,0 +1,61 @@
+---
+title: "周期冲激串的傅里叶变换推导"
+author: "Signals and Systems"
+format: 
+  html:
+    mathjax: true
+  pdf:
+    include-in-header:
+      - text: |
+          \usepackage{amsmath}
+---
+
+## 周期冲激串的定义
+
+设时域信号 $x(t)$ 为周期为 $T$ 的冲激串：
+$$x(t) = \sum_{k=-\infty}^{\infty} \delta(t - kT)$$
+
+其基频为 $\omega_0 = \frac{2\pi}{T}$。
+
+---
+
+## 推导过程
+
+### 1. 计算傅里叶级数（FS）系数 $\hat{x}[k]$
+
+由于 $x(t)$ 是周期信号，可以展开为傅里叶级数。在 $[-T/2, T/2]$ 周期内，$x(t) = \delta(t)$。
+根据系数计算公式：
+$$\hat{x}[k] = \frac{1}{T} \int_{-T/2}^{T/2} x(t) e^{-j k \omega_0 t} dt$$
+
+代入 $\delta(t)$：
+$$\hat{x}[k] = \frac{1}{T} \int_{-T/2}^{T/2} \delta(t) e^{-j k \omega_0 t} dt = \frac{1}{T} \cdot e^{0} = \frac{1}{T}$$
+
+因此，$x(t)$ 的复指数傅里叶级数表示为：
+$$x(t) = \sum_{k=-\infty}^{\infty} \frac{1}{T} e^{j k \omega_0 t}$$
+
+### 2. 利用傅里叶变换（FT）的线性性质
+
+对等式两边同时进行傅里叶变换。已知基本变换对：
+$$e^{j \omega_c t} \longleftrightarrow 2\pi \delta(\omega - \omega_c)$$
+
+利用线性性质：
+$$X(j\omega) = \mathcal{F} \left\{ \sum_{k=-\infty}^{\infty} \frac{1}{T} e^{j k \omega_0 t} \right\} = \frac{1}{T} \sum_{k=-\infty}^{\infty} \mathcal{F} \left\{ e^{j k \omega_0 t} \right\}$$
+
+### 3. 最终结果
+
+代入变换对，并整理系数：
+$$X(j\omega) = \sum_{k=-\infty}^{\infty} \frac{2\pi}{T} \delta(\omega - k\omega_0)$$
+
+代回 $\omega_0 = \frac{2\pi}{T}$，得到最终表达式：
+$$X(j\omega) = \sum_{k=-\infty}^{\infty} \frac{2\pi}{T} \delta\left(\omega - k\frac{2\pi}{T}\right)$$
+
+---
+
+## 结论
+
+
+
+**时域中的冲激串 $\longleftrightarrow$ 频域中的冲激串**
+
+* **周期性关系**：时域间隔为 $T$，频域间隔为 $\frac{2\pi}{T}$。
+* **幅度关系**：频域冲激的强度（面积）统一为 $\frac{2\pi}{T}$。

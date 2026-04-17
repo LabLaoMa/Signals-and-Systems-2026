@@ -1516,7 +1516,7 @@
     "href": "Chapter06.html#对数模和伯德图bode-diagram",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "对数模和伯德图（Bode Diagram）",
-    "text": "对数模和伯德图（Bode Diagram）\n模的关系涉及 \\(|\\boldsymbol{H}(\\boldsymbol{j} \\omega)|\\) 和 \\(|\\boldsymbol{X}(\\boldsymbol{j} \\omega)|\\) 的相乘。因此，如果傅里叶变换的模是在一个对数幅度上展示的话，那么就有一个相加的关系：\n\\[\n\\log |Y(j \\omega)|=\\log |H(j \\omega)|+\\log |X(j \\omega)|\n\\] * 在一个对数标尺上展现傅里叶变换的模，还能在一个较宽的动态范围上将细节显示出来。\n\n\n\n一般所采用的对数标尺是以 \\(20 \\log _{10}\\) 为单位，称之为分贝 （dB）。\n0dB就对应于频率响应的模等于 1\n20dB就对应于10倍的单位增益\n－20dB相应于衰减0．1。\n对于连续时间系统，常采用对数频率坐标。 \\(\\mathbf{2 0 l o g}_{\\mathbf{1 0}}|\\boldsymbol{H}(\\mathbf{j} \\omega)|\\)和 \\(\\arg \\boldsymbol{H}(\\boldsymbol{j} \\omega)\\) 对 \\(\\boldsymbol{\\operatorname { l o g }}_{\\mathbf{1 0}}(\\omega)\\) 作的图称之为伯德图。\n对数频率坐标，常常可以比线性频率展示宽的多的频率范围。"
+    "text": "对数模和伯德图（Bode Diagram）\n对数模：\n\\[\n|Y(j \\omega)|= |H(j \\omega)|  |X(j \\omega)| \\Longrightarrow \\log |Y(j \\omega)|=\\log |H(j \\omega)|+\\log |X(j \\omega)|\n\\] * 在一个对数标尺上展现傅里叶变换的模，还能在一个较宽的动态范围上将细节显示出来。\n\n\n\n一般所采用的对数标尺是以 \\(20 \\log _{10}\\) 为单位，称之为分贝 （dB）。\n0dB就对应于频率响应的模等于 1\n20dB就对应于10倍的单位增益\n－20dB相应于衰减0．1。\n对于连续时间系统，常采用对数频率坐标。 \\(\\mathbf{2 0 l o g}_{\\mathbf{1 0}}|\\boldsymbol{H}(\\mathbf{j} \\omega)|\\)和 \\(\\arg \\boldsymbol{H}(\\boldsymbol{j} \\omega)\\) 对 \\(\\boldsymbol{\\operatorname { l o g }}_{\\mathbf{1 0}}(\\omega)\\) 作的图称之为伯德图。\n对数频率坐标，常常可以比线性频率展示宽的多的频率范围。"
   },
   {
     "objectID": "Chapter06.html#对数模和伯德图bode-diagram-1",
@@ -1531,5 +1531,740 @@
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "对数模和伯德图（Bode Diagram）",
     "text": "对数模和伯德图（Bode Diagram）\n\n\n\n1\n2\n3\n4\n5\n6\n7\n\n\n\n\n在离散时间情况下，傅里叶变换和频率响应的模常常也是用dB来表示的。然而，在离散时间情况下对数频率坐标一般是不用的，因为这时要考虑的频率范围就只有 \\(2 \\pi\\) 宽，\\(H\\left(e^{j \\omega}\\right)\\) 是周期的。 ＊注意，对实值 \\(h[n]\\) ，仅需画出 \\([0, \\pi]\\) 范围的 \\(H\\left(e^{j \\omega}\\right)\\)\n 图6．9 一个高敬时间频率的应 \\(H\\left(e^{\\text {mi）}}\\right)\\) 的模和相位的典型作图表示"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#第五章-回顾",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#第五章-回顾",
+    "title": "My Site",
+    "section": "第五章 回顾",
+    "text": "第五章 回顾\n＊第5章与第4章平行地讨论了DTFT，讨论的基本思路和方法与第4章完全对应，得到的许多结论也很类似。 ：通过对DTFT性质的讨论，揭示了离散时间信号时域与频域特性的关系。不仅看到有许多性质在 CTFT中都有相对应的结论，而且它们也存在一些重要的差别，例如DTFT总是以 \\(2 \\pi\\) 为周期的。 ※通过卷积特性的讨论，对LTI系统建立了频域分析的方法。同样地，相乘特性的存在则为离散时间信号的传输技术提供了理论基础。\n对偶性的讨论为进一步认识连续时间信号、离散时间信号、周期信号与非周期信号频域描述的几种工具之间的内在联系，提供了重要的理论根据。深入理解并恰当运用对偶性，对深刻掌握CFS、 DFS、CTFT、DTFT的本质关系有很大帮助。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#可以将对偶关系归纳为如下图表",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#可以将对偶关系归纳为如下图表",
+    "title": "My Site",
+    "section": "可以将对偶关系归纳为如下图表：",
+    "text": "可以将对偶关系归纳为如下图表：\n －与连续时间LTI系统一样，对由LCCDE或由方框图描述的LTI系统，可以很方便的由方程或方框图得到系统的频率响应函数 \\(\\mathrm{H}\\left(\\mathrm{e}^{\\mathrm{j} \\omega}\\right)\\) ，进而实现系统的频域分析。其基本过程和涉及到的问题与连续时间LTI系统的情况也完全类似。\n随着今后进一步的讨论，我们可以看到CFS、 DFS、CTFT、DTFT之间是完全相通的。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#第6章-信号与系统的时域和频域特性",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#第6章-信号与系统的时域和频域特性",
+    "title": "My Site",
+    "section": "第6章 信号与系统的时域和频域特性",
+    "text": "第6章 信号与系统的时域和频域特性\n本章主要内容\n\n傅立叶变换的模与相位。\nLTI系统的幅频特性与相频特性，系统的失真。\n系统的不失真传输条件。\n理想滤波器的频域、时域特性及其不可实现性。\n非理想滤波器的特性及其逼近方式。\n一阶与二阶系统的分析方法，Bode图。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#引言-introduction",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#引言-introduction",
+    "title": "My Site",
+    "section": "6．0 引言 Introduction",
+    "text": "6．0 引言 Introduction\n在以前的讨论中，已经看到 ∴ 在时域，系统的特性由 \\(h(t)\\) 或 \\(h(n)\\) 描述； ∴ 在频域，系统的特性由 \\(H\\)（ 或 \\(\\quad H\\) 䅦述； 工程中设计系统时，往往会对系统的特性从时域角度或频域角度提出某些要求。 ＊在LTI 系统分析中，由于时域中的微分（差分）方程和卷积运算在频域都变成了代数运算，所以利用频域分析往往特别方便。 ＊系统的时域特性与频域特性是相互制约的。在进行系统的分析与设计时，要权衡考虑系统的时域与频域特性。 ＊本章的基本内容旨在建立对系统的时域和频域特性进行综合分析的思想和方法。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#傅里叶变换的模和相位表示",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#傅里叶变换的模和相位表示",
+    "title": "My Site",
+    "section": "6.1 傅里叶变换的模和相位表示",
+    "text": "6.1 傅里叶变换的模和相位表示\n（The Magnitude－Phase Representation of the Fourier Transform）\n无论CTFT还是DTFT，一般情况下都表现为一个复函数。\n\\[\n\\begin{aligned}\n& X(j \\omega)=|X(j \\omega)| e^{j \\mathrm{R} X(j \\omega)} \\\\\n& X\\left(e^{j \\omega}\\right)=\\left|X\\left(e^{j \\omega}\\right)\\right| e^{j \\mathrm{R} X\\left(e^{j \\omega}\\right)}\n\\end{aligned}\n\\]\n这说明：一个信号所携带的全部信息分别包含在其频谱的模和相位中。\n因此，导致信号失真的原因有两种： 1．幅度失真：由于频谱的模改变而引起的失真。各频率分量幅度产生不同程度的衰减。\n2．相位失真：由于频谱的相位改变引起的失真。各频率分量产生的相移不与频率成正比，使响应的各频率分量在时间轴上的相对位置产生变化。 在工程实际中，不同的应用场合，对幅度失真和相位失真有不同的敏感程度，也会有不同的技术指标要求。\n \\(x\\left(t_{1}, t_{2}\\right)\\)\n\\(x\\left(t_{1}, t_{2}\\right)\\) \n二维傅里叶变换的相位\n 二维傅里叶变换的模\n模保持，相位为 0 的图\n相位保持，模全1的图  像\n相位保持，模换为（g）的模"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示",
+    "title": "My Site",
+    "section": "6．2 LTI系统频率响应的模和相位表示",
+    "text": "6．2 LTI系统频率响应的模和相位表示\n（The Magnitude－Phase Representation of the Frequency Response of LTI Systems ） －LTI系统对输入信号所起的作用包括两个方面： 1．改变输入信号各频率分量的幅度； 2．改变输入信号各频率分量的相对相位。\n\\[\n\\begin{gathered}\nY(j \\omega)=X(j \\omega) H(j \\omega) \\quad Y\\left(e^{j \\omega}\\right)=X\\left(e^{j \\omega}\\right) H\\left(e^{j \\omega}\\right) \\\\\n|Y(j \\omega)|=|X(j \\omega) \\| H(j \\omega)|\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#一线性与非线性相位",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#一线性与非线性相位",
+    "title": "My Site",
+    "section": "一．线性与非线性相位",
+    "text": "一．线性与非线性相位\n信号在传输过程中，相位特性或幅度特性发生改变都会引起信号波形的改变，即发生失真。当相位特性仅仅是附加一个线性相移时，只引起信号在时间上的平移。如连续时间LTI系统：\n\\[\nH(j \\omega)=e^{-j \\omega t_{0}} \\text { 则 } y(t)=x\\left(t-t_{0}\\right)\n\\]\n此时并未丟失信号所携带的任何信息，只是发生时间上的延迟，因而在工程应用中是允许的。\n如果系统的相位特性是非线性的，由于不同频率分量受相位特性影响所产生的时移不同，叠加起来一定会变成一个与原来信号很不相同的信号波形。\n对离散时间LTI系统，也有同样的结论。但对线性相位系统，当相位特性的斜率是整数时，只引起信号的时域移位。若相位特性的斜率不是整数，由于离散时间信号的时移量只能是整数，需要采用其他手段实现，其含义也不再是原信号的简单移位。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#二信号的不失真传输条件",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#二信号的不失真传输条件",
+    "title": "My Site",
+    "section": "二．信号的不失真传输条件",
+    "text": "二．信号的不失真传输条件\n如果系统响应与输入信号满足下列条件，可视为在传输中未发生失真。\n\\[\ny(t)=k x\\left(t-t_{0}\\right) \\quad y(n)=k x\\left(n-n_{0}\\right)\n\\]\n这就要求系统的频率特性为\n\\[\nH(j \\omega)=k e^{-j \\omega t_{0}} \\quad H\\left(e^{j \\omega}\\right)=k e^{-j \\omega n_{0}}\n\\]\n如果一个系统的幅频特性是一个常数，称这种系统为全通系统（有些书上称具有单位增益的系统为全通系统）。\n据此可得出信号传输的不失真条件：\n\\[\n\\begin{array}{ll}\nh(t)=k \\delta\\left(t-t_{0}\\right) & \\text { —时域表征 } \\\\\nH(j \\omega)=k e^{-j \\omega t_{0}}, & \\text { —频域表征 }\n\\end{array}\n\\]\n\\[\n|H(j \\omega)|=k, \\quad \\mathrm{R} H(j \\omega)=-\\omega t_{0}\n\\]\n \n通常，系统若在被传输信号的带宽范围内满足不失真条件，则认为该系统对此信号是不失真系统。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#三群时延group-delay",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#三群时延group-delay",
+    "title": "My Site",
+    "section": "三．群时延（Group Delay）",
+    "text": "三．群时延（Group Delay）\n对线性相位系统，系统的相位特性表明了信号的各个频率分量在通过系统时，系统对它所产生的附加相移。相位特性的斜率就是该频率分量在时域产生的时延。\n对非线性相位系统，定义群时延为\n\\[\n\\tau(\\omega)=-\\frac{d}{d \\omega} \\mathrm{R} H(j \\omega)\n\\]\n群时延代表了在以 \\(\\omega_{0}\\) 为中心的一个很窄的频带或很少的一组频率上信号所受到的有效公共延时。\n考察一个中心频率为 \\(\\omega\\) 的窄带输入信号，一个非线性相位的系统在此窄带范围内，可将其相位的变化近似看成线性的。因此，\n\\[\nY(j \\omega)=X(j \\omega)|H(j \\omega)| e^{-j \\phi} e^{-j \\omega \\alpha}\n\\]\n该系统对窄带输入信号产生的近似效果就是： 1．由 \\(H(j \\omega)\\) 引起的幅度成形；\n2．对应系统在 \\(\\omega_{0}\\) 的恒定相位 \\(\\phi\\) 的因子 \\(e^{-j \\phi}\\) 的影响； 3．对应系统在窄带内的近似线性相位 \\(\\omega \\alpha\\) 所产生的时延 \\(\\alpha\\) 。该时延就是系统在 \\(\\omega=\\omega_{0}\\) 的群时延。 \n在工程应用中，往往采用对数模特性（或称为 Bode图）来描述系统的频率特性。在对数坐标下，采用对数模，可以给频率特性的表示带来一些方便。这是因为：\n1．可以将模特性的相乘关系变为相加关系； 2．利用对数坐标的非线性，可以展示更宽范围的频率特性，并使低频端更详细而高频端相对粗略；\n3．对连续时间系统，可以方便地建立模特性和相位特性的直线型渐近线。\n工程中广泛应用的有两种对数模： \\(\\ln |H(j \\omega)|: \\lg \\omega \\quad\\) 单位：奈培（Np） \\(20 \\lg |H(j \\omega)|: \\lg \\omega\\) 单位：分贝（dB）（decibel）\n对离散时间系统，由于其有效频率范围只有 \\(2 \\pi\\)而且，即使在对数坐标下也不存在直线型的渐近线。因而不采用对数坐标，只采用对数模。\n采用对数模（或Bode图）表示频率特性，对于幅频特性有零点或在某些频段上为零的系统，是不适用的。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#理想频率选择性滤波器",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#理想频率选择性滤波器",
+    "title": "My Site",
+    "section": "6.3 理想频率选择性滤波器",
+    "text": "6.3 理想频率选择性滤波器"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#the-ideal-frequencyselective-filters",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#the-ideal-frequencyselective-filters",
+    "title": "My Site",
+    "section": "（The Ideal Frequency－Selective Filters）",
+    "text": "（The Ideal Frequency－Selective Filters）\n一．滤波 通过系统改变信号中各频率分量的相对大小和相位，甚至完全去除某些频率分量的过程称为滤波。滤波器可分为两大类：\n1．频率成形滤波器（改变各分量的幅度与相位） 2．频率选择性滤波器（去除某些频率分量）"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#二理想频率选择性滤波器的频率特性",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#二理想频率选择性滤波器的频率特性",
+    "title": "My Site",
+    "section": "二．理想频率选择性滤波器的频率特性",
+    "text": "二．理想频率选择性滤波器的频率特性\n理想频率选择性滤波器的频率特性在某一个（或几个）频段内，频率响应为常数，而在其它频段内频率响应等于零。\n理想滤波器可分为低通、高通、带通、带阻。 滤波器允许信号完全通过的频段称为滤波器的通带（pass band），完全不允许信号通过的频段称为阻带（stop band）。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#连续时间理想频率选择性滤波器的频率特性",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#连续时间理想频率选择性滤波器的频率特性",
+    "title": "My Site",
+    "section": "连续时间理想频率选择性滤波器的频率特性",
+    "text": "连续时间理想频率选择性滤波器的频率特性\n 低通\n 带通\n 高通\n 带阻"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#离散时间理想频率选择性滤波器的频率特性",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#离散时间理想频率选择性滤波器的频率特性",
+    "title": "My Site",
+    "section": "离散时间理想频率选择性滤波器的频率特性",
+    "text": "离散时间理想频率选择性滤波器的频率特性\n 低通\n 带通\n 高通\n 带阻\n各种滤波器的特性都可以从理想低通特性而来。离散时间理想滤波器的特性在 \\(-\\pi\\) ：区间上，与相应的连续时间滤波器特性完全相似。\n三．理想滤波器的时域特性 以理想低通滤波器为例\n\\[\nH(j \\omega)= \\begin{cases}1, & |\\omega|&lt;\\omega_{c} \\\\ 0, & |\\omega|&gt;\\omega_{c}\\end{cases}\n\\]\n 连续时间理想低通滤波器"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#由傅里叶变换可得",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#由傅里叶变换可得",
+    "title": "My Site",
+    "section": "由傅里叶变换可得：",
+    "text": "由傅里叶变换可得：\n\\[\nh(t)=\\frac{1}{2 \\pi} \\int_{-\\omega_{c}}^{\\omega_{c}} e^{j \\omega t} d \\omega=\\frac{\\sin \\omega_{c} t}{\\pi t}=\\frac{\\omega_{c}}{\\pi} \\operatorname{Sa}\\left(\\omega_{c} t\\right)\n\\]\n\n对离散时间理想低通滤波器有：\n\\[\nh(n)=\\frac{\\sin \\omega_{c} n}{\\pi n}=\\frac{\\omega_{c}}{\\pi} \\operatorname{Sa}\\left(\\omega_{c} n\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#如果理想低通滤波器具有线性相位特性",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#如果理想低通滤波器具有线性相位特性",
+    "title": "My Site",
+    "section": "如果理想低通滤波器具有线性相位特性",
+    "text": "如果理想低通滤波器具有线性相位特性\n\\[\nH(j \\omega)= \\begin{cases}e^{-j \\alpha \\omega}, & |\\omega|&lt;\\omega_{c} \\\\ 0, & |\\omega|&gt;\\omega_{c}\\end{cases}\n\\]\n则 \\(h(t)=\\frac{\\omega_{c}}{\\pi} \\mathrm{Sa}\\left[\\omega_{c}(t-\\alpha)\\right]=\\frac{\\sin \\omega_{c}(t-\\alpha)}{\\pi(t-\\alpha)}\\)"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#理想低通滤波器的单位阶跃响应",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#理想低通滤波器的单位阶跃响应",
+    "title": "My Site",
+    "section": "理想低通滤波器的单位阶跃响应",
+    "text": "理想低通滤波器的单位阶跃响应\n\\[\n\\begin{aligned}\ns(t) & =h(t)^{*} u(t) \\\\\n& =\\int_{-\\infty}^{t} \\frac{\\omega_{c}}{\\pi} \\frac{\\sin \\omega_{c} \\tau}{\\omega_{c} \\tau} d \\tau=\\frac{1}{\\pi} \\int_{-\\infty}^{\\omega_{c} t} \\frac{\\sin x}{x} d x \\\\\n& =\\frac{1}{\\pi} \\int_{-\\infty}^{0} \\frac{\\sin x}{x} d x+\\frac{1}{\\pi} \\int_{0}^{\\omega_{c} t} \\frac{\\sin x}{x} d x \\\\\n& =-\\frac{1}{\\pi} \\int_{0}^{-\\infty} \\frac{\\sin x}{x} d x+\\frac{1}{\\pi} \\int_{0}^{\\omega_{c} t} \\frac{\\sin x}{x} d x\n\\end{aligned}\n\\]\n令 \\(\\int_{0}^{x} \\frac{\\sin \\tau}{\\tau} d \\tau=\\operatorname{Si}(x)\\) ——正弦积分\n由于\n\\[\n\\begin{aligned}\n& x \\rightarrow \\infty, \\operatorname{Si}(x) \\rightarrow \\frac{\\pi}{2} ; \\quad x \\rightarrow-\\infty, \\operatorname{Si}(x) \\rightarrow-\\frac{\\pi}{2} \\\\\n& s(t)=-\\frac{1}{\\pi} \\operatorname{Si}(-\\infty)+\\frac{1}{\\pi} \\operatorname{Si}\\left(\\omega_{c} t\\right)=\\frac{1}{2}+\\frac{1}{\\pi} \\operatorname{Si}\\left(\\omega_{c} t\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#如果理想低通滤波器具有线性相位特性则",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#如果理想低通滤波器具有线性相位特性则",
+    "title": "My Site",
+    "section": "如果理想低通滤波器具有线性相位特性，则",
+    "text": "如果理想低通滤波器具有线性相位特性，则\n\n最大值位置：\\(t_{0}+\\frac{\\pi}{\\omega_{c}}\\) 最小值位置：\\(t_{0}-\\frac{\\pi}{\\omega_{c}}\\) \\(t t_{0}\\) 为系统延迟时间 1．上升时间 \\(t_{r}\\) ：输出由最小值到最大值所经历的时间\n\\[\nt_{\\mathrm{r}}=2 \\cdot \\frac{\\pi}{\\omega_{\\mathrm{c}}}=\\frac{1}{B} \\quad B=\\frac{\\omega_{\\mathrm{c}}}{2 \\pi}=f_{\\mathrm{c}}\n\\]\n\\(\\boldsymbol{B}\\) 是将角频率折合为频率的滤波器带宽（截止频率）。 2．阶跃响应的上升时间 \\(t_{r}\\) 与滤波器的截止频率 \\(B\\)（带宽） 成反比 \\(B t_{\\mathrm{r}}=1\\) 。\n对离散时间理想低通滤波器，相应有：\n\\[\ns(n)=\\frac{1}{2}+\\frac{1}{\\pi} \\operatorname{Si}\\left(\\omega_{c} n\\right)\n\\]\n\n从理想滤波器的时域特性可以看出：\n1．理想滤波器是非因果系统。因而是物理不可实现的；\n2．尽管从频域滤波的角度看，理想滤波器的频率特性是最佳的。但它们的时域特性并不是最佳的。 \\(h(t)\\)或 \\(h(n)\\) 都有起伏、旁瓣、主瓣，这表明理想滤波器的时域特性与频域特性并不兼容。\n3．在工程应用中，当要设计一个滤波器时，必须对时域特性和频域特性作出恰当的折中。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#非理想滤波器the-nonideal-filters",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#非理想滤波器the-nonideal-filters",
+    "title": "My Site",
+    "section": "6.4 非理想滤波器（The Nonideal Filters）",
+    "text": "6.4 非理想滤波器（The Nonideal Filters）\n由于理想滤波器是物理不可实现的，工程应用中就必须寻找一个物理可实现的频率特性去逼近理想特性，这种物理可实现的系统就称为非理想滤波器。\n对理想特性逼近得越精确，实现时付出的代价越大，系统的复杂程度也越高。\n非理想滤波器的频率特性以容限方式给出。\n\n\n\n理想滤波器特性\n非理想滤波器特性\n\n\n\n\n1．通带绝对平坦，通带\n通带内允许有起伏，\n\n\n内衰减为零。\n有一定衰减范围 \\(\\pm \\delta_{1}\\)\n\n\n2．阻带绝对平坦，阻带\n阻带内允许有起伏，\n\n\n内衰减为 \\(\\infty\\)\n有一定衰减范围 \\(\\delta_{2}\\)\n\n\n3．无过渡带。\n有一定的过渡带宽度\n\n\n\n\n通常将偏离龶位曙益的 称为通帯起伏（或波纹），称为阻带起伏（或波纹），称为通带边缘，为阻带边缘，为过渡带。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#工程实际中常用的逼近方式有",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#工程实际中常用的逼近方式有",
+    "title": "My Site",
+    "section": "工程实际中常用的逼近方式有：",
+    "text": "工程实际中常用的逼近方式有：\n1．Butterworth滤波器： 通带、阻带均呈单调衰减，也称通带最平伏逼近； 2．Chebyshev滤波器： 通带等起伏阻带单调，或通带单调阻带等起伏； 3．Cauer滤波器：（椭圆函数滤波器） 通带、阻带均等起伏。 它们都从幅频特性出发逼近理想低通的模特性。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#从相位特性出发逼近理想的线性相位特性有",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#从相位特性出发逼近理想的线性相位特性有",
+    "title": "My Site",
+    "section": "从相位特性出发，逼近理想的线性相位特性有",
+    "text": "从相位特性出发，逼近理想的线性相位特性有\n1．Bassel滤波器： 群时延最平伏逼近； 2．包络时延Chebyshev滤波器： 包络时延等起伏逼近； 3．Gauss滤波器。\n对同一种滤波器，阶数越高，对理想特性逼近得越好，过渡带越窄，但付出的代价是系统越复杂。\n对同样阶数的滤波器，从 Butterworth \\(\\_\\_\\_\\_\\) Chebyshev ⟶Cauer，其幅频特性逼近得越来越 好，但阶跃响应的起伏、超量和振荡也越厉害（体现了系统频域特性与时域特性的不兼容）。系统的复杂程度也越来越高，相应地，实现系统所付出的代价也越来越大。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#阶butterworth滤波器与5阶cauer滤波器的比较",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#阶butterworth滤波器与5阶cauer滤波器的比较",
+    "title": "My Site",
+    "section": "5阶Butterworth滤波器与5阶Cauer滤波器的比较",
+    "text": "5阶Butterworth滤波器与5阶Cauer滤波器的比较"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#单位阶跃响应",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#单位阶跃响应",
+    "title": "My Site",
+    "section": "单位阶跃响应：",
+    "text": "单位阶跃响应："
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#一阶与二阶连续时间系统",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#一阶与二阶连续时间系统",
+    "title": "My Site",
+    "section": "6.5 一阶与二阶连续时间系统",
+    "text": "6.5 一阶与二阶连续时间系统"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#firstorder-and-secondorder-continuous-time-systems",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#firstorder-and-secondorder-continuous-time-systems",
+    "title": "My Site",
+    "section": "（First－Order and Second－Order Continuous－ Time Systems）",
+    "text": "（First－Order and Second－Order Continuous－ Time Systems）\n对由LCCDE描述的连续时间LTI系统，其频率响应为：\n\\[\nH(j \\omega)=\\frac{\\sum_{k=0}^{M} b_{k}(j \\omega)^{k}}{\\sum_{k=0}^{N} a_{k}(j \\omega)^{k}}=\\frac{B(j \\omega)}{A(j \\omega)}\n\\]\n其中：\\(a_{k} 、 b_{k}\\) 均为实常数。\n此时，可通过对 \\(B(j \\omega)\\) 因式分解，将其表示成若干个一阶或二阶有理函数的连乘；或者通过部分分式展开，表示成若干个一阶或二阶有理函数相加。\n这表明：由LCCDE描述的LTI系统可以看成由若干个一阶或二阶系统通过级联或并联构成。因此，一阶和二阶系统是构成任何系统的基本单元。掌握一阶和二阶系统的分析方法就尤为重要。\n一．一阶系统：\n模型：\\(\\tau \\frac{d y(t)}{d t}+y(t)=x(t) \\quad H(j \\omega)=\\frac{1}{j \\omega \\tau+1}\\) 1．时域特性：\\(h(t)=\\frac{1}{\\tau} e^{-\\frac{t}{\\tau}} u(t) \\quad \\tau\\) ——时间常数 \n\\[\ns(t)=h(t) * u(t)=\\left(1-e^{-\\frac{t}{\\tau}}\\right) u(t)\n\\]\n\n可以看出：\\(\\tau\\) 越小，\\(s(t)\\) 上升得越快，系统失真越小。\n2．一阶系统的Bode图：\n\\[\n20 \\lg |H(j \\omega)|=-10 \\lg \\left[1+(\\omega \\tau)^{2}\\right]\n\\]\n\\[\nH(j \\omega)=\\frac{1}{j \\omega \\tau+1}\n\\]\n当 \\(\\omega \\tau=1\\) 即 \\(\\omega=1 / \\tau\\) 时 \\(20 \\lg |H(j \\omega)| \\approx 0 \\mathrm{~dB}\\) 当 \\(\\omega \\tau\\) ？1即 \\(\\omega\\) ？ \\(1 / \\tau\\) 时\n\\[\n20 \\lg |H(j \\omega)| \\approx-20 \\lg \\omega \\tau=-20 \\lg \\omega-20 \\lg \\tau\n\\]\n在对数坐标系下，它是一条直线，斜率为每 10 倍频程－20dB。可见，一阶系统的Bode图有两条直线型渐近线。 \\(\\quad \\omega=1\\) 称为折断频率。\n当 \\(\\omega=\\) 时，准确的对数模为\n\\[\n20 \\lg |H(j \\omega)|=-10 \\lg 2 \\mathrm{~B}-3 \\mathrm{~dB}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#相频特性",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#相频特性",
+    "title": "My Site",
+    "section": "相频特性：",
+    "text": "相频特性：\n\\[\n\\begin{aligned}\n& \\mathrm{R} H(j \\omega)=-\\operatorname{tg}^{-1}(\\omega \\tau) \\\\\n& \\omega=\\frac{1}{\\tau} \\text { 时, } \\omega \\rightarrow 0, \\quad \\mathrm{R} H(j \\omega) \\rightarrow 0 \\\\\n& \\omega ? \\frac{1}{\\tau} \\text { 时, } \\omega \\rightarrow \\infty, \\quad \\mathrm{R} H(j \\omega) \\rightarrow-\\frac{\\pi}{2} \\\\\n& \\omega=\\frac{1}{\\tau} \\text { 时, } \\quad \\mathrm{R} H(j \\omega)=-\\frac{\\pi}{4}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#将其折线化可得相位特性的直线型渐近线",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#将其折线化可得相位特性的直线型渐近线",
+    "title": "My Site",
+    "section": "将其折线化可得相位特性的直线型渐近线：",
+    "text": "将其折线化可得相位特性的直线型渐近线：\n\\[\n\\mathrm{R} H(j \\omega)= \\begin{cases}0, & \\omega \\leq 0.1 / \\tau \\\\ -\\frac{\\pi}{4}[\\lg \\omega \\tau+1], & \\frac{0.1}{\\tau} \\leq \\omega \\leq \\frac{10}{\\tau} \\\\ -\\frac{\\pi}{2}, & \\omega \\geq 10 / \\tau\\end{cases}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#二二阶系统",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#二二阶系统",
+    "title": "My Site",
+    "section": "二．二阶系统：",
+    "text": "二．二阶系统：\n模型：\\(\\frac{d^{2} y(t)}{d t^{2}}+2 \\zeta \\omega_{n} \\frac{d y(t)}{d t}+\\omega_{n}{ }^{2} y(t)=\\omega_{n}{ }^{2} x(t)\\)\n如：对RLC串联谐振电路\n 可列出电路方程\n\\[\ny^{\\prime \\prime}(t)+\\frac{R}{L} y^{\\prime}(t)+\\frac{1}{L C} y(t)=\\frac{1}{L C} x(t)\n\\]\n\\[\n\\zeta=\\frac{R}{2} \\sqrt{\\frac{C}{L}}\n\\]\n考察由弾簧、阻尼器、质量M组成的减震系统 \n分析受力 \n可列出方程\n\\[\nM \\frac{d^{2} y(t)}{d t^{2}}=x(t)-k y(t)-B y^{\\prime}(t)\n\\]\n即 \\(\\frac{d^{2} y(t)}{d t^{2}}+\\frac{B}{M} \\frac{d y(t)}{d t}+\\frac{k}{M} y(t)=\\frac{k}{M} \\hat{x}(t)\\) 其中 \\(\\hat{x}(t)=\\frac{1}{k} x(t) \\quad\\) 显然，若 \\(\\omega_{n}^{2}=k / M\\) \\(\\zeta=\\frac{B}{2 \\sqrt{k M}}\\) 则方程就成为标准形式。 由二阶系统的方程可得系统的频率响应：\n\\[\nH(j \\omega)=\\frac{\\omega_{n}^{2}}{(j \\omega)^{2}+2 \\zeta \\omega_{n}(j \\omega)+\\omega_{n}^{2}}=\\frac{1}{\\left(j \\frac{\\omega}{\\omega_{n}}\\right)^{2}+2 \\zeta\\left(j \\frac{\\omega}{\\omega_{n}}\\right)+1}\n\\]\n\\(\\zeta\\) 称为阻尼系数，\\(\\omega_{n}\\) 称为无阻尼自然频率\n1．时域特性—冲激响应\n\\[\nH(j \\omega)=\\frac{\\omega_{n}^{2}}{(j \\omega)^{2}+2 \\zeta \\omega_{n}(j \\omega)+\\omega_{n}^{2}}=\\frac{\\omega_{n}^{2}}{\\left(j \\omega-c_{1}\\right)\\left(j \\omega-c_{2}\\right)}\n\\]\n（1）\\(\\zeta=0\\) 时，\\(c_{1}=c_{2}^{*}=\\) 系统处于无阻尼状态。\n\\[\nH(j \\omega)=\\frac{\\omega_{n}^{2}}{(j \\omega)^{2}+\\omega_{n}^{2}} \\quad h(t)=\\omega_{n} \\sin \\left(\\omega_{n} t\\right) u(t)\n\\]\n（2）当 \\(0&lt;\\zeta\\) 时 \\(1 \\quad, c_{1}\\) 为䒾轭复根，系统处于欠阻 尼状态；\\(c_{1,2}=-\\zeta \\omega_{n} \\pm j \\omega_{n} \\sqrt{1-\\zeta^{2}}\\)\n\\[\n\\begin{aligned}\n& H(j \\omega)=\\frac{M}{j \\omega-c_{1}}-\\frac{M}{j \\omega-c_{2}} \\quad M=\\frac{\\omega_{n}}{2 j \\sqrt{1-\\zeta^{2}}} \\\\\n& h(t)=\\frac{\\omega_{n}}{\\sqrt{1-\\zeta^{2}}} e^{-\\zeta \\omega_{n} t} \\sin \\left(\\omega_{n} \\sqrt{1-\\zeta^{2}} t\\right) u(t)\n\\end{aligned}\n\\]\n（3）当 \\(\\zeta\\) 时，\\(c_{1}=c_{2}=-\\omega_{n}\\) 系统处于临界阻尼状态。\n\\[\n\\begin{aligned}\n& H(j \\omega)=\\frac{\\omega_{n}^{2}}{\\left(j \\omega-c_{1}\\right)^{2}}=\\frac{\\omega_{n}^{2}}{\\left(j \\omega+\\omega_{n}\\right)^{2}} \\\\\n& h(t)=\\omega_{n}^{2} t e^{-\\omega_{n} t} u(t)\n\\end{aligned}\n\\]\n（4）\\(\\zeta&gt;1\\) 时，\\(c_{1}\\) 为实数根，系统为过阻尼状态；\n\\[\n\\begin{aligned}\n& c_{1,2}=-\\zeta \\omega_{n} \\pm \\omega_{n} \\sqrt{\\zeta^{2}-1} \\\\\n& H(j \\omega)=\\frac{M}{j \\omega-c_{1}}-\\frac{M}{j \\omega-c_{2}} \\quad M=\\frac{\\omega_{n}}{2 \\sqrt{\\zeta^{2}-1}} \\\\\n& h(t)=M\\left[e^{c_{1} t}-e^{c_{2} t}\\right] u(t)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#时域特性阶跃响应",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#时域特性阶跃响应",
+    "title": "My Site",
+    "section": "1．时域特性—阶跃响应",
+    "text": "1．时域特性—阶跃响应\n当 \\(\\zeta\\) 肘\n\\[\ns(t)=h(t) * u(t)=\\left[1+M\\left(\\frac{e^{c_{1} t}}{c_{1}}-\\frac{e^{c_{2} t}}{c_{2}}\\right)\\right] u(t)\n\\]\n当 \\(\\zeta\\) 时，\\(\\quad c_{1}=c_{2}=-\\omega_{n}\\)\n\\[\ns(t)=h(t) * u(t)=\\left[1-e^{-\\omega_{n} t}-\\omega_{n} t e^{-\\omega_{n} t}\\right] u(t)\n\\]\n当 \\(0&lt;\\zeta\\) 时 1 （即欠阻尼状态），阶跃响应既有超量又有震荡； 当 \\(\\zeta\\) 二时，在没有超量的情况下，响应最快，即最短的上升时间；随着 的增加，响应越来越慢；\n2．频率特性：\n\\[\n\\begin{gathered}\n|H(j \\omega)|=\\frac{1}{\\sqrt{\\left[1-\\left(\\frac{\\omega}{\\omega_{n}}\\right)^{2}\\right]^{2}+4 \\zeta^{2}\\left(\\frac{\\omega}{\\omega_{n}}\\right)^{2}}} \\\\\n20 \\lg |H(j \\omega)|=-10 \\lg \\left\\{\\left[1-\\left(\\frac{\\omega}{\\omega_{n}}\\right)^{2}\\right]^{2}+4 \\zeta^{2}\\left(\\frac{\\omega}{\\omega_{n}}\\right)^{2}\\right\\}\n\\end{gathered}\n\\]\n当 \\(\\omega=\\) 时，\\(\\quad 20 \\lg |H(j \\omega)| \\approx 0 \\mathrm{~dB}\\) 当 \\(\\omega\\) ？时，\n\\[\n\\begin{aligned}\n20 \\lg |H(j \\omega)| & \\approx-10 \\lg \\left(\\frac{\\omega}{\\omega_{n}}\\right)^{4}=-40 \\lg \\frac{\\omega}{\\omega_{n}} \\\\\n& =-40 \\lg \\omega+40 \\lg \\omega_{n}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#在对数坐标中可用两条直线表示一条是低频段的",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#在对数坐标中可用两条直线表示一条是低频段的",
+    "title": "My Site",
+    "section": "在对数坐标中可用两条直线表示。一条是低频段的",
+    "text": "在对数坐标中可用两条直线表示。一条是低频段的\n0 dB 线，一条是高频段的斜率为 \\(-40 \\mathrm{~dB} / \\mathrm{dec}\\) 的直线。在 \\(\\omega=\\) 处，两条渐进线相交，因此 称为二阶系统的折转频率。 \\(\\omega=\\omega_{n}\\) 时，准确的对数模为：\n\\[\n20 \\lg |H(j \\omega)|=-20 \\lg 2 \\zeta\n\\]\n\n\\[\n\\begin{aligned}\n20 \\lg |H(j \\omega)| & =-10 \\lg \\left[1+\\left(4 \\zeta^{2}-2\\right)\\left(\\frac{\\omega}{\\omega_{n}}\\right)^{2}+\\left(\\frac{\\omega}{\\omega_{n}}\\right)^{4}\\right] \\\\\n& =-10 \\lg \\left\\{\\left[\\left(\\frac{\\omega}{\\omega_{n}}\\right)^{2}-\\left(1-2 \\zeta^{2}\\right)\\right]^{2}+1-\\left(1-2 \\zeta^{2}\\right)^{2}\\right\\}\n\\end{aligned}\n\\]\n\\(\\zeta&lt;0\\) 昒 7 幅频特性在 \\(\\quad \\omega_{n}^{\\text {处出现峰值，峰值为 }}\\) →可以目可设评选频放大器，在某一较窄的频率范围内，对一些正弦信号提供放大。用品质因数Q来衡量峰值的尖锐程度：\n\\[\nQ=\\frac{1}{2 \\zeta}\n\\]\n\\(\\zeta&gt;0\\) ．时 7 ，系统类似于一阶系统具有低通特性。 \\(\\zeta&lt;0\\) ．时 7 随 的减小，逐步过渡为带通特性。 \\(\\zeta=0\\) ．时，系统具有最平坦的低通特性。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#相位特性",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#相位特性",
+    "title": "My Site",
+    "section": "相位特性：",
+    "text": "相位特性：\n\\[\n\\begin{array}{ll}\n\\mathrm{R} H(j \\omega)=-\\tan ^{-1} \\frac{2 \\zeta \\frac{\\omega}{\\omega_{n}}}{1-\\left(\\frac{\\omega}{\\omega_{n}}\\right)^{2}} & \\omega=\\omega_{n} \\text { 时 } \\omega \\rightarrow 0, \\mathrm{R} H(j \\omega) \\rightarrow 0 \\\\\n\\omega=\\omega_{n} \\text { 时 } \\mathrm{R} H(j \\omega)=-\\frac{\\pi}{2} \\\\\n\\omega \\rightarrow \\infty \\text { 时 } \\mathrm{R} H(j \\omega) \\rightarrow-\\pi\n\\end{array}\n\\]\n可将其用折线近似为：\n\\[\n\\mathrm{R} H(j \\omega)= \\begin{cases}0, & \\omega \\leq 0.1 \\omega_{n} \\\\ -\\frac{\\pi}{2}\\left[\\lg \\frac{\\omega}{\\omega_{n}}+1\\right], & 0.1 \\omega_{n} \\leq \\omega \\leq 10 \\omega_{n} \\\\ -\\pi, & \\omega \\geq 10 \\omega_{n}\\end{cases}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#可见-越小相位的非线性越严重",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#可见-越小相位的非线性越严重",
+    "title": "My Site",
+    "section": "可见 越小，相位的非线性越严重。",
+    "text": "可见 越小，相位的非线性越严重。\n三．有理型频率响应的Bode图：\n\\[\n\\begin{aligned}\n\\text { 对于 } \\hat{H}(j \\omega) & =j \\omega \\tau+1 \\\\\n\\hat{H}(j \\omega) & =\\left(\\frac{j \\omega}{\\omega_{n}}\\right)^{2}+2 \\zeta\\left(\\frac{j \\omega}{\\omega_{n}}\\right)+1\n\\end{aligned}\n\\]\n这种频率特性的因子，与一阶、二阶系统的情况相比，其 \\(H\\)（存在倒量关系。即\n\\[\n\\begin{gathered}\n20 \\lg |\\hat{H}(j \\omega)|=20 \\lg \\left|\\frac{1}{H(j \\omega)}\\right|=-20 \\lg |H(j \\omega)| \\\\\n\\operatorname{R} \\hat{H}(j \\omega)=-\\mathrm{R} H(j \\omega)\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#一阶与二阶离散时间系统",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#一阶与二阶离散时间系统",
+    "title": "My Site",
+    "section": "6.6 一阶与二阶离散时间系统",
+    "text": "6.6 一阶与二阶离散时间系统\n（First－Order and Second－Order Discrete－Time Systems）"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#一一阶系统",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#一一阶系统",
+    "title": "My Site",
+    "section": "一．一阶系统：",
+    "text": "一．一阶系统：\n系统的数学模型：\n\\[\ny(n)-a y(n-1)=x(n) \\quad|a|&lt;1\n\\]\n由差分方程可得系统的频率响应：\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{1}{1-a e^{-j \\omega}}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#时域特性",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#时域特性",
+    "title": "My Site",
+    "section": "1．时域特性：",
+    "text": "1．时域特性：\n对频率响应做傅立叶反变换可得：\n\\[\nh(n)=a^{n} u(n)\n\\]\n系统的单位阶跃响应为：\n\\[\ns(n)=\\sum_{k=-\\infty}^{n} h(k)=\\sum_{k=0}^{n} a^{k}=\\frac{1-a^{n+1}}{1-a} u(n)\n\\]\n据此可作出不同参数情况下系统的单位脉冲响应和单位阶跃响应：\n (c)\n (b)\n (d)"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#由图可以看出",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#由图可以看出",
+    "title": "My Site",
+    "section": "由图可以看出：",
+    "text": "由图可以看出：\n－当 \\(a&gt;0\\) 时，随着 \\(a\\) 的增大，系统的单位脉冲响应单调衰减得越来越慢。单位阶跃响应单调上升得越来越慢。 －当 \\(a&lt;0\\) 时，系统的单位脉冲响应和单位阶跃响应都存在振荡。 \\(|a|\\) 越大，振荡的持续期越长；单位脉冲响应衰减得越慢，单位阶跃响应上升得越慢。\n2．频域特性： 由系统的频率响应可以得出：\n\\[\n\\begin{aligned}\n& \\left|H\\left(e^{j \\omega}\\right)\\right|=\\frac{1}{\\sqrt{1+a^{2}-2 a \\cos \\omega}} \\\\\n& \\operatorname{RH}\\left(e^{j \\omega}\\right)=-\\tan ^{-1} \\frac{a \\sin \\omega}{1-a \\cos \\omega}\n\\end{aligned}\n\\]\n据此可作出不同参数情况下一阶系统的幅频特性和相频特性："
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#二二阶系统-1",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#二二阶系统-1",
+    "title": "My Site",
+    "section": "二．二阶系统：",
+    "text": "二．二阶系统：\n数学模型：\\(y(n)-2 r \\cos \\theta y(n-1)+r^{2} y(n-2)=x(n)\\) 其中 \\(0&lt;r&lt;1, \\quad 0 \\leq \\theta \\leq \\pi\\) ，\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{1}{1-2 r \\cos \\theta e^{-j \\omega}+r^{2} e^{-j 2 \\omega}}=\\frac{1}{\\left[1-r e^{j \\theta} e^{-j \\omega}\\right]\\left[1-r e^{-j \\theta} e^{-j \\omega}\\right]}\n\\]\n\\(\\theta \\neq 0\\) 或 \\(\\pi\\) 时，\\(H\\left(\\right.\\) 有两个不同的极点 \\(v e^{j \\theta} r e^{-j \\theta}\\)\n\\[\n\\begin{aligned}\n& H\\left(e^{j \\omega}\\right)=\\frac{A}{1-r e^{j \\theta} e^{-j \\omega}}+\\frac{B}{1-r e^{-j \\theta} e^{-j \\omega}} \\\\\n& \\text { 其中 } \\quad A=\\frac{e^{j \\theta}}{2 j \\sin \\theta} \\quad B=\\frac{-e^{-j \\theta}}{2 j \\sin \\theta}\n\\end{aligned}\n\\]\n\\(h(n)=\\left[A\\left(r e^{j \\theta}\\right)^{n}+B\\left(r e^{-j \\theta}\\right)^{n}\\right] u(n)=r^{n} \\frac{\\sin (n+1) \\theta}{\\sin \\theta} u(n) r\\) 影响衰减速率，\\(\\theta\\) 影响振荡频率。 \\(h(n)\\) 为指数衰减的正弦振荡。系统为欠阻尼状态。 \\(\\theta=0\\) 时，\\(H\\left(e^{j \\omega}\\right)=\\frac{1}{\\left(1-r e^{-j \\omega}\\right)^{2}} \\quad\\) 系统为临界阻尼。 \\(h(n)=(n+1) r^{n} u(n) \\quad h(n)\\) 单调变化，无振荡。 \\(\\theta=\\pi\\) 时，\\(\\quad H\\left(e^{j \\omega}\\right)=\\frac{1}{\\left(1+r e^{-j \\omega}\\right)^{2}}\\) 系统为欠阻尼。 \\(h(n)=(n+1)(-r)^{n} u(n) \\quad h(n)\\) 振荡最剧烈。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#系统的单位脉冲响应",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#系统的单位脉冲响应",
+    "title": "My Site",
+    "section": "系统的单位脉冲响应：",
+    "text": "系统的单位脉冲响应：\n\n\n\n\n\n\n\n\n\n  0 n\n  0\n\n\n\n\n\n\\(\\mathrm{r}=\\frac{1}{2}\\)\n\\(r=\\frac{3}{4}\\)\n\n\n\n\n\n\n47  4  4\n↓ \\(\\frac{1}{2}\\)\n: \\(\\_\\_\\_\\_\\)\n\n\n\n\nI \\(\\_\\_\\_\\_\\)\n\\(\\frac{7}{8}\\)\n\\(\\frac{1}{2}\\) \\(\\_\\_\\_\\_\\)\n\n\n\\(4^{ \\pm}\\)\n\\(4^{ \\pm 2}\\)\n\\(y\\)"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#系统的单位阶跃响应",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#系统的单位阶跃响应",
+    "title": "My Site",
+    "section": "系统的单位阶跃响应：",
+    "text": "系统的单位阶跃响应：\n\n\n\n\n\n\n\n\n\n\\(\\mathrm{s}[\\mathrm{n}]\\)\n\\(\\mathrm{s}[\\mathrm{n}]\\)\n\\(\\mathrm{s}[\\mathrm{n}]\\)\n\n\n\n\n\n\n\n\n\n\\(3 \\quad \\theta=\\frac{\\pi}{2}\\)\n\\(3 \\quad \\theta=\\frac{\\pi}{2}\\)\n\\(3 \\quad \\theta=\\frac{\\pi}{2}\\)\n\n\n2\n2\n2\n\n\n1  0  n\n\n\n\n\ns[n]\ns[n]\n\\(s[\\mathrm{n}]\\)\n\n\n4\n4 -\n4+\n\n\n3\n3\n3\n\n\n2\n2\n2\n\n\n\\({ }_{0}^{1}\\) I[ [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ]\n\\({ }_{0}^{1}\\) || ||||||||||||||||||||||||||||||||||||||||\n\n\n\n\\(s[\\mathrm{n}]\\)\n\\(\\mathrm{s}[\\mathrm{n}]\\)\n\\(\\mathrm{s}[\\mathrm{n}]\\)\n\n\n4\n4 卜\n4 - \\(\\quad r=\\frac{3}{4}\\)\n\n\n3\n3\n3\n\n\n2\n2\n2\n\n\n1\n1"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#由图可以看出-1",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#由图可以看出-1",
+    "title": "My Site",
+    "section": "由图可以看出：",
+    "text": "由图可以看出：\n1．当系统处于欠阻尼状态时，即 \\(0&lt;\\theta \\leq \\pi\\) 时，系统的单位冲激响应和单位阶跃响应都存在振荡和超量。 \\(\\theta\\) 越接近 \\(\\pi\\) ，振荡的频率越高。\n2．在欠阻尼状态下，\\(r\\) 影响着单位冲激响应和单位阶跃响应的变化速率。 \\(r\\) 越接近1，单位冲激响应衰减得越慢，单位阶跃响应上升得越慢，出现的振荡也越明显。\n根据不同的 \\(\\theta\\) 和 \\(r\\) 可作出系统的频率特性： \n\\[\n\\theta=0\n\\]\n  \n\\[\n\\theta=\\frac{\\pi}{2}\n\\]\n \n\\[\n\\theta=\\frac{3 \\pi}{4}\n\\]\n\n\\[\n\\begin{aligned}\n& r=\\frac{3}{4} \\\\\n& r=\\frac{1}{2} \\\\\n& r=\\frac{1}{4}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#由图可以看出-2",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#由图可以看出-2",
+    "title": "My Site",
+    "section": "由图可以看出：",
+    "text": "由图可以看出：\n1．\\(r\\) 越大，幅频特性的峰越尖锐，系统的带宽越窄；\\(r\\) 越小，幅频特性越平坦，系统带宽越宽。\n2．系统幅频特性的峰值总是出现在 \\(\\theta\\) 值的附近，随着 \\(\\theta\\) 从 \\(0: \\pi\\) 变化，系统经历了从低通特性 ⟶带通特性—高通特性的变化过程。\n3．系统具有非线性相位特性。 总之：\\(\\theta\\) 影响系统频响的峰值位置，\\(r\\) 影响峰值的大小，其作用分别类似于连续系统的 \\(\\omega_{n}\\) 和 \\(\\zeta\\)\n二阶系统也可以处在过阻尼状态，此时系统有两个实数极点。将 \\(H\\left(e^{j \\omega}\\right)\\) 展开成部分分式有：\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{1}{\\left(1-d_{1} e^{-j \\omega}\\right)\\left(1-d_{2} e^{-j \\omega}\\right)}=\\frac{A}{\\left(1-d_{1} e^{-j \\omega}\\right)}+\\frac{B}{\\left(1-d_{2} e^{-j \\omega}\\right)}\n\\]\n其中 \\(A=\\frac{d_{1}}{d_{1}-d_{2}}\\)\n\\[\nB=\\frac{d_{2}}{d_{2}-d_{1}}\n\\]\n此时相当于两个一阶系统级联。当 \\(d_{1}&gt;0, d_{2}&gt;0\\)时，系统为过阻尼状态；当 \\(d_{1}&lt;0, d_{2}&lt;0\\) 时，系统为欠阻尼状态。其他情况，系统状态 将取决于绝对值大的极点（主时间常数）是正值还是负值。"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#系统的时域分析与频域分析举例",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#系统的时域分析与频域分析举例",
+    "title": "My Site",
+    "section": "6.7 系统的时域分析与频域分析举例",
+    "text": "6.7 系统的时域分析与频域分析举例"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#examples-of-timeand-frequencydomain-analysis-of-systems",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#examples-of-timeand-frequencydomain-analysis-of-systems",
+    "title": "My Site",
+    "section": "Examples of Time－and Frequency－Domain Analysis of Systems",
+    "text": "Examples of Time－and Frequency－Domain Analysis of Systems\n一．汽车减震系统： 系统模型为：\n\\[\nM \\frac{d^{2} y(t)}{d t^{2}}+b \\frac{d y(t)}{d t}+k y(t)=k x(t)+b \\frac{d x(t)}{d t}\n\\]\n类似于前面讨论过的二阶系统，其中\n\\[\n\\omega_{n}=\\sqrt{\\frac{k}{M}} \\quad 2 \\zeta \\omega_{n}=\\frac{b}{M}\n\\]\n\n从频域看，越小，越有利于滤除路面不平所造成的影响。但 越小，时域特性变化越慢。\n从时域角度看，希望响应时间尽可能快，并且不要出现震荡和超量，因此应该要求 \\(\\zeta\\) ○但 时，系统的频率特性并不是最佳。\n对系统的时域特性和频域特性综合折中考虑，是工程应用中很重要的问题。\n二．FIR滤波器： 离散时间滤波器可以分为IIR和FIR两大类。 考察如下的动平均滤波器：\n\\[\ny(n)=\\frac{1}{N+M+1} \\sum_{k=-N}^{M} x(n-k)\n\\]\n它是一个FIR系统，其频率响应为：\n\\[\nH\\left(e^{j \\omega}\\right)=\\frac{1}{N+M+1} \\sum_{k=-N}^{M} e^{-j \\omega k}=\\frac{1}{N+M+1} \\frac{\\sin \\frac{N+M+1}{2} \\omega}{\\sin \\frac{\\omega}{2}} e^{j \\frac{N-M}{2} \\omega}\n\\]\n更一般的情况，可加权的动平均滤波器可表示为：\n\\[\ny(n)=\\sum_{k=-N}^{M} b_{k} x(n-k)\n\\]\n选择不同的加权序列 \\(b_{k}\\) ，即可改变滤波器的特性。  \n\\[\ny(n)=\\sum_{k=-N}^{N} h_{k} x(n-k) \\quad h(n)= \\begin{cases}\\frac{\\sin (2 \\pi n / 33)}{\\pi n}, & |n| \\leq 32 \\\\ 0, & |n|&gt;32\\end{cases}\n\\]\n （a）"
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#该fir滤波器的幅频特性对数模",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#该fir滤波器的幅频特性对数模",
+    "title": "My Site",
+    "section": "该FIR滤波器的幅频特性（对数模）：",
+    "text": "该FIR滤波器的幅频特性（对数模）："
+  },
+  {
+    "objectID": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#小结-summary",
+    "href": "ref/信号与系统课件：第6章 信号与系统的时域和频域特性.html#小结-summary",
+    "title": "My Site",
+    "section": "6.8 小结 Summary",
+    "text": "6.8 小结 Summary\n＊从傅里叶变换的模和相位表示出发，研究了信号在传输中发生失真的原因和失真的种类。建立了信号传输的不失真条件。 ＊介绍了滤波与滤波器的基本概念，理想频率选择性滤波器的频率特性和时域特性，理想滤波器的不可实现性，非理想滤波器的概念及工程中常用的逼近方式。 ＊讨论了连续时间和离散时间一阶、二阶系统的时域和频域特性的分析方法，及连续时间一阶、二阶系统Bode图的绘制。 ＊以汽车减震系统和动平均FIR滤波器为例，简单介绍了在工程应用中时域－频域、幅频－相频特性要折衷权衡考虑的思想。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#第6章-信号与系统的时域和频域特性",
+    "href": "ref/信号与系统的时域和频域特性.html#第6章-信号与系统的时域和频域特性",
+    "title": "My Site",
+    "section": "第6章 信号与系统的时域和频域特性",
+    "text": "第6章 信号与系统的时域和频域特性\nTHMEAND AREQUENCY CHKRYRTISTASION，OF SIGNALS"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#连续傅立叶级数与离散傅立叶级数的比较",
+    "href": "ref/信号与系统的时域和频域特性.html#连续傅立叶级数与离散傅立叶级数的比较",
+    "title": "My Site",
+    "section": "连续傅立叶级数与离散傅立叶级数的比较",
+    "text": "连续傅立叶级数与离散傅立叶级数的比较\n连续傅立叶级数的基波成分为 \\(e^{j \\Omega_{0} t}=e^{j\\left(\\frac{2 \\pi}{T}\\right) t}\\) k 次谐波成分有无穷多个\n\\[\ne^{j k\\left(\\frac{2 \\pi}{T}\\right) t}, k=0, \\pm 1, \\pm 2, \\cdots \\cdots\n\\]\n－离散傅立叶级数的基波成分为 \\(e^{j \\omega_{0} n}=e^{j \\frac{2 \\pi}{N} n}\\) k 次谐波成分只有N个独立分量\n\\[\ne^{j k \\frac{2 \\pi}{N} n}, k=0,1, \\cdots, N-1\n\\]\n模拟信号 \\(x_{a}(t)\\) 的一对傅立叶变换式为：\n\\[\n\\begin{aligned}\n& X_{a}(j \\Omega)=\\int_{-\\infty}^{\\infty} x_{a}(t) e^{-j \\Omega t} d t \\\\\n& x_{a}(t)=\\frac{1}{2 \\pi} \\int_{-\\infty}^{\\infty} X_{a}(j \\Omega) e^{j \\Omega t} d \\Omega\n\\end{aligned}\n\\]\n\\(x(n)\\) 的傅立叶变换式为：\n\\[\n\\begin{aligned}\n& X\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x(n) e^{-j \\omega n} \\\\\n& x(n)=\\frac{1}{2 \\pi} \\int_{-\\pi}^{\\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#本章主要内容",
+    "href": "ref/信号与系统的时域和频域特性.html#本章主要内容",
+    "title": "My Site",
+    "section": "本章主要内容",
+    "text": "本章主要内容\n1．傅立叶变换的模与相位。 2．LTI系统的幅频特性与相频特性，系统的失真。 3．系统的不失真传输条件。 4．理想滤波器的频域、时域特性及其不可实现性。 5．一阶系统的分析方法，Bode图。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#引言-introduction",
+    "href": "ref/信号与系统的时域和频域特性.html#引言-introduction",
+    "title": "My Site",
+    "section": "6.0 引言 Introduction",
+    "text": "6.0 引言 Introduction"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#在以前的讨论中已经看到",
+    "href": "ref/信号与系统的时域和频域特性.html#在以前的讨论中已经看到",
+    "title": "My Site",
+    "section": "在以前的讨论中，已经看到",
+    "text": "在以前的讨论中，已经看到\n－在时域，系统的特性由 \\(h\\)（或 捅述； ＊在频域，系统的特性由 \\(H\\)（或）\\(\\quad\\) 椈述； 工程中设计系统时，往往会对系统的特性从时域角度或频域角度提出某些要求。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#引言-introduction-1",
+    "href": "ref/信号与系统的时域和频域特性.html#引言-introduction-1",
+    "title": "My Site",
+    "section": "6.0 引言 Introduction",
+    "text": "6.0 引言 Introduction\n信号与系统 ＊在LTI 系统分析中，由于时域中的微分（差分）方程和卷积运算在频域都变成了代数运算，所以利用频域分析往往特别方便。 ＊系统的时域特性与频域特性是相互制约的。在进行系统的分析与设计时，要权衡考虑系统的时域与频域特性。 ＊本章的基本内容旨在建立对系统的时域和频域特性进行综合分析的思想和方法。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#傅里叶变换的模和相位表示",
+    "href": "ref/信号与系统的时域和频域特性.html#傅里叶变换的模和相位表示",
+    "title": "My Site",
+    "section": "6． 1 傅里叶变换的模和相位表示",
+    "text": "6． 1 傅里叶变换的模和相位表示\nThe Magnitude－Phase Representation of the"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#fourier-transform",
+    "href": "ref/信号与系统的时域和频域特性.html#fourier-transform",
+    "title": "My Site",
+    "section": "Fourier Transform",
+    "text": "Fourier Transform\n无论CTFT还是DTFT，一般表现为一个复函数\n\\[\n\\begin{aligned}\nX(j \\omega) & =|X(j \\omega)| e^{j \\angle X\\left(e^{j \\omega}\\right)} \\\\\nX\\left(e^{j \\omega}\\right) & =\\left|X\\left(e^{j \\omega}\\right)\\right| e^{j \\mathrm{R} X\\left(e^{j \\omega}\\right)}\n\\end{aligned}\n\\]\n这说明：一个信号所携带的全部信息分别包含在其频谱的模和相位中。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#傅里叶变换的模和相位表示-1",
+    "href": "ref/信号与系统的时域和频域特性.html#傅里叶变换的模和相位表示-1",
+    "title": "My Site",
+    "section": "6.1 傅里叶变换的模和相位表示",
+    "text": "6.1 傅里叶变换的模和相位表示\n因此，导致信号失真的原因有两种： 1．幅度失真：由于频谱的模改变而引起的失真。 2．相位失真：由于频谱的相位改变引起的失真。 在工程实际中，不同的应用场合，对幅度失真和相位失真有不同的敏感程度，也会有不同的技术指标要求。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#傅里叶变换的模和相位表示-2",
+    "href": "ref/信号与系统的时域和频域特性.html#傅里叶变换的模和相位表示-2",
+    "title": "My Site",
+    "section": "6.1 傅里叶变换的模和相位表示",
+    "text": "6.1 傅里叶变换的模和相位表示\n （a）黑白照片\n （c）图（a）的二维傅立叶变换的相位\n （b）图（a）的二维傅立叶变换的模\n （d）\n（d）傅立叶变换的模与（b）相同，而相位为零 6.1 傅里叶变换的模和相位表示\n信号与系统\n （e）傅立叶变换的模为 1 ，相位与（c）相同\n （f）相位与（c）同，模为图（g）的傅立叶变换的模\n （g）黑白照片"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示",
+    "href": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示",
+    "title": "My Site",
+    "section": "6．2 LTI系统频率响应的模和相位表示",
+    "text": "6．2 LTI系统频率响应的模和相位表示\nThe Magnitude－Phase Representation of the Frequency Response of LTI Systems\n\nLTI系统对输入信号所起的作用包括两个方面：\n1．改变输入信号各频率分量的幅度；\n2．改变输入信号各频率分量的相对相位。\n\n\\[\n\\begin{aligned}\n& Y(j \\omega)=X(j \\omega) H(j \\omega) \\\\\n& |Y(j \\omega)|=|X(j \\omega)||H(j \\omega)| \\\\\n& \\angle Y(j \\omega)=\\angle H(j \\omega)+\\angle X(j \\omega)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-1",
+    "href": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-1",
+    "title": "My Site",
+    "section": "6．2 LTI系统频率响应的模和相位表示",
+    "text": "6．2 LTI系统频率响应的模和相位表示\n一．线性与非线性相位 信号在传输过程中，相位特性或幅度特性发生改变都会引起信号波形的改变，即发生失真。\n当相位特性仅仅是附加一个线性相移时，只引起信号在时间上的平移。如连续时间LTI系统：\n\\[\nH(j \\omega)=e^{-j \\omega t_{0}} \\quad \\text { 则 } \\quad y(t)=x\\left(t-t_{0}\\right)\n\\]\n此时并未丟失信号所携带的任何信息，只是发生时间上的延迟，因而在工程应用中是允许的。\n6．2 LTI系统频率响应的模和相位表示 一．线性与非线性相位 如果系统的相位特性是非线性的，由于不同频率分量受相位特性影响所产生的时移不同，叠加起来一定会变成一个与原来信号很不相同的信号波形。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-2",
+    "href": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-2",
+    "title": "My Site",
+    "section": "6．2 LTI系统频率响应的模和相位表示",
+    "text": "6．2 LTI系统频率响应的模和相位表示\n二．信号的不失真传输条件 如果系统响应与输入信号满足下列条件，可视为在传输中未发生失真。\n\\[\ny(t)=k x\\left(t-t_{0}\\right) \\quad y(n)=k x\\left(n-n_{0}\\right)\n\\]\n这就要求系统的频率特性为\n\\[\nH(j \\omega)=k e^{-j \\omega t_{0}} \\quad H\\left(e^{j \\omega}\\right)=k e^{-j \\omega n_{0}}\n\\]\n如果一个系统的幅频特性是一个常数，称这种系统为全通系统。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-3",
+    "href": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-3",
+    "title": "My Site",
+    "section": "6．2 LTI系统频率响应的模和相位表示",
+    "text": "6．2 LTI系统频率响应的模和相位表示"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#二信号的不失真传输条件",
+    "href": "ref/信号与系统的时域和频域特性.html#二信号的不失真传输条件",
+    "title": "My Site",
+    "section": "二．信号的不失真传输条件",
+    "text": "二．信号的不失真传输条件\n\\[\n\\begin{aligned}\n& h(t)=k \\delta\\left(t-t_{0}\\right) \\quad \\text { —时域表征 } \\\\\n& H(j \\omega)=k e^{-j \\omega t_{0}}, \\quad \\text { —频域表征 } \\\\\n& |H(j \\omega)|=k, \\angle H(j \\omega)=-\\omega t_{0}\n\\end{aligned}\n\\]\n \n通常，系统若在被传输信号的带宽范围内满足不失真条件，则认为该系统对此信号是不失真系统。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-4",
+    "href": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-4",
+    "title": "My Site",
+    "section": "6．2 LTI系统频率响应的模和相位表示",
+    "text": "6．2 LTI系统频率响应的模和相位表示"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#三群时延group-delay",
+    "href": "ref/信号与系统的时域和频域特性.html#三群时延group-delay",
+    "title": "My Site",
+    "section": "三．群时延（Group Delay）",
+    "text": "三．群时延（Group Delay）\n对线性相位系统，系统的相位特性表明了信号的各个频率分量在通过系统时，系统对它所产生的附加相移。相位特性的斜率就是该频率分量在时域产生的时延。\n对非线性相位系统，定义群时延为\n\\[\n\\tau(\\omega)=-\\frac{d}{d \\omega} \\angle H(j \\omega)\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-5",
+    "href": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-5",
+    "title": "My Site",
+    "section": "6．2 LTI系统频率响应的模和相位表示",
+    "text": "6．2 LTI系统频率响应的模和相位表示\n三．群时延（Group Delay） 群时延代表了在以 \\(\\omega_{0}\\) 为中心的一个很窄的频带或很少的一组频率上信号所受到的有效公共延时。 考察一个中心频率为 \\(\\omega\\) 的窄带输入信号，一个非线性相位的系统在此窄带范围内，可将其相位的变化近似看成线性的。因此，\n\\[\nY(j \\omega)=X(j \\omega)|H(j \\omega)| e^{-j \\phi} e^{-j \\omega \\alpha}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-6",
+    "href": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-6",
+    "title": "My Site",
+    "section": "6．2 LTI系统频率响应的模和相位表示",
+    "text": "6．2 LTI系统频率响应的模和相位表示\n三．群时延（Group Delay）\n\\[\nY(j \\omega)=X(j \\omega)|H(j \\omega)| e^{-j \\phi} e^{-j \\omega \\alpha}\n\\]\n该系统对窄带输入信号产生的近似效果就是： 1．由 \\(H(j \\omega)\\) 引起的幅度成形； 2．对应系统在 \\(\\omega_{0}\\) 的恒定相位 \\(\\phi\\) 的因子 \\(e^{-j \\phi}\\) 的影响； 3．对应系统在窄带内的近似线性相位 \\(\\omega \\alpha\\) 所产生的时延 \\(\\alpha\\) 。该时延就是系统在 \\(\\omega=\\omega_{0}\\) 的群时延。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-7",
+    "href": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-7",
+    "title": "My Site",
+    "section": "6．2 LTI系统频率响应的模和相位表示",
+    "text": "6．2 LTI系统频率响应的模和相位表示"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#四对数模与bode图",
+    "href": "ref/信号与系统的时域和频域特性.html#四对数模与bode图",
+    "title": "My Site",
+    "section": "四．对数模与Bode图",
+    "text": "四．对数模与Bode图\n在工程应用中，往往采用对数模特性（或称为 Bode图）来描述系统的频率特性。在对数坐标下，采用对数模，可以给频率特性的表示带来一些方便。这是因为：\n\\[\nH(j \\omega)=\\frac{\\sum_{k=0}^{N} b_{k}(j \\omega)^{k}}{\\sum_{k=0}^{N} a_{k}(j \\omega)^{k}}=\\frac{N(j \\omega)}{D(j \\omega)}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#四对数模与bode图-hj-omegah_0-fracprod_j1mleftj-omega-z_jrightprod_i1nleftj-omega-p_iright-j-omega-z_j-和-j-omega-p_i-矢量",
+    "href": "ref/信号与系统的时域和频域特性.html#四对数模与bode图-hj-omegah_0-fracprod_j1mleftj-omega-z_jrightprod_i1nleftj-omega-p_iright-j-omega-z_j-和-j-omega-p_i-矢量",
+    "title": "My Site",
+    "section": "四．对数模与Bode图 \\(H(j \\omega)=H_{0} \\frac{\\prod_{j=1}^{m}\\left(j \\omega-z_{j}\\right)}{\\prod_{i=1}^{n}\\left(j \\omega-p_{i}\\right)}\\)    \\(j \\omega-z_{j}\\) 和 \\(j \\omega-p_{i}\\) 矢量",
+    "text": "四．对数模与Bode图 \\(H(j \\omega)=H_{0} \\frac{\\prod_{j=1}^{m}\\left(j \\omega-z_{j}\\right)}{\\prod_{i=1}^{n}\\left(j \\omega-p_{i}\\right)}\\)    \\(j \\omega-z_{j}\\) 和 \\(j \\omega-p_{i}\\) 矢量\n6．2 LTI系统频率响应的模和相位表示 四．对数模与Bode图\n1．可以将模特性的相乘关系变为相加关系； 2．利用对数坐标的非线性，可展示更宽范围的频率特性，并使低频端更详细而高频端相对粗略 3．对连续时间系统，可方便地建立模特性和相位特性的直线型渐近线。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-8",
+    "href": "ref/信号与系统的时域和频域特性.html#lti系统频率响应的模和相位表示-8",
+    "title": "My Site",
+    "section": "6．2 LTI系统频率响应的模和相位表示",
+    "text": "6．2 LTI系统频率响应的模和相位表示"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#四对数模与bode图-1",
+    "href": "ref/信号与系统的时域和频域特性.html#四对数模与bode图-1",
+    "title": "My Site",
+    "section": "四．对数模与Bode图",
+    "text": "四．对数模与Bode图\n工程中广泛应用的有两种对数模：\n\\[\n\\ln |H(j \\omega)|: \\lg \\omega \\quad \\text { 单位: 奈培 (Np) }\n\\]\n\\(20 \\lg |H(j \\omega)|: \\lg \\omega\\) 单位：分贝（dB）（decibel）"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器",
+    "href": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器",
+    "title": "My Site",
+    "section": "6.3 理想频率选择性滤波器",
+    "text": "6.3 理想频率选择性滤波器"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#the-ideal-frequencyselective-filters",
+    "href": "ref/信号与系统的时域和频域特性.html#the-ideal-frequencyselective-filters",
+    "title": "My Site",
+    "section": "The Ideal Frequency－Selective Filters",
+    "text": "The Ideal Frequency－Selective Filters\n一．滤波 通过系统改变信号中各频率分量的相对大小和相位，甚至完全去除某些频率分量的过程称为滤波。滤波器可分为两大类：\n1．频率成形滤波器（改变各分量的幅度与相位） 2．频率选择性滤波器（去除某些频率分量）"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-1",
+    "href": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-1",
+    "title": "My Site",
+    "section": "6.3 理想频率选择性滤波器",
+    "text": "6.3 理想频率选择性滤波器\n二．理想频率选择性滤波器的频率特性 理想频率选择性滤波器的频率特性在某一个（或几个）频段内，频率响应为常数，而在其它频段内频率响应等于零。\n理想滤波器可分为低通、高通、带通、带阻。 滤波器允许信号完全通过的频段称为滤波器的通带（pass band），完全不允许信号通过的频段称为阻带（stop band）。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-2",
+    "href": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-2",
+    "title": "My Site",
+    "section": "6.3 理想频率选择性滤波器",
+    "text": "6.3 理想频率选择性滤波器"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#二理想频率选择性滤波器的频率特性",
+    "href": "ref/信号与系统的时域和频域特性.html#二理想频率选择性滤波器的频率特性",
+    "title": "My Site",
+    "section": "二．理想频率选择性滤波器的频率特性",
+    "text": "二．理想频率选择性滤波器的频率特性\n 低通\n 带通\n 高通\n 带阻\n连续时间理想频率选择性滤波器的频率特性"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#数字滤波器的分类",
+    "href": "ref/信号与系统的时域和频域特性.html#数字滤波器的分类",
+    "title": "My Site",
+    "section": "数字滤波器的分类",
+    "text": "数字滤波器的分类\n信号与系统"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#事低通",
+    "href": "ref/信号与系统的时域和频域特性.html#事低通",
+    "title": "My Site",
+    "section": "事低通",
+    "text": "事低通\n ＊高通"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-3",
+    "href": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-3",
+    "title": "My Site",
+    "section": "6.3 理想频率选择性滤波器",
+    "text": "6.3 理想频率选择性滤波器"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性",
+    "href": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性",
+    "title": "My Site",
+    "section": "三．理想滤波器的时域特性",
+    "text": "三．理想滤波器的时域特性\n以理想低通滤波器为例\n\\[\nH(j \\omega)= \\begin{cases}1, & |\\omega|&lt;\\omega_{c} \\\\ 0, & |\\omega|&gt;\\omega_{c}\\end{cases}\n\\]\n\n连续时间理想低通滤波器"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-4",
+    "href": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-4",
+    "title": "My Site",
+    "section": "6.3 理想频率选择性滤波器",
+    "text": "6.3 理想频率选择性滤波器"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-1",
+    "href": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-1",
+    "title": "My Site",
+    "section": "三．理想滤波器的时域特性",
+    "text": "三．理想滤波器的时域特性"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#由傅里叶变换可得",
+    "href": "ref/信号与系统的时域和频域特性.html#由傅里叶变换可得",
+    "title": "My Site",
+    "section": "由傅里叶变换可得：",
+    "text": "由傅里叶变换可得：\n\\[\nh(t)=\\frac{1}{2 \\pi} \\int_{-\\omega_{c}}^{\\omega_{c}} e^{j \\omega t} d \\omega=\\frac{\\sin \\omega_{c} t}{\\pi t}=\\frac{\\omega_{c}}{\\pi} \\operatorname{Sa}\\left(\\omega_{c} t\\right)\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-5",
+    "href": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-5",
+    "title": "My Site",
+    "section": "6.3 理想频率选择性滤波器",
+    "text": "6.3 理想频率选择性滤波器"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-2",
+    "href": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-2",
+    "title": "My Site",
+    "section": "三．理想滤波器的时域特性",
+    "text": "三．理想滤波器的时域特性"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#如果理想低通滤波器具有线性相位特性",
+    "href": "ref/信号与系统的时域和频域特性.html#如果理想低通滤波器具有线性相位特性",
+    "title": "My Site",
+    "section": "如果理想低通滤波器具有线性相位特性",
+    "text": "如果理想低通滤波器具有线性相位特性\n\\[\nH(j \\omega)= \\begin{cases}e^{-j \\alpha \\omega}, & |\\omega|&lt;\\omega_{c} \\\\ 0, & |\\omega|&gt;\\omega_{c}\\end{cases}\n\\]\n则 \\(h(t)=\\frac{\\omega_{c}}{\\pi} \\mathrm{Sa}\\left[\\omega_{c}(t-\\alpha)\\right]=\\frac{\\sin \\omega_{c}(t-\\alpha)}{\\pi(t-\\alpha)}\\)"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-3",
+    "href": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-3",
+    "title": "My Site",
+    "section": "三．理想滤波器的时域特性",
+    "text": "三．理想滤波器的时域特性\n\\(h(t)\\) 的波形： \n不同于 \\(\\delta(t)\\) 的波形，产生了严重的失真。这是因为理想低通滤波器是频带有限系统，而 \\(\\delta(t)\\) 的频带宽度是无限的，经理想低通滤波器加工，必然对信号波形产生影响：\n凡是高于 \\(\\omega_{\\mathrm{c}}\\) 的频率分量都衰减为零。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-4",
+    "href": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-4",
+    "title": "My Site",
+    "section": "三．理想滤波器的时域特性",
+    "text": "三．理想滤波器的时域特性\n \\(h(t)\\) 的波形： 1、 \\(\\delta(\\mathrm{t})\\) 在 \\(\\mathrm{t}=0\\) 时刻作用于系统，而系统响应 \\(\\mathrm{h}(\\mathrm{t})\\) 在 \\(\\mathrm{t}=\\mathrm{t}_{\\mathrm{d}}\\) 时刻才达到最大峰值，表明系统有延时作用；\n2 、 \\(h(t)\\) 比 \\(\\delta(t)\\) 的波形展宽了许多，表明 \\(\\delta(t)\\) 的高频分量被滤波器衰减掉了； 3、冲激响应 \\(\\mathbf{h}(\\mathbf{t})\\) 在 \\(\\mathbf{t}&lt;\\mathbf{0}\\) 时，响应值已经存在，即系统的响应超前于激励，所以：理想低通滤波器是非因果系统，在物理上无法实现。实际的滤波器是它的逼近。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-6",
+    "href": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-6",
+    "title": "My Site",
+    "section": "6.3 理想频率选择性滤波器",
+    "text": "6.3 理想频率选择性滤波器"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-5",
+    "href": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-5",
+    "title": "My Site",
+    "section": "三．理想滤波器的时域特性",
+    "text": "三．理想滤波器的时域特性"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#理想低通滤波器的单位阶跃响应",
+    "href": "ref/信号与系统的时域和频域特性.html#理想低通滤波器的单位阶跃响应",
+    "title": "My Site",
+    "section": "理想低通滤波器的单位阶跃响应",
+    "text": "理想低通滤波器的单位阶跃响应\n\\[\n\\begin{aligned}\ns(t) & =h(t) * u(t) \\\\\n& =\\int_{-\\infty}^{t} \\frac{\\omega_{c}}{\\pi} \\frac{\\sin \\omega_{c} t}{\\omega_{c} t} d t=\\frac{1}{\\pi} \\int_{-\\infty}^{\\omega_{c} t} \\frac{\\sin x}{x} d x \\\\\n& =\\frac{1}{\\pi} \\int_{-\\infty}^{0} \\frac{\\sin x}{x} d x+\\frac{1}{\\pi} \\int_{0}^{\\omega_{c} t} \\frac{\\sin x}{x} d x \\\\\n\\text { 令 } & \\int_{0}^{x} \\frac{\\sin \\tau}{\\tau} d \\tau=\\operatorname{Si}(x) \\text {-正弦积分 }\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-7",
+    "href": "ref/信号与系统的时域和频域特性.html#理想频率选择性滤波器-7",
+    "title": "My Site",
+    "section": "6.3 理想频率选择性滤波器",
+    "text": "6.3 理想频率选择性滤波器"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-6",
+    "href": "ref/信号与系统的时域和频域特性.html#三理想滤波器的时域特性-6",
+    "title": "My Site",
+    "section": "三．理想滤波器的时域特性",
+    "text": "三．理想滤波器的时域特性\n由于 \\(x \\rightarrow \\infty, \\operatorname{Si}(x) \\rightarrow \\frac{\\pi}{2} ; \\quad x \\rightarrow-\\infty, \\operatorname{Si}(x) \\rightarrow-\\frac{\\pi}{2}\\)\n\\[\n\\operatorname{Si}(0)=0\n\\]\n\\[\ns(t)=\\frac{1}{\\pi}[\\operatorname{Si}(0)-\\operatorname{Si}(-\\infty)]+\\frac{1}{\\pi} \\operatorname{Si}\\left(\\omega_{c} t\\right)=\\frac{1}{2}+\\frac{1}{\\pi} \\operatorname{Si}\\left(\\omega_{c} t\\right)\n\\]\n 6.3 理想频率选择性滤波器\n信号与系统 三．理想滤波器的时域特性 1．理想滤波器是非因果系统。因而是物理不可实现的； 2．尽管从频域滤波的角度看，理想滤波器的频率特性是最佳的。但它们的时域特性并不是最佳的。 或 \\(h\\)（都有超伏、旁瓣、主瓣，这表明理想滤波器的时域特性与频域特性并不兼容。\n3．在工程应用中，当要设计一个滤波器时，必须对时域特性和频域特性作出恰当的折中。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统",
+    "href": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统",
+    "title": "My Site",
+    "section": "6.5 一阶连续时间系统",
+    "text": "6.5 一阶连续时间系统\nFirst－Order Continuous－Time Systems对由LCCDE描述的连续时间LTI系统，其频率响应为：\n\\[\nH(j \\omega)=\\frac{\\sum_{k=0}^{N} b_{k}(j \\omega)^{k}}{\\sum_{k=0}^{N} a_{k}(j \\omega)^{k}}=\\frac{N(j \\omega)}{D(j \\omega)}\n\\]\n其中：\\(a_{k} 、 b_{k}\\) 均为实常数。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-1",
+    "href": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-1",
+    "title": "My Site",
+    "section": "6.5 一阶连续时间系统",
+    "text": "6.5 一阶连续时间系统\n此时，可通过对 \\(N(\\dot{j} \\omega)\\) 困式分解，将其表示成若干个一阶或二阶有理函数的连乘；或者通过部分分式展开，表示成若干个一阶或二阶有理函数相加。 这表明：由LCCDE描述的LTI系统可以看成由若干个一阶或二阶系统通过级联或并联构成。因此，一阶和二阶系统是构成任何系统的基本单元。掌握一阶和二阶系统的分析方法就尤为重要。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-2",
+    "href": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-2",
+    "title": "My Site",
+    "section": "6.5 一阶连续时间系统",
+    "text": "6.5 一阶连续时间系统\n一．一阶系统： 模型：\\(\\tau \\frac{d y(t)}{d t}+y(t)=x(t) \\quad H(j \\omega)=\\frac{1}{j \\omega \\tau+1}\\) 1．时域特性：\\(\\quad h(t)=\\frac{1}{\\tau} e^{-\\frac{t}{\\tau}} u(t)\\)"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-3",
+    "href": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-3",
+    "title": "My Site",
+    "section": "6.5 一阶连续时间系统",
+    "text": "6.5 一阶连续时间系统\n\\[\ns(t)=h(t) * u(t)=\\left(1-e^{-\\frac{t}{\\tau}}\\right) u(t)\n\\]\n\n可以看出：\\(\\tau\\) 越小，\\(s(t)\\) 上升得越快，系统失真越小。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-4",
+    "href": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-4",
+    "title": "My Site",
+    "section": "6.5 一阶连续时间系统",
+    "text": "6.5 一阶连续时间系统"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#一阶系统的bode图",
+    "href": "ref/信号与系统的时域和频域特性.html#一阶系统的bode图",
+    "title": "My Site",
+    "section": "2．一阶系统的Bode图",
+    "text": "2．一阶系统的Bode图\n－频率特性曲线是实际中表示系统特性最常用的形式，但要比较精确地绘制频率特性，则是非常麻烦的事 －一种简便绘制系统频率特性且具有实用精度的方法，由美国贝尔实验室的学者波特（波德） （H．W．Bode）提出，并得到广泛应用。\n波特图：以对数标尺，根据系统传递函数的极零点分布用折线近似来绘制频率响应曲线。\n2．绘制原理 \\(m\\)\n\\[\nH(\\omega)=\\frac{H_{0} \\prod_{k=1}^{m} B_{k}}{\\prod_{i=1}^{n} A_{i}} e^{j\\left(\\sum_{k=1}^{m} \\beta_{k}-\\sum_{i=1}^{n} \\alpha_{i}\\right)}=|H(\\omega)| e^{j \\varphi(\\omega)}\n\\]\n对上式两边取对数得\n\\[\n\\begin{aligned}\n& G(\\omega)=20 \\lg \\mid H(\\omega)(\\mathrm{dB}) \\\\\n& =20 \\lg H_{0}+20 \\sum_{k=1}^{m} \\lg \\left|j \\omega-z_{k}\\right|-20 \\sum_{i=1}^{n} \\lg \\left|j \\omega-p_{i}\\right|\n\\end{aligned}\n\\]\n\\[\n\\begin{aligned}\n& G(\\omega)=20 \\lg H_{0}+20 \\sum_{k=1}^{m} \\lg \\left|j \\omega-z_{k}\\right|-20 \\sum_{i=1}^{n} \\lg \\left|j \\omega-p_{i}\\right| \\\\\n& \\varphi(\\omega)=\\sum_{k=1}^{m} \\beta_{k}-\\sum_{i=1}^{n} \\alpha_{i}\n\\end{aligned}\n\\]\n由上式可知，只要先求出每个因式的特性曲线，再用加减组合的方法就可以求得系统总的频率特性。\n2．画法 －对数幅值 （1）常数（不随频率变化） \\(201 \\mathrm{gH}_{0}\\) 相位为零。 （2）位于原点的极点\n\\[\n-20 \\lg |j \\omega|=-20 \\lg \\omega\n\\]\n这是一条斜率为 \\(-\\mathbf{2 0}\\) 的直线，与 \\(\\omega\\) 轴相交于 \\(\\omega=\\mathbf{1}\\) 当 \\(\\lg \\omega\\) 移动一个单位时，相当于 \\(\\omega\\) 坐标移动一个 10 倍。因为 \\(\\lg 10=1\\) ，所以对数幅值直线的斜率为 \\(-\\mathbf{2 0 d B} / \\mathbf{1 0}\\) 倍频。\n相位 \\(\\varphi(\\omega)=-90^{\\circ}\\)（对所有的 \\(\\omega\\) ）\n同理，位于原点的零点： \\(20 \\lg \\omega\\) 是一条通过 \\(\\omega=1\\) ，斜率为 \\(20 \\mathrm{~dB} / 10\\) 倍频的直线相位 \\(\\varphi(\\omega)=90^{\\circ}\\)（对所有的 \\(\\omega\\) ）   6.5 一阶连续时间系统\n\\[\nH(j \\omega)=\\frac{1}{j \\omega \\tau+1}\n\\]\n2．一阶系统的Bode图：\n\\[\n20 \\lg |H(j \\omega)|=-10 \\lg \\left[1+(\\omega \\tau)^{2}\\right]\n\\]\n当 \\(\\omega \\tau \\ll 1\\) 即 \\(\\omega \\ll \\frac{1}{\\tau}\\)\n\\[\n20 \\lg |H(j \\omega)| \\approx 0 \\mathrm{~dB}\n\\]\n称为对数频率特性的低频渐近线方程，与横坐标轴重合 6.5 一阶连续时间系统\n\\[\nH(j \\omega)=\\frac{1}{j \\omega \\tau+1}\n\\]\n信号与系统"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#一阶系统的bode图-1",
+    "href": "ref/信号与系统的时域和频域特性.html#一阶系统的bode图-1",
+    "title": "My Site",
+    "section": "2．一阶系统的Bode图：",
+    "text": "2．一阶系统的Bode图：\n\\(20 \\lg |H(j \\omega)|=-10 \\lg \\left[1+(\\omega \\tau)^{2}\\right]\\)当 \\(\\omega \\tau \\gg 1\\) 即 \\(\\omega \\gg \\frac{1}{\\tau}\\) 时\n\\[\n20 \\lg |H(j \\omega)| \\approx-20 \\lg \\omega \\tau=-20 \\lg \\omega-20 \\lg \\tau\n\\]\n高频渐近线方程式，它与低频渐近线交于 \\(\\omega=1 / \\tau\\) 处。 6.5 一阶连续时间系统\n信号与系统 2．一阶系统的Bode图：\n\\[\n20 \\lg |H(j \\omega)| \\approx-20 \\lg \\omega \\tau=-20 \\lg \\omega-20 \\lg \\tau\n\\]\n高频渐近线方程式，它与低频渐近线交于 \\(\\omega=1 / \\tau\\) 处。\n在对数坐标系下，它是一条直线，斜率为每 10 倍频程－20dB。可见，一阶系统的Bode图有两条直线型渐近线。 \\(\\quad \\omega=1\\) 称为折断频率。\n6.5 一阶连续时间系统"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-5",
+    "href": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-5",
+    "title": "My Site",
+    "section": "6.5 一阶连续时间系统",
+    "text": "6.5 一阶连续时间系统"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#相频特性",
+    "href": "ref/信号与系统的时域和频域特性.html#相频特性",
+    "title": "My Site",
+    "section": "相频特性：",
+    "text": "相频特性：\n\\[\n\\angle H(j \\omega)=\\operatorname{tg}^{-1}(\\omega \\tau)\n\\]\n若 \\(\\quad \\omega \\ll 1 / \\tau, \\angle H(j \\omega)=0\\)\n\\[\n\\begin{aligned}\n& \\omega \\gg 1 / \\tau, \\angle H(j \\omega) \\approx 90^{\\circ} \\\\\n& \\omega=1 / \\tau, \\angle H(j \\omega) \\approx 45^{\\circ}\n\\end{aligned}\n\\]\n将其折线化可得相位特性的直线型渐近线："
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-6",
+    "href": "ref/信号与系统的时域和频域特性.html#一阶连续时间系统-6",
+    "title": "My Site",
+    "section": "6.5 一阶连续时间系统",
+    "text": "6.5 一阶连续时间系统\n相频特性：\n\\[\n\\angle H(j \\omega)= \\begin{cases}0, & \\omega \\leq 0.1 / \\tau \\\\ -\\frac{\\pi}{4}[\\lg \\omega \\tau+1], & \\frac{0.1}{\\tau} \\leq \\omega \\leq \\frac{10}{\\tau} \\\\ -\\frac{\\pi}{2}, & \\omega \\geq 10 / \\tau\\end{cases}\n\\]\n信号与系统\n6.5 一阶连续时间系统 \n\\(\\omega\\)"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#应用举例数字音频效果",
+    "href": "ref/信号与系统的时域和频域特性.html#应用举例数字音频效果",
+    "title": "My Site",
+    "section": "应用举例：数字音频效果",
+    "text": "应用举例：数字音频效果\n在任何听音空间中，我们从音源听到的不仅有直接声音，也有从墙壁和其他物体直接反射的回音，以及经过多重反射（和其他回音交合）的声音和混响。\n 听音环境的概念模型\n单回音滤波器的数学模型：\n\\[\n\\begin{aligned}\n& y(n)=x(n)+a x(n-D) \\\\\n& H\\left(e^{j \\omega}\\right)=1+a e^{-j \\omega D}\n\\end{aligned}\n\\]\n这是一个伪梳状滤波器。 混响滤波器的数学模型：\n\\[\n\\begin{aligned}\n& y(n)=x(n)+a y(n-D) \\\\\n& H\\left(e^{j \\omega}\\right)=\\frac{1}{1-a e^{-j \\omega D}}\n\\end{aligned}\n\\]\n这是一个反向梳状滤波器。"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#梳状滤波器的频率特性",
+    "href": "ref/信号与系统的时域和频域特性.html#梳状滤波器的频率特性",
+    "title": "My Site",
+    "section": "梳状滤波器的频率特性",
+    "text": "梳状滤波器的频率特性\n\\[\nH\\left(e^{j w}\\right)=1-e^{-j w N}=\\frac{e^{j w N}-1}{e^{j w N}}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#小结-summary",
+    "href": "ref/信号与系统的时域和频域特性.html#小结-summary",
+    "title": "My Site",
+    "section": "6.8 小结 Summary",
+    "text": "6.8 小结 Summary\n※ 从傅里叶变换的模和相位表示出发，研究了信号在传输中发生失真的原因和失真的种类。建立了信号传输的不失真条件。 ＊介绍了滤波与滤波器的基本概念，理想频率选择性滤波器的频率特性和时域特性，理想滤波器的不可实现性， ＊讨论了连续时间和离散时间一阶系统的时域和频域特性的分析方法，及连续时间一阶系统Bode图的绘制。\n信号与写统 \n其中\n\\[\n\\begin{aligned}\n& e(t)=\\frac{\\sin 2 t}{2 \\pi t} \\quad-\\infty&lt;t&lt;\\infty \\\\\n& s(t)=\\cos 1000 t \\quad-\\infty&lt;t&lt;\\infty\n\\end{aligned}\n\\]\n\\(\\mathbf{H}(\\omega)\\) 是带通滤波器的传输函数，\\(\\varphi(\\omega)=0\\) 求输出信号 \\(\\mathbf{r}(\\mathbf{t})\\)\n解：1．求 \\(\\mathrm{e}(\\mathrm{t})\\) 的频谱\n\\[\ne(t)=\\frac{\\sin 2 t}{2 \\pi t}=\\frac{1}{\\pi} S a(2 t)\n\\]\n利用傅立叶变换对称性\n\\[\nf(t) \\leftrightarrow F(\\omega) \\quad \\text { 则 } F(t) \\leftrightarrow 2 \\pi f(\\omega)\n\\]\n已知 \\(G_{\\tau}(t)=u\\left(t+\\frac{\\tau}{2}\\right)-u\\left(t-\\frac{\\tau}{2}\\right) \\leftrightarrow \\tau \\operatorname{Sa}\\left(\\frac{\\omega \\tau}{2}\\right)\\) 可知抽样信号的傅立叶变换是门函数 设 \\(F(\\omega)=S a(2 \\omega)=S a\\left(\\frac{4 \\omega}{2}\\right) \\quad\\) 其中 \\(\\tau=4 \\quad E=\\frac{1}{4}\\)\n设 \\(F(\\omega)=S a(2 \\omega)=S a\\left(\\frac{4 \\omega}{2}\\right) \\quad\\) 其中 \\(\\tau=4 \\stackrel{\\text { 信号吗 }}{E}=\\frac{1}{4}\\)\n\\[\n\\therefore f(t)=E G_{\\tau}(t)=\\frac{1}{4} G_{4}(t)\n\\]\n根据 \\(F(t) \\leftrightarrow 2 \\pi f(\\omega)\\) 得 \\(\\quad S a(2 t) \\leftrightarrow 2 \\pi \\cdot \\frac{1}{4}[u(\\omega+2)-u(\\omega-2)]\\) 所以 \\(e(t)=\\frac{1}{\\pi} S a(2 t) \\leftrightarrow \\frac{1}{2}[u(\\omega+2)-u(\\omega-2)]\\)\n2． \\(\\mathrm{e}(\\mathrm{t}) \\operatorname{s}(\\mathrm{t})\\) 的频谱：\n2．\\(e(t) \\operatorname{os}(t)\\) 的频谱：\n\\[\n\\begin{aligned}\n& e(t) \\cdot s(t)=e(t) \\cos 1000 t \\\\\n& \\therefore F[e(t) \\cdot s(t)]=\\frac{1}{2}[E(\\omega-1000)+E(\\omega+1000)] \\\\\n& =\\frac{1}{4}[u(\\omega+2-1000)-u(\\omega-2-1000) \\\\\n& \\quad+u(\\omega+2+1000)-u(\\omega-2+1000)] \\\\\n& =\\frac{1}{4}[u(\\omega-998)-u(\\omega-1002) \\\\\n& \\quad+u(\\omega+1002)-u(\\omega+998)]\n\\end{aligned}\n\\]\n3．求解 \\(r(t)\\)\n\\[\n\\begin{aligned}\nR(\\omega)= & F[e(t) \\cdot s(t)] \\cdot H(\\omega) \\\\\n= & \\frac{1}{4}\\{[u(\\omega-999)-u(\\omega-1001)] \\\\\n& \\quad+[u(\\omega+1001)-u(\\omega+999)]\\} \\\\\nr(t)= & \\frac{1}{4 \\pi} S a(t) e^{-j 1000 t}+\\frac{1}{4 \\pi} S a(t) e^{j 1000 t}\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统的时域和频域特性.html#第六章作业",
+    "href": "ref/信号与系统的时域和频域特性.html#第六章作业",
+    "title": "My Site",
+    "section": "第六章作业",
+    "text": "第六章作业\n－ 6.5 － 6.23 － 6.27 － 6.33"
   }
 ]
