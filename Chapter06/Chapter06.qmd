@@ -53,6 +53,7 @@ execute:
 - [6. 一阶与二阶离散时间系统](#sec66)
 - [7. 系统的时域和频域分析实例](#sec67)
 
+<<<<<<< HEAD
 ## 引言
 
 
@@ -67,12 +68,15 @@ execute:
   
 
   
+=======
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 ## 傅里叶变换的模–相位表示 {#sec61}
 
 $$
 X(j \omega)=|X(j \omega)| e^{j \arg X(j \omega)}, \quad X\left(e^{j \omega}\right)=\left|X\left(e^{j \omega}\right)\right| e^{j \arg X\left(e^{j \omega}\right)}
 $$
 
+<<<<<<< HEAD
 :::: {.columns style="text-align: center;"}
 
 ::: {.column width="60%"}
@@ -100,13 +104,28 @@ $$
 
 
 
+=======
+傅里叶变换是将信号分解为复指数（“波”）的叠加
+
+- $|X|$ 表示各频率分量的幅值
+- $\arg X$ 表示各频率分量的相位
+
+相位 $\arg X$ 包含关于信号的重要信息
+
+- 决定各分量是相长叠加还是相消叠加
+- 即使幅度谱相同，微小的相位变化也会导致信号波形显著不同
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 
 $x(t)=1+\frac{1}{2} \cos \left(2 \pi t+\phi_{1}\right)  +\cos \left(4 \pi t+\phi_{2}\right)+\frac{2}{3} \cos \left(6 \pi t+\phi_{3}\right)$
 
 :::: {.columns style="text-align: center;"}
 
+<<<<<<< HEAD
 ::: {.column width="40%"}
+=======
+::: {.column width="50%"}
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 $$
 \begin{array}{ll}
@@ -119,15 +138,25 @@ $$
  
 :::
 
+<<<<<<< HEAD
 ::: {.column width="60%"}
 
 ![](imglink/01.png){fig-align=left, width=40%}
+=======
+::: {.column width="50%"}
+
+![](imglink/01.png){fig-align=left, width=30%}
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 :::
 
 ::::
 
+<<<<<<< HEAD
 ## 幅度与相位
+=======
+## 幅值与相位
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 ![](imglink/MagnPhaseresults.png){fig-align=center}
 
@@ -150,11 +179,15 @@ $$
 
 ## LTI系统频率响应的模–相位表示
 
+<<<<<<< HEAD
 对于线性时不变系统，对输入信号所起的作用包括两个方面：
 
 - 改变输入信号各频率分量的幅度；
 
 - 改变输入信号各频率分量的相对相位。
+=======
+对于线性时不变系统
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 $$
 Y(j \omega)=H(j \omega) X(j \omega), \quad Y\left(e^{j \omega}\right)=H\left(e^{j \omega}\right) X\left(e^{j \omega}\right)
@@ -162,7 +195,11 @@ $$
 其中，$H（j \omega）=|H(j \omega)| e^{j \arg H(j \omega)}$,$|H(j \omega)|$ 为幅值响应，$e^{j \arg H(j \omega)}$为相位响应。
 
 $$
+<<<<<<< HEAD
 |Y|=|H| \cdot|X|, \quad |H| \text{系统的幅度响应，也称系统的增益(gain) }
+=======
+|Y|=|H| \cdot|X|, \quad |H| \text{系统的幅值响应，也称系统的增益(gain) }
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 $$
 
 以及
@@ -173,6 +210,7 @@ $$
 
 LTI 系统带来的影响，可能是我们希望得到的，也可能不是。
 
+<<<<<<< HEAD
 - 若这种影响不是我们想要的，则称为失真(distortion)。
 - 根据组成，失真包含幅度失真和相位失真两种。
 
@@ -199,6 +237,20 @@ LTI 系统带来的影响，可能是我们希望得到的，也可能不是。
 ![](https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-16.jpg?height=358&width=717&top_left_y=958&top_left_x=1217){width=30% fig-align=center}
 
 ## 线性相位和非线性相位
+=======
+- 在滤波中，我们往往希望系统产生特定效果；
+- 若这种影响不是我们想要的，则称为失真(distortion)。
+- 总的来说，失真包含幅度失真和相位失真两种。
+- 模拟信号一旦发生失真，在以后的处理中，将保持这种失真-失真信号的继承性。
+
+例：无失真传输
+
+- 理想情况下，$H(j \omega)=1$，但这对应于非因果系统；
+- 当 $H(j \omega)=K e^{-j \omega t_{0}}$ 时，系统保持波形形状不变，只引入幅值缩放和时延。
+
+
+## 线性相位
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 对于具有单位增益和线性相位的连续时间 LTI 系统
 
@@ -214,18 +266,26 @@ $$
 H\left(e^{j \omega}\right)=e^{-j \omega n_{0}},
 $$
 
+<<<<<<< HEAD
 即LTI仅附加一个线性相移，输出信号则只是在时间上的平移
+=======
+输出为
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 $$
 y[n]=\frac{1}{2 \pi} \int_{-\pi}^{\pi} X\left(e^{j \omega}\right) e^{-j \omega n_{0}} e^{j \omega n} d \omega=\sum_{m=-\infty}^{\infty} x[m] \operatorname{sinc}\left(n-n_{0}-m\right)
 $$
+<<<<<<< HEAD
 此时并未丟失信号所携带的任何信息，只是发生时间上的延迟，因而在工程应用中是允许的。
+=======
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 - 当 $n_{0}$ 为整数时，$y[n]=x\left[n-n_{0}\right]$，即输出是输入的整数点延时版本；
 - 当 $n_{0}$ 为非整数时，$y[n]=y_{c}\left(n-n_{0}\right)$，它是信号包络
   $y_{c}(t)=\sum_{m=-\infty}^{\infty} x[m] \operatorname{sinc}(t-m)$
   延时后的采样值。
 
+<<<<<<< HEAD
 ## 线性相位和非线性相位
 
 物理本质：**时间延迟的一致性**
@@ -243,6 +303,10 @@ $$x(t - t_0) \leftrightarrow X(j\omega)e^{-j\omega t_0}$$
 如果相位与频率不是线性关系（例如 $\phi(\omega) = \omega^2$），高频分量和低频分量延迟的时间就不一样，输出信号的波形就会发生“相位失真”。
 
 ## 线性相位和非线性相位
+=======
+
+## 线性相位
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 $$
 H(j \omega)=e^{-j \omega / 2}
@@ -260,7 +324,11 @@ $y(t)=\sum_{k=0}^{3} \cos (2 k \pi t-k \pi)=x\left(t-\frac{1}{2}\right)$
 
 ![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-11.png){fig-align=center}
 
+<<<<<<< HEAD
 ## 线性相位和非线性相位
+=======
+## 线性相位
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 半采样延时
 
@@ -280,7 +348,11 @@ $y[n]=\sum_{m=-\infty}^{\infty} \cos \left(\frac{\pi}{3} m\right) \operatorname{
 
 ![](imglink/3699bdb2-9f1a-493e-b7ea-637e9b0b7422-12.png){fig-align=center}
 
+<<<<<<< HEAD
 ## 线性相位和非线性相位
+=======
+## 非线性相位
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 $$
 H(j \omega)=e^{-j \arctan \omega}
@@ -303,7 +375,11 @@ $y(t)=\sum_{k=0}^{3} \cos [2 k \pi t-\arctan (2 k \pi)]$
 对于以 $\omega_{0}$ 为中心的窄带输入信号 $x$，即
 
 $$
+<<<<<<< HEAD
 X(j \omega)=0, \quad \text { 对于 }\left|\omega-\omega_{0}\right|>\Delta \omega, \text { 其中 } \Delta \omega \ll 1
+=======
+X(j \omega)=0, \quad \text { for }\left|\omega-\omega_{0}\right|>\Delta \omega, \text { where } \Delta \omega \ll 1
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 $$
 
 对相位作线性近似
@@ -312,12 +388,17 @@ $$
 \arg H(j \omega) \approx \arg H\left(j \omega_{0}\right)-\tau\left(\omega_{0}\right)\left(\omega-\omega_{0}\right)=-\phi_{0}-\tau\left(\omega_{0}\right) \omega
 $$
 
+<<<<<<< HEAD
 其中，在频率 $\omega$ 处的**群时延**定义为
+=======
+其中，在频率 $\omega$ 处的群时延定义为
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 $$
 \tau(\omega)=-\frac{d}{d \omega} \arg H(j \omega)
 $$
 
+<<<<<<< HEAD
 群时延代表了在以 $\omega_{0}$ 为中心的一个很窄的频带或很少的一组频率上信号所受到的有效公共延时。
 <br>
 <br>
@@ -325,6 +406,13 @@ $$
 $$Y(j \omega) \approx\left|H\left(j \omega_{0}\right)\right| X(j \omega) e^{-j \phi_{0}-j \tau\left(\omega_{0}\right) \omega} \Longrightarrow y(t) \approx\left|H\left(j \omega_{0}\right)\right| e^{-j \phi_{0}} x\left(t-\tau\left(\omega_{0}\right)\right)$$
 
 ## 群时延
+=======
+如果当 $\left|\omega-\omega_{0}\right| \leq \Delta \omega$ 时，$|H(j \omega)| \approx\left|H\left(j \omega_{0}\right)\right|$，
+$Y(j \omega) \approx\left|H\left(j \omega_{0}\right)\right| X(j \omega) e^{-j \phi_{0}-j \tau\left(\omega_{0}\right) \omega} \Longrightarrow y(t) \approx\left|H\left(j \omega_{0}\right)\right| e^{-j \phi_{0}} x\left(t-\tau\left(\omega_{0}\right)\right)$
+
+## **群时延**
+
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 $$
 H(j \omega)=e^{-j \arctan \omega} \Longrightarrow \tau(\omega)=\frac{d}{d \omega} \arctan (\omega)=\frac{1}{1+\omega^{2}}
 $$
@@ -342,12 +430,24 @@ $$
 
 ## 对数模和伯德图（Bode Diagram）
 
+<<<<<<< HEAD
 对数模：$|Y(j \omega)|= |H(j \omega)|  |X(j \omega)| \Longrightarrow \log |Y(j \omega)|=\log |H(j \omega)|+\log |X(j \omega)|$
+=======
+模的关系涉及 $|\boldsymbol{H}(\boldsymbol{j} \omega)|$ 和 $|\boldsymbol{X}(\boldsymbol{j} \omega)|$ 的相乘。因此，如果傅里叶变换的模是在一个对数幅度上展示的话，那么就有一个相加的关系：
+
+$$
+\log |Y(j \omega)|=\log |H(j \omega)|+\log |X(j \omega)|
+$$
+* 在一个对数标尺上展现傅里叶变换的模，还能在一个较宽的动态范围上将细节显示出来。
+  
+
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 :::: {.columns style="text-align: center;"}
 
 ::: {.column width="50%"}
 
+<<<<<<< HEAD
 ::: {.callout-important}
 ## 一般采用对数标尺以 $20 \log _{10}$ 为单位，称之为分贝 （dB）
 - **0 dB**：模等于 1（无增益/衰减）
@@ -376,11 +476,30 @@ $$
 ![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32.jpg?height=607&width=1328&top_left_y=1171&top_left_x=1160){width=45%}
 
 ![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-34.jpg?height=1409&width=1421&top_left_y=213&top_left_x=1067){width=45%}
+=======
+- 一般所采用的对数标尺是以 $20 \log _{10}$ 为单位，称之为分贝 （dB）。
+
+- 0dB就对应于频率响应的模等于 1
+
+- 20dB就对应于10倍的单位增益
+
+- －20dB相应于衰减0．1。
+
+- 对于连续时间系统，常采用对数频率坐标。 $\mathbf{2 0 l o g}_{\mathbf{1 0}}|\boldsymbol{H}(\mathbf{j} \omega)|$和 $\arg \boldsymbol{H}(\boldsymbol{j} \omega)$ 对 $\boldsymbol{\operatorname { l o g }}_{\mathbf{1 0}}(\omega)$ 作的图称之为伯德图。
+
+- 对数频率坐标，常常可以比线性频率展示宽的多的频率范围。
+:::
+::: {.column width="50%"}
+![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32.jpg?height=590&width=1334&top_left_y=496&top_left_x=1160){width=50%}
+
+![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32.jpg?height=607&width=1328&top_left_y=1171&top_left_x=1160){width=50%}
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 :::
 ::::
 
 
 
+<<<<<<< HEAD
 <!-- ## 对数模和伯德图（Bode Diagram）
 在离散时间情况下，傅里叶变换和频率响应的模常常也是用dB来表示的。
 
@@ -445,6 +564,21 @@ $$20 \log_{10} |H(j\omega)| = 20 \log_{10} |H_0| + \sum_{j=1}^m 20 \log_{10} N_j
 
 系统的总相位响应为：  
 $$\angle H(j\omega) = \sum_{j=1}^m \psi_j - \sum_{i=1}^n \theta_i$$
+=======
+
+
+
+
+## 对数模和伯德图（Bode Diagram）
+|  |  |  |  |  |  |  |  |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 1 | 2 | 3 | 4 | 5 | 6 | 7 |  | C
+
+在离散时间情况下，傅里叶变换和频率响应的模常常也是用dB来表示的。然而，在离散时间情况下对数频率坐标一般是不用的，因为这时要考虑的频率范围就只有 $2 \pi$ 宽，$H\left(e^{j \omega}\right)$ 是周期的。
+＊注意，对实值 $h[n]$ ，仅需画出 $[0, \pi]$ 范围的 $H\left(e^{j \omega}\right)$
+
+![](https://cdn.mathpix.com/cropped/f3ae4a22-f536-42b2-a6e3-531457fc9a85-34.jpg?height=1409&width=1421&top_left_y=213&top_left_x=1067)
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 ## 目录 {#toc2}
 
@@ -456,6 +590,7 @@ $$\angle H(j\omega) = \sum_{j=1}^m \psi_j - \sum_{i=1}^n \theta_i$$
 - [6. 一阶与二阶离散时间系统](#sec66)
 - [7. 系统的时域和频域分析实例](#sec67)
 
+<<<<<<< HEAD
 ## （The Ideal Frequency－Selective Filters）
 
 一．滤波
@@ -592,6 +727,9 @@ $$
 2．尽管从频域滤波的角度看，理想滤波器的频率特性是最佳的。但它们的时域特性并不是最佳的。 $h(t)$或 $h(n)$ 都有起伏、旁瓣、主瓣，这表明理想滤波器的时域特性与频域特性并不兼容。
 
 3．在工程应用中，当要设计一个滤波器时，必须对时域特性和频域特性作出恰当的折中。
+=======
+
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 ## 目录 {#toc3}
 
@@ -603,6 +741,7 @@ $$
 - [6. 一阶与二阶离散时间系统](#sec66)
 - [7. 系统的时域和频域分析实例](#sec67)
 
+<<<<<<< HEAD
 ## 6.4 非理想滤波器（The Nonideal Filters）
 
 由于理想滤波器是物理不可实现的，工程应用中就必须寻找一个物理可实现的频率特性去逼近理想特性，这种物理可实现的系统就称为非理想滤波器。
@@ -655,6 +794,8 @@ Chebyshev ⟶Cauer，其幅频特性逼近得越来越
 
 ![](https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-42.jpg?height=1268&width=2063&top_left_y=476&top_left_x=276)
 
+=======
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 ## 目录 {#toc4}
 
 - [1. 傅里叶变换的模和相位表示](#sec61)
@@ -675,6 +816,7 @@ Chebyshev ⟶Cauer，其幅频特性逼近得越来越
 - [**6. 一阶与二阶离散时间系统**](#sec66)
 - [7. 系统的时域和频域分析实例](#sec67)
 
+<<<<<<< HEAD
 ## 6.5 一阶与二阶连续时间系统
 
 ## （First－Order and Second－Order Continuous－ Time Systems）
@@ -1185,6 +1327,8 @@ $$
 ＊以汽车减震系统和动平均FIR滤波器为例，简单介绍了在工程应用中时域－频域、幅频－相频特性要折衷权衡考虑的思想。
 
 
+=======
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 ## 目录 {#toc6}
 
 - [1. 傅里叶变换的模和相位表示](#sec61)
@@ -1197,7 +1341,11 @@ $$
 
 
 
+<<<<<<< HEAD
 <!-- ## 目录
+=======
+## 目录
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 1. 傅里叶变换的幅度–相位表示
 2. 不确定性原理
@@ -1294,7 +1442,11 @@ $y(t)=x(t+a) e^{-j b t} \stackrel{\mathcal{F}}{\longleftrightarrow} Y(j \omega)=
 
 1. 傅里叶变换的幅度–相位表示
 2. 不确定性原理
+<<<<<<< HEAD
 3. 傅里叶表示之间的关系 -->
+=======
+3. 傅里叶表示之间的关系
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
 
 ## 四种傅里叶表示
 

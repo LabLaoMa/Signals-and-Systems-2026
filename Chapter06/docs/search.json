@@ -263,7 +263,11 @@
     "href": "Chapter06.html#线性相位",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "线性相位",
+<<<<<<< HEAD
     "text": "线性相位\n对于具有单位增益和线性相位的连续时间 LTI 系统\n\\[\nH(j \\omega)=e^{-j \\omega t_{0}} \\Longrightarrow y(t)=x\\left(t-t_{0}\\right)\n\\]\n输出是输入的延时版本\n对于具有单位增益和线性相位的离散时间 LTI 系统\n\\[\nH\\left(e^{j \\omega}\\right)=e^{-j \\omega n_{0}},\n\\]\n即LTI仅附加一个线性相移，输出信号则只是在时间上的平移\n\\[\ny[n]=\\frac{1}{2 \\pi} \\int_{-\\pi}^{\\pi} X\\left(e^{j \\omega}\\right) e^{-j \\omega n_{0}} e^{j \\omega n} d \\omega=\\sum_{m=-\\infty}^{\\infty} x[m] \\operatorname{sinc}\\left(n-n_{0}-m\\right)\n\\]\n\n当 \\(n_{0}\\) 为整数时，\\(y[n]=x\\left[n-n_{0}\\right]\\)，即输出是输入的整数点延时版本；\n当 \\(n_{0}\\) 为非整数时，\\(y[n]=y_{c}\\left(n-n_{0}\\right)\\)，它是信号包络 \\(y_{c}(t)=\\sum_{m=-\\infty}^{\\infty} x[m] \\operatorname{sinc}(t-m)\\) 延时后的采样值。"
+=======
+    "text": "线性相位\n对于具有单位增益和线性相位的连续时间 LTI 系统\n\\[\nH(j \\omega)=e^{-j \\omega t_{0}} \\Longrightarrow y(t)=x\\left(t-t_{0}\\right)\n\\]\n输出是输入的延时版本\n对于具有单位增益和线性相位的离散时间 LTI 系统\n\\[\nH\\left(e^{j \\omega}\\right)=e^{-j \\omega n_{0}},\n\\]\n输出为\n\\[\ny[n]=\\frac{1}{2 \\pi} \\int_{-\\pi}^{\\pi} X\\left(e^{j \\omega}\\right) e^{-j \\omega n_{0}} e^{j \\omega n} d \\omega=\\sum_{m=-\\infty}^{\\infty} x[m] \\operatorname{sinc}\\left(n-n_{0}-m\\right)\n\\]\n\n当 \\(n_{0}\\) 为整数时，\\(y[n]=x\\left[n-n_{0}\\right]\\)，即输出是输入的整数点延时版本；\n当 \\(n_{0}\\) 为非整数时，\\(y[n]=y_{c}\\left(n-n_{0}\\right)\\)，它是信号包络 \\(y_{c}(t)=\\sum_{m=-\\infty}^{\\infty} x[m] \\operatorname{sinc}(t-m)\\) 延时后的采样值。"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter06.html#线性相位-1",
@@ -291,7 +295,11 @@
     "href": "Chapter06.html#群时延",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "群时延",
+<<<<<<< HEAD
     "text": "群时延\n对于以 \\(\\omega_{0}\\) 为中心的窄带输入信号 \\(x\\)，即\n\\[\nX(j \\omega)=0, \\quad \\text { 对于 }\\left|\\omega-\\omega_{0}\\right|&gt;\\Delta \\omega, \\text { 其中 } \\Delta \\omega \\ll 1\n\\]\n对相位作线性近似\n\\[\n\\arg H(j \\omega) \\approx \\arg H\\left(j \\omega_{0}\\right)-\\tau\\left(\\omega_{0}\\right)\\left(\\omega-\\omega_{0}\\right)=-\\phi_{0}-\\tau\\left(\\omega_{0}\\right) \\omega\n\\]\n其中，在频率 \\(\\omega\\) 处的群时延定义为\n\\[\n\\tau(\\omega)=-\\frac{d}{d \\omega} \\arg H(j \\omega)\n\\]\n群时延代表了在以 \\(\\omega_{0}\\) 为中心的一个很窄的频带或很少的一组频率上信号所受到的有效公共延时。   如果当 \\(\\left|\\omega-\\omega_{0}\\right| \\leq \\Delta \\omega\\) 时，\\(|H(j \\omega)| \\approx\\left|H\\left(j \\omega_{0}\\right)\\right|\\)， \\[Y(j \\omega) \\approx\\left|H\\left(j \\omega_{0}\\right)\\right| X(j \\omega) e^{-j \\phi_{0}-j \\tau\\left(\\omega_{0}\\right) \\omega} \\Longrightarrow y(t) \\approx\\left|H\\left(j \\omega_{0}\\right)\\right| e^{-j \\phi_{0}} x\\left(t-\\tau\\left(\\omega_{0}\\right)\\right)\\]"
+=======
+    "text": "群时延\n对于以 \\(\\omega_{0}\\) 为中心的窄带输入信号 \\(x\\)，即\n\\[\nX(j \\omega)=0, \\quad \\text { for }\\left|\\omega-\\omega_{0}\\right|&gt;\\Delta \\omega, \\text { where } \\Delta \\omega \\ll 1\n\\]\n对相位作线性近似\n\\[\n\\arg H(j \\omega) \\approx \\arg H\\left(j \\omega_{0}\\right)-\\tau\\left(\\omega_{0}\\right)\\left(\\omega-\\omega_{0}\\right)=-\\phi_{0}-\\tau\\left(\\omega_{0}\\right) \\omega\n\\]\n其中，在频率 \\(\\omega\\) 处的群时延定义为\n\\[\n\\tau(\\omega)=-\\frac{d}{d \\omega} \\arg H(j \\omega)\n\\]\n如果当 \\(\\left|\\omega-\\omega_{0}\\right| \\leq \\Delta \\omega\\) 时，\\(|H(j \\omega)| \\approx\\left|H\\left(j \\omega_{0}\\right)\\right|\\)， \\(Y(j \\omega) \\approx\\left|H\\left(j \\omega_{0}\\right)\\right| X(j \\omega) e^{-j \\phi_{0}-j \\tau\\left(\\omega_{0}\\right) \\omega} \\Longrightarrow y(t) \\approx\\left|H\\left(j \\omega_{0}\\right)\\right| e^{-j \\phi_{0}} x\\left(t-\\tau\\left(\\omega_{0}\\right)\\right)\\)"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter06.html#群时延-1",
@@ -1313,7 +1321,11 @@
     "href": "Chapter06.html#sec61",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "傅里叶变换的模–相位表示",
+<<<<<<< HEAD
     "text": "傅里叶变换的模–相位表示\n\\[\nX(j \\omega)=|X(j \\omega)| e^{j \\arg X(j \\omega)}, \\quad X\\left(e^{j \\omega}\\right)=\\left|X\\left(e^{j \\omega}\\right)\\right| e^{j \\arg X\\left(e^{j \\omega}\\right)}\n\\]\n\n\n一个信号所携带的全部信息分别包含在其频谱的模和相位中。\n  \n相位 \\(\\arg X\\) 包含关于信号的重要信息\n\n\n\\(|X|\\) 表示各频率分量的幅值\n\\(\\arg X\\) 表示各频率分量的相位\n\n\n\n决定各分量是相长叠加还是相消叠加\n即使幅度谱相同，微小的相位变化也会导致信号波形显著不同\n\n\n\\(x(t)=1+\\frac{1}{2} \\cos \\left(2 \\pi t+\\phi_{1}\\right)  +\\cos \\left(4 \\pi t+\\phi_{2}\\right)+\\frac{2}{3} \\cos \\left(6 \\pi t+\\phi_{3}\\right)\\)\n\n\n\\[\n\\begin{array}{ll}\n\\phi_{1}=0, \\phi_{2}=0, \\phi_{3}=0 & \\\\\n\\phi_{1}=4, \\phi_{2}=8, \\phi_{3}=12 & \\\\\n\\phi_{1}=6, \\phi_{2}=-2.7, \\phi_{3}=0.93 & \\\\\n\\phi_{1}=1.2, \\phi_{2}=4.1, \\phi_{3}=-7.02 &\n\\end{array}\n\\]"
+=======
+    "text": "傅里叶变换的模–相位表示\n\\[\nX(j \\omega)=|X(j \\omega)| e^{j \\arg X(j \\omega)}, \\quad X\\left(e^{j \\omega}\\right)=\\left|X\\left(e^{j \\omega}\\right)\\right| e^{j \\arg X\\left(e^{j \\omega}\\right)}\n\\]\n傅里叶变换是将信号分解为复指数（“波”）的叠加\n\n\\(|X|\\) 表示各频率分量的幅值\n\\(\\arg X\\) 表示各频率分量的相位\n\n相位 \\(\\arg X\\) 包含关于信号的重要信息\n\n决定各分量是相长叠加还是相消叠加\n即使幅度谱相同，微小的相位变化也会导致信号波形显著不同\n\n\\(x(t)=1+\\frac{1}{2} \\cos \\left(2 \\pi t+\\phi_{1}\\right)  +\\cos \\left(4 \\pi t+\\phi_{2}\\right)+\\frac{2}{3} \\cos \\left(6 \\pi t+\\phi_{3}\\right)\\)\n\n\n\\[\n\\begin{array}{ll}\n\\phi_{1}=0, \\phi_{2}=0, \\phi_{3}=0 & \\\\\n\\phi_{1}=4, \\phi_{2}=8, \\phi_{3}=12 & \\\\\n\\phi_{1}=6, \\phi_{2}=-2.7, \\phi_{3}=0.93 & \\\\\n\\phi_{1}=1.2, \\phi_{2}=4.1, \\phi_{3}=-7.02 &\n\\end{array}\n\\]"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter06.html#相位信息的重要性",
@@ -1502,7 +1514,11 @@
     "href": "Chapter06.html#lti系统频率响应的模相位表示",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "LTI系统频率响应的模–相位表示",
+<<<<<<< HEAD
     "text": "LTI系统频率响应的模–相位表示\n对于线性时不变系统，对输入信号所起的作用包括两个方面：\n\n改变输入信号各频率分量的幅度；\n改变输入信号各频率分量的相对相位。\n\n\\[\nY(j \\omega)=H(j \\omega) X(j \\omega), \\quad Y\\left(e^{j \\omega}\\right)=H\\left(e^{j \\omega}\\right) X\\left(e^{j \\omega}\\right)\n\\] 其中，\\(H（j \\omega）=|H(j \\omega)| e^{j \\arg H(j \\omega)}\\),\\(|H(j \\omega)|\\) 为幅值响应，\\(e^{j \\arg H(j \\omega)}\\)为相位响应。\n\\[\n|Y|=|H| \\cdot|X|, \\quad |H| \\text{系统的幅度响应，也称系统的增益(gain) }\n\\]\n以及\n\\[\n\\arg Y=\\arg H+\\arg X, \\quad \\arg H \\text{表示系统引入的相移(phase shift) }\n\\]\nLTI 系统带来的影响，可能是我们希望得到的，也可能不是。\n\n若这种影响不是我们想要的，则称为失真(distortion)。\n根据组成，失真包含幅度失真和相位失真两种。"
+=======
+    "text": "LTI系统频率响应的模–相位表示\n对于线性时不变系统\n\\[\nY(j \\omega)=H(j \\omega) X(j \\omega), \\quad Y\\left(e^{j \\omega}\\right)=H\\left(e^{j \\omega}\\right) X\\left(e^{j \\omega}\\right)\n\\] 其中，\\(H（j \\omega）=|H(j \\omega)| e^{j \\arg H(j \\omega)}\\),\\(|H(j \\omega)|\\) 为幅值响应，\\(e^{j \\arg H(j \\omega)}\\)为相位响应。\n\\[\n|Y|=|H| \\cdot|X|, \\quad |H| \\text{系统的幅值响应，也称系统的增益(gain) }\n\\]\n以及\n\\[\n\\arg Y=\\arg H+\\arg X, \\quad \\arg H \\text{表示系统引入的相移(phase shift) }\n\\]\nLTI 系统带来的影响，可能是我们希望得到的，也可能不是。\n\n在滤波中，我们往往希望系统产生特定效果；\n若这种影响不是我们想要的，则称为失真(distortion)。\n总的来说，失真包含幅度失真和相位失真两种。\n模拟信号一旦发生失真，在以后的处理中，将保持这种失真-失真信号的继承性。\n\n例：无失真传输\n\n理想情况下，\\(H(j \\omega)=1\\)，但这对应于非因果系统；\n当 \\(H(j \\omega)=K e^{-j \\omega t_{0}}\\) 时，系统保持波形形状不变，只引入幅值缩放和时延。"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter06.html#对数模和波特图",
@@ -1516,20 +1532,29 @@
     "href": "Chapter06.html#对数模和伯德图bode-diagram",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "对数模和伯德图（Bode Diagram）",
+<<<<<<< HEAD
     "text": "对数模和伯德图（Bode Diagram）\n对数模：\\(|Y(j \\omega)|= |H(j \\omega)|  |X(j \\omega)| \\Longrightarrow \\log |Y(j \\omega)|=\\log |H(j \\omega)|+\\log |X(j \\omega)|\\)\n\n\n\n\n\n\n\n\n一般采用对数标尺以 \\(20 \\log _{10}\\) 为单位，称之为分贝 （dB）\n\n\n\n0 dB：模等于 1（无增益/衰减）\n20 dB：10 倍单位增益\n-20 dB：0.1 倍衰减\n\n\n\n\n\n对于连续时间系统，常采用对数频率坐标\n\\(\\mathbf{2 0 l o g}_{\\mathbf{1 0}}|\\boldsymbol{H}(\\mathbf{j} \\omega)|\\)和 \\(\\arg \\boldsymbol{H}(\\boldsymbol{j} \\omega)\\) 对 \\(\\boldsymbol{\\operatorname { l o g }}_{\\mathbf{1 0}}(\\omega)\\) 作的图称之为伯德图。\n对数频率坐标，常常可以比线性频率展示宽的多的频率范围。\n\n在离散时间情况下，傅里叶变换和频率响应的模常常也是用dB来表示的。\n\n\n\n\n\n\n在离散时间情况下对数频率坐标一般是不用的，\n\n\n因为这时要考虑的频率范围就只有 \\(2 \\pi\\) 宽，\\(H\\left(e^{j \\omega}\\right)\\) 是周期的。\n\n\n\n注意：对实值 \\(h[n]\\) ，仅需画出 \\([0, \\pi]\\) 范围的 \\(H\\left(e^{j \\omega}\\right)\\)"
+=======
+    "text": "对数模和伯德图（Bode Diagram）\n模的关系涉及 \\(|\\boldsymbol{H}(\\boldsymbol{j} \\omega)|\\) 和 \\(|\\boldsymbol{X}(\\boldsymbol{j} \\omega)|\\) 的相乘。因此，如果傅里叶变换的模是在一个对数幅度上展示的话，那么就有一个相加的关系：\n\\[\n\\log |Y(j \\omega)|=\\log |H(j \\omega)|+\\log |X(j \\omega)|\n\\] * 在一个对数标尺上展现傅里叶变换的模，还能在一个较宽的动态范围上将细节显示出来。\n\n\n\n一般所采用的对数标尺是以 \\(20 \\log _{10}\\) 为单位，称之为分贝 （dB）。\n0dB就对应于频率响应的模等于 1\n20dB就对应于10倍的单位增益\n－20dB相应于衰减0．1。\n对于连续时间系统，常采用对数频率坐标。 \\(\\mathbf{2 0 l o g}_{\\mathbf{1 0}}|\\boldsymbol{H}(\\mathbf{j} \\omega)|\\)和 \\(\\arg \\boldsymbol{H}(\\boldsymbol{j} \\omega)\\) 对 \\(\\boldsymbol{\\operatorname { l o g }}_{\\mathbf{1 0}}(\\omega)\\) 作的图称之为伯德图。\n对数频率坐标，常常可以比线性频率展示宽的多的频率范围。"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter06.html#对数模和伯德图bode-diagram-1",
     "href": "Chapter06.html#对数模和伯德图bode-diagram-1",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "对数模和伯德图（Bode Diagram）",
+<<<<<<< HEAD
     "text": "对数模和伯德图（Bode Diagram）\n\\[\nH(j \\omega)=\\frac{\\sum_{k=0}^{N} b_{k}(j \\omega)^{k}}{\\sum_{k=0}^{N} a_{k}(j \\omega)^{k}}=\\frac{N(j \\omega)}{D(j \\omega)}=H_0 \\frac{\\prod_{j=1}^m (j\\omega - z_j)}{\\prod_{i=1}^n (j\\omega - p_i)}\n\\]\n\n\n其中：\n\n\\(z_j\\) 为系统的零点。\n\n\\(p_i\\) 为系统的极点。\n\n\\(H_0\\) 为系统增益常数。\n\n几何矢量解释\n\\((j\\omega - z_j)\\) 或 \\((j\\omega - p_i)\\) 都可以看作是从零/极点指向虚轴上 \\(j\\omega\\) 点的一个矢量。\n\n零点矢量：\\(j\\omega - z_j = N_j e^{j\\psi_j}\\)\n\n极点矢量：\\(j\\omega - p_i = M_i e^{j\\theta_i}\\)"
+=======
+    "text": "对数模和伯德图（Bode Diagram）\n\n\n\n1\n2\n3\n4\n5\n6\n7\n\n\n\n\n在离散时间情况下，傅里叶变换和频率响应的模常常也是用dB来表示的。然而，在离散时间情况下对数频率坐标一般是不用的，因为这时要考虑的频率范围就只有 \\(2 \\pi\\) 宽，\\(H\\left(e^{j \\omega}\\right)\\) 是周期的。 ＊注意，对实值 \\(h[n]\\) ，仅需画出 \\([0, \\pi]\\) 范围的 \\(H\\left(e^{j \\omega}\\right)\\)"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter06.html#对数模和伯德图bode-diagram-2",
     "href": "Chapter06.html#对数模和伯德图bode-diagram-2",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "对数模和伯德图（Bode Diagram）",
+<<<<<<< HEAD
     "text": "对数模和伯德图（Bode Diagram）\n模值的对数化（幅频特性）\n对 \\(H(j\\omega)\\) 取模并取对数（单位：dB）：\n\\[20 \\log_{10} |H(j\\omega)| = 20 \\log_{10} |H_0| + \\sum_{j=1}^m 20 \\log_{10} N_j - \\sum_{i=1}^n 20 \\log_{10} M_i\\]\n\n叠加性：Bode图的幅频特性曲线本质上是所有零点和极点矢量长度（对数化后）的纵向叠加。\n\n转折频率：当 \\(\\omega\\) 靠近某个极点或零点的模值时，该矢量长度的变化最剧烈，对应Bode图上的斜率转折（±20dB/dec）。\n\n相位的线性叠加（相频特性）\n系统的总相位响应为：\n\\[\\angle H(j\\omega) = \\sum_{j=1}^m \\psi_j - \\sum_{i=1}^n \\theta_i\\]"
   },
   {
@@ -3197,5 +3222,8 @@
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "二阶连续时间系统",
     "text": "二阶连续时间系统\n相位特性：\n\\[\n\\begin{array}{ll}\n\\mathrm{R} H(j \\omega)=-\\tan ^{-1} \\frac{2 \\zeta \\frac{\\omega}{\\omega_{n}}}{1-\\left(\\frac{\\omega}{\\omega_{n}}\\right)^{2}} & \\omega=\\omega_{n} \\text { 时 } \\omega \\rightarrow 0, \\mathrm{R} H(j \\omega) \\rightarrow 0 \\\\\n\\omega=\\omega_{n} \\text { 时 } \\mathrm{R} H(j \\omega)=-\\frac{\\pi}{2} \\\\\n\\omega \\rightarrow \\infty \\text { 时 } \\mathrm{R} H(j \\omega) \\rightarrow-\\pi\n\\end{array}\n\\]\n可将其用折线近似为：\n\\[\n\\mathrm{R} H(j \\omega)= \\begin{cases}0, & \\omega \\leq 0.1 \\omega_{n} \\\\ -\\frac{\\pi}{2}\\left[\\lg \\frac{\\omega}{\\omega_{n}}+1\\right], & 0.1 \\omega_{n} \\leq \\omega \\leq 10 \\omega_{n} \\\\ -\\pi, & \\omega \\geq 10 \\omega_{n}\\end{cases}\n\\]"
+=======
+    "text": "对数模和伯德图（Bode Diagram）\n\n\n\n1\n2\n3\n4\n5\n6\n7\n\n\n\n\n在离散时间情况下，傅里叶变换和频率响应的模常常也是用dB来表示的。然而，在离散时间情况下对数频率坐标一般是不用的，因为这时要考虑的频率范围就只有 \\(2 \\pi\\) 宽，\\(H\\left(e^{j \\omega}\\right)\\) 是周期的。 ＊注意，对实值 \\(h[n]\\) ，仅需画出 \\([0, \\pi]\\) 范围的 \\(H\\left(e^{j \\omega}\\right)\\)\n 图6．9 一个高敬时间频率的应 \\(H\\left(e^{\\text {mi）}}\\right)\\) 的模和相位的典型作图表示"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   }
 ]

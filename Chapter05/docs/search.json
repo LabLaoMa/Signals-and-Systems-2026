@@ -1775,14 +1775,22 @@
     "href": "Chapter05_V4.html#离散时间傅里叶变换",
     "title": "第五章 离散时间傅里叶变换",
     "section": "离散时间傅里叶变换",
+<<<<<<< HEAD
     "text": "离散时间傅里叶变换\n将 \\(x_{N}\\) 展开为离散时间傅里叶级数\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j k \\frac{2  \\pi}{N} n}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \\frac{2 \\pi}{N} n}=\\frac{1}{N} X\\left(e^{j k \\omega_{0}}\\right)\n\\]\n为了简化表达，我们取记号：\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\] 需要注意的是，\\(X\\left(e^{j \\omega}\\right)\\)中的\\(\\omega\\)是连续变量，\\(X\\left(e^{j k \\omega_{0} }\\right)\\)是在离散点\\(k\\omega_{0}\\)处的值。"
+=======
+    "text": "离散时间傅里叶变换\n将 \\(x_{N}\\) 展开为离散时间傅里叶级数\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j k \\frac{2  \\pi}{N} n}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \\frac{2 \\pi}{N} n}=\\frac{1}{N} X\\left(e^{j k \\omega_{0}n}\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter05_V4.html#离散时间傅里叶变换-1",
     "href": "Chapter05_V4.html#离散时间傅里叶变换-1",
     "title": "第五章 离散时间傅里叶变换",
     "section": "离散时间傅里叶变换",
+<<<<<<< HEAD
     "text": "离散时间傅里叶变换\n当 \\(N\\) 增大时，离散频率的采样会变得更加稠密\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j k \\frac{2 \\pi}{N} n}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \\frac{2 \\pi}{N} n}=\\frac{1}{N} X\\left(e^{j k \\omega_{0} }\\right)\n\\]\n其中 \\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+=======
+    "text": "离散时间傅里叶变换\n当 \\(N\\) 增大时，离散频率的采样会变得更加稠密\n\n\n\n\n\n\\[\n\\hat{x}_{N}[k]=\\left\\langle x_{N}, e^{j k \\frac{2 \\pi}{N} n}\\right\\rangle=\\frac{1}{N} \\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j k \\frac{2 \\pi}{N} n}=\\frac{1}{N} X\\left(e^{j k \\omega_{0} }\\right)\n\\]\n其中\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=N_{1}}^{N_{2}} x[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}, \\quad \\omega_{0}=\\frac{2 \\pi}{N}\n\\]"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter05_V4.html#离散时间傅里叶变换-2",
@@ -1817,7 +1825,11 @@
     "href": "Chapter05_V4.html#dtft-与-ctfs-之间的对偶性",
     "title": "第五章 离散时间傅里叶变换",
     "section": "DTFT 与 CTFS 之间的对偶性",
+<<<<<<< HEAD
     "text": "DTFT 与 CTFS 之间的对偶性\n\n\nDTFT 变换对\n\n离散时间\n连续频率\n\n分析公式\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}\n\\]\n综合公式\n\\[\nx[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]\n\nCTFS 变换对\n\n连续时间\n离散频率\n\n分析公式\n\\[\n\\hat{x}[k]=\\frac{1}{T} \\int_{T} x(t) e^{-j k \\frac{2 \\pi}{T} t} d t\n\\]\n综合公式\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\frac{2 \\pi}{T} t}\n\\]"
+=======
+    "text": "DTFT 与 CTFS 之间的对偶性\n\n\nDTFT 变换对\n\n离散时间\n连续频率\n\n分析公式\n\\[\nX\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}\n\\]\n综合公式\n\\[\nx[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]\n\nCTFS 变换对\n\n连续时间\n离散频率\n\n分析公式\n\\[\n\\hat{x}[k]=\\frac{1}{T} \\int_{T} x(t) e^{-j k \\frac{2 \\pi}{T} t} d t\n\\]\n综合公式\n\\[\nx(t)=\\sum_{k=-\\infty}^{\\infty} \\hat{x}[k] e^{j k \\frac{2 \\pi}{T} t}\n\\]\n\n\\[\n\\begin{aligned}\n& \\text { 连续变量 } \\xrightarrow{\\text { CTFS }} \\text { 双向无限序列 } \\\\\n& \\text { 周期函数 }\n\\end{aligned} \\xrightarrow[\\text { DTFT }]{\\leftarrow} \\text { 双向映射 }\n\\]"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter05_V4.html#离散时间信号的高频与低频",
@@ -1866,7 +1878,11 @@
     "href": "Chapter05_V4.html#dtft-的收敛性",
     "title": "第五章 离散时间傅里叶变换",
     "section": "DTFT 的收敛性",
+<<<<<<< HEAD
     "text": "DTFT 的收敛性\n令\n\\[\nX_{N}\\left(e^{j \\omega}\\right)=\\sum_{n=-N}^{N} x[n] e^{-j \\omega n}\n\\]\n定理：若 \\(x \\in \\ell_{1}\\)，则 \\(X_{N}\\) 一致收敛到 \\(X\\)，即\n\\[\n\\lim _{N \\rightarrow \\infty}\\left\\|X-X_{N}\\right\\|_{\\infty}=0\n\\]\n因此，傅里叶变换 \\(X\\) 是一致连续的。\n\n定理：若 \\(x \\in \\ell_{2}\\)，则 \\(X_{N}\\) 在 \\(L_{2}\\) 意义下收敛到 \\(X\\)，即\n\\[\n\\lim _{N \\rightarrow \\infty}\\left\\|X-X_{N}\\right\\|_{2}=0\n\\]"
+=======
+    "text": "DTFT 的收敛性\n令\n\\[\nX_{N}\\left(e^{j \\omega}\\right)=\\sum_{n=-N}^{N} x[n] e^{-j \\omega n}\n\\]\n定理：若 \\(x \\in \\ell_{1}\\)，则 \\(X_{N}\\) 一致收敛到 \\(X\\)，即\n\\[\n\\lim _{N \\rightarrow \\infty}\\left\\|X-X_{N}\\right\\|_{\\infty}=0\n\\]\n因此，傅里叶变换 \\(X\\) 是一致连续的。 定理：若 \\(x \\in \\ell_{2}\\)，则 \\(X_{N}\\) 在 \\(L_{2}\\) 意义下收敛到 \\(X\\)，即\n\\[\n\\lim _{N \\rightarrow \\infty}\\left\\|X-X_{N}\\right\\|_{2}=0\n\\]"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter05_V4.html#例理想低通滤波器",
@@ -1915,7 +1931,11 @@
     "href": "Chapter05_V4.html#周期信号的-dtft-3",
     "title": "第五章 离散时间傅里叶变换",
     "section": "周期信号的 DTFT",
+<<<<<<< HEAD
     "text": "周期信号的 DTFT\n也可以使用综合公式（即逆变换公式）进行正式验证\n\\[\n\\frac{1}{2 \\pi} \\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega=\\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} \\sum_{k=-\\infty}^{\\infty} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2 k \\pi}{N}\\right) e^{j \\omega n} d \\omega\n\\]\n只有 \\(k=0,1, \\ldots, N-1\\) 的项落在积分区间内\n\\[\n\\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} \\sum_{k=0}^{N-1} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2 k \\pi}{N}\\right) e^{j \\omega n} d \\omega=\\sum_{k=0}^{N-1} \\hat{x}_{N}[k] e^{j \\frac{2 k \\pi}{N} n}=x_{N}[n]\n\\]\n最后一个等号实际上就是离散时间傅里叶级数（DTFS）的综合公式，因此下面的DTFT综合公式得到验证。\n\\[\nx_{N}[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]"
+=======
+    "text": "周期信号的 DTFT\n也可以使用综合公式（即逆变换公式）进行正式验证\n\\[\n\\frac{1}{2 \\pi} \\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega=\\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} \\sum_{k=-\\infty}^{\\infty} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2 k \\pi}{N}\\right) e^{j \\omega n} d \\omega\n\\]\n只有 \\(k=0,1, \\ldots, N-1\\) 的项落在积分区间内\n\\[\n\\int_{-\\frac{\\pi}{N}}^{2 \\pi-\\frac{\\pi}{N}} \\sum_{k=0}^{N-1} \\hat{x}_{N}[k] \\delta\\left(\\omega-\\frac{2 k \\pi}{N}\\right) e^{j \\omega n} d \\omega=\\sum_{k=0}^{N-1} \\hat{x}_{N}[k] e^{j \\frac{2 k \\pi}{N} n}=x_{N}[n]\n\\]\n最后一个等号实际上就是离散时间傅里叶级数（DTFS）的综合公式，因此（该推导）得到了验证。\n\\[\nx_{N}[n]=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\omega}\\right) e^{j \\omega n} d \\omega\n\\]"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter05_V4.html#例离散时间周期冲激串",
@@ -1943,7 +1963,11 @@
     "href": "Chapter05_V4.html#例高通与低通滤波器",
     "title": "第五章 离散时间傅里叶变换",
     "section": "例：高通与低通滤波器",
+<<<<<<< HEAD
     "text": "例：高通与低通滤波器\n\n\n\n\n\n\\[\nH_{\\mathrm{hp}}\\left(e^{j \\omega}\\right)=H_{\\mathrm{lp}}\\left(e^{j(\\omega-\\pi)}\\right)\n\\]\n\n\n\n\n\n\\[\nH_{\\mathrm{hp}}\\left(e^{j \\omega}\\right)=H_{\\mathrm{lp}}\\left(e^{j(\\omega-\\pi)}\\right) \\Longleftrightarrow h_{\\mathrm{hp}}[n]=e^{j \\pi n} h_{\\mathrm{lp}}[n]=(-1)^{n} h_{\\mathrm{lp}}[n]\n\\]\n利用低通滤波器实现高通滤波 \\(y=x * h_{\\mathrm{hp}}\\)\n\n\\(x_{1}[n]=(-1)^{n} x[n]\\)；\n\\(y_{1}=x_{1} * h_{\\mathrm{lp}}\\)；\n\\(y[n]=(-1)^{n} y_{1}[n]\\)"
+=======
+    "text": "例：高通与低通滤波器\n\n\n\n\n\n\\[\nH_{\\mathrm{hp}}\\left(e^{j \\omega}\\right)=H_{\\mathrm{lp}}\\left(e^{j(\\omega-\\pi)}\\right)\n\\]\n\n\n\n\n\n\\[\nH_{\\mathrm{hp}}\\left(e^{j \\omega}\\right)=H_{\\mathrm{lp}}\\left(e^{j(\\omega-\\pi)}\\right) \\Longleftrightarrow h_{\\mathrm{hp}}[n]=e^{j \\pi n} h_{\\mathrm{lp}}[n]=(-1)^{n} h_{\\mathrm{lp}}[n]\n\\]\n利用低通滤波器实现高通滤波 \\(y=x * h_{\\mathrm{hp}}\\) (1) \\(x_{1}[n]=(-1)^{n} x[n]\\)； (2) \\(y_{1}=x_{1} * h_{\\mathrm{lp}}\\)； (3) \\(y[n]=(-1)^{n} y_{1}[n]\\)"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter05_V4.html#离散时间傅里叶变换的性质-1",
@@ -2188,7 +2212,11 @@
     "href": "Chapter05_V4.html#作业",
     "title": "第五章 离散时间傅里叶变换",
     "section": "作业",
+<<<<<<< HEAD
     "text": "作业\n\n书面作业\n\n\n5.1\n5.4\n5.7\n5.13\n5.20\n\n\n程序作业：见乐学平台"
+=======
+    "text": "作业"
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   },
   {
     "objectID": "Chapter05_V4.html#差分和累加",
@@ -2364,6 +2392,7 @@
     "title": "第五章 离散时间傅里叶变换",
     "section": "线性常系数差分方程",
     "text": "线性常系数差分方程\n由下式描述的 LTI 系统，其频率响应为\n\\[\n\\sum_{k=0}^{N} a_{k} y[n-k]=\\sum_{k=0}^{M} b_{k} x[n-k]\n\\]\n方法 1：利用特征函数性质\n\\[\nx[n]=e^{j \\omega n} \\Longrightarrow y[n]=H\\left(e^{j \\omega}\\right) e^{j \\omega n}\n\\]\n代入差分方程得\n\\[\n\\begin{gathered}\n\\sum_{k=0}^{N} a_{k} H\\left(e^{j \\omega}\\right) e^{j \\omega(n-k)}=\\sum_{k=0}^{M} b_{k} e^{j \\omega(n-k)} \\\\\nH\\left(e^{j \\omega}\\right)=\\frac{\\sum_{k=0}^{M} b_{k} e^{-j \\omega k}}{\\sum_{k=0}^{N} a_{k} e^{-j \\omega k}}\n\\end{gathered}\n\\]"
+<<<<<<< HEAD
   },
   {
     "objectID": "Chapter05_V5.html#toc0",
@@ -2840,5 +2869,7 @@
     "title": "第五章 离散时间傅里叶变换",
     "section": "作业",
     "text": "作业\n\n书面作业\n\n\n5.1\n5.4\n5.7\n5.13\n5.20\n\n\n程序作业：见乐学平台"
+=======
+>>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
   }
 ]
