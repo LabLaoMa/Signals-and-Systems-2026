@@ -1,0 +1,55 @@
+# --- 课程与科研常见大文件 ---
+*.zip
+*.7z
+*.rar
+*.tar.gz
+*.iso
+*.mat
+*.dat
+*.npy
+*.pth
+*.onnx
+
+# --- 编程与仿真 (C++, Python, MATLAB) ---
+__pycache__/
+*.py[cod]
+*.exe
+*.out
+*.app
+*.o
+*.obj
+bin/
+build/
+dist/
+slprj/        # MATLAB/Simulink 仿真缓存
+*.asv         # MATLAB 自动保存文件
+
+# --- 数学软件 (Mathematica, Maple) ---
+*.nb[ls]      # Mathematica 临时文件
+.DS_Store     # macOS 系统文件
+
+# --- 文献与排版 (LaTeX, Quarto) ---
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.pdf         # 如果你希望通过 GitHub 发布 PDF，请删掉这一行
+.quarto/      # Quarto 渲染缓存
+
+# --- 笔记与编辑器 (Obsidian, Sublime, VS Code) ---
+.obsidian/workspace
+.obsidian/workspace.json
+*.sublime-project
+*.sublime-workspace
+.vscode/
+.idea/
+
+# --- 云同步与临时文件 ---
+.DS_Store
+Thumbs.db
+~$* # Office 临时文件
