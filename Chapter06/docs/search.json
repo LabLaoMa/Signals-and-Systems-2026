@@ -291,7 +291,7 @@
     "href": "Chapter06.html#群时延",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "群时延",
-    "text": "群时延\n对于以 \\(\\omega_{0}\\) 为中心的窄带输入信号 \\(x\\)，即\n\\[\nX(j \\omega)=0, \\quad \\text { for }\\left|\\omega-\\omega_{0}\\right|&gt;\\Delta \\omega, \\text { where } \\Delta \\omega \\ll 1\n\\]\n对相位作线性近似\n\\[\n\\arg H(j \\omega) \\approx \\arg H\\left(j \\omega_{0}\\right)-\\tau\\left(\\omega_{0}\\right)\\left(\\omega-\\omega_{0}\\right)=-\\phi_{0}-\\tau\\left(\\omega_{0}\\right) \\omega\n\\]\n其中，在频率 \\(\\omega\\) 处的群时延定义为\n\\[\n\\tau(\\omega)=-\\frac{d}{d \\omega} \\arg H(j \\omega)\n\\]\n如果当 \\(\\left|\\omega-\\omega_{0}\\right| \\leq \\Delta \\omega\\) 时，\\(|H(j \\omega)| \\approx\\left|H\\left(j \\omega_{0}\\right)\\right|\\)， \\(Y(j \\omega) \\approx\\left|H\\left(j \\omega_{0}\\right)\\right| X(j \\omega) e^{-j \\phi_{0}-j \\tau\\left(\\omega_{0}\\right) \\omega} \\Longrightarrow y(t) \\approx\\left|H\\left(j \\omega_{0}\\right)\\right| e^{-j \\phi_{0}} x\\left(t-\\tau\\left(\\omega_{0}\\right)\\right)\\)"
+    "text": "群时延\n对于以 \\(\\omega_{0}\\) 为中心的窄带输入信号 \\(x\\)，即\n\\[\nX(j \\omega)=0, \\quad \\text { 对于 }\\left|\\omega-\\omega_{0}\\right|&gt;\\Delta \\omega, \\text { 其中 } \\Delta \\omega \\ll 1\n\\]\n对相位作线性近似\n\\[\n\\arg H(j \\omega) \\approx \\arg H\\left(j \\omega_{0}\\right)-\\tau\\left(\\omega_{0}\\right)\\left(\\omega-\\omega_{0}\\right)=-\\phi_{0}-\\tau\\left(\\omega_{0}\\right) \\omega\n\\]\n其中，在频率 \\(\\omega\\) 处的群时延定义为\n\\[\n\\tau(\\omega)=-\\frac{d}{d \\omega} \\arg H(j \\omega)\n\\]\n群时延代表了在以 \\(\\omega_{0}\\) 为中心的一个很窄的频带或很少的一组频率上信号所受到的有效公共延时。   如果当 \\(\\left|\\omega-\\omega_{0}\\right| \\leq \\Delta \\omega\\) 时，\\(|H(j \\omega)| \\approx\\left|H\\left(j \\omega_{0}\\right)\\right|\\)， \\[Y(j \\omega) \\approx\\left|H\\left(j \\omega_{0}\\right)\\right| X(j \\omega) e^{-j \\phi_{0}-j \\tau\\left(\\omega_{0}\\right) \\omega} \\Longrightarrow y(t) \\approx\\left|H\\left(j \\omega_{0}\\right)\\right| e^{-j \\phi_{0}} x\\left(t-\\tau\\left(\\omega_{0}\\right)\\right)\\]"
   },
   {
     "objectID": "Chapter06.html#群时延-1",
@@ -2300,21 +2300,21 @@
     "href": "Chapter06.html#线性相位和非线性相位-1",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "线性相位和非线性相位",
-    "text": "线性相位和非线性相位\n\\[\nH(j \\omega)=e^{-j \\omega / 2}\n\\]\n对于输入\n\\(x(t)=\\sum_{k=0}^{3} \\cos (2 k \\pi t)=1+\\cos (2 \\pi t)+\\cos (4 \\pi t)+\\cos (6 \\pi t)\\)\n输出为\n\\(y(t)=\\sum_{k=0}^{3} \\cos (2 k \\pi t-k \\pi)=x\\left(t-\\frac{1}{2}\\right)\\)"
+    "text": "线性相位和非线性相位\n物理本质：时间延迟的一致性\n设想输入信号由不同频率的分量组成，若要保证信号波形不失真，就必须要求所有频率分量经过系统后，被延迟的时间必须完全相同：\n根据傅里叶变换的时移性质： \\[x(t - t_0) \\leftrightarrow X(j\\omega)e^{-j\\omega t_0}\\]\n\n频率为 \\(\\omega_1\\) 的分量，其相位偏移是 \\(-\\omega_1 t_0\\)\n频率为 \\(\\omega_2\\) 的分量，其相位偏移是 \\(-\\omega_2 t_0\\)\n\n结论： 只有当相位响应 \\(\\phi(\\omega)\\) 是频率的线性函数时，不同频率的分量才会有相同的“时间延迟”。\n如果相位与频率不是线性关系（例如 \\(\\phi(\\omega) = \\omega^2\\)），高频分量和低频分量延迟的时间就不一样，输出信号的波形就会发生“相位失真”。"
   },
   {
     "objectID": "Chapter06.html#线性相位和非线性相位-2",
     "href": "Chapter06.html#线性相位和非线性相位-2",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "线性相位和非线性相位",
-    "text": "线性相位和非线性相位\n半采样延时\n\\[\nH\\left(e^{j \\omega}\\right)=e^{-j \\omega / 2}\n\\]\n对于输入\n\\(x[n]=\\cos \\left(\\frac{\\pi}{3} n\\right)\\)\n输出为\n\\(y[n]=\\sum_{m=-\\infty}^{\\infty} \\cos \\left(\\frac{\\pi}{3} m\\right) \\operatorname{sinc}\\left(n-n_{0}-m\\right)=\\cos \\left(\\frac{\\pi}{3}\\left[n-\\frac{1}{2}\\right)\\right]\\)"
+    "text": "线性相位和非线性相位\n\\[\nH(j \\omega)=e^{-j \\omega / 2}\n\\]\n对于输入\n\\(x(t)=\\sum_{k=0}^{3} \\cos (2 k \\pi t)=1+\\cos (2 \\pi t)+\\cos (4 \\pi t)+\\cos (6 \\pi t)\\)\n输出为\n\\(y(t)=\\sum_{k=0}^{3} \\cos (2 k \\pi t-k \\pi)=x\\left(t-\\frac{1}{2}\\right)\\)"
   },
   {
     "objectID": "Chapter06.html#线性相位和非线性相位-3",
     "href": "Chapter06.html#线性相位和非线性相位-3",
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "线性相位和非线性相位",
-    "text": "线性相位和非线性相位\n\\[\nH(j \\omega)=e^{-j \\arctan \\omega}\n\\]\n对于输入\n\\(x(t)=\\sum_{k=0}^{3} \\cos (2 k \\pi t)=1+\\cos (2 \\pi t)+\\cos (4 \\pi t)+\\cos (6 \\pi t)\\)\n输出为\n\\(y(t)=\\sum_{k=0}^{3} \\cos [2 k \\pi t-\\arctan (2 k \\pi)]\\)"
+    "text": "线性相位和非线性相位\n半采样延时\n\\[\nH\\left(e^{j \\omega}\\right)=e^{-j \\omega / 2}\n\\]\n对于输入\n\\(x[n]=\\cos \\left(\\frac{\\pi}{3} n\\right)\\)\n输出为\n\\(y[n]=\\sum_{m=-\\infty}^{\\infty} \\cos \\left(\\frac{\\pi}{3} m\\right) \\operatorname{sinc}\\left(n-n_{0}-m\\right)=\\cos \\left(\\frac{\\pi}{3}\\left[n-\\frac{1}{2}\\right)\\right]\\)"
   },
   {
     "objectID": "Chapter06.html#幅度与相位",
@@ -2322,5 +2322,12 @@
     "title": "第六章 信号与系统的时域和频域特性",
     "section": "幅度与相位",
     "text": "幅度与相位\n\n上面一行，分别为：\\(X\\)、\\(|X|\\)和\\(\\arg X\\)\n下面一行，分别为：\\(\\mathcal{F}^{-1}(|X|)\\)、\\(\\mathcal{F}^{-1}(\\arg X)\\)"
+  },
+  {
+    "objectID": "Chapter06.html#线性相位和非线性相位-4",
+    "href": "Chapter06.html#线性相位和非线性相位-4",
+    "title": "第六章 信号与系统的时域和频域特性",
+    "section": "线性相位和非线性相位",
+    "text": "线性相位和非线性相位\n\\[\nH(j \\omega)=e^{-j \\arctan \\omega}\n\\]\n对于输入\n\\(x(t)=\\sum_{k=0}^{3} \\cos (2 k \\pi t)=1+\\cos (2 \\pi t)+\\cos (4 \\pi t)+\\cos (6 \\pi t)\\)\n输出为\n\\(y(t)=\\sum_{k=0}^{3} \\cos [2 k \\pi t-\\arctan (2 k \\pi)]\\)"
   }
 ]

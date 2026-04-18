@@ -195,6 +195,9 @@ LTI 系统带来的影响，可能是我们希望得到的，也可能不是。
 
 在无失真传输的情况下，相位严格正比于频率：$\phi(\omega) = -t_0 \omega$，这种相位特性称为**线性相位**。
 
+![](https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-16.jpg?height=347&width=647&top_left_y=969&top_left_x=404){width=30% fig-align=center}
+![](https://cdn.mathpix.com/cropped/2e842975-f7e6-4ed7-8237-183ab702c91c-16.jpg?height=358&width=717&top_left_y=958&top_left_x=1217){width=30% fig-align=center}
+
 ## 线性相位和非线性相位
 
 对于具有单位增益和线性相位的连续时间 LTI 系统
@@ -223,6 +226,21 @@ $$
   $y_{c}(t)=\sum_{m=-\infty}^{\infty} x[m] \operatorname{sinc}(t-m)$
   延时后的采样值。
 
+## 线性相位和非线性相位
+
+物理本质：**时间延迟的一致性**
+
+设想输入信号由不同频率的分量组成，若要保证信号波形不失真，就必须要求所有频率分量经过系统后，被延迟的时间必须完全相同：
+
+根据傅里叶变换的时移性质：
+$$x(t - t_0) \leftrightarrow X(j\omega)e^{-j\omega t_0}$$
+
+- 频率为 $\omega_1$ 的分量，其相位偏移是 $-\omega_1 t_0$
+- 频率为 $\omega_2$ 的分量，其相位偏移是 $-\omega_2 t_0$
+
+结论： 只有当相位响应 $\phi(\omega)$ 是频率的线性函数时，不同频率的分量才会有相同的“时间延迟”。
+
+如果相位与频率不是线性关系（例如 $\phi(\omega) = \omega^2$），高频分量和低频分量延迟的时间就不一样，输出信号的波形就会发生“相位失真”。
 
 ## 线性相位和非线性相位
 
@@ -285,7 +303,7 @@ $y(t)=\sum_{k=0}^{3} \cos [2 k \pi t-\arctan (2 k \pi)]$
 对于以 $\omega_{0}$ 为中心的窄带输入信号 $x$，即
 
 $$
-X(j \omega)=0, \quad \text { for }\left|\omega-\omega_{0}\right|>\Delta \omega, \text { where } \Delta \omega \ll 1
+X(j \omega)=0, \quad \text { 对于 }\left|\omega-\omega_{0}\right|>\Delta \omega, \text { 其中 } \Delta \omega \ll 1
 $$
 
 对相位作线性近似
@@ -294,17 +312,19 @@ $$
 \arg H(j \omega) \approx \arg H\left(j \omega_{0}\right)-\tau\left(\omega_{0}\right)\left(\omega-\omega_{0}\right)=-\phi_{0}-\tau\left(\omega_{0}\right) \omega
 $$
 
-其中，在频率 $\omega$ 处的群时延定义为
+其中，在频率 $\omega$ 处的**群时延**定义为
 
 $$
 \tau(\omega)=-\frac{d}{d \omega} \arg H(j \omega)
 $$
 
+群时延代表了在以 $\omega_{0}$ 为中心的一个很窄的频带或很少的一组频率上信号所受到的有效公共延时。
+<br>
+<br>
 如果当 $\left|\omega-\omega_{0}\right| \leq \Delta \omega$ 时，$|H(j \omega)| \approx\left|H\left(j \omega_{0}\right)\right|$，
-$Y(j \omega) \approx\left|H\left(j \omega_{0}\right)\right| X(j \omega) e^{-j \phi_{0}-j \tau\left(\omega_{0}\right) \omega} \Longrightarrow y(t) \approx\left|H\left(j \omega_{0}\right)\right| e^{-j \phi_{0}} x\left(t-\tau\left(\omega_{0}\right)\right)$
+$$Y(j \omega) \approx\left|H\left(j \omega_{0}\right)\right| X(j \omega) e^{-j \phi_{0}-j \tau\left(\omega_{0}\right) \omega} \Longrightarrow y(t) \approx\left|H\left(j \omega_{0}\right)\right| e^{-j \phi_{0}} x\left(t-\tau\left(\omega_{0}\right)\right)$$
 
-## **群时延**
-
+## 群时延
 $$
 H(j \omega)=e^{-j \arctan \omega} \Longrightarrow \tau(\omega)=\frac{d}{d \omega} \arctan (\omega)=\frac{1}{1+\omega^{2}}
 $$
