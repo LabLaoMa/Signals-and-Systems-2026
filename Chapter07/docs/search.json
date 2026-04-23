@@ -4002,5 +4002,173 @@
     "title": "第五章 离散时间傅里叶变换",
     "section": "作业",
     "text": "作业\n（原文件作业部分保留）"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#本章主要内容",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#本章主要内容",
+    "title": "My Site",
+    "section": "本章主要内容",
+    "text": "本章主要内容\n1．如何用连续时间信号的离散时间样本来表示连续时间信号——采样定理。\n2．如何从采样所得到的样本重建连续时间信号。 3．欠采样导致的后果——频谱混叠。 4．连续时间信号的离散时间处理。 5．离散时间信号的采样、抽取及内插。 6．频域采样。\n在日常生活中，常可以看到用离散时间信号表示连续时间信号的例子。如传真的照片、电视屏幕的画面、电影胶片等等，这些都表明连续时间信号与离散时间信号之间存在着密切的联系。在一定条件下，可以用离散时间信号代替连续时间信号而并不丟失原来信号所包含的信息。\n例1．一幅新闻照片"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#局部放大后的图片",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#局部放大后的图片",
+    "title": "My Site",
+    "section": "局部放大后的图片",
+    "text": "局部放大后的图片"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#例2另一幅新闻照片",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#例2另一幅新闻照片",
+    "title": "My Site",
+    "section": "例2．另一幅新闻照片",
+    "text": "例2．另一幅新闻照片"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#局部放大后的图片-1",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#局部放大后的图片-1",
+    "title": "My Site",
+    "section": "局部放大后的图片",
+    "text": "局部放大后的图片\n\n研究连续时间信号与离散时间信号之间的关系主要包括：\n1．在什么条件下，一个连续时间信号可以用它的离散时间样本来代替而不致丟失原有的信息。\n2．如何从连续时间信号的离散时间样本不失真地恢复成原来的连续时间信号。\n3．如何对一个连续时间信号进行离散时间处理。 4．对离散时间信号如何进行采样、抽取，及内插。 7.1 用样本表示连续时间信号：采样定理\nTheorem of Sampling 一．采样：Sampling 在某些离散的时间点上提取连续时间信号值的过程称为采样。\n是否任何信号都可以由它的离散时间样本来表示？\n对一维连续时间信号采样的例子： \n在没有任何条件限制的情况下，从连续时间信号采样所得到的样本序列不能唯一地代表原来的连续时间信号。\n此外，对同一个连续时间信号，当采样间隔不同时也会 得到不同的样本序列。"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#二采样的数学模型",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#二采样的数学模型",
+    "title": "My Site",
+    "section": "二．采样的数学模型：",
+    "text": "二．采样的数学模型：\n在时域：\\(x_{s}(t)=x(t) s(t)\\) \n在频域：\\(X_{s}(j \\omega)=\\frac{1}{2 \\pi} X(j \\omega) * S(j \\omega)\\)"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#三冲激串采样理想采样",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#三冲激串采样理想采样",
+    "title": "My Site",
+    "section": "三．冲激串采样（理想采样）：",
+    "text": "三．冲激串采样（理想采样）：\n\\(s(t)=\\sum_{n=-\\infty}^{+\\infty} \\delta\\left(t-n T_{s}\\right) \\quad T_{s}\\) 为采样间隔\n\\[\n\\begin{aligned}\nx_{s}(t) & =x(t) s(t)=x(t) \\sum_{n=-\\infty}^{+\\infty} \\delta\\left(t-n T_{s}\\right) \\\\\n& =\\sum_{n=-\\infty}^{+\\infty} x\\left(n T_{s}\\right) \\delta\\left(t-n T_{s}\\right)\n\\end{aligned}\n\\]\n在频域由于 \\(s(t) \\leftrightarrow S(j \\omega)=\\frac{2 \\pi}{T_{s}} \\sum_{k=-\\infty}^{\\infty} \\delta\\left(\\omega-k \\frac{2 \\pi}{T_{s}}\\right)\\)\n\\[\n\\begin{aligned}\n& \\therefore X_{s}(j \\omega)=\\frac{1}{2 \\pi} X(j \\omega) * S(j \\omega) \\\\\n& =\\frac{1}{2 \\pi} X(j \\omega) * \\frac{2 \\pi}{T_{s}} \\sum_{k=-\\infty}^{\\infty} \\delta\\left(\\omega-k \\omega_{s}\\right) \\\\\n& =\\frac{1}{T_{s}} \\sum_{k=-\\infty}^{\\infty} X\\left(j\\left(\\omega-k \\omega_{s}\\right)\\right) \\quad \\omega_{s}=\\frac{2 \\pi}{T_{s}}\n\\end{aligned}\n\\]\n可见，在时域对连续时间信号进行冲激串采样，就相当于在频域将连续时间信号的频谱以 \\(\\omega_{s}\\)为周期进行延拓。  \\(s(t)\\)  \\(\\xrightarrow[-2 \\omega_{\\mathrm{s}}]{\\uparrow} \\uparrow_{-\\omega_{\\mathrm{s}}} \\overbrace{0}^{\\frac{2 \\pi}{T_{\\mathrm{s}}} \\uparrow} \\uparrow_{\\omega_{\\mathrm{s}}}^{\\mathbf{S}(j \\omega)} \\uparrow_{2 \\omega_{\\mathrm{s}}} \\uparrow_{3 \\omega_{\\mathrm{s}}} \\cdots\\)  \n说明：（1）采样信号的频谱 \\(X_{s}(\\dot{j \\omega})\\) 原信号的频谱 \\(\\dot{X}(\\overline{j \\omega})\\) 艮个频移组成，幅值为原频谱的 ，\\(\\frac{1}{T_{s}}\\) 移角频率为 \\(\\quad\\left(\\mathrm{n} \\omega_{s} \\mathbf{0}, \\pm \\mathbf{1}\\right.\\) ， \\(\\pm 2\\) ．．．．．．） （2）if \\(\\omega_{s} \\geq 2 \\omega_{M}\\) 邻的频谱不会重叠，这时能从采样信号的频谱中得到原信号的频谱，即从采样信号 \\(\\quad x_{s}^{-}(t)\\) 䢍原信号 。 \\(x(t)\\) （3）if \\(\\omega_{s}&lt;2 \\omega_{M}\\) 频移后的相邻频谱互相重叠，无法恢复原信号。 \n四．Nyquist 采样定理（时域）： 一个截止频率为 \\(\\omega\\) 的连续时间带限信号 洳果以 的频率进行理想采样，则 可以唯 \\((t\\) 的由其样本 来确云 \\(x\\left(n T_{s}\\right)\\)\n以冲激采样为例，研究如何从采样信号恢复原信号 \n为了从已采样信号 \\(X_{s}(j \\omega)\\) 中恢复原信号 \\(X(j \\omega)\\) ，需满足如下两个条件：\n1．\\(x(t)\\) 必须是带限的，最高频率分量为 \\(\\omega_{M}\\) 。 2．采样间隔（周期）不能是任意的，必须保证采样频率 \\(\\omega_{s} \\geq 2 \\omega_{M}\\) ；或采样间隔 \\(T_{s} \\leq \\frac{\\pi}{\\omega_{M}}\\) 。其中 \\(\\omega_{s}=2 \\pi / T_{s}\\) 为采样频率。\nNyquist频率：最低允许的采样频率 \\(\\omega_{s}=2 \\omega_{M}\\) Nyquist间隔：最大允许的采样间隔 \\(T_{s}=\\frac{\\pi}{\\omega_{M}}\\) －低通滤波器的截止频率必须满足：\n\\[\n\\omega_{M}&lt;\\omega_{c}&lt;\\left(\\omega_{s}-\\omega_{M}\\right)\n\\]\n－为了补偿采样时频谱幅度的减小，滤波器应具有 7 倍的通带增益。\n例：确定下列信号的Nyquist率 1）\\(x(t)=1+\\cos (2000 \\pi t)+\\frac{1}{2} \\cos (4000 \\pi t)\\) 2）\\(x(t)=\\frac{\\sin (4000 \\pi t)}{\\pi t}\\) 3）\\(x(t)=\\left(\\frac{\\sin (4000 \\pi t)}{\\pi t}\\right)^{2}\\)\n五．零阶保持采样： 在一个给定的瞬时对 \\({ }^{x(t)}\\) 采样，并保持这一样本值直到下一个样本被采到为止。 \n信号的样本经零阶保持后，所得到的信号是一个阶梯形信号。\n零阶保持采样在原理上可以用冲激串采样，再级联一个零阶保持系统来实现。 \n为了从 \\(x\\) 能恢复 \\(x\\)（就要求零阶保持后再级联一个系统 。 \\(H_{r}(j \\omega)\\)\n\\[\n\\begin{gathered}\nH_{0}(j \\omega) H_{r}(j \\omega)=\\left\\{\\begin{array}{c}\nT_{s},|\\omega|&lt;\\omega_{c} \\\\\n0,|\\omega|&gt;\\omega_{c}\n\\end{array} \\quad \\omega_{M}&lt;\\omega_{c}&lt;\\omega_{s}-\\omega_{M}\\right. \\\\\n\\text { 而 } H_{0}(j \\omega)=\\frac{2 \\operatorname{Sin} \\frac{\\omega T_{s}}{2}}{\\omega} e^{-j \\frac{\\omega T_{s}}{2}} \\\\\n\\text { 所以 } H_{r}(j \\omega)=\\frac{H(j \\omega)}{\\frac{2 \\operatorname{Sin} \\omega T_{s} / 2}{\\omega}} \\cdot e^{j \\frac{\\omega T_{s}}{2}}\n\\end{gathered}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#以-hj-omega-表示理想低通滤波器的特性则",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#以-hj-omega-表示理想低通滤波器的特性则",
+    "title": "My Site",
+    "section": "以 \\(H(j \\omega)\\) 表示理想低通滤波器的特性，则：",
+    "text": "以 \\(H(j \\omega)\\) 表示理想低通滤波器的特性，则：\n \n若 \\(\\omega_{c}=\\frac{1}{2} \\omega_{s}\\) 则"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#利用内插从样本重建信号",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#利用内插从样本重建信号",
+    "title": "My Site",
+    "section": "7.2 利用内插从样本重建信号",
+    "text": "7.2 利用内插从样本重建信号"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#reconstruction-of-a-signal-from-its-samples-using-interpolation",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#reconstruction-of-a-signal-from-its-samples-using-interpolation",
+    "title": "My Site",
+    "section": "Reconstruction of a Signal from Its Samples Using Interpolation",
+    "text": "Reconstruction of a Signal from Its Samples Using Interpolation\n内插：由样本值重建某一函数的过程。"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#一理想内插利用lp的单位冲激响应的内插",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#一理想内插利用lp的单位冲激响应的内插",
+    "title": "My Site",
+    "section": "一．理想内插：（利用LP的单位冲激响应的内插）",
+    "text": "一．理想内插：（利用LP的单位冲激响应的内插）\n若 \\(h(t)\\) 为理想低通的单位冲激响应，则\n\\[\n\\begin{aligned}\nx(t) & =x_{s}(t) * h(t)=\\sum_{n=-\\infty}^{+\\infty} x\\left(n T_{s}\\right) \\delta\\left(t-n T_{s}\\right) * h(t) \\\\\n& =\\sum_{n=-\\infty}^{\\infty} x\\left(n T_{s}\\right) h\\left(t-n T_{s}\\right)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#理想内插以理想低通滤波器的单位冲激响应作",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#理想内插以理想低通滤波器的单位冲激响应作",
+    "title": "My Site",
+    "section": "理想内插以理想低通滤波器的单位冲激响应作",
+    "text": "理想内插以理想低通滤波器的单位冲激响应作"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#为内插函数",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#为内插函数",
+    "title": "My Site",
+    "section": "为内插函数",
+    "text": "为内插函数\n\\[\n\\begin{aligned}\n& h(t)=T_{s} \\cdot \\frac{\\operatorname{Sin} \\omega_{c} t}{\\pi t} \\\\\n& \\therefore x(t)=\\sum_{n=-\\infty}^{\\infty} x\\left(n T_{s}\\right) \\cdot \\frac{\\omega_{c} T_{s} \\operatorname{Sin} \\omega_{c}\\left(t-n T_{s}\\right)}{\\pi} \\frac{}{\\omega_{c}\\left(t-n T_{s}\\right)}\n\\end{aligned}\n\\]\n当 \\(\\omega_{c}=\\frac{\\omega_{s}}{2}=\\frac{\\pi}{T_{s}}\\) 时 \\(x(t)=\\sum_{n=-\\infty}^{\\infty} x\\left(n T_{s}\\right) \\frac{\\operatorname{Sin} \\omega_{c}\\left(t-n T_{s}\\right)}{\\omega_{c}\\left(t-n T_{s}\\right)}\\)"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#这种内插称为时域中的带限内插",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#这种内插称为时域中的带限内插",
+    "title": "My Site",
+    "section": "这种内插称为时域中的带限内插。",
+    "text": "这种内插称为时域中的带限内插。"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#二零阶保持内插",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#二零阶保持内插",
+    "title": "My Site",
+    "section": "二．零阶保持内插：",
+    "text": "二．零阶保持内插：\n零阶保持内插的内插函数是零阶保持系统的单位冲激响应 \\(h_{0}(t)\\) 。"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#三一阶保持内插线性内插",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#三一阶保持内插线性内插",
+    "title": "My Site",
+    "section": "三．一阶保持内插（线性内插）：",
+    "text": "三．一阶保持内插（线性内插）：\n \n\\[\nS(t)=\\sum_{n=-\\infty}^{\\infty} \\delta\\left(t-n T_{S}\\right)\n\\]\n其内插函数是三 角形脉冲。 \n\\[\n\\begin{aligned}\nx(t) & =x_{s}(t) * h_{1}(t)=\\sum_{n=-\\infty}^{+\\infty} x\\left(n T_{s}\\right) \\delta\\left(t-n T_{s}\\right) * h_{1}(t) \\\\\n& =\\sum_{n=-\\infty}^{\\infty} x\\left(n T_{s}\\right) h_{1}\\left(t-n T_{s}\\right)\n\\end{aligned}\n\\]\n\\[\nH_{1}(j \\omega)=T_{\\mathrm{s}}\\left[\\frac{\\operatorname{Sin} \\frac{\\omega T_{\\mathrm{s}}}{2}}{\\omega T_{\\mathrm{s}} / 2}\\right]^{2}\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#连续时间信号的离散时间处理",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#连续时间信号的离散时间处理",
+    "title": "My Site",
+    "section": "7.4 连续时间信号的离散时间处理",
+    "text": "7.4 连续时间信号的离散时间处理\nDiscrete－Time Processing of Continuous－Time Signals 对连续时间信号进行离散时间处理的系统可视为三个环节的级连。 \n将一个连续时间信号转换为一个离散时间信号，以及从信号的离散时间表示重建连续时间信号所依据的理论基础：采样定理\n\\[\nx_{d}[n]=x_{c}\\left(n T_{s}\\right) \\quad y_{d}[n]=y_{c}\\left(n T_{s}\\right)\n\\]\n用于实现C／D转换的器件称为模拟数字（A／D）转换器用于实现D／C转换的器件称为数字模拟（D／A）转换器"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#一cd-转换",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#一cd-转换",
+    "title": "My Site",
+    "section": "一．C／D 转换：",
+    "text": "一．C／D 转换："
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#时域分析",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#时域分析",
+    "title": "My Site",
+    "section": "时域分析：",
+    "text": "时域分析：\n\\[\n\\begin{aligned}\n& s(t)=\\sum_{n=-\\infty}^{\\infty} \\delta\\left(t-n T_{s}\\right) \\\\\n& x_{s}(t)=x_{c}(t) \\cdot s(t)=\\sum_{n=-\\infty}^{\\infty} x_{c}\\left(n T_{s}\\right) \\delta\\left(t-n T_{s}\\right) \\\\\n& x_{d}[n]=x_{c}\\left(n T_{s}\\right)\n\\end{aligned}\n\\]\n \n样本的冲激串 \n样本的离散时间序列"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#频域分析",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#频域分析",
+    "title": "My Site",
+    "section": "频域分析：",
+    "text": "频域分析：\n用 \\(\\omega\\) 表示连续时间频率变量，用 \\(\\Omega\\) 表示离散时间频率变量\n\\[\n\\begin{gathered}\nx_{c}(t) \\stackrel{F}{\\longleftrightarrow} X_{c}(j \\omega) \\quad x_{d}[n] \\stackrel{F}{\\longleftrightarrow} X_{d}\\left(e^{j \\Omega}\\right) \\\\\nx_{s}(t)=x_{c}(t) \\cdot s(t)=\\sum_{n=-\\infty}^{\\infty} x_{c}\\left(n T_{s}\\right) \\delta\\left(t-n T_{s}\\right) \\\\\n\\therefore X_{\\mathrm{s}}(j \\omega)=\\sum_{n=-\\infty}^{\\infty} x_{c}\\left(n T_{s}\\right) e^{-j \\omega n T_{s}} \\\\\nX_{d}\\left(e^{j \\Omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x_{d}[n] e^{-j \\Omega n}=\\sum_{n=-\\infty}^{\\infty} x_{c}\\left(n T_{s}\\right) e^{-j \\Omega n} \\\\\n\\therefore X_{d}\\left(e^{j \\Omega}\\right)=X_{\\mathrm{s}}\\left(j \\frac{\\Omega}{T_{s}}\\right)\n\\end{gathered}\n\\]\n\\[\n\\begin{aligned}\ns(t) & \\leftrightarrow S(j \\omega)=\\frac{2 \\pi}{T_{s}} \\sum_{k=-\\infty}^{\\infty} \\delta\\left(\\omega-k \\frac{2 \\pi}{T_{s}}\\right) \\\\\nX_{s}(j \\omega) & =\\frac{1}{2 \\pi} X_{c}(j \\omega) * S(j \\omega) \\\\\n& =\\frac{1}{T_{s}} \\sum_{k=-\\infty}^{\\infty} X_{c}\\left[j\\left(\\omega-k \\omega_{s}\\right)\\right], \\quad \\omega_{s}=\\frac{2 \\pi}{T_{s}} \\\\\n\\therefore \\quad X_{d}\\left(e^{j \\Omega}\\right) & =\\frac{1}{T_{s}} \\sum_{k=-\\infty}^{\\infty} X_{c}\\left[j \\frac{1}{T_{s}}(\\Omega-2 \\pi k)\\right]\n\\end{aligned}\n\\]\n即从 \\(x_{s}(t)\\) 到 \\(x_{d}[n]\\) 的转换过程中，在频率轴上引入了一个 \\(T_{s}\\) 倍的变化！    \\(x_{c}(t)\\) 和 \\(x_{d}[n]\\) 的频域关系可表示为： \\(X_{c}(j \\omega)\\) 以 \\(\\omega_{s}\\) 为周期重复＋线性频域尺度变换\n\\[\n\\Omega=\\omega T_{s}\n\\]\n可见，冲激串到序列的变换过程，在时域是一个对时间归一化的过程；在频域是一个频率去归一化的过程。"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#二dc-转换",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#二dc-转换",
+    "title": "My Site",
+    "section": "二．D／C 转换：",
+    "text": "二．D／C 转换：\n\n\\[\n\\begin{gathered}\ny_{s}(t)=\\sum_{n=-\\infty}^{\\infty} y_{d}[n] \\delta\\left(t-n T_{s}\\right) \\quad Y_{s}(j \\omega)=\\sum_{n=-\\infty}^{\\infty} y_{d}[n] e^{-j \\omega n T_{s}} \\\\\nY_{d}\\left(e^{j \\Omega}\\right)=\\sum_{n=-\\infty}^{\\infty} y_{d}[n] e^{-j \\Omega n} \\\\\n\\therefore Y_{s}(j \\omega)=Y_{d}\\left(e^{j \\omega T_{s}}\\right)\n\\end{gathered}\n\\]\n三．连续时间信号的离散时间处理： \n分析： If 离散时间系统 \\(H_{d}\\left(e^{j \\Omega}\\right)\\) 是恒等系统； Then 连续时间系统 \\(H_{c}(j \\omega)\\) 也是恒等系统。      \n假定 \\(H_{d}\\left(e^{j \\Omega}\\right)=1\\) ，有 \\(y_{d}[n]=x_{d}[n]\\) ，在满足采样定理时有 \\(y_{s}(t)=x_{s}(t), y_{c}(t)=x_{c}(t)\\) ，整个系统是恒等系统，表明D／C是C／D的逆系统。\n由上图：\n\\[\nH_{c}(j \\omega)=\\left\\{\\begin{array}{ll}\nH_{d}\\left(e^{j \\omega T_{s}}\\right) & |\\omega|&lt;\\frac{\\omega_{s}}{2} \\\\\n0 & |\\omega|&gt;\\frac{\\omega_{s}}{2}\n\\end{array} \\quad\\right. \\text { 式 (b) }\n\\]\n等效的连续时间滤波器的频率响应就是该离散时间滤波器在一个周期内的特性，只是频率轴有一个线性尺度变化 \\(\\left(\\Omega=\\omega T_{s}\\right)\\) 。\n对于带限输入信号，利用图（a）和式（b）可实现利用离散时间滤波器处理连续信号。\n例：数字微分器（连续时间带限微分器的离散实现） 带限微分器 \\(\\quad H_{c}(j \\omega)=\\left\\{\\begin{array}{cc}j \\omega, & |\\omega|&lt;\\omega_{c} \\\\ 0, & |\\omega|&gt;\\omega_{c}\\end{array}\\right.\\)  \n由 \\(H_{c}\\left(j \\frac{\\Omega}{T_{s}}\\right)=H_{d}\\left(e^{j \\Omega}\\right)\\) 可得：当 \\(\\omega_{c}=\\frac{\\omega_{s}}{2}\\) 时有\n\\[\nH_{d}\\left(e^{j \\Omega}\\right)=j \\frac{\\Omega}{T_{s}} \\quad|\\Omega|&lt;\\pi\n\\]"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#离散时间信号采样",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#离散时间信号采样",
+    "title": "My Site",
+    "section": "7．6离散时间信号采样",
+    "text": "7．6离散时间信号采样\nSampling of Discrete－Time Signals"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#一脉冲串采样",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#一脉冲串采样",
+    "title": "My Site",
+    "section": "一、脉冲串采样",
+    "text": "一、脉冲串采样\n\n\\[\n\\begin{gathered}\ns[n]=\\sum_{k=-\\infty}^{\\infty} \\delta\\left[n-k N_{s}\\right] \\\\\nx_{s}[n]=x[n] s[n]=\\sum_{k=-\\infty}^{\\infty} x\\left[k N_{s}\\right] \\delta\\left[n-k N_{s}\\right]\n\\end{gathered}\n\\]\n\\[\n\\begin{aligned}\n& X_{s}\\left(e^{j \\omega}\\right)=\\frac{1}{2 \\pi} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) S\\left(e^{j(\\omega-\\theta)}\\right) d \\theta \\\\\n& =\\frac{1}{N_{s}} \\int_{2 \\pi} X\\left(e^{j \\theta}\\right) \\sum_{k=-\\infty}^{\\infty} \\delta\\left(\\omega-\\theta-\\frac{2 \\pi}{N_{s}} k\\right) d \\theta=\\frac{1}{N_{s}} \\sum_{k=0}^{N_{s}-1} X\\left(e^{j\\left(\\omega-\\frac{2 \\pi}{N_{s} k}\\right)}\\right)\n\\end{aligned}\n\\]\n \n\\[\n\\begin{aligned}\n& X_{s}\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x_{s}[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x\\left[n N_{s}\\right] e^{-j \\omega n N_{s}} \\\\\n& =\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j \\omega n}\\left(\\frac{1}{N_{s}} \\sum_{m=0}^{N_{s}-1} e^{j 2 \\pi m m / N_{s}}\\right) \\\\\n& =\\frac{1}{N_{s}} \\sum_{m=0}^{N_{s}-1} \\sum_{n=-\\infty}^{\\infty} x[n] e^{-j n\\left(\\omega-2 \\pi n / N_{s}\\right)} \\\\\n& =\\frac{1}{N_{s}} \\sum_{m=0}^{N_{s}-1} X\\left(e^{j\\left(\\omega-2 \\pi n / N_{s}\\right)}\\right)\n\\end{aligned}\n\\]\n在时域，对离散时间信号以 \\(N_{s}\\) 为间隔采样，在频域，信号的频谱就在一个周期内以 \\(\\frac{2 \\pi}{N_{s}}\\) 为间隔周期性延拓。\n要使 \\(x_{s}[n]\\) 能恢复成 \\(x[n]\\) ，则频谱在周期性延拓时不能发生混叠。为此要求： 1．\\(x[n]\\) 带限于 \\(\\omega_{M}\\) 。 2．\\(\\omega_{s}=\\frac{2 \\pi}{N} \\geq 2 \\omega_{M}\\) 。 \n此时可以通过离散时间理想低通滤波器实现对信号 \\(x[n]\\) 的恢复。截止频率满足：\n\\[\n\\omega_{M}&lt;\\omega_{c}&lt;\\omega_{s}-\\omega_{M}\n\\]\n恢复 \\(x[n]\\) 的过程也是一种带限内插过程。其内插函数为理想低通的单位脉冲响应 \\(h[n]\\) 。 \n例：有一序列 \\(x[n]\\) ，其傅立叶变换 \\(X\\left(e^{j \\omega}\\right)\\) 具有如下特点：\\(\\quad X\\left(e^{j \\omega}\\right)=0, \\frac{2 \\pi}{9} \\leq|\\omega| \\leq \\pi\\) 求对 \\(x[n]\\) 采样而不发生混叠的最低采样率。"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#二离散时间抽取与内插",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#二离散时间抽取与内插",
+    "title": "My Site",
+    "section": "二．离散时间抽取与内插：",
+    "text": "二．离散时间抽取与内插：\nDiscrete－Time Decimation and Interpolation在实际应用中，直接按图传输已采样序列 \\(x_{s}[n]\\) 是很不经济的。因为序列 \\(x_{s}[n]\\) 在采样点之间是 \\(\\mathbf{0}\\) 。因此，往往用一个新序列 \\(x_{b}[n]\\) 来代替，\\(x_{b}[n]\\) 是由 \\(\\boldsymbol{x}_{s}[\\boldsymbol{n}]\\) 中每隔 \\(N_{s}\\) 点上的序列值构成，即\n\\[\nx_{b}[n]=x_{s}\\left[n N_{s}\\right]=x\\left[n N_{s}\\right]\n\\]\n抽取：提取每第 \\(N_{s}\\) 。   \n时域 \\(x[n] 、 x_{s}[n] 、 x_{b}[n]\\) ，的关系如左图\n抽取过程在频或的反映：\n\\[\n\\begin{aligned}\n& X_{b}\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x_{b}[n] e^{-j \\omega n}=\\sum_{n=-\\infty}^{\\infty} x\\left[n N_{s}\\right] e^{-j \\omega n} \\\\\n& =\\sum_{k=-\\infty}^{\\infty} x[k]\\left(\\frac{1}{N_{s}} \\sum_{m=0}^{N_{s}-1} e^{j 2 \\pi k m / N_{s}}\\right) e^{-j \\omega k / N_{s}} \\\\\n& =\\frac{1}{N_{s}} \\sum_{m=0}^{N_{s}-1} \\sum_{k=-\\infty}^{\\infty} x[k] e^{j 2 \\pi k m / N_{s}} e^{-j \\omega k / N_{s}} \\\\\n& =\\frac{1}{N_{s}} \\sum_{m=0}^{N_{s}-1} \\sum_{k=-\\infty}^{\\infty} x[k] e^{-j k(\\omega-2 \\pi n) / N_{s}}=\\frac{1}{N_{s}} \\sum_{m=0}^{N_{s}-1} X\\left(e^{j(\\omega-2 \\pi n) / N_{s}}\\right)\n\\end{aligned}\n\\]\n\\[\n\\begin{aligned}\n& x_{s}[n]=\\left\\{\\begin{array}{cc}\nx_{b}\\left[n / N_{s}\\right] & n=p N_{s}, p \\text { 为整数 } \\\\\n0 & \\text { 其它n }\n\\end{array}\\right. \\\\\n& X_{s}\\left(e^{j \\omega}\\right)=\\sum_{n=-\\infty}^{\\infty} x_{s}[n] e^{-j \\omega n} \\\\\n& =\\sum_{n=-\\infty}^{\\infty} x_{b}[n] e^{-j \\omega n N_{s}}=X_{b}\\left(e^{j \\omega N_{s}}\\right) \\\\\n& =\\sum_{m=0}^{N_{s}-1} X\\left(e^{j\\left(\\omega-2 \\pi m / N_{s}\\right)}\\right)\n\\end{aligned}\n\\]\n这表明，在时域对带限序列进行抽取，相当于在频域对采样序列的频谱进行尺度变换。   \n由上图，为了避免抽取过程中产生混叠，序列 \\(x[n]\\)的频谱 \\(X\\left(e^{j \\omega}\\right)\\) 不能占满整个频带。\n抽取的过程也称为减采样； 增采样：减采样的逆过程 由 \\(x_{b}[n]\\) 增采样以得到 \\(x[n]\\) \n\\[\n\\begin{aligned}\n& x[n] \\stackrel{\\text { DTFT }}{\\longleftrightarrow} X\\left(e^{j \\omega}\\right) \\\\\n& \\tilde{X}[k]=\\left.X\\left(e^{j \\omega}\\right)\\right|_{\\omega=2 \\pi n / N}=\\sum_{n=-\\infty}^{\\infty} x[n] e^{-j 2 \\pi k n / N} \\\\\n& \\tilde{x}[n]=I D T F T\\{\\tilde{X}[k]\\}=\\frac{1}{N} \\sum_{k=0}^{N-1} \\tilde{X}[k] e^{j 2 \\pi k n / N} \\\\\n& =\\frac{1}{N} \\sum_{k=0}^{N-1} \\sum_{m=-\\infty}^{\\infty} x[m] e^{-j 2 \\pi k m / N} e^{j 2 \\pi k n / N} \\\\\n& =\\frac{1}{N} \\sum_{m=-\\infty}^{\\infty} x[m] \\sum_{k=0}^{N-1} e^{-j 2 \\pi k m / N} e^{j 2 \\pi k n / N} \\\\\n& =\\frac{1}{N} \\sum_{m=-\\infty}^{\\infty} x[m] \\sum_{k=0}^{N-1} e^{j 2 \\pi k(m-n) / N}=\\sum_{m=-\\infty}^{\\infty} x[n+N m]\n\\end{aligned}\n\\]\n  \n在 \\(x_{b}[n]\\) 的每两个相邻 序列值之间插入 \\(N_{s}-1\\) 个幅度为 0 的序列值\n利用低通滤波器从 \\(x_{s}[n]\\) 中得到 \\(x[n]\\)\n例：考虑序列 \\(x[n]\\) ，其傅立叶变换 \\(X\\left(e^{j \\omega}\\right)\\) 如图  （1）该序列在脉冲串采样时不发生混叠的最低采样率？ （2）对 \\(x_{s}[n]\\) 列以4抽取，得 \\(\\left.\\quad x_{b}[n]\\right]\\) 的频谱图？ （3）将内插和抽取结合起来，如何使一个序列达到最大可能的减采样？（即序列的频谱在一个周期内非零部分填满 \\(-\\pi\\) 到 \\(\\pi\\) 整个频带）"
+  },
+  {
+    "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#习题",
+    "href": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#习题",
+    "title": "My Site",
+    "section": "习题",
+    "text": "习题\n\n\n\n7.2\n7.22\n7.15\n\n\n\n\n7.4\n7.23\n7.17\n\n\n7.5\n7.31\n7.27\n\n\n7.6\n\n\n\n\n7.7\n\n\n\n\n7.10\n\n\n\n\n7.21"
   }
 ]

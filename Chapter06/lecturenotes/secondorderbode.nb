@@ -1,0 +1,222 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[      8486,        212]
+NotebookOptionsPosition[      8009,        195]
+NotebookOutlinePosition[      8399,        211]
+CellTagsIndexPosition[      8356,        208]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"\:5f3a\:5236", " ", "s", " ", "\:4e3a\:5c40\:90e8\:7b26\:53f7"}],
+     "\:ff0c", 
+    RowBox[{
+    "\:786e\:4fdd", " ", "TransferFunction", " ", 
+     "\:6b63\:5e38\:5de5\:4f5c"}]}], "*)"}], 
+  RowBox[{
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"s", ",", 
+       RowBox[{"wn", "=", "1"}]}], "}"}], ",", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", "sys", "}"}], ",", 
+       RowBox[{
+        RowBox[{"sys", "=", 
+         RowBox[{"TransferFunctionModel", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"wn", "^", "2"}], "/", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"s", "^", "2"}], "+", 
+              RowBox[{"2", " ", "zeta", " ", "wn", " ", "s"}], "+", 
+              RowBox[{"wn", "^", "2"}]}], ")"}]}], ",", "s"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"BodePlot", "[", 
+         RowBox[{"sys", ",", 
+          RowBox[{"{", 
+           RowBox[{"0.01", ",", "100"}], "}"}], ",", 
+          RowBox[{"PlotRange", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "20"}], ",", "25"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "185"}], ",", "5"}], "}"}]}], "}"}]}], ",", 
+          RowBox[{"(*", 
+           RowBox[{
+           "\:9650\:5236\:7eb5\:8f74", "\:ff0c", 
+            "\:4f7f\:89c2\:5bdf\:66f4\:6e05\:6670"}], "*)"}], 
+          RowBox[{"GridLines", "->", "Automatic"}], ",", 
+          RowBox[{"Frame", "->", "True"}], ",", 
+          RowBox[{"PlotStyle", "->", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Thickness", "[", "0.006", "]"}], ",", "Blue"}], "}"}]}],
+           ",", 
+          RowBox[{"ImageSize", "->", "500"}], ",", 
+          RowBox[{"PlotLabel", "->", 
+           RowBox[{"Style", "[", 
+            RowBox[{
+             
+             RowBox[{"\"\<\:4e8c\:9636\:7cfb\:7edf\:4f2f\:5fb7\:56fe | \
+\[Zeta] = \>\"", "<>", 
+              RowBox[{"ToString", "[", "zeta", "]"}]}], ",", "14", ",", 
+             "Bold"}], "]"}]}]}], "]"}]}]}], "]"}]}], "]"}], ",", 
+   RowBox[{"(*", "\:63a7\:4ef6\:90e8\:5206", "*)"}], 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "zeta", ",", "0.707", ",", "\"\<\:963b\:5c3c\:6bd4 (\[Zeta])\>\""}], 
+      "}"}], ",", "0.05", ",", "2", ",", "0.01", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"(*", "\:5feb\:6377\:8df3\:8f6c\:6309\:94ae", "*)"}], 
+   RowBox[{"Row", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<\:6781\:5c0f\:963b\:5c3c (0.05)\>\"", ",", 
+         RowBox[{"zeta", "=", "0.05"}]}], "]"}], ",", 
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<\:5178\:578b\:6b20\:963b\:5c3c (0.5)\>\"", ",", 
+         RowBox[{"zeta", "=", "0.5"}]}], "]"}], ",", 
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<\:6700\:4f73\:963b\:5c3c (0.707)\>\"", ",", 
+         RowBox[{"zeta", "=", "0.707"}]}], "]"}], ",", 
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<\:4e34\:754c\:963b\:5c3c (1.0)\>\"", ",", 
+         RowBox[{"zeta", "=", "1.0"}]}], "]"}], ",", 
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<\:8fc7\:963b\:5c3c (2.0)\>\"", ",", 
+         RowBox[{"zeta", "=", "2.0"}]}], "]"}]}], "}"}], ",", "\"\< \>\""}], 
+    "]"}], ",", 
+   RowBox[{"ControlPlacement", "->", "Top"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.985773899910975*^9, 3.985773899912264*^9}},
+ CellLabel->"In[3]:=",ExpressionUUID->"16019cb3-9401-4482-8cff-8b4f25379f5f"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`zeta$$ = 2., Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`zeta$$], 0.707, "\:963b\:5c3c\:6bd4 (\[Zeta])"}, 
+      0.05, 2, 0.01, ControlType -> Manipulator}, {
+      Hold[
+       Row[{
+         Button[
+         "\:6781\:5c0f\:963b\:5c3c (0.05)", $CellContext`zeta$$ = 0.05], 
+         Button[
+         "\:5178\:578b\:6b20\:963b\:5c3c (0.5)", $CellContext`zeta$$ = 0.5], 
+         Button[
+         "\:6700\:4f73\:963b\:5c3c (0.707)", $CellContext`zeta$$ = 0.707], 
+         Button["\:4e34\:754c\:963b\:5c3c (1.0)", $CellContext`zeta$$ = 1.], 
+         Button["\:8fc7\:963b\:5c3c (2.0)", $CellContext`zeta$$ = 2.]}, " "]],
+       Manipulate`Dump`ThisIsNotAControl, ControlType -> None}}, 
+    Typeset`size$$ = {500., {324.25943435679227`, 329.99136795054227`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`zeta$$ = 0.707}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Block[{$CellContext`s, $CellContext`wn = 1}, 
+        Module[{$CellContext`sys$}, $CellContext`sys$ = 
+          TransferFunctionModel[$CellContext`wn^2/($CellContext`s^2 + 
+            2 $CellContext`zeta$$ $CellContext`wn $CellContext`s + \
+$CellContext`wn^2), $CellContext`s]; 
+         BodePlot[$CellContext`sys$, {0.01, 100}, 
+           PlotRange -> {{-20, 25}, {-185, 5}}, GridLines -> Automatic, Frame -> 
+           True, PlotStyle -> {
+             Thickness[0.006], Blue}, ImageSize -> 500, PlotLabel -> 
+           Style["\:4e8c\:9636\:7cfb\:7edf\:4f2f\:5fb7\:56fe | \[Zeta] = " <> 
+             ToString[$CellContext`zeta$$], 14, Bold]]]], 
+      "Specifications" :> {{{$CellContext`zeta$$, 0.707, 
+          "\:963b\:5c3c\:6bd4 (\[Zeta])"}, 0.05, 2, 0.01, Appearance -> 
+         "Labeled"}, 
+        Row[{
+          Button[
+          "\:6781\:5c0f\:963b\:5c3c (0.05)", $CellContext`zeta$$ = 0.05], 
+          Button[
+          "\:5178\:578b\:6b20\:963b\:5c3c (0.5)", $CellContext`zeta$$ = 0.5], 
+          
+          Button[
+          "\:6700\:4f73\:963b\:5c3c (0.707)", $CellContext`zeta$$ = 0.707], 
+          Button["\:4e34\:754c\:963b\:5c3c (1.0)", $CellContext`zeta$$ = 1.], 
+          
+          Button["\:8fc7\:963b\:5c3c (2.0)", $CellContext`zeta$$ = 2.]}, 
+         " "]}, "Options" :> {ControlPlacement -> Top}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      568.448724008998, {387.38513320933134`, 393.11706680308134`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.985773901151156*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"25c0844f-fda6-4537-baad-a760e9fab8e1"]
+}, Open  ]]
+},
+WindowSize->{808, 821},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"de8ec7f1-f1fb-46c7-a8b9-8a999831cd32"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 3788, 96, 274, "Input",ExpressionUUID->"16019cb3-9401-4482-8cff-8b4f25379f5f"],
+Cell[4367, 120, 3626, 72, 816, "Output",ExpressionUUID->"25c0844f-fda6-4537-baad-a760e9fab8e1"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

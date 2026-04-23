@@ -1,0 +1,657 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     28956,        647]
+NotebookOptionsPosition[     28451,        629]
+NotebookOutlinePosition[     28865,        646]
+CellTagsIndexPosition[     28822,        643]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Column", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Style", "[", 
+        RowBox[{"\"\<\:4e00\:9636\:4e0e\:4e8c\:9636\:7cfb\:7edf\:52a8\:6001\
+\:7279\:6027\:5bf9\:6bd4 (\:7eb5\:8f74\:81ea\:9002\:5e94\:7248)\>\"", ",", 
+         "18", ",", "Bold", ",", 
+         RowBox[{"FontFamily", "->", "\"\<Arial\>\""}]}], "]"}], ",", 
+       RowBox[{"Row", "[", 
+        RowBox[{"{", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{"--", 
+            RowBox[{"-", "\:5de6\:4fa7"}]}], "\:ff1a", 
+           RowBox[{
+            RowBox[{"\:4e00\:9636\:7cfb\:7edf", "--"}], "-"}]}], "*)"}], 
+         RowBox[{
+          RowBox[{"Column", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               
+               RowBox[{"\"\<\:4e00\:9636\:7cfb\:7edf: 1/(\[Tau]s + 1)\>\"", ",",
+                 "12", ",", "Bold", ",", "Blue"}], "]"}], ",", 
+              RowBox[{"(*", "\:6781\:70b9\:56fe", "*)"}], 
+              RowBox[{"Graphics", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"Arrow", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5.5"}], ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+                    RowBox[{"Arrow", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", "2"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "2"}], "}"}]}], "}"}], "]"}]}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"Red", ",", 
+                    RowBox[{"PointSize", "[", "0.04", "]"}], ",", 
+                    RowBox[{"Point", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1"}], "/", "\[Tau]"}], ",", "0"}], "}"}], 
+                    "]"}]}], "}"}], ",", 
+                  RowBox[{"Text", "[", 
+                   RowBox[{
+                    RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[Cross]\>\"", ",", "20", ",", "Red"}], 
+                    "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "1"}], "/", "\[Tau]"}], ",", "0"}], "}"}]}], 
+                   "]"}], ",", 
+                  RowBox[{"Text", "[", 
+                   RowBox[{"\"\<Re\>\"", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0.8", ",", 
+                    RowBox[{"-", "0.3"}]}], "}"}]}], "]"}], ",", 
+                  RowBox[{"Text", "[", 
+                   RowBox[{"\"\<Im\>\"", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0.3", ",", "1.8"}], "}"}]}], "]"}]}], "}"}], ",", 
+                RowBox[{"PlotRange", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "5.5"}], ",", "1"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "2"}], ",", "2"}], "}"}]}], "}"}]}], ",", 
+                RowBox[{"ImageSize", "->", "300"}], ",", 
+                RowBox[{"Frame", "->", "True"}]}], "]"}], ",", 
+              RowBox[{"(*", 
+               RowBox[{"\:9636\:8dc3\:54cd\:5e94", ":", 
+                RowBox[{"\:7eb5\:8f74\:56fa\:5b9a0", "-", "1.2"}]}], "*)"}], 
+              RowBox[{"Plot", "[", 
+               RowBox[{
+                RowBox[{"1", "-", 
+                 RowBox[{"Exp", "[", 
+                  RowBox[{
+                   RowBox[{"-", "t"}], "/", "\[Tau]"}], "]"}]}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"t", ",", "0", ",", "15"}], "}"}], ",", 
+                RowBox[{"PlotRange", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "15"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "1.2"}], "}"}]}], "}"}]}], ",", 
+                RowBox[{"PlotStyle", "->", 
+                 RowBox[{"{", 
+                  RowBox[{"Thick", ",", "Blue"}], "}"}]}], ",", 
+                RowBox[{"Frame", "->", "True"}], ",", 
+                RowBox[{"ImageSize", "->", "300"}], ",", 
+                RowBox[{
+                "PlotLabel", 
+                 "->", "\"\<\:9636\:8dc3\:54cd\:5e94 c(t)\>\""}]}], "]"}], ",", 
+              RowBox[{"(*", 
+               RowBox[{
+               "\:51b2\:6fc0\:54cd\:5e94", ":", 
+                "\:7eb5\:8f74\:81ea\:9002\:5e94"}], "*)"}], 
+              RowBox[{"Plot", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"1", "/", "\[Tau]"}], ")"}], " ", 
+                 RowBox[{"Exp", "[", 
+                  RowBox[{
+                   RowBox[{"-", "t"}], "/", "\[Tau]"}], "]"}]}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"t", ",", "0", ",", "15"}], "}"}], ",", 
+                RowBox[{"PlotRange", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "15"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "Automatic"}], "}"}]}], "}"}]}], ",", 
+                RowBox[{"(*", "\:81ea\:52a8\:7f29\:653e", "*)"}], 
+                RowBox[{"PlotStyle", "->", 
+                 RowBox[{"{", 
+                  RowBox[{"Thick", ",", 
+                   RowBox[{"Darker", "[", "Green", "]"}]}], "}"}]}], ",", 
+                RowBox[{"Frame", "->", "True"}], ",", 
+                RowBox[{"ImageSize", "->", "300"}], ",", 
+                RowBox[{
+                "PlotLabel", 
+                 "->", "\"\<\:51b2\:6fc0\:54cd\:5e94 h(t) \
+(\:81ea\:9002\:5e94)\>\""}], ",", 
+                RowBox[{"Filling", "->", "Axis"}], ",", 
+                RowBox[{"FillingStyle", "->", 
+                 RowBox[{"Lighter", "[", 
+                  RowBox[{"Green", ",", "0.8"}], "]"}]}]}], "]"}]}], "}"}], ",",
+             "Center"}], "]"}], ",", 
+          RowBox[{"Spacer", "[", "20", "]"}], ",", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"--", 
+             RowBox[{"-", "\:53f3\:4fa7"}]}], "\:ff1a", 
+            RowBox[{
+             RowBox[{"\:4e8c\:9636\:7cfb\:7edf", "--"}], "-"}]}], "*)"}], 
+          RowBox[{"Column", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"Style", "[", 
+               
+               RowBox[{"\"\<\:4e8c\:9636\:7cfb\:7edf: \
+\\!\\(\\*SubsuperscriptBox[\\(\[Omega]\\), \\(n\\), \\(2\\)]\\)/(s^2 + 2\
+\[Zeta]\\!\\(\\*SubscriptBox[\\(\[Omega]\\), \\(n\\)]\\)s + \
+\\!\\(\\*SubsuperscriptBox[\\(\[Omega]\\), \\(n\\), \\(2\\)]\\))\>\"", ",", 
+                "12", ",", "Bold", ",", "Red"}], "]"}], ",", 
+              RowBox[{"Module", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                 "wd", ",", "\[Sigma]", ",", "p1", ",", "p2", ",", "step", ",",
+                   "impulse", ",", "maxImpulse"}], "}"}], ",", 
+                RowBox[{
+                 RowBox[{"\[Sigma]", "=", 
+                  RowBox[{"\[Zeta]", " ", "\[Omega]n"}]}], ";", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"wd", "=", 
+                  RowBox[{"\[Omega]n", " ", 
+                   RowBox[{"Sqrt", "[", 
+                    RowBox[{"Abs", "[", 
+                    RowBox[{"1", "-", 
+                    RowBox[{"\[Zeta]", "^", "2"}]}], "]"}], "]"}]}]}], ";", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"impulse", "[", "t_", "]"}], ":=", 
+                  RowBox[{"Which", "[", 
+                   RowBox[{
+                    RowBox[{"\[Zeta]", "<", "1"}], ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"\[Omega]n", "/", 
+                    RowBox[{"Sqrt", "[", 
+                    RowBox[{"1", "-", 
+                    RowBox[{"\[Zeta]", "^", "2"}]}], "]"}]}], ")"}], " ", 
+                    RowBox[{"Exp", "[", 
+                    RowBox[{
+                    RowBox[{"-", "\[Sigma]"}], " ", "t"}], "]"}], " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"wd", " ", "t"}], "]"}]}], ",", 
+                    RowBox[{"\[Zeta]", "==", "1"}], ",", 
+                    RowBox[{
+                    RowBox[{"\[Omega]n", "^", "2"}], " ", "t", " ", 
+                    RowBox[{"Exp", "[", 
+                    RowBox[{
+                    RowBox[{"-", "\[Omega]n"}], " ", "t"}], "]"}]}], ",", 
+                    RowBox[{"\[Zeta]", ">", "1"}], ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"\[Omega]n", "/", 
+                    RowBox[{"(", 
+                    RowBox[{"2", " ", 
+                    RowBox[{"Sqrt", "[", 
+                    RowBox[{
+                    RowBox[{"\[Zeta]", "^", "2"}], "-", "1"}], "]"}]}], 
+                    ")"}]}], ")"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Exp", "[", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    RowBox[{"(", 
+                    RowBox[{"\[Zeta]", "-", 
+                    RowBox[{"Sqrt", "[", 
+                    RowBox[{
+                    RowBox[{"\[Zeta]", "^", "2"}], "-", "1"}], "]"}]}], 
+                    ")"}]}], " ", "\[Omega]n", " ", "t"}], "]"}], "-", 
+                    RowBox[{"Exp", "[", 
+                    RowBox[{
+                    RowBox[{"-", 
+                    RowBox[{"(", 
+                    RowBox[{"\[Zeta]", "+", 
+                    RowBox[{"Sqrt", "[", 
+                    RowBox[{
+                    RowBox[{"\[Zeta]", "^", "2"}], "-", "1"}], "]"}]}], 
+                    ")"}]}], " ", "\[Omega]n", " ", "t"}], "]"}]}], ")"}]}]}],
+                    "]"}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{
+                  RowBox[{"step", "[", "t_", "]"}], ":=", 
+                  RowBox[{"Which", "[", 
+                   RowBox[{
+                    RowBox[{"\[Zeta]", "<", "1"}], ",", 
+                    RowBox[{"1", "-", 
+                    RowBox[{
+                    RowBox[{"Exp", "[", 
+                    RowBox[{
+                    RowBox[{"-", "\[Sigma]"}], " ", "t"}], "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Cos", "[", 
+                    RowBox[{"wd", " ", "t"}], "]"}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"\[Sigma]", "/", "wd"}], ")"}], " ", 
+                    RowBox[{"Sin", "[", 
+                    RowBox[{"wd", " ", "t"}], "]"}]}]}], ")"}]}]}], ",", 
+                    RowBox[{"\[Zeta]", "==", "1"}], ",", 
+                    RowBox[{"1", "-", 
+                    RowBox[{
+                    RowBox[{"Exp", "[", 
+                    RowBox[{
+                    RowBox[{"-", "\[Omega]n"}], " ", "t"}], "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{"1", "+", 
+                    RowBox[{"\[Omega]n", " ", "t"}]}], ")"}]}]}], ",", 
+                    RowBox[{"\[Zeta]", ">", "1"}], ",", 
+                    RowBox[{"1", "-", 
+                    RowBox[{
+                    RowBox[{"Exp", "[", 
+                    RowBox[{
+                    RowBox[{"-", "\[Sigma]"}], " ", "t"}], "]"}], " ", 
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"Cosh", "[", 
+                    RowBox[{"wd", " ", "t"}], "]"}], "+", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{"\[Sigma]", "/", "wd"}], ")"}], " ", 
+                    RowBox[{"Sinh", "[", 
+                    RowBox[{"wd", " ", "t"}], "]"}]}]}], ")"}]}]}]}], "]"}]}],
+                  ";", "\[IndentingNewLine]", 
+                 RowBox[{"Column", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{"(*", "\:6781\:70b9\:56fe", "*)"}], 
+                    RowBox[{
+                    RowBox[{"Graphics", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Arrow", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "12"}], ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"2", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+                    RowBox[{"Arrow", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", "10"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "10"}], "}"}]}], "}"}], "]"}]}], "}"}], 
+                    ",", 
+                    RowBox[{"{", 
+                    RowBox[{"Dashed", ",", 
+                    RowBox[{"Circle", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "\[Omega]n", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Pi", "/", "2"}], ",", 
+                    RowBox[{"3", " ", 
+                    RowBox[{"Pi", "/", "2"}]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"Red", ",", 
+                    RowBox[{"PointSize", "[", "0.04", "]"}], ",", 
+                    RowBox[{"Point", "[", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"\[Zeta]", "<", "1"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "\[Sigma]"}], ",", "wd"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "\[Sigma]"}], ",", 
+                    RowBox[{"-", "wd"}]}], "}"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "\[Sigma]"}], "+", "wd"}], ",", "0"}], "}"}],
+                     ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "\[Sigma]"}], "-", "wd"}], ",", "0"}], 
+                    "}"}]}], "}"}]}], "]"}], "]"}]}], "}"}]}], "}"}], ",", 
+                    RowBox[{"PlotRange", "->", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "12"}], ",", "2"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "10"}], ",", "10"}], "}"}]}], "}"}]}], ",", 
+                    RowBox[{"ImageSize", "->", "300"}], ",", 
+                    RowBox[{"Frame", "->", "True"}]}], "]"}], ",", 
+                    RowBox[{"(*", "\:9636\:8dc3\:54cd\:5e94", "*)"}], 
+                    RowBox[{"Plot", "[", 
+                    RowBox[{
+                    RowBox[{"step", "[", "t", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"t", ",", "0", ",", "15"}], "}"}], ",", 
+                    RowBox[{"PlotRange", "->", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "15"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "2"}], "}"}]}], "}"}]}], ",", 
+                    RowBox[{"PlotStyle", "->", 
+                    RowBox[{"{", 
+                    RowBox[{"Thick", ",", "Red"}], "}"}]}], ",", 
+                    RowBox[{"Frame", "->", "True"}], ",", 
+                    RowBox[{"ImageSize", "->", "300"}], ",", 
+                    RowBox[{
+                    "PlotLabel", 
+                    "->", "\"\<\:9636\:8dc3\:54cd\:5e94 c(t)\>\""}]}], "]"}], 
+                    ",", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "\:51b2\:6fc0\:54cd\:5e94", ":", 
+                    "\:7eb5\:8f74\:81ea\:9002\:5e94"}], "*)"}], 
+                    RowBox[{"Plot", "[", 
+                    RowBox[{
+                    RowBox[{"impulse", "[", "t", "]"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"t", ",", "0", ",", "15"}], "}"}], ",", 
+                    RowBox[{"PlotRange", "->", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "15"}], "}"}], ",", "All"}], "}"}]}], ",", 
+                    RowBox[{"(*", 
+                    RowBox[{
+                    "\:4f7f\:7528", " ", "All", " ", 
+                    "\:786e\:4fdd\:6ce2\:5cf0\:6ce2\:8c37\:5b8c\:6574\:663e\
+\:793a"}], "*)"}], 
+                    RowBox[{"PlotStyle", "->", 
+                    RowBox[{"{", 
+                    RowBox[{"Thick", ",", 
+                    RowBox[{"Darker", "[", "Orange", "]"}]}], "}"}]}], ",", 
+                    RowBox[{"Frame", "->", "True"}], ",", 
+                    RowBox[{"ImageSize", "->", "300"}], ",", 
+                    RowBox[{
+                    "PlotLabel", 
+                    "->", "\"\<\:51b2\:6fc0\:54cd\:5e94 h(t) (\:81ea\:9002\
+\:5e94)\>\""}], ",", 
+                    RowBox[{"Filling", "->", "Axis"}], ",", 
+                    RowBox[{"FillingStyle", "->", 
+                    RowBox[{"Lighter", "[", 
+                    RowBox[{"Orange", ",", "0.8"}], "]"}]}]}], "]"}]}], "}"}],
+                    ",", "Center"}], "]"}]}]}], "]"}]}], "}"}], ",", 
+            "Center"}], "]"}]}], "}"}], "]"}]}], "}"}], ",", "Center"}], 
+    "]"}], ",", 
+   RowBox[{"(*", "\:63a7\:5236\:9762\:677f", "*)"}], "Delimiter", ",", 
+   RowBox[{"Style", "[", 
+    RowBox[{"\"\<\:53c2\:6570\:8c03\:8282\>\"", ",", "Bold"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Tau]", ",", "0.1", ",", "5", ",", "0.1", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"Label", "->", "\"\<\:4e00\:9636 \[Tau]\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Zeta]", ",", "0.05", ",", "1.5", ",", "0.05", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"Label", "->", "\"\<\:4e8c\:9636 \[Zeta]\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Omega]n", ",", "1", ",", "10", ",", "0.5", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}], ",", 
+     RowBox[{
+     "Label", "->", "\"\<\:4e8c\:9636 \\!\\(\\*SubscriptBox[\\(\[Omega]\\), \
+\\(n\\)]\\)\>\""}]}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "->", "Left"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.985895327598735*^9, 3.985895327599708*^9}},
+ CellLabel->"In[62]:=",ExpressionUUID->"7214f9a1-8cc4-456f-9819-4e38d32c8fc6"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Zeta]$$ = 
+    0.15000000000000002`, $CellContext`\[Tau]$$ = 
+    3.4000000000000004`, $CellContext`\[Omega]n$$ = 4., Typeset`show$$ = True,
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[
+       Style["\:53c2\:6570\:8c03\:8282", Bold]], 
+      Manipulate`Dump`ThisIsNotAControl, ControlType -> None}, {
+      Hold[$CellContext`\[Tau]$$], 0.1, 5, 0.1, ControlType -> Manipulator}, {
+     
+      Hold[$CellContext`\[Zeta]$$], 0.05, 1.5, 0.05, ControlType -> 
+      Manipulator}, {
+      Hold[$CellContext`\[Omega]n$$], 1, 10, 0.5, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    623.12, {437.43546633811997`, 443.16739993186997`}}, Typeset`update$$ = 0,
+     Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Zeta]$$ = 0.05, $CellContext`\[Tau]$$ = 
+        0.1, $CellContext`\[Omega]n$$ = 1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> Column[{
+         Style[
+         "\:4e00\:9636\:4e0e\:4e8c\:9636\:7cfb\:7edf\:52a8\:6001\:7279\:6027\
+\:5bf9\:6bd4 (\:7eb5\:8f74\:81ea\:9002\:5e94\:7248)", 18, Bold, FontFamily -> 
+          "Arial"], 
+         Row[{
+           Column[{
+             Style[
+             "\:4e00\:9636\:7cfb\:7edf: 1/(\[Tau]s + 1)", 12, Bold, Blue], 
+             Graphics[{{
+                Arrow[{{-5.5, 0}, {1, 0}}], 
+                Arrow[{{0, -2}, {0, 2}}]}, {Red, 
+                PointSize[0.04], 
+                Point[{(-1)/$CellContext`\[Tau]$$, 0}]}, 
+               Text[
+                Style["\[Cross]", 20, Red], {(-1)/$CellContext`\[Tau]$$, 0}], 
+               
+               Text["Re", {0.8, -0.3}], 
+               Text["Im", {0.3, 1.8}]}, PlotRange -> {{-5.5, 1}, {-2, 2}}, 
+              ImageSize -> 300, Frame -> True], 
+             Plot[
+             1 - Exp[(-$CellContext`t)/$CellContext`\[Tau]$$], \
+{$CellContext`t, 0, 15}, PlotRange -> {{0, 15}, {0, 1.2}}, 
+              PlotStyle -> {Thick, Blue}, Frame -> True, ImageSize -> 300, 
+              PlotLabel -> "\:9636\:8dc3\:54cd\:5e94 c(t)"], 
+             
+             Plot[(1/$CellContext`\[Tau]$$) 
+              Exp[(-$CellContext`t)/$CellContext`\[Tau]$$], {$CellContext`t, 
+               0, 15}, PlotRange -> {{0, 15}, {0, Automatic}}, 
+              PlotStyle -> {Thick, 
+                Darker[Green]}, Frame -> True, ImageSize -> 300, PlotLabel -> 
+              "\:51b2\:6fc0\:54cd\:5e94 h(t) (\:81ea\:9002\:5e94)", Filling -> 
+              Axis, FillingStyle -> Lighter[Green, 0.8]]}, Center], 
+           Spacer[20], 
+           Column[{
+             Style[
+             "\:4e8c\:9636\:7cfb\:7edf: \!\(\*SubsuperscriptBox[\(\[Omega]\), \
+\(n\), \(2\)]\)/(s^2 + 2\[Zeta]\!\(\*SubscriptBox[\(\[Omega]\), \(n\)]\)s + \
+\!\(\*SubsuperscriptBox[\(\[Omega]\), \(n\), \(2\)]\))", 12, Bold, Red], 
+             
+             Module[{$CellContext`wd$, $CellContext`\[Sigma]$, \
+$CellContext`p1$, $CellContext`p2$, $CellContext`step$, \
+$CellContext`impulse$, $CellContext`maxImpulse$}, $CellContext`\[Sigma]$ = \
+$CellContext`\[Zeta]$$ $CellContext`\[Omega]n$$; $CellContext`wd$ = \
+$CellContext`\[Omega]n$$ Sqrt[
+                  Abs[1 - $CellContext`\[Zeta]$$^2]]; $CellContext`impulse$[
+                 Pattern[$CellContext`t$, 
+                  Blank[]]] := 
+               Which[$CellContext`\[Zeta]$$ < 
+                 1, ($CellContext`\[Omega]n$$/Sqrt[
+                  1 - $CellContext`\[Zeta]$$^2]) 
+                 Exp[(-$CellContext`\[Sigma]$) $CellContext`t$] 
+                 Sin[$CellContext`wd$ $CellContext`t$], \
+$CellContext`\[Zeta]$$ == 1, $CellContext`\[Omega]n$$^2 $CellContext`t$ 
+                 Exp[(-$CellContext`\[Omega]n$$) $CellContext`t$], \
+$CellContext`\[Zeta]$$ > 
+                 1, ($CellContext`\[Omega]n$$/(2 
+                  Sqrt[$CellContext`\[Zeta]$$^2 - 1])) (
+                  Exp[(-($CellContext`\[Zeta]$$ - 
+                    Sqrt[$CellContext`\[Zeta]$$^2 - 
+                    1])) $CellContext`\[Omega]n$$ $CellContext`t$] - 
+                  Exp[(-($CellContext`\[Zeta]$$ + 
+                    Sqrt[$CellContext`\[Zeta]$$^2 - 
+                    1])) $CellContext`\[Omega]n$$ $CellContext`t$])]; \
+$CellContext`step$[
+                 Pattern[$CellContext`t$, 
+                  Blank[]]] := 
+               Which[$CellContext`\[Zeta]$$ < 1, 1 - 
+                 Exp[(-$CellContext`\[Sigma]$) $CellContext`t$] (
+                  Cos[$CellContext`wd$ $CellContext`t$] + ($CellContext`\
+\[Sigma]$/$CellContext`wd$) 
+                   Sin[$CellContext`wd$ $CellContext`t$]), $CellContext`\
+\[Zeta]$$ == 1, 1 - 
+                 Exp[(-$CellContext`\[Omega]n$$) $CellContext`t$] (
+                  1 + $CellContext`\[Omega]n$$ $CellContext`t$), \
+$CellContext`\[Zeta]$$ > 1, 1 - 
+                 Exp[(-$CellContext`\[Sigma]$) $CellContext`t$] (
+                  Cosh[$CellContext`wd$ $CellContext`t$] + ($CellContext`\
+\[Sigma]$/$CellContext`wd$) Sinh[$CellContext`wd$ $CellContext`t$])]; 
+              Column[{
+                 Graphics[{{
+                    Arrow[{{-12, 0}, {2, 0}}], 
+                    Arrow[{{0, -10}, {0, 10}}]}, {Dashed, 
+                    
+                    Circle[{0, 0}, $CellContext`\[Omega]n$$, {
+                    Pi/2, 3 (Pi/2)}]}, {Red, 
+                    PointSize[0.04], 
+                    Point[
+                    
+                    If[$CellContext`\[Zeta]$$ < 
+                    1, {{-$CellContext`\[Sigma]$, $CellContext`wd$}, \
+{-$CellContext`\[Sigma]$, -$CellContext`wd$}}, {{-$CellContext`\[Sigma]$ + \
+$CellContext`wd$, 0}, {-$CellContext`\[Sigma]$ - $CellContext`wd$, 0}}]]}}, 
+                  PlotRange -> {{-12, 2}, {-10, 10}}, ImageSize -> 300, Frame -> 
+                  True], 
+                 Plot[
+                  $CellContext`step$[$CellContext`t], {$CellContext`t, 0, 15},
+                   PlotRange -> {{0, 15}, {0, 2}}, PlotStyle -> {Thick, Red}, 
+                  Frame -> True, ImageSize -> 300, PlotLabel -> 
+                  "\:9636\:8dc3\:54cd\:5e94 c(t)"], 
+                 Plot[
+                  $CellContext`impulse$[$CellContext`t], {$CellContext`t, 0, 
+                   15}, PlotRange -> {{0, 15}, All}, PlotStyle -> {Thick, 
+                    Darker[Orange]}, Frame -> True, ImageSize -> 300, 
+                  PlotLabel -> 
+                  "\:51b2\:6fc0\:54cd\:5e94 h(t) (\:81ea\:9002\:5e94)", 
+                  Filling -> Axis, FillingStyle -> Lighter[Orange, 0.8]]}, 
+                Center]]}, Center]}]}, Center], 
+      "Specifications" :> {Delimiter, 
+        Style[
+        "\:53c2\:6570\:8c03\:8282", Bold], {$CellContext`\[Tau]$$, 0.1, 5, 
+         0.1, Appearance -> "Labeled", Label -> 
+         "\:4e00\:9636 \[Tau]"}, {$CellContext`\[Zeta]$$, 0.05, 1.5, 0.05, 
+         Appearance -> "Labeled", Label -> 
+         "\:4e8c\:9636 \[Zeta]"}, {$CellContext`\[Omega]n$$, 1, 10, 0.5, 
+         Appearance -> "Labeled", Label -> 
+         "\:4e8c\:9636 \!\(\*SubscriptBox[\(\[Omega]\), \(n\)]\)"}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      939.5704492187499, {468.20589175315905`, 473.93782534690905`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.985895328147256*^9},
+ CellLabel->"Out[62]=",ExpressionUUID->"68fb2cfe-f356-48b9-b95f-186e92860a69"]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{20, Automatic}, {Automatic, 13}},
+LightDark->"Light",
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"97a55f7a-e42f-44dc-900a-b4c9fe278dd5"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 19569, 441, 708, "Input",ExpressionUUID->"7214f9a1-8cc4-456f-9819-4e38d32c8fc6"],
+Cell[20148, 465, 8287, 161, 978, "Output",ExpressionUUID->"68fb2cfe-f356-48b9-b95f-186e92860a69"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

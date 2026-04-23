@@ -1,0 +1,369 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     14822,        361]
+NotebookOptionsPosition[     14323,        343]
+NotebookOutlinePosition[     14733,        360]
+CellTagsIndexPosition[     14690,        357]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "\"\<Global`*\>\"", "]"}], ";"}], "\n", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{"(*", 
+   RowBox[{
+   "\:5c40\:90e8\:5316", " ", "s", " ", 
+    "\:53d8\:91cf\:9632\:6b62\:51b2\:7a81"}], "*)"}], 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"s", ",", 
+       RowBox[{"wn", "=", "1"}], ",", "sys", ",", "resp", ",", "overshoot"}], 
+      "}"}], ",", 
+     RowBox[{
+     "(*", "\:5b9a\:4e49\:4e8c\:9636\:7cfb\:7edf\:4f20\:9012\:51fd\:6570", 
+      "*)"}], 
+     RowBox[{
+      RowBox[{"sys", "=", 
+       RowBox[{"TransferFunctionModel", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"wn", "^", "2"}], "/", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"s", "^", "2"}], "+", 
+            RowBox[{"2", " ", "zeta", " ", "wn", " ", "s"}], "+", 
+            RowBox[{"wn", "^", "2"}]}], ")"}]}], ",", "s"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", "\:8ba1\:7b97\:9636\:8dc3\:54cd\:5e94", "*)"}], 
+      RowBox[{"resp", "=", 
+       RowBox[{"StepResponse", "[", 
+        RowBox[{"sys", ",", 
+         RowBox[{"{", 
+          RowBox[{"0", ",", "5"}], "}"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", "\:7ed8\:56fe\:4e3b\:4f53", "*)"}], 
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{"resp", "[", "t", "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", "0", ",", "20"}], "}"}], ",", 
+        RowBox[{"PlotRange", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "20"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "1.6"}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"PlotStyle", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Thickness", "[", "0.006", "]"}], ",", "Blue"}], "}"}]}], ",", 
+        RowBox[{"Frame", "->", "True"}], ",", 
+        RowBox[{"GridLines", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", "}"}], ",", 
+           RowBox[{"{", "1", "}"}]}], "}"}]}], ",", 
+        RowBox[{"GridLinesStyle", "->", 
+         RowBox[{"Directive", "[", 
+          RowBox[{"Gray", ",", "Dashed"}], "]"}]}], ",", 
+        RowBox[{"FrameLabel", "->", 
+         RowBox[{"{", 
+          
+          RowBox[{"\"\<\:65f6\:95f4 (t)\>\"", 
+           ",", "\"\<\:5e45\:5ea6 y(t)\>\""}], "}"}]}], ",", 
+        RowBox[{"(*", 
+         RowBox[{
+         "\:52a8\:6001\:6807\:9898", "\:ff1a", 
+          "\:663e\:793a\:7269\:7406\:72b6\:6001"}], "*)"}], 
+        RowBox[{"PlotLabel", "->", 
+         RowBox[{"Style", "[", 
+          RowBox[{
+           RowBox[{"Row", "[", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<\:963b\:5c3c\:6bd4 \[Zeta] = \>\"", ",", "zeta", 
+              ",", "\"\< | \>\"", ",", 
+              RowBox[{"Which", "[", 
+               RowBox[{
+                RowBox[{"zeta", "==", "0"}], 
+                ",", "\"\<\:65e0\:963b\:5c3c (Undamped)\>\"", ",", 
+                RowBox[{"zeta", "<", "1"}], 
+                ",", "\"\<\:6b20\:963b\:5c3c (Underdamped)\>\"", ",", 
+                RowBox[{"zeta", "==", "1"}], 
+                ",", "\"\<\:4e34\:754c\:963b\:5c3c (Critically Damped)\>\"", ",", 
+                RowBox[{"zeta", ">", "1"}], 
+                ",", "\"\<\:8fc7\:963b\:5c3c (Overdamped)\>\""}], "]"}]}], 
+             "}"}], "]"}], ",", "14", ",", "\"\<Heiti SC\>\""}], "]"}]}], ",", 
+        RowBox[{"(*", "\:7279\:6b8a\:70b9\:89c6\:89c9\:6807\:6ce8", "*)"}], 
+        RowBox[{"Epilog", "->", 
+         RowBox[{"{", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"0.707", " ", "\:7279\:6b8a\:5904\:7406"}], "\:ff1a", 
+            "\:663e\:793a\:7406\:8bba\:8d85\:8c03\:7ebf"}], "*)"}], 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Abs", "[", 
+               RowBox[{"zeta", "-", "0.707"}], "]"}], "<", "0.01"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"Red", ",", "Dashed", ",", 
+               RowBox[{"Line", "[", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "1.043"}], "}"}], ",", 
+                  RowBox[{"{", 
+                   RowBox[{"20", ",", "1.043"}], "}"}]}], "}"}], "]"}], ",", 
+               RowBox[{"Text", "[", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  
+                  RowBox[{"\"\<\:8d85\:8c03\:91cf \\[Approx] 4.3%\>\"", ",", 
+                   "Red", ",", "12", ",", "Bold"}], "]"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"15", ",", "1.1"}], "}"}]}], "]"}]}], "}"}], ",", 
+             RowBox[{"{", "}"}]}], "]"}], ",", 
+           RowBox[{"(*", 
+            RowBox[{
+             RowBox[{"1.0", " ", "\:7279\:6b8a\:5904\:7406"}], "\:ff1a", 
+             "\:9ad8\:4eae\:7a33\:6001\:8d8b\:52bf"}], "*)"}], 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"zeta", "==", "1"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Darker", "@", "Green"}], ",", 
+               RowBox[{"Thickness", "[", "0.004", "]"}], ",", 
+               RowBox[{"Circle", "[", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0"}], "}"}], ",", "0.5", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", 
+                   RowBox[{"Pi", "/", "2"}]}], "}"}]}], "]"}], ",", 
+               RowBox[{"Text", "[", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  
+                  RowBox[{"\"\<\:4e34\:754c\:963b\:5c3c\:ff1a\:65e0\:8d85\
+\:8c03\:6700\:5feb\:70b9\>\"", ",", 
+                   RowBox[{"Darker", "@", "Green"}], ",", "12", ",", "Bold"}],
+                   "]"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"10", ",", "0.5"}], "}"}]}], "]"}]}], "}"}], ",", 
+             RowBox[{"{", "}"}]}], "]"}]}], "}"}]}], ",", 
+        RowBox[{"ImageSize", "->", "600"}], ",", 
+        RowBox[{"AspectRatio", "->", "0.5"}]}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"(*", "\:63a7\:4ef6\:90e8\:5206", "*)"}], 
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<\:7cfb\:7edf\:53c2\:6570\:8c03\:8282\>\"", ",", "Bold", 
+          ",", "14"}], "]"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"Control", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+            "zeta", ",", "0.707", 
+             ",", "\"\<\:963b\:5c3c\:6bd4 (\[Zeta])\>\""}], "}"}], ",", "0", ",",
+            "2", ",", 
+           RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], "]"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"(*", 
+         RowBox[{
+         "\:9884\:8bbe\:5feb\:6377\:6309\:94ae", "\:ff0c", 
+          "\:5b9e\:73b0\:7279\:6b8a\:70b9\:7cbe\:786e\:8df3\:8f6c"}], "*)"}], 
+        
+        RowBox[{"Row", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Button", "[", 
+             RowBox[{"\"\<\:65e0\:963b\:5c3c (0)\>\"", ",", 
+              RowBox[{"zeta", "=", "0"}]}], "]"}], ",", 
+            RowBox[{"Button", "[", 
+             RowBox[{"\"\<\:5178\:578b\:6b20\:963b\:5c3c (0.5)\>\"", ",", 
+              RowBox[{"zeta", "=", "0.5"}]}], "]"}], ",", 
+            RowBox[{"Button", "[", 
+             RowBox[{"\"\<\:6700\:4f73\:6298\:4e2d (0.707)\>\"", ",", 
+              RowBox[{"zeta", "=", "0.707"}]}], "]"}], ",", 
+            RowBox[{"Button", "[", 
+             RowBox[{"\"\<\:4e34\:754c\:963b\:5c3c (1)\>\"", ",", 
+              RowBox[{"zeta", "=", "1"}]}], "]"}], ",", 
+            RowBox[{"Button", "[", 
+             RowBox[{"\"\<\:8fc7\:963b\:5c3c (1.5)\>\"", ",", 
+              RowBox[{"zeta", "=", "1.5"}]}], "]"}]}], "}"}], 
+          ",", "\"\< \>\""}], "]"}], "}"}]}], "}"}], ",", 
+     RowBox[{"Alignment", "->", "Left"}]}], "]"}], ",", 
+   RowBox[{"(*", 
+    RowBox[{
+    "\:5f3a\:5236\:6307\:5b9a", " ", "zeta", " ", 
+     "\:4e3a\:5b9e\:65f6\:66f4\:65b0\:53d8\:91cf"}], "*)"}], 
+   RowBox[{"TrackedSymbols", ":>", 
+    RowBox[{"{", "zeta", "}"}]}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.985773359254095*^9, 3.9857733592554617`*^9}, {
+  3.98577346568469*^9, 
+  3.985773485601553*^9}},ExpressionUUID->"3b39f356-62c4-4160-a679-\
+04a70d4400cc"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`zeta$$ = 0.707, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`zeta$$], 0.707, "\:963b\:5c3c\:6bd4 (\[Zeta])"}, 0, 
+      2, ControlType -> Manipulator}, {
+      Hold[
+       Grid[{{
+          Style["\:7cfb\:7edf\:53c2\:6570\:8c03\:8282", Bold, 14]}, {
+          Manipulate`Place[1]}, {
+          Row[{
+            Button["\:65e0\:963b\:5c3c (0)", $CellContext`zeta$$ = 0], 
+            Button[
+            "\:5178\:578b\:6b20\:963b\:5c3c (0.5)", $CellContext`zeta$$ = 
+             0.5], 
+            Button[
+            "\:6700\:4f73\:6298\:4e2d (0.707)", $CellContext`zeta$$ = 0.707], 
+            
+            Button["\:4e34\:754c\:963b\:5c3c (1)", $CellContext`zeta$$ = 1], 
+            Button["\:8fc7\:963b\:5c3c (1.5)", $CellContext`zeta$$ = 1.5]}, 
+           " "]}}, Alignment -> Left]], Manipulate`Dump`ThisIsNotAControl, 
+      ControlType -> None}}, Typeset`size$$ = {
+    600., {161.217529296875, 166.949462890625}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, "Variables" :> {$CellContext`zeta$$ = 0.707}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`s$, $CellContext`wn$ = 
+         1, $CellContext`sys$, $CellContext`resp$, $CellContext`overshoot$}, \
+$CellContext`sys$ = 
+         TransferFunctionModel[$CellContext`wn$^2/($CellContext`s$^2 + 
+           2 $CellContext`zeta$$ $CellContext`wn$ $CellContext`s$ + \
+$CellContext`wn$^2), $CellContext`s$]; $CellContext`resp$ = \
+$CellContext`StepResponse[$CellContext`sys$, {0, 10}]; Plot[
+          $CellContext`resp$[$CellContext`t], {$CellContext`t, 0, 20}, 
+          PlotRange -> {{0, 20}, {0, 1.6}}, PlotStyle -> {
+            Thickness[0.006], Blue}, Frame -> True, GridLines -> {{}, {1}}, 
+          GridLinesStyle -> Directive[Gray, Dashed], 
+          FrameLabel -> {"\:65f6\:95f4 (t)", "\:5e45\:5ea6 y(t)"}, PlotLabel -> 
+          Style[
+            
+            Row[{"\:963b\:5c3c\:6bd4 \[Zeta] = ", $CellContext`zeta$$, " | ", 
+              
+              
+              Which[$CellContext`zeta$$ == 0, 
+               "\:65e0\:963b\:5c3c (Undamped)", $CellContext`zeta$$ < 1, 
+               "\:6b20\:963b\:5c3c (Underdamped)", $CellContext`zeta$$ == 1, 
+               "\:4e34\:754c\:963b\:5c3c (Critically Damped)", \
+$CellContext`zeta$$ > 1, "\:8fc7\:963b\:5c3c (Overdamped)"]}], 14, 
+            "Heiti SC"], Epilog -> {
+            If[Abs[$CellContext`zeta$$ - 0.707] < 0.01, {Red, Dashed, 
+              Line[{{0, 1.043}, {20, 1.043}}], 
+              Text[
+               Style["\:8d85\:8c03\:91cf \\[Approx] 4.3%", Red, 12, Bold], {
+               15, 1.1}]}, {}], 
+            If[$CellContext`zeta$$ == 1, {
+              Darker[Green], 
+              Thickness[0.004], 
+              Circle[{0, 0}, 0.5, {0, Pi/2}], 
+              Text[
+               Style[
+               "\:4e34\:754c\:963b\:5c3c\:ff1a\:65e0\:8d85\:8c03\:6700\:5feb\
+\:70b9", 
+                Darker[Green], 12, Bold], {10, 0.5}]}, {}]}, ImageSize -> 600,
+           AspectRatio -> 0.5]], 
+      "Specifications" :> {{{$CellContext`zeta$$, 0.707, 
+          "\:963b\:5c3c\:6bd4 (\[Zeta])"}, 0, 2, Appearance -> "Labeled", 
+         ControlPlacement -> 1}, 
+        Grid[{{
+           Style["\:7cfb\:7edf\:53c2\:6570\:8c03\:8282", Bold, 14]}, {
+           Manipulate`Place[1]}, {
+           Row[{
+             Button["\:65e0\:963b\:5c3c (0)", $CellContext`zeta$$ = 0], 
+             Button[
+             "\:5178\:578b\:6b20\:963b\:5c3c (0.5)", $CellContext`zeta$$ = 
+              0.5], 
+             Button[
+             "\:6700\:4f73\:6298\:4e2d (0.707)", $CellContext`zeta$$ = 0.707], 
+             Button["\:4e34\:754c\:963b\:5c3c (1)", $CellContext`zeta$$ = 1], 
+             
+             Button["\:8fc7\:963b\:5c3c (1.5)", $CellContext`zeta$$ = 1.5]}, 
+            " "]}}, Alignment -> Left]}, 
+      "Options" :> {TrackedSymbols :> {$CellContext`zeta$$}}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      649.0999999999999, {232.6391642054695, 238.3710977992195}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9857733617447*^9, 3.985773475067905*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"9ef8eb97-e279-436e-8e4b-e500ce5d2408"]
+}, Open  ]]
+},
+WindowSize->{808, 821},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+LightDark->"Light",
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"59c6fd68-f735-4835-b000-c3d2484d665f"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 8475, 209, 627, "Input",ExpressionUUID->"3b39f356-62c4-4160-a679-04a70d4400cc"],
+Cell[9054, 233, 5253, 107, 488, "Output",ExpressionUUID->"9ef8eb97-e279-436e-8e4b-e500ce5d2408"]
+}, Open  ]]
+}
+]
+*)
+

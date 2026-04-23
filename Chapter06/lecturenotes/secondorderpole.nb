@@ -1,0 +1,307 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     12353,        299]
+NotebookOptionsPosition[     11849,        281]
+NotebookOutlinePosition[     12264,        298]
+CellTagsIndexPosition[     12221,        295]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"p1", ",", "p2", ",", "\[Omega]d", ",", "realPart"}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"realPart", "=", 
+       RowBox[{
+        RowBox[{"-", "\[Zeta]"}], " ", "\[Omega]n"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"\[Omega]d", "=", 
+       RowBox[{"\[Omega]n", " ", 
+        RowBox[{"Sqrt", "[", 
+         RowBox[{"Max", "[", 
+          RowBox[{"0", ",", 
+           RowBox[{"1", "-", 
+            RowBox[{"\[Zeta]", "^", "2"}]}]}], "]"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"p1", "=", 
+       RowBox[{"realPart", "+", 
+        RowBox[{"I", " ", "\[Omega]d"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"p2", "=", 
+       RowBox[{"realPart", "-", 
+        RowBox[{"I", " ", "\[Omega]d"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"(*", "S\:5e73\:9762\:6781\:70b9\:8f68\:8ff9", "*)"}], 
+         RowBox[{
+          RowBox[{"Graphics", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"(*", "\:5750\:6807\:8f74", "*)"}], 
+             RowBox[{
+              RowBox[{"Arrow", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"-", "12"}], ",", "0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"2", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+              RowBox[{"Arrow", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", 
+                   RowBox[{"-", "12"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "12"}], "}"}]}], "}"}], "]"}], ",", 
+              RowBox[{"Text", "[", 
+               RowBox[{"\"\<Re\>\"", ",", 
+                RowBox[{"{", 
+                 RowBox[{"1.5", ",", 
+                  RowBox[{"-", "0.5"}]}], "}"}]}], "]"}], ",", 
+              RowBox[{"Text", "[", 
+               RowBox[{"\"\<Im\>\"", ",", 
+                RowBox[{"{", 
+                 RowBox[{"0.5", ",", "11"}], "}"}]}], "]"}], ",", 
+              RowBox[{"(*", "\:6052\:5b9awn\:5706\:5f27", "*)"}], 
+              RowBox[{"{", 
+               RowBox[{"Dashed", ",", 
+                RowBox[{"Circle", "[", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "0"}], "}"}], ",", "\[Omega]n", ",", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"Pi", "/", "2"}], ",", 
+                    RowBox[{"3", " ", 
+                    RowBox[{"Pi", "/", "2"}]}]}], "}"}]}], "]"}]}], "}"}], ",", 
+              RowBox[{"(*", "\:6781\:70b9", "*)"}], "Red", ",", 
+              RowBox[{"PointSize", "[", "0.03", "]"}], ",", 
+              RowBox[{"Point", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Re", "[", "p1", "]"}], ",", 
+                   RowBox[{"Im", "[", "p1", "]"}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Re", "[", "p2", "]"}], ",", 
+                   RowBox[{"Im", "[", "p2", "]"}]}], "}"}]}], "}"}], "]"}], ",", 
+              RowBox[{"(*", "\:8fde\:7ebf\:4e0e\:963b\:5c3c\:89d2", "*)"}], 
+              "Gray", ",", 
+              RowBox[{"Line", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "0"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"Re", "[", "p1", "]"}], ",", 
+                   RowBox[{"Im", "[", "p1", "]"}]}], "}"}]}], "}"}], "]"}], ",", 
+              RowBox[{"Text", "[", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<\[Theta]\>\"", ",", "12"}], "]"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "0.5"}], ",", "0.5"}], "}"}]}], "]"}]}], "}"}],
+             ",", 
+            RowBox[{"PlotRange", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "12"}], ",", "2"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "12"}], ",", "12"}], "}"}]}], "}"}]}], ",", 
+            RowBox[{"ImageSize", "->", "350"}], ",", 
+            RowBox[{"Frame", "->", "True"}], ",", 
+            RowBox[{"FrameLabel", "->", "\"\<S\:5e73\:9762\>\""}]}], "]"}], ",", 
+          RowBox[{"(*", "\:9636\:8dc3\:54cd\:5e94", "*)"}], 
+          RowBox[{"Plot", "[", 
+           RowBox[{
+            RowBox[{"1", "-", 
+             RowBox[{
+              RowBox[{"Exp", "[", 
+               RowBox[{
+                RowBox[{"-", "\[Zeta]"}], " ", "\[Omega]n", " ", "t"}], "]"}],
+               " ", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"Cos", "[", 
+                 RowBox[{"\[Omega]d", " ", "t"}], "]"}], "+", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"\[Zeta]", " ", 
+                   RowBox[{"\[Omega]n", "/", 
+                    RowBox[{"Max", "[", 
+                    RowBox[{"0.001", ",", "\[Omega]d"}], "]"}]}]}], ")"}], " ", 
+                 RowBox[{"Sin", "[", 
+                  RowBox[{"\[Omega]d", " ", "t"}], "]"}]}]}], ")"}]}]}], ",", 
+            
+            RowBox[{"{", 
+             RowBox[{"t", ",", "0", ",", "15"}], "}"}], ",", 
+            RowBox[{"PlotRange", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", "15"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "2"}], "}"}]}], "}"}]}], ",", 
+            RowBox[{"Filling", "->", "Axis"}], ",", 
+            RowBox[{"PlotStyle", "->", 
+             RowBox[{"{", 
+              RowBox[{"Thick", ",", "Blue"}], "}"}]}], ",", 
+            RowBox[{"ImageSize", "->", "350"}], ",", 
+            RowBox[{"Frame", "->", "True"}], ",", 
+            RowBox[{"FrameLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{"\"\<t\>\"", ",", "\"\<c(t)\>\""}], "}"}]}], ",", 
+            RowBox[{"PlotLabel", "->", 
+             RowBox[{"Row", "[", 
+              RowBox[{"{", 
+               
+               RowBox[{"\"\<\[Zeta] = \>\"", ",", "\[Zeta]", 
+                ",", "\"\<, \\!\\(\\*SubscriptBox[\\(\[Omega]\\), \\(n\\)]\\) \
+= \>\"", ",", "\[Omega]n"}], "}"}], "]"}]}]}], "]"}]}], "}"}], ",", 
+        "Center"}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Zeta]", ",", "0", ",", "1.5", ",", "0.05", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Omega]n", ",", "1", ",", "10", ",", "0.5", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.9858941100300207`*^9, 3.9858941100309477`*^9}},
+ CellLabel->"In[59]:=",ExpressionUUID->"1db64b73-9b1d-419b-b305-b02efb326a56"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`\[Zeta]$$ = 
+    0.7000000000000001, $CellContext`\[Omega]n$$ = 6., Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`\[Zeta]$$], 0, 1.5, 0.05, ControlType -> 
+      Manipulator}, {
+      Hold[$CellContext`\[Omega]n$$], 1, 10, 0.5, ControlType -> 
+      Manipulator}}, Typeset`size$$ = {
+    350., {418.23871620756995`, 423.97064980131995`}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`\[Zeta]$$ = 0, $CellContext`\[Omega]n$$ = 
+        1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`p1$, $CellContext`p2$, $CellContext`\[Omega]d$, \
+$CellContext`realPart$}, $CellContext`realPart$ = (-$CellContext`\[Zeta]$$) \
+$CellContext`\[Omega]n$$; $CellContext`\[Omega]d$ = $CellContext`\[Omega]n$$ 
+          Sqrt[
+            Max[
+            0, 1 - $CellContext`\[Zeta]$$^2]]; $CellContext`p1$ = \
+$CellContext`realPart$ + 
+          I $CellContext`\[Omega]d$; $CellContext`p2$ = \
+$CellContext`realPart$ - I $CellContext`\[Omega]d$; Column[{
+           Graphics[{
+             Arrow[{{-12, 0}, {2, 0}}], 
+             Arrow[{{0, -12}, {0, 12}}], 
+             Text["Re", {1.5, -0.5}], 
+             Text["Im", {0.5, 11}], {Dashed, 
+              Circle[{0, 0}, $CellContext`\[Omega]n$$, {Pi/2, 3 (Pi/2)}]}, 
+             Red, 
+             PointSize[0.03], 
+             Point[{{
+                Re[$CellContext`p1$], 
+                Im[$CellContext`p1$]}, {
+                Re[$CellContext`p2$], 
+                Im[$CellContext`p2$]}}], Gray, 
+             Line[{{0, 0}, {
+                Re[$CellContext`p1$], 
+                Im[$CellContext`p1$]}}], 
+             Text[
+              Style["\[Theta]", 12], {-0.5, 0.5}]}, 
+            PlotRange -> {{-12, 2}, {-12, 12}}, ImageSize -> 350, Frame -> 
+            True, FrameLabel -> "S\:5e73\:9762"], 
+           Plot[
+           1 - Exp[(-$CellContext`\[Zeta]$$) $CellContext`\[Omega]n$$ \
+$CellContext`t] (
+             Cos[$CellContext`\[Omega]d$ $CellContext`t] + ($CellContext`\
+\[Zeta]$$ ($CellContext`\[Omega]n$$/Max[0.001, $CellContext`\[Omega]d$])) 
+              Sin[$CellContext`\[Omega]d$ $CellContext`t]), {$CellContext`t, 
+             0, 15}, PlotRange -> {{0, 15}, {0, 2}}, Filling -> Axis, 
+            PlotStyle -> {Thick, Blue}, ImageSize -> 350, Frame -> True, 
+            FrameLabel -> {"t", "c(t)"}, PlotLabel -> 
+            Row[{"\[Zeta] = ", $CellContext`\[Zeta]$$, 
+               ", \!\(\*SubscriptBox[\(\[Omega]\), \(n\)]\) = ", \
+$CellContext`\[Omega]n$$}]]}, Center]], 
+      "Specifications" :> {{$CellContext`\[Zeta]$$, 0, 1.5, 0.05, Appearance -> 
+         "Labeled"}, {$CellContext`\[Omega]n$$, 1, 10, 0.5, Appearance -> 
+         "Labeled"}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{399.1, {480.709141622609, 486.441075216359}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.9858941110651484`*^9},
+ CellLabel->"Out[59]=",ExpressionUUID->"86b12951-50af-47da-aef0-62e5e97e97fd"]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{352, Automatic}, {Automatic, 50}},
+LightDark->"Light",
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"94cbe4f6-a0dc-47dd-ac35-e37ca141fe6c"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 7198, 173, 287, "Input",ExpressionUUID->"1db64b73-9b1d-419b-b305-b02efb326a56"],
+Cell[7777, 197, 4056, 81, 1003, "Output",ExpressionUUID->"86b12951-50af-47da-aef0-62e5e97e97fd"]
+}, Open  ]]
+}
+]
+*)
+

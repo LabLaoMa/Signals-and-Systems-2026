@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-a8da12e74b29c2e7b17644f84b91567b.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.30">
+
+  <title>My Site – quarto-input64528e9ed06e2e05</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-ca6c53983499909029db778ee07132c3.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level2">
+
+<p>第7章 采样</p>
+<p>Sampling</p>
+</section>
+<section id="本章主要内容" class="slide level2">
+<h2>本章主要内容</h2>
+<p>1．如何用连续时间信号的离散时间样本来表示连续时间信号——采样定理。</p>
+<p>2．如何从采样所得到的样本重建连续时间信号。 3．欠采样导致的后果——频谱混叠。 4．连续时间信号的离散时间处理。 5．离散时间信号的采样、抽取及内插。 6．频域采样。</p>
+<p>在日常生活中，常可以看到用离散时间信号表示连续时间信号的例子。如传真的照片、电视屏幕的画面、电影胶片等等，这些都表明连续时间信号与离散时间信号之间存在着密切的联系。在一定条件下，可以用离散时间信号代替连续时间信号而并不丟失原来信号所包含的信息。</p>
+<p>例1．一幅新闻照片 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-04.jpg?height=1450&amp;width=1964&amp;top_left_y=346&amp;top_left_x=357"></p>
+</section>
+<section id="局部放大后的图片" class="slide level2">
+<h2>局部放大后的图片</h2>
+
+<img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-05.jpg?height=1415&amp;width=2136&amp;top_left_y=375&amp;top_left_x=202" class="r-stretch"></section>
+<section id="例2另一幅新闻照片" class="slide level2">
+<h2>例2．另一幅新闻照片</h2>
+
+<img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-06.jpg?height=1404&amp;width=2189&amp;top_left_y=340&amp;top_left_x=230" class="r-stretch"></section>
+<section id="局部放大后的图片-1" class="slide level2">
+<h2>局部放大后的图片</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-07.jpg?height=1398&amp;width=2137&amp;top_left_y=334&amp;top_left_x=242"></p>
+<p>研究连续时间信号与离散时间信号之间的关系主要包括：</p>
+<p>1．在什么条件下，一个连续时间信号可以用它的离散时间样本来代替而不致丟失原有的信息。</p>
+<p>2．如何从连续时间信号的离散时间样本不失真地恢复成原来的连续时间信号。</p>
+<p>3．如何对一个连续时间信号进行离散时间处理。 4．对离散时间信号如何进行采样、抽取，及内插。 7.1 用样本表示连续时间信号：采样定理</p>
+<p>Theorem of Sampling 一．采样：Sampling 在某些离散的时间点上提取连续时间信号值的过程称为采样。</p>
+<p>是否任何信号都可以由它的离散时间样本来表示？</p>
+<p>对一维连续时间信号采样的例子： <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-10.jpg?height=711&amp;width=1912&amp;top_left_y=184&amp;top_left_x=311"></p>
+<p>在没有任何条件限制的情况下，从连续时间信号采样所得到的样本序列不能唯一地代表原来的连续时间信号。</p>
+<p>此外，对同一个连续时间信号，当采样间隔不同时也会 得到不同的样本序列。</p>
+</section>
+<section id="二采样的数学模型" class="slide level2">
+<h2>二．采样的数学模型：</h2>
+<p>在时域：<span class="math inline">\(x_{s}(t)=x(t) s(t)\)</span> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-11.jpg?height=399&amp;width=786&amp;top_left_y=265&amp;top_left_x=1552"></p>
+<p>在频域：<span class="math inline">\(X_{s}(j \omega)=\frac{1}{2 \pi} X(j \omega) * S(j \omega)\)</span></p>
+</section>
+<section id="三冲激串采样理想采样" class="slide level2">
+<h2>三．冲激串采样（理想采样）：</h2>
+<p><span class="math inline">\(s(t)=\sum_{n=-\infty}^{+\infty} \delta\left(t-n T_{s}\right) \quad T_{s}\)</span> 为采样间隔</p>
+<p><span class="math display">\[
+\begin{aligned}
+x_{s}(t) &amp; =x(t) s(t)=x(t) \sum_{n=-\infty}^{+\infty} \delta\left(t-n T_{s}\right) \\
+&amp; =\sum_{n=-\infty}^{+\infty} x\left(n T_{s}\right) \delta\left(t-n T_{s}\right)
+\end{aligned}
+\]</span></p>
+<p>在频域由于 <span class="math inline">\(s(t) \leftrightarrow S(j \omega)=\frac{2 \pi}{T_{s}} \sum_{k=-\infty}^{\infty} \delta\left(\omega-k \frac{2 \pi}{T_{s}}\right)\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \therefore X_{s}(j \omega)=\frac{1}{2 \pi} X(j \omega) * S(j \omega) \\
+&amp; =\frac{1}{2 \pi} X(j \omega) * \frac{2 \pi}{T_{s}} \sum_{k=-\infty}^{\infty} \delta\left(\omega-k \omega_{s}\right) \\
+&amp; =\frac{1}{T_{s}} \sum_{k=-\infty}^{\infty} X\left(j\left(\omega-k \omega_{s}\right)\right) \quad \omega_{s}=\frac{2 \pi}{T_{s}}
+\end{aligned}
+\]</span></p>
+<p>可见，在时域对连续时间信号进行冲激串采样，就相当于在频域将连续时间信号的频谱以 <span class="math inline">\(\omega_{s}\)</span>为周期进行延拓。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-13.jpg?height=505&amp;width=1975&amp;top_left_y=164&amp;top_left_x=161"> <span class="math inline">\(s(t)\)</span> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-13.jpg?height=267&amp;width=1042&amp;top_left_y=852&amp;top_left_x=184"> <span class="math inline">\(\xrightarrow[-2 \omega_{\mathrm{s}}]{\uparrow} \uparrow_{-\omega_{\mathrm{s}}} \overbrace{0}^{\frac{2 \pi}{T_{\mathrm{s}}} \uparrow} \uparrow_{\omega_{\mathrm{s}}}^{\mathbf{S}(j \omega)} \uparrow_{2 \omega_{\mathrm{s}}} \uparrow_{3 \omega_{\mathrm{s}}} \cdots\)</span> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-13.jpg?height=569&amp;width=1112&amp;top_left_y=1161&amp;top_left_x=154"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-13.jpg?height=502&amp;width=1189&amp;top_left_y=1275&amp;top_left_x=1306"></p>
+<p>说明：（1）采样信号的频谱 <span class="math inline">\(X_{s}(\dot{j \omega})\)</span> 原信号的频谱 <span class="math inline">\(\dot{X}(\overline{j \omega})\)</span> 艮个频移组成，幅值为原频谱的 ，<span class="math inline">\(\frac{1}{T_{s}}\)</span> 移角频率为 <span class="math inline">\(\quad\left(\mathrm{n} \omega_{s} \mathbf{0}, \pm \mathbf{1}\right.\)</span> ， <span class="math inline">\(\pm 2\)</span> ．．．．．．） （2）if <span class="math inline">\(\omega_{s} \geq 2 \omega_{M}\)</span> 邻的频谱不会重叠，这时能从采样信号的频谱中得到原信号的频谱，即从采样信号 <span class="math inline">\(\quad x_{s}^{-}(t)\)</span> 䢍原信号 。 <span class="math inline">\(x(t)\)</span> （3）if <span class="math inline">\(\omega_{s}&lt;2 \omega_{M}\)</span> 频移后的相邻频谱互相重叠，无法恢复原信号。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-15.jpg?height=497&amp;width=1594&amp;top_left_y=265&amp;top_left_x=490"></p>
+<p>四．Nyquist 采样定理（时域）： 一个截止频率为 <span class="math inline">\(\omega\)</span> 的连续时间带限信号 洳果以 的频率进行理想采样，则 可以唯 <span class="math inline">\((t\)</span> 的由其样本 来确云 <span class="math inline">\(x\left(n T_{s}\right)\)</span></p>
+<p>以冲激采样为例，研究如何从采样信号恢复原信号 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-16.jpg?height=1586&amp;width=2326&amp;top_left_y=189&amp;top_left_x=169"></p>
+<p>为了从已采样信号 <span class="math inline">\(X_{s}(j \omega)\)</span> 中恢复原信号 <span class="math inline">\(X(j \omega)\)</span> ，需满足如下两个条件：</p>
+<p>1．<span class="math inline">\(x(t)\)</span> 必须是带限的，最高频率分量为 <span class="math inline">\(\omega_{M}\)</span> 。 2．采样间隔（周期）不能是任意的，必须保证采样频率 <span class="math inline">\(\omega_{s} \geq 2 \omega_{M}\)</span> ；或采样间隔 <span class="math inline">\(T_{s} \leq \frac{\pi}{\omega_{M}}\)</span> 。其中 <span class="math inline">\(\omega_{s}=2 \pi / T_{s}\)</span> 为采样频率。</p>
+<p>Nyquist频率：最低允许的采样频率 <span class="math inline">\(\omega_{s}=2 \omega_{M}\)</span> Nyquist间隔：最大允许的采样间隔 <span class="math inline">\(T_{s}=\frac{\pi}{\omega_{M}}\)</span> －低通滤波器的截止频率必须满足：</p>
+<p><span class="math display">\[
+\omega_{M}&lt;\omega_{c}&lt;\left(\omega_{s}-\omega_{M}\right)
+\]</span></p>
+<p>－为了补偿采样时频谱幅度的减小，滤波器应具有 7 倍的通带增益。</p>
+<p>例：确定下列信号的Nyquist率 1）<span class="math inline">\(x(t)=1+\cos (2000 \pi t)+\frac{1}{2} \cos (4000 \pi t)\)</span> 2）<span class="math inline">\(x(t)=\frac{\sin (4000 \pi t)}{\pi t}\)</span> 3）<span class="math inline">\(x(t)=\left(\frac{\sin (4000 \pi t)}{\pi t}\right)^{2}\)</span></p>
+<p>五．零阶保持采样： 在一个给定的瞬时对 <span class="math inline">\({ }^{x(t)}\)</span> 采样，并保持这一样本值直到下一个样本被采到为止。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-19.jpg?height=434&amp;width=2188&amp;top_left_y=819&amp;top_left_x=219"></p>
+<p>信号的样本经零阶保持后，所得到的信号是一个阶梯形信号。</p>
+<p>零阶保持采样在原理上可以用冲激串采样，再级联一个零阶保持系统来实现。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-20.jpg?height=688&amp;width=1779&amp;top_left_y=490&amp;top_left_x=213"></p>
+<p>为了从 <span class="math inline">\(x\)</span> 能恢复 <span class="math inline">\(x\)</span>（就要求零阶保持后再级联一个系统 。 <span class="math inline">\(H_{r}(j \omega)\)</span></p>
+<p><span class="math display">\[
+\begin{gathered}
+H_{0}(j \omega) H_{r}(j \omega)=\left\{\begin{array}{c}
+T_{s},|\omega|&lt;\omega_{c} \\
+0,|\omega|&gt;\omega_{c}
+\end{array} \quad \omega_{M}&lt;\omega_{c}&lt;\omega_{s}-\omega_{M}\right. \\
+\text { 而 } H_{0}(j \omega)=\frac{2 \operatorname{Sin} \frac{\omega T_{s}}{2}}{\omega} e^{-j \frac{\omega T_{s}}{2}} \\
+\text { 所以 } H_{r}(j \omega)=\frac{H(j \omega)}{\frac{2 \operatorname{Sin} \omega T_{s} / 2}{\omega}} \cdot e^{j \frac{\omega T_{s}}{2}}
+\end{gathered}
+\]</span></p>
+</section>
+<section id="以-hj-omega-表示理想低通滤波器的特性则" class="slide level2">
+<h2>以 <span class="math inline">\(H(j \omega)\)</span> 表示理想低通滤波器的特性，则：</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-22.jpg?height=497&amp;width=931&amp;top_left_y=398&amp;top_left_x=230"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-22.jpg?height=503&amp;width=908&amp;top_left_y=450&amp;top_left_x=1292"></p>
+<p>若 <span class="math inline">\(\omega_{c}=\frac{1}{2} \omega_{s}\)</span> 则 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-22.jpg?height=573&amp;width=873&amp;top_left_y=1171&amp;top_left_x=265"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-22.jpg?height=671&amp;width=861&amp;top_left_y=1096&amp;top_left_x=1454"></p>
+</section>
+<section id="利用内插从样本重建信号" class="slide level2">
+<h2>7.2 利用内插从样本重建信号</h2>
+</section>
+<section id="reconstruction-of-a-signal-from-its-samples-using-interpolation" class="slide level2">
+<h2>Reconstruction of a Signal from Its Samples Using Interpolation</h2>
+<p>内插：由样本值重建某一函数的过程。</p>
+</section>
+<section id="一理想内插利用lp的单位冲激响应的内插" class="slide level2">
+<h2>一．理想内插：（利用LP的单位冲激响应的内插）</h2>
+<p>若 <span class="math inline">\(h(t)\)</span> 为理想低通的单位冲激响应，则</p>
+<p><span class="math display">\[
+\begin{aligned}
+x(t) &amp; =x_{s}(t) * h(t)=\sum_{n=-\infty}^{+\infty} x\left(n T_{s}\right) \delta\left(t-n T_{s}\right) * h(t) \\
+&amp; =\sum_{n=-\infty}^{\infty} x\left(n T_{s}\right) h\left(t-n T_{s}\right)
+\end{aligned}
+\]</span></p>
+</section>
+<section id="理想内插以理想低通滤波器的单位冲激响应作" class="slide level2">
+<h2>理想内插以理想低通滤波器的单位冲激响应作</h2>
+</section>
+<section id="为内插函数" class="slide level2">
+<h2>为内插函数</h2>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; h(t)=T_{s} \cdot \frac{\operatorname{Sin} \omega_{c} t}{\pi t} \\
+&amp; \therefore x(t)=\sum_{n=-\infty}^{\infty} x\left(n T_{s}\right) \cdot \frac{\omega_{c} T_{s} \operatorname{Sin} \omega_{c}\left(t-n T_{s}\right)}{\pi} \frac{}{\omega_{c}\left(t-n T_{s}\right)}
+\end{aligned}
+\]</span></p>
+<p>当 <span class="math inline">\(\omega_{c}=\frac{\omega_{s}}{2}=\frac{\pi}{T_{s}}\)</span> 时 <span class="math inline">\(x(t)=\sum_{n=-\infty}^{\infty} x\left(n T_{s}\right) \frac{\operatorname{Sin} \omega_{c}\left(t-n T_{s}\right)}{\omega_{c}\left(t-n T_{s}\right)}\)</span></p>
+</section>
+<section id="这种内插称为时域中的带限内插" class="slide level2">
+<h2>这种内插称为时域中的带限内插。</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-25.jpg?height=654&amp;width=2102&amp;top_left_y=507&amp;top_left_x=282"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-25.jpg?height=561&amp;width=1553&amp;top_left_y=1177&amp;top_left_x=404"></p>
+</section>
+<section id="二零阶保持内插" class="slide level2">
+<h2>二．零阶保持内插：</h2>
+<p>零阶保持内插的内插函数是零阶保持系统的单位冲激响应 <span class="math inline">\(h_{0}(t)\)</span> 。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-26.jpg?height=786&amp;width=1946&amp;top_left_y=865&amp;top_left_x=277"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-27.jpg?height=1634&amp;width=1084&amp;top_left_y=167&amp;top_left_x=145"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-27.jpg?height=797&amp;width=1163&amp;top_left_y=176&amp;top_left_x=1281"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-27.jpg?height=824&amp;width=1159&amp;top_left_y=977&amp;top_left_x=1285"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-28.jpg?height=745&amp;width=1128&amp;top_left_y=162&amp;top_left_x=132"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-28.jpg?height=750&amp;width=1154&amp;top_left_y=171&amp;top_left_x=1307"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-28.jpg?height=842&amp;width=1128&amp;top_left_y=950&amp;top_left_x=132"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-28.jpg?height=842&amp;width=1146&amp;top_left_y=959&amp;top_left_x=1311"></p>
+</section>
+<section id="三一阶保持内插线性内插" class="slide level2">
+<h2>三．一阶保持内插（线性内插）：</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-29.jpg?height=376&amp;width=1074&amp;top_left_y=473&amp;top_left_x=202"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-29.jpg?height=428&amp;width=896&amp;top_left_y=398&amp;top_left_x=1454"></p>
+<p><span class="math display">\[
+S(t)=\sum_{n=-\infty}^{\infty} \delta\left(t-n T_{S}\right)
+\]</span></p>
+<p>其内插函数是三 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-29.jpg?height=457&amp;width=1184&amp;top_left_y=865&amp;top_left_x=1275">角形脉冲。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-29.jpg?height=423&amp;width=1057&amp;top_left_y=1373&amp;top_left_x=1408"></p>
+<p><span class="math display">\[
+\begin{aligned}
+x(t) &amp; =x_{s}(t) * h_{1}(t)=\sum_{n=-\infty}^{+\infty} x\left(n T_{s}\right) \delta\left(t-n T_{s}\right) * h_{1}(t) \\
+&amp; =\sum_{n=-\infty}^{\infty} x\left(n T_{s}\right) h_{1}\left(t-n T_{s}\right)
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+H_{1}(j \omega)=T_{\mathrm{s}}\left[\frac{\operatorname{Sin} \frac{\omega T_{\mathrm{s}}}{2}}{\omega T_{\mathrm{s}} / 2}\right]^{2}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-30.jpg?height=675&amp;width=1220&amp;top_left_y=1038&amp;top_left_x=1215"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-31.jpg?height=1652&amp;width=1161&amp;top_left_y=161&amp;top_left_x=173"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-31.jpg?height=1646&amp;width=1144&amp;top_left_y=167&amp;top_left_x=1344"></p>
+</section>
+<section id="连续时间信号的离散时间处理" class="slide level2">
+<h2>7.4 连续时间信号的离散时间处理</h2>
+<p>Discrete－Time Processing of Continuous－Time Signals 对连续时间信号进行离散时间处理的系统可视为三个环节的级连。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-32.jpg?height=734&amp;width=2217&amp;top_left_y=946&amp;top_left_x=173"></p>
+<p>将一个连续时间信号转换为一个离散时间信号，以及从信号的离散时间表示重建连续时间信号所依据的理论基础：采样定理</p>
+<p><span class="math display">\[
+x_{d}[n]=x_{c}\left(n T_{s}\right) \quad y_{d}[n]=y_{c}\left(n T_{s}\right)
+\]</span></p>
+<p>用于实现C／D转换的器件称为模拟数字（A／D）转换器用于实现D／C转换的器件称为数字模拟（D／A）转换器</p>
+</section>
+<section id="一cd-转换" class="slide level2">
+<h2>一．C／D 转换：</h2>
+
+<img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-34.jpg?height=434&amp;width=1900&amp;top_left_y=346&amp;top_left_x=300" class="r-stretch"></section>
+<section id="时域分析" class="slide level2">
+<h2>时域分析：</h2>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; s(t)=\sum_{n=-\infty}^{\infty} \delta\left(t-n T_{s}\right) \\
+&amp; x_{s}(t)=x_{c}(t) \cdot s(t)=\sum_{n=-\infty}^{\infty} x_{c}\left(n T_{s}\right) \delta\left(t-n T_{s}\right) \\
+&amp; x_{d}[n]=x_{c}\left(n T_{s}\right)
+\end{aligned}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-35.jpg?height=572&amp;width=1501&amp;top_left_y=219&amp;top_left_x=173"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-35.jpg?height=544&amp;width=1519&amp;top_left_y=1090&amp;top_left_x=161"></p>
+<p>样本的冲激串 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-35.jpg?height=572&amp;width=87&amp;top_left_y=692&amp;top_left_x=2054&amp;polygon=75,0,87,502,81,566,75,572,6,572,0,566,0,416,12,6,18,0"></p>
+<p>样本的离散时间序列</p>
+</section>
+<section id="频域分析" class="slide level2">
+<h2>频域分析：</h2>
+<p>用 <span class="math inline">\(\omega\)</span> 表示连续时间频率变量，用 <span class="math inline">\(\Omega\)</span> 表示离散时间频率变量</p>
+<p><span class="math display">\[
+\begin{gathered}
+x_{c}(t) \stackrel{F}{\longleftrightarrow} X_{c}(j \omega) \quad x_{d}[n] \stackrel{F}{\longleftrightarrow} X_{d}\left(e^{j \Omega}\right) \\
+x_{s}(t)=x_{c}(t) \cdot s(t)=\sum_{n=-\infty}^{\infty} x_{c}\left(n T_{s}\right) \delta\left(t-n T_{s}\right) \\
+\therefore X_{\mathrm{s}}(j \omega)=\sum_{n=-\infty}^{\infty} x_{c}\left(n T_{s}\right) e^{-j \omega n T_{s}} \\
+X_{d}\left(e^{j \Omega}\right)=\sum_{n=-\infty}^{\infty} x_{d}[n] e^{-j \Omega n}=\sum_{n=-\infty}^{\infty} x_{c}\left(n T_{s}\right) e^{-j \Omega n} \\
+\therefore X_{d}\left(e^{j \Omega}\right)=X_{\mathrm{s}}\left(j \frac{\Omega}{T_{s}}\right)
+\end{gathered}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+s(t) &amp; \leftrightarrow S(j \omega)=\frac{2 \pi}{T_{s}} \sum_{k=-\infty}^{\infty} \delta\left(\omega-k \frac{2 \pi}{T_{s}}\right) \\
+X_{s}(j \omega) &amp; =\frac{1}{2 \pi} X_{c}(j \omega) * S(j \omega) \\
+&amp; =\frac{1}{T_{s}} \sum_{k=-\infty}^{\infty} X_{c}\left[j\left(\omega-k \omega_{s}\right)\right], \quad \omega_{s}=\frac{2 \pi}{T_{s}} \\
+\therefore \quad X_{d}\left(e^{j \Omega}\right) &amp; =\frac{1}{T_{s}} \sum_{k=-\infty}^{\infty} X_{c}\left[j \frac{1}{T_{s}}(\Omega-2 \pi k)\right]
+\end{aligned}
+\]</span></p>
+<p>即从 <span class="math inline">\(x_{s}(t)\)</span> 到 <span class="math inline">\(x_{d}[n]\)</span> 的转换过程中，在频率轴上引入了一个 <span class="math inline">\(T_{s}\)</span> 倍的变化！ <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-38.jpg?height=380&amp;width=692&amp;top_left_y=215&amp;top_left_x=937"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-38.jpg?height=468&amp;width=1401&amp;top_left_y=686&amp;top_left_x=567"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-38.jpg?height=503&amp;width=1691&amp;top_left_y=1254&amp;top_left_x=409"> <span class="math inline">\(x_{c}(t)\)</span> 和 <span class="math inline">\(x_{d}[n]\)</span> 的频域关系可表示为： <span class="math inline">\(X_{c}(j \omega)\)</span> 以 <span class="math inline">\(\omega_{s}\)</span> 为周期重复＋线性频域尺度变换</p>
+<p><span class="math display">\[
+\Omega=\omega T_{s}
+\]</span></p>
+<p>可见，冲激串到序列的变换过程，在时域是一个对时间归一化的过程；在频域是一个频率去归一化的过程。</p>
+</section>
+<section id="二dc-转换" class="slide level2">
+<h2>二．D／C 转换：</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-40.jpg?height=491&amp;width=1756&amp;top_left_y=346&amp;top_left_x=380"></p>
+<p><span class="math display">\[
+\begin{gathered}
+y_{s}(t)=\sum_{n=-\infty}^{\infty} y_{d}[n] \delta\left(t-n T_{s}\right) \quad Y_{s}(j \omega)=\sum_{n=-\infty}^{\infty} y_{d}[n] e^{-j \omega n T_{s}} \\
+Y_{d}\left(e^{j \Omega}\right)=\sum_{n=-\infty}^{\infty} y_{d}[n] e^{-j \Omega n} \\
+\therefore Y_{s}(j \omega)=Y_{d}\left(e^{j \omega T_{s}}\right)
+\end{gathered}
+\]</span></p>
+<p>三．连续时间信号的离散时间处理： <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-41.jpg?height=763&amp;width=2332&amp;top_left_y=427&amp;top_left_x=150"></p>
+<p>分析： If 离散时间系统 <span class="math inline">\(H_{d}\left(e^{j \Omega}\right)\)</span> 是恒等系统； Then 连续时间系统 <span class="math inline">\(H_{c}(j \omega)\)</span> 也是恒等系统。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-42.jpg?height=437&amp;width=507&amp;top_left_y=184&amp;top_left_x=484"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-42.jpg?height=525&amp;width=1009&amp;top_left_y=677&amp;top_left_x=220"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-42.jpg?height=578&amp;width=1194&amp;top_left_y=1223&amp;top_left_x=136"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-42.jpg?height=556&amp;width=1203&amp;top_left_y=202&amp;top_left_x=1294"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-42.jpg?height=524&amp;width=1035&amp;top_left_y=810&amp;top_left_x=1382"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-42.jpg?height=419&amp;width=508&amp;top_left_y=1373&amp;top_left_x=1672"></p>
+<p>假定 <span class="math inline">\(H_{d}\left(e^{j \Omega}\right)=1\)</span> ，有 <span class="math inline">\(y_{d}[n]=x_{d}[n]\)</span> ，在满足采样定理时有 <span class="math inline">\(y_{s}(t)=x_{s}(t), y_{c}(t)=x_{c}(t)\)</span> ，整个系统是恒等系统，表明D／C是C／D的逆系统。</p>
+<p>由上图：</p>
+<p><span class="math display">\[
+H_{c}(j \omega)=\left\{\begin{array}{ll}
+H_{d}\left(e^{j \omega T_{s}}\right) &amp; |\omega|&lt;\frac{\omega_{s}}{2} \\
+0 &amp; |\omega|&gt;\frac{\omega_{s}}{2}
+\end{array} \quad\right. \text { 式 (b) }
+\]</span></p>
+<p>等效的连续时间滤波器的频率响应就是该离散时间滤波器在一个周期内的特性，只是频率轴有一个线性尺度变化 <span class="math inline">\(\left(\Omega=\omega T_{s}\right)\)</span> 。</p>
+<p>对于带限输入信号，利用图（a）和式（b）可实现利用离散时间滤波器处理连续信号。</p>
+<p>例：数字微分器（连续时间带限微分器的离散实现） 带限微分器 <span class="math inline">\(\quad H_{c}(j \omega)=\left\{\begin{array}{cc}j \omega, &amp; |\omega|&lt;\omega_{c} \\ 0, &amp; |\omega|&gt;\omega_{c}\end{array}\right.\)</span> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-44.jpg?height=491&amp;width=867&amp;top_left_y=1235&amp;top_left_x=265"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-44.jpg?height=520&amp;width=826&amp;top_left_y=1252&amp;top_left_x=1310"></p>
+<p>由 <span class="math inline">\(H_{c}\left(j \frac{\Omega}{T_{s}}\right)=H_{d}\left(e^{j \Omega}\right)\)</span> 可得：当 <span class="math inline">\(\omega_{c}=\frac{\omega_{s}}{2}\)</span> 时有</p>
+<p><span class="math display">\[
+H_{d}\left(e^{j \Omega}\right)=j \frac{\Omega}{T_{s}} \quad|\Omega|&lt;\pi
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-45.jpg?height=687&amp;width=2177&amp;top_left_y=958&amp;top_left_x=207"></p>
+</section>
+<section id="离散时间信号采样" class="slide level2">
+<h2>7．6离散时间信号采样</h2>
+<p>Sampling of Discrete－Time Signals</p>
+</section>
+<section id="一脉冲串采样" class="slide level2">
+<h2>一、脉冲串采样</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-46.jpg?height=290&amp;width=728&amp;top_left_y=796&amp;top_left_x=1131"></p>
+<p><span class="math display">\[
+\begin{gathered}
+s[n]=\sum_{k=-\infty}^{\infty} \delta\left[n-k N_{s}\right] \\
+x_{s}[n]=x[n] s[n]=\sum_{k=-\infty}^{\infty} x\left[k N_{s}\right] \delta\left[n-k N_{s}\right]
+\end{gathered}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; X_{s}\left(e^{j \omega}\right)=\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right) S\left(e^{j(\omega-\theta)}\right) d \theta \\
+&amp; =\frac{1}{N_{s}} \int_{2 \pi} X\left(e^{j \theta}\right) \sum_{k=-\infty}^{\infty} \delta\left(\omega-\theta-\frac{2 \pi}{N_{s}} k\right) d \theta=\frac{1}{N_{s}} \sum_{k=0}^{N_{s}-1} X\left(e^{j\left(\omega-\frac{2 \pi}{N_{s} k}\right)}\right)
+\end{aligned}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-47.jpg?height=380&amp;width=1709&amp;top_left_y=836&amp;top_left_x=396"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-47.jpg?height=507&amp;width=2189&amp;top_left_y=1237&amp;top_left_x=220"></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; X_{s}\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} x_{s}[n] e^{-j \omega n}=\sum_{n=-\infty}^{\infty} x\left[n N_{s}\right] e^{-j \omega n N_{s}} \\
+&amp; =\sum_{n=-\infty}^{\infty} x[n] e^{-j \omega n}\left(\frac{1}{N_{s}} \sum_{m=0}^{N_{s}-1} e^{j 2 \pi m m / N_{s}}\right) \\
+&amp; =\frac{1}{N_{s}} \sum_{m=0}^{N_{s}-1} \sum_{n=-\infty}^{\infty} x[n] e^{-j n\left(\omega-2 \pi n / N_{s}\right)} \\
+&amp; =\frac{1}{N_{s}} \sum_{m=0}^{N_{s}-1} X\left(e^{j\left(\omega-2 \pi n / N_{s}\right)}\right)
+\end{aligned}
+\]</span></p>
+<p>在时域，对离散时间信号以 <span class="math inline">\(N_{s}\)</span> 为间隔采样，在频域，信号的频谱就在一个周期内以 <span class="math inline">\(\frac{2 \pi}{N_{s}}\)</span> 为间隔周期性延拓。</p>
+<p>要使 <span class="math inline">\(x_{s}[n]\)</span> 能恢复成 <span class="math inline">\(x[n]\)</span> ，则频谱在周期性延拓时不能发生混叠。为此要求： 1．<span class="math inline">\(x[n]\)</span> 带限于 <span class="math inline">\(\omega_{M}\)</span> 。 2．<span class="math inline">\(\omega_{s}=\frac{2 \pi}{N} \geq 2 \omega_{M}\)</span> 。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-49.jpg?height=422&amp;width=1646&amp;top_left_y=1339&amp;top_left_x=380"></p>
+<p>此时可以通过离散时间理想低通滤波器实现对信号 <span class="math inline">\(x[n]\)</span> 的恢复。截止频率满足：</p>
+<p><span class="math display">\[
+\omega_{M}&lt;\omega_{c}&lt;\omega_{s}-\omega_{M}
+\]</span></p>
+<p>恢复 <span class="math inline">\(x[n]\)</span> 的过程也是一种带限内插过程。其内插函数为理想低通的单位脉冲响应 <span class="math inline">\(h[n]\)</span> 。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-50.jpg?height=497&amp;width=1473&amp;top_left_y=1229&amp;top_left_x=542"></p>
+<p>例：有一序列 <span class="math inline">\(x[n]\)</span> ，其傅立叶变换 <span class="math inline">\(X\left(e^{j \omega}\right)\)</span> 具有如下特点：<span class="math inline">\(\quad X\left(e^{j \omega}\right)=0, \frac{2 \pi}{9} \leq|\omega| \leq \pi\)</span> 求对 <span class="math inline">\(x[n]\)</span> 采样而不发生混叠的最低采样率。</p>
+</section>
+<section id="二离散时间抽取与内插" class="slide level2">
+<h2>二．离散时间抽取与内插：</h2>
+<p>Discrete－Time Decimation and Interpolation在实际应用中，直接按图传输已采样序列 <span class="math inline">\(x_{s}[n]\)</span> 是很不经济的。因为序列 <span class="math inline">\(x_{s}[n]\)</span> 在采样点之间是 <span class="math inline">\(\mathbf{0}\)</span> 。因此，往往用一个新序列 <span class="math inline">\(x_{b}[n]\)</span> 来代替，<span class="math inline">\(x_{b}[n]\)</span> 是由 <span class="math inline">\(\boldsymbol{x}_{s}[\boldsymbol{n}]\)</span> 中每隔 <span class="math inline">\(N_{s}\)</span> 点上的序列值构成，即</p>
+<p><span class="math display">\[
+x_{b}[n]=x_{s}\left[n N_{s}\right]=x\left[n N_{s}\right]
+\]</span></p>
+<p>抽取：提取每第 <span class="math inline">\(N_{s}\)</span> 。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-53.jpg?height=463&amp;width=1127&amp;top_left_y=253&amp;top_left_x=161"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-53.jpg?height=515&amp;width=1161&amp;top_left_y=738&amp;top_left_x=150"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-53.jpg?height=480&amp;width=1034&amp;top_left_y=1304&amp;top_left_x=282"></p>
+<p>时域 <span class="math inline">\(x[n] 、 x_{s}[n] 、 x_{b}[n]\)</span> ，的关系如左图</p>
+<p>抽取过程在频或的反映：</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; X_{b}\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} x_{b}[n] e^{-j \omega n}=\sum_{n=-\infty}^{\infty} x\left[n N_{s}\right] e^{-j \omega n} \\
+&amp; =\sum_{k=-\infty}^{\infty} x[k]\left(\frac{1}{N_{s}} \sum_{m=0}^{N_{s}-1} e^{j 2 \pi k m / N_{s}}\right) e^{-j \omega k / N_{s}} \\
+&amp; =\frac{1}{N_{s}} \sum_{m=0}^{N_{s}-1} \sum_{k=-\infty}^{\infty} x[k] e^{j 2 \pi k m / N_{s}} e^{-j \omega k / N_{s}} \\
+&amp; =\frac{1}{N_{s}} \sum_{m=0}^{N_{s}-1} \sum_{k=-\infty}^{\infty} x[k] e^{-j k(\omega-2 \pi n) / N_{s}}=\frac{1}{N_{s}} \sum_{m=0}^{N_{s}-1} X\left(e^{j(\omega-2 \pi n) / N_{s}}\right)
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; x_{s}[n]=\left\{\begin{array}{cc}
+x_{b}\left[n / N_{s}\right] &amp; n=p N_{s}, p \text { 为整数 } \\
+0 &amp; \text { 其它n }
+\end{array}\right. \\
+&amp; X_{s}\left(e^{j \omega}\right)=\sum_{n=-\infty}^{\infty} x_{s}[n] e^{-j \omega n} \\
+&amp; =\sum_{n=-\infty}^{\infty} x_{b}[n] e^{-j \omega n N_{s}}=X_{b}\left(e^{j \omega N_{s}}\right) \\
+&amp; =\sum_{m=0}^{N_{s}-1} X\left(e^{j\left(\omega-2 \pi m / N_{s}\right)}\right)
+\end{aligned}
+\]</span></p>
+<p>这表明，在时域对带限序列进行抽取，相当于在频域对采样序列的频谱进行尺度变换。 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-56.jpg?height=486&amp;width=1996&amp;top_left_y=415&amp;top_left_x=194"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-56.jpg?height=445&amp;width=1998&amp;top_left_y=900&amp;top_left_x=202"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-56.jpg?height=515&amp;width=2004&amp;top_left_y=1350&amp;top_left_x=196"></p>
+<p>由上图，为了避免抽取过程中产生混叠，序列 <span class="math inline">\(x[n]\)</span>的频谱 <span class="math inline">\(X\left(e^{j \omega}\right)\)</span> 不能占满整个频带。</p>
+<p>抽取的过程也称为减采样； 增采样：减采样的逆过程 由 <span class="math inline">\(x_{b}[n]\)</span> 增采样以得到 <span class="math inline">\(x[n]\)</span> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-57.jpg?height=255&amp;width=1374&amp;top_left_y=1437&amp;top_left_x=554"></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; x[n] \stackrel{\text { DTFT }}{\longleftrightarrow} X\left(e^{j \omega}\right) \\
+&amp; \tilde{X}[k]=\left.X\left(e^{j \omega}\right)\right|_{\omega=2 \pi n / N}=\sum_{n=-\infty}^{\infty} x[n] e^{-j 2 \pi k n / N} \\
+&amp; \tilde{x}[n]=I D T F T\{\tilde{X}[k]\}=\frac{1}{N} \sum_{k=0}^{N-1} \tilde{X}[k] e^{j 2 \pi k n / N} \\
+&amp; =\frac{1}{N} \sum_{k=0}^{N-1} \sum_{m=-\infty}^{\infty} x[m] e^{-j 2 \pi k m / N} e^{j 2 \pi k n / N} \\
+&amp; =\frac{1}{N} \sum_{m=-\infty}^{\infty} x[m] \sum_{k=0}^{N-1} e^{-j 2 \pi k m / N} e^{j 2 \pi k n / N} \\
+&amp; =\frac{1}{N} \sum_{m=-\infty}^{\infty} x[m] \sum_{k=0}^{N-1} e^{j 2 \pi k(m-n) / N}=\sum_{m=-\infty}^{\infty} x[n+N m]
+\end{aligned}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-59.jpg?height=480&amp;width=1046&amp;top_left_y=196&amp;top_left_x=288"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-59.jpg?height=538&amp;width=1150&amp;top_left_y=715&amp;top_left_x=190"> <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-59.jpg?height=474&amp;width=1127&amp;top_left_y=1310&amp;top_left_x=207"></p>
+<p>在 <span class="math inline">\(x_{b}[n]\)</span> 的每两个相邻 序列值之间插入 <span class="math inline">\(N_{s}-1\)</span> 个幅度为 0 的序列值</p>
+<p>利用低通滤波器从 <span class="math inline">\(x_{s}[n]\)</span> 中得到 <span class="math inline">\(x[n]\)</span></p>
+<p>例：考虑序列 <span class="math inline">\(x[n]\)</span> ，其傅立叶变换 <span class="math inline">\(X\left(e^{j \omega}\right)\)</span> 如图 <img data-src="https://cdn.mathpix.com/cropped/7be13d9f-1781-4c24-a758-a675da4d1934-60.jpg?height=549&amp;width=1963&amp;top_left_y=404&amp;top_left_x=242"> （1）该序列在脉冲串采样时不发生混叠的最低采样率？ （2）对 <span class="math inline">\(x_{s}[n]\)</span> 列以4抽取，得 <span class="math inline">\(\left.\quad x_{b}[n]\right]\)</span> 的频谱图？ （3）将内插和抽取结合起来，如何使一个序列达到最大可能的减采样？（即序列的频谱在一个周期内非零部分填满 <span class="math inline">\(-\pi\)</span> 到 <span class="math inline">\(\pi\)</span> 整个频带）</p>
+</section>
+<section id="习题" class="slide level2">
+<h2>习题</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">7.2</th>
+<th style="text-align: left;">7.22</th>
+<th style="text-align: left;">7.15</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">7.4</td>
+<td style="text-align: left;">7.23</td>
+<td style="text-align: left;">7.17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7.5</td>
+<td style="text-align: left;">7.31</td>
+<td style="text-align: left;">7.27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7.6</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7.7</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7.10</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7.21</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'visible',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

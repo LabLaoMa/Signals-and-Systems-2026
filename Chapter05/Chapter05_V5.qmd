@@ -1027,6 +1027,8 @@ $$
 
 证明。
 
+
+
 $$
 \begin{aligned}
 \mathcal{F}\{x y\}\left(e^{j \omega}\right) & =\sum_{n \in \mathbb{Z}} x[n] y[n] e^{-j \omega n}=\sum_{n \in \mathbb{Z}}\left(\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right) e^{j \theta n} d \theta\right) y[n] e^{-j \omega n} \\
@@ -1034,6 +1036,10 @@ $$
 & =\frac{1}{2 \pi} \int_{2 \pi} X\left(e^{j \theta}\right) Y\left(e^{j(\omega-\theta)}\right) d \theta
 \end{aligned}
 $$
+
+对于$z[n]=x[x]y[n]$，我们应该有如下的认识：
+$$
+Z(e^{j\omega}) = \frac{1}{2 \pi} X \circledast Y  = \tilde{Z}(e^{j\omega}) * \sum_{k=-\infty}^{\infty} \delta(\omega - 2\pi k)$$
 
 ## 例
 
@@ -1108,7 +1114,7 @@ $$
 ## 例：离散时间解调
 
 $$
-z[n]=y[n] c[n]，其中 $c[n]=\cos \left(\omega_{c} n\right)$
+z[n]=y[n] c[n]，其中 c[n]=\cos \left(\omega_{c} n\right)
 $$
 
 ![](imglink/0372b312-2528-401e-8b17-83b6d8e867cc-16_2.png){fig-align=center}
@@ -1542,16 +1548,16 @@ $$
 ## 作业
 
 - 书面作业
-  
-1. 5.1
 
-2. 5.4
+（1）5.1
 
-3. 5.7 
+（2）5.4
 
-4. 5.13
+（3）5.7 
 
-5. 5.20
+（4）5.13
+
+（5）5.20
 
 - 程序作业：见乐学平台
  

@@ -1,0 +1,396 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     16062,        388]
+NotebookOptionsPosition[     15556,        370]
+NotebookOutlinePosition[     15971,        387]
+CellTagsIndexPosition[     15928,        384]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"H", ",", "mag", ",", "phase", ",", "poles", ",", "w"}], "}"}], 
+     ",", 
+     RowBox[{"(*", 
+      RowBox[{
+      "1.", " ", "\:5b9a\:4e49\:4f20\:9012\:51fd\:6570\:4e0e\:6781\:70b9"}], 
+      "*)"}], 
+     RowBox[{
+      RowBox[{
+       RowBox[{"H", "[", "w_", "]"}], ":=", 
+       RowBox[{"1", "/", 
+        RowBox[{"(", 
+         RowBox[{"1", "-", 
+          RowBox[{"2", " ", "r", " ", 
+           RowBox[{"Cos", "[", "theta", "]"}], " ", 
+           RowBox[{"Exp", "[", 
+            RowBox[{
+             RowBox[{"-", "I"}], " ", "w"}], "]"}]}], "+", 
+          RowBox[{
+           RowBox[{"r", "^", "2"}], " ", 
+           RowBox[{"Exp", "[", 
+            RowBox[{
+             RowBox[{"-", "2"}], " ", "I", " ", "w"}], "]"}]}]}], ")"}]}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"poles", "=", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"r", " ", 
+            RowBox[{"Cos", "[", "theta", "]"}]}], ",", 
+           RowBox[{"r", " ", 
+            RowBox[{"Sin", "[", "theta", "]"}]}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"r", " ", 
+            RowBox[{"Cos", "[", "theta", "]"}]}], ",", 
+           RowBox[{
+            RowBox[{"-", "r"}], " ", 
+            RowBox[{"Sin", "[", "theta", "]"}]}]}], "}"}]}], "}"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"2.", " ", "\:754c\:9762\:5e03\:5c40"}], "*)"}], 
+      RowBox[{"Column", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{
+            RowBox[{"Row", "[", 
+             RowBox[{"{", 
+              
+              RowBox[{"\"\<\:4e8c\:9636\:79bb\:6563\:7cfb\:7edf\:9891\:7387\
+\:7279\:6027\:5206\:6790 (r = \>\"", ",", "r", ",", "\"\<, \[Theta] = \>\"", ",",
+                "theta", ",", "\"\<)\>\""}], "}"}], "]"}], ",", "14", ",", 
+            "Bold"}], "]"}], ",", 
+          RowBox[{"Row", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"(*", 
+              RowBox[{"A", ".", "Z\:5e73\:9762\:6781\:70b9\:56fe"}], "*)"}], 
+             RowBox[{
+              RowBox[{"Graphics", "[", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"{", 
+                   RowBox[{"LightGray", ",", 
+                    RowBox[{"Circle", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", "1"}], "]"}]}], 
+                   "}"}], ",", 
+                  RowBox[{"(*", "\:5355\:4f4d\:5706", "*)"}], 
+                  RowBox[{"{", 
+                   RowBox[{"Dashed", ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1.2"}], ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1.2", ",", "0"}], "}"}]}], "}"}], "]"}], ",", 
+                    RowBox[{"Line", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", 
+                    RowBox[{"-", "1.2"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "1.2"}], "}"}]}], "}"}], "]"}]}], "}"}],
+                   ",", 
+                  RowBox[{"{", 
+                   RowBox[{"Red", ",", 
+                    RowBox[{"PointSize", "[", "0.04", "]"}], ",", 
+                    RowBox[{"Point", "[", "poles", "]"}]}], "}"}]}], "}"}], ",", 
+                RowBox[{"Frame", "->", "True"}], ",", 
+                RowBox[{"PlotRange", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}]}], "}"}]}], ",", 
+                RowBox[{
+                "PlotLabel", 
+                 "->", "\"\<Z\:5e73\:9762\:6781\:70b9\:5206\:5e03\>\""}], ",", 
+                RowBox[{"ImageSize", "->", "250"}]}], "]"}], ",", 
+              RowBox[{"(*", 
+               RowBox[{
+                RowBox[{"B", ".", "\:5bf9\:6570\:5e45\:9891\:7279\:6027"}], " ", 
+                RowBox[{"(", "dB", ")"}]}], "*)"}], 
+              RowBox[{"Plot", "[", 
+               RowBox[{
+                RowBox[{"20", " ", 
+                 RowBox[{"Log10", "[", 
+                  RowBox[{"Abs", "[", 
+                   RowBox[{"H", "[", "w", "]"}], "]"}], "]"}]}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"w", ",", 
+                  RowBox[{
+                   RowBox[{"-", "2"}], " ", "Pi"}], ",", 
+                  RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+                RowBox[{"PlotRange", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", "Pi"}], ",", 
+                    RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"-", "15"}], ",", "30"}], "}"}]}], "}"}]}], ",", 
+                RowBox[{"Filling", "->", "Axis"}], ",", 
+                RowBox[{"PlotStyle", "->", 
+                 RowBox[{"{", 
+                  RowBox[{"Black", ",", "Thick"}], "}"}]}], ",", 
+                RowBox[{"Ticks", "->", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "2"}], " ", "Pi"}], ",", 
+                    RowBox[{"-", "Pi"}], ",", "0", ",", "Pi", ",", 
+                    RowBox[{"2", " ", "Pi"}]}], "}"}], ",", "Automatic"}], 
+                  "}"}]}], ",", 
+                RowBox[{"AxesLabel", "->", 
+                 RowBox[{"{", 
+                  RowBox[{"\"\<\[Omega]\>\"", ",", "\"\<dB\>\""}], "}"}]}], ",", 
+                RowBox[{
+                "PlotLabel", 
+                 "->", "\"\<\:5e45\:9891\:7279\:6027 |H(e^{j\[Omega]})| \
+dB\>\""}], ",", 
+                RowBox[{"ImageSize", "->", "450"}], ",", 
+                RowBox[{"GridLines", "->", 
+                 RowBox[{"{", 
+                  RowBox[{"Automatic", ",", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "10", ",", "20"}], "}"}]}], "}"}]}]}], 
+               "]"}]}], "}"}], ",", 
+            RowBox[{"Spacer", "[", "20", "]"}]}], "]"}], ",", 
+          RowBox[{"(*", 
+           RowBox[{"C", ".", "\:76f8\:9891\:7279\:6027"}], "*)"}], 
+          RowBox[{"Plot", "[", 
+           RowBox[{
+            RowBox[{"Arg", "[", 
+             RowBox[{"H", "[", "w", "]"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"w", ",", 
+              RowBox[{
+               RowBox[{"-", "2"}], " ", "Pi"}], ",", 
+              RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+            RowBox[{"PlotRange", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "2"}], " ", "Pi"}], ",", 
+                 RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "Pi"}], ",", "Pi"}], "}"}]}], "}"}]}], ",", 
+            RowBox[{"Filling", "->", "Axis"}], ",", 
+            RowBox[{"PlotStyle", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"Darker", "[", "Cyan", "]"}], ",", "Thick"}], "}"}]}], 
+            ",", 
+            RowBox[{"Ticks", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"-", "2"}], " ", "Pi"}], ",", 
+                 RowBox[{"-", "Pi"}], ",", "0", ",", "Pi", ",", 
+                 RowBox[{"2", " ", "Pi"}]}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "Pi"}], ",", 
+                 RowBox[{
+                  RowBox[{"-", "Pi"}], "/", "2"}], ",", "0", ",", 
+                 RowBox[{"Pi", "/", "2"}], ",", "Pi"}], "}"}]}], "}"}]}], ",", 
+            RowBox[{"AxesLabel", "->", 
+             RowBox[{"{", 
+              RowBox[{"\"\<\[Omega]\>\"", ",", "\"\<Phase (Rad)\>\""}], 
+              "}"}]}], ",", 
+            RowBox[{
+            "PlotLabel", 
+             "->", "\"\<\:76f8\:9891\:7279\:6027 \[Phi](\[Omega])\>\""}], ",", 
+            RowBox[{"ImageSize", "->", "720"}], ",", 
+            RowBox[{"GridLines", "->", "Automatic"}]}], "]"}]}], "}"}], ",", 
+        RowBox[{"Alignment", "->", "Center"}], ",", 
+        RowBox[{"Spacings", "->", "1.5"}]}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"(*", "\:4ea4\:4e92\:63a7\:4ef6", "*)"}], 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "r", ",", "0.75", 
+       ",", "\"\<\:534a\:5f84 r \
+(\:5f71\:54cd\:5cf0\:503c\:5c16\:9510\:5ea6)\>\""}], "}"}], ",", "0.01", ",", 
+     "0.99", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"theta", ",", 
+       RowBox[{"Pi", "/", "4"}], 
+       ",", "\"\<\:89d2\:5ea6 \[Theta] (\:5f71\:54cd\:5cf0\:503c\:4f4d\:7f6e)\
+\>\""}], "}"}], ",", "0", ",", "Pi", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "->", "Left"}], ",", 
+   RowBox[{"TrackedSymbols", ":>", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", "theta"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9859006324633427`*^9, 3.9859006324643717`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"c063bfd0-d408-438a-87f5-334b52fdd999"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`r$$ = 0.895, $CellContext`theta$$ = 
+    1.4891149178015621`, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`r$$], 0.75, 
+       "\:534a\:5f84 r (\:5f71\:54cd\:5cf0\:503c\:5c16\:9510\:5ea6)"}, 0.01, 
+      0.99, ControlType -> Manipulator}, {{
+       Hold[$CellContext`theta$$], Rational[1, 4] Pi, 
+       "\:89d2\:5ea6 \[Theta] (\:5f71\:54cd\:5cf0\:503c\:4f4d\:7f6e)"}, 0, Pi,
+       ControlType -> Manipulator}}, Typeset`size$$ = {
+    720., {556.2539645223136, 561.9858981160636}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`r$$ = 0.75, $CellContext`theta$$ = 
+        Rational[1, 4] Pi}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`H$, $CellContext`mag$, $CellContext`phase$, \
+$CellContext`poles$, $CellContext`w$}, $CellContext`H$[
+           Pattern[$CellContext`w$, 
+            Blank[]]] := 
+         1/(1 - 2 $CellContext`r$$ Cos[$CellContext`theta$$] 
+          Exp[(-I) $CellContext`w$] + $CellContext`r$$^2 
+           Exp[(-2) 
+             I $CellContext`w$]); $CellContext`poles$ = {{$CellContext`r$$ 
+            Cos[$CellContext`theta$$], $CellContext`r$$ 
+            Sin[$CellContext`theta$$]}, {$CellContext`r$$ 
+            Cos[$CellContext`theta$$], (-$CellContext`r$$) 
+            Sin[$CellContext`theta$$]}}; Column[{
+           Style[
+            
+            Row[{"\:4e8c\:9636\:79bb\:6563\:7cfb\:7edf\:9891\:7387\:7279\:6027\
+\:5206\:6790 (r = ", $CellContext`r$$, ", \[Theta] = ", $CellContext`theta$$, 
+              ")"}], 14, Bold], 
+           Row[{
+             Graphics[{{LightGray, 
+                Circle[{0, 0}, 1]}, {Dashed, 
+                Line[{{-1.2, 0}, {1.2, 0}}], 
+                Line[{{0, -1.2}, {0, 1.2}}]}, {Red, 
+                PointSize[0.04], 
+                Point[$CellContext`poles$]}}, Frame -> True, 
+              PlotRange -> {{-1.2, 1.2}, {-1.2, 1.2}}, PlotLabel -> 
+              "Z\:5e73\:9762\:6781\:70b9\:5206\:5e03", ImageSize -> 250], 
+             Plot[20 Log10[
+                Abs[
+                 $CellContext`H$[$CellContext`w$]]], {$CellContext`w$, (-2) 
+               Pi, 2 Pi}, PlotRange -> {{(-2) Pi, 2 Pi}, {-15, 30}}, Filling -> 
+              Axis, PlotStyle -> {Black, Thick}, 
+              Ticks -> {{(-2) Pi, -Pi, 0, Pi, 2 Pi}, Automatic}, 
+              AxesLabel -> {"\[Omega]", "dB"}, PlotLabel -> 
+              "\:5e45\:9891\:7279\:6027 |H(e^{j\[Omega]})| dB", ImageSize -> 
+              450, GridLines -> {Automatic, {0, 10, 20}}]}, 
+            Spacer[20]], 
+           Plot[
+            Arg[
+             $CellContext`H$[$CellContext`w$]], {$CellContext`w$, (-2) Pi, 2 
+             Pi}, PlotRange -> {{(-2) Pi, 2 Pi}, {-Pi, Pi}}, Filling -> Axis, 
+            PlotStyle -> {
+              Darker[Cyan], Thick}, 
+            Ticks -> {{(-2) Pi, -Pi, 0, Pi, 2 Pi}, {-Pi, (-Pi)/2, 0, Pi/2, 
+               Pi}}, AxesLabel -> {"\[Omega]", "Phase (Rad)"}, PlotLabel -> 
+            "\:76f8\:9891\:7279\:6027 \[Phi](\[Omega])", ImageSize -> 720, 
+            GridLines -> Automatic]}, Alignment -> Center, Spacings -> 1.5]], 
+      "Specifications" :> {{{$CellContext`r$$, 0.75, 
+          "\:534a\:5f84 r (\:5f71\:54cd\:5cf0\:503c\:5c16\:9510\:5ea6)"}, 
+         0.01, 0.99, Appearance -> 
+         "Labeled"}, {{$CellContext`theta$$, Rational[1, 4] Pi, 
+          "\:89d2\:5ea6 \[Theta] (\:5f71\:54cd\:5cf0\:503c\:4f4d\:7f6e)"}, 0, 
+         Pi, Appearance -> "Labeled"}}, 
+      "Options" :> {
+       ControlPlacement -> Left, 
+        TrackedSymbols :> {$CellContext`r$$, $CellContext`theta$$}}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      1121.5602061040854`, {587.0243899373526, 592.7563235311026}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.985900633885655*^9, 3.985900741289892*^9},
+ CellLabel->"Out[1]=",ExpressionUUID->"24ae925a-96c1-4e63-9d15-46433458cfe8"]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{352, Automatic}, {Automatic, 50}},
+LightDark->"Light",
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"83922ffc-f2da-4c2d-b030-119a49466edc"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 10010, 248, 365, "Input",ExpressionUUID->"c063bfd0-d408-438a-87f5-334b52fdd999"],
+Cell[10589, 272, 4951, 95, 1215, "Output",ExpressionUUID->"24ae925a-96c1-4e63-9d15-46433458cfe8"]
+}, Open  ]]
+}
+]
+*)
+

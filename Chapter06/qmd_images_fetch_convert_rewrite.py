@@ -10,11 +10,7 @@ from PIL import Image
 
 
 # ================== 配置区 ==================
-<<<<<<< HEAD
-QMD_PATH = Path("Chapter06_V1.qmd")  # 你的 qmd 文件
-=======
-QMD_PATH = Path("Chapter06.qmd")  # 你的 qmd 文件
->>>>>>> b430a1065ff677d3e4011a2ce835173ed2b0f0cc
+QMD_PATH = Path("Chapter06_V2.qmd")  # 你的 qmd 文件
 OUT_DIR = Path("imglink")            # 下载目录
 REWRITE_QMD = True               # 是否把远程链接改成本地链接
 KEEP_JPG = True                  # 是否保留原始 jpg（你要求不删，所以 True）

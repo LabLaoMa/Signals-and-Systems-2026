@@ -1,0 +1,59 @@
+---
+title: "二阶系统转折频率处的模值推导"
+author: "马越"
+date: "2026-04-21"
+format:
+  html:
+    math: katex
+---
+
+## 1. 系统频率响应函数
+
+标准二阶系统的频率响应函数 $H(j\omega)$ 定义为：
+
+$$H(j\omega) = \frac{1}{\left[1 - \left(\frac{\omega}{\omega_n}\right)^2\right] + j\left[2\zeta\left(\frac{\omega}{\omega_n}\right)\right]}$$
+
+其幅频特性（模值）公式为：
+
+$$|H(j\omega)| = \frac{1}{\sqrt{\left[1 - \left(\frac{\omega}{\omega_n}\right)^2\right]^2 + \left[2\zeta\left(\frac{\omega}{\omega_n}\right)\right]^2}}$$
+
+## 2. 转折频率处的特殊性
+
+在对数幅频特性图中，两条渐进线（低频段的 $0 \text{ dB}$ 线和高频段的 $-40 \text{ dB/dec}$ 线）的交点位于 $\omega = \omega_n$ 处。因此，$\omega_n$ 被称为**转折频率**（Corner Frequency）。
+
+### 推导过程
+
+当频率刚好等于转折频率时，即 $\omega = \omega_n$：
+
+1. **实部项归零**：
+   $$\left[1 - \left(\frac{\omega_n}{\omega_n}\right)^2\right] = 1 - 1 = 0$$
+
+2. **虚部项化简**：
+   $$2\zeta\left(\frac{\omega_n}{\omega_n}\right) = 2\zeta$$
+
+3. **代入模值公式**：
+   $$|H(j\omega_n)| = \frac{1}{\sqrt{0^2 + (2\zeta)^2}} = \frac{1}{2\zeta}$$
+
+## 3. 对数模（dB）计算
+
+根据定义，对数模为 $20 \lg |H(j\omega)|$。在 $\omega = \omega_n$ 处：
+
+$$
+\begin{aligned}
+20 \lg |H(j\omega_n)| &= 20 \lg \left( \frac{1}{2\zeta} \right) \\
+&= 20 \lg (2\zeta)^{-1} \\
+&= -20 \lg 2\zeta
+\end{aligned}
+$$
+
+
+
+## 4. 结论与物理意义
+
+在转折频率 $\omega = \omega_n$ 处，实际幅频曲线与渐进线交点之间的偏差完全由阻尼比 $\zeta$ 决定：
+
+* **当 $\zeta = 0.5$ 时**：偏差为 $-20 \lg(1) = 0 \text{ dB}$，实际曲线恰好经过渐进线交点。
+* **当 $\zeta < 0.5$ 时**：偏差为正，曲线在渐进线上方（产生谐振峰）。
+* **当 $\zeta > 0.5$ 时**：偏差为负，曲线在渐进线下方。
+
+这一结论是工程上快速绘制伯德图和评估系统稳定性的重要依据。

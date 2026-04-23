@@ -1,0 +1,58 @@
+---
+title: "二阶系统谐振峰值推导"
+author: "Ma Yue"
+date: "2026-04-21"
+format:
+  html:
+    math: katex
+---
+
+## 频率响应函数
+
+对于标准二阶系统，其幅频特性的平方表达式（如您提供的截图所示）为：
+
+$$|H(j\omega)|^2 = \frac{1}{\left[1 - (\frac{\omega}{\omega_n})^2\right]^2 + \left[2\zeta(\frac{\omega}{\omega_n})\right]^2}$$
+
+将其对数化（单位：dB）后，表达式为：
+
+$$20 \lg |H(j\omega)| = -10 \lg \left[ 1 + (4\zeta^2 - 2)\left(\frac{\omega}{\omega_n}\right)^2 + \left(\frac{\omega}{\omega_n}\right)^4 \right]$$
+
+## 推导步骤
+
+### 1. 配方化简
+为了求得极值，对括号内的项关于 $u = (\frac{\omega}{\omega_n})^2$ 进行配方：
+
+$$
+= -10 \lg \left\{ \left[ \left(\frac{\omega}{\omega_n}\right)^2 - (1 - 2\zeta^2) \right]^2 + 1 - (1 - 2\zeta^2)^2 \right\}
+$$
+
+### 2. 求谐振频率 $\omega_r$
+当括号内的平方项为 $0$ 时，分母取得最小值，幅度函数取得最大值（峰值）。令：
+$$\left(\frac{\omega}{\omega_n}\right)^2 = 1 - 2\zeta^2$$
+
+由此得到**谐振频率**：
+$$\omega_r = \omega_n \sqrt{1 - 2\zeta^2}$$
+
+> **注意：** 只有当 $1 - 2\zeta^2 > 0$，即 $\zeta < 0.707$ 时，才存在谐振峰。
+
+### 3. 计算谐振峰值 $M_r$
+将 $\omega_r$ 代入幅值公式，分母中的平方项消失，剩下的常数项经过化简：
+
+$$M_r = |H(j\omega_r)| = \frac{1}{\sqrt{1 - (1 - 2\zeta^2)^2}} = \frac{1}{\sqrt{4\zeta^2 - 4\zeta^4}}$$
+
+最终得到线性形式的**谐振峰值**：
+$$M_r = \frac{1}{2\zeta\sqrt{1 - \zeta^2}}$$
+
+换算为分贝（dB）：
+$$M_{r, \text{dB}} = -20 \lg (2\zeta\sqrt{1 - \zeta^2})$$
+
+---
+
+## 结论总结
+
+
+
+| 参数名称 | 符号 | 计算公式 | 存在条件 |
+| :--- | :--- | :--- | :--- |
+| **谐振频率** | $\omega_r$ | $\omega_n \sqrt{1 - 2\zeta^2}$ | $\zeta < 0.707$ |
+| **谐振峰值** | $M_r$ | $\frac{1}{2\zeta\sqrt{1 - \zeta^2}}$ | $\zeta < 0.707$ |
