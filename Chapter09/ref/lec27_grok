@@ -1,0 +1,381 @@
+---
+title: "EL331 信号与系统 · 第27讲（中文版）"
+subtitle: "留数法与 Z 变换"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+## 目录
+
+1. 利用留数计算定积分
+2. Z 变换
+3. Z 变换的性质
+4. 用 Z 变换分析离散时间 LTI 系统
+
+## 利用留数计算定积分
+
+$$
+\int_{-\infty}^{\infty} R(x) \, dx
+$$
+其中 $R(x)=\frac{N(x)}{D(x)}$ 是 $x$ 的有理函数，$N,D$ 为多项式，且 $\deg D \geq \deg N + 2$，$R$ 在实轴上无奇点。
+
+1. 选取足够大的 $r$，使得以 0 为圆心、上半圆盘包含 $R(z)$ 在上半平面内的所有奇点 $z_1,\ldots,z_K$（下半平面的奇点我们不关心）
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-03.jpg?height=272&width=416&top_left_y=237&top_left_x=843)
+
+2. $\int_{-r}^{r} R(x) \, dx + \int_{C_r} R(z) \, dz = j 2 \pi \sum_{k=1}^{K} \operatorname{Res}(R, z_k)$
+
+3. $\lim_{r\to\infty} \int_{C_r} R(z) \, dz = 0$（由条件 $\deg D \geq \deg N + 2$ 保证）
+
+4. $\int_{-\infty}^{\infty} R(x) \, dx = j 2 \pi \sum_{k=1}^{K} \operatorname{Res}(R, z_k)$
+
+**引理**：设 $f(z)$ 在区域 $D=\left\{z: R<|z|<\infty, \theta_1 \leq \arg z \leq \theta_2\right\}$（$0\leq\theta_1<\theta_2\leq 2\pi$）上连续。令 $\gamma_r$ 为圆弧 $z(t)=r e^{j\theta}$，$r>R$，$\theta\in[\theta_1,\theta_2]$。若 $\limsup_{D\ni z\to\infty} z f(z)=0$，则
+$$
+\lim_{r\to\infty} \int_{\gamma_r} f(z) \, dz = 0
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-04.jpg?height=319&width=423&top_left_y=110&top_left_x=798)
+
+**证明**：由于 $\limsup_{D\ni z\to\infty} z f(z)=0$，对任意 $\epsilon>0$，存在 $R_\epsilon$ 使得当 $z\in D$ 且 $|z|>R_0$ 时，$|z f(z)| < \frac{\epsilon}{\theta_2-\theta_1}$。对于 $r>R_0$，
+$$
+\left|\int_{\gamma_r} f(z)\,dz\right| \leq \int_{\gamma_r} |f(z)|\,ds \leq \int_{\gamma_r} \frac{\epsilon}{(\theta_2-\theta_1)r} \,ds = \epsilon
+$$
+
+**注**：上一张幻灯片中的第 3 条由该引理在 $\theta_1=0$、$\theta_2=\pi$ 时得出。
+
+## 例题
+
+计算 $I=\int_{-\infty}^{\infty} \frac{x^2 \, dx}{(x^2+a^2)(x^2+b^2)}$，其中 $a,b>0$。
+
+**解**：$R(z)=\frac{z^2}{(z^2+a^2)(z^2+b^2)}$ 有四个单极点 $z=\pm ja,\pm jb$。其中 $ja,jb$ 在上半平面。留数为
+$$
+\begin{aligned}
+\operatorname{Res}(R, ja) &= \lim_{z\to ja}(z-ja)R(z) = \frac{a}{2j(a^2-b^2)}, \\
+\operatorname{Res}(R, jb) &= \lim_{z\to jb}(z-jb)R(z) = \frac{-b}{2j(a^2-b^2)}.
+\end{aligned}
+$$
+因此
+$$
+I = j2\pi[\operatorname{Res}(R,ja)+\operatorname{Res}(R,jb)] = \frac{\pi}{a+b}
+$$
+
+## 含指数因子的积分（$a>0$）
+
+$$
+\int_{-\infty}^{\infty} R(x) e^{j a x} \, dx
+$$
+其中 $R(x)=\frac{N(x)}{D(x)}$ 为有理函数，$\deg D \geq \deg N +1$，且 $R$ 在实轴上无奇点。
+
+1. 选取足够大的 $r$，使上半圆盘包含上半平面内的所有奇点
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-06.jpg?height=270&width=414&top_left_y=181&top_left_x=820)
+
+2. $\int_{-r}^{r} R(x)e^{j a x}\,dx + \int_{C_r} R(z)e^{j a z}\,dz = j2\pi \sum_{k=1}^K \operatorname{Res}[R(z)e^{j a z}, z_k]$
+
+3. $\lim_{r\to\infty}\int_{C_r} R(z)e^{j a z}\,dz=0$（由 $\deg D\geq\deg N+1$ 及 Jordan 引理保证）
+
+4. $\int_{-\infty}^{\infty} R(x)e^{j a x}\,dx = j2\pi \sum_{k=1}^K \operatorname{Res}[R(z)e^{j a z}, z_k]$
+
+**注**：若 $a<0$，则使用下半圆盘。
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-06.jpg?height=263&width=419&top_left_y=674&top_left_x=818)
+
+## Jordan 引理
+
+**引理**：设 $f(z)$ 在 $D=\{z: R<|z|<\infty, \operatorname{Im} z \geq 0\}$ 上连续。若 $\lim_{D\ni z\to\infty} f(z)=0$ 且 $a>0$，则
+$$
+\lim_{r\to\infty} \int_{C_r} f(z) e^{j a z} \, dz = 0
+$$
+其中 $C_r$ 为 $z(t)=r e^{j\theta}$，$r>R$，$\theta\in[0,\pi]$。
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-07.jpg?height=318&width=412&top_left_y=84&top_left_x=807)
+
+**证明**：令 $I_r=\int_{C_r} f(z)e^{j a z}\,dz$，$M_r=\max_{z\in C_r}|f(z)|$。则
+$$
+|I_r| \leq M_r \int_0^\pi e^{-a r \sin\theta} r \,d\theta = 2M_r \int_0^{\pi/2} e^{-a r \sin\theta} r \,d\theta
+$$
+利用 $\sin\theta \geq \frac{2}{\pi}\theta$（$\theta\in[0,\pi/2]$）及 $\lim_{r\to\infty}M_r=0$，可证 $|I_r|\to 0$。
+
+**注**：若 $a<0$，引理对下半平面仍成立。
+
+## 例题
+
+计算 $I=\int_0^\infty \frac{x \sin x}{x^2 + a^2} \, dx$，$a>0$。
+
+**解**：$R(z)=\frac{z}{z^2+a^2}$ 有单极点 $\pm ja$，$ja$ 在上半平面。
+$$
+\operatorname{Res}[R(z)e^{jz}, ja] = \frac{e^{-a}}{2}
+$$
+因此
+$$
+\int_{-\infty}^{\infty} \frac{x e^{jx}}{x^2+a^2}\,dx = j\pi e^{-a}
+$$
+由于 $\frac{x\sin x}{x^2+a^2}$ 是偶函数，
+$$
+I = \frac12 \operatorname{Im}(j\pi e^{-a}) = \frac{\pi}{2} e^{-a}
+$$
+
+## 例题（逆 CTFT）
+
+求 $X(j\omega)=\frac{1}{a+j\omega}$（$a>0$）的逆连续时间傅里叶变换。
+
+**解**：
+$$
+x(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{1}{a+j\omega} e^{j\omega t} \, d\omega
+$$
+$R(z)=\frac{1}{a+jz}$ 在 $z=ja$ 有单极点（上半平面）。
+
+当 $t>0$ 时，
+$$
+x(t) = j \operatorname{Res}[R(z)e^{jzt}, ja] = e^{-at}
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-09.jpg?height=198&width=319&top_left_y=399&top_left_x=931)
+
+当 $t<0$ 时，$R(z)$ 在下半平面解析，故 $x(t)=0$。
+
+因此 $x(t)=e^{-at}u(t)$。
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-09.jpg?height=260&width=319&top_left_y=661&top_left_x=931)
+
+## 目录
+
+1. 利用留数计算定积分
+2. Z 变换
+3. Z 变换的性质
+4. 用 Z 变换分析离散时间 LTI 系统
+
+## Z 变换
+
+离散时间 LTI 系统对输入 $x[n]=z^n$ 的响应为
+$$
+y[n]=(x*h)[n]=H(z)z^n
+$$
+其中 $h$ 是系统的冲激响应，
+$$
+H(z)=\sum_{k=-\infty}^{\infty} h[k]z^{-k}
+$$
+系统函数 $H(z)$ 称为 $h$ 的 **Z 变换**。
+
+一般地，离散时间信号 $x[n]$ 的 Z 变换定义为
+$$
+X(z)=\sum_{n=-\infty}^{\infty} x[n]z^{-n}
+$$
+也记作 $X=\mathcal{Z}\{x\}$ 或 $x[n]\stackrel{\mathcal{Z}}{\longleftrightarrow} X(z)$。
+
+## Z 变换（续）
+
+$$
+X(z)=\sum_{n=-\infty}^{\infty} x[n]z^{-n}=\sum_{n=-\infty}^{\infty} c_n z^n
+$$
+是以 $z=0$ 为中心的 Laurent 级数，其 $z^n$ 项的系数为 $c_n=x[-n]$。
+
+作为 Laurent 级数，Z 变换在以 0 为中心的某个环形区域（称为收敛域 ROC）上收敛。
+
+## 与 DTFT 的关系
+
+令 $z=re^{j\omega}$，则
+$$
+X(re^{j\omega})=\sum_{n=-\infty}^{\infty} \{x[n]r^{-n}\}e^{-j\omega n}=\mathcal{F}\{x[n]r^{-n}\}
+$$
+若 ROC 包含单位圆，令 $r=1$ 可得
+$$
+X(e^{j\omega})=\mathcal{F}\{x\}
+$$
+
+## 例题
+
+对于 $x[n]=a^n u[n]$，
+$$
+X(z)=\sum_{n=0}^{\infty}a^n z^{-n}=\frac{1}{1-a z^{-1}}=\frac{z}{z-a}, \quad \mathrm{ROC}: |z|>|a|
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-13.jpg?height=370&width=391&top_left_y=88&top_left_x=845)
+
+若 $|a|<1$，ROC 包含单位圆，DTFT 存在；若 $|a|>1$，DTFT 不存在。
+
+## 例题（反因果序列）
+
+对于 $x[n]=-a^n u[-n-1]$，
+$$
+X(z)=\frac{z}{z-a}, \quad \mathrm{ROC}: |z|<|a|
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-14.jpg?height=372&width=393&top_left_y=88&top_left_x=843)
+
+## 收敛域（ROC）的重要性
+
+相同 $X(z)$ 但不同的 ROC 对应不同的信号。**必须始终注明 ROC**！
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-15.jpg?height=374&width=393&top_left_y=84&top_left_x=843)
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-15.jpg?height=332&width=393&top_left_y=567&top_left_x=843)
+
+## 例题
+
+$x[n]=7\left(\frac13\right)^n u[n]-6\left(\frac12\right)^n u[n]$，
+$$
+X(z)=\frac{z\left(z-\frac32\right)}{\left(z-\frac13\right)\left(z-\frac12\right)}, \quad |z|>\frac12
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-16.jpg?height=535&width=666&top_left_y=346&top_left_x=579)
+
+## 例题（正弦调制）
+
+$x[n]=\left(\frac13\right)^n \sin\left(\frac{\pi}{4}n\right)u[n]$，
+$$
+X(z)=\frac{\frac{1}{3\sqrt{2}}z}{\left(z-\frac13 e^{j\pi/4}\right)\left(z-\frac13 e^{-j\pi/4}\right)}, \quad |z|>\frac13
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-17.jpg?height=409&width=433&top_left_y=350&top_left_x=794)
+
+## 有理 Z 变换
+
+有理 Z 变换形式为
+$$
+X(z)=\frac{N(z)}{D(z)}
+$$
+其中 $N,D$ 是互质多项式。
+
+$$
+X(z)=A\frac{\prod_{k=1}^n (z-z_k)}{\prod_{k=1}^m (z-p_k)}
+$$
+$z_k$ 为有限零点，$p_k$ 为有限极点。
+
+有理 Z 变换由其极零点图和 ROC（差一个常数因子）唯一确定。
+
+## ROC 的性质
+
+- ROC 是环形区域 $R_1<|z|<R_2$；
+- $X(z)$ 在 ROC 内解析；
+- 有限时长信号：$R_1=0$，$R_2=\infty$；
+- 因果信号（$N_1\geq0$）：ROC 为 $|z|>R_1$（包含 $\infty$）；
+- 反因果信号（$N_2\leq0$）：ROC 为 $|z|<R_2$（包含 0）。
+
+**左边信号**：$R_1=0$；**右边信号**：$R_2=\infty$；**双边信号**：$R_1>0$ 且 $R_2<\infty$。
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-21.jpg?height=314&width=332&top_left_y=399&top_left_x=97)
+left-sided
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-21.jpg?height=314&width=333&top_left_y=399&top_left_x=488)
+right-sided
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-21.jpg?height=314&width=331&top_left_y=401&top_left_x=883)
+two-sided
+
+## 有理 Z 变换的 ROC
+
+对于有理 $X(z)$，ROC 被极点界定（向内至 0 或向外至 $\infty$）。
+
+- 右边信号：$R_1=\max |p_k|$，$R_2=\infty$；
+- 左边信号：$R_1=0$，$R_2=\min |p_k|$。
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-22.jpg?height=520&width=535&top_left_y=275&top_left_x=692)
+
+## 逆 Z 变换
+
+$$
+x[n]=\frac{1}{j2\pi}\oint_C X(z)z^{n-1}\,dz
+$$
+（$C$ 为 ROC 内围绕 0 的正向圆周），或通过部分分式展开、已知级数展开等方法求 Laurent 级数。
+
+**注意**：$x[n]$ 是 $z^{-n}$ 的系数，而非 $z^n$ 的系数。
+
+## Z 变换的性质
+
+**线性性质**：
+$$
+ax[n]+by[n] \stackrel{z}{\longleftrightarrow} aX(z)+bY(z)，\quad \mathrm{ROC} \supset \mathrm{ROC}_1 \cap \mathrm{ROC}_2
+$$
+
+**时移性质**：
+$$
+x[n-n_0] \stackrel{z}{\longleftrightarrow} z^{-n_0} X(z)
+$$
+
+**z 域尺度变换**：
+$$
+z_0^n x[n] \stackrel{z}{\longleftrightarrow} X\left(\frac{z}{z_0}\right)
+$$
+
+**时间反转**：
+$$
+x[-n] \stackrel{z}{\longleftrightarrow} X(z^{-1})
+$$
+
+**时间扩展**：
+$$
+x_{(k)}[n] \stackrel{z}{\longleftrightarrow} X(z^k)
+$$
+
+**共轭**：
+$$
+x^*[n] \stackrel{z}{\longleftrightarrow} X^*(z^*)
+$$
+
+**z 域微分**：
+$$
+n x[n] \stackrel{z}{\longleftrightarrow} -z \frac{d}{dz} X(z)
+$$
+
+## 初值定理
+
+若 $x[n]$ 为因果序列（$x[n]=0$ for $n<0$），则
+$$
+x[0]=\lim_{z\to\infty} X(z)
+$$
+
+## 终值定理
+
+若 $x[n]$ 为因果序列且 ROC 包含单位圆，则
+$$
+\lim_{n\to\infty} x[n] = \lim_{z\to1}(z-1)X(z)
+$$
+
+## 卷积性质
+
+$$
+(x*y)[n] \stackrel{z}{\longleftrightarrow} X(z)Y(z)
+$$
+
+## DT 系统函数
+
+$$
+Y(z)=X(z)H(z)
+$$
+$H(z)$ 称为系统函数（传递函数）。
+
+## 因果性
+
+LTI 系统为因果的充要条件是：
+
+- ROC 为圆外区域（包含 $\infty$）；
+- $\lim_{z\to\infty} H(z)$ 存在且有限。
+
+对有理 $H(z)$：ROC 为 $|z| >$ 最外层极点，且 $\deg D \geq \deg N$。
+
+## 稳定性
+
+LTI 系统稳定 $\iff$ ROC 包含单位圆 $|z|=1$。
+
+**因果有理系统**稳定 $\iff$ 所有极点位于单位圆内部。
+
+---
+
+**使用说明**：
+
+1. 将以上全部内容**直接复制**保存为 `lec27_zh_slides_translated.qmd`。
+2. 原有所有图片链接、数学公式、幻灯片结构均 100% 保留。
+3. 可直接用 Quarto 渲染生成中文幻灯片。
+
+需要我帮您生成 PDF/HTML 版本或其他调整，请随时告诉我！

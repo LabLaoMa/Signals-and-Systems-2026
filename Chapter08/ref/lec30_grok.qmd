@@ -1,0 +1,791 @@
+---
+title: "EL331 信号与系统 · 第30讲（中文版）"
+subtitle: "拉普拉斯变换、系统分析与框图表示"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+1. 拉普拉斯变换的性质
+2. 拉普拉斯逆变换
+3. 奇异函数的拉普拉斯变换
+4. 利用拉普拉斯变换分析连续时间 LTI 系统
+5. 框图表示
+
+## 卷积性质
+
+若
+
+$$
+\begin{array}{ll}
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s) & \text{ROAC}=R_{1} \\
+y(t) \stackrel{\mathcal{L}}{\longleftrightarrow} Y(s) & \text{ROAC}=R_{2}
+\end{array}
+$$
+
+则
+
+$$
+(x * y)(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s) Y(s) \quad \text{ROAC} \supset R_{1} \cap R_{2}
+$$
+
+更精确的表述如下：
+
+**定理** 若 $X(s)=\int_{-\infty}^{\infty} x(t) e^{-s t} \, dt$ 和 $Y(s)=\int_{-\infty}^{\infty} y(t) e^{-s t} \, dt$ 都在某点 $s=s_{0}$ 处绝对收敛，则 $z=x*y$ 的拉普拉斯变换在 $s_{0}$ 处也绝对收敛，且
+
+$$
+X(s_{0}) Y(s_{0})=Z(s_{0})=\int_{-\infty}^{\infty} z(t) e^{-s_{0} t} \, dt
+$$
+
+## 卷积性质
+
+**证明**
+
+$$
+\begin{aligned}
+X(s) Y(s) & =\int_{-\infty}^{\infty} x(v)\left[\int_{-\infty}^{\infty} y(\tau) e^{-s(v+\tau)} \, dv\right] d \tau \\
+& =\int_{-\infty}^{\infty} x(v)\left[\int_{-\infty}^{\infty} y(t-v) e^{-s v} \, dv\right] d t \quad(t=v+\tau) \\
+& =\int_{-\infty}^{\infty}\left[\int_{-\infty}^{\infty} x(v) y(t-v) \, dt\right] e^{-s v} \, dv \quad \text{(Fubini 定理)}
+\end{aligned}
+$$
+
+**注**：$\mathcal{L}\{x*y\}$ 的 ROAC 可能大于 $\mathcal{L}\{x\}$ 和 $\mathcal{L}\{y\}$ 的公共 ROAC。
+
+**例** $X_{1}(s)=\frac{s+1}{(s+2)^{2}}$ 的 ROAC 为 $\operatorname{Re} s>-2$，$X_{2}(s)=\frac{1}{s+1}$ 的 ROAC 为 $\operatorname{Re} s>-1$，但 $X(s)=X_{1}(s)X_{2}(s)=\frac{1}{(s+2)^{2}}$ 的 ROAC 为 $\operatorname{Re} s>-2$，这是因为 $s=-1$ 处发生了极零点抵消。
+
+## 时域微分性质
+
+若
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \text{ROC}=R
+$$
+
+且对 $s \in R_{0}$ 有 $\lim_{t\to\pm\infty} x(t) e^{-s t}=0$，则
+
+$$
+\frac{d}{dt} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s X(s), \quad \text{ROC} \supset R \cap R_{0}
+$$
+
+**证明** 分部积分可得
+
+$$
+\int_{-\infty}^{\infty} x'(t) e^{-s t} \, dt = \left. x(t) e^{-s t} \right|_{-\infty}^{\infty} + s \int_{-\infty}^{\infty} x(t) e^{-s t} \, dt = s \int_{-\infty}^{\infty} x(t) e^{-s t} \, dt
+$$
+
+**注**：ROC 可能扩大或缩小。
+
+**例** $x(t)=(1-e^{-t})u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s(s+1)}$，ROC=ROAC 为 $\operatorname{Re} s>0$；其导数 $x'(t)=e^{-t}u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+1}$，ROC=ROAC 为 $\operatorname{Re} s>-1$。$\mathcal{L}\{x'\}$ 的 ROC 比 $\mathcal{L}\{x\}$ 的更大。
+
+## 时域微分性质
+
+**例** 考虑 $x(t)=e^{k t} \sin(e^{k t})$，$k>0$。
+
+- 对 $s=\sigma \in \mathbb{R}$，令 $u=e^{k t}$ 可得（参见第18页）
+
+$$
+\int_{-\infty}^{\infty} x(t) e^{-s t} \, dt = \frac{1}{k} \int_{0}^{\infty} \frac{\sin u}{u^{\sigma/k}} \, du = \frac{1}{k} \int_{0}^{1} \frac{\sin u}{u^{\sigma/k}} \, du + \frac{1}{k} \int_{1}^{\infty} \frac{\sin u}{u^{\sigma/k}} \, du
+$$
+
+- $\int_{1}^{\infty} \frac{\sin u}{u^{\sigma/k}} \, du$ 的 ROAC 为 $\operatorname{Re} s>k$，ROC 为 $\operatorname{Re} s>0$；
+- 当 $u\downarrow 0$ 时，$\frac{\sin u}{u^{\sigma/k}} \sim u^{1-\sigma/k}$，故 $\int_{0}^{1} \cdots$ 的 ROAC 为 $\operatorname{Re} s<2k$；
+- 因此 $\mathcal{L}\{x\}$ 的 ROC 为 $k < \operatorname{Re} s < 2k$（以及 $0 < \operatorname{Re} s < 2k$）；
+- $x'(t)=k e^{k t} \sin(e^{k t}) + k e^{2k t} \cos(e^{k t})$，其积分对应 $\int_{0}^{\infty} \frac{\sin u + u \cos u}{u^{\sigma/k}} \, du$，$\mathcal{L}\{x'\}$ 的 ROAC 为空集，ROC 为 $k < \operatorname{Re} s < 2k$；
+- 注意当 $0 < \operatorname{Re} s < k$ 时，$\lim_{t\to\pm\infty} x(t)e^{-s t}=0$ 不成立。
+
+## 时域微分性质
+
+若 $x(t)$ 在 $t\to +\infty$ 时满足 $x(t)=O(e^{a t})$，在 $t\to -\infty$ 时满足 $x(t)=O(e^{b t})$，则
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \text{ROAC 包含 } a < \operatorname{Re} s < b
+$$
+
+且
+
+$$
+\frac{d}{dt} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s X(s), \quad \text{ROC 包含 } a < \operatorname{Re} s < b
+$$
+
+**注**：一般而言，由 $\mathcal{L}\{x\}$ 在 $s_{0}$ 处的绝对收敛只能推出 $\mathcal{L}\{x'\}$ 在 $s_{0}$ 处的普通收敛。
+
+**注**：我们主要处理的信号形式为 $\sum_{k=0}^{m} p_{k}(t) e^{\alpha_{k} t} u(\pm t + \beta_{k})$（其中 $p_{k}$ 为多项式）。引入奇异函数的拉普拉斯变换后，对此类信号有
+
+$$
+\frac{d^{n}}{dt^{n}} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s^{n} X(s), \quad \text{ROC 包含 } a < \operatorname{Re} s < b
+$$
+
+## $s$ 域微分性质
+
+若
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \operatorname{ROAC}: \sigma_{1} < \operatorname{Re} s < \sigma_{2}
+$$
+
+则
+
+$$
+-t x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{d}{ds} X(s), \quad \operatorname{ROAC}: \sigma_{1} < \operatorname{Re} s < \sigma_{2}
+$$
+
+**证明** 在积分号下求导（可严格证明）：
+
+$$
+\frac{d}{ds} \int_{-\infty}^{\infty} x(t) e^{-s t} \, dt = \int_{-\infty}^{\infty} x(t) \frac{d}{ds} e^{-s t} \, dt = \int_{-\infty}^{\infty} (-t) x(t) e^{-s t} \, dt
+$$
+
+**例**
+
+$$
+e^{-a t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+a}, \quad \operatorname{Re} s > -a
+$$
+
+$$
+t^{n} e^{-a t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \left(-\frac{d}{ds}\right)^{n} \frac{1}{s+a} = \frac{n!}{(s+a)^{n+1}}, \quad \operatorname{Re} s > -a
+$$
+
+类似地，
+
+$$
+-t^{n} e^{-a t} u(-t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{n!}{(s+a)^{n+1}}, \quad \operatorname{Re} s < -a
+$$
+
+## 时域积分性质
+
+若
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \text{ROAC}=R
+$$
+
+则
+
+$$
+\int_{-\infty}^{t} x(\tau) \, d\tau \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s} X(s), \quad \text{ROAC} \supset R \cap \{\operatorname{Re} s > 0\}
+$$
+
+**证明** 由卷积性质及以下关系得出：
+
+$$
+\int_{-\infty}^{t} x(\tau) \, d\tau = (x * u)(t)
+$$
+
+且
+
+$$
+u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s}, \quad \text{ROAC}=\{\operatorname{Re} s > 0\}
+$$
+
+**注**：该性质对奇异函数的拉普拉斯变换也成立，在计算某些变换时非常有用。
+
+## 目录
+
+1. 拉普拉斯变换的性质
+2. 拉普拉斯逆变换
+3. 奇异函数的拉普拉斯变换
+4. 利用拉普拉斯变换分析连续时间 LTI 系统
+5. 框图表示
+
+## 拉普拉斯逆变换
+
+回忆拉普拉斯变换与连续时间傅里叶变换的关系：
+
+$$
+X(\sigma + j\omega) = \int_{-\infty}^{\infty} \{x(t) e^{-\sigma t}\} e^{-j\omega t} \, dt = \mathcal{F}\{x(t) e^{-\sigma t}\}
+$$
+
+对 $s=\sigma + j\omega \in \mathrm{ROC}$ 取傅里叶逆变换：
+
+$$
+x(t) e^{-\sigma t} = \frac{1}{2\pi} \int_{-\infty}^{\infty} X(\sigma + j\omega) e^{j\omega t} \, d\omega
+$$
+
+因此
+
+$$
+x(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} X(\sigma + j\omega) e^{(\sigma + j\omega) t} \, d\omega
+$$
+
+或
+
+$$
+x(t) = \frac{1}{j 2\pi} \int_{\sigma - j\infty}^{\sigma + j\infty} X(s) e^{s t} \, ds = \lim_{A\to\infty} \frac{1}{j 2\pi} \int_{\sigma - j A}^{\sigma + j A} X(s) e^{s t} \, ds
+$$
+
+## 部分分式展开求逆变换
+
+对于有理拉普拉斯变换，可通过部分分式展开求逆变换。
+
+回忆一个严格真有理函数的部分分式展开形式为
+
+$$
+R(s) = \sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i,k_{i}}}{(s + a_{i})^{k_{i}}}
+$$
+
+同时回忆
+
+$$
+\begin{aligned}
+\frac{t^{n-1}}{(n-1)!} e^{-a t} u(t) &\stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{(s+a)^{n}}, && \operatorname{Re} s > -a \\
+-\frac{t^{n-1}}{(n-1)!} e^{-a t} u(-t) &\stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{(s+a)^{n}}, && \operatorname{Re} s < -a
+\end{aligned}
+$$
+
+由线性性质，$\mathcal{L}^{-1}\{R\}$ 是上述形式各项的线性组合，符号根据 ROC 选取。
+
+## 例
+
+考虑有理拉普拉斯变换 $X(s)=\frac{1}{(s+1)(s+2)^{2}}$
+
+$$
+X(s) = \frac{1}{s+1} + \frac{-1}{s+2} + \frac{-1}{(s+2)^{2}}
+$$
+
+极点位于 $s=-1$ 和 $s=-2$。
+
+1. 若 ROC 为 $\operatorname{Re} s > -1$
+
+$$
+x(t) = e^{-t} u(t) - (1+t) e^{-2t} u(t)
+$$
+
+2. 若 ROC 为 $\operatorname{Re} s < -2$
+
+$$
+x(t) = -e^{-t} u(-t) + (1+t) e^{-2t} u(-t)
+$$
+
+3. 若 ROC 为 $-2 < \operatorname{Re} s < -1$
+
+$$
+x(t) = -e^{-t} u(-t) - (1+t) e^{-2t} u(t)
+$$
+
+## 围线积分求逆变换
+
+假设 $X(s)$ 有有限个有限孤立奇点 $s_{1},\dots,s_{n}$，且 ROC 为 $-\infty \leq \sigma_{1} < \operatorname{Re} s < \sigma_{2} \leq +\infty$。
+
+逆变换为
+
+$$
+x(t) = \lim_{r\to\infty} \frac{1}{j 2\pi} \int_{\sigma - j r}^{\sigma + j r} X(s) e^{s t} \, ds
+$$
+
+其中 $\sigma_{1} < \sigma < \sigma_{2}$。
+
+对于 $t>0$，选取一个包含所有 $\operatorname{Re} s \leq \sigma_{1}$ 的奇点 $s_{k}$ 的大半圆 $C_{r}$。
+
+若 $X(s)$ 满足 Jordan 引理（Lecture 27 第6页的平移旋转版本），由留数定理得
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-14.jpg?height=569&width=389&top_left_y=224&top_left_x=838)
+
+$$
+x(t) = \sum_{k: \operatorname{Re} s_{k} \leq \sigma_{1}} \operatorname{Res}[X(s) e^{s t}, s_{k}], \quad t>0
+$$
+
+（对严格真有理函数成立）
+
+## 围线积分求逆变换
+
+对于 $t<0$，选取包含所有 $\operatorname{Re} s \geq \sigma_{2}$ 的奇点的大半圆。
+
+由留数定理得
+
+$$
+x(t) = -\sum_{k: \operatorname{Re} s_{k} \geq \sigma_{2}} \operatorname{Res}[X(s) e^{s t}, s_{k}], \quad t<0
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-15.jpg?height=569&width=442&top_left_y=250&top_left_x=794)
+
+**注意**：负号源于围线的负方向。
+
+## 例
+
+考虑 $X(s)=\frac{1}{(s+1)(s+2)^{2}}$
+
+$$
+\begin{gathered}
+\operatorname{Res}[X(s) e^{s t}, -1] = \left.\frac{e^{s t}}{(s+2)^{2}}\right|_{s=-1} = e^{-t} \\
+\operatorname{Res}[X(s) e^{s t}, -2] = \left[\frac{d}{ds} \frac{e^{s t}}{s+1}\right]_{s=-2} = -(1+t) e^{-2t}
+\end{gathered}
+$$
+
+1. 若 ROC 为 $\operatorname{Re} s > -1$，则 $\sigma_{1}=-1$，$\sigma_{2}=+\infty$。
+
+$t>0$ 时：
+
+$$
+x(t) = e^{-t} - (1+t) e^{-2t}
+$$
+
+$t<0$ 时：
+
+$$
+x(t) = 0
+$$
+
+## 例（续）
+
+2. 若 ROC 为 $\operatorname{Re} s < -2$，则 $\sigma_{1}=-\infty$，$\sigma_{2}=-2$。
+
+$t>0$ 时：$x(t)=0$
+
+$t<0$ 时：
+
+$$
+x(t) = -e^{-t} + (1+t) e^{-2t}
+$$
+
+## 例（续）
+
+3. 若 ROC 为 $-2 < \operatorname{Re} s < -1$，则 $\sigma_{1}=-2$，$\sigma_{2}=-1$。
+
+$t>0$ 时：
+
+$$
+x(t) = -(1+t) e^{-2t}
+$$
+
+$t<0$ 时：
+
+$$
+x(t) = -e^{-t}
+$$
+
+## 目录
+
+1. 拉普拉斯变换的性质
+2. 拉普拉斯逆变换
+3. 奇异函数的拉普拉斯变换
+4. 利用拉普拉斯变换分析连续时间 LTI 系统
+5. 框图表示
+
+## 奇异函数的拉普拉斯变换
+
+我们也可以对广义函数定义拉普拉斯变换。本课程仅考虑 $\delta(t)$ 及其导数的变换。形式上：
+
+$$
+\begin{aligned}
+\mathcal{L}\{\delta\} &= \int_{-\infty}^{\infty} \delta(t) e^{-s t} \, dt = 1 \\
+\mathcal{L}\{\delta'\} &= \int_{-\infty}^{\infty} \delta'(t) e^{-s t} \, dt = -\left.\frac{d}{dt} e^{-s t}\right|_{t=0} = s \\
+\mathcal{L}\{\delta^{(k)}\} &= \int_{-\infty}^{\infty} \delta^{(k)}(t) e^{-s t} \, dt = \left.(-1)^{k} \frac{d^{k}}{dt^{k}} e^{-s t}\right|_{t=0} = s^{k}
+\end{aligned}
+$$
+
+这些变换对所有 $s \in \mathbb{C}$ 都有定义，我们称“ROC”为 $\mathbb{C}$（尽管不存在收敛性问题）。
+
+## 奇异函数的拉普拉斯变换
+
+之前讨论的拉普拉斯变换性质对这一推广仍然成立。
+
+**例** 时域微分性质等价于包含 $\delta'$ 的卷积性质：
+
+$$
+\mathcal{L}\{x'\} = \mathcal{L}\{x * \delta'\} = \mathcal{L}\{x\} \mathcal{L}\{\delta'\} = s \mathcal{L}\{x\}
+$$
+
+**例**
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-21.jpg?height=198&width=309&top_left_y=550&top_left_x=44)
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-21.jpg?height=236&width=309&top_left_y=543&top_left_x=439)
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-21.jpg?height=289&width=316&top_left_y=541&top_left_x=829)
+
+$X_{2}(s) = -\frac{4}{T} + \frac{2}{T} e^{-s \frac{T}{2}} + \frac{2}{T} e^{s \frac{T}{2}} = \frac{8}{T} \sinh^{2}\left(\frac{s T}{4}\right) \Longrightarrow X(s) = \frac{X_{2}(s)}{s^{2}}$
+
+## 拉普拉斯逆变换（含多项式部分）
+
+有理函数可写成一个多项式与严格真有理函数之和：
+
+$$
+R(s) = \sum_{k=1}^{n} a_{k} s^{k} + R_{1}(s)
+$$
+
+因此
+
+$$
+\mathcal{L}^{-1}\{R\} = \sum_{k=1}^{n} a_{k} \delta^{(k)}(t) + \mathcal{L}^{-1}\{R_{1}\}
+$$
+
+其中 $\mathcal{L}^{-1}\{R_{1}\}$ 可通过部分分式展开或围线积分求得。
+
+**例** $X(s)=\frac{s(s+2)}{s+3} = s - 1 + \frac{3}{s+3}$，ROC $\operatorname{Re} s > -3$，故
+
+$$
+x(t) = \delta'(t) - \delta(t) + 3 e^{-3t} u(t)
+$$
+
+## 目录
+
+1. 拉普拉斯变换的性质
+2. 拉普拉斯逆变换
+3. 奇异函数的拉普拉斯变换
+4. 利用拉普拉斯变换分析连续时间 LTI 系统
+5. 框图表示
+
+## 连续时间系统函数
+
+回忆连续时间 LTI 系统对输入 $x(t)$ 的响应为
+
+$$
+y(t) = (x * h)(t)
+$$
+
+其中 $h$ 是冲激响应。
+
+若 $x$ 和 $h$ 存在拉普拉斯变换，由卷积性质得
+
+$$
+Y(s) = X(s) H(s)
+$$
+
+在其公共 ROC 内（实际为 ROAC）。
+
+若 ROC 有非空内点，系统函数（也称传递函数）$H(s)$ 通过拉普拉斯逆变换唯一确定 $h(t)$，进而确定系统性质。
+
+## 因果性
+
+回忆 $h$ 是右边信号当且仅当 $H(s)$ 的 ROC 是右半平面。
+
+**因果 $\Longrightarrow$ ROC 是右半平面**
+
+**注意**：逆命题不成立。
+
+**例** 考虑 $H(s)=\frac{e^{s}}{s+1}$，ROC $\operatorname{Re} s > -1$。由时移性质，
+
+$$
+h(t) = e^{-(t+1)} u(t+1)
+$$
+
+该系统不是因果的。
+
+## 因果性
+
+对于有理系统函数 $H(s)$ 的 LTI 系统，因果的充要条件是：ROC 是最右侧极点右侧的右半平面。
+
+**证明** 对有理系统函数，
+
+$$
+H(s) = \sum_{k=1}^{n} a_{k} s^{k} + \sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i,k_{i}}}{(s+a_{i})^{k_{i}}}, \quad \operatorname{Re} s > \max_{i} \operatorname{Re}(-a_{i})
+$$
+
+于是
+
+$$
+h(t) = \sum_{k=1}^{n} a_{k} \delta^{(k)}(t) + \sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i,k_{i}}}{(k_{i}-1)!} t^{k_{i}-1} e^{-a_{i} t} u(t)
+$$
+
+这是因果的。（也可由围线积分证明）
+
+**例** $h(t)=e^{-t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+1}$，ROC $\operatorname{Re} s > -1$，因果。
+
+**例** $h(t)=e^{-|t|} \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{-2}{s^{2}-1}$，ROC $-1 < \operatorname{Re} s < 1$，非因果。
+
+## 稳定性
+
+LTI 系统稳定当且仅当其冲激响应 $h \in L_{1}$，即
+
+$$
+\int_{-\infty}^{\infty} |h(t)| \, dt < \infty
+$$
+
+这等价于 $H(s)$ 在虚轴 $\operatorname{Re} s=0$ 上绝对收敛，因此其 ROC 必须满足 $\sigma_{1} < 0 < \sigma_{2}$。
+
+**稳定 $\Longleftrightarrow$ ROC 包含虚轴**
+
+对于有理系统函数的**因果** LTI 系统，稳定的充要条件是所有极点的实部均为负。
+
+**例** 因果系统 $H(s)=\frac{1}{s+a}$ 在 $\operatorname{Re} a > 0$ 时稳定。
+
+**例** 若 $\operatorname{Re} a < 0$ 且 ROC 为 $\operatorname{Re} s < -\operatorname{Re} a$，系统也稳定，但非因果。
+
+## 例
+
+考虑系统函数
+
+$$
+H(s) = \frac{1}{s-2} - \frac{1}{s+1}
+$$
+
+有两个极点 $p_{1}=-1$ 和 $p_{2}=2$。
+
+1. $\operatorname{Re} s < -1$：非因果，不稳定
+
+$$
+h_{1}(t) = -e^{2t} u(-t) + e^{-t} u(-t)
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-28.jpg?height=456&width=423&top_left_y=88&top_left_x=807)
+
+2. $-1 < \operatorname{Re} s < 2$：非因果，稳定
+
+$$
+h_{2}(t) = -e^{2t} u(-t) - e^{-t} u(t)
+$$
+
+3. $\operatorname{Re} s > 2$：因果，不稳定
+
+$$
+h_{3}(t) = e^{2t} u(t) - e^{-t} u(t)
+$$
+
+## 线性常系数微分方程
+
+输入输出满足
+
+$$
+\sum_{k=0}^{N} a_{k} \frac{d^{k} y}{dt^{k}} = \sum_{k=0}^{M} b_{k} \frac{d^{k} x}{dt^{k}}
+$$
+
+两边取拉普拉斯变换：
+
+$$
+\sum_{k=0}^{N} a_{k} s^{k} Y(s) = \sum_{k=0}^{M} b_{k} s^{k} X(s)
+$$
+
+故系统函数
+
+$$
+H(s) = \frac{Y(s)}{X(s)} = \frac{\sum_{k=0}^{M} b_{k} s^{k}}{\sum_{k=0}^{N} a_{k} s^{k}}
+$$
+
+系统函数总是有理的。微分方程本身不指定 ROC！需要附加条件（如稳定性、因果性）来确定 $h(t)$。
+
+## 例
+
+考虑 LTI 系统满足
+
+$$
+y'(t) + 3 y(t) = x'(t) + x(t)
+$$
+
+系统函数
+
+$$
+H(s) = \frac{s+1}{s+3} = 1 - \frac{2}{s+3}
+$$
+
+ROC 有两种可能：$\operatorname{Re} s > -3$ 和 $\operatorname{Re} s < -3$
+
+1. 若 $\operatorname{Re} s > -3$（因果且稳定）：
+
+$$
+h(t) = \delta(t) - 2 e^{-3t} u(t)
+$$
+
+2. 若 $\operatorname{Re} s < -3$（反因果且不稳定）：
+
+$$
+h(t) = \delta(t) + 2 e^{-3t} u(-t)
+$$
+
+## 例（续）
+
+若使用傅里叶变换，频率响应为
+
+$$
+H(j\omega) = \frac{j\omega + 1}{j\omega + 3} = 1 - \frac{2}{j\omega + 3}
+$$
+
+对应
+
+$$
+h(t) = \delta(t) - 2 e^{-3t} u(t)
+$$
+
+为什么只有一种可能？
+
+- 傅里叶变换方法隐含假设系统稳定，要求 $H(s)$ 的 ROC 包含虚轴，因此 $\operatorname{Re} s > -3$；
+- 一般情况下不适用于不稳定系统。
+
+## 例（续）
+
+对输入 $x(t)=e^{-4t} u(t)$ 求响应。
+
+$$
+X(s) = \frac{1}{s+4}, \quad \operatorname{Re} s > -4
+$$
+
+响应变换
+
+$$
+Y(s) = H(s) X(s) = \frac{s+1}{s+3} \cdot \frac{1}{s+4} = \frac{-2}{s+3} + \frac{3}{s+4}
+$$
+
+**两种可能 ROC**：
+
+1. $\operatorname{Re} s > -3$：
+
+$$
+y(t) = -2 e^{-3t} u(t) + 3 e^{-4t} u(t)
+$$
+
+2. $-4 < \operatorname{Re} s < -3$：
+
+$$
+y(t) = 2 e^{-3t} u(-t) + 3 e^{-4t} u(t) \quad \text{（原文件笔误已修正为 } u(-t)\text{）}
+$$
+
+## 例（续）
+
+对输入 $x(t)=e^{-3t} u(t)$ 求响应。
+
+$$
+X(s) = \frac{1}{s+3}, \quad \operatorname{Re} s > -3
+$$
+
+$$
+Y(s) = \frac{s+1}{s+3} \cdot \frac{1}{s+3} = \frac{1}{s+3} - \frac{2}{(s+3)^{2}}
+$$
+
+只有一种可能的 ROC $\operatorname{Re} s > -3$：
+
+$$
+y(t) = (1-2t) e^{-3t} u(t)
+$$
+
+对反因果不稳定系统，$x*h$ 不可定义。
+
+## 例
+
+某 LTI 系统对输入 $x(t)=e^{-3t} u(t)$ 的响应为
+
+$$
+y(t) = (e^{-t} - e^{-2t}) u(t)
+$$
+
+系统函数
+
+$$
+H(s) = \frac{Y(s)}{X(s)} = \frac{\frac{1}{s+1} - \frac{1}{s+2}}{\frac{1}{s+3}} = \frac{s+3}{s^{2} + 3s + 2}, \quad \operatorname{Re} s > -1
+$$
+
+部分分式展开得
+
+$$
+H(s) = \frac{2}{s+1} - \frac{1}{s+2}, \quad \operatorname{Re} s > -1 \Longrightarrow h(t) = (2e^{-t} - e^{-2t}) u(t)
+$$
+
+该系统可由以下微分方程描述：
+
+$$
+\frac{d^{2} y}{dt^{2}} + 3 \frac{dy}{dt} + 2 y = \frac{dx}{dt} + 3 x
+$$
+
+## 目录
+
+1. 拉普拉斯变换的性质
+2. 拉普拉斯逆变换
+3. 奇异函数的拉普拉斯变换
+4. 利用拉普拉斯变换分析连续时间 LTI 系统
+5. 框图表示
+
+## 系统互连
+
+**串联（级联）系统**
+
+$$
+Y = (X H_{1}) H_{2} = X (H_{1} H_{2}) = (X H_{2}) H_{1}
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-36.jpg?height=511&width=1159&top_left_y=295&top_left_x=53)
+
+## 系统互连
+
+**并联系统**
+
+$$
+h = h_{1} + h_{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-37.jpg?height=338&width=725&top_left_y=206&top_left_x=414)
+
+$$
+H = H_{1} + H_{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-37.jpg?height=336&width=725&top_left_y=561&top_left_x=414)
+
+## 系统互连
+
+**反馈系统**
+
+$$
+y = h_{1} * (x - h_{2} * y)
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-38.jpg?height=323&width=769&top_left_y=208&top_left_x=452)
+
+$$
+Y = H_{1} X - H_{1} H_{2} Y \Longrightarrow H = \frac{H_{1}}{1 + H_{1} H_{2}}
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-38.jpg?height=320&width=769&top_left_y=581&top_left_x=452)
+
+## 例
+
+因果 LTI 系统，系统函数
+
+$$
+H(s) = \frac{1}{s+a}, \quad \operatorname{Re} s > -\operatorname{Re} a
+$$
+
+等价的微分方程描述：
+
+$$
+y'(t) + a y(t) = x(t)
+$$
+
+（初始松弛条件）
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-39.jpg?height=292&width=667&top_left_y=612&top_left_x=303)
+
+## 例
+
+因果 LTI 系统，系统函数
+
+$$
+H(s) = \frac{s+b}{s+a} = \left( \frac{1}{s+a} \right) (s+b), \quad \operatorname{Re} s > -\operatorname{Re} a
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-40.jpg?height=469&width=960&top_left_y=399&top_left_x=128)
+
+## 例
+
+因果 LTI 系统，系统函数
+
+$$
+H(s) = \frac{1}{(s+1)(s+2)} = \frac{1}{s^{2} + 3s + 2}
+$$
+
+等价微分方程：
+
+$$
+y''(t) + 3 y'(t) + 2 y(t) = x(t)
+$$
+
+**直接形式**
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-41.jpg?height=367&width=1020&top_left_y=561&top_left_x=128)
+
+**级联形式**
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-42.jpg?height=394&width=1122&top_left_y=434&top_left_x=66)
+
+**并联形式**
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-43.jpg?height=565&width=959&top_left_y=363&top_left_x=102)
+
+**翻译完成**：全部内容已逐句翻译为流畅中文，保留了所有公式、图片链接和原始排版结构，可直接替换原文件使用。

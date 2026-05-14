@@ -1,0 +1,419 @@
+---
+title: "第十章 线性反馈系统概述"
+author: "马越"
+institute: >
+  北京理工大学机械与车辆学院<br> 
+  Email: yuema@bit.edu.cn<br>̊
+format:
+  revealjs:
+    theme: [simple, custom2.scss]
+    transition: slide
+    slide-number: true
+    incremental: false
+    center: false
+    math: mathjax
+    footer: '<div class="footer-3col"><div class="left">机械与车辆学院 马越</div><div class="center">信号与系统</div><div class="right">2026 春季学期</div></div>'
+    toc: false
+    titleSelector: 'h1, h2, h3'
+    toc-title: "目录"
+    depth: 3
+    embed-resources: true
+    self-contained-math: true
+resource-path: ["."]
+execute:
+  echo: false
+---
+
+<!-- ## 目录 {#toc0}
+
+- [**1. 引言**](#sec91)
+- [2. Z变换](#sec92)
+- [3. Z变换性质](#sec93)
+- [4. 常用Z变换对](#sec94)
+- [5. 用Z变换分析与表征线性时不变系统](#sec95)
+- [6. 单边Z变换](#sec96) -->
+
+# 引言-反馈
+
+## 1. 瓦特蒸汽机背后的离心调速器 
+
+瓦特蒸汽机通过离心调速器实现负反馈，自动调节蒸汽阀门，维持转速稳定。这是经典的机械反馈控制实例。
+
+![瓦特离心调速器](imglink/Boulton_and_Watt_centrifugal_governor-MJ.png){fig-align="center"}
+
+
+
+## 2. 使越洋电话电缆成为可能的反馈放大器 
+
+反馈放大器（由Harold Black等发明）解决了长距离信号衰减问题，通过负反馈稳定放大，使跨洋电话电缆实用化，是通信工程里程碑。
+
+![反馈放大器历史装置](imglink/feedapm.webp){fig-align="center"}
+
+
+
+
+## 3. 1986年诺贝尔物理学奖表彰的扫描隧道显微镜（Scanning Tunneling Microscope）
+
+STM利用反馈控制针尖与样品表面距离，实现原子级成像，1986年诺贝尔物理学奖授予其发明者。
+
+![早期STM装置](imglink/First_STM.png){fig-align="center"}
+
+
+
+
+## 4. 血糖平衡调节（Blood Glucose Regulation）
+
+人体通过胰岛素和胰高血糖素的负反馈循环维持血糖稳定，是生物反馈的典型例子。
+
+![血糖负反馈循环](imglink/feed_bloodsugar.jpg){fig-align="center"}
+
+
+
+## 5. 生态系统的平衡（Ecosystem Balance）
+
+生态系统中存在正负反馈循环（如捕食者-猎物关系），维持种群和环境平衡。
+
+![生态反馈循环](imglink/feed_ecosystem.webp){fig-align="center"}
+
+
+
+
+## 6. 帕金森疾病与丘脑输出及反馈治疗
+
+帕金森病与丘脑输出失衡相关，现代治疗常用闭环深脑刺激（DBS）等反馈控制技术。
+
+![DBS反馈控制示意图](imglink/feed_pakinsen.webp){fig-align="center"}
+
+
+
+## 7. 汽车巡航控制系统（Cruise Control System）
+
+汽车巡航控制通过速度传感器和反馈调节油门，维持设定车速，是日常工程反馈应用。
+
+![巡航控制框图](imglink/feed_cruisecontrol.jpg){fig-align="center"}
+
+
+
+## 8. 高机动性战斗机与飞控反馈技术
+
+现代战机（如F-16）依赖飞控系统的反馈控制，实现高机动性飞行，弥补气动不稳定性。
+
+::::{.columns style="text-align: center;"}
+::: {.column width="50%"}
+
+![F-16战斗机](imglink/f16.jpeg){width="50%"}
+
+![Fly-by-wire](imglink/Fly-by-wireWings.webp){width="50%"}
+
+:::
+::: {.column width="50%"}
+
+![随控布局](imglink/fc.jpeg){width="50%"}
+
+![典型飞控系统框图](imglink/Boeing-777-Powered-Flight-Control-System-Overview.webp){width="50%"}
+
+:::
+::::
+
+
+
+## 9. 阿波罗登月计划中的反馈控制
+
+阿波罗计划中，登月舱着陆、姿态控制等大量使用反馈控制系统，确保精确操作，是航天反馈控制的典范。
+
+![阿波罗任务控制中心](imglink/feed_appollo.jpg){fig-align="center"}
+
+
+
+
+## 10. 市场经济调节原理（“看不见的手”）
+
+价格机制通过供求反馈自动调节生产和消费，实现经济平衡，是社会经济中的反馈实例。
+
+![供求平衡图](imglink/feed_market.png){fig-align="center"}
+
+
+
+
+
+## 线性反馈的基本原理
+
+![](imglink/fd8d222db02f9b67b92c6f5f0c6e8d9aeed6c46e67e1f4c4c9a13c15f0aa2739.jpg)
+
+
+- $H(s), H(z)$：前向通路系统函数  
+
+- $G(s), G(z)$：反馈通路系统函数  
+
+- $Q(s), Q(z)$：闭环系统函数
+
+$$
+Q(s) = \frac{H(s)}{1 + G(s)H(s)}, \quad Q(z) = \frac{H(z)}{1 + G(z)H(z)}
+$$
+
+## 反馈的作用
+
+
+- 对开环系统特性精确知识的不敏感性  
+
+- 对扰动的不敏感性  
+
+- 对误差的容忍度
+
+## 反馈的作用
+
+::::{.columns style="text-align: center;"}
+::: {.column width="50%"}
+![](imglink/telescope01.png)
+:::
+::: {.column width="50%"}
+![](imglink/telescope02.png)  
+
+利用反馈控制望远镜角位置：
+
+(a) 直流电机驱动的望远镜平台；
+
+(b) (a) 中系统的框图；
+
+(c) 指向望远镜的反馈系统；
+
+(d) (c) 中系统的框图（此处 $K = k_1 K_2$）
+
+:::
+::::
+
+
+
+## 反馈的作用
+
+::::{.columns style="text-align: center;"}
+::: {.column width="50%"}
+
+![](imglink/telescope03.png)
+
+:::
+::: {.column width="50%"}
+![](imglink/telescope04.png)  
+
+利用反馈控制望远镜角位置：
+
+(a) 直流电机驱动的望远镜平台；
+
+(b) (a) 中系统的框图；
+
+(c) 指向望远镜的反馈系统；
+
+(d) (c) 中系统的框图（此处 $K = k_1 K_2$）
+:::
+::::
+
+## 不稳定系统的稳定化
+
+
+$$
+\begin{array}{l}
+H(s) = \frac{b}{s - a}，\quad a > 0 \text{ 时不稳定} \\
+Q(s) = \frac{H(s)}{1 + K H(s)} = \frac{b}{s - a + K b}
+\end{array}
+$$
+
+$$
+\text{当 } K > \frac{a}{b} \text{ 时稳定}
+$$
+
+## 不稳定系统的稳定化
+
+
+$$
+\begin{array}{l}
+H(s) = \frac{b}{s^2 + a}，\text{不稳定} \\
+G(s) = K_1 + K_2 s
+\end{array}
+$$
+
+当 $0 < K_2 b < 1$ 且 $K_1 b > a$ 时稳定
+
+## 反馈引起的失稳
+
+**示例：音频反馈**
+
+::::{.columns style="text-align: center;"}
+::: {.column width="70%"}
+
+当 $K_1 K_2 > 1$ 时不稳定
+
+ (a) 音频反馈现象的图示；
+ 
+ (b) (a) 的框图表示；
+ 
+ (c) (b) 中的框图重绘为负反馈系统。
+ 
+ （注：$e^{-sT}$ 是 $T$ 秒时间延迟的系统函数。）
+:::   
+::: {.column width="30%"}
+![](imglink/audio01.png)
+
+
+:::
+::::
+
+::::{.columns style="text-align: center;"}
+::: {.column width="50%"}
+
+![](imglink/audio02.png)
+
+:::
+::: {.column width="50%"}
+
+![](imglink/audio03.png)  
+:::
+::::
+
+## 采样数据反馈系统  
+
+对连续时间系统采用离散时间反馈  
+
+ 
+::::{.columns style="text-align: center;"}
+::: {.column width="50%"}
+
+![使用零阶保持器的采样数据反馈系统](imglink/digifeedback01.png)
+
+:::
+::: {.column width="50%"}
+
+![等效离散时间系统](imglink/digifeedback02.png)  
+:::
+::::
+
+<!-- ![](imglink/b52a8100f40067e144d19c0e9b128f01e80e0d2012b2474d00184cf1db10f3a0.jpg)
+
+![](imglink/4a39935b69a2a6b9d1e10cd709191f2e3650f7791e7095106e62280cc7878e8f.jpg)  
+
+**图 11.6** (a)；(b) 。 -->
+
+## 采样数据反馈系统  
+
+可调增益可位于任一通路
+
+::::{.columns style="text-align: center;"}
+::: {.column width="50%"}
+![增益位于前向通路的系统](imglink/adjustblegain01.png)
+
+$$
+Q(s) = \frac{K H(s)}{1 + K H(s) G(s)}
+$$
+
+:::
+::: {.column width="50%}
+
+![增益位于反馈通路的系统](imglink/adjustblegain02.png)  
+
+
+$$
+Q(s) = \frac{H(s)}{1 + K H(s) G(s)}
+$$
+
+
+:::
+::::
+
+
+## 反馈系统的根轨迹分析
+
+当可调增益变化时闭环系统极点的轨迹
+
+::::{.columns style="text-align: center;"}
+::: {.column width="70%"}
+
+比如系统：
+$$
+H(z) = \frac{1}{1 - 2z^{-1}} = \frac{z}{z - 2}
+$$
+
+$$
+G(z) = 2\beta z^{-1} = \frac{2\beta}{z}
+$$
+
+$$
+Q(z) = \frac{1}{1 - 2(1 - \beta)z^{-1}} = \frac{z}{z - 2(1 - \beta)}
+$$
+
+$$
+\text{极点 } z = 2(1 - \beta)
+$$
+所示闭环系统的根轨迹随 $\beta$ 变化：
+
+注意我们标记了 $\beta = 0$ 时对应极点位置的 $z = 2$ 点。
+
+:::
+::: {.column width=30%}
+
+![](imglink/rootlocus01.png)
+
+$\beta > 0$
+
+![](imglink/rootlocus02.png)  
+
+$\beta < 0$
+
+
+
+
+
+
+:::
+::::
+
+## 反馈系统的根轨迹分析
+
+当可调增益变化时闭环系统极点的轨迹
+
+::::{.columns style="text-align: center;"}
+::: {.column width="70%"}
+
+对于系统：
+
+$$
+H(z) = \frac{K}{1 - \frac{1}{2}z^{-1}}, \quad G(z) = \frac{z^{-1}}{z - \frac{1}{4}z^{-1}}
+$$
+
+$G(z)H(z)$ 的极点位于 $z = 1/4$ 和 $z = 1/2$，零点位于 $z = 0$，已在图中标出。
+
+:::
+::: {.column width=30%}
+
+![](imglink/rootlocus03.png)  
+
+$K > 0$
+
+![](imglink/rootlocus04.png)  
+
+$K < 0$
+
+:::
+::::
+
+## 作业
+
+1. 11.2
+2. 11.3 
+3. 11.5
+4. 11.8
+
+
+---
+
+
+<section style="
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+">
+  <div style="transform: translateY(10vh);">
+<h1>第十章 <br> 线性反馈系统概述 <br> 完</h1>
+  </div>
+</section>

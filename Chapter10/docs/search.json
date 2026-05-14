@@ -1,0 +1,590 @@
+[
+  {
+    "objectID": "Chapter10_V1.html#toc0",
+    "href": "Chapter10_V1.html#toc0",
+    "title": "第十章 线性反馈系统概述",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. Z变换\n3. Z变换性质\n4. 常用Z变换对\n5. 用Z变换分析与表征线性时不变系统\n6. 单边Z变换"
+  },
+  {
+    "objectID": "Chapter10_V1.html#线性反馈的基本原理",
+    "href": "Chapter10_V1.html#线性反馈的基本原理",
+    "title": "第十章 线性反馈系统概述",
+    "section": "线性反馈的基本原理",
+    "text": "线性反馈的基本原理\n\n\n\\(H(s), H(z)\\)：前向通路系统函数\n\\(G(s), G(z)\\)：反馈通路系统函数\n\\(Q(s), Q(z)\\)：闭环系统函数\n\n\\[\nQ(s) = \\frac{H(s)}{1 + G(s)H(s)}, \\quad Q(z) = \\frac{H(z)}{1 + G(z)H(z)}\n\\]"
+  },
+  {
+    "objectID": "Chapter10_V1.html#线性反馈系统",
+    "href": "Chapter10_V1.html#线性反馈系统",
+    "title": "第十章 线性反馈系统概述",
+    "section": "11.0 线性反馈系统",
+    "text": "11.0 线性反馈系统"
+  },
+  {
+    "objectID": "Chapter10_V1.html#线性反馈的基本原理-1",
+    "href": "Chapter10_V1.html#线性反馈的基本原理-1",
+    "title": "第十章 线性反馈系统概述",
+    "section": "11.1 线性反馈的基本原理",
+    "text": "11.1 线性反馈的基本原理\nH(s), H(z)：前向通路系统函数\nG(s), G(z)：反馈通路系统函数\nQ(s), Q(z)：闭环系统函数\n\\[\nQ(s) = \\frac{H(s)}{1 + G(s)H(s)}, \\quad Q(z) = \\frac{H(z)}{1 + G(z)H(z)}\n\\]"
+  },
+  {
+    "objectID": "Chapter10_V1.html#示例-1望远镜定位系统",
+    "href": "Chapter10_V1.html#示例-1望远镜定位系统",
+    "title": "第十章 线性反馈系统概述",
+    "section": "示例 1：望远镜定位系统",
+    "text": "示例 1：望远镜定位系统\n参见教材图 11.1，第 817 页\n\n对开环系统特性精确知识的不敏感性\n\n对扰动的不敏感性\n\n对误差的容忍度\n\n示例 2：飞机自动驾驶仪系统\n\n\n图 11.1 利用反馈控制望远镜角位置：(a) 直流电机驱动的望远镜平台；(b) (a) 中系统的框图；(c) 指向望远镜的反馈系统；(d) (c) 中系统的框图（此处 \\(K = k_1 K_2\\)）\n\n\n(d)\n图 11.1 利用反馈控制望远镜角位置：(a) 直流电机驱动的望远镜平台；(b) (a) 中系统的框图；(c) 指向望远镜的反馈系统；(d) (c) 中系统的框图（此处 \\(K = k_1 K_2\\)）\n 不稳定系统的稳定化"
+  },
+  {
+    "objectID": "Chapter10_V1.html#示例-3",
+    "href": "Chapter10_V1.html#示例-3",
+    "title": "第十章 线性反馈系统概述",
+    "section": "示例 3：",
+    "text": "示例 3：\n\\[\n\\begin{array}{l}\nH(s) = \\frac{b}{s - a}，\\quad a &gt; 0 \\text{ 时不稳定} \\\\\nQ(s) = \\frac{H(s)}{1 + K H(s)} = \\frac{b}{s - a + K b}\n\\end{array}\n\\]\n\\[\n\\text{当 } K &gt; \\frac{a}{b} \\text{ 时稳定}\n\\]\n 不稳定系统的稳定化"
+  },
+  {
+    "objectID": "Chapter10_V1.html#示例-4",
+    "href": "Chapter10_V1.html#示例-4",
+    "title": "第十章 线性反馈系统概述",
+    "section": "示例 4：",
+    "text": "示例 4：\n\\[\n\\begin{array}{l}\nH(s) = \\frac{b}{s^2 + a}，\\text{不稳定} \\\\\nG(s) = K_1 + K_2 s\n\\end{array}\n\\]\n当 \\(0 &lt; K_2 b &lt; 1\\) 且 \\(K_1 b &gt; a\\) 时稳定\n 反馈引起的失稳"
+  },
+  {
+    "objectID": "Chapter10_V1.html#示例-5音频反馈",
+    "href": "Chapter10_V1.html#示例-5音频反馈",
+    "title": "第十章 线性反馈系统概述",
+    "section": "示例 5：音频反馈",
+    "text": "示例 5：音频反馈\n参见教材图 11.8，第 831 页\n当 \\(K_1 K_2 &gt; 1\\) 时不稳定\n\n\n\n图 11.8 (a) 音频反馈现象的图示；(b) (a) 的框图表示；(c) (b) 中的框图重绘为负反馈系统。（注：\\(e^{-sT}\\) 是 \\(T\\) 秒时间延迟的系统函数。）\n 采样数据反馈系统\n对连续时间系统采用离散时间反馈\n参见教材图 11.6，第 827 页\n 可调增益可位于任一通路\n参见教材图 11.10，第 835 页\n\n\n图 11.6 (a) 使用零阶保持器的采样数据反馈系统；(b) 等效离散时间系统。\n\n\\[\nQ(s) = \\frac{K H(s)}{1 + K H(s) G(s)}\n\\]\n\n\n\n\n图 11.10 含可调增益的反馈系统：(a) 增益位于前向通路的系统；(b) 增益位于反馈通路的系统。\n\\[\nQ(s) = \\frac{H(s)}{1 + K H(s) G(s)}\n\\]"
+  },
+  {
+    "objectID": "Chapter10_V1.html#反馈系统的根轨迹分析",
+    "href": "Chapter10_V1.html#反馈系统的根轨迹分析",
+    "title": "第十章 线性反馈系统概述",
+    "section": "反馈系统的根轨迹分析",
+    "text": "反馈系统的根轨迹分析\n当可调增益变化时闭环系统极点的轨迹\n\n\n比如系统： \\[\nH(z) = \\frac{1}{1 - 2z^{-1}} = \\frac{z}{z - 2}\n\\]\n\\[\nG(z) = 2\\beta z^{-1} = \\frac{2\\beta}{z}\n\\]\n\\[\nQ(z) = \\frac{1}{1 - 2(1 - \\beta)z^{-1}} = \\frac{z}{z - 2(1 - \\beta)}\n\\]\n\\[\n\\text{极点 } z = 2(1 - \\beta)\n\\] 所示闭环系统的根轨迹随 \\(\\beta\\) 变化：\n注意我们标记了 \\(\\beta = 0\\) 时对应极点位置的 \\(z = 2\\) 点。\n\n\n\\(\\beta &gt; 0\\)\n\n\\(\\beta &lt; 0\\)"
+  },
+  {
+    "objectID": "Chapter10_V1.html#示例-6",
+    "href": "Chapter10_V1.html#示例-6",
+    "title": "第十章 线性反馈系统概述",
+    "section": "示例 6：",
+    "text": "示例 6：\n\\[\nH(z) = \\frac{1}{1 - 2z^{-1}} = \\frac{z}{z - 2}\n\\]\n\\[\nG(z) = 2\\beta z^{-1} = \\frac{2\\beta}{z}\n\\]\n\\[\nQ(z) = \\frac{1}{1 - 2(1 - \\beta)z^{-1}} = \\frac{z}{z - 2(1 - \\beta)}\n\\]\n\\[\n\\text{极点 } z = 2(1 - \\beta)\n\\]\n参见教材图 11.9，第 834 页\n\n\n(b)\n图 11.9 方程 (11.40) 所示闭环系统的根轨迹随 \\(\\beta\\) 变化：(a) \\(\\beta &gt; 0\\)；(b) \\(\\beta &lt; 0\\)。注意我们标记了 \\(\\beta = 0\\) 时对应极点位置的 \\(z = 2\\) 点。"
+  },
+  {
+    "objectID": "Chapter10_V1.html#反馈系统的根轨迹分析-1",
+    "href": "Chapter10_V1.html#反馈系统的根轨迹分析-1",
+    "title": "第十章 线性反馈系统概述",
+    "section": "反馈系统的根轨迹分析",
+    "text": "反馈系统的根轨迹分析\n当可调增益变化时闭环系统极点的轨迹\n\n\n对于系统：\n\\[\nH(z) = \\frac{K}{1 - \\frac{1}{2}z^{-1}}, \\quad G(z) = \\frac{z^{-1}}{z - \\frac{1}{4}z^{-1}}\n\\]\n\\(G(z)H(z)\\) 的极点位于 \\(z = 1/4\\) 和 \\(z = 1/2\\)，零点位于 \\(z = 0\\)，已在图中标出。\n\n\n\\(K &gt; 0\\)\n\n\\(K &lt; 0\\)"
+  },
+  {
+    "objectID": "Chapter10_V1.html#示例-7",
+    "href": "Chapter10_V1.html#示例-7",
+    "title": "第十章 线性反馈系统概述",
+    "section": "示例 7：",
+    "text": "示例 7：\n\\[\nH(z) = \\frac{K}{1 - \\frac{1}{2}z^{-1}}, \\quad G(z) = \\frac{z^{-1}}{z - \\frac{1}{4}z^{-1}}\n\\]\n参见教材图 11.16，第 846 页\n\n(a)\n\n(b)\n图 11.16 示例 11.3 的根轨迹：(a) \\(K &gt; 0\\)；(b) \\(K &lt; 0\\)。\\(G(z)H(z)\\) 的极点位于 \\(z = 1/4\\) 和 \\(z = 1/2\\)，零点位于 \\(z = 0\\)，已在图中标出。"
+  },
+  {
+    "objectID": "Chapter10_V1.html#作业",
+    "href": "Chapter10_V1.html#作业",
+    "title": "第十章 线性反馈系统概述",
+    "section": "作业",
+    "text": "作业\n\n11.2\n11.3\n11.5\n11.8"
+  },
+  {
+    "objectID": "Chapter10_V1.html#引言",
+    "href": "Chapter10_V1.html#引言",
+    "title": "第十章 线性反馈系统概述",
+    "section": "引言",
+    "text": "引言"
+  },
+  {
+    "objectID": "topicsonfeedback.html",
+    "href": "topicsonfeedback.html",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "",
+    "text": "郭雷院士在2016年国科大讲座中，介绍了系统科学基本概念后，一口气列举了十个反馈原理在实际中的应用实例，涵盖工程、生物、医学、军事、航天和经济等领域，生动说明反馈在自然科学、工程技术、社会经济中无处不在。\n以下按原文顺序整理，每个例子包含简要说明和相关图片。"
+  },
+  {
+    "objectID": "topicsonfeedback.html#引言",
+    "href": "topicsonfeedback.html#引言",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "",
+    "text": "郭雷院士在2016年国科大讲座中，介绍了系统科学基本概念后，一口气列举了十个反馈原理在实际中的应用实例，涵盖工程、生物、医学、军事、航天和经济等领域，生动说明反馈在自然科学、工程技术、社会经济中无处不在。\n以下按原文顺序整理，每个例子包含简要说明和相关图片。"
+  },
+  {
+    "objectID": "topicsonfeedback.html#瓦特蒸汽机背后的离心调速器centrifugal-governor",
+    "href": "topicsonfeedback.html#瓦特蒸汽机背后的离心调速器centrifugal-governor",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "2 1. 瓦特蒸汽机背后的离心调速器（Centrifugal Governor）",
+    "text": "2 1. 瓦特蒸汽机背后的离心调速器（Centrifugal Governor）\n瓦特蒸汽机通过离心调速器实现负反馈，自动调节蒸汽阀门，维持转速稳定。这是经典的机械反馈控制实例。\n\n\n\n瓦特离心调速器\n\n\n\n\n\n现代示意图"
+  },
+  {
+    "objectID": "topicsonfeedback.html#使越洋电话电缆成为可能的反馈放大器feedback-amplifier",
+    "href": "topicsonfeedback.html#使越洋电话电缆成为可能的反馈放大器feedback-amplifier",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "3 2. 使越洋电话电缆成为可能的反馈放大器（Feedback Amplifier）",
+    "text": "3 2. 使越洋电话电缆成为可能的反馈放大器（Feedback Amplifier）\n反馈放大器（由Harold Black等发明）解决了长距离信号衰减问题，通过负反馈稳定放大，使跨洋电话电缆实用化，是通信工程里程碑。\n\n\n\n反馈放大器历史装置\n\n\n\n\n\n负反馈放大器原理图"
+  },
+  {
+    "objectID": "topicsonfeedback.html#年诺贝尔物理学奖表彰的扫描隧道显微镜scanning-tunneling-microscope",
+    "href": "topicsonfeedback.html#年诺贝尔物理学奖表彰的扫描隧道显微镜scanning-tunneling-microscope",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "4 3. 1986年诺贝尔物理学奖表彰的扫描隧道显微镜（Scanning Tunneling Microscope）",
+    "text": "4 3. 1986年诺贝尔物理学奖表彰的扫描隧道显微镜（Scanning Tunneling Microscope）\nSTM利用反馈控制针尖与样品表面距离，实现原子级成像，1986年诺贝尔物理学奖授予其发明者。\n\n\n\n早期STM装置\n\n\n\n\n\nSTM工作原理"
+  },
+  {
+    "objectID": "topicsonfeedback.html#血糖平衡调节blood-glucose-regulation",
+    "href": "topicsonfeedback.html#血糖平衡调节blood-glucose-regulation",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "5 4. 血糖平衡调节（Blood Glucose Regulation）",
+    "text": "5 4. 血糖平衡调节（Blood Glucose Regulation）\n人体通过胰岛素和胰高血糖素的负反馈循环维持血糖稳定，是生物反馈的典型例子。\n\n\n\n血糖负反馈循环\n\n\n\n\n\n简化示意图"
+  },
+  {
+    "objectID": "topicsonfeedback.html#生态系统的平衡ecosystem-balance",
+    "href": "topicsonfeedback.html#生态系统的平衡ecosystem-balance",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "6 5. 生态系统的平衡（Ecosystem Balance）",
+    "text": "6 5. 生态系统的平衡（Ecosystem Balance）\n生态系统中存在正负反馈循环（如捕食者-猎物关系），维持种群和环境平衡。\n\n\n\n生态反馈循环\n\n\n\n\n\n捕食者-猎物模型"
+  },
+  {
+    "objectID": "topicsonfeedback.html#帕金森疾病与丘脑输出及反馈治疗",
+    "href": "topicsonfeedback.html#帕金森疾病与丘脑输出及反馈治疗",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "7 6. 帕金森疾病与丘脑输出及反馈治疗",
+    "text": "7 6. 帕金森疾病与丘脑输出及反馈治疗\n帕金森病与丘脑输出失衡相关，现代治疗常用闭环深脑刺激（DBS）等反馈控制技术。\n\n\n\nDBS反馈控制示意图\n\n\n\n\n\n帕金森DBS装置"
+  },
+  {
+    "objectID": "topicsonfeedback.html#汽车巡航控制系统cruise-control-system",
+    "href": "topicsonfeedback.html#汽车巡航控制系统cruise-control-system",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "8 7. 汽车巡航控制系统（Cruise Control System）",
+    "text": "8 7. 汽车巡航控制系统（Cruise Control System）\n汽车巡航控制通过速度传感器和反馈调节油门，维持设定车速，是日常工程反馈应用。\n\n\n\n巡航控制框图\n\n\n\n\n\n系统原理"
+  },
+  {
+    "objectID": "topicsonfeedback.html#高机动性战斗机与飞控反馈技术",
+    "href": "topicsonfeedback.html#高机动性战斗机与飞控反馈技术",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "9 8. 高机动性战斗机与飞控反馈技术",
+    "text": "9 8. 高机动性战斗机与飞控反馈技术\n现代战机（如F-16）依赖飞控系统的反馈控制，实现高机动性飞行，弥补气动不稳定性。\n\n\n\nF-16飞控系统\n\n\n\n\n\nFly-by-Wire原理"
+  },
+  {
+    "objectID": "topicsonfeedback.html#阿波罗登月计划中的反馈控制",
+    "href": "topicsonfeedback.html#阿波罗登月计划中的反馈控制",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "10 9. 阿波罗登月计划中的反馈控制",
+    "text": "10 9. 阿波罗登月计划中的反馈控制\n阿波罗计划中，登月舱着陆、姿态控制等大量使用反馈控制系统，确保精确操作，是航天反馈控制的典范。\n\n\n\n阿波罗任务控制中心\n\n\n\n\n\n登月舱控制系统"
+  },
+  {
+    "objectID": "topicsonfeedback.html#市场经济调节原理看不见的手",
+    "href": "topicsonfeedback.html#市场经济调节原理看不见的手",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "11 10. 市场经济调节原理（“看不见的手”）",
+    "text": "11 10. 市场经济调节原理（“看不见的手”）\n价格机制通过供求反馈自动调节生产和消费，实现经济平衡，是社会经济中的反馈实例。\n\n\n\n供求平衡图\n\n\n\n\n\n反馈循环示意图"
+  },
+  {
+    "objectID": "topicsonfeedback.html#总结",
+    "href": "topicsonfeedback.html#总结",
+    "title": "郭雷院士讲座：反馈原理的十个实际应用实例",
+    "section": "12 总结",
+    "text": "12 总结\n这些例子充分展示了反馈（尤其是负反馈）在维持系统稳定、实现目标中的核心作用。理解这些实例后，可进一步学习反馈控制的设计方法（如自适应控制等），系统科学正是研究复杂系统调控的前沿学科。\n\n\n\n\n\n\nNote\n\n\n\n参考来源：中国科学院大学新闻 https://news.ucas.ac.cn/xshd/3372e5c765654b1484ab443d311ccb62.htm"
+  },
+  {
+    "objectID": "full_2.html#线性反馈系统",
+    "href": "full_2.html#线性反馈系统",
+    "title": "11.0 线性反馈系统",
+    "section": "11.0 线性反馈系统",
+    "text": "11.0 线性反馈系统"
+  },
+  {
+    "objectID": "full_2.html#线性反馈的基本原理-1",
+    "href": "full_2.html#线性反馈的基本原理-1",
+    "title": "11.0 线性反馈系统",
+    "section": "11.1 线性反馈的基本原理",
+    "text": "11.1 线性反馈的基本原理\nH(s), H(z)：前向通路系统函数\nG(s), G(z)：反馈通路系统函数\nQ(s), Q(z)：闭环系统函数\n\\[\nQ(s) = \\frac{H(s)}{1 + G(s)H(s)}, \\quad Q(z) = \\frac{H(z)}{1 + G(z)H(z)}\n\\]"
+  },
+  {
+    "objectID": "full_2.html#示例-1望远镜定位系统",
+    "href": "full_2.html#示例-1望远镜定位系统",
+    "title": "11.0 线性反馈系统",
+    "section": "示例 1：望远镜定位系统",
+    "text": "示例 1：望远镜定位系统\n参见教材图 11.1，第 817 页\n\n对开环系统特性精确知识的不敏感性\n\n对扰动的不敏感性\n\n对误差的容忍度\n\n示例 2：飞机自动驾驶仪系统\n\n\n图 11.1 利用反馈控制望远镜角位置：(a) 直流电机驱动的望远镜平台；(b) (a) 中系统的框图；(c) 指向望远镜的反馈系统；(d) (c) 中系统的框图（此处 \\(K = k_1 K_2\\)）\n\n\n(d)\n图 11.1 利用反馈控制望远镜角位置：(a) 直流电机驱动的望远镜平台；(b) (a) 中系统的框图；(c) 指向望远镜的反馈系统；(d) (c) 中系统的框图（此处 \\(K = k_1 K_2\\)）\n 不稳定系统的稳定化"
+  },
+  {
+    "objectID": "full_2.html#示例-3",
+    "href": "full_2.html#示例-3",
+    "title": "11.0 线性反馈系统",
+    "section": "示例 3：",
+    "text": "示例 3：\n\\[\n\\begin{array}{l}\nH(s) = \\frac{b}{s - a}，\\quad a &gt; 0 \\text{ 时不稳定} \\\\\nQ(s) = \\frac{H(s)}{1 + K H(s)} = \\frac{b}{s - a + K b}\n\\end{array}\n\\]\n\\[\n\\text{当 } K &gt; \\frac{a}{b} \\text{ 时稳定}\n\\]\n 不稳定系统的稳定化"
+  },
+  {
+    "objectID": "full_2.html#示例-4",
+    "href": "full_2.html#示例-4",
+    "title": "11.0 线性反馈系统",
+    "section": "示例 4：",
+    "text": "示例 4：\n\\[\n\\begin{array}{l}\nH(s) = \\frac{b}{s^2 + a}，\\text{不稳定} \\\\\nG(s) = K_1 + K_2 s\n\\end{array}\n\\]\n当 \\(0 &lt; K_2 b &lt; 1\\) 且 \\(K_1 b &gt; a\\) 时稳定\n 反馈引起的失稳"
+  },
+  {
+    "objectID": "full_2.html#示例-5音频反馈",
+    "href": "full_2.html#示例-5音频反馈",
+    "title": "11.0 线性反馈系统",
+    "section": "示例 5：音频反馈",
+    "text": "示例 5：音频反馈\n参见教材图 11.8，第 831 页\n当 \\(K_1 K_2 &gt; 1\\) 时不稳定\n\n\n\n图 11.8 (a) 音频反馈现象的图示；(b) (a) 的框图表示；(c) (b) 中的框图重绘为负反馈系统。（注：\\(e^{-sT}\\) 是 \\(T\\) 秒时间延迟的系统函数。）\n 采样数据反馈系统\n对连续时间系统采用离散时间反馈\n参见教材图 11.6，第 827 页\n 可调增益可位于任一通路\n参见教材图 11.10，第 835 页\n\n\n图 11.6 (a) 使用零阶保持器的采样数据反馈系统；(b) 等效离散时间系统。\n\n\\[\nQ(s) = \\frac{K H(s)}{1 + K H(s) G(s)}\n\\]\n\n\n\n\n图 11.10 含可调增益的反馈系统：(a) 增益位于前向通路的系统；(b) 增益位于反馈通路的系统。\n\\[\nQ(s) = \\frac{H(s)}{1 + K H(s) G(s)}\n\\]"
+  },
+  {
+    "objectID": "full_2.html#反馈系统的根轨迹分析",
+    "href": "full_2.html#反馈系统的根轨迹分析",
+    "title": "11.0 线性反馈系统",
+    "section": "反馈系统的根轨迹分析",
+    "text": "反馈系统的根轨迹分析\n当可调增益变化时闭环系统极点的轨迹（路径）"
+  },
+  {
+    "objectID": "full_2.html#示例-6",
+    "href": "full_2.html#示例-6",
+    "title": "11.0 线性反馈系统",
+    "section": "示例 6：",
+    "text": "示例 6：\n\\[\nH(z) = \\frac{1}{1 - 2z^{-1}} = \\frac{z}{z - 2}\n\\]\n\\[\nG(z) = 2\\beta z^{-1} = \\frac{2\\beta}{z}\n\\]\n\\[\nQ(z) = \\frac{1}{1 - 2(1 - \\beta)z^{-1}} = \\frac{z}{z - 2(1 - \\beta)}\n\\]\n\\[\n\\text{极点 } z = 2(1 - \\beta)\n\\]\n参见教材图 11.9，第 834 页\n\n\n(b)\n图 11.9 方程 (11.40) 所示闭环系统的根轨迹随 \\(\\beta\\) 变化：(a) \\(\\beta &gt; 0\\)；(b) \\(\\beta &lt; 0\\)。注意我们标记了 \\(\\beta = 0\\) 时对应极点位置的 \\(z = 2\\) 点。"
+  },
+  {
+    "objectID": "full_2.html#反馈系统的根轨迹分析-1",
+    "href": "full_2.html#反馈系统的根轨迹分析-1",
+    "title": "11.0 线性反馈系统",
+    "section": "反馈系统的根轨迹分析",
+    "text": "反馈系统的根轨迹分析\n当可调增益变化时闭环系统极点的轨迹（路径）"
+  },
+  {
+    "objectID": "full_2.html#示例-7",
+    "href": "full_2.html#示例-7",
+    "title": "11.0 线性反馈系统",
+    "section": "示例 7：",
+    "text": "示例 7：\n\\[\nH(z) = \\frac{K}{1 - \\frac{1}{2}z^{-1}}, \\quad G(z) = \\frac{z^{-1}}{z - \\frac{1}{4}z^{-1}}\n\\]\n参见教材图 11.16，第 846 页\n\n(a)\n\n(b)\n图 11.16 示例 11.3 的根轨迹：(a) \\(K &gt; 0\\)；(b) \\(K &lt; 0\\)。\\(G(z)H(z)\\) 的极点位于 \\(z = 1/4\\) 和 \\(z = 1/2\\)，零点位于 \\(z = 0\\)，已在图中标出。"
+  },
+  {
+    "objectID": "full_2.html#本课程结束",
+    "href": "full_2.html#本课程结束",
+    "title": "11.0 线性反馈系统",
+    "section": "本课程结束",
+    "text": "本课程结束"
+  },
+  {
+    "objectID": "Chapter10_V1.html#瓦特蒸汽机背后的离心调速器centrifugal-governor",
+    "href": "Chapter10_V1.html#瓦特蒸汽机背后的离心调速器centrifugal-governor",
+    "title": "第十章 线性反馈系统概述",
+    "section": "1. 瓦特蒸汽机背后的离心调速器（Centrifugal Governor）",
+    "text": "1. 瓦特蒸汽机背后的离心调速器（Centrifugal Governor）\n瓦特蒸汽机通过离心调速器实现负反馈，自动调节蒸汽阀门，维持转速稳定。这是经典的机械反馈控制实例。\n\n\n\n瓦特离心调速器\n\n\n\n\n\n现代示意图"
+  },
+  {
+    "objectID": "Chapter10_V1.html#使越洋电话电缆成为可能的反馈放大器feedback-amplifier",
+    "href": "Chapter10_V1.html#使越洋电话电缆成为可能的反馈放大器feedback-amplifier",
+    "title": "第十章 线性反馈系统概述",
+    "section": "2. 使越洋电话电缆成为可能的反馈放大器（Feedback Amplifier）",
+    "text": "2. 使越洋电话电缆成为可能的反馈放大器（Feedback Amplifier）\n反馈放大器（由Harold Black等发明）解决了长距离信号衰减问题，通过负反馈稳定放大，使跨洋电话电缆实用化，是通信工程里程碑。\n\n\n\n反馈放大器历史装置\n\n\n\n\n\n负反馈放大器原理图"
+  },
+  {
+    "objectID": "Chapter10_V1.html#年诺贝尔物理学奖表彰的扫描隧道显微镜scanning-tunneling-microscope",
+    "href": "Chapter10_V1.html#年诺贝尔物理学奖表彰的扫描隧道显微镜scanning-tunneling-microscope",
+    "title": "第十章 线性反馈系统概述",
+    "section": "3. 1986年诺贝尔物理学奖表彰的扫描隧道显微镜（Scanning Tunneling Microscope）",
+    "text": "3. 1986年诺贝尔物理学奖表彰的扫描隧道显微镜（Scanning Tunneling Microscope）\nSTM利用反馈控制针尖与样品表面距离，实现原子级成像，1986年诺贝尔物理学奖授予其发明者。\n\n早期STM装置"
+  },
+  {
+    "objectID": "Chapter10_V1.html#血糖平衡调节blood-glucose-regulation",
+    "href": "Chapter10_V1.html#血糖平衡调节blood-glucose-regulation",
+    "title": "第十章 线性反馈系统概述",
+    "section": "4. 血糖平衡调节（Blood Glucose Regulation）",
+    "text": "4. 血糖平衡调节（Blood Glucose Regulation）\n人体通过胰岛素和胰高血糖素的负反馈循环维持血糖稳定，是生物反馈的典型例子。\n\n血糖负反馈循环"
+  },
+  {
+    "objectID": "Chapter10_V1.html#生态系统的平衡ecosystem-balance",
+    "href": "Chapter10_V1.html#生态系统的平衡ecosystem-balance",
+    "title": "第十章 线性反馈系统概述",
+    "section": "5. 生态系统的平衡（Ecosystem Balance）",
+    "text": "5. 生态系统的平衡（Ecosystem Balance）\n生态系统中存在正负反馈循环（如捕食者-猎物关系），维持种群和环境平衡。\n\n生态反馈循环"
+  },
+  {
+    "objectID": "Chapter10_V1.html#帕金森疾病与丘脑输出及反馈治疗",
+    "href": "Chapter10_V1.html#帕金森疾病与丘脑输出及反馈治疗",
+    "title": "第十章 线性反馈系统概述",
+    "section": "6. 帕金森疾病与丘脑输出及反馈治疗",
+    "text": "6. 帕金森疾病与丘脑输出及反馈治疗\n帕金森病与丘脑输出失衡相关，现代治疗常用闭环深脑刺激（DBS）等反馈控制技术。\n\nDBS反馈控制示意图"
+  },
+  {
+    "objectID": "Chapter10_V1.html#汽车巡航控制系统cruise-control-system",
+    "href": "Chapter10_V1.html#汽车巡航控制系统cruise-control-system",
+    "title": "第十章 线性反馈系统概述",
+    "section": "7. 汽车巡航控制系统（Cruise Control System）",
+    "text": "7. 汽车巡航控制系统（Cruise Control System）\n汽车巡航控制通过速度传感器和反馈调节油门，维持设定车速，是日常工程反馈应用。\n\n巡航控制框图"
+  },
+  {
+    "objectID": "Chapter10_V1.html#高机动性战斗机与飞控反馈技术",
+    "href": "Chapter10_V1.html#高机动性战斗机与飞控反馈技术",
+    "title": "第十章 线性反馈系统概述",
+    "section": "8. 高机动性战斗机与飞控反馈技术",
+    "text": "8. 高机动性战斗机与飞控反馈技术\n现代战机（如F-16）依赖飞控系统的反馈控制，实现高机动性飞行，弥补气动不稳定性。\n\n\n\n\n\nF-16战斗机\n\n\n\n\n\nFly-by-wire\n\n\n\n\n\n\n随控布局\n\n\n\n\n\n典型飞控系统框图"
+  },
+  {
+    "objectID": "Chapter10_V1.html#阿波罗登月计划中的反馈控制",
+    "href": "Chapter10_V1.html#阿波罗登月计划中的反馈控制",
+    "title": "第十章 线性反馈系统概述",
+    "section": "9. 阿波罗登月计划中的反馈控制",
+    "text": "9. 阿波罗登月计划中的反馈控制\n阿波罗计划中，登月舱着陆、姿态控制等大量使用反馈控制系统，确保精确操作，是航天反馈控制的典范。\n\n阿波罗任务控制中心"
+  },
+  {
+    "objectID": "Chapter10_V1.html#市场经济调节原理看不见的手",
+    "href": "Chapter10_V1.html#市场经济调节原理看不见的手",
+    "title": "第十章 线性反馈系统概述",
+    "section": "10. 市场经济调节原理（“看不见的手”）",
+    "text": "10. 市场经济调节原理（“看不见的手”）\n价格机制通过供求反馈自动调节生产和消费，实现经济平衡，是社会经济中的反馈实例。\n\n供求平衡图"
+  },
+  {
+    "objectID": "Chapter10_V1.html#瓦特蒸汽机背后的离心调速器",
+    "href": "Chapter10_V1.html#瓦特蒸汽机背后的离心调速器",
+    "title": "第十章 线性反馈系统概述",
+    "section": "1. 瓦特蒸汽机背后的离心调速器",
+    "text": "1. 瓦特蒸汽机背后的离心调速器\n瓦特蒸汽机通过离心调速器实现负反馈，自动调节蒸汽阀门，维持转速稳定。这是经典的机械反馈控制实例。\n\n瓦特离心调速器"
+  },
+  {
+    "objectID": "Chapter10_V1.html#使越洋电话电缆成为可能的反馈放大器",
+    "href": "Chapter10_V1.html#使越洋电话电缆成为可能的反馈放大器",
+    "title": "第十章 线性反馈系统概述",
+    "section": "2. 使越洋电话电缆成为可能的反馈放大器",
+    "text": "2. 使越洋电话电缆成为可能的反馈放大器\n反馈放大器（由Harold Black等发明）解决了长距离信号衰减问题，通过负反馈稳定放大，使跨洋电话电缆实用化，是通信工程里程碑。\n\n反馈放大器历史装置"
+  },
+  {
+    "objectID": "Chapter10_V1.html#反馈的作用",
+    "href": "Chapter10_V1.html#反馈的作用",
+    "title": "第十章 线性反馈系统概述",
+    "section": "反馈的作用",
+    "text": "反馈的作用\n\n对开环系统特性精确知识的不敏感性\n对扰动的不敏感性\n对误差的容忍度"
+  },
+  {
+    "objectID": "Chapter10_V1.html#示例",
+    "href": "Chapter10_V1.html#示例",
+    "title": "第十章 线性反馈系统概述",
+    "section": "示例",
+    "text": "示例\n\\[\nH(z) = \\frac{1}{1 - 2z^{-1}} = \\frac{z}{z - 2}\n\\]\n\\[\nG(z) = 2\\beta z^{-1} = \\frac{2\\beta}{z}\n\\]\n\\[\nQ(z) = \\frac{1}{1 - 2(1 - \\beta)z^{-1}} = \\frac{z}{z - 2(1 - \\beta)}\n\\]\n\\[\n\\text{极点 } z = 2(1 - \\beta)\n\\]\n\n\n(b)\n图 11.9 方程 (11.40) 所示闭环系统的根轨迹随 \\(\\beta\\) 变化：(a) \\(\\beta &gt; 0\\)；(b) \\(\\beta &lt; 0\\)。注意我们标记了 \\(\\beta = 0\\) 时对应极点位置的 \\(z = 2\\) 点。"
+  },
+  {
+    "objectID": "Chapter10_V1.html#示例-1",
+    "href": "Chapter10_V1.html#示例-1",
+    "title": "第十章 线性反馈系统概述",
+    "section": "示例",
+    "text": "示例\n\\[\n\\begin{array}{l}\nH(s) = \\frac{b}{s^2 + a}，\\text{不稳定} \\\\\nG(s) = K_1 + K_2 s\n\\end{array}\n\\]\n当 \\(0 &lt; K_2 b &lt; 1\\) 且 \\(K_1 b &gt; a\\) 时稳定\n反馈引起的失稳"
+  },
+  {
+    "objectID": "Chapter10_V1.html#示例音频反馈",
+    "href": "Chapter10_V1.html#示例音频反馈",
+    "title": "第十章 线性反馈系统概述",
+    "section": "示例：音频反馈",
+    "text": "示例：音频反馈\n当 \\(K_1 K_2 &gt; 1\\) 时不稳定\n\n\n\n图 11.8 (a) 音频反馈现象的图示；(b) (a) 的框图表示；(c) (b) 中的框图重绘为负反馈系统。（注：\\(e^{-sT}\\) 是 \\(T\\) 秒时间延迟的系统函数。）\n\n采样数据反馈系统\n\n对连续时间系统采用离散时间反馈\n\n可调增益可位于任一通路\n\n\n\n图 11.6 (a) 使用零阶保持器的采样数据反馈系统；(b) 等效离散时间系统。\n\n\\[\nQ(s) = \\frac{K H(s)}{1 + K H(s) G(s)}\n\\]\n\n\n\n\n图 11.10 含可调增益的反馈系统：(a) 增益位于前向通路的系统；(b) 增益位于反馈通路的系统。\n\\[\nQ(s) = \\frac{H(s)}{1 + K H(s) G(s)}\n\\]"
+  },
+  {
+    "objectID": "Chapter10_V1.html#示例-2",
+    "href": "Chapter10_V1.html#示例-2",
+    "title": "第十章 线性反馈系统概述",
+    "section": "示例",
+    "text": "示例\n\\[\nH(z) = \\frac{1}{1 - 2z^{-1}} = \\frac{z}{z - 2}\n\\]\n\\[\nG(z) = 2\\beta z^{-1} = \\frac{2\\beta}{z}\n\\]\n\\[\nQ(z) = \\frac{1}{1 - 2(1 - \\beta)z^{-1}} = \\frac{z}{z - 2(1 - \\beta)}\n\\]\n\\[\n\\text{极点 } z = 2(1 - \\beta)\n\\]\n\n\n(b)\n图 11.9 方程 (11.40) 所示闭环系统的根轨迹随 \\(\\beta\\) 变化：(a) \\(\\beta &gt; 0\\)；(b) \\(\\beta &lt; 0\\)。注意我们标记了 \\(\\beta = 0\\) 时对应极点位置的 \\(z = 2\\) 点。"
+  },
+  {
+    "objectID": "Chapter10_V1.html#反馈的作用-1",
+    "href": "Chapter10_V1.html#反馈的作用-1",
+    "title": "第十章 线性反馈系统概述",
+    "section": "反馈的作用",
+    "text": "反馈的作用\n\n\n\n\n\n利用反馈控制望远镜角位置：\n\n直流电机驱动的望远镜平台；\n\n中系统的框图；\n\n指向望远镜的反馈系统；\n\n中系统的框图（此处 \\(K = k_1 K_2\\)）"
+  },
+  {
+    "objectID": "Chapter10_V1.html#反馈的作用-2",
+    "href": "Chapter10_V1.html#反馈的作用-2",
+    "title": "第十章 线性反馈系统概述",
+    "section": "反馈的作用",
+    "text": "反馈的作用\n\n\n\n\n\n利用反馈控制望远镜角位置：\n\n直流电机驱动的望远镜平台；\n\n中系统的框图；\n\n指向望远镜的反馈系统；\n\n中系统的框图（此处 \\(K = k_1 K_2\\)）"
+  },
+  {
+    "objectID": "Chapter10_V1.html#不稳定系统的稳定化",
+    "href": "Chapter10_V1.html#不稳定系统的稳定化",
+    "title": "第十章 线性反馈系统概述",
+    "section": "不稳定系统的稳定化",
+    "text": "不稳定系统的稳定化\n\\[\n\\begin{array}{l}\nH(s) = \\frac{b}{s - a}，\\quad a &gt; 0 \\text{ 时不稳定} \\\\\nQ(s) = \\frac{H(s)}{1 + K H(s)} = \\frac{b}{s - a + K b}\n\\end{array}\n\\]\n\\[\n\\text{当 } K &gt; \\frac{a}{b} \\text{ 时稳定}\n\\]"
+  },
+  {
+    "objectID": "Chapter10_V1.html#不稳定系统的稳定化-1",
+    "href": "Chapter10_V1.html#不稳定系统的稳定化-1",
+    "title": "第十章 线性反馈系统概述",
+    "section": "不稳定系统的稳定化",
+    "text": "不稳定系统的稳定化\n\\[\n\\begin{array}{l}\nH(s) = \\frac{b}{s^2 + a}，\\text{不稳定} \\\\\nG(s) = K_1 + K_2 s\n\\end{array}\n\\]\n当 \\(0 &lt; K_2 b &lt; 1\\) 且 \\(K_1 b &gt; a\\) 时稳定"
+  },
+  {
+    "objectID": "Chapter10_V1.html#反馈引起的失稳",
+    "href": "Chapter10_V1.html#反馈引起的失稳",
+    "title": "第十章 线性反馈系统概述",
+    "section": "反馈引起的失稳",
+    "text": "反馈引起的失稳\n示例：音频反馈\n\n\n当 \\(K_1 K_2 &gt; 1\\) 时不稳定\n\n音频反馈现象的图示；\n\n的框图表示；\n\n\n中的框图重绘为负反馈系统。\n\n\n（注：\\(e^{-sT}\\) 是 \\(T\\) 秒时间延迟的系统函数。）"
+  },
+  {
+    "objectID": "Chapter10_V1.html#采样数据反馈系统",
+    "href": "Chapter10_V1.html#采样数据反馈系统",
+    "title": "第十章 线性反馈系统概述",
+    "section": "采样数据反馈系统",
+    "text": "采样数据反馈系统\n对连续时间系统采用离散时间反馈\n\n\n\n\n\n使用零阶保持器的采样数据反馈系统\n\n\n\n\n\n\n等效离散时间系统"
+  },
+  {
+    "objectID": "Chapter10_V1.html#采样数据反馈系统-1",
+    "href": "Chapter10_V1.html#采样数据反馈系统-1",
+    "title": "第十章 线性反馈系统概述",
+    "section": "采样数据反馈系统",
+    "text": "采样数据反馈系统\n可调增益可位于任一通路\n\n\n\n\n\n增益位于前向通路的系统\n\n\n\\[\nQ(s) = \\frac{K H(s)}{1 + K H(s) G(s)}\n\\]\n\n\n\n\n增益位于反馈通路的系统\n\n\n\\[\nQ(s) = \\frac{H(s)}{1 + K H(s) G(s)}\n\\]"
+  },
+  {
+    "objectID": "Chapter10_V2.html#瓦特蒸汽机背后的离心调速器",
+    "href": "Chapter10_V2.html#瓦特蒸汽机背后的离心调速器",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "1. 瓦特蒸汽机背后的离心调速器",
+    "text": "1. 瓦特蒸汽机背后的离心调速器\n瓦特蒸汽机通过离心调速器实现负反馈，自动调节蒸汽阀门，维持转速稳定。这是经典的机械反馈控制实例。\n\n瓦特离心调速器"
+  },
+  {
+    "objectID": "Chapter10_V2.html#使越洋电话电缆成为可能的反馈放大器",
+    "href": "Chapter10_V2.html#使越洋电话电缆成为可能的反馈放大器",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "2. 使越洋电话电缆成为可能的反馈放大器",
+    "text": "2. 使越洋电话电缆成为可能的反馈放大器\n反馈放大器（由Harold Black等发明）解决了长距离信号衰减问题，通过负反馈稳定放大，使跨洋电话电缆实用化，是通信工程里程碑。\n\n反馈放大器历史装置"
+  },
+  {
+    "objectID": "Chapter10_V2.html#年诺贝尔物理学奖表彰的扫描隧道显微镜scanning-tunneling-microscope",
+    "href": "Chapter10_V2.html#年诺贝尔物理学奖表彰的扫描隧道显微镜scanning-tunneling-microscope",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "3. 1986年诺贝尔物理学奖表彰的扫描隧道显微镜（Scanning Tunneling Microscope）",
+    "text": "3. 1986年诺贝尔物理学奖表彰的扫描隧道显微镜（Scanning Tunneling Microscope）\nSTM利用反馈控制针尖与样品表面距离，实现原子级成像，1986年诺贝尔物理学奖授予其发明者。\n\n早期STM装置"
+  },
+  {
+    "objectID": "Chapter10_V2.html#血糖平衡调节blood-glucose-regulation",
+    "href": "Chapter10_V2.html#血糖平衡调节blood-glucose-regulation",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "4. 血糖平衡调节（Blood Glucose Regulation）",
+    "text": "4. 血糖平衡调节（Blood Glucose Regulation）\n人体通过胰岛素和胰高血糖素的负反馈循环维持血糖稳定，是生物反馈的典型例子。\n\n血糖负反馈循环"
+  },
+  {
+    "objectID": "Chapter10_V2.html#生态系统的平衡ecosystem-balance",
+    "href": "Chapter10_V2.html#生态系统的平衡ecosystem-balance",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "5. 生态系统的平衡（Ecosystem Balance）",
+    "text": "5. 生态系统的平衡（Ecosystem Balance）\n生态系统中存在正负反馈循环（如捕食者-猎物关系），维持种群和环境平衡。\n\n生态反馈循环"
+  },
+  {
+    "objectID": "Chapter10_V2.html#帕金森疾病与丘脑输出及反馈治疗",
+    "href": "Chapter10_V2.html#帕金森疾病与丘脑输出及反馈治疗",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "6. 帕金森疾病与丘脑输出及反馈治疗",
+    "text": "6. 帕金森疾病与丘脑输出及反馈治疗\n帕金森病与丘脑输出失衡相关，现代治疗常用闭环深脑刺激（DBS）等反馈控制技术。\n\nDBS反馈控制示意图"
+  },
+  {
+    "objectID": "Chapter10_V2.html#汽车巡航控制系统cruise-control-system",
+    "href": "Chapter10_V2.html#汽车巡航控制系统cruise-control-system",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "7. 汽车巡航控制系统（Cruise Control System）",
+    "text": "7. 汽车巡航控制系统（Cruise Control System）\n汽车巡航控制通过速度传感器和反馈调节油门，维持设定车速，是日常工程反馈应用。\n\n巡航控制框图"
+  },
+  {
+    "objectID": "Chapter10_V2.html#高机动性战斗机与飞控反馈技术",
+    "href": "Chapter10_V2.html#高机动性战斗机与飞控反馈技术",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "8. 高机动性战斗机与飞控反馈技术",
+    "text": "8. 高机动性战斗机与飞控反馈技术\n现代战机（如F-16）依赖飞控系统的反馈控制，实现高机动性飞行，弥补气动不稳定性。\n\n\n\n\n\nF-16战斗机\n\n\n\n\n\nFly-by-wire\n\n\n\n\n\n\n随控布局\n\n\n\n\n\n典型飞控系统框图"
+  },
+  {
+    "objectID": "Chapter10_V2.html#阿波罗登月计划中的反馈控制",
+    "href": "Chapter10_V2.html#阿波罗登月计划中的反馈控制",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "9. 阿波罗登月计划中的反馈控制",
+    "text": "9. 阿波罗登月计划中的反馈控制\n阿波罗计划中，登月舱着陆、姿态控制等大量使用反馈控制系统，确保精确操作，是航天反馈控制的典范。\n\n阿波罗任务控制中心"
+  },
+  {
+    "objectID": "Chapter10_V2.html#市场经济调节原理看不见的手",
+    "href": "Chapter10_V2.html#市场经济调节原理看不见的手",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "10. 市场经济调节原理（“看不见的手”）",
+    "text": "10. 市场经济调节原理（“看不见的手”）\n价格机制通过供求反馈自动调节生产和消费，实现经济平衡，是社会经济中的反馈实例。\n\n供求平衡图"
+  },
+  {
+    "objectID": "Chapter10_V2.html#线性反馈的基本原理",
+    "href": "Chapter10_V2.html#线性反馈的基本原理",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "线性反馈的基本原理",
+    "text": "线性反馈的基本原理\n\n\n\\(H(s), H(z)\\)：前向通路系统函数\n\\(G(s), G(z)\\)：反馈通路系统函数\n\\(Q(s), Q(z)\\)：闭环系统函数\n\n\\[\nQ(s) = \\frac{H(s)}{1 + G(s)H(s)}, \\quad Q(z) = \\frac{H(z)}{1 + G(z)H(z)}\n\\]"
+  },
+  {
+    "objectID": "Chapter10_V2.html#反馈的作用",
+    "href": "Chapter10_V2.html#反馈的作用",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "反馈的作用",
+    "text": "反馈的作用\n\n对开环系统特性精确知识的不敏感性\n对扰动的不敏感性\n对误差的容忍度"
+  },
+  {
+    "objectID": "Chapter10_V2.html#反馈的作用-1",
+    "href": "Chapter10_V2.html#反馈的作用-1",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "反馈的作用",
+    "text": "反馈的作用\n\n\n\n\n\n利用反馈控制望远镜角位置：\n\n直流电机驱动的望远镜平台；\n\n中系统的框图；\n\n指向望远镜的反馈系统；\n\n中系统的框图（此处 \\(K = k_1 K_2\\)）"
+  },
+  {
+    "objectID": "Chapter10_V2.html#反馈的作用-2",
+    "href": "Chapter10_V2.html#反馈的作用-2",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "反馈的作用",
+    "text": "反馈的作用\n\n\n\n\n\n利用反馈控制望远镜角位置：\n\n直流电机驱动的望远镜平台；\n\n中系统的框图；\n\n指向望远镜的反馈系统；\n\n中系统的框图（此处 \\(K = k_1 K_2\\)）"
+  },
+  {
+    "objectID": "Chapter10_V2.html#不稳定系统的稳定化",
+    "href": "Chapter10_V2.html#不稳定系统的稳定化",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "不稳定系统的稳定化",
+    "text": "不稳定系统的稳定化\n\\[\n\\begin{array}{l}\nH(s) = \\frac{b}{s - a}，\\quad a &gt; 0 \\text{ 时不稳定} \\\\\nQ(s) = \\frac{H(s)}{1 + K H(s)} = \\frac{b}{s - a + K b}\n\\end{array}\n\\]\n\\[\n\\text{当 } K &gt; \\frac{a}{b} \\text{ 时稳定}\n\\]"
+  },
+  {
+    "objectID": "Chapter10_V2.html#不稳定系统的稳定化-1",
+    "href": "Chapter10_V2.html#不稳定系统的稳定化-1",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "不稳定系统的稳定化",
+    "text": "不稳定系统的稳定化\n\\[\n\\begin{array}{l}\nH(s) = \\frac{b}{s^2 + a}，\\text{不稳定} \\\\\nG(s) = K_1 + K_2 s\n\\end{array}\n\\]\n当 \\(0 &lt; K_2 b &lt; 1\\) 且 \\(K_1 b &gt; a\\) 时稳定"
+  },
+  {
+    "objectID": "Chapter10_V2.html#反馈引起的失稳",
+    "href": "Chapter10_V2.html#反馈引起的失稳",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "反馈引起的失稳",
+    "text": "反馈引起的失稳\n示例：音频反馈\n\n\n当 \\(K_1 K_2 &gt; 1\\) 时不稳定\n\n音频反馈现象的图示；\n\n的框图表示；\n\n\n中的框图重绘为负反馈系统。\n\n\n（注：\\(e^{-sT}\\) 是 \\(T\\) 秒时间延迟的系统函数。）"
+  },
+  {
+    "objectID": "Chapter10_V2.html#采样数据反馈系统",
+    "href": "Chapter10_V2.html#采样数据反馈系统",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "采样数据反馈系统",
+    "text": "采样数据反馈系统\n对连续时间系统采用离散时间反馈\n\n\n\n\n\n使用零阶保持器的采样数据反馈系统\n\n\n\n\n\n\n等效离散时间系统"
+  },
+  {
+    "objectID": "Chapter10_V2.html#采样数据反馈系统-1",
+    "href": "Chapter10_V2.html#采样数据反馈系统-1",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "采样数据反馈系统",
+    "text": "采样数据反馈系统\n可调增益可位于任一通路\n\n\n\n\n\n增益位于前向通路的系统\n\n\n\\[\nQ(s) = \\frac{K H(s)}{1 + K H(s) G(s)}\n\\]\n\n\n\n\n增益位于反馈通路的系统\n\n\n\\[\nQ(s) = \\frac{H(s)}{1 + K H(s) G(s)}\n\\]"
+  },
+  {
+    "objectID": "Chapter10_V2.html#反馈系统的根轨迹分析",
+    "href": "Chapter10_V2.html#反馈系统的根轨迹分析",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "反馈系统的根轨迹分析",
+    "text": "反馈系统的根轨迹分析\n当可调增益变化时闭环系统极点的轨迹\n\n\n比如系统： \\[\nH(z) = \\frac{1}{1 - 2z^{-1}} = \\frac{z}{z - 2}\n\\]\n\\[\nG(z) = 2\\beta z^{-1} = \\frac{2\\beta}{z}\n\\]\n\\[\nQ(z) = \\frac{1}{1 - 2(1 - \\beta)z^{-1}} = \\frac{z}{z - 2(1 - \\beta)}\n\\]\n\\[\n\\text{极点 } z = 2(1 - \\beta)\n\\] 所示闭环系统的根轨迹随 \\(\\beta\\) 变化：\n注意我们标记了 \\(\\beta = 0\\) 时对应极点位置的 \\(z = 2\\) 点。\n\n\n\\(\\beta &gt; 0\\)\n\n\\(\\beta &lt; 0\\)"
+  },
+  {
+    "objectID": "Chapter10_V2.html#反馈系统的根轨迹分析-1",
+    "href": "Chapter10_V2.html#反馈系统的根轨迹分析-1",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "反馈系统的根轨迹分析",
+    "text": "反馈系统的根轨迹分析\n当可调增益变化时闭环系统极点的轨迹\n\n\n对于系统：\n\\[\nH(z) = \\frac{K}{1 - \\frac{1}{2}z^{-1}}, \\quad G(z) = \\frac{z^{-1}}{z - \\frac{1}{4}z^{-1}}\n\\]\n\\(G(z)H(z)\\) 的极点位于 \\(z = 1/4\\) 和 \\(z = 1/2\\)，零点位于 \\(z = 0\\)，已在图中标出。\n\n\n\\(K &gt; 0\\)\n\n\\(K &lt; 0\\)"
+  },
+  {
+    "objectID": "Chapter10_V2.html#作业",
+    "href": "Chapter10_V2.html#作业",
+    "title": "第十章 线性反馈系统概述(跋)",
+    "section": "作业",
+    "text": "作业\n\n11.2\n11.3\n11.5\n11.8"
+  }
+]

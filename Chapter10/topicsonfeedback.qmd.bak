@@ -1,0 +1,132 @@
+
+---
+title: "郭雷院士讲座：反馈原理的十个实际应用实例"
+subtitle: "基于UCAS网文整理（2016年国科大讲座）"
+author: "整理自 https://news.ucas.ac.cn/xshd/3372e5c765654b1484ab443d311ccb62.htm"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+  pdf:
+    documentclass: article
+    toc: true
+---
+
+## 引言
+
+郭雷院士在2016年国科大讲座中，介绍了系统科学基本概念后，一口气列举了**十个反馈原理在实际中的应用实例**，涵盖工程、生物、医学、军事、航天和经济等领域，生动说明反馈在自然科学、工程技术、社会经济中无处不在。
+
+以下按原文顺序整理，每个例子包含简要说明和相关图片。
+
+---
+
+## 1. 瓦特蒸汽机背后的离心调速器（Centrifugal Governor）
+
+瓦特蒸汽机通过离心调速器实现负反馈，自动调节蒸汽阀门，维持转速稳定。这是经典的机械反馈控制实例。
+
+![瓦特离心调速器](https://upload.wikimedia.org/wikipedia/commons/c/c7/Boulton_and_Watt_centrifugal_governor-MJ.jpg)
+
+![现代示意图](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Centrifugal_governor.svg/800px-Centrifugal_governor.svg.png)
+
+---
+
+## 2. 使越洋电话电缆成为可能的反馈放大器（Feedback Amplifier）
+
+反馈放大器（由Harold Black等发明）解决了长距离信号衰减问题，通过负反馈稳定放大，使跨洋电话电缆实用化，是通信工程里程碑。
+
+![反馈放大器历史装置](https://ethw.org/w/images/thumb/0/0f/Black_feedback_amplifier.jpg/800px-Black_feedback_amplifier.jpg)
+
+![负反馈放大器原理图](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Negative_feedback_amplifier.svg/800px-Negative_feedback_amplifier.svg.png)
+
+---
+
+## 3. 1986年诺贝尔物理学奖表彰的扫描隧道显微镜（Scanning Tunneling Microscope）
+
+STM利用反馈控制针尖与样品表面距离，实现原子级成像，1986年诺贝尔物理学奖授予其发明者。
+
+![早期STM装置](https://upload.wikimedia.org/wikipedia/commons/5/5a/First_STM.jpg)
+
+![STM工作原理](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/STM_principle.svg/800px-STM_principle.svg.png)
+
+---
+
+## 4. 血糖平衡调节（Blood Glucose Regulation）
+
+人体通过胰岛素和胰高血糖素的负反馈循环维持血糖稳定，是生物反馈的典型例子。
+
+![血糖负反馈循环](https://bio.libretexts.org/@api/deki/files/12207/Glucose_Feedback_Loop.png)
+
+![简化示意图](https://www.khanacademy.org/resource/negative-feedback-glucose/negative-feedback-glucose.png)
+
+---
+
+## 5. 生态系统的平衡（Ecosystem Balance）
+
+生态系统中存在正负反馈循环（如捕食者-猎物关系），维持种群和环境平衡。
+
+![生态反馈循环](https://www.researchgate.net/profile/figure/Example-of-balancing-and-reinforcing-feedback-loops-diagram-adapted-and-modified-from_fig3_301560026)
+
+![捕食者-猎物模型](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Lotka_Volterra_dynamics.svg/800px-Lotka_Volterra_dynamics.svg.png)
+
+---
+
+## 6. 帕金森疾病与丘脑输出及反馈治疗
+
+帕金森病与丘脑输出失衡相关，现代治疗常用闭环深脑刺激（DBS）等反馈控制技术。
+
+![DBS反馈控制示意图](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3466473/bin/nihms-402000-f0001.jpg)
+
+![帕金森DBS装置](https://www.parkinson.org/sites/default/files/2022-06/DBS-implant.png)
+
+---
+
+## 7. 汽车巡航控制系统（Cruise Control System）
+
+汽车巡航控制通过速度传感器和反馈调节油门，维持设定车速，是日常工程反馈应用。
+
+![巡航控制框图](https://www.researchgate.net/profile/figure/Block-diagram-of-the-Cruise-control-system_fig1_327631772)
+
+![系统原理](https://www.edrawmax.com/templates/images/cruise-control-block-diagram.png)
+
+---
+
+## 8. 高机动性战斗机与飞控反馈技术
+
+现代战机（如F-16）依赖飞控系统的反馈控制，实现高机动性飞行，弥补气动不稳定性。
+
+![F-16飞控系统](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/F-16_flight_controls.jpg/800px-F-16_flight_controls.jpg)
+
+![Fly-by-Wire原理](https://skybrary.aero/sites/default/files/styles/article_image/public/2020-06/fbw_diagram.png)
+
+---
+
+## 9. 阿波罗登月计划中的反馈控制
+
+阿波罗计划中，登月舱着陆、姿态控制等大量使用反馈控制系统，确保精确操作，是航天反馈控制的典范。
+
+![阿波罗任务控制中心](https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Apollo_11_Mission_Control.jpg/800px-Apollo_11_Mission_Control.jpg)
+
+![登月舱控制系统](https://history.nasa.gov/alsj/a11/A11_LM_control.jpg)
+
+---
+
+## 10. 市场经济调节原理（“看不见的手”）
+
+价格机制通过供求反馈自动调节生产和消费，实现经济平衡，是社会经济中的反馈实例。
+
+![供求平衡图](https://www.economicshelp.org/wp-content/uploads/2009/09/sd.png)
+
+![反馈循环示意图](https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Supply_and_demand_curves.svg/800px-Supply_and_demand_curves.svg.png)
+
+---
+
+## 总结
+
+这些例子充分展示了反馈（尤其是负反馈）在维持系统稳定、实现目标中的核心作用。理解这些实例后，可进一步学习反馈控制的设计方法（如自适应控制等），系统科学正是研究复杂系统调控的前沿学科。
+
+:::{.callout-note}
+**参考来源**：中国科学院大学新闻 https://news.ucas.ac.cn/xshd/3372e5c765654b1484ab443d311ccb62.htm
+:::

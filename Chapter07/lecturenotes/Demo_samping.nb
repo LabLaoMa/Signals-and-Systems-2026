@@ -1,0 +1,312 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     12144,        302]
+NotebookOptionsPosition[     11556,        284]
+NotebookOutlinePosition[     11950,        300]
+CellTagsIndexPosition[     11907,        297]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{"x1", ",", "x2", ",", "sRange"}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"x1", "[", "t_", "]"}], ":=", 
+   RowBox[{"Cos", "[", 
+    RowBox[{"Pi", " ", 
+     RowBox[{"t", "/", "3"}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"x2", "[", "t_", "]"}], ":=", 
+    RowBox[{"Cos", "[", 
+     RowBox[{"7", " ", "Pi", " ", 
+      RowBox[{"t", "/", "3"}]}], "]"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+  "(*", "\:63d0\:53d6\:53cc\:7aef\:6ed1\:5757\:7684\:8d77\:59cb\:548c\:7ed3\
+\:675f\:503c", "*)"}], 
+  RowBox[{
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"tMin", "=", 
+        RowBox[{"sRange", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+       RowBox[{"tMax", "=", 
+        RowBox[{"sRange", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}]}], "}"}], ",", 
+     RowBox[{"Plot", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"x1", "[", "t", "]"}], ",", 
+         RowBox[{"x2", "[", "t", "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", 
+         RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"Red", ",", 
+            RowBox[{"Thickness", "[", "0.007", "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Darker", "[", "Green", "]"}], ",", 
+            RowBox[{"Thickness", "[", "0.003", "]"}]}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"PlotLegends", "->", 
+        RowBox[{"{", 
+         RowBox[{"\"\<x1(t) = cos(\[Pi]t/3)\>\"", 
+          ",", "\"\<x2(t) = cos(7\[Pi]t/3)\>\""}], "}"}]}], ",", 
+       RowBox[{"AxesLabel", "->", 
+        RowBox[{"{", 
+         RowBox[{"\"\<t/n\>\"", ",", "\"\<x\>\""}], "}"}]}], ",", 
+       RowBox[{"Epilog", "->", 
+        RowBox[{"{", 
+         RowBox[{"Blue", ",", 
+          RowBox[{"PointSize", "[", "0.02", "]"}], ",", 
+          RowBox[{
+          "(*", "\:53ea\:5728\:9009\:5b9a\:8303\:56f4\:5185\:7ed8\:5236\:91c7\
+\:6837\:70b9", "*)"}], 
+          RowBox[{"Point", "[", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"n", ",", 
+               RowBox[{"x1", "[", "n", "]"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"n", ",", 
+               RowBox[{"Ceiling", "[", "tMin", "]"}], ",", 
+               RowBox[{"Floor", "[", "tMax", "]"}]}], "}"}]}], "]"}], "]"}], ",",
+           "Thin", ",", "Blue", ",", 
+          RowBox[{"Line", "/@", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"n", ",", "0"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"n", ",", 
+                 RowBox[{"x1", "[", "n", "]"}]}], "}"}]}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"n", ",", 
+               RowBox[{"Ceiling", "[", "tMin", "]"}], ",", 
+               RowBox[{"Floor", "[", "tMax", "]"}]}], "}"}]}], "]"}]}]}], 
+         "}"}]}], ",", 
+       RowBox[{"PlotRange", "->", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "10"}], ",", "10"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"ImageSize", "->", "Large"}], ",", 
+       RowBox[{"PlotLabel", "->", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<\:91c7\:6837\:6df7\:53e0\:6f14\:793a (Aliasing \
+Demo)\>\"", ",", "14", ",", "Bold"}], "]"}]}]}], "]"}]}], "]"}], ",", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"\:4f7f\:7528\:95f4\:9694\:6ed1\:5757", " ", "IntervalSlider"}], 
+     "\:ff0c", 
+     RowBox[{"\:786e\:4fdd\:8f93\:5165\:59cb\:7ec8\:662f", " ", 
+      RowBox[{"{", 
+       RowBox[{"min", ",", "max"}], "}"}], " ", "\:5217\:8868"}]}], "*)"}], 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"sRange", ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"-", "10"}], ",", "10"}], "}"}], 
+       ",", "\"\<\:91c7\:6837\:8303\:56f4 (n)\>\""}], "}"}], ",", 
+     RowBox[{"-", "10"}], ",", "10", ",", 
+     RowBox[{"ControlType", "->", "IntervalSlider"}]}], "}"}], ",", 
+   RowBox[{"AppearanceElements", "->", "\"\<All\>\""}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.986080037887731*^9, 3.986080037889308*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"779b8743-ae27-4c86-8993-f8c8ced70720"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`sRange$$ = {-10, 10}, Typeset`show$$ = True,
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`sRange$$], {-10, 10}, 
+       "\:91c7\:6837\:8303\:56f4 (n)"}, -10, 10, ControlType -> 
+      IntervalSlider}}, Typeset`size$$ = {
+    717.9041015625, {183.37480286414868`, 189.10673645789862`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     3, StandardForm, "Variables" :> {$CellContext`sRange$$ = {-10, 10}}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      With[{$CellContext`tMin = 
+         Part[$CellContext`sRange$$, 1], $CellContext`tMax = 
+         Part[$CellContext`sRange$$, 2]}, 
+        Plot[{
+          $CellContext`x1[$CellContext`t], 
+          $CellContext`x2[$CellContext`t]}, {$CellContext`t, -10, 10}, 
+         PlotStyle -> {{Red, 
+            Thickness[0.007]}, {
+            Darker[Green], 
+            Thickness[0.003]}}, 
+         PlotLegends -> {"x1(t) = cos(\[Pi]t/3)", "x2(t) = cos(7\[Pi]t/3)"}, 
+         AxesLabel -> {"t/n", "x"}, Epilog -> {Blue, 
+           PointSize[0.02], 
+           Point[
+            Table[{$CellContext`n, 
+              $CellContext`x1[$CellContext`n]}, {$CellContext`n, 
+              Ceiling[$CellContext`tMin], 
+              Floor[$CellContext`tMax]}]], Thin, Blue, 
+           Map[Line, 
+            Table[{{$CellContext`n, 0}, {$CellContext`n, 
+               $CellContext`x1[$CellContext`n]}}, {$CellContext`n, 
+              Ceiling[$CellContext`tMin], 
+              Floor[$CellContext`tMax]}]]}, 
+         PlotRange -> {{-10, 10}, {-1.2, 1.2}}, ImageSize -> Large, PlotLabel -> 
+         Style["\:91c7\:6837\:6df7\:53e0\:6f14\:793a (Aliasing Demo)", 14, 
+           Bold]]], 
+      "Specifications" :> {{{$CellContext`sRange$$, {-10, 10}, 
+          "\:91c7\:6837\:8303\:56f4 (n)"}, -10, 10, ControlType -> 
+         IntervalSlider}}, "Options" :> {AppearanceElements -> "All"}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      767.0041015625, {232.86004309400255`, 238.59197668775255`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.986080038410947*^9},
+ CellLabel->"Out[12]=",ExpressionUUID->"18cee8eb-71db-4361-a118-4a76aeef4a16"]
+}, Open  ]],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`sRange$$ = {-10, 10}, Typeset`show$$ = True,
+     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`sRange$$], {-10, 10}, 
+       "\:91c7\:6837\:8303\:56f4 (n)"}, -10, 10, ControlType -> 
+      IntervalSlider}}, Typeset`size$$ = {
+    717.9041015625, {183.37480286414868`, 189.10673645789862`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     3, StandardForm, "Variables" :> {$CellContext`sRange$$ = {-10, 10}}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      With[{$CellContext`tMin = 
+         Part[$CellContext`sRange$$, 1], $CellContext`tMax = 
+         Part[$CellContext`sRange$$, 2]}, 
+        Plot[{
+          $CellContext`x1[$CellContext`t], 
+          $CellContext`x2[$CellContext`t]}, {$CellContext`t, -10, 10}, 
+         PlotStyle -> {{Red, 
+            Thickness[0.007]}, {
+            Darker[Green], 
+            Thickness[0.003]}}, 
+         PlotLegends -> {"x1(t) = cos(\[Pi]t/3)", "x2(t) = cos(7\[Pi]t/3)"}, 
+         AxesLabel -> {"t/n", "x"}, Epilog -> {Blue, 
+           PointSize[0.02], 
+           Point[
+            Table[{$CellContext`n, 
+              $CellContext`x1[$CellContext`n]}, {$CellContext`n, 
+              Ceiling[$CellContext`tMin], 
+              Floor[$CellContext`tMax]}]], Thin, Blue, 
+           Map[Line, 
+            Table[{{$CellContext`n, 0}, {$CellContext`n, 
+               $CellContext`x1[$CellContext`n]}}, {$CellContext`n, 
+              Ceiling[$CellContext`tMin], 
+              Floor[$CellContext`tMax]}]]}, 
+         PlotRange -> {{-10, 10}, {-1.2, 1.2}}, ImageSize -> Large, PlotLabel -> 
+         Style["\:91c7\:6837\:6df7\:53e0\:6f14\:793a (Aliasing Demo)", 14, 
+           Bold]]], 
+      "Specifications" :> {{{$CellContext`sRange$$, {-10, 10}, 
+          "\:91c7\:6837\:8303\:56f4 (n)"}, -10, 10, ControlType -> 
+         IntervalSlider}}, "Options" :> {AppearanceElements -> "All"}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      767.0041015625, {232.86004309400255`, 238.59197668775255`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Input",
+ CellChangeTimes->{
+  3.986080052857998*^9},ExpressionUUID->"3e5e70a7-d0f5-463d-8fc7-\
+f4ebc61dfe21"]
+},
+WindowSize->{808, 821},
+WindowMargins->{{37, Automatic}, {-838, Automatic}},
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"3efb0508-d734-4c01-858c-1d644f3dcbf8"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 4614, 124, 374, "Input",ExpressionUUID->"779b8743-ae27-4c86-8993-f8c8ced70720"],
+Cell[5193, 148, 3182, 65, 488, "Output",ExpressionUUID->"18cee8eb-71db-4361-a118-4a76aeef4a16"]
+}, Open  ]],
+Cell[8390, 216, 3162, 66, 484, InheritFromParent,ExpressionUUID->"3e5e70a7-d0f5-463d-8fc7-f4ebc61dfe21"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

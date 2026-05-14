@@ -1,0 +1,846 @@
+---
+title: "EL331 信号与系统 · 第30讲（中文版）"
+subtitle: "拉普拉斯变换、系统分析与框图表示"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+1. 拉普拉斯变换的性质
+2. 拉普拉斯逆变换
+3. 奇异函数的拉普拉斯变换
+4. 利用拉普拉斯变换分析连续时间 LTI 系统
+5. 框图表示
+
+## 卷积性质
+
+If
+
+$$
+\begin{array}{ll}
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s) & \text { with } \text { ROAC }=R_{1} \\
+y(t) \stackrel{\mathcal{L}}{\longleftrightarrow} Y(s) & \text { with ROAC }=R_{2}
+\end{array}
+$$
+
+则
+
+$$
+(x * y)(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s) Y(s) \quad \text { with ROAC } \supset R_{1} \cap R_{2}
+$$
+
+A more prec为e statement 为 the following.
+定理： 如果both $X(s)=\int_{-\infty}^{\infty} x(t) e^{-s t} d t$ and $Y(s)=\int_{-\infty}^{\infty} y(t) e^{-s t} d t$ converges absolutely at some $s=s_{0}$, 则 the Laplace transform of $z=x * y$ converges absolutely at $s=s_{0}$, and
+
+$$
+X\left(s_{0}\right) Y\left(s_{0}\right)=Z\left(s_{0}\right)=\int_{-\infty}^{\infty} z(t) e^{-s_{0} t} d t
+$$
+
+## 卷积性质
+
+证明.
+
+$$
+\begin{aligned}
+X(s) Y(s) & =\int_{-\infty}^{\infty} x(v)\left[\int_{-\infty}^{\infty} y(\tau) e^{-s(v+\tau)} d v\right] d \tau \\
+& =\int_{-\infty}^{\infty} x(v)\left[\int_{-\infty}^{\infty} y(t-v) e^{-s v} d v\right] d t \quad(t=v+\tau) \\
+& =\int_{-\infty}^{\infty}\left[\int_{-\infty}^{\infty} x(v) y(t-v) d t\right] e^{-s v} d v \quad \text { (Fubini's Theorem) }
+\end{aligned}
+$$
+
+注意： The ROAC of $\mathcal{L}\{x * y\}$ may be larger than the common ROAC of $\mathcal{L}\{x\}$ and $\mathcal{L}\{y\}$.
+
+例. $X_{1}(s)=\frac{s+1}{(s+2)^{2}}$ has ROAC $\operatorname{Re} s>-2, X_{2}(s)=\frac{1}{s+1}$ has ROAC Re $s>-1$, but $X(s)=X_{1}(s) X_{2}(s)=\frac{1}{(s+2)^{2}}$ with ROAC $\operatorname{Re} s>-2$, due to pole-zero cancellation at $s=-1$.
+
+## 时域微分性质
+
+If
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \text { with } \text { ROC }=R
+$$
+
+and $\lim _{t \rightarrow \pm \infty} x(t) e^{-s t}=0$ for $s \in R_{0}$, 则
+
+$$
+\frac{d}{d t} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s X(s), \quad \text { with } \mathrm{ROC} \supset R \cap R_{0}
+$$
+
+证明. Integration by parts 得到
+
+$$
+\int_{-\infty}^{\infty} x^{\prime}(t) e^{-s t} d t=\left.x(t) e^{-s t}\right|_{-\infty} ^{\infty}+s \int_{-\infty}^{\infty} x(t) e^{-s t} d t=s \int_{-\infty}^{\infty} x(t) e^{-s t} d t
+$$
+
+注意： ROC may enlarge or shrink
+例. $x(t)=\left(1-e^{-t}\right) u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s(s+1)}$ with ROC = ROAC
+$\operatorname{Re} s>0$, and $x^{\prime}(t)=e^{-t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+1}$ with ROC = ROAC
+$\operatorname{Re} s>-1$. The ROC of $\mathcal{L}\left\{x^{\prime}\right\}$ 为 larger that that of $\mathcal{L}\{x\}$.
+
+## 时域微分性质
+
+例. Consider $x(t)=e^{k t} \sin \left(e^{k t}\right)$ with $k>0$.
+
+- 对于$s=\sigma \in \mathbb{R}, u=e^{k t}$ 得到 (cf. slide 18)
+
+$$
+\int_{-\infty}^{\infty} x(t) e^{-s t} d t=\frac{1}{k} \int_{0}^{\infty} \frac{\sin u}{u^{\sigma / k}} d u=\frac{1}{k} \int_{0}^{1} \frac{\sin u}{u^{\sigma / k}} d u+\frac{1}{k} \int_{1}^{\infty} \frac{\sin u}{u^{\sigma / k}} d u
+$$
+
+- $\int_{1}^{\infty} \frac{\sin u}{u^{\sigma / k}} d u$ has ROAC $\operatorname{Re} s>k$ and ROC $\operatorname{Re} s>0$
+- As $u \downarrow 0, \frac{\sin u}{u^{\sigma / k}} \sim u^{1-\sigma / k}$, so $\int_{0}^{1} \frac{\sin u}{u^{\sigma / k}} d u$ has ROAC $\operatorname{Re} s<2 k$
+- Thus $\mathcal{L}\{x\}$ has $\operatorname{ROC} k<\operatorname{Re} s<2 k$ and $\operatorname{ROC} 0<\operatorname{Re} s<2 k$.
+- $x^{\prime}(t)=k e^{k t} \sin \left(e^{k t}\right)+k e^{2 k t} \cos \left(e^{k t}\right)$. 对于$s=\sigma \in \mathbb{R}$,
+
+$$
+\int_{-\infty}^{\infty} x^{\prime}(t) e^{-s t} d t=\int_{0}^{\infty} \frac{\sin u+u \cos u}{u^{\sigma / k}} d u
+$$
+
+$\mathcal{L}\left\{x^{\prime}\right\}$ has empty ROAC, and ROC $k<\operatorname{Re} s<2 k$
+
+- Note $\lim _{t \rightarrow \pm \infty} x(t) e^{-s t}=0$ fails for $s$ with $0<\operatorname{Re} s<k$
+
+
+## 时域微分性质
+
+如果$x(t)=O\left(e^{a t}\right)$ as $t \rightarrow+\infty$ and $x(t)=O\left(e^{b t}\right)$ as $t \rightarrow-\infty$, 则
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \text { with ROAC containing } a<\operatorname{Re} s<b
+$$
+
+and
+
+$$
+\frac{d}{d t} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s X(s), \quad \text { with ROC containing } a<\operatorname{Re} s<b
+$$
+
+注意： 一般而言， from the absolute convergence of $\mathcal{L}\{x\}$ at $s=s_{0}$ we can only conclude the convergence of $\mathcal{L}\left\{x^{\prime}\right\}$ at $s=s_{0}$.
+
+注意： We mostly deal with $x(t)$ of the form $\sum_{k=0}^{m} p_{k}(t) e^{\alpha_{k} t} u\left( \pm t+\beta_{k}\right)$, 其中 $p_{k}$ are polynomials. After introducing Laplace transform for singularity functions, we have for such functions,
+
+$$
+\frac{d^{n}}{d t^{n}} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s^{n} X(s), \quad \text { with ROC containing } a<\operatorname{Re} s<b
+$$
+
+## $s$ 域微分性质
+
+If
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \operatorname{ROAC} \sigma_{1}<\operatorname{Re} s<\sigma_{2}
+$$
+
+则
+
+$$
+-t x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{d}{d s} X(s), \quad \operatorname{ROAC} \sigma_{1}<\operatorname{Re} s<\sigma_{2}
+$$
+
+"证明". Differentiating under integral sign (can be justified)
+
+$$
+\frac{d}{d s} \int_{-\infty}^{\infty} x(t) e^{-s t} d t=\int_{-\infty}^{\infty} x(t) \frac{d}{d s} e^{-s t} d t=\int_{-\infty}^{\infty}-t x(t) e^{-s t} d t
+$$
+
+例.
+
+$$
+e^{-a t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+a}, \quad \operatorname{Re} s>-a
+$$
+
+$$
+t^{n} e^{-a t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow}\left(-\frac{d}{d s}\right)^{n} \frac{1}{s+a}=\frac{n!}{(s+a)^{n+1}}, \quad \operatorname{Re} s>-a
+$$
+
+Similarly,
+
+$$
+-t^{n} e^{-a t} u(-t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{n!}{(s+a)^{n+1}}, \quad \operatorname{Re} s<-a
+$$
+
+## 时域积分性质
+
+If
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \text { ROAC }=R
+$$
+
+则
+
+$$
+\int_{-\infty}^{t} x(\tau) d \tau \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s} X(s), \quad \text { ROAC } \supset R \cap\{\operatorname{Re} s>0\}
+$$
+
+证明. Follows from convolution property and the following
+
+$$
+\int_{-\infty}^{t} x(\tau) d \tau=(x * u)(t)
+$$
+
+and
+
+$$
+u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s} \text { with ROAC }=\{\operatorname{Re} s>0\}
+$$
+
+注意： Th为 property holds also for Laplace transforms of singularity functions and will be useful computing some Laplace transforms.
+
+## 目录
+
+1. 拉普拉斯变换的性质
+2. 拉普拉斯逆变换
+3. 奇异函数的拉普拉斯变换
+4. 利用拉普拉斯变换分析连续时间 LTI 系统
+5. 框图表示
+
+## 拉普拉斯逆变换
+
+Recall Laplace transform 为 related to CTFT by
+
+$$
+X(\sigma+j \omega)=\int_{-\infty}^{\infty}\left\{x(t) e^{-\sigma t}\right\} e^{-j \omega t} d t=\mathcal{F}\left\{x(t) e^{-\sigma t}\right\}
+$$
+
+Take the inverse Fourier transform for $s=\sigma+j \omega \in \mathrm{ROC}$,
+
+$$
+x(t) e^{-\sigma t}=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(\sigma+j \omega) e^{j \omega t} d \omega
+$$
+
+so
+
+$$
+x(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(\sigma+j \omega) e^{(\sigma+j \omega) t} d \omega
+$$
+
+or
+
+$$
+x(t)=\frac{1}{j 2 \pi} \int_{\sigma-j \infty}^{\sigma+j \infty} X(s) e^{s t} d s=\lim _{A \rightarrow \infty} \frac{1}{j 2 \pi} \int_{\sigma-j A}^{\sigma+j A} X(s) e^{s t} d s
+$$
+
+## Inverse Transform by Partial Fraction Expansion
+
+对于rational Laplace transform, the inverse transform can be found by partial fraction expansion.
+
+Recall a proper rational function has the following partial fraction expansion
+
+$$
+R(s)=\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(s+a_{i}\right)^{k_{i}}}
+$$
+
+Also recall
+
+$$
+\begin{aligned}
+\frac{t^{n-1}}{(n-1)!} e^{-a t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{(s+a)^{n}}, & \operatorname{Re} s>-a \\
+-\frac{t^{n-1}}{(n-1)!} e^{-a t} u(-t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{(s+a)^{n}}, & \operatorname{Re} s<-a
+\end{aligned}
+$$
+
+By linearity, $\mathcal{L}^{-1}\{R\}$ 为 a linear combination of terms of the above form, 其中 signs are chosen according to the ROC.
+
+## 例
+
+Consider a rational Laplace transform $X(s)=\frac{1}{(s+1)(s+2)^{2}}$
+
+$$
+X(s)=\frac{1}{s+1}+\frac{-1}{s+2}+\frac{-1}{(s+2)^{2}}
+$$
+
+Two poles at $s=-1$ and $s=-2$.
+
+1. 如果ROC 为 $\operatorname{Re} s>-1$
+
+$$
+x(t)=e^{-t} u(t)-(1+t) e^{-2 t} u(t)
+$$
+
+2. 如果ROC 为 $\operatorname{Re} s<-2$
+
+$$
+x(t)=-e^{-t} u(-t)+(1+t) e^{-2 t} u(-t)
+$$
+
+3. 如果ROC 为 $-2<\operatorname{Re} s<-1$
+
+$$
+x(t)=-e^{-t} u(-t)-(1+t) e^{-2 t} u(t)
+$$
+
+## Inverse Transform by Contour Integration
+
+Suppose $X(s)$ has finitely many finite 为olated singularities $s_{1}, \ldots, s_{n}$, and ROC 为 $-\infty \leq \sigma_{1}<\operatorname{Re} s<\sigma_{2} \leq+\infty$.
+
+The inverse transform 为
+
+$$
+x(t)=\lim _{r \rightarrow \infty} \frac{1}{j 2 \pi} \int_{\sigma-j r}^{\sigma+j r} X(s) e^{s t} d s
+$$
+
+其中 $\sigma_{1}<\sigma<\sigma_{2}$.
+对于$t>0$, choose a large semicircle $C_{r}$ that encloses all $s_{k}$ with $\operatorname{Re} s \leq \sigma_{1}$.
+
+如果$X(s)$ sat为fies ${ }^{1}$ (a shifted and rotated version of) Jordan's Lemma (slide 6, Lecture 27), Residue Theorem implies
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-14.jpg?height=569&width=389&top_left_y=224&top_left_x=838)
+
+$$
+x(t)=\sum_{k: s_{k} \leq \sigma_{1}} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right], \quad t>0
+$$
+
+${ }^{1}$ sat为fied by proper rational functions
+
+## Inverse Transform by Contour Integration
+
+Suppose $X(s)$ has finitely many finite 为olated singularities $s_{1}, \ldots, s_{n}$, and ROC 为 $-\infty \leq \sigma_{1}<\operatorname{Re} s<\sigma_{2} \leq+\infty$.
+
+The inverse transform 为
+
+$$
+x(t)=\lim _{r \rightarrow \infty} \frac{1}{j 2 \pi} \int_{\sigma-j r}^{\sigma+j r} X(s) e^{s t} d s
+$$
+
+其中 $\sigma_{1}<\sigma<\sigma_{2}$.
+对于$t<0$, choose a large semicircle $C_{r}$ that encloses all $s_{k}$ with $\operatorname{Re} s \geq \sigma_{2}$.
+
+如果$X(s)$ sat为fies (a shifted and rotated version of) Jordan's Lemma, Residue Theorem implies
+
+$$
+x(t)=-\sum_{k: s_{k} \geq \sigma_{2}} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right], \quad t<0
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-15.jpg?height=569&width=442&top_left_y=250&top_left_x=794)
+
+Caution. Negative sign due to negative orientation of contour.
+
+## 例
+
+Consider a rational Laplace transform $X(s)=\frac{1}{(s+1)(s+2)^{2}}$
+
+$$
+\begin{gathered}
+\operatorname{Res}\left[X(s) e^{s t},-1\right]=\left.\frac{e^{s t}}{(s+2)^{2}}\right|_{s=-1}=e^{-t} \\
+\operatorname{Res}\left[X(s) e^{s t},-2\right]=\left[\frac{d}{d s} \frac{e^{s t}}{s+1}\right]_{s=-2}=-(1+t) e^{-2 t}
+\end{gathered}
+$$
+
+1. 如果ROC 为 $\operatorname{Re} s>-1$, 则 $\sigma_{1}=-1, \sigma_{2}=+\infty$.
+
+对于$t>0$,
+
+$$
+x(t)=\sum_{k: \operatorname{Re} s_{k} \leq-1} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=e^{-t}-(1+t) e^{-2 t}
+$$
+
+对于$t<0$,
+
+$$
+x(t)=-\sum_{k: \operatorname{Re} s_{k} \geq+\infty} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=0
+$$
+
+## 例 (cont'd)
+
+Consider a rational Laplace transform $X(s)=\frac{1}{(s+1)(s+2)^{2}}$
+
+$$
+\begin{gathered}
+\operatorname{Res}\left[X(s) e^{s t},-1\right]=\left.\frac{e^{s t}}{(s+2)^{2}}\right|_{s=-1}=e^{-t} \\
+\operatorname{Res}\left[X(s) e^{s t},-2\right]=\left[\frac{d}{d s} \frac{e^{s t}}{s+1}\right]_{s=-2}=-(1+t) e^{-2 t}
+\end{gathered}
+$$
+
+2. 如果ROC 为 $\operatorname{Re} s<-2$, 则 $\sigma_{1}=-\infty, \sigma_{2}=-2$.
+
+对于$t>0$,
+
+$$
+x(t)=\sum_{k: \operatorname{Re} s_{k} \leq-\infty} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=0
+$$
+
+对于$t<0$,
+
+$$
+x(t)=-\sum_{k: \operatorname{Re} s_{k} \geq-2} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=-e^{-t}+(1+t) e^{-2 t}
+$$
+
+## 例 (cont'd)
+
+Consider a rational Laplace transform $X(s)=\frac{1}{(s+1)(s+2)^{2}}$
+
+$$
+\begin{gathered}
+\operatorname{Res}\left[X(s) e^{s t},-1\right]=\left.\frac{e^{s t}}{(s+2)^{2}}\right|_{s=-1}=e^{-t} \\
+\operatorname{Res}\left[X(s) e^{s t},-2\right]=\left[\frac{d}{d s} \frac{e^{s t}}{s+1}\right]_{s=-2}=-(1+t) e^{-2 t}
+\end{gathered}
+$$
+
+3. 如果ROC 为 $-2<\operatorname{Re} s<-1$, 则 $\sigma_{1}=-2, \sigma_{2}=-1$.
+
+对于$t>0$,
+
+$$
+x(t)=\sum_{k: \operatorname{Re} s_{k} \leq-2} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=-(1+t) e^{-2 t}
+$$
+
+对于$t<0$,
+
+$$
+x(t)=-\sum_{k: \operatorname{Re} s_{k} \geq-1} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=-e^{-t}
+$$
+
+## 目录
+
+1. 拉普拉斯变换的性质
+2. 拉普拉斯逆变换
+3. 奇异函数的拉普拉斯变换
+4. 利用拉普拉斯变换分析连续时间 LTI 系统
+5. 框图表示
+
+## 奇异函数的拉普拉斯变换
+
+We can also define Laplace transform for generalized functions. In th为 course, we only consider the Laplace transforms of $\delta(t)$ and its derivatives. Formally,
+
+$$
+\begin{aligned}
+\mathcal{L}\{\delta\} & =\int_{-\infty}^{\infty} \delta(t) e^{-s t} d t=1 \\
+\mathcal{L}\left\{\delta^{\prime}\right\} & =\int_{-\infty}^{\infty} \delta^{\prime}(t) e^{-s t} d t=-\left.\frac{d}{d t} e^{-s t}\right|_{t=0}=s \\
+\mathcal{L}\left\{\delta^{(k)}\right\} & =\int_{-\infty}^{\infty} \delta^{(k)}(t) e^{-s t} d t=\left.(-1)^{k} \frac{d^{k}}{d t^{k}} e^{-s t}\right|_{t=0}=s^{k}
+\end{aligned}
+$$
+
+The Laplace transforms are defined for all $s \in \mathbb{C}$, and we say "ROC" $=\mathbb{C}$, though there 为 no convergence 为sue involved.
+
+## 奇异函数的拉普拉斯变换
+
+The properties of Laplace transforms d为cussed previously still holds for th为 generalization.
+
+例. The property of time differentiation 为 equivalent to the convolution property involving $\delta^{\prime}$.
+
+$$
+\mathcal{L}\left\{x^{\prime}\right\}=\mathcal{L}\left\{x * \delta^{\prime}\right\}=\mathcal{L}\{x\} \mathcal{L}\left\{\delta^{\prime}\right\}=s \mathcal{L}\{x\}
+$$
+
+例.
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-21.jpg?height=198&width=309&top_left_y=550&top_left_x=44)
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-21.jpg?height=236&width=309&top_left_y=543&top_left_x=439)
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-21.jpg?height=289&width=316&top_left_y=541&top_left_x=829)
+$X_{2}(s)=-\frac{4}{T}+\frac{2}{T} e^{-s \frac{T}{2}}+\frac{2}{T} e^{s \frac{T}{2}}=\frac{8}{T} \sinh ^{2}\left(\frac{s T}{4}\right) \Longrightarrow X(s)=\frac{X_{2}(s)}{s^{2}}$
+
+## 拉普拉斯逆变换
+
+Recall a rational function can be written as the sum of a polynomial and a proper rational function
+
+$$
+R(s)=\sum_{k=1}^{n} a_{k} s^{k}+R_{1}(s)
+$$
+
+Thus
+
+$$
+\mathcal{L}^{-1}\{R\}=\sum_{k=1}^{n} a_{k} \delta^{(k)}(t)+\mathcal{L}^{-1}\left\{R_{1}\right\}
+$$
+
+其中 $\mathcal{L}^{-1}\left\{R_{1}\right\}$ can be found by partial fraction expansion or contour integration.
+
+例. $X(s)=\frac{s(s+2)}{s+3}=s-1+\frac{3}{s+3}$ with $\operatorname{ROC} \operatorname{Re} s>-3$, so
+
+$$
+x(t)=\delta^{\prime}(t)-\delta(t)+3 e^{-3 t} u(t)
+$$
+
+## 目录
+
+1. 拉普拉斯变换的性质
+2. 拉普拉斯逆变换
+3. 奇异函数的拉普拉斯变换
+4. 利用拉普拉斯变换分析连续时间 LTI 系统
+5. 框图表示
+
+## CT System Function
+
+回顾：连续时间LTI系统对输入 $x(t)$ 为
+
+$$
+y(t)=(x * h)(t)
+$$
+
+其中 $h$ 为 the impulse response of the system.
+如果$x$ and $h$ have Laplace transforms, the convolution property implies
+
+$$
+Y(s)=X(s) H(s)
+$$
+
+in their common $\mathrm{ROC}^{2}$.
+如果the ROC has a nonempty interior point, the system function (aka transfer function) $H(s)$ uniquely determines $h$ and hence system properties through the inverse Laplace transform (th为 can be proved, but we will not do so).
+
+[^0]
+## 因果性
+
+Recall $h$ 为 right-sided iff the ROC of $H(s)$ 为 a right half-plane,
+causal $\Longrightarrow \mathrm{ROC}$ 为 a right half-plane
+
+Caution. The converse 为 not true.
+例. Consider $H(s)=\frac{e^{s}}{s+1}$ with $\operatorname{ROC} \operatorname{Re} s>-1$. By the time-shift property,
+
+$$
+h(t)=e^{-(t+1)} u(t+1)
+$$
+
+which 为 not causal.
+
+## 因果性
+
+An LTI system with rational system function $H(s)$ 为 causal iff the ROC 为 the right half-plane to the rightmost pole.
+
+证明. Recall for a rational system function,
+
+$$
+H(s)=\sum_{k=1}^{n} a_{k} s^{k}+\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(s+a_{i}\right)^{k_{i}}}, \quad \operatorname{Re} s>\max _{i} \operatorname{Re}\left(-a_{i}\right)
+$$
+
+SO
+
+$$
+h(t)=\sum_{k=1}^{n} a_{k} \delta^{(k)}(t)+\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(k_{i}-1\right)!} t^{k_{i}-1} e^{-a_{i} t} u(t)
+$$
+
+which 为 causal. (Can also prove by contour integration.)
+例. $h(t)=e^{-t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} H(s)=\frac{1}{s+1}$ with $\operatorname{Re} s>-1$, causal.
+例. $h(t)=e^{-|t|} \stackrel{\mathcal{L}}{\longleftrightarrow} H(s)=\frac{-2}{s^{2}-1}$ with $-1<\operatorname{Re} s<1$, noncausal.
+
+## 稳定性
+
+Recall an LTI system 为 stable iff its impulse response $h \in L_{1}$, i.e.
+
+$$
+\int_{-\infty}^{\infty}|h(t)| d t<\infty
+$$
+
+i.e. $H(s)$ converges absolutely on the imaginary ax为 $\operatorname{Re} s=0$, so its $\operatorname{ROC}-\infty \leq \sigma_{1}<\operatorname{Re} s<\sigma_{2} \leq \infty$ must sat为fy $\sigma_{1}<0<\sigma_{2}$.
+
+stable $\Longleftrightarrow$ ROC includes the imaginary ax为
+
+A causal LTI system with rational system function $H(s)$ 为 stable iff all its poles have negative real parts.
+
+例. A causal system with $H(s)=\frac{1}{s+a}$ 为 stable iff $\operatorname{Re} a>0$
+例. A system with $H(s)=\frac{1}{s+a}$ 其中 $\operatorname{Re} a<0$ and ROC $\operatorname{Re} s<-\operatorname{Re} a$ 为 also stable, but it 为 noncausal.
+
+## 例
+
+Consider the system function
+
+$$
+H(s)=\frac{1}{s-2}-\frac{1}{s+1}
+$$
+
+There are two poles $p_{1}=-1$ and $p_{2}=2$.
+
+1. Re $s<-1$, noncausal, unstable
+
+$$
+h_{1}(t)=-e^{2 t} u(-t)+e^{-t} u(-t)
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-28.jpg?height=456&width=423&top_left_y=88&top_left_x=807)
+2. $-1<\operatorname{Re} s<2$, noncausal, stable
+
+$$
+h_{2}(t)=-e^{2 t} u(-t)-e^{-t} u(t)
+$$
+
+3. $\operatorname{Re} s>2$, causal, unstable
+
+$$
+h_{3}(t)=e^{2 t} u(t)-e^{-t} u(t)
+$$
+
+## 线性常系数微分方程
+
+LTI system with input and output related by
+
+$$
+\sum_{k=0}^{N} a_{k} \frac{d^{k} y}{d t^{k}}=\sum_{k=0}^{M} b_{k} \frac{d^{k} x}{d t^{k}}
+$$
+
+Take Laplace transform of both sides
+
+$$
+\sum_{k=0}^{N} a_{k} s^{k} Y(s)=\sum_{k=0}^{M} b_{k} s^{k} X(s)
+$$
+
+so
+
+$$
+H(s)=\frac{Y(s)}{X(s)}=\frac{\sum_{k=0}^{M} b_{k} s^{k}}{\sum_{k=0}^{N} a_{k} s^{k}}
+$$
+
+System function 为 always rational
+ODE does not specify ROC! Need additional conditions (e.g. stability, causality) to determine $h(t)$.
+
+## 例
+
+Consider LTI system with input and output related by
+
+$$
+y^{\prime}(t)+3 y(t)=x^{\prime}(t)+x(t)
+$$
+
+System function
+
+$$
+H(s)=\frac{s+1}{s+3}=1-\frac{2}{s+3}
+$$
+
+Two possibilities for ROC: $\operatorname{Re} s>-3$ and $\operatorname{Re} s<-3$
+
+1. 如果$\operatorname{Re} s>-3$, causal and stable,
+
+$$
+h(t)=\delta(t)-2 e^{-3 t} u(t)
+$$
+
+2. 如果$\operatorname{Re} s<-3$, anticausal and unstable,
+
+$$
+h(t)=\delta(t)+2 e^{-3 t} u(-t)
+$$
+
+## 例 (cont'd)
+
+Consider LTI system with input and output related by
+
+$$
+y^{\prime}(t)+3 y(t)=x^{\prime}(t)+x(t)
+$$
+
+如果we use Fourier transform, 则 frequency response 为
+
+$$
+H(j \omega)=\frac{j \omega+1}{j \omega+3}=1-\frac{2}{j \omega+3}
+$$
+
+and
+
+$$
+h(t)=\delta(t)-2 e^{-3 t} u(t)
+$$
+
+Why only one possibility?
+
+- Fourier transform method assumes stability, requiring that ROC of $H(s)$ contain the imaginary ax为, so $\operatorname{Re} s>-3$
+- 一般而言， not applicable to unstable systems
+
+
+## 例 (cont'd)
+
+Find response to $x(t)=e^{-4 t} u(t)$.
+
+$$
+X(s)=\frac{1}{s+4}, \quad \operatorname{Re} s>-4
+$$
+
+Laplace transform for response
+
+$$
+Y(s)=H(s) X(s)=\frac{s+1}{s+3} \cdot \frac{1}{s+4}=\frac{-2}{s+3}+\frac{3}{s+4}
+$$
+
+## Two possible ROCs
+
+1 . 如果$\operatorname{Re} s>-3$,
+
+$$
+y(t)=-2 e^{-3 t} u(t)+3 e^{-4 t} u(t)
+$$
+
+2. 如果$-4<\operatorname{Re} s<-3$,
+
+$$
+y(t)=2 e^{-3 t} u(-5)+3 e^{-4 t} u(t)
+$$
+
+## 例 (cont'd)
+
+Find response to $x(t)=e^{-3 t} u(t)$.
+
+$$
+X(s)=\frac{1}{s+3}, \quad \operatorname{Re} s>-3
+$$
+
+Laplace transform for response
+
+$$
+Y(s)=H(s) X(s)=\frac{s+1}{s+3} \cdot \frac{1}{s+3}=\frac{1}{s+3}+\frac{-2}{(s+3)^{2}}
+$$
+
+Only one possible ROC $\operatorname{Re} s>-3$
+
+$$
+y(t)=(1-2 t) e^{-3 t} u(t)
+$$
+
+对于the anticausal and unstable system,
+
+$$
+h(t)=\delta(t)+2 e^{-3 t} u(-t)
+$$
+
+Can verify directly $x * h$ 为 not well-defined.
+
+## 例
+
+The response of an LTI system to the input $x(t)=e^{-3 t} u(t)$ 为
+
+$$
+y(t)=\left(e^{-t}-e^{-2 t}\right) u(t)
+$$
+
+System function
+
+$$
+H(s)=\frac{Y(s)}{X(s)}=\frac{\frac{1}{s+1}-\frac{1}{s+2}}{\frac{1}{s+3}}=\frac{s+3}{s^{2}+3 s+2}, \quad \operatorname{Re} s>-1
+$$
+
+By partial fraction expansion
+
+$$
+H(s)=\frac{2}{s+1}-\frac{1}{s+2}, \operatorname{Re} s>-1 \Longrightarrow h(t)=\left(2 e^{-t}-e^{-2 t}\right) u(t)
+$$
+
+Can be described by the following ODE
+
+$$
+\frac{d^{2} y}{d t^{2}}+3 \frac{d y}{d t}+2 y=\frac{d x}{d t}+3 x
+$$
+
+## 目录
+
+1. 拉普拉斯变换的性质
+2. 拉普拉斯逆变换
+3. 奇异函数的拉普拉斯变换
+4. 利用拉普拉斯变换分析连续时间 LTI 系统
+5. 框图表示
+
+## 系统互连
+
+LTI systems in 串联系统
+
+$$
+Y=\left(X H_{1}\right) H_{2}=X\left(H_{1} H_{2}\right)=\left(X H_{2}\right) H_{1}
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-36.jpg?height=511&width=1159&top_left_y=295&top_left_x=53)
+
+## 系统互连
+
+LTI systems in systems in 并联系统
+
+$$
+h=h_{1}+h_{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-37.jpg?height=338&width=725&top_left_y=206&top_left_x=414)
+
+$$
+H=H_{1}+H_{2}
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-37.jpg?height=336&width=725&top_left_y=561&top_left_x=414)
+
+## 系统互连
+
+LTI systems in systems in 反馈系统
+
+$$
+\begin{gathered}
+y=h_{1} *\left(x-h_{2} * y\right) \\
+h=?
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-38.jpg?height=323&width=769&top_left_y=208&top_left_x=452)
+$Y=H_{1} X-H_{1} H_{2} Y$
+$H=\frac{Y}{X}=\frac{H_{1}}{1+H_{1} H_{2}}$
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-38.jpg?height=320&width=769&top_left_y=581&top_left_x=452)
+
+## 例
+
+Causal LTI systems with system function
+
+$$
+H(s)=\frac{1}{s+a}, \quad \operatorname{Re} s>-\operatorname{Re} a
+$$
+
+Equivalent description by ODE
+
+$$
+y^{\prime}(t)+a y(t)=x(t)
+$$
+
+with initial rest condition.
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-39.jpg?height=292&width=667&top_left_y=612&top_left_x=303)
+
+## 例
+
+Causal LTI systems with system function
+
+$$
+H(s)=\frac{s+b}{s+a}=\left(\frac{1}{s+a}\right)(s+b), \quad \operatorname{Re} s>-\operatorname{Re} a
+$$
+
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-40.jpg?height=469&width=960&top_left_y=399&top_left_x=128)
+
+## 例
+
+Causal LTI systems with system function
+
+$$
+H(s)=\frac{1}{(s+1)(s+2)}=\frac{1}{s^{2}+3 s+2}
+$$
+
+Equivalent description by different equation
+
+$$
+y^{\prime \prime}(t)+3 y^{\prime}(t)+2 y(t)=x(t)
+$$
+
+Direct form
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-41.jpg?height=367&width=1020&top_left_y=561&top_left_x=128)
+
+例 (cont'd)
+Causal LTI systems with system function
+
+$$
+H(s)=\frac{1}{(s+1)(s+2)}=\frac{1}{s+1} \cdot \frac{1}{s+2}
+$$
+
+Cascade form
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-42.jpg?height=394&width=1122&top_left_y=434&top_left_x=66)
+
+例 (cont'd)
+Causal LTI systems with system function
+
+$$
+H(s)=\frac{1}{(s+1)(s+2)}=\frac{1}{s+1}-\frac{1}{s+2}
+$$
+
+Parallel form
+![](https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-43.jpg?height=565&width=959&top_left_y=363&top_left_x=102)
+
+
+[^0]:    ${ }^{2}$ Actually ROAC for ordinary functions. 对于most signals in th为 course, ROC and ROAC coincide, so we will be sloppy.

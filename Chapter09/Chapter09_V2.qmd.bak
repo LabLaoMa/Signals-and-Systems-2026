@@ -1,0 +1,839 @@
+---
+title: "第九章 Z变换"
+author: "马越"
+institute: >
+  北京理工大学机械与车辆学院<br> 
+  Email: yuema@bit.edu.cn<br>̊
+format:
+  revealjs:
+    theme: [simple, custom2.scss]
+    transition: slide
+    slide-number: true
+    incremental: false
+    center: false
+    math: mathjax
+    footer: '<div class="footer-3col"><div class="left">机械与车辆学院 马越</div><div class="center">信号与系统</div><div class="right">2026 春季学期</div></div>'
+    toc: false
+    titleSelector: 'h1, h2, h3'
+    toc-title: "目录"
+    depth: 3
+    embed-resources: true
+    self-contained-math: true
+resource-path: ["."]
+execute:
+  echo: false
+---
+
+## 目录 {#toc0}
+
+- [**1. 引言**](#sec91)
+- [2. z变换及其收敛域](#sec92)
+- [3. z逆变换](#sec93)
+- [4. 利用零极点图对傅里叶变换进行几何求值](#sec94)
+- [5. z变换性质](#sec95)
+- [6. 常用z变换对](#sec96)
+- [7. 用z变换分析与表征线性时不变系统](#sec97)
+
+# 引言 {#sec91}
+ 
+
+
+<!-- ## 利用留数计算定积分
+
+$$
+\int_{-\infty}^{\infty} R(x) \, dx
+$$
+其中 $R(x)=\frac{N(x)}{D(x)}$ 是 $x$ 的有理函数，$N,D$ 为多项式，且 $\deg D \geq \deg N + 2$，$R$ 在实轴上无奇点。
+
+1. 选取足够大的 $r$，使得以 0 为圆心、上半圆盘包含 $R(z)$ 在上半平面内的所有奇点 $z_1,\ldots,z_K$（下半平面的奇点我们不关心）
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-03.jpg?height=272&width=416&top_left_y=237&top_left_x=843)
+
+2. $\int_{-r}^{r} R(x) \, dx + \int_{C_r} R(z) \, dz = j 2 \pi \sum_{k=1}^{K} \operatorname{Res}(R, z_k)$
+
+3. $\lim_{r\to\infty} \int_{C_r} R(z) \, dz = 0$（由条件 $\deg D \geq \deg N + 2$ 保证）
+
+4. $\int_{-\infty}^{\infty} R(x) \, dx = j 2 \pi \sum_{k=1}^{K} \operatorname{Res}(R, z_k)$
+
+**引理**：设 $f(z)$ 在区域 $D=\left\{z: R<|z|<\infty, \theta_1 \leq \arg z \leq \theta_2\right\}$（$0\leq\theta_1<\theta_2\leq 2\pi$）上连续。令 $\gamma_r$ 为圆弧 $z(t)=r e^{j\theta}$，$r>R$，$\theta\in[\theta_1,\theta_2]$。若 $\limsup_{D\ni z\to\infty} z f(z)=0$，则
+$$
+\lim_{r\to\infty} \int_{\gamma_r} f(z) \, dz = 0
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-04.jpg?height=319&width=423&top_left_y=110&top_left_x=798)
+
+**证明**：由于 $\limsup_{D\ni z\to\infty} z f(z)=0$，对任意 $\epsilon>0$，存在 $R_\epsilon$ 使得当 $z\in D$ 且 $|z|>R_0$ 时，$|z f(z)| < \frac{\epsilon}{\theta_2-\theta_1}$。对于 $r>R_0$，
+$$
+\left|\int_{\gamma_r} f(z)\,dz\right| \leq \int_{\gamma_r} |f(z)|\,ds \leq \int_{\gamma_r} \frac{\epsilon}{(\theta_2-\theta_1)r} \,ds = \epsilon
+$$
+
+**注**：上一张幻灯片中的第 3 条由该引理在 $\theta_1=0$、$\theta_2=\pi$ 时得出。
+
+## 例题
+
+计算 $I=\int_{-\infty}^{\infty} \frac{x^2 \, dx}{(x^2+a^2)(x^2+b^2)}$，其中 $a,b>0$。
+
+**解**：$R(z)=\frac{z^2}{(z^2+a^2)(z^2+b^2)}$ 有四个单极点 $z=\pm ja,\pm jb$。其中 $ja,jb$ 在上半平面。留数为
+$$
+\begin{aligned}
+\operatorname{Res}(R, ja) &= \lim_{z\to ja}(z-ja)R(z) = \frac{a}{2j(a^2-b^2)}, \\
+\operatorname{Res}(R, jb) &= \lim_{z\to jb}(z-jb)R(z) = \frac{-b}{2j(a^2-b^2)}.
+\end{aligned}
+$$
+因此
+$$
+I = j2\pi[\operatorname{Res}(R,ja)+\operatorname{Res}(R,jb)] = \frac{\pi}{a+b}
+$$
+
+## 含指数因子的积分（$a>0$）
+
+$$
+\int_{-\infty}^{\infty} R(x) e^{j a x} \, dx
+$$
+其中 $R(x)=\frac{N(x)}{D(x)}$ 为有理函数，$\deg D \geq \deg N +1$，且 $R$ 在实轴上无奇点。
+
+1. 选取足够大的 $r$，使上半圆盘包含上半平面内的所有奇点
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-06.jpg?height=270&width=414&top_left_y=181&top_left_x=820)
+
+2. $\int_{-r}^{r} R(x)e^{j a x}\,dx + \int_{C_r} R(z)e^{j a z}\,dz = j2\pi \sum_{k=1}^K \operatorname{Res}[R(z)e^{j a z}, z_k]$
+
+3. $\lim_{r\to\infty}\int_{C_r} R(z)e^{j a z}\,dz=0$（由 $\deg D\geq\deg N+1$ 及 Jordan 引理保证）
+
+4. $\int_{-\infty}^{\infty} R(x)e^{j a x}\,dx = j2\pi \sum_{k=1}^K \operatorname{Res}[R(z)e^{j a z}, z_k]$
+
+**注**：若 $a<0$，则使用下半圆盘。
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-06.jpg?height=263&width=419&top_left_y=674&top_left_x=818)
+
+## Jordan 引理
+
+**引理**：设 $f(z)$ 在 $D=\{z: R<|z|<\infty, \operatorname{Im} z \geq 0\}$ 上连续。若 $\lim_{D\ni z\to\infty} f(z)=0$ 且 $a>0$，则
+$$
+\lim_{r\to\infty} \int_{C_r} f(z) e^{j a z} \, dz = 0
+$$
+其中 $C_r$ 为 $z(t)=r e^{j\theta}$，$r>R$，$\theta\in[0,\pi]$。
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-07.jpg?height=318&width=412&top_left_y=84&top_left_x=807)
+
+**证明**：令 $I_r=\int_{C_r} f(z)e^{j a z}\,dz$，$M_r=\max_{z\in C_r}|f(z)|$。则
+$$
+|I_r| \leq M_r \int_0^\pi e^{-a r \sin\theta} r \,d\theta = 2M_r \int_0^{\pi/2} e^{-a r \sin\theta} r \,d\theta
+$$
+利用 $\sin\theta \geq \frac{2}{\pi}\theta$（$\theta\in[0,\pi/2]$）及 $\lim_{r\to\infty}M_r=0$，可证 $|I_r|\to 0$。
+
+**注**：若 $a<0$，引理对下半平面仍成立。
+
+## 例题
+
+计算 $I=\int_0^\infty \frac{x \sin x}{x^2 + a^2} \, dx$，$a>0$。
+
+**解**：$R(z)=\frac{z}{z^2+a^2}$ 有单极点 $\pm ja$，$ja$ 在上半平面。
+$$
+\operatorname{Res}[R(z)e^{jz}, ja] = \frac{e^{-a}}{2}
+$$
+因此
+$$
+\int_{-\infty}^{\infty} \frac{x e^{jx}}{x^2+a^2}\,dx = j\pi e^{-a}
+$$
+由于 $\frac{x\sin x}{x^2+a^2}$ 是偶函数，
+$$
+I = \frac12 \operatorname{Im}(j\pi e^{-a}) = \frac{\pi}{2} e^{-a}
+$$
+
+## 例题（逆 CTFT）
+
+求 $X(j\omega)=\frac{1}{a+j\omega}$（$a>0$）的逆连续时间傅里叶变换。
+
+**解**：
+$$
+x(t) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{1}{a+j\omega} e^{j\omega t} \, d\omega
+$$
+$R(z)=\frac{1}{a+jz}$ 在 $z=ja$ 有单极点（上半平面）。
+
+当 $t>0$ 时，
+$$
+x(t) = j \operatorname{Res}[R(z)e^{jzt}, ja] = e^{-at}
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-09.jpg?height=198&width=319&top_left_y=399&top_left_x=931)
+
+当 $t<0$ 时，$R(z)$ 在下半平面解析，故 $x(t)=0$。
+
+因此 $x(t)=e^{-at}u(t)$。
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-09.jpg?height=260&width=319&top_left_y=661&top_left_x=931)
+
+## 目录
+
+1. 利用留数计算定积分
+2. Z 变换
+3. Z 变换的性质
+4. 用 Z 变换分析离散时间 LTI 系统 -->
+
+## Z 变换
+
+离散时间 LTI 系统对输入 $x[n]=z^n$ 的响应为
+$$
+y[n]=(x*h)[n]=H(z)z^n
+$$
+其中 $h$ 是系统的冲激响应，
+$$
+H(z)=\sum_{k=-\infty}^{\infty} h[k]z^{-k}
+$$
+系统函数 $H(z)$ 称为 $h$ 的 **Z 变换**。
+
+一般地，离散时间信号 $x[n]$ 的 Z 变换定义为
+$$
+X(z)=\sum_{n=-\infty}^{\infty} x[n]z^{-n}
+$$
+也记作 $X=\mathcal{Z}\{x\}$ 或 $x[n]\stackrel{\mathcal{Z}}{\longleftrightarrow} X(z)$。
+
+## Z 变换（续）
+
+$$
+X(z)=\sum_{n=-\infty}^{\infty} x[n]z^{-n}=\sum_{n=-\infty}^{\infty} c_n z^n
+$$
+是以 $z=0$ 为中心的 Laurent 级数，其 $z^n$ 项的系数为 $c_n=x[-n]$。
+
+作为 Laurent 级数，Z 变换在以 0 为中心的某个环形区域（称为收敛域 ROC）上收敛。
+
+## 与 DTFT 的关系
+
+令 $z=re^{j\omega}$，则
+$$
+X(re^{j\omega})=\sum_{n=-\infty}^{\infty} \{x[n]r^{-n}\}e^{-j\omega n}=\mathcal{F}\{x[n]r^{-n}\}
+$$
+若 ROC 包含单位圆，令 $r=1$ 可得
+$$
+X(e^{j\omega})=\mathcal{F}\{x\}
+$$
+
+## 例题
+
+对于 $x[n]=a^n u[n]$，
+$$
+X(z)=\sum_{n=0}^{\infty}a^n z^{-n}=\frac{1}{1-a z^{-1}}=\frac{z}{z-a}, \quad \mathrm{ROC}: |z|>|a|
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-13.jpg?height=370&width=391&top_left_y=88&top_left_x=845)
+
+若 $|a|<1$，ROC 包含单位圆，DTFT 存在；若 $|a|>1$，DTFT 不存在。
+
+## 例题（反因果序列）
+
+对于 $x[n]=-a^n u[-n-1]$，
+$$
+X(z)=\frac{z}{z-a}, \quad \mathrm{ROC}: |z|<|a|
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-14.jpg?height=372&width=393&top_left_y=88&top_left_x=843)
+
+## 收敛域（ROC）的重要性
+
+相同 $X(z)$ 但不同的 ROC 对应不同的信号。**必须始终注明 ROC**！
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-15.jpg?height=374&width=393&top_left_y=84&top_left_x=843)
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-15.jpg?height=332&width=393&top_left_y=567&top_left_x=843)
+
+## 例题
+
+$x[n]=7\left(\frac13\right)^n u[n]-6\left(\frac12\right)^n u[n]$，
+$$
+X(z)=\frac{z\left(z-\frac32\right)}{\left(z-\frac13\right)\left(z-\frac12\right)}, \quad |z|>\frac12
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-16.jpg?height=535&width=666&top_left_y=346&top_left_x=579)
+
+## 例题（正弦调制）
+
+$x[n]=\left(\frac13\right)^n \sin\left(\frac{\pi}{4}n\right)u[n]$，
+$$
+X(z)=\frac{\frac{1}{3\sqrt{2}}z}{\left(z-\frac13 e^{j\pi/4}\right)\left(z-\frac13 e^{-j\pi/4}\right)}, \quad |z|>\frac13
+$$
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-17.jpg?height=409&width=433&top_left_y=350&top_left_x=794)
+
+## 有理 Z 变换
+
+有理 Z 变换形式为
+$$
+X(z)=\frac{N(z)}{D(z)}
+$$
+其中 $N,D$ 是互质多项式。
+
+$$
+X(z)=A\frac{\prod_{k=1}^n (z-z_k)}{\prod_{k=1}^m (z-p_k)}
+$$
+$z_k$ 为有限零点，$p_k$ 为有限极点。
+
+有理 Z 变换由其极零点图和 ROC（差一个常数因子）唯一确定。
+
+## ROC 的性质
+
+- ROC 是环形区域 $R_1<|z|<R_2$；
+- $X(z)$ 在 ROC 内解析；
+- 有限时长信号：$R_1=0$，$R_2=\infty$；
+- 因果信号（$N_1\geq0$）：ROC 为 $|z|>R_1$（包含 $\infty$）；
+- 反因果信号（$N_2\leq0$）：ROC 为 $|z|<R_2$（包含 0）。
+
+**左边信号**：$R_1=0$；**右边信号**：$R_2=\infty$；**双边信号**：$R_1>0$ 且 $R_2<\infty$。
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-21.jpg?height=314&width=332&top_left_y=399&top_left_x=97)
+left-sided
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-21.jpg?height=314&width=333&top_left_y=399&top_left_x=488)
+right-sided
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-21.jpg?height=314&width=331&top_left_y=401&top_left_x=883)
+two-sided
+
+## 有理 Z 变换的 ROC
+
+对于有理 $X(z)$，ROC 被极点界定（向内至 0 或向外至 $\infty$）。
+
+- 右边信号：$R_1=\max |p_k|$，$R_2=\infty$；
+- 左边信号：$R_1=0$，$R_2=\min |p_k|$。
+
+![](https://cdn.mathpix.com/cropped/b981be86-4c51-4449-b1cd-789c11617bf9-22.jpg?height=520&width=535&top_left_y=275&top_left_x=692)
+
+## 逆 Z 变换
+
+$$
+x[n]=\frac{1}{j2\pi}\oint_C X(z)z^{n-1}\,dz
+$$
+（$C$ 为 ROC 内围绕 0 的正向圆周），或通过部分分式展开、已知级数展开等方法求 Laurent 级数。
+
+**注意**：$x[n]$ 是 $z^{-n}$ 的系数，而非 $z^n$ 的系数。
+
+## Z 变换的性质
+
+**线性性质**：
+$$
+ax[n]+by[n] \stackrel{z}{\longleftrightarrow} aX(z)+bY(z)，\quad \mathrm{ROC} \supset \mathrm{ROC}_1 \cap \mathrm{ROC}_2
+$$
+
+**时移性质**：
+$$
+x[n-n_0] \stackrel{z}{\longleftrightarrow} z^{-n_0} X(z)
+$$
+
+**z 域尺度变换**：
+$$
+z_0^n x[n] \stackrel{z}{\longleftrightarrow} X\left(\frac{z}{z_0}\right)
+$$
+
+**时间反转**：
+$$
+x[-n] \stackrel{z}{\longleftrightarrow} X(z^{-1})
+$$
+
+**时间扩展**：
+$$
+x_{(k)}[n] \stackrel{z}{\longleftrightarrow} X(z^k)
+$$
+
+**共轭**：
+$$
+x^*[n] \stackrel{z}{\longleftrightarrow} X^*(z^*)
+$$
+
+**z 域微分**：
+$$
+n x[n] \stackrel{z}{\longleftrightarrow} -z \frac{d}{dz} X(z)
+$$
+
+## 初值定理
+
+若 $x[n]$ 为因果序列（$x[n]=0$ for $n<0$），则
+$$
+x[0]=\lim_{z\to\infty} X(z)
+$$
+
+## 终值定理
+
+若 $x[n]$ 为因果序列且 ROC 包含单位圆，则
+$$
+\lim_{n\to\infty} x[n] = \lim_{z\to1}(z-1)X(z)
+$$
+
+## 卷积性质
+
+$$
+(x*y)[n] \stackrel{z}{\longleftrightarrow} X(z)Y(z)
+$$
+
+## DT 系统函数
+
+$$
+Y(z)=X(z)H(z)
+$$
+$H(z)$ 称为系统函数（传递函数）。
+
+## 因果性
+
+LTI 系统为因果的充要条件是：
+
+- ROC 为圆外区域（包含 $\infty$）；
+- $\lim_{z\to\infty} H(z)$ 存在且有限。
+
+对有理 $H(z)$：ROC 为 $|z| >$ 最外层极点，且 $\deg D \geq \deg N$。
+
+## 稳定性
+
+LTI 系统稳定 $\iff$ ROC 包含单位圆 $|z|=1$。
+
+**因果有理系统**稳定 $\iff$ 所有极点位于单位圆内部。
+
+## 离散时间系统函数
+
+离散时间 LTI 系统对输入 $x[n]$ 的响应为
+$$
+y[n]=(x*h)[n]
+$$
+其中 $h$ 是系统的冲激响应。
+
+若 $x$ 和 $h$ 存在 Z 变换，根据卷积性质可得
+$$
+Y(z)=X(z)H(z)
+$$
+在它们公共的 ROC 内成立。
+
+若 ROC 具有非空内点，则系统函数（又称传递函数）$H(z)$ 通过 Laurent 级数展开
+$$
+H(z)=\sum_{n=-\infty}^{\infty} h[n]z^{-n}
+$$
+唯一确定 $h$，进而确定系统性质。
+
+## 因果性
+
+回忆：$h$ 是右边序列当且仅当其 ROC 为圆外区域，即 $R_1<|z|<\infty$
+$$
+H(z)=\sum_{n=N_1}^{\infty} h[n]z^{-n}
+$$
+
+以下条件等价：
+
+1. $N_1 \geq 0$
+2. $H(z^{-1})=\sum_{n=N_1}^{\infty} h[n]z^n$ 在 $|z|<\frac{1}{R_1}$ 上是收敛的幂级数
+3. $H(z^{-1})$ 在 $z=0$ 处为可去奇点
+4. $H(z)$ 在 $z=\infty$ 处为可去奇点
+5. $\lim_{z\to 0} H(z^{-1})$ 存在且有限
+6. $\lim_{z\to \infty} H(z)$ 存在且有限
+
+## 因果性
+
+具有系统函数 $H(z)$ 的 LTI 系统是因果的，当且仅当
+
+1. ROC 是圆外区域
+2. $\lim_{z\to \infty} H(z)$ 存在且有限
+
+$$
+\text{因果} \Longleftrightarrow \text{ROC 是包含 }\infty\text{ 的圆外区域}
+$$
+
+对于有理系统函数 $H(z)=\frac{N(z)}{D(z)}$，系统因果当且仅当
+
+1. ROC 为 $|z|>|p|$，其中 $p$ 是最外层的极点
+2. $\deg D \geq \deg N$
+
+**例**：$H(z)=\frac{z^3-2z^2-z}{z^2+\frac14 z+\frac18}$ 不能作为因果系统的系统函数。
+
+## 稳定性
+
+LTI 系统稳定当且仅当其冲激响应 $h\in \ell_1$，即
+$$
+\sum_{n=-\infty}^{\infty}|h[n]|<\infty
+$$
+这等价于 $H(z)$ 在单位圆 $|z|=1$ 上绝对收敛，因此其 ROC 必须满足 $R_1<1<R_2$。
+
+$$
+\text{稳定} \Longleftrightarrow \text{ROC 包含单位圆 }|z|=1
+$$
+
+因果的有理 LTI 系统稳定当且仅当其所有极点都在单位圆内。
+
+**例**：因果系统 $H(z)=\frac{1}{1-a z^{-1}}$ 在 $|a|<1$ 时稳定。  
+**例**：$H(z)=\frac{1}{1-a z^{-1}}$ 当 $|a|>1$ 且 ROC 为 $|z|<|a|$ 时也稳定，但系统是非因果的。
+
+## 例
+
+$$
+H(z)=\frac12\left[\frac{z}{z-\frac32}-\frac{z}{z+\frac12}\right]
+$$
+存在两个极点 $p_1=-\frac12$ 和 $p_2=\frac32$。
+
+1. $|z|>\frac32$：因果，不稳定  
+   $h_1[n]=\frac12\left(\frac32\right)^n u[n]-\frac12\left(-\frac12\right)^n u[n]$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-07.jpg?height=412&width=432&top_left_y=88&top_left_x=807)
+
+2. $\frac12<|z|<\frac32$：非因果，稳定  
+   $h_2[n]=-\frac12\left(\frac32\right)^n u[-n-1]-\frac12\left(-\frac12\right)^n u[n]$
+
+3. $|z|<\frac12$：非因果，不稳定  
+   $h_3[n]=-\frac12\left(\frac32\right)^n u[-n-1]+\frac12\left(-\frac12\right)^n u[-n-1]$
+
+## 线性常系数差分方程
+
+LTI 系统的输入输出满足
+$$
+\sum_{k=0}^N a_k y[n-k] = \sum_{k=0}^M b_k x[n-k]
+$$
+对两边取 Z 变换
+$$
+\sum_{k=0}^N a_k z^{-k} Y(z) = \sum_{k=0}^M b_k z^{-k} X(z)
+$$
+故系统函数
+$$
+H(z)=\frac{Y(z)}{X(z)}=\frac{\sum_{k=0}^M b_k z^{-k}}{\sum_{k=0}^N a_k z^{-k}}
+$$
+系统函数总是有理的。**差分方程本身不指定 ROC**，需要额外条件（如稳定性、因果性）来确定 $h[n]$。
+
+## 例
+
+考虑 LTI 系统：
+$$
+y[n]-\frac12 y[n-1]=x[n]+\frac13 x[n-1]
+$$
+系统函数
+$$
+H(z)=\frac{1+\frac13 z^{-1}}{1-\frac12 z^{-1}}
+$$
+ROC 有两种可能：$|z|>\frac12$ 和 $|z|<\frac12$。
+
+1. 若 $|z|>\frac12$
+$$
+\frac{1}{1-\frac12 z^{-1}}=\sum_{n=0}^\infty \left(\frac12\right)^n z^{-n} \stackrel{z^{-1}}{\longleftrightarrow} \left(\frac12\right)^n u[n]
+$$
+由线性性和时移性质得
+$$
+h[n]=\left(\frac12\right)^n u[n] + \frac13\left(\frac12\right)^{n-1} u[n-1]
+$$
+
+## 例（续）
+
+2. 若 $|z|<\frac12$
+$$
+\frac{1}{1-\frac12 z^{-1}}=\frac{-2z}{1-2z}=-\sum_{n=1}^\infty 2^n z^n \stackrel{z^{-1}}{\longleftrightarrow} -\left(\frac12\right)^n u[-n-1]
+$$
+故
+$$
+h[n]=-\left(\frac12\right)^n u[-n-1] - \frac13\left(\frac12\right)^{n-1} u[-n]
+$$
+
+## 例（续）
+
+若使用傅里叶变换，则频率响应为
+$$
+H(e^{j\omega})=\frac{1+\frac13 e^{-j\omega}}{1-\frac12 e^{-j\omega}}
+$$
+对应的 $h[n]$ 为因果形式。
+
+**原因**：傅里叶变换方法隐含假设系统稳定（ROC 包含单位圆，即 $|z|>\frac12$），一般不适用于不稳定系统。
+
+## 例
+
+考虑差分方程
+$$
+y[n]-\frac34 y[n-1]+\frac18 y[n-2]=2x[n]
+$$
+系统函数
+$$
+H(z)=\frac{2}{1-\frac34 z^{-1}+\frac18 z^{-2}}
+$$
+部分分式展开得
+$$
+H(z)=\frac{4}{1-\frac12 z^{-1}} - \frac{2}{1-\frac14 z^{-1}}
+$$
+对应的冲激响应（三种 ROC）：
+$$
+\begin{cases}
+h_1[n]=4\left(\frac12\right)^n u[n]-2\left(\frac14\right)^n u[n], & |z|>\frac12 \\
+h_2[n]=-4\left(\frac12\right)^n u[-n-1]-2\left(\frac14\right)^n u[n], & \frac14<|z|<\frac12 \\
+h_3[n]=-4\left(\frac12\right)^n u[-n-1]+2\left(\frac14\right)^n u[-n-1], & |z|<\frac14
+\end{cases}
+$$
+
+## 例（续）
+
+输入 $x[n]=\left(\frac14\right)^n u[n]$，$X(z)=\frac{1}{1-\frac14 z^{-1}}$，$|z|>\frac14$。
+
+输出 Z 变换
+$$
+Y(z)=H(z)X(z)=\frac{2}{\left(1-\frac12 z^{-1}\right)\left(1-\frac14 z^{-1}\right)^2}
+$$
+仅在 $|z|>\frac12$ 和 $\frac14<|z|<\frac12$ 时有定义（$h_3*x$ 无定义）。
+
+部分分式展开后可求得前两种情况的响应。
+
+## 逆 Z 变换补充
+
+$$
+\frac{1}{(1-a z^{-1})^m} \stackrel{z}{\longleftrightarrow} \binom{n+m-1}{m-1} a^n u[n], \quad |z|>|a|
+$$
+$$
+\frac{1}{(1-a z^{-1})^m} \stackrel{z}{\longleftrightarrow} (-1)^m \binom{-n-1}{m-1} a^n u[-n-m], \quad |z|<|a|
+$$
+
+## 例
+
+因果 LTI 系统
+$$
+y[n]-\frac12 y[n-1]=x[n]+\frac23 x[n-1]
+$$
+输入 $x[n]=\left(-\frac23\right)^n u[n]$。
+
+$$
+H(z)=\frac{1+\frac23 z^{-1}}{1-\frac12 z^{-1}}, \quad |z|>\frac12
+$$
+$$
+X(z)=\frac{1}{1+\frac23 z^{-1}}, \quad |z|>\frac23
+$$
+$$
+Y(z)=\frac{1}{1-\frac12 z^{-1}}, \quad |z|>\frac12 \Longrightarrow y[n]=\left(\frac12\right)^n u[n]
+$$
+
+由于 $z=-\frac23$ 处零极点抵消，$Y(z)$ 的 ROC 大于 $X(z)$ 和 $H(z)$ ROC 的交集。
+
+## 例
+
+已知：
+1. 输入 $x_1[n]=\left(\frac16\right)^n u[n]$ 时，输出 $y_1[n]=\left[a\left(\frac12\right)^n + 10\left(\frac13\right)^n\right] u[n]$
+2. 输入 $x_2[n]=(-1)^n$ 时，输出 $y_2[n]=\frac74 (-1)^n$
+
+求 $H(z)$。
+
+由条件1得
+$$
+H(z)=\frac{Y_1(z)}{X_1(z)}=\frac{[(a+10)-(5+\frac{a}{3})z^{-1}](1-\frac16 z^{-1})}{(1-\frac12 z^{-1})(1-\frac13 z^{-1})}
+$$
+由条件2：$H(-1)=\frac74$，解得 $a=-9$，从而
+$$
+H(z)=\frac{(1-2z^{-1})(1-\frac16 z^{-1})}{(1-\frac12 z^{-1})(1-\frac13 z^{-1})}
+$$
+
+## 例（续）
+
+$H(z)$ 有三种可能的 ROC：
+- $|z|<\frac13$
+- $\frac13<|z|<\frac12$
+- $|z|>\frac12$
+
+由 $Y_1(z)$ 的 ROC 包含 $X_1$ 和 $H$ 的 ROC 交集，可知 ROC 为 $|z|>\frac12$（稳定）。又 $H(\infty)=1$ 有限，故系统因果。
+
+对应的差分方程为
+$$
+y[n]-\frac56 y[n-1]+\frac16 y[n-2]=x[n]-\frac{13}6 x[n-1]+\frac13 x[n-2]
+$$
+
+## 目录
+
+1. 利用 Z 变换分析 DT LTI 系统
+2. 框图表示
+3. 单边 Z 变换
+
+## 系统互连
+
+**串联（级联）系统**：
+$$
+Y=(X H_1)H_2 = X(H_1 H_2) = (X H_2)H_1
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-19.jpg?height=511&width=1159&top_left_y=295&top_left_x=53)
+
+**并联系统**：
+$$
+h=h_1+h_2, \quad H=H_1+H_2
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-20.jpg?height=338&width=725&top_left_y=206&top_left_x=414)
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-20.jpg?height=334&width=725&top_left_y=561&top_left_x=414)
+
+**反馈系统**：
+$$
+H=\frac{H_1}{1+H_1 H_2}
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-21.jpg?height=323&width=769&top_left_y=208&top_left_x=452)
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-21.jpg?height=320&width=769&top_left_y=581&top_left_x=452)
+
+## 例（直接形式）
+
+因果系统 $H(z)=\frac{1}{1-a z^{-1}}$，$|z|>|a|$ 对应差分方程
+$$
+y[n]-a y[n-1]=x[n]
+$$
+（初始静止条件）。
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-22.jpg?height=281&width=695&top_left_y=623&top_left_x=306)
+
+## 例（直接形式 II）
+
+$$
+H(z)=\frac{1-b z^{-1}}{1-a z^{-1}}
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-23.jpg?height=336&width=1031&top_left_y=275&top_left_x=130)
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-23.jpg?height=310&width=1033&top_left_y=625&top_left_x=128)
+
+## 例（直接形式）
+
+$$
+H(z)=\frac{1}{(1+\frac12 z^{-1})(1-\frac14 z^{-1})}=\frac{1}{1+\frac14 z^{-1}-\frac18 z^{-2}}
+$$
+对应差分方程
+$$
+y[n]+\frac14 y[n-1]-\frac18 y[n-2]=x[n]
+$$
+
+**Direct Form**
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-24.jpg?height=420&width=713&top_left_y=501&top_left_x=306)
+
+**Cascade Form**
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-25.jpg?height=247&width=1015&top_left_y=421&top_left_x=155)
+
+**Parallel Form**
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-26.jpg?height=544&width=1088&top_left_y=366&top_left_x=106)
+
+## 目录
+
+1. 利用 Z 变换分析 DT LTI 系统
+2. 框图表示
+3. 单边 Z 变换
+
+## 单边 Z 变换
+
+双边 Z 变换：
+$$
+X(z)=\sum_{n=-\infty}^{\infty} x[n]z^{-n}
+$$
+单边 Z 变换（单侧 Z 变换）：
+$$
+X(z)=\sum_{n=0}^{\infty} x[n]z^{-n}
+$$
+也记作 $\mathcal{UZ}\{x\}$ 或 $x[n]\stackrel{uz}{\longleftrightarrow} X(z)$。
+
+注意：$\mathcal{UZ}\{x\}=\mathcal{Z}\{x u[n]\}$。
+
+- 单边 Z 变换的 ROC 总是圆外区域（包含 $\infty$）
+- 有理情况下 $\deg N \leq \deg D$
+- $\mathcal{Z}\{x\}=\mathcal{UZ}\{x\}$ 当且仅当 $x[n]=0$（$n<0$）
+
+## 例
+
+单边 Z 变换的计算与双边几乎相同，只需对 $n\geq 0$ 求和。
+
+**例**：$x_1[n]=a^n u[n]$，
+$$
+X_1(z)=\frac{1}{1-a z^{-1}}, \quad |z|>|a|
+$$
+
+**例**：$x_2[n]=a^{n+1} u[n+1]=x_1[n+1]$，
+理论上 $z X_1(z)$，但实际计算得 $\frac{a}{1-a z^{-1}}$。
+
+## 单边逆 Z 变换
+
+单边逆 Z 变换计算方法与双边相同，但只能恢复 $n\geq 0$ 的值。
+
+**例**：
+$$
+X(z)=\frac{3-\frac56 z^{-1}}{(1-\frac14 z^{-1})(1-\frac13 z^{-1})}=\frac{1}{1-\frac14 z^{-1}}+\frac{2}{1-\frac13 z^{-1}}
+$$
+ROC 只能是 $|z|\geq \frac13$，故
+$$
+x[n]=\left(\frac14\right)^n + 2\left(\frac23\right)^n, \quad n\geq 0
+$$
+$X(z)$ 对 $n<0$ 无信息。
+
+## 单边 Z 变换的性质
+
+多数性质与双边相同。
+
+| 性质               | 信号               | 单边 Z 变换                  |
+|--------------------|--------------------|------------------------------|
+| -                  | $x[n]$             | $X(z)$                       |
+| 线性               | $a x[n]+b y[n]$    | $a X(z)+b Y(z)$              |
+| z 域尺度变换       | $z_0^n x[n]$       | $X(z/z_0)$                   |
+| 时间扩展           | $x_{(k)}[n]$       | $X(z^k)$                     |
+| 共轭               | $x^*[n]$           | $X^*(z^*)$                   |
+| z 域微分           | $n x[n]$           | $-z \frac{d}{dz} X(z)$       |
+| 初值定理           | $x[0]=\lim_{z\to\infty} X(z)$ | - |
+
+## 单边 Z 变换的卷积性质
+
+若 $x[n]=y[n]=0$（$n<0$），则
+$$
+(x*y)[n] \stackrel{uz}{\longleftrightarrow} X(z)Y(z)
+$$
+
+**注意**：该性质要求信号因果，否则不成立。
+
+## 单边 Z 变换的时延性质
+
+$$
+x[n-m] \stackrel{uz}{\longleftrightarrow} z^{-m}\left(X(z)+\sum_{k=1}^m x[-k]z^k\right)
+$$
+
+## 单边 Z 变换的时超性质
+
+$$
+x[n+m] \stackrel{uz}{\longleftrightarrow} z^m \left(X(z)-\sum_{k=0}^{m-1} x[k]z^{-k}\right)
+$$
+
+## 用单边 Z 变换解线性常系数差分方程
+
+差分方程
+$$
+\sum_{k=0}^N a_k y[n-k]=\sum_{k=0}^M b_k x[n-k]
+$$
+已知初始条件 $y[-1],\dots,y[-N]$ 及因果输入 $x[n]=0$（$n<0$）。
+
+单边 Z 变换后可分离出**零状态响应**和**零输入响应**。
+
+## 例
+
+差分方程
+$$
+y[n]+2 y[n-1]=x[n]
+$$
+初始条件 $y[-1]=\beta$，输入 $x[n]=\alpha u[n]$。
+
+零状态响应 + 零输入响应求解过程如上。
+
+## 例（续）
+
+另一差分方程
+$$
+y[n]-y[n-1]-2 y[n-2]=x[n]+2 x[n-2]
+$$
+初始条件 $y[-1]=2$，$y[-2]=-\frac12$，$x[n]=u[n]$。
+
+分别求出零输入响应和零状态响应表达式。
+
+## 作业
+
+（原文件作业部分保留）
+
+---
+
+
+<section style="
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+">
+  <div style="transform: translateY(10vh);">
+<h1>第九章 <br> Z变换 <br> 完</h1>
+  </div>
+</section>

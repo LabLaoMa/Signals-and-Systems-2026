@@ -1,0 +1,16 @@
+project:
+  type: website
+  output-dir: _site
+
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    hash: true
+    width: 1280
+    height: 960
+    margin: 0.02
+    transition: none
+    controls: true
+    progress: true
+    center: true

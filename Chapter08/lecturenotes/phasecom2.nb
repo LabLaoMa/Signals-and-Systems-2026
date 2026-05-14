@@ -1,0 +1,507 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     20691,        497]
+NotebookOptionsPosition[     20188,        479]
+NotebookOutlinePosition[     20600,        496]
+CellTagsIndexPosition[     20557,        493]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"zLHP", "=", 
+        RowBox[{"-", "sigma"}]}], ",", 
+       RowBox[{"zRHP", "=", "sigma"}], ",", 
+       RowBox[{"p1", "=", 
+        RowBox[{"-", "0.5"}]}], ",", 
+       RowBox[{"p2", "=", 
+        RowBox[{"-", "15"}]}], ",", "phaseLHP", ",", "phaseRHP"}], "}"}], ",", 
+     RowBox[{"(*", 
+      RowBox[{"\:6700\:5c0f\:76f8\:4f4d", "\:ff1a", 
+       RowBox[{
+        RowBox[{"arg", 
+         RowBox[{"(", 
+          RowBox[{"j\[Omega]", "-", "zLHP"}], ")"}]}], "-", 
+        RowBox[{"arg", 
+         RowBox[{"(", 
+          RowBox[{"j\[Omega]", "-", "p1"}], ")"}]}], "-", 
+        RowBox[{"arg", 
+         RowBox[{"(", 
+          RowBox[{"j\[Omega]", "-", "p2"}], ")"}]}]}]}], "*)"}], 
+     RowBox[{
+      RowBox[{
+       RowBox[{"phaseLHP", "[", "w_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"ArcTan", "[", 
+         RowBox[{
+          RowBox[{"-", "zLHP"}], ",", "w"}], "]"}], "-", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            RowBox[{"-", "p1"}], ",", "w"}], "]"}], "+", 
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            RowBox[{"-", "p2"}], ",", "w"}], "]"}]}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"\:975e\:6700\:5c0f\:76f8\:4f4d", "\:ff1a", 
+        RowBox[{
+         RowBox[{"arg", 
+          RowBox[{"(", 
+           RowBox[{"j\[Omega]", "-", "zRHP"}], ")"}]}], "=", 
+         RowBox[{"arg", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "sigma"}], "+", "j\[Omega]"}], ")"}]}]}], "\:3002", 
+        RowBox[{"\:56e0\:4e3a", "-", 
+         RowBox[{"sigma", " ", "\:662f\:8d1f\:6570"}]}], "\:ff0c", 
+        RowBox[{
+        "\:5176\:89d2\:5ea6\:4ece", " ", "\[Pi]", " ", 
+         "\:5f00\:59cb\:5411\:4e0b\:6389", 
+         RowBox[{"\:ff08", 
+          RowBox[{"\:8d8b\:4e8e", " ", 
+           RowBox[{"\[Pi]", "/", "2"}]}], "\:ff09"}]}], "\:ff0c", 
+        RowBox[{"\:6216\:8005\:4ece", "-", 
+         RowBox[{"\[Pi]", " ", "\:5f00\:59cb\:7ee7\:7eed\:5411\:4e0b\:6389", 
+          RowBox[{"\:ff08", 
+           RowBox[{"\:8d8b\:4e8e", "-", 
+            RowBox[{"3", 
+             RowBox[{"\[Pi]", "/", "2"}]}]}], "\:ff09"}]}]}], "\:3002", 
+        RowBox[{"\:4e3a\:4e86\:4f53\:73b0", 
+         RowBox[{
+         "\[OpenCurlyDoubleQuote]", "\:76f8\:4f4d\:6ede\:540e", 
+          "\[CloseCurlyDoubleQuote]"}]}], "\:ff0c", 
+        RowBox[{
+        "\:6211\:4eec\:8ba9\:5176\:4ece", " ", "0", " ", 
+         "\:5f00\:59cb\:8fde\:7eed\:5411\:4e0b\:6389"}], "\:ff1a"}], "*)"}], 
+      RowBox[{
+       RowBox[{"phaseRHP", "[", "w_", "]"}], ":=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{"w", ",", 
+            RowBox[{"-", "zRHP"}]}], "]"}], "-", 
+          RowBox[{"Pi", "/", "2"}]}], ")"}], "-", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            RowBox[{"-", "p1"}], ",", "w"}], "]"}], "+", 
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            RowBox[{"-", "p2"}], ",", "w"}], "]"}]}], ")"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Style", "[", 
+          
+          RowBox[{"\"\<Bode \:76f8\:4f4d\:56fe\:ff1a\:5168\:91cf\:7a0b\:8fde\
+\:7eed\:66f2\:7ebf (\:5df2\:4fee\:6b63)\>\"", ",", "16", ",", "Bold"}], "]"}],
+          ",", 
+         RowBox[{"Row", "[", 
+          RowBox[{"{", 
+           RowBox[{"(*", 
+            RowBox[{"1.", " ", "s", " ", "\:5e73\:9762\:51e0\:4f55\:56fe"}], 
+            "*)"}], 
+           RowBox[{
+            RowBox[{"Graphics", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{"Gray", ",", 
+                  RowBox[{"Opacity", "[", "0.2", "]"}], ",", 
+                  RowBox[{"InfiniteLine", "[", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "1"}], "}"}]}], "}"}], "]"}], ",", 
+                  RowBox[{"InfiniteLine", "[", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"1", ",", "0"}], "}"}]}], "}"}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"Blue", ",", 
+                  RowBox[{"Thickness", "[", "0.01", "]"}], ",", 
+                  RowBox[{"Circle", "[", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"zLHP", ",", "0"}], "}"}], ",", "0.25"}], "]"}], ",", 
+                  RowBox[{"Text", "[", 
+                   RowBox[{"\"\<LHP\>\"", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"zLHP", ",", 
+                    RowBox[{"-", "1.2"}]}], "}"}]}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"Red", ",", 
+                  RowBox[{"Thickness", "[", "0.01", "]"}], ",", 
+                  RowBox[{"Circle", "[", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"zRHP", ",", "0"}], "}"}], ",", "0.25"}], "]"}], ",", 
+                  RowBox[{"Text", "[", 
+                   RowBox[{"\"\<RHP\>\"", ",", 
+                    RowBox[{"{", 
+                    RowBox[{"zRHP", ",", 
+                    RowBox[{"-", "1.2"}]}], "}"}]}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"Black", ",", "Thick", ",", 
+                  RowBox[{"Line", "[", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"p1", "-", "0.2"}], ",", 
+                    RowBox[{"-", "0.2"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"p1", "+", "0.2"}], ",", "0.2"}], "}"}]}], "}"}], 
+                   "]"}], ",", 
+                  RowBox[{"Line", "[", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"p1", "-", "0.2"}], ",", "0.2"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"p1", "+", "0.2"}], ",", 
+                    RowBox[{"-", "0.2"}]}], "}"}]}], "}"}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"Black", ",", "Thick", ",", 
+                  RowBox[{"Line", "[", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"p2", "-", "0.2"}], ",", 
+                    RowBox[{"-", "0.2"}]}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"p2", "+", "0.2"}], ",", "0.2"}], "}"}]}], "}"}], 
+                   "]"}], ",", 
+                  RowBox[{"Line", "[", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"p2", "-", "0.2"}], ",", "0.2"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"p2", "+", "0.2"}], ",", 
+                    RowBox[{"-", "0.2"}]}], "}"}]}], "}"}], "]"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"Darker", "[", "Green", "]"}], ",", 
+                  RowBox[{"PointSize", "[", "0.03", "]"}], ",", 
+                  RowBox[{"Point", "[", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "omega"}], "}"}], "]"}]}], "}"}]}], 
+               "}"}], ",", 
+              RowBox[{"PlotRange", "->", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"-", "20"}], ",", "10"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"-", "2"}], ",", "25"}], "}"}]}], "}"}]}], ",", 
+              RowBox[{"ImageSize", "->", "300"}], ",", 
+              RowBox[{"Frame", "->", "True"}]}], "]"}], ",", 
+            RowBox[{"(*", 
+             RowBox[{
+             "2.", " ", "\:5bf9\:6570\:9891\:7387\:76f8\:4f4d\:66f2\:7ebf"}], 
+             "*)"}], 
+            RowBox[{"LogLinearPlot", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"phaseLHP", "[", "w", "]"}], ",", 
+                RowBox[{"phaseRHP", "[", "w", "]"}]}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"w", ",", "0.01", ",", "200"}], "}"}], ",", 
+              RowBox[{"PlotStyle", "->", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"Blue", ",", "Thick"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"Red", ",", "Thick"}], "}"}]}], "}"}]}], ",", 
+              RowBox[{"Frame", "->", "True"}], ",", 
+              RowBox[{"ImageSize", "->", "500"}], ",", 
+              RowBox[{"PlotRange", "->", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0.01", ",", "200"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"-", "5.5"}], ",", "0.5"}], "}"}]}], "}"}]}], ",", 
+              
+              RowBox[{
+              "(*", "\:786e\:4fdd\:7eb5\:8f74\:7a7a\:95f4\:8db3\:591f", 
+               "*)"}], 
+              RowBox[{"GridLines", "->", 
+               RowBox[{"{", 
+                RowBox[{"Automatic", ",", 
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", 
+                   RowBox[{
+                    RowBox[{"-", "Pi"}], "/", "2"}], ",", 
+                   RowBox[{"-", "Pi"}], ",", 
+                   RowBox[{
+                    RowBox[{"-", "3"}], " ", 
+                    RowBox[{"Pi", "/", "2"}]}]}], "}"}]}], "}"}]}], ",", 
+              RowBox[{"GridLinesStyle", "->", 
+               RowBox[{"Directive", "[", 
+                RowBox[{"Gray", ",", "Dashed"}], "]"}]}], ",", 
+              RowBox[{"FrameLabel", "->", 
+               RowBox[{"{", 
+                
+                RowBox[{"\"\<\:9891\:7387 \[Omega] (log scale)\>\"", 
+                 ",", "\"\<\:76f8\:89d2 (rad)\>\""}], "}"}]}], ",", 
+              RowBox[{"Epilog", "->", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"Blue", ",", 
+                   RowBox[{"PointSize", "[", "0.02", "]"}], ",", 
+                   RowBox[{"Point", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Log", "[", "omega", "]"}], ",", 
+                    RowBox[{"phaseLHP", "[", "omega", "]"}]}], "}"}], "]"}]}],
+                   "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"Red", ",", 
+                   RowBox[{"PointSize", "[", "0.02", "]"}], ",", 
+                   RowBox[{"Point", "[", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Log", "[", "omega", "]"}], ",", 
+                    RowBox[{"phaseRHP", "[", "omega", "]"}]}], "}"}], "]"}]}],
+                   "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"Text", "[", 
+                   RowBox[{"\"\<-\[Pi]/2\>\"", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Log", "[", "180", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "Pi"}], "/", "2"}], "-", "0.2"}]}], "}"}]}], 
+                   "]"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"Text", "[", 
+                   RowBox[{"\"\<-3\[Pi]/2\>\"", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Log", "[", "180", "]"}], ",", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "3"}], " ", 
+                    RowBox[{"Pi", "/", "2"}]}], "-", "0.2"}]}], "}"}]}], 
+                   "]"}], "}"}]}], "}"}]}]}], "]"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Panel", "[", 
+          RowBox[{"Column", "[", 
+           RowBox[{"{", 
+            
+            RowBox[{"\"\<\:84dd\:8272 (Min Phase)\:ff1a\:7ecf\:5386\:6ede\
+\:540e\:ff08\:6781\:70b9\:ff09\:540e\:ff0c\:53d7 LHP \:96f6\:70b9\:8865\:507f\
+\:56de\:5347\:81f3 -\[Pi]/2\:3002\>\"", 
+             ",", "\"\<\:7ea2\:8272 (Non-Min)\:ff1aRHP \:96f6\:70b9\:4ea7\
+\:751f\:989d\:5916\:7684\:76f8\:4f4d\:51cf\:5c0f\:ff0c\:6700\:7ec8\:4e0b\:6c89\
+\:81f3 -3\[Pi]/2 (-4.71)\:3002\>\""}], "}"}], "]"}], "]"}]}], "}"}], 
+       "]"}]}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "omega", ",", "0.1", 
+       ",", "\"\<\:626b\:63cf\:9891\:7387 (\[Omega])\>\""}], "}"}], ",", 
+     "0.01", ",", "200"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "sigma", ",", "5", ",", "\"\<\:96f6\:70b9\:8ddd\:79bb (\[Sigma])\>\""}],
+       "}"}], ",", "1", ",", "15"}], "}"}], ",", 
+   RowBox[{"ControlPlacement", "->", "Left"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.987668488576663*^9, 3.987668488578071*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"fe7916e0-20e9-4c96-9840-dbb6dec14b90"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`omega$$ = 0.01, $CellContext`sigma$$ = 5, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`omega$$], 0.1, 
+       "\:626b\:63cf\:9891\:7387 (\[Omega])"}, 0.01, 200, ControlType -> 
+      Manipulator}, {{
+       Hold[$CellContext`sigma$$], 5, "\:96f6\:70b9\:8ddd\:79bb (\[Sigma])"}, 
+      1, 15, ControlType -> Manipulator}}, Typeset`size$$ = {
+    800., {192.22587947927065`, 197.95781307302065`}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`omega$$ = 0.1, $CellContext`sigma$$ = 5}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`zLHP$ = -$CellContext`sigma$$, $CellContext`zRHP$ = \
+$CellContext`sigma$$, $CellContext`p1$ = -0.5, $CellContext`p2$ = -15, \
+$CellContext`phaseLHP$, $CellContext`phaseRHP$}, $CellContext`phaseLHP$[
+           Pattern[$CellContext`w$, 
+            Blank[]]] := 
+         ArcTan[-$CellContext`zLHP$, $CellContext`w$] - (
+          ArcTan[-$CellContext`p1$, $CellContext`w$] + 
+          ArcTan[-$CellContext`p2$, $CellContext`w$]); $CellContext`phaseRHP$[
+          
+           Pattern[$CellContext`w$, 
+            Blank[]]] := (ArcTan[$CellContext`w$, -$CellContext`zRHP$] - Pi/
+           2) - (ArcTan[-$CellContext`p1$, $CellContext`w$] + 
+          ArcTan[-$CellContext`p2$, $CellContext`w$]); Column[{
+           Style[
+           "Bode \:76f8\:4f4d\:56fe\:ff1a\:5168\:91cf\:7a0b\:8fde\:7eed\:66f2\
+\:7ebf (\:5df2\:4fee\:6b63)", 16, Bold], 
+           Row[{
+             Graphics[{{Gray, 
+                Opacity[0.2], 
+                InfiniteLine[{{0, 0}, {0, 1}}], 
+                InfiniteLine[{{0, 0}, {1, 0}}]}, {Blue, 
+                Thickness[0.01], 
+                Circle[{$CellContext`zLHP$, 0}, 0.25], 
+                Text["LHP", {$CellContext`zLHP$, -1.2}]}, {Red, 
+                Thickness[0.01], 
+                Circle[{$CellContext`zRHP$, 0}, 0.25], 
+                Text["RHP", {$CellContext`zRHP$, -1.2}]}, {Black, Thick, 
+                
+                Line[{{$CellContext`p1$ - 0.2, -0.2}, {$CellContext`p1$ + 0.2,
+                    0.2}}], 
+                
+                Line[{{$CellContext`p1$ - 0.2, 0.2}, {$CellContext`p1$ + 
+                   0.2, -0.2}}]}, {Black, Thick, 
+                
+                Line[{{$CellContext`p2$ - 0.2, -0.2}, {$CellContext`p2$ + 0.2,
+                    0.2}}], 
+                
+                Line[{{$CellContext`p2$ - 0.2, 0.2}, {$CellContext`p2$ + 
+                   0.2, -0.2}}]}, {
+                Darker[Green], 
+                PointSize[0.03], 
+                Point[{0, $CellContext`omega$$}]}}, 
+              PlotRange -> {{-20, 10}, {-2, 25}}, ImageSize -> 300, Frame -> 
+              True], 
+             LogLinearPlot[{
+               $CellContext`phaseLHP$[$CellContext`w], 
+               $CellContext`phaseRHP$[$CellContext`w]}, {$CellContext`w, 0.01,
+                200}, PlotStyle -> {{Blue, Thick}, {Red, Thick}}, Frame -> 
+              True, ImageSize -> 500, PlotRange -> {{0.01, 200}, {-5.5, 0.5}},
+               GridLines -> {Automatic, {0, (-Pi)/2, -Pi, (-3) (Pi/2)}}, 
+              GridLinesStyle -> Directive[Gray, Dashed], 
+              FrameLabel -> {
+               "\:9891\:7387 \[Omega] (log scale)", "\:76f8\:89d2 (rad)"}, 
+              Epilog -> {{Blue, 
+                 PointSize[0.02], 
+                 Point[{
+                   Log[$CellContext`omega$$], 
+                   $CellContext`phaseLHP$[$CellContext`omega$$]}]}, {Red, 
+                 PointSize[0.02], 
+                 Point[{
+                   Log[$CellContext`omega$$], 
+                   $CellContext`phaseRHP$[$CellContext`omega$$]}]}, {
+                 Text["-\[Pi]/2", {
+                   Log[180], (-Pi)/2 - 0.2}]}, {
+                 Text["-3\[Pi]/2", {
+                   Log[180], (-3) (Pi/2) - 0.2}]}}]}], 
+           Panel[
+            
+            Column[{"\:84dd\:8272 (Min Phase)\:ff1a\:7ecf\:5386\:6ede\:540e\
+\:ff08\:6781\:70b9\:ff09\:540e\:ff0c\:53d7 LHP \:96f6\:70b9\:8865\:507f\:56de\
+\:5347\:81f3 -\[Pi]/2\:3002", 
+              "\:7ea2\:8272 (Non-Min)\:ff1aRHP \:96f6\:70b9\:4ea7\:751f\:989d\
+\:5916\:7684\:76f8\:4f4d\:51cf\:5c0f\:ff0c\:6700\:7ec8\:4e0b\:6c89\:81f3 -3\
+\[Pi]/2 (-4.71)\:3002"}]]}]], 
+      "Specifications" :> {{{$CellContext`omega$$, 0.1, 
+          "\:626b\:63cf\:9891\:7387 (\[Omega])"}, 0.01, 
+         200}, {{$CellContext`sigma$$, 5, 
+          "\:96f6\:70b9\:8ddd\:79bb (\[Sigma])"}, 1, 15}}, 
+      "Options" :> {ControlPlacement -> Left}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      1118.0233207684823`, {222.99630489430973`, 228.72823848805973`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.987668489038577*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"5d884a56-12d6-428b-b86e-eb5a4a864720"]
+}, Open  ]]
+},
+WindowSize->{1797, 1143},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+LightDark->"Light",
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e6bb0efc-2cb4-43e5-b611-1404624a18d7"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 13735, 335, 269, "Input",ExpressionUUID->"fe7916e0-20e9-4c96-9840-dbb6dec14b90"],
+Cell[14314, 359, 5858, 117, 487, "Output",ExpressionUUID->"5d884a56-12d6-428b-b86e-eb5a4a864720"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

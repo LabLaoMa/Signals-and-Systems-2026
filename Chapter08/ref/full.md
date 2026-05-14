@@ -1,0 +1,1294 @@
+## 第9章拉普拉斯变换
+
+The Laplace Transform
+
+## 本章基本内容：
+
+双边拉普拉斯变换；  
+2. 双边拉普拉斯变换的收敛域；  
+3. 零极点图；  
+4. 双边拉普拉斯变换的性质；  
+5. 系统函数；  
+6. 单边拉普拉斯变换；
+
+## 9.0 引言 Introduction
+
+傅里叶分析方法之所以在信号与LTI系统分析中如此有用，很大程度上是因为相当广泛的信号都可以表示成复指数信号的线性组合，而复指数函数是一切 LTI 系统的特征函数。
+
+傅里叶变换是以复指数函数中的特例，即以 和 为基底分解信号的。对于更一般的复指数函数 和 也理应能以此为基底对信号进行分解。 Z n
+
+## 将傅里叶变换推广到更一般的情况就是本章及下一章要讨论的中心问题。
+
+通过本章及下一章，会看到拉氏变换和Z变换不仅具有很多与傅里叶变换相同的重要性质，不仅能适用于用傅里叶变换的方法可以解决的信号与系统分析问题，而且还能解决傅里叶分析方法不适用的许多方面。拉氏变换与Z变换的分析方法是傅里叶分析法的推广，傅里叶分析是它们的特例。
+
+## 9.1 拉普拉斯变换
+
+The Laplace Transform
+
+复指数信号 是一切连续时间LTI系统的特征函数。如果LTI系统的单位冲激响应为 ， 则系统对 st 产生的响应是:e
+
+$$
+y (t) = H (s) e ^ {s t} \text {其 中} H (s) = \int_ {- \infty} ^ {\infty} h (t) e ^ {- s t} d t
+$$
+
+显然当 s j = 时，就是傅里叶变换。
+
+## 一.双边拉氏变换的定义：
+
+$$
+X (s) = \int_ {- \infty} ^ {\infty} x (t) e ^ {- s t} d t
+$$
+
+称为 x t( )的双边拉氏变换，其中 s =σ+j@
+
+若  则有：
+
+$$
+X (j \omega) = \int_ {- \infty} ^ {\infty} x (t) e ^ {- j \omega t} d t
+$$
+
+这就是 x t( )的傅里叶变换。
+
+即：CTFT是双边拉普拉斯变换在 或是在
+
+ω复平面上的jω轴上的特例。
+
+由于 $= \int _ { - \infty } ^ { \infty } x ( t ) e ^ { - \sigma t } e ^ { - j \omega t } d t = \int _ { - \infty } ^ { \infty } [ x ( t$ )e-or]e-ior dt
+
+$$
+= \mathbb {F} [ x (t) e ^ {- \sigma t} ]
+$$
+
+所以拉氏变换是对傅里叶变换的推广，x t( )的拉氏变换就是 的傅里叶变换。只要有( ) tx t e−合适的 存在，就可以使某些本来不满足狄里赫利条件的信号在引入 后满足该条件。即te−有些信号的傅氏变换不收敛而它的拉氏变换存在。
+
+拉氏变换比傅里叶变换有更广泛的适用性。
+
+例1 . x(t）=e"u(t)
+
+## 求它的傅立叶变换和拉氏变换
+
+说明：一个连续信号如果存在傅立叶变换，这个信号必须绝对可积，即在此例中，要求 ， 才有傅里叶变换：
+
+$$
+X (j \omega) = \int_ {0} ^ {\infty} e ^ {- a t} e ^ {- j \omega t} d t = \frac {1}{a + j \omega} \quad (a > 0)
+$$
+
+$$
+X (s) = \int_ {- \infty} ^ {\infty} x (t) e ^ {- s t} d t = \int_ {- \infty} ^ {\infty} e ^ {- a t} u (t) e ^ {- s t} d t
+$$
+
+$$
+\begin{array}{l} s = \sigma + j \omega \\ = \int_ {0} ^ {\infty} e ^ {- a t} e ^ {- (\sigma + j \omega) t} d t = \int_ {0} ^ {\infty} e ^ {- (a + \sigma) t} e ^ {- j \omega t} d t \\ = \frac {1}{j \omega + (a + \sigma)} = \frac {1}{s + a}, \quad \sigma > - a \\ \end{array}
+$$
+
+即 e-"u(t）← ,Re{s} >-a s+a
+
+If  时，
+
+$$
+\boldsymbol {x} (t) = \boldsymbol {u} (t)
+$$
+
+可知 u(1）↔1 Re s   0S
+
+## 例2. $x ( t ) = - e ^ { - a t } u ( - t )$ 求信号的拉氏变换
+
+## 要求 a  0 信号 才有傅立叶变换存在
+
+$$
+X (s) = \int_ {- \infty} ^ {\infty} - e ^ {- a t} u (- t) e ^ {- s t} d t \stackrel {s = \sigma + j \omega} {=} \int_ {- \infty} ^ {0} e ^ {- (a + \sigma) t} e ^ {- j \omega t} d t
+$$
+
+要求a +  0时，积分式才收敛
+
+$$
+X (s) = \frac {1}{j \omega + (a + \sigma)} = \frac {1}{s + a}, \quad \sigma <   - a
+$$
+
+即 -e“u（-t）1 $( - t ) \not  { \frac { 1 } { s + a } } , \mathbf { R e } \{ s \} < { \mathrm { ~ } }$ -a
+
+## 分析：
+
+1、 比较例1和例2的两个信号，它们的拉氏变换的代数表示式是一样的，但使这个代数表示式成立的S域却不相同。
+
+结论：给出一个信号的拉氏变换时，代数表示式和使该表示式成立的变量s的范围都应给出。
+
+2、 拉氏变换与傅里叶变换一样存在收敛问题。并非任何信号的拉氏变换都存在，也不是 S 平面上的任何复数都能使拉氏变换收敛。  
+3、使拉氏变换积分收敛的复数 S的范围，称为拉氏变换的收敛域 ，简记为ROC
+
+（Region of Convergence）
+
+4、 不同的信号可能会有完全相同的拉氏变换表达式，只是它们的收敛域不同。  
+5、只有拉氏变换表达式连同相应的收敛域，才能和信号建立一一对应的关系。  
+如果拉氏变换的ROC包含 轴，则j有
+
+$$
+X (j \omega) = X (s) \Big | _ {s = j \omega}
+$$
+
+## 二. ROC的表示方法： （复平面)
+
+![](imglink/fb20ae4a323dea498498f75b2488f99e4dfe2cc3b342ba420d0250f447c77add.png)  
+例1的ROC
+
+![](imglink/0938782167a9f4c557a439706b352c5145bdd169af8cfcb0fbe4365cb1fbbc6b.png)  
+例2的ROC
+
+## 有理函数X(S)的ROC的性质：
+
+1）X(s)的ROC在s平面内由平行于轴的带状区域组成；  
+2）右边信号的ROC在s平面的右半部；  
+3） 左边信号的ROC在s平面的左半部；  
+4） 双边信号的ROC带状区域；
+
+若 是右边信号, , 在ROC内，则有
+
+绝对可积， 即：
+
+$$
+\int_ {T} ^ {\infty} | x (t) e ^ {- \sigma_ {0} t} | d t <   \infty
+$$
+
+若   1 0  ，则 1( ) tT x t e d t  −
+
+$$
+\begin{array}{l} = \int_ {T} ^ {\infty} \left| x (t) e ^ {- \sigma_ {0} t} e ^ {- (\sigma_ {1} - \sigma_ {0}) t} \right| d t \\ \leq e ^ {- (\sigma_ {1} - \sigma_ {0}) T} \int_ {T} ^ {\infty} | x (t) e ^ {- \sigma_ {0} t} | d t <   \infty \\ \end{array}
+$$
+
+表明 也在收敛域内，右边信号的ROC在极点的右边。
+
+若 是左边信号，定义于 (-∞,T], 在 0
+
+ROC 内， 则
+
+$$
+\begin{array}{l} \int_ {- \infty} ^ {T} \left| x (t) e ^ {- \sigma_ {1} t} \right| d t = \int_ {- \infty} ^ {T} \left| x (t) e ^ {- \sigma_ {0} t} e ^ {- (\sigma_ {1} - \sigma_ {0}) t} \right| d t \\ \leq e ^ {- (\sigma_ {1} - \sigma_ {0}) T} \int_ {- \infty} ^ {T} \left| x (t) e ^ {- \sigma_ {0} t} \right| d t <   \infty \\ \end{array}
+$$
+
+表明  也在收敛域内。左边信号的ROC在最 左极点的的左边
+
+例1.
+
+$$
+x (t) = \left\{ \begin{array}{l l} e ^ {- a t} & 0 <   t <   T \\ 0 & \text {其 它} t \end{array} \right.
+$$
+
+$$
+X (s) = \int_ {0} ^ {T} e ^ {- a t} e ^ {- s t} d t
+$$
+
+$$
+= \int_ {0} ^ {T} e ^ {- (s + a) t} d t = \frac {1}{s + a} [ 1 - e ^ {- (s + a) T} ]
+$$
+
+有极点 s=-a
+
+考查零点， ( ) s a Te− + 1=
+
+得
+
+$$
+s = - a + j \frac {2 \pi}{T} k
+$$
+
+![](imglink/75352f6a44cb356ae928090342fdec44bac26284a4a8c6c5d648aad7363b424e.png)
+
+显然 在 也有一阶零点，由于零极点相抵消，致使在整个S平面上无极点。
+
+例2. x(t）=e-
+
+$$
+x (t) = e ^ {- b t} u (t) + e ^ {b t} u (- t)
+$$
+
+$$
+\begin{array}{l} e ^ {- b t} u (t) \leftrightarrow \frac {1}{s + b}, \quad \mathrm {R e} [ s ] > - b \\ e ^ {b t} u (- t) \leftrightarrow - \frac {1}{s - b}, \operatorname {R e} [ s ] <   + b \\ \end{array}
+$$
+
+![](imglink/da36b37577f765415590dae9f8ba049ee78ebfbad3eb568c63c008dcc246251c.png)
+
+当 b  0 时，上述ROC有公共部分，
+
+$$
+X (s) = \frac {1}{s + b} - \frac {1}{s - b} \quad - b <   \operatorname {R e} [ s ] <   b
+$$
+
+当 时，上述 ROC 无公共部分，表明b  0X s( ) 不存在。
+
+## 三 零极点图
+
+前面的例子给出的拉氏变换式都是关于s的两个多项式之比，这种形式的拉氏变换称为有理拉氏变换。
+
+$$
+\text {即} \qquad X (s) = M {\frac {N (s)}{D (s)}} = M {\frac {\prod_ {i} (s - \beta_ {i})}{\prod_ {i} (s - \alpha_ {i})}}
+$$
+
+令分子多项式 的根称为 的零点，用表示
+
+令分母多项式 的根称为 的极点，用表示 ×
+
+的零极点图：在s平面标出 的零点和极点。
+
+例：画出 s-1 的零极点图s²+3s+2 (s+1)(s+2)
+
+在有限S平面内， X 的零点和极点可以完 s( )全表征 的代数表示式。 （常数因子除外）
+
+例：已知 的零、极点分布如图，且
+
+$$
+X (\infty) = 5 \text {写出} X (s) \text {表 示 式 。}
+$$
+
+![](imglink/3f894aaef7d60d5c89944b44d3605f9ecf73347189df090799f22b872cbb0374.png)
+
+$$
+X (s) = 5 \times \frac {(s + 2) (s - 1)}{s (s + 1)}
+$$
+
+零极点图及其收敛域可以表示一个 最多与真实的 相差一个常数因子 。 M因此，零极点图是拉氏变换的图示方法。
+
+例：画出 $X ( s ) = { \frac { 2 s ^ { 2 } + 5 s - 1 2 } { ( s ^ { 2 } + 2 s + 1 0 ) ( s + 2 ) } }$
+
+的零极点图
+
+$$
+X (s) = \frac {(s + 4) (2 s - 3)}{(s + 2) (s + 1 + j 3) (s + 1 - j 3)}
+$$
+
+例：
+
+$$
+\begin{array}{l} X (s) = \frac {1}{s ^ {2} + 3 s + 2} \\ = \frac {1}{s + 1} - \frac {1}{s + 2} \\ \end{array}
+$$
+
+![](imglink/645dbc934788323b8abb91193b41a708dc65d65b3174cba14743b7762a3b29e7.png)
+
+## 可以形成三种 ROC：
+
+ROC： 此时 是右边信号。  
+2) ROC： 此时 是左边信号。x t( )  
+3) ROC： 此时 是双边信号
+
+## 9.2 拉氏变换的性质
+
+## Properties of the Laplace Transform
+
+## ❖ 拉氏变换与傅氏变换一样具有很多重要的性质。这里只着重于ROC的讨论。
+
+## 1. 线性 （Linearity ）
+
+若 x(t）→X(s）, ROC : R1
+
+x(t）→X（s）, ROC: R2
+
+则 ax,(t)+bx(t)←→aX,(s)+bX(s)
+
+ROC包括 R R 1 2
+
+例4. $x _ { 1 } ( t ) = \delta \left( t \right) + e ^ { - t } u \left( t \right)$ ( ) ( )tx t e u t −= −
+
+$$
+\begin{array}{l} X _ {1} (s) = 1 + \frac {1}{s + 1} = \frac {s + 2}{s + 1}, \qquad \mathrm {R O C :} \sigma > - 1 \\ X _ {2} (s) = \frac {- 1}{s + 1}, \quad \mathrm {R O C :} \sigma > - 1 \\ \end{array}
+$$
+
+而 $x _ { 1 } ( t ) + x _ { 2 } ( t ) = \delta \bigl ( t \bigr )  1$ ROC为整个S平面
+
+• 当 R与 无交集时，表明 不存在。
+
+例5: x(t)=3e²u(t)-2eu(t)
+
+$$
+\begin{array}{l} e ^ {- 2 t} u (t) \leftrightarrow \frac {1}{s + 2}, \operatorname {R e} \{s \} > - 2 \\ e ^ {- t} u (t) \leftrightarrow \frac {1}{s + 1}, \operatorname {R e} \{s \} > - 1 \\ \end{array}
+$$
+
+由线性性质：
+
+$$
+X (s) = \frac {3}{s + 2} - \frac {2}{s + 1}, \operatorname {R e} \{s \} > - 1
+$$
+
+## 2. 时移性质 （Time Shifting）
+
+若x(t)←→X(s), ROC: R
+
+则x(t-t0）→X(s)est，, ROC不变
+
+3. S域平移 （Shifting in the s-Domain） :
+
+若 x(t）←→X(s), ROC: R
+
+则 x(t)e ←→X(s -s0)， ROC:R+Re(s)
+
+表明 的ROC是将 的ROC平移了一个 。
+
+例. x(t)=eu(t),
+
+$$
+X (s) = \frac {1}{s + 1}, \qquad \sigma > - 1
+$$
+
+$$
+x (t) \cdot e ^ {- 2 t} = e ^ {- 3 t} u (t)
+$$
+
+$$
+X (s + 2) = \frac {1}{s + 3}
+$$
+
+显然
+
+ROC:σ > -3
+
+![](imglink/3cd326a30bdb4c418af4b26b6159f420afd593355fc6a25cbabf2561f2c910be.png)
+
+![](imglink/b51772cf4fef07fb42cd1a9fa0926f315d3de8e699ef8a82bdbdbecfabb47656.png)
+
+## 4. 时域尺度变换 （Time Scaling）
+
+若
+
+$$
+x (t) \leftrightarrow X (s),
+$$
+
+$$
+\mathrm {R O C}: R
+$$
+
+则
+
+$$
+x (a t) \leftrightarrow \frac {1}{| a |} X (\frac {s}{a})
+$$
+
+$$
+\mathrm {R O C}: a R
+$$
+
+![](imglink/5de52befd7cb49692f7c7f75b953808d593417ee211dd5182a5060113835d897.png)
+
+![](imglink/8fe4a3dac92bff2521dca6104df83526b681bc17e6f760e19765b8574914f337.png)  
+a  1
+
+![](imglink/8b861b7945bc9d41a28dcd9b767286b63618b331653379e412c0f18ae375b704.png)  
+−1 a  0
+
+例. $x ( t ) = e ^ { - t } u \big ( t \big )  X ( s ) = \frac { 1 } { s + 1 } ,$ q>-1
+
+求 $x ( \frac { t } { 2 } ) = e ^ { - \frac { t } { 2 } } u \left( t \right)$ 的拉氏变换及ROC
+
+$$
+X (s) = \frac {1}{s + \frac {1}{2}} = \frac {2}{2 s + 1}, \quad \mathrm {R O C :} \sigma > - \frac {1}{2}
+$$
+
+可见：若信号在时域尺度变换，其拉氏变换的ROC在S平面上作相反的尺度变换。
+
+特例
+
+$$
+x (- t) \leftrightarrow X (- s), \quad \mathrm {R O C}: - R
+$$
+
+## 5. 共轭对称 （Conjugation） 性：
+
+若 x(t)←→X(s), ROC: R
+
+则x(t)←→X(s), ROC: R
+
+当  为实信号时，有： x*(t)=x(t)
+
+$$
+\therefore X (s) = X ^ {*} \left(s ^ {*}\right)
+$$
+
+由此可得以下结论：
+
+如果 是实信号，且 在 有极点（或零x t( ) X s( ) 0s点），则 一定在 也有极点或零点。这表X s( ) 0明：实信号的拉氏变换其复数零、极点必共轭成对出现。
+
+## 6. 卷积性质:（Convolution Property）
+
+若 x(t）→X(s), ROC : R
+
+$$
+x _ {2} (t) \leftrightarrow X _ {2} (s), \quad \mathrm {R O C}: R _ {2}
+$$
+
+则 $x _ { 1 } ( t ) * x _ { 2 } ( t )  X _ { 1 } ( s ) X _ { 2 } ( s )$ ROC:包括R∩R
+
+例. $X _ { _ { 1 } } ( s ) = { \frac { 1 } { s + 1 } } ,$ ROC: R = σ >-1
+
+$$
+X _ {2} (s) = \frac {s + 1}{(s + 2) (s + 3)}, \quad \mathrm {R O C :} R _ {2} = \sigma > - 2
+$$
+
+显然有: $R _ { 1 } \cap R _ { 2 } = \sigma > - 1$
+
+$$
+X _ {1} (s) X _ {2} (s) = \frac {1}{(s + 2) (s + 3)}, \quad \sigma > - 2, \quad \text {R O C 扩 大}
+$$
+
+原因是 与 相乘时，发生了零极点2X s( )相抵消的现象。当被抵消的极点恰好在ROC的边界上时，就会使收敛域扩大。
+
+7. 时域微分:（Differentiation in theTime Domain）
+
+x t X s ( ) ( ) ,  RO C : R 若 则 ( ) ( ), dx t sX s dt
+
+ROC包括 R ,有可能扩大。
+
+## 8. S域微分:（Differentiation in the s-Domain）
+
+若 x(t）↔→X(s）, ROC : R
+
+则-tx()dx(s) ROC : R ds
+
+例.求 的拉氏变换
+
+$$
+\because e ^ {- a t} u (t) \leftrightarrow \frac {1}{s + a} \quad \mathrm {R O C}: \sigma > - a
+$$
+
+$$
+\therefore t e ^ {- a t} u (t) \leftrightarrow - \frac {d}{d s} (\frac {1}{s + a}) = \frac {1}{(s + a) ^ {2}} \quad \mathrm {R O C}: \sigma > - a
+$$
+
+## 9. 时域积分:（Integration in the Time Domain ）
+
+若 x(t)←X(s), ROC: R
+
+则x(z)dt=x(s)
+
+ROC :包括 R∩(Re(s) > 0)
+
+证明： x(t)dτ = x(t)*u(t)
+
+$$
+\therefore \int_ {- \infty} ^ {t} x (\tau) d \tau \leftrightarrow \frac {1}{s} X (s)
+$$
+
+ROC:包括
+
+$$
+R \cap (\operatorname {R e} \{s \} > 0)
+$$
+
+## 10. 初值与终值定理:
+
+## （The Initial- and Final- Value Theorems)
+
+条件(因果信号） $\left\{ { \begin{array} { l l } { t < 0 , } & { x ( t ) = 0 } \\ { t = 0 , } & { x ( t ) } \end{array} } \right.$
+
+## 不包含冲激或高阶奇异函数
+
+初值定理： $x ( 0 ^ { + } ) = \operatorname* { l i m } _ { s \to \infty } s X ( s )$
+
+lim ( ) lim ( )x t sX s终值定理： = t→ 0 s →
+
+## 例： 已知因果信号 的拉氏变换
+
+$$
+X (s) = \frac {2 s ^ {2} + 5 s + \text {求}}{(s + 1) (s + 2) (s + 3)} \quad \text {和} x \left(0 ^ {+}\right) \quad \lim  _ {t \rightarrow \infty} x (t)
+$$
+
+## Proof:
+
+时 x t( ) 0，且在 不包含奇异函数。
+
+$$
+\therefore x (t) = x (t) u (t)
+$$
+
+将  在 t = 0 展开为Taylor级数有：
+
+$$
+x (t) = \left[ x (0 ^ {+}) + x ^ {\prime} (0 ^ {+}) t + x ^ {\prime \prime} (0 ^ {+}) \frac {t ^ {2}}{2} + \dots + x ^ {(n)} (0 ^ {+}) \frac {t ^ {n}}{n !} + \dots \right] u (t)
+$$
+
+## 对上式两边做拉氏变换：
+
+$$
+X (s) = \frac {1}{s} x \left(0 ^ {+}\right) + \frac {1}{s ^ {2}} x ^ {\prime} \left(0 ^ {+}\right) + \dots + \frac {1}{s ^ {n + 1}} x ^ {(n)} \left(0 ^ {+}\right) + \dots
+$$
+
+$$
+\begin{array}{l} = \sum_ {n = 0} ^ {\infty} x ^ {(n)} (0 ^ {+}) \frac {1}{s ^ {n + 1}} \\ \therefore \lim  _ {s \rightarrow \infty} s X (s) = x \left(0 ^ {+}\right) \\ \end{array}
+$$
+
+## 终值定理
+
+## 证:
+
+是因果信号，且在 t = 无奇异函数0 ,
+
+$$
+\begin{array}{l} \int_ {0 ^ {+}} ^ {\infty} \frac {d x (t)}{d t} e ^ {- s t} d t = \int_ {0 ^ {+}} ^ {\infty} e ^ {- s t} d x (t) \\ = x (t) e ^ {- s t} \left| _ {0 ^ {+}} ^ {\infty} + s \int_ {0 ^ {+}} ^ {\infty} e ^ {- s t} x (t) d t \right. \\ \end{array}
+$$
+
+除了 在 可以有一阶极点外，其它极点均在S平面的左半平面 （即保证 有终值）
+
+故 的ROC中必包含 轴。表明
+
+s 的实部  可以大于零，因此 0( ) (0 ) st x t e x +−  += −
+
+$$
+\therefore \int_ {0 ^ {+}} ^ {\infty} \frac {d x (t)}{d t} e ^ {- s t} d t = - x \left(0 ^ {+}\right) + s X (s) \text {当} s \rightarrow \text {时},
+$$
+
+$$
+\begin{array}{l} \int_ {0 ^ {+}} ^ {\infty} \frac {d x (t)}{d t} e ^ {- s t} d t = \int_ {0 ^ {+}} ^ {\infty} d x (t) = \lim _ {t \rightarrow \infty} x (t) - x \left(0 ^ {+}\right) \\ \therefore \lim  _ {t \rightarrow \infty} x (t) = \lim  _ {s \rightarrow 0} s X (s) \\ \end{array}
+$$
+
+## 极点在S平面的分布与终值的关系
+
+![](imglink/cad88ebf8fea4178ecda58a2a085d78b46221f15e1df6ea6a8ec082b1d72619b.png)
+
+## 9. 3 拉普拉斯反变换
+
+## The Inverse Laplace Transform
+
+一.定义： 由 X(s）=x(t）e"dt2
+
+若 在ROC内， 则有:
+
+$$
+X (\sigma + j \omega) = \int_ {- \infty} ^ {\infty} x (t) e ^ {- \sigma t} e ^ {- j \omega t} d t = \mathbb {F} [ x (t) e ^ {- \sigma t} ]
+$$
+
+$$
+\therefore x (t) e ^ {- \sigma t} = \frac {1}{2 \pi} \int_ {- \infty} ^ {\infty} X (\sigma + j \omega) e ^ {j \omega t} d \omega
+$$
+
+$$
+x (t) = \frac {1}{2 \pi} \int_ {- \infty} ^ {\infty} X (\sigma + j \omega) e ^ {\sigma t} e ^ {j \omega t} d \omega = \frac {1}{2 \pi} \int_ {- \infty} ^ {\infty} X (s) e ^ {s t} d \omega
+$$
+
+由s=σ+ j@得 ds = jdω
+
+当  从 − → +时, 从 s   −  → +  j j
+
+$$
+\therefore x (t) = \frac {1}{2 \pi j} \int_ {\sigma - j \infty} ^ {\sigma + j \infty} X (s) e ^ {s t} d s
+$$
+
+X s( ) 的反变换
+
+拉氏反变换表明:
+
+可以被分解成复振幅为的复指数信号 的线性组合。ste
+
+$$
+\frac {1}{2 \pi j} X (s) d s
+$$
+
+## 二.拉氏反变换的求法:
+
+对有理函数形式的 求反变换一般有两种方法,即部分分式展开法和留数法。
+
+部分分式展开法：
+
+1. 将 展开为部分分式。X s( )  
+2. 根据 的ROC，确定每一项的ROC X s( ) 。  
+3. 利用常用信号的变换对与拉氏变换的性质,对每一项进行反变换。
+
+例1.
+
+$$
+X (s) = \frac {1}{(s + 1) (s + 2)}
+$$
+
+确定其可能的收敛域及所对应信号的属性。
+
+极点： $s = - 1 , \quad s = - 2$
+
+![](imglink/395788ae86e14de338672803c3133879191593643615ad8bb0a516a16adce38c.png)  
+右边信号
+
+![](imglink/65c2633f09da6a7cc733c2edc69e0e2a80316aee8a45670d7265f373a9039eb9.png)  
+左边信号
+
+![](imglink/249d3bfe6fcc0134b4e571e85894d1ef3b39e9111e275e14ec5677dcba6de665.png)  
+双边信号
+
+## 例2.
+
+$$
+X (s) = \frac {1}{(s + 1) (s + 2)}
+$$
+
+$$
+\mathrm {R O C}: - 2 <   \operatorname {R e} [ s ] <   - 1
+$$
+
+$$
+X (s) = \frac {1}{s + 1} - \frac {1}{s + 2}
+$$
+
+$$
+\frac {1}{s + 1} \rightarrow \mathrm {R O C}: \operatorname {R e} [ s ] <   - 1 \leftrightarrow - e ^ {- t} u (- t)
+$$
+
+$$
+\frac {1}{s + 2} \rightarrow \mathrm {R O C}: \operatorname {R e} [ s ] > - 2 \leftrightarrow e ^ {- 2 t} u (t)
+$$
+
+$$
+\therefore x (t) = e ^ {- 2 t} u (t) - e ^ {- t} u (- t)
+$$
+
+## 9.4 由零极点图对傅里叶变换几何求值
+
+## Geometric Evaluation of the Fourier Transform from the Pole-Zero Plot
+
+• 可以用零极点图表示 的特征。当X s( )ROC包括 轴时，以 代入j s j = 
+
+就可以得到 。以此为基础可以用几何求值的方法从零极点图求得的特性。这在定性分析系统频率特性时有很大用处。
+
+$$
+H (s) = k \frac {\prod_ {i = 1} ^ {m} \left(s - z _ {i}\right)}{\prod_ {j = 1} ^ {n} \left(s - p _ {j}\right)}
+$$
+
+s = j 即在S平面中s沿虚轴移动， 可得：
+
+$$
+H (j \omega) = k \frac {\prod_ {i = 1} ^ {m} (j \omega - z _ {i})}{\prod_ {j = 1} ^ {n} (j \omega - p _ {j})}
+$$
+
+用极坐标表示， 有
+
+$$
+\left\{ \begin{array}{l} j \omega - z _ {i} = N _ {i} e ^ {j \phi_ {i}} \\ j \omega - p _ {j} = M _ {j} e ^ {j \theta_ {j}} \end{array} \right.
+$$
+
+![](imglink/b4a9fa08b7861b1018db127e6194cd7575129af63dffbd173fac9efc5e7a9d9f.png)
+
+$$
+\begin{array}{l} \therefore H (j \omega) = k \frac {N _ {1} e ^ {j \phi_ {1}} N _ {2} e ^ {j \phi_ {2}} \cdots N _ {m} e ^ {j \phi_ {m}}}{M _ {1} e ^ {j \theta_ {1}} M _ {2} e ^ {j \theta_ {2}} \cdots M _ {n} e ^ {j \theta_ {n}}} \\ = k \frac {N _ {1} N _ {2} \cdots N _ {m}}{M _ {1} M _ {2} \cdots M _ {n}} e ^ {j [ (\phi_ {1} + \phi_ {2} + \dots + \phi_ {m}) - (\theta_ {1} + \theta_ {2} + \dots + \theta_ {n}) ]} \\ = | H (j \omega) | e ^ {j \notin H (j \omega)} \\ \end{array}
+$$
+
+$$
+\left| H (j \omega) \right| = k \frac {N _ {1} N _ {2} \cdots N _ {m}}{M _ {1} M _ {2} \cdots M _ {n}}
+$$
+
+$$
+\not \in H (j \omega) = \left(\phi_ {1} + \phi_ {2} + \dots + \phi_ {m}\right) - \left(\theta_ {1} + \theta_ {2} + \dots + \theta_ {n}\right)
+$$
+
+1Re{s}>- 1 例：已知 X(s)=s+1 ，用几何 2
+
+法确定傅立叶变换的幅频和相频特性。
+
+注：用几何法确定傅立叶变换的意义：
+
+由零极点图来近似观察傅立叶变换的整体特性。
+
+例1. 一阶系统： +y(t)= x(t)dt
+
+$$
+H (s) = \frac {1 / \tau}{s + (1 / \tau)}, \quad \mathrm {R e} [ s ] > - \frac {1}{\tau}
+$$
+
+$$
+h (t) = \frac {1}{\tau} e ^ {- \frac {t}{\tau}} u (t),
+$$
+
+随着  ， H j单调下降，
+
+1@ 时,下降到最大值的T
+
+$\frac { 1 } { \sqrt { 2 } }$ 最大值在 =时取得。
+
+![](imglink/c31fe8ea2e149e787d21840a3a201560558428b0c04bdd5340adaeaf48121cef.png)
+
+![](imglink/72b35cefa3a49301f0029d6e62e191b2591dff5fb52592eeef3399f5987ec48c.png)
+
+相位特性， 当  = 时， xH(j@)= 0
+
+随着  ， H(j@) 一π/2
+
+H(j@) 趋向 π/2
+
+![](imglink/e5a161832a48ec335846463483e49354f933f715eec299dbf4781d485e52bacf.png)
+
+## 例2. 因果二阶系统：
+
+$$
+\frac {d ^ {2} y (t)}{d t ^ {2}} + 2 \zeta \omega_ {n} \frac {d y (t)}{d t} + \omega_ {n} ^ {2} y (t) = \omega_ {n} ^ {2} x (t)
+$$
+
+$$
+H (s) = \frac {\omega_ {n} ^ {2}}{s ^ {2} + 2 \zeta \omega_ {n} s + \omega_ {n} ^ {2}} = \frac {\omega_ {n} ^ {2}}{(s - c _ {1}) (s - c _ {2})}
+$$
+
+$$
+c _ {1, 2} = - \zeta \omega_ {n} \pm \omega_ {n} \sqrt {\zeta^ {2} - 1}
+$$
+
+$$
+h (t) = M \left(e ^ {c _ {1} t} - e ^ {c _ {2} t}\right) u (t), \quad M = \frac {\omega_ {n}}{2 \sqrt {\zeta^ {2} - 1}}
+$$
+
+![](imglink/25c08190d879d7f7690d4296f59160feeb49ddff47d72e0f56dc0febcb1a311a.png)
+
+1. 当 时， 有两个实数极点，
+
+$$
+\left| H (j \omega) \right|
+$$
+
+的增加而单调下降，而 则由
+
+$$
+\omega = 0 \text {为} 0 \text {变 到} \quad \omega \text {的} \infty . - \pi
+$$
+
+![](imglink/3d7ddc30238fc3b59cc7c6f8cf680a083d78d2a6ce96f8d4fb26d7735a1ddd26.png)
+
+2. 当 时，则二阶 极点分裂为共轭复数极点，且随 的减小而逐步靠近 轴。极点运动的轨迹— 根轨迹是一个半径为 のn的圆周。
+
+由于第2象限的极点矢量变得很短， 因而会使 H j出现峰值。其峰点位于
+
+$$
+\omega_ {n} \sqrt {1 - \zeta^ {2}}
+$$
+
+随着 ，位于第2象限的极点矢量比第3象限的极点矢量更短，因此它对系统特性的影响较大。
+
+## 例3. 全通系统：
+
+## 考查零极点对称分布的系统
+
+$$
+H (s) = \frac {s - a}{s + a}
+$$
+
+（一阶 △
+
+![](imglink/069ceb7699b9dd518228823dc60894cceb603969cceeb19d6267ee45128af78d.png)
+
+❖ 该系统的 在任何时候都等于1，所以称为全通系统。
+
+## ❖ 其相位特性
+
+$$
+\prec H (j \omega) = \theta_ {1} - (\pi - \theta_ {1}) = 2 \theta_ {1} - \pi
+$$
+
+![](imglink/48280fe4c3c2de275da230f913045c4868570bdd36e135bfb6c0568e56770d7f.png)
+
+![](imglink/51460a63f73e7c5f0203a90cd22dacbdf6ceb1548b5b69a9893a4448163fce85.png)
+
+## 例4. 最小相位系统：
+
+考查两个系统，它们的极点相同，零点分布关于 轴对称。其中一个系统的零点均在左半平面，另一个系统的零点均在右半平面。
+
+![](imglink/bc9b7f2d2c3cd83593265536866ce5d1d139abdcbdffd8c0a562baaf3c99a709.png)
+
+![](imglink/4a2f527355d0457db0f36dcf3987ba24f2ba6bf476949c4e4191f87e67db3a49.png)
+
+显然这两个系统的幅频特性是相同的。但零点在左半平面的系统其相位总小于零点在右半平面的系统。 因此将零极点均位于左半平面的系统称为最小相位系统。
+
+工程应用中设计的各种频率选择性滤波器，如：Butterworth 、Chebyshev、 Cauer滤波器都是最小相位系统。
+
+从本质上讲系统的特性是由系统的零、极点分布决定的。对系统进行优化设计，实质上就是优化其零、极点的位置。
+
+当工程应用中要求实现一个非最小相位系统时，通常采用将一个最小相位系统和一个全通系统级联来实现。
+
+![](imglink/fd2e15830c5a070c0f655fa0dbec89bef0d432bd4f35de210493ba15c01c178c.png)
+
+![](imglink/6fb5bce7e407d56a51efda7cc689ac892586b133b09973b928d6ef86195a1ca3.png)
+
+![](imglink/319d1d207b0173ff7df8f4e74a791329614720d50a9d107e6cedb39caab1e8ab.png)  
+非最小相位系统  
+最小相位系统
+
+![](imglink/b8528d3e4e40bb5dab779fa256ef146a3607b946ebb3f1da5505876b493bbb1d.png)  
+全通系统
+
+## 9.6 常用拉氏变换对
+
+Some Laplace Transform Pairs   
+
+<table><tr><td>δ(t)</td><td>1</td></tr><tr><td>δ(t-t0)</td><td>e- st0</td></tr><tr><td>u(t)</td><td>1/s</td></tr><tr><td>-u(-t)</td><td>1/s</td></tr><tr><td>tnu(t)</td><td>n!/s^{n+1}</td></tr><tr><td>e^{-at}u(t)</td><td>1/s + a</td></tr></table>
+
+$$
+[ \cos \omega_ {0} t ] u (t)
+$$
+
+$$
+s / (s ^ {2} + \omega_ {0} ^ {2})
+$$
+
+$$
+[ \sin \omega_ {0} t ] u (t)
+$$
+
+$$
+\omega_ {0} / (s ^ {2} + \omega_ {0} ^ {2})
+$$
+
+$$
+[ e ^ {- a t} \cos \omega_ {0} t ] u (t)
+$$
+
+$$
+(s + a) / [ (s + a) ^ {2} + \omega_ {0} ^ {2} ]
+$$
+
+$$
+[ e ^ {- a t} \sin \omega_ {0} t ] u (t)
+$$
+
+$$
+\omega_ {0} / [ (s + a) ^ {2} + \omega_ {0} ^ {2} ]
+$$
+
+$$
+\frac {d ^ {n} \delta (t)}{d t ^ {n}}
+$$
+
+$$
+S ^ {n}
+$$
+
+$$
+u (t) * u (t) \dots * u (t)
+$$
+
+卷积n次
+
+$$
+\frac {1}{s ^ {n}}
+$$
+
+## 9.7用拉氏变换分析与表征LTI系统
+
+Analysis and Characterized of LTI Systems Using the Laplace Transform
+
+## 一. 系统函数的概念：
+
+以卷积特性为基础，可以建立LTI系统的拉氏变换分析方法，即
+
+$$
+Y (s) = X (s) \cdot H (s)
+$$
+
+其中 是 的拉氏变换， 称为系统函数或转移函数。
+
+$$
+x (t) * h (t) = y (t)
+$$
+
+$$
+\begin{array}{c c} \boxed {\mathrm {L T I}} & \\ X (s) \times H (s) & = Y (s) \end{array}
+$$
+
+连同相应的ROC也能完全描述一个LTI系统。系统的许多重要特性在 及其ROCH s( )中一定有具体的体现。
+
+## 二. 用系统函数表征LTI系统：
+
+1. 因果性：如果 t  时0 h t( ) 0，则= 系统是因果的。
+
+因此， 因果系统的 是右边信号，结论 ：h t( )
+
+其 的ROC必位于最右极点右边。
+
+应该强调指出，由ROC的特征， 反过来并不能判定系统是否因果。ROC是最右边极点的右边并不一定系统因果。
+
+## 因果性判定：
+
+If 1、系统函数H(s)是有理的[2、H(s)的ROC位于最右边极点的右边
+
+Then 系统是因果的。
+
+## 2. 稳定性：
+
+如果系统稳定，则有 |h(t)|dt <∞ 因此必存在。意味着H j ( )  的ROC必然包括 H s( ) 轴。
+
+$$
+j \omega
+$$
+
+系统稳定性判定：
+
+if系统函数 的ROC包括 轴，then系统稳定。
+
+## 因果系统稳定性判定：
+
+if 的全部极点必须位于S平面的左半边，
+
+Then具有有理 的因果系统稳定。
+
+例1：某系统的显然该系统是因果的，确定系统的稳定性。
+
+$$
+H (s) = \frac {1}{s + 1} + \frac {1}{s + 2} = \frac {2 s + 3}{s ^ {2} + 3 s + 2}, \mathrm {R O C : R e} [ s ] > - 1
+$$
+
+显然， ROC是最右边极点的右边。
+
+ROC包括 j 轴  系统也是稳定的。
+
+H(s) 的全部极点都在S平面的左半边。
+
+例2. 若有 9 Re[s]>-1s+1
+
+的ROC是最右边极点的右边，但 是
+
+非有理函数， ，系统是非因果的。( 1) ( ) ( 1) th t e u t − + = +
+
+由于ROC包括  轴，该系统仍是稳定的。
+
+而对系统 e SRe[s]>-1s+1
+
+仍是非有理函数，ROC是最右边极点的右H s( )边，但由于 ，是因果的。 1
+
+## 结 论：
+
+1.如果LTI系统的系统函数是有理函数，且全部极点位于S平面的左半边，则因果系统是稳定的。
+
+2. 如果LTI系统的系统函数是有理函数，且系统因果，则系统函数的ROC位于最右边极点的右边。
+
+3.如果LTI系统是稳定的，则系统函数的ROC必然包括 j 轴。
+
+三. 由LCCDE描述的LTI系统的系统函数：
+
+对 M ak dy(t） k=0 dtk k=0 dtk
+
+做拉氏变换， 可得
+
+$$
+H (s) = \frac {Y (s)}{X (s)} = \frac {\sum_ {k = 0} ^ {N} b _ {k} s ^ {k}}{\sum_ {k = 0} ^ {N} a _ {k} s ^ {k}} = \frac {N (s)}{D (s)}, \text {是 一 个 有 理 函 数}
+$$
+
+的ROC需要由系统的相关特性来确定。
+
+1）如果已知LCCDE描述的系统是因果的，
+
+则 H s( ) 的ROC必是最右边极点的右边。
+
+2）如果已知LCCDE描述的系统是稳定的，
+
+则
+
+H s的R
+
+必包括
+
+轴 。
+
+## 四.系统特性与系统函数的关系:
+
+x(t ) e = u(t )3t例1:已知LTI系统的输 入 输出 y(t) e 试确定系统函数及系统的其它性质， 以及表征系统的微分方程。
+
+例2：一因果LTI系统，其输入和输出满足：
+
+微分方程： d $\frac { \gamma ( t ) } { t ^ { 2 } } + 3 \frac { d y ( t ) } { d t } + 2 y ( t ) = \frac { d x ( t ) } { d t } +$ dy(）+2y(t）= dx(t）+3x(t)a
+
+求系统函数及收敛域；画出零极点图；判定系统稳定性？
+
+## 四.系统特性与系统函数的关系:
+
+自学。 请关注例9.25、9.26、9.27
+
+## 五. Butterworth滤波器:
+
+通常Butterworth滤波器的特性由频率响应的模平方函数给出。对N阶 Butterworth低通滤波器有：
+
+$$
+\left| B (j \omega) \right| ^ {2} = \frac {1}{1 + \left(\omega / \omega_ {c}\right) ^ {2 N}}
+$$
+
+（N为滤波器的阶数）
+
+由于 |B(j@)² = B(jω)B(jω)
+
+Butterworth滤波器的冲激响应是实信号，
+
+$$
+\therefore B ^ {*} (j \omega) = B (- j \omega)
+$$
+
+将 函数拓展到整个S平面有：
+
+$$
+B (s) B (- s) = \frac {1}{1 + \left(s / j \omega_ {c}\right) ^ {2 N}} \quad \text {共 有} 2 \mathrm {N} \text {个 极 点}
+$$
+
+$$
+s _ {k} = (- 1) ^ {\frac {1}{2 N}} (j \omega_ {c}) = | s _ {k} | e ^ {j \not \ll s _ {k}} \quad (k = 0, 1, \dots , 2 N - 1)
+$$
+
+## 表明N阶Butterworth低通滤波器模平方函数全部2N个极点均匀分布在半径为  的圆周上极点分布的特征：
+
+2N个极点等间隔均匀分布在半径为 的圆c周上。  
+轴上不会有极点。当N为奇数时在实轴上有极点，N为偶数时实轴上无极点。  
+相邻两极点之间的角度差为 π/N  
+极点分布总是关于原点对称的。
+
+![](imglink/09a4c4f9e5afd0eb5845ab84c1f47bf36d2e2416a8475ffd7244588068251c58.png)
+
+![](imglink/290f3dd1022e4e87573c4390ca7ec3920ed78a662c1cd13a266a83735805aeef.png)
+
+## 要实现的滤波器应该是因果稳定系统，因此位于左半平面的N个极点一定是属于 的。
+
+据此，确定出 B s( ) 后，也就可以综合出一个Butterworth 滤波器。
+
+## 9.8 系统函数的代数属性与系统的级联并联型结构
+
+System Function Algebra and Block Diagram Representations
+
+## 一.系统互联时的系统函数：
+
+1. 级联：
+
+![](imglink/3e49264107439dcd612f52d892ad3657c48841188bea09fec039d33e9685f9b5.png)
+
+$$
+H (s) = H _ {1} (s) \cdot H _ {2} (s)
+$$
+
+ROC:包括 R N R2
+
+## 2. 并联：
+
+$$
+H (s) = H _ {1} (s) + H _ {2} (s)
+$$
+
+包括 R NR2
+
+## 3. 反馈联结：
+
+$$
+X _ {1} (s) = X (s) - G (s) Y (s)
+$$
+
+$$
+\begin{array}{l} Y (s) = X _ {1} (s) H _ {1} (s) \\ = [ X (s) - G (s) Y (s) ] H _ {1} (s) \\ \end{array}
+$$
+
+$$
+\therefore H (s) = \frac {Y (s)}{X (s)} = \frac {H _ {1} (s)}{1 + G (s) H _ {1} (s)}
+$$
+
+![](imglink/ede37f980e062c991c1a4eda3c34cbd0872e7df1dfd4492657abc84405287ced.png)
+
+![](imglink/8f40c39e3b293f4a865347a76c28e6ff727adf6c8aeb521d5edc80da2fd1c648.png)
+
+包括 RNR2
+
+## 二. LTI系统的级联和并联型结构：
+
+## LTI系统可以由一个LCCDE来描述。
+
+$$
+\sum_ {k = 0} ^ {N} a _ {k} \frac {d ^ {k} y (t)}{d t ^ {k}} = \sum_ {k = 0} ^ {N} b _ {k} \frac {d ^ {k} x (t)}{d t ^ {k}}
+$$
+
+对其进行拉氏变换有：
+
+$$
+\sum_ {k = 0} ^ {N} a _ {k} s ^ {k} Y (s) = \sum_ {k = 0} ^ {N} b _ {k} s ^ {k} X (s)
+$$
+
+$$
+H (s) = \frac {Y (s)}{X (s)} = \frac {\sum_ {k = 0} ^ {N} b _ {k} s ^ {k}}{\sum_ {k = 0} ^ {N} a _ {k} s ^ {k}} = \frac {N (s)}{D (s)}
+$$
+
+是一个有理函数
+
+## 级联结构：
+
+## 将 H s( )的分子和分母多项式因式分解
+
+$$
+H (s) = \frac {b _ {N}}{a _ {N}} \cdot \frac {\prod_ {k = 1} ^ {P} \left(s ^ {2} + \beta_ {1 k} s + \beta_ {0 k}\right)}{\prod_ {k = 1} ^ {Q} \left(s ^ {2} + \alpha_ {1 k} s + \alpha_ {0 k}\right)} \cdot \frac {\prod_ {k = 1} ^ {N - 2 P} \left(s + \lambda_ {k}\right)}{\prod_ {k = 1} ^ {N - 2 Q} \left(s + \gamma_ {k}\right)}
+$$
+
+这表明：一个N阶的LTI系统可以分解为若干个二阶系统和一阶系统的级联。在N为偶数时，可全部组合成二阶系统的级联形式。
+
+$$
+H (s) = \frac {b _ {N}}{a _ {N}} \cdot \prod_ {k = 1} ^ {N / 2} H _ {k} (s)
+$$
+
+## 其中
+
+$$
+H _ {k} (s) = \frac {s ^ {2} + \beta_ {1 k} s + \beta_ {0 k}}{s ^ {2} + \alpha_ {1 k} s + \alpha_ {0 k}}
+$$
+
+![](imglink/9744b5f373d93b30416854101212917e1f0f91c902fe3c29bbe839e1bdd75ada.png)
+
+![](imglink/d170a8094a66e34ee26451d4cd3656b4ddfa7328f19c1e692ebbed3431bb3ba9.png)
+
+![](imglink/b2260fbfead07647a0f0bffc33e871949e0fa1a4a0730c898c18b2cf43aba55b.png)
+
+如果N为奇数，则有一个一阶系统出现。
+
+## 2. 并联结构：
+
+将 展开为部分分式 (假定 的分子阶数
+
+不高于分母阶数，所有极点都是单阶的）
+
+则有： H(s) + Ak aN k=1 s+Yk
+
+将共轭成对的复数极点所对应的两项合并:
+
+$$
+\begin{array}{l} H (s) = \frac {b _ {N}}{a _ {N}} + \sum_ {k = 1} ^ {Q} \frac {\beta_ {1 k} s + \beta_ {0 k}}{s ^ {2} + \alpha_ {1 k} s + \alpha_ {0 k}} + \sum_ {k = 1} ^ {N - 2 Q} \frac {A _ {k}}{s + \gamma_ {k}} \\ = \frac {b _ {N}}{a _ {N}} + \sum_ {k = 1} ^ {N / 2} H _ {k} (s) \\ \end{array}
+$$
+
+## N为偶数时又可将任意两个一阶项合并为二阶项，由此可得出系统的并联结构：
+
+![](imglink/424c75fad72c2f033e8d34b7c5c148ec64d6614065be9f4f3fd3d9b10eb1d748.png)
+
+## 9.9 单边拉普拉斯变换
+
+The Unilateral Laplace Transform
+
+单边拉氏变换是双边拉氏变换的特例。 也就是因果信号的双边拉氏变换。 单边拉氏变换对分析LCCDE 描述的增量线性系统具有重要的意义。
+
+一.定义: x(s)=S~x(t)e-"dt
+
+如果 是因果信号，对其做双边拉氏变换x t( )和做单边拉氏变换是完全相同的。
+
+单边拉氏变换也同样存在ROC 。其ROC必然遵从因果信号双边拉氏变换时的要求，即：一定位于最右边极点的右边。
+
+正因为这一原因，在讨论单边拉氏变换时，一般不再强调其ROC。
+
+单边拉氏变换的反变换一定与双边拉氏变换的反变换相同。
+
+$$
+x (t) = \frac {1}{2 \pi j} \int_ {\sigma - j \infty} ^ {\sigma + j \infty} \chi (s) e ^ {s t} d s
+$$
+
+例1. $x ( t ) = e ^ { - a ( t + 1 ) } u ( t + 1 )$
+
+做双边拉氏变换：
+
+$$
+X (s) = \frac {1}{s + a} e ^ {s} \quad \operatorname {R e} [ s ] > - a
+$$
+
+做单边拉氏变换， 有：
+
+$$
+\begin{array}{l} \chi (s) = \int_ {0 ^ {-}} ^ {\infty} e ^ {- a (t + 1)} e ^ {- s t} d t \\ = e ^ {- a} \int_ {0 ^ {-}} ^ {\infty} e ^ {- (s + a) t} d t = \frac {1}{s + a} e ^ {- a} \quad \mathrm {R e} [ s ] > - a \\ \end{array}
+$$
+
+![](imglink/38d230160b269fcdf8d3bfcbc2f65bc21c2430ad763aec153d7339f64d7cae8d.png)
+
+与 不同，是因为 在 的部分对x t( ) t  0 有
+
+作用而对 没有任何作用所致。
+
+例2. $\chi ( s ) = \frac { s ^ { 2 } - 3 } { s + 2 }$ s²
+
+由于其ROC为
+
+$$
+\chi (s) = s - 2 + \frac {1}{s + 2}
+$$
+
+$$
+\therefore x (t) = u _ {1} (t) - 2 \delta (t) + e ^ {- 2 t} u (t)
+$$
+
+## 二.单边拉氏变换的性质:
+
+单边拉氏变换的大部分性质与双边拉氏变换相同，但也有几个不同的性质。
+
+1. 时域微分 （Differentiation in the Time Domain）
+
+0 J0 $\begin{array} { l } { \displaystyle \frac { \mathrm { \partial } \overline { { \overline { { \mathcal { A } } } ^ { \ast } } } x ( t )  \chi ( s ) } { d t } \overline { { \mathbb { A } } } \overline { { \mathbb { A } } } \frac { d x ( t ) } { d t }  } \\ { \displaystyle \frac { d x ( t ) } { d t } e ^ { - s t } d t = x ( t ) e ^ { - s t }  _ { 0 ^ { - } } ^ { \infty } + s  _ { 0 ^ { - } } ^ { \infty } . } \end{array}$ sx(s)-x(0-) ( ) ( ) (0 )  st x t e dt s s x − −  = −
+
+$$
+\frac {d ^ {2} x (t)}{d t ^ {2}} \leftrightarrow s ^ {2} \chi (s) - s x (0 ^ {-}) - x ^ {\prime} (0 ^ {-})
+$$
+
+## 2. 时域积分 （Integration in the Time Domain）
+
+$$
+\int_ {- \infty} ^ {t} x (\tau) d \tau \leftrightarrow \frac {1}{s} \chi (s) + \frac {1}{s} \int_ {- \infty} ^ {0 ^ {-}} x (\tau) d \tau
+$$
+
+$$
+\because \int_ {- \infty} ^ {t} x (\tau) d \tau = \int_ {- \infty} ^ {0 ^ {-}} x (\tau) d \tau + \int_ {0 ^ {-}} ^ {t} x (\tau) d \tau
+$$
+
+$$
+\begin{array}{l} \therefore \int_ {- \infty} ^ {t} x (\tau) d \tau \leftrightarrow \int_ {- \infty} ^ {0 ^ {-}} x (\tau) d \tau \cdot \int_ {0 ^ {-}} ^ {\infty} e ^ {- s t} d t + \int_ {0 ^ {-}} ^ {\infty} (\int_ {0 ^ {-}} ^ {t} x (\tau) d \tau) e ^ {- s t} d t \\ = \frac {1}{S} \int_ {- \infty} ^ {0 ^ {-}} x (\tau) d \tau - \frac {e ^ {- s t}}{S} \int_ {0 ^ {-}} ^ {t} x (\tau) d \tau \Big | _ {0 ^ {-}} ^ {\infty} + \frac {1}{S} \int_ {0 ^ {-}} ^ {\infty} x (t) e ^ {- s t} d t \\ = \frac {1}{s} \int_ {- \infty} ^ {0 ^ {-}} x (\tau) d \tau + \frac {1}{s} \chi (s) \\ \end{array}
+$$
+
+## 3.时延性质 （Time Shifting）
+
+是因果信号时，单边拉氏变换的时延特性与双边变换时一致。
+
+若 x(t）u(t）→x(s）
+
+则x(t-t0)u(t-t0）→x(s)e-sto (t>0）
+
+不是因果信号时，
+
+$$
+x (t - t _ {0}) \leftrightarrow \int_ {0 ^ {-}} ^ {\infty} x (t - t _ {0}) e ^ {- s t} d t = \int_ {- t _ {0}} ^ {\infty} x (\tau) e ^ {- s (\tau + t _ {0})} d \tau
+$$
+
+$$
+\begin{array}{l} = \int_ {- t _ {0}} ^ {0 ^ {-}} x (\tau) e ^ {- s (\tau + t _ {0})} d \tau + \int_ {0 ^ {-}} ^ {\infty} x (\tau) e ^ {- s (\tau + t _ {0})} d \tau \\ = \chi (s) e ^ {- s t _ {0}} + \int_ {0 ^ {-}} ^ {t _ {0}} x (t - t _ {0}) e ^ {- s t} d t \\ \end{array}
+$$
+
+## 三.利用单边拉氏变换求解增量线性系统:
+
+单边拉氏变换特别适合于求解由LCCDE描述的增量线性系统。
+
+例. 某LTI系统由微分方程描述
+
+$$
+\frac {d ^ {2} y (t)}{d t ^ {2}} + 3 \frac {d y (t)}{d t} + 2 y (t) = x (t), \quad x (t) = 2 u (t)
+$$
+
+$$
+y \left(0 ^ {-}\right) = 3, \quad y ^ {\prime} \left(0 ^ {-}\right) = - 5 \quad \text {求 响 应} y (t)
+$$
+
+解：对方程进行单边拉氏变换：
+
+$$
+\begin{array}{l} \left[ s ^ {2} \Upsilon (s) - s y (0 ^ {-}) - y ^ {\prime} (0 ^ {-}) \right] + \\ 3 \left[ s \Upsilon (s) - y \left(0 ^ {-}\right) \right] + 2 \Upsilon (s) = \frac {2}{s} \\ \end{array}
+$$
+
+代 $: \lambda y ( 0 ^ { - } ) = 3 , \ y ^ { \prime } ( 0 ^ { - } ) = - 5$ 可得:
+
+$$
+\Upsilon (s) = \underbrace {\frac {3 (s + 3)}{s ^ {2} + 3 s + 2} + \frac {- 5}{s ^ {2} + 3 s + 2}} _ {\text {零 输 入 响 应}} + \underbrace {\frac {2}{s \left(s ^ {2} + 3 s + 2\right)}} _ {\text {零 状 态 响 应}}
+$$
+
+$$
+\Upsilon (s) = \frac {3 s + 4}{s ^ {2} + 3 s + 2} + \frac {2}{s \left(s ^ {2} + 3 s + 2\right)} = \frac {3 s ^ {2} + 4 s + 2}{s (s + 1) (s + 2)}
+$$
+
+$$
+= \frac {1}{s} - \frac {1}{s + 1} + \frac {3}{s + 2}
+$$
+
+$$
+\therefore y (t) = \left(1 - e ^ {- t} + 3 e ^ {- 2 t}\right) u (t)
+$$
+
+其中，第一项为强迫响应，其它为自然响应。
+
+## 9.10 小结 Summary
+
+拉氏变换是傅氏变换的推广，在LTI系统分析中特别有用。它可以将微分方程变为代数方程，这对分析系统互联、系统结构、用系统函数表征系统、分析系统特性等都具有重要意义。  
+ROC是双边拉氏变换的重要概念。离开了ROC，信号与双边拉氏变换的表达式将不再有一一对应的关系。
+
+作为拉氏变换的几何表示，零极点图对分析系统的频率特性、零极点分布与系统特性的关系具有重要意义。从本质上讲，系统的特性完全是由系统函数的零极点分布决定的  
+❖ 拉氏变换的许多性质对于在变换域分析LTI系统，具有重要作用。  
+作为双边拉氏变换的特例，单边拉氏变换特别适用于分析增量线性系统。
+
+## 作业：
+
+9.1、 9.5、 9.8、 9.14、   
+9.21、 9.22、 9.23、 9.33、  
+9.47、 9.48

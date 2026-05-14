@@ -3033,37 +3033,37 @@
   {
     "objectID": "Chapter07_V4.html#toc0",
     "href": "Chapter07_V4.html#toc0",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "目录",
-    "text": "目录\n\n1. 非周期信号的表示：离散时间傅里叶变换\n2. 离散时间傅里叶变换的性质\n3. 卷积性质\n4. 乘积性质\n5. 变换性质和变换对列表\n6. 对偶性\n7. 由线性常系数差分方程表征的系统"
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
   },
   {
     "objectID": "Chapter07_V4.html#连续时间信号的采样",
     "href": "Chapter07_V4.html#连续时间信号的采样",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "连续时间信号的采样",
-    "text": "连续时间信号的采样\n采样将连续时间信号转换为离散时间信号。\n连续时间信号\n\n离散时间信号\n\n\\(T=\\) 采样周期，均匀采样是最常见的方式。\n采样允许使用数字电子设备对连续时间信号进行处理、记录、传输、存储和检索。\n\nMP3、数字相机、打印机等应用"
+    "text": "连续时间信号的采样\n采样：在某些离散的时间点上提取连续时间信号值的过程称为采样。\n采样将连续时间信号转换为离散时间信号。\\(T=\\) 采样周期，均匀采样是最常见的方式。\n\n\n连续时间信号 ：\n\n\n离散时间信号 ：\n\n\n采样允许使用数字电子设备对连续时间信号进行处理、记录、传输、存储和检索。\n\n医学成像\n雷达、通信系统\n计算机控制系统\n消费电子：MP3、数字相机、打印机等应用 \n\n\\[\\huge \\text{物理世界} \\xrightleftharpoons[\\text{重建 }]{\\text{采样 }} \\text{数字世界}\\]"
   },
   {
     "objectID": "Chapter07_V4.html#连续时间信号的采样-1",
     "href": "Chapter07_V4.html#连续时间信号的采样-1",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "连续时间信号的采样",
-    "text": "连续时间信号的采样\n采样会丢失信息，不同信号可能产生相同的采样序列。\n\n\\(x_1(t)=\\cos(\\pi t/3)\\) 与 \\(x_2(t)=\\cos(7\\pi t/3)\\) 是不同的信号\n\n但采样后得到完全相同的序列：\\(x_1[n]=\\cos(\\pi n/3)=x_2[n]=\\cos(7\\pi n/3)\\)\n\n\n关键问题：在什么条件下可以从采样序列中无失真地恢复原始连续时间信号？"
+    "text": "连续时间信号的采样\n采样会丢失信息，不同信号可能产生相同的采样序列。\n\n\\(x_1(t)=\\cos(\\pi t/3)\\) 与 \\(x_2(t)=\\cos(7\\pi t/3)\\) 是不同的信号\n\n但采样后得到完全相同的序列：\\(x_1[n]=\\cos(\\pi n/3)=x_2[n]=\\cos(7\\pi n/3)\\)\n\n\n关键问题：\n\n在什么条件下，一个连续时间信号可以用它的离散时间样本来代替而不致丢失原有的信息。\n如何从连续时间信号的离散时间样本不失真地恢复成原来的连续时间信号。\n如何对一个连续时间信号进行离散时间处理。\n对离散时间信号如何进行采样、抽取，及内插。"
   },
   {
     "objectID": "Chapter07_V4.html#冲激列采样时域",
     "href": "Chapter07_V4.html#冲激列采样时域",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "冲激列采样（时域）",
-    "text": "冲激列采样（时域）\n连续时间信号 \\(x(t)\\)\n\n冲激串\n\\[\np(t)=\\sum_{n=-\\infty}^{\\infty} \\delta(t-nT)\n\\]\n采样信号\n\\[\nx_p(t)=x(t)p(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\delta(t-nT)\n\\]"
+    "text": "冲激列采样（时域）\n\n\n 连续时间信号 \\(x(t)\\)\n \n冲激串\n\\[\np(t)=\\sum_{n=-\\infty}^{\\infty} \\delta(t-nT)\n\\]\n  采样信号\n\\[\nx_p(t)=x(t)p(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\delta(t-nT)\n\\]"
   },
   {
     "objectID": "Chapter07_V4.html#冲激列采样频域",
     "href": "Chapter07_V4.html#冲激列采样频域",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "冲激列采样（频域）",
-    "text": "冲激列采样（频域）\n连续时间信号频谱 \\(X(j\\omega)\\)\n\n冲激串频谱\n\\[\nP(j\\omega)=\\omega_s \\sum_{k=-\\infty}^{\\infty} \\delta(\\omega-k\\omega_s)\n\\]\n采样信号频谱\n\\[\nX_p(j\\omega)=\\frac{1}{2\\pi}(X*P)(\\omega)=\\frac{1}{T}\\sum_{k=-\\infty}^{\\infty} X(j(\\omega-k\\omega_s))\n\\]"
+    "text": "冲激列采样（频域）\n\n\n   连续时间信号频谱 \\(X(j\\omega)\\)\n   冲激串频谱\n\\[\nP(j\\omega)=\\omega_s \\sum_{k=-\\infty}^{\\infty} \\delta(\\omega-k\\omega_s)\n\\]\n \n采样信号频谱\n\\[\nX_p(j\\omega)=\\frac{1}{2\\pi}(X*P)(\\omega)=\\frac{1}{T}\\sum_{k=-\\infty}^{\\infty} X(j(\\omega-k\\omega_s))\n\\]"
   },
   {
     "objectID": "Chapter07_V4.html#冲激列采样频域带限信号情况",
@@ -3082,16 +3082,16 @@
   {
     "objectID": "Chapter07_V4.html#频域中的重建",
     "href": "Chapter07_V4.html#频域中的重建",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "频域中的重建",
-    "text": "频域中的重建\n\n\n奈奎斯特频率：\\(\\omega_M\\)\n奈奎斯特率：\\(2\\omega_M\\)\n低通滤波器：增益 \\(T\\)，截止频率满足 \\(\\omega_M &lt; \\omega_c &lt; \\omega_s - \\omega_M\\)"
+    "text": "频域中的重建\n\n\n    \n奈奎斯特率(Nyquist Rate)：\n指为了避免信号混叠，最低允许的采样频率： \\[\\omega_s = 2\\omega_M\\]\n\n奈奎斯特频率：\\(\\omega_M\\)\n\n  - 低通滤波器：\n增益 \\(T\\)\n截止频率满足 \\[\\omega_M &lt; \\omega_c &lt; \\omega_s - \\omega_M\\]"
   },
   {
     "objectID": "Chapter07_V4.html#时域中的重建",
     "href": "Chapter07_V4.html#时域中的重建",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "时域中的重建",
-    "text": "时域中的重建\n低通滤波器的冲激响应： \\[\nh(t)=\\frac{T\\sin(\\omega_c t)}{\\pi t}\n\\]\n重建信号： \\[\nx_r(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\frac{T\\sin(\\omega_c(t-nT))}{\\pi(t-nT)}\n\\]"
+    "text": "时域中的重建\n\n低通滤波器的冲激响应： \\[\nh(t)=\\frac{T\\sin(\\omega_c t)}{\\pi t}\n\\]\n重建信号： \\[\nx_r(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\frac{T\\sin(\\omega_c(t-nT))}{\\pi(t-nT)}\n\\]"
   },
   {
     "objectID": "Chapter07_V4.html#时域中的重建理想情况",
@@ -3103,44 +3103,44 @@
   {
     "objectID": "Chapter07_V4.html#其他插值方法",
     "href": "Chapter07_V4.html#其他插值方法",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "其他插值方法",
     "text": "其他插值方法"
   },
   {
     "objectID": "Chapter07_V4.html#零阶保持zero-order-hold",
     "href": "Chapter07_V4.html#零阶保持zero-order-hold",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "零阶保持（Zero-Order Hold）",
-    "text": "零阶保持（Zero-Order Hold）\n重建信号： \\[\nx_0(t)=\\sum_{n=-\\infty}^{\\infty} x(nT) h_0(t-nT)\n\\]\n零阶保持滤波器频率响应： \\[\nH_0(j\\omega)=e^{-j\\omega T/2} \\frac{2\\sin(\\omega T/2)}{\\omega}\n\\]"
+    "text": "零阶保持（Zero-Order Hold）\n\n\n\n\n\n\n从理想走向现实\n\n\n之前采样使用了理想的冲激采样串，但实际 ADC 还需要面对有限采样带宽等问题。\n\n\n\n采样保持电路 (S/H Circuit) 在物理实现中，采样是通过开关对电容充电完成的：\n\n有限采样带宽： 采样开关和电容构成低通滤波器，限制了捕捉快速变化信号的能力。\n保持阶梯： 采样后的电压必须保持足够稳定，直到量化器完成 A/D 转换。\n\n\n\nVideo"
   },
   {
     "objectID": "Chapter07_V4.html#线性插值first-order-hold",
     "href": "Chapter07_V4.html#线性插值first-order-hold",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "线性插值（First-Order Hold）",
-    "text": "线性插值（First-Order Hold）\n重建信号： \\[\nx_1(t)=\\sum_{n=-\\infty}^{\\infty} x(nT) h_1(t-nT)\n\\]\n一阶保持滤波器频率响应： \\[\nH_1(j\\omega)=\\frac{1}{T}\\left[\\frac{\\sin(\\omega T/2)}{\\omega/2}\\right]^2\n\\]"
+    "text": "线性插值（First-Order Hold）\n\n重建信号： \\[\nx_1(t)=\\sum_{n=-\\infty}^{\\infty} x(nT) h_1(t-nT)\n\\]\n\n\n一阶保持滤波器频率响应： \\[\nH_1(j\\omega)=\\frac{1}{T}\\left[\\frac{\\sin(\\omega T/2)}{\\omega/2}\\right]^2\n\\]"
   },
   {
     "objectID": "Chapter07_V4.html#混叠aliasing",
     "href": "Chapter07_V4.html#混叠aliasing",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "混叠（Aliasing）",
-    "text": "混叠（Aliasing）\n混叠会使频率发生“折叠”。\n输出频率 vs 输入频率关系图\n\n当 \\(\\omega_0 &lt; \\omega_s/2\\) 时，无混叠，重建信号与原始信号相同。"
+    "text": "混叠（Aliasing）\n\n\n混叠会使频率发生“折叠”。\n\n\n\n\n\n\\(x(t)=\\cos(\\omega_0 t + \\phi)\\)\n当 \\(\\omega_0 &lt; \\omega_s/2\\) 时，无混叠，重建信号与原始信号相同。"
   },
   {
     "objectID": "Chapter07_V4.html#冲激列采样频域带限信号",
     "href": "Chapter07_V4.html#冲激列采样频域带限信号",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "冲激列采样（频域）——带限信号",
-    "text": "冲激列采样（频域）——带限信号\n带限连续时间信号：\\(X(j\\omega)=0\\) 当 \\(|\\omega|&gt;\\omega_M\\) 时\n\n采样角频率 \\(\\omega_s=2\\pi/T\\)\n情况1：\\(\\omega_s &gt; 2\\omega_M\\)（频谱无重叠）——可以通过低通滤波恢复原始频谱\n\n情况2：\\(\\omega_s &lt; 2\\omega_M\\)（出现频谱重叠，即混叠）——无法恢复原始信号"
+    "text": "冲激列采样（频域）——带限信号\n\n\n  带限连续时间信号：\\(X(j\\omega)=0\\)  当 \\(|\\omega|&gt;\\omega_M\\) 时\n   情况1：\\(\\omega_s &gt; 2\\omega_M\\)  频谱无重叠  ——可以通过低通滤波恢复原始频谱\n   情况2：\\(\\omega_s &lt; 2\\omega_M\\)  出现频谱重叠(即混叠）\n ——无法恢复原始信号\n\n\n\n\n采样角频率 \\(\\omega_s=2\\pi/T\\)\n\n1. 采样信号的频谱结构\n采样信号的频谱 \\(X_s(j\\omega)\\) 由原信号频谱 \\(X(j\\omega)\\) 的无限次频移组成：\n\n幅值： 变为原频谱的 \\(\\frac{1}{T_s}\\)\n频移量： 偏移量为采样角频率的整数倍 \\(n\\omega_s\\)\n\n\n2. 无混叠条件 (Nyquist Criterion)\n\n各相邻频谱不会重叠。\n可以利用理想低通滤波器从 \\(X_s(j\\omega)\\) 中完整恢复原信号频谱 \\(X(j\\omega)\\)。\n\n\n3. 频谱混叠 (Aliasing)\n\n频移后的相邻频谱会互相重叠。\n这种重叠导致原信号的频谱信息被破坏，无法恢复原信号。"
   },
   {
     "objectID": "Chapter07_V4.html#采样定理",
     "href": "Chapter07_V4.html#采样定理",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "采样定理",
-    "text": "采样定理\n若连续时间信号 \\(x(t)\\) 是带限的（其频谱 \\(X(j\\omega)=0\\) 当 \\(|\\omega|&gt;\\omega_M\\)），且采样满足\n\\[\n\\omega_s \\triangleq \\frac{2\\pi}{T} &gt; 2\\omega_M\n\\]\n（其中 \\(2\\omega_M\\) 称为奈奎斯特率），则该信号可由其采样序列 \\(x(nT),\\ n\\in\\mathbb{Z}\\) 唯一确定。\n重建步骤： 1. 构造冲激采样信号 \\(x_p(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\delta(t-nT)\\) 2. 通过增益为 \\(T\\)、截止频率 \\(\\omega_c\\in(\\omega_M, \\omega_s-\\omega_M)\\) 的理想低通滤波器\n\\[\n   H(j\\omega)=T[u(\\omega+\\omega_c)-u(\\omega-\\omega_c)]\n   \\] 3. 滤波器输出 \\(x_r(t)\\) 即为原始信号 \\(x(t)\\)"
+    "text": "采样定理\n若连续时间信号 \\(x(t)\\) 是带限的（其频谱 \\(X(j\\omega)=0\\) 当 \\(|\\omega|&gt;\\omega_M\\)），且采样满足\n\\[\n\\omega_s \\triangleq \\frac{2\\pi}{T} &gt; 2\\omega_M\n\\]\n（其中 \\(2\\omega_M\\) 称为奈奎斯特率），则该信号可由其采样序列 \\(x(nT),\\ n\\in\\mathbb{Z}\\) 唯一确定。\n重建步骤：  1. 构造冲激采样信号 \\[x_p(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\delta(t-nT)\\]\n\n通过增益为 \\(T\\)、截止频率 \\(\\omega_c\\in(\\omega_M, \\omega_s-\\omega_M)\\) 的理想低通滤波器\n\\[\nH(j\\omega)=T[u(\\omega+\\omega_c)-u(\\omega-\\omega_c)]\n\\]\n滤波器输出 \\(x_r(t)\\) 即为原始信号 \\(x(t)\\)"
   },
   {
     "objectID": "Chapter07_V4.html#时域中的重建理想低通",
@@ -3152,14 +3152,14 @@
   {
     "objectID": "Chapter07_V4.html#dtft-的卷积性质",
     "href": "Chapter07_V4.html#dtft-的卷积性质",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "DTFT 的卷积性质",
     "text": "DTFT 的卷积性质\n\\[\n(x * h)[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} X(e^{j\\omega}) H(e^{j\\omega})\n\\]\n证明（已完整）： \\[\n\\mathcal{F}\\{x*h\\}(e^{j\\omega})=\\sum_n (x*h)[n]e^{-j\\omega n}=X(e^{j\\omega})H(e^{j\\omega})\n\\]"
   },
   {
     "objectID": "Chapter07_V4.html#lti-系统的频率响应",
     "href": "Chapter07_V4.html#lti-系统的频率响应",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "LTI 系统的频率响应",
     "text": "LTI 系统的频率响应\nLTI 系统可由冲激响应 \\(h[n]\\) 完全表征，也可由频率响应 \\(H(e^{j\\omega})\\) 表征（当其存在时）。\n对于 BIBO 稳定系统，\\(h[n]\\in\\ell_1\\)。\n利用卷积性质，可在频域中高效计算系统输出： \\[\nY(e^{j\\omega})=H(e^{j\\omega})X(e^{j\\omega})\n\\]"
   },
@@ -3180,14 +3180,14 @@
   {
     "objectID": "Chapter07_V4.html#示例理想带阻滤波器",
     "href": "Chapter07_V4.html#示例理想带阻滤波器",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "示例：理想带阻滤波器",
     "text": "示例：理想带阻滤波器\n（原图片及说明完整保留）"
   },
   {
     "objectID": "Chapter07_V4.html#dtft-的乘积性质",
     "href": "Chapter07_V4.html#dtft-的乘积性质",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "DTFT 的乘积性质",
     "text": "DTFT 的乘积性质\n\\[\nx[n]y[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{2\\pi} X \\circledast Y = \\frac{1}{2\\pi}\\int_{2\\pi} X(e^{j\\theta})Y(e^{j(\\omega-\\theta)})d\\theta\n\\]\n证明（利用逆 DTFT 积分表达式，已完整给出）。"
   },
@@ -3208,7 +3208,7 @@
   {
     "objectID": "Chapter07_V4.html#线性常系数差分方程描述的系统",
     "href": "Chapter07_V4.html#线性常系数差分方程描述的系统",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "线性常系数差分方程描述的系统",
     "text": "线性常系数差分方程描述的系统\n差分方程： \\[\n\\sum_{k=0}^N a_k y[n-k] = \\sum_{k=0}^M b_k x[n-k]\n\\]\n频率响应： \\[\nH(e^{j\\omega})=\\frac{\\sum b_k e^{-j\\omega k}}{\\sum a_k e^{-j\\omega k}}\n\\]\n两种求法：特征函数代入法 或 直接对差分方程两边取 DTFT。"
   },
@@ -3243,23 +3243,23 @@
   {
     "objectID": "Chapter07_V4.html#离散时间采样定理",
     "href": "Chapter07_V4.html#离散时间采样定理",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "离散时间采样定理",
-    "text": "离散时间采样定理\n带限 DT 信号（\\(X(e^{j\\omega})=0\\) 当 \\(\\omega_M &lt; |\\omega|\\leq\\pi\\)），若 \\(\\omega_s=2\\pi/N &gt; 2\\omega_M\\)，则可由子序列 \\(x[kN]\\) 唯一恢复。\n重建使用增益为 \\(N\\) 的低通滤波器 + sinc 插值。"
+    "text": "离散时间采样定理\n对于一个带限（Band-limited）离散时间信号 \\(x[n]\\)，其频谱 \\(X(e^{j\\omega})\\) 在 \\(\\omega_M &lt; |\\omega| \\leq \\pi\\) 范围内为 0。\n如果满足以下条件，则该信号可以由其样本 \\(x[kN], k \\in \\mathbb{Z}\\) 唯一确定：\n\\[\n\\omega_s \\triangleq \\frac{2\\pi}{N} &gt; 2\\omega_M\n\\]\n这本质上是离散信号域的奈奎斯特准则，确保了在频域周期搬移时不会发生混叠。\n给定样本序列 \\(\\{x[kN] : k \\in \\mathbb{Z}\\}\\)，原始信号 \\(x[n]\\) 可以通过以下步骤重构：\n1. 构造脉冲序列 \\(x_p[n]\\)\n首先构造一个包含样本值的脉冲串： \\[\nx_p[n] = \\sum_{k=-\\infty}^{\\infty} x[kN]\\delta[n - kN]\n\\]"
   },
   {
     "objectID": "Chapter07_V4.html#抽取decimation",
     "href": "Chapter07_V4.html#抽取decimation",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "抽取（Decimation）",
-    "text": "抽取（Decimation）\n\\(x_b[n]=x[nN]\\)\n频域关系：\\(X_b(e^{j\\omega})=X_p(e^{j\\omega/N})\\)（频谱拉伸）"
+    "text": "抽取（Decimation）\n\n\n    时域信号\\(x[n]\\)\n    采样信号:\\(x_p[n] = \\sum_{k=-\\infty}^{\\infty} x[kN]\\delta[n - kN]\\)     抽取后信号：\n\\(x_b[n]=x[nN]\\)\n减少了采样样本量"
   },
   {
     "objectID": "Chapter07_V4.html#连续时间信号的离散时间处理",
     "href": "Chapter07_V4.html#连续时间信号的离散时间处理",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "连续时间信号的离散时间处理",
-    "text": "连续时间信号的离散时间处理\n整体流程：C/D（模数转换）→ 离散时间处理 → D/C（数模转换）\n优点：数字设备灵活性高、抗噪声能力强。\n理想假设：无量化、理想冲激采样、理想重建。"
+    "text": "连续时间信号的离散时间处理\n\n离散时间处理的优势\n\n数字电子设备的通用性：可以通过软件算法轻松实现各种复杂的处理逻辑，而无需更改硬件。\n抗噪性强：数字信号在传输和存储过程中对环境噪声具有更高的容减能力。\n\n实际实现\n\n连续/离散（C/D） 转换：通常由模数转换器 (ADC) 实现。\n离散/连续（D/C） 转换：通常由数模转换器 (DAC) 实现。"
   },
   {
     "objectID": "Chapter07_V2.html#toc0",
@@ -3838,170 +3838,170 @@
   {
     "objectID": "Chapter07_V4.html#时域中的重建omega_comega_s2",
     "href": "Chapter07_V4.html#时域中的重建omega_comega_s2",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "时域中的重建（\\(\\omega_c=\\omega_s/2\\)）",
-    "text": "时域中的重建（\\(\\omega_c=\\omega_s/2\\)）\n当截止频率取 \\(\\omega_c=\\omega_s/2=\\pi/T\\) 时，得到 Whittaker-Shannon 插值公式：\n\\[\nx_r(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\operatorname{sinc}\\left(\\frac{t-nT}{T}\\right)\n\\]\n其中 \\(\\operatorname{sinc}(t)=\\frac{\\sin(\\pi t)}{\\pi t}\\)"
+    "text": "时域中的重建（\\(\\omega_c=\\omega_s/2\\)）\n\n\n\n\n\n\\(\\omega_c=\\frac{\\omega_s}{2}=\\frac{\\pi}{T}\\)"
   },
   {
     "objectID": "Chapter07_V4.html#时域中的重建其他截止频率示例",
     "href": "Chapter07_V4.html#时域中的重建其他截止频率示例",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "时域中的重建（其他截止频率示例）",
-    "text": "时域中的重建（其他截止频率示例）\n\n\\(\\omega_c=\\omega_s/4=\\pi/(2T) &gt; \\omega_M\\)\n\n\n\\(\\omega_c=3\\omega_s/5 &lt; \\omega_s - \\omega_M\\)"
+    "text": "时域中的重建（其他截止频率示例）\n\n\\(\\omega_c=\\omega_s/4=\\pi/(2T) &gt; \\omega_M\\)"
   },
   {
     "objectID": "Chapter07_V4.html#混叠当输入频率高于奈奎斯特频率时",
     "href": "Chapter07_V4.html#混叠当输入频率高于奈奎斯特频率时",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "混叠（当输入频率高于奈奎斯特频率时）",
     "text": "混叠（当输入频率高于奈奎斯特频率时）\n当 \\(\\omega_0 &gt; \\omega_s/2\\) 时，发生混叠，重建信号频率变为 \\(\\omega_s - \\omega_0\\)，相位反转。"
   },
   {
     "objectID": "Chapter07_V4.html#混叠示例",
     "href": "Chapter07_V4.html#混叠示例",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "混叠示例",
-    "text": "混叠示例\n\\(x(t)=\\cos(5\\pi t/3)\\) 采样后变为 \\(\\cos(\\pi n/3)\\)，重建后得到 \\(\\cos(\\pi t/3)\\)。\n电影中车轮有时看起来慢速旋转甚至反向，就是混叠现象。"
+    "text": "混叠示例\n信号 \\(x(t) = \\cos\\left(\\frac{5\\pi}{3}t\\right)\\)，采样(以\\(T=1\\)为周期)后变为\\(x[n] = \\cos\\left(\\frac{5\\pi}{3}n\\right)=\\cos\\left(\\frac{\\pi}{3}n\\right)\\)\n重建后（取\\(\\omega_c=\\pi\\)）得到 \\(x_r(t)=\\cos(\\pi t/3)\\)\n\n电影中车轮有时看起来慢速旋转甚至反向，就是混叠现象。"
   },
   {
     "objectID": "Chapter07_V4.html#混叠边界情况omega_0-omega_s2",
     "href": "Chapter07_V4.html#混叠边界情况omega_0-omega_s2",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "混叠边界情况（\\(\\omega_0 = \\omega_s/2\\)）",
-    "text": "混叠边界情况（\\(\\omega_0 = \\omega_s/2\\)）\n重建信号幅度减半：\\(x_r(t)=\\cos\\phi \\cdot \\cos(\\omega_0 t)\\)"
+    "text": "混叠边界情况（\\(\\omega_0 = \\omega_s/2\\)）\n\n\n混叠会使频率发生“折叠”。\n\n\n\n\n\n\n重建信号幅度减半：\\(x_r(t)=\\cos\\phi \\cdot \\cos(\\omega_0 t)\\)"
   },
   {
     "objectID": "Chapter07_V4.html#混叠对复杂信号的影响",
     "href": "Chapter07_V4.html#混叠对复杂信号的影响",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "混叠对复杂信号的影响",
     "text": "混叠对复杂信号的影响\n混叠不仅影响单一频率，也会使复杂信号的频谱发生折叠。"
   },
   {
     "objectID": "Chapter07_V4.html#采样率越低混叠越严重",
     "href": "Chapter07_V4.html#采样率越低混叠越严重",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "采样率越低，混叠越严重",
     "text": "采样率越低，混叠越严重"
   },
   {
     "objectID": "Chapter07_V4.html#抗混叠滤波器",
     "href": "Chapter07_V4.html#抗混叠滤波器",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "抗混叠滤波器",
     "text": "抗混叠滤波器\n在采样前，用低通滤波器滤除高于 \\(\\omega_s/2\\) 的频率成分，可有效防止混叠。"
   },
   {
     "objectID": "Chapter07_V4.html#抗混叠滤波器实际应用",
     "href": "Chapter07_V4.html#抗混叠滤波器实际应用",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "抗混叠滤波器（实际应用）",
     "text": "抗混叠滤波器（实际应用）"
   },
   {
     "objectID": "Chapter07_V4.html#示例1两个指数信号",
     "href": "Chapter07_V4.html#示例1两个指数信号",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "示例1：两个指数信号",
     "text": "示例1：两个指数信号\n\\(h[n]=a^n u[n]\\)，\\(x[n]=b^n u[n]\\)（\\(|a|&lt;1,|b|&lt;1\\)）\n使用 DTFT 求解输出 \\(y[n]\\)，包括 \\(a=b\\) 时的特殊情况（利用微分性质）。"
   },
   {
     "objectID": "Chapter07_V4.html#示例2余弦信号输入",
     "href": "Chapter07_V4.html#示例2余弦信号输入",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "示例2：余弦信号输入",
     "text": "示例2：余弦信号输入\n\\(x[n]=\\cos(\\omega_0 n)\\)，系统频率响应 \\(H(e^{j\\omega})=1/(1-a e^{-j\\omega})\\)\n输出为幅度和相位调整后的同频率余弦信号。"
   },
   {
     "objectID": "Chapter07_V4.html#示例两个sinc函数相乘",
     "href": "Chapter07_V4.html#示例两个sinc函数相乘",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "示例：两个sinc函数相乘",
     "text": "示例：两个sinc函数相乘\n\\(x_1[n]=\\sin(3\\pi n/4)/(\\pi n)\\)，\\(x_2[n]=\\sin(\\pi n/2)/(\\pi n)\\)\n通过周期卷积计算乘积信号的 DTFT（多张频谱图完整）。"
   },
   {
     "objectID": "Chapter07_V4.html#示例离散时间调制",
     "href": "Chapter07_V4.html#示例离散时间调制",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "示例：离散时间调制",
     "text": "示例：离散时间调制\n\\(y[n]=x[n]\\cos(\\omega_c n)\\)\n无重叠条件：\\(\\omega_c &gt; \\omega_M\\) 且 \\(\\omega_c + \\omega_M &lt; \\pi\\)"
   },
   {
     "objectID": "Chapter07_V4.html#示例离散时间解调",
     "href": "Chapter07_V4.html#示例离散时间解调",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "示例：离散时间解调",
     "text": "示例：离散时间解调\n\\(z[n]=y[n]\\cos(\\omega_c n)\\)，再通过合适截止频率的低通滤波恢复原始信号。"
   },
   {
     "objectID": "Chapter07_V4.html#示例具体二阶系统",
     "href": "Chapter07_V4.html#示例具体二阶系统",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "示例：具体二阶系统",
     "text": "示例：具体二阶系统\n\\(y[n] - (3/4)y[n-1] + (1/8)y[n-2] = 2x[n]\\)\n求出 \\(H(e^{j\\omega})\\)，通过部分分式展开得到 \\(h[n]\\)。"
   },
   {
     "objectID": "Chapter07_V4.html#示例求零状态响应",
     "href": "Chapter07_V4.html#示例求零状态响应",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "示例：求零状态响应",
     "text": "示例：求零状态响应\n输入 \\(x[n]=(1/4)^n u[n]\\)，使用部分分式展开求 \\(y[n]\\)（含重根情况）。"
   },
   {
     "objectID": "Chapter07_V4.html#部分分式展开方法离散时间特有",
     "href": "Chapter07_V4.html#部分分式展开方法离散时间特有",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "部分分式展开方法（离散时间特有）",
     "text": "部分分式展开方法（离散时间特有）\n用 \\(z\\) 替换 \\(e^{-j\\omega}\\)，求留数。对于重根，使用导数法求系数。"
   },
   {
     "objectID": "Chapter07_V4.html#逆-dtft-常用变换对含重极点",
     "href": "Chapter07_V4.html#逆-dtft-常用变换对含重极点",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "逆 DTFT 常用变换对（含重极点）",
     "text": "逆 DTFT 常用变换对（含重极点）\n\\[\n\\binom{n+m-1}{n} a^n u[n] \\stackrel{\\mathcal{F}}{\\longleftrightarrow} \\frac{1}{(1-a e^{-j\\omega})^m},\\quad |a|&lt;1\n\\]"
   },
   {
     "objectID": "Chapter07_V4.html#离散时间信号的冲激列采样",
     "href": "Chapter07_V4.html#离散时间信号的冲激列采样",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "离散时间信号的冲激列采样",
-    "text": "离散时间信号的冲激列采样\n\\(p[n]=\\sum \\delta[n-kN]\\)\n采样信号 \\(x_p[n]=x[n]p[n]\\)\n频谱： \\[\nX_p(e^{j\\omega})=\\frac{1}{N}\\sum_{k=0}^{N-1} X(e^{j(\\omega - k\\cdot 2\\pi/N)})\n\\]\n（两种视角：周期延拓与有限复制，均有对应图示）"
+    "text": "离散时间信号的冲激列采样"
   },
   {
     "objectID": "Chapter07_V4.html#模数转换cd",
     "href": "Chapter07_V4.html#模数转换cd",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "模数转换（C/D）",
-    "text": "模数转换（C/D）\n时域与频域关系： \\[\nX_p(j\\omega)=X_d(e^{j\\omega T})\n\\]"
+    "text": "模数转换（C/D）\n\n\n采样假设，在讨论 CT 与 DT 频谱关系前，必须满足：\n\n带限信号：\\(x_c(t)\\) 的频谱 \\(X_c(j\\omega)\\) 在 \\(|\\omega| &gt; \\omega_M\\) 时为零。\n奈奎斯特准则：采样频率 \\(\\omega_s = \\frac{2\\pi}{T} &gt; 2\\omega_M\\)。\n无混叠：确保基带频谱在周期延拓时不发生重叠。\n\n\n\n\n从冲激串采样信号 \\(x_p(t)\\) 的 CTFT 出发：\n\\[\n\\begin{aligned}\nX_p(j\\omega) &= \\mathcal{F} \\left\\{ \\sum_{n=-\\infty}^{\\infty} x_c(nT)\\delta(t-nT) \\right\\} \\\\\n&= \\sum_{n=-\\infty}^{\\infty} x_c(nT) \\mathcal{F} \\{ \\delta(t-nT) \\} \\\\\n&= \\sum_{n=-\\infty}^{\\infty} x_c(nT) e^{-j\\omega Tn}= \\sum_{n=-\\infty}^{\\infty} x_d[n] e^{-j\\omega T n}=X_d(e^{j\\omega T})\n\\end{aligned}\n\\]"
   },
   {
     "objectID": "Chapter07_V4.html#数模转换dc",
     "href": "Chapter07_V4.html#数模转换dc",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "数模转换（D/C）",
-    "text": "数模转换（D/C）\n反向过程，低通滤波器截止在 \\(\\omega_s/2\\)。"
+    "text": "数模转换（D/C）\n反向过程，低通滤波器截止在 \\(\\omega_s/2\\)。\n\n\n\\[Y_d(e^{j\\Omega}) = H_d(e^{j\\Omega})X_d(e^{j\\Omega})\\]\n\\[Y_p(j\\omega) = Y_d(e^{j\\omega T}) = H_d(e^{j\\omega T})X_d(e^{j\\omega T}) = H_d(e^{j\\omega T})X_p(j\\omega)\\]\n\\[Y_c(j\\omega) = Y_p(j\\omega)H_{lp}(j\\omega) = H_d(e^{j\\omega T})X_p(j\\omega)H_{lp}(j\\omega) = H_d(e^{j\\omega T})X_c(j\\omega)\\]\n\\[H_c(j\\omega) = \\begin{cases} H_d(e^{j\\omega T}) & |\\omega| &lt; \\frac{\\omega_s}{2} = \\frac{\\pi}{T} \\\\ 0, & \\text{其他} \\end{cases}\\]"
   },
   {
     "objectID": "Chapter07_V4.html#整体频率响应",
     "href": "Chapter07_V4.html#整体频率响应",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "整体频率响应",
-    "text": "整体频率响应\n\\[\nH_c(j\\omega)=\\begin{cases}H_d(e^{j\\omega T}) & |\\omega|&lt;\\omega_s/2 \\\\ 0 & \\text{其他}\\end{cases}\n\\]"
+    "text": "整体频率响应\n\\[\nH_c(j\\omega)=\\begin{cases}H_d(e^{j\\omega T}) & |\\omega|&lt;\\omega_s/2 \\\\ 0 & \\text{其他}\\end{cases}\n\\]\n\\[\\Longrightarrow H_d(e^{j\\Omega}) = H_c\\left( j\\frac{\\Omega}{T} \\right), \\quad |\\Omega| &lt; \\pi\\]"
   },
   {
     "objectID": "Chapter07_V4.html#示例数字微分器",
     "href": "Chapter07_V4.html#示例数字微分器",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "示例：数字微分器",
-    "text": "示例：数字微分器\n频率响应相位与幅度特性（原图完整）。"
+    "text": "示例：数字微分器\n频率响应相位与幅度特性。"
   },
   {
     "objectID": "Chapter07_V4.html#作业",
     "href": "Chapter07_V4.html#作业",
-    "title": "第五章 离散时间傅里叶变换",
+    "title": "第七章 采样",
     "section": "作业",
-    "text": "作业\n（原文件作业部分保留）"
+    "text": "作业\n一、 书面作业\n\n7.2\n\n7.4\n\n7.5\n\n7.6\n7.7\n7.10\n\n二、 编程作业 详细见乐学平台"
   },
   {
     "objectID": "ref/信号与系统奥本海姆课件第7章-关注！！！.html#本章主要内容",
@@ -4170,5 +4170,810 @@
     "title": "My Site",
     "section": "习题",
     "text": "习题\n\n\n\n7.2\n7.22\n7.15\n\n\n\n\n7.4\n7.23\n7.17\n\n\n7.5\n7.31\n7.27\n\n\n7.6\n\n\n\n\n7.7\n\n\n\n\n7.10\n\n\n\n\n7.21"
+  },
+  {
+    "objectID": "Chapter07_V4.html#时域中的重建omega_comega_s2-1",
+    "href": "Chapter07_V4.html#时域中的重建omega_comega_s2-1",
+    "title": "第七章 采样",
+    "section": "时域中的重建（\\(\\omega_c=\\omega_s/2\\)）",
+    "text": "时域中的重建（\\(\\omega_c=\\omega_s/2\\)）\n当截止频率取 \\(\\omega_c=\\omega_s/2=\\pi/T\\) 时，得到 Whittaker-Shannon 插值公式：\n\\[\nx_r(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\operatorname{sinc}\\left(\\frac{t-nT}{T}\\right)\n\\]\n其中 \\(\\operatorname{sinc}(t)=\\frac{\\sin(\\pi t)}{\\pi t}\\)\n由于 \\(\\text{sinc}\\) 函数的傅里叶变换关系如下：\n\\[\n\\text{sinc} \\left( \\frac{t - nT}{T} \\right) \\xleftrightarrow{\\mathcal{F}} T e^{-jnT\\omega} \\left[ u\\left( \\omega + \\frac{\\pi}{T} \\right) - u\\left( \\omega - \\frac{\\pi}{T} \\right) \\right]\n\\]\n根据 Parseval 等式（或乘法性质），我们可以推导出：\n\\[\n\\int_{\\mathbb{R}} \\text{sinc} \\left( \\frac{t - nT}{T} \\right) \\text{sinc} \\left( \\frac{t - mT}{T} \\right) dt = \\frac{T^2}{2\\pi} \\int_{-\\frac{\\pi}{T}}^{\\frac{\\pi}{T}} e^{j(m-n)T\\omega} d\\omega = T \\delta[n-m]\n\\]\n结论\n上述推导表明，Whittaker-Shannon 公式（采样定理插值公式）实际上是一个正交展开。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#时域中的重建其他截止频率示例-1",
+    "href": "Chapter07_V4.html#时域中的重建其他截止频率示例-1",
+    "title": "第七章 采样",
+    "section": "时域中的重建（其他截止频率示例）",
+    "text": "时域中的重建（其他截止频率示例）\n\n\\(\\omega_c=3\\omega_s/5 &lt; \\omega_s - \\omega_M\\)"
+  },
+  {
+    "objectID": "Chapter07_V4.html#零阶保持zero-order-hold-1",
+    "href": "Chapter07_V4.html#零阶保持zero-order-hold-1",
+    "title": "第七章 采样",
+    "section": "零阶保持（Zero-Order Hold）",
+    "text": "零阶保持（Zero-Order Hold）\n在一个给定的瞬时对输入信号采样，并保持这一样本值直到下一个样本被采到为止。\n\n\n信号的样本经零阶保持后，所得到的信号是一个阶梯形信号。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#线性插值first-order-hold-1",
+    "href": "Chapter07_V4.html#线性插值first-order-hold-1",
+    "title": "第七章 采样",
+    "section": "线性插值（First-Order Hold）",
+    "text": "线性插值（First-Order Hold）"
+  },
+  {
+    "objectID": "Chapter07_V4.html#混叠",
+    "href": "Chapter07_V4.html#混叠",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n\n\n混叠会使频率发生“折叠”。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#混叠-1",
+    "href": "Chapter07_V4.html#混叠-1",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n\n\n混叠会使频率发生“折叠”。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#混叠-2",
+    "href": "Chapter07_V4.html#混叠-2",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n\n\n混叠会使频率发生“折叠”。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#混叠-3",
+    "href": "Chapter07_V4.html#混叠-3",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n混叠边界情况（\\(\\omega_0 = \\omega_s/2\\)）\n\n\n混叠会使频率发生“折叠”。\n\n\n\n\n\n\n\n\n\n\n重建信号幅度减半：\\(x_r(t)=\\cos\\phi \\cdot \\cos(\\omega_0 t)\\)"
+  },
+  {
+    "objectID": "Chapter07_V4.html#混叠-4",
+    "href": "Chapter07_V4.html#混叠-4",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n对复杂信号的影响：混叠不仅影响单一频率，也会使复杂信号的频谱发生折叠。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#混叠-5",
+    "href": "Chapter07_V4.html#混叠-5",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n采样率越低，混叠越严重"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间信号的冲激列采样-1",
+    "href": "Chapter07_V4.html#离散时间信号的冲激列采样-1",
+    "title": "第七章 采样",
+    "section": "离散时间信号的冲激列采样",
+    "text": "离散时间信号的冲激列采样\n第二种视角：在 \\(k\\omega_s\\) 处复制 \\(X\\)，\\(k = 0, 1, \\dots, N-1\\) (Second view: Replicating \\(X\\) at \\(k\\omega_s\\) for \\(k = 0, 1, \\dots, N-1\\))\n与第一种视角（无限项求和）不同，第二种视角指出，由于离散时间信号频谱 \\(X(e^{j\\omega})\\) 本身就是以 \\(2\\pi\\) 为周期的，因此采样后的频谱 \\(X_p(e^{j\\omega})\\) 可以通过仅在一个周期内进行有限次平移叠加来获得：\n\\[\nX_p(e^{j\\omega}) = \\frac{1}{N} \\sum_{k=0}^{N-1} X(e^{j(\\omega-k\\omega_s)})\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间信号的冲激列采样-2",
+    "href": "Chapter07_V4.html#离散时间信号的冲激列采样-2",
+    "title": "第七章 采样",
+    "section": "离散时间信号的冲激列采样",
+    "text": "离散时间信号的冲激列采样\n核心差异与理解\n\n求和范围：从无限项 \\(\\sum_{k=-\\infty}^{\\infty}\\) 简化为了有限项 \\(\\sum_{k=0}^{N-1}\\)。\n信号定义：此处使用的是完整的离散频谱 \\(X\\)，而不是之前视角的切片分量 \\(\\tilde{X}\\)。\n周期性体现：该视角充分利用了离散频率域的周期性。因为 \\(\\omega_s = \\frac{2\\pi}{N}\\)，所以当 \\(k\\) 超过 \\(N-1\\) 后的项实际上是前 \\(N\\) 项的周期重复。\n\n数学背景\n这种视角直接对应了离散傅里叶变换（DFT）中频域采样的物理过程，即在 \\([0, 2\\pi)\\) 范围内取 \\(N\\) 个等间距采样点。\n\n对比提示：\n\n\n\n\n视角一：强调如何通过“切片”原始连续频谱并周期搬移来构造新频谱。\n\n\n\n\n\n\n视角二：强调在已有周期频谱的基础上，通过有限次的平移叠加来描述采样后的效果。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间信号的冲激列采样-3",
+    "href": "Chapter07_V4.html#离散时间信号的冲激列采样-3",
+    "title": "第七章 采样",
+    "section": "离散时间信号的冲激列采样",
+    "text": "离散时间信号的冲激列采样"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间信号的冲激列采样-4",
+    "href": "Chapter07_V4.html#离散时间信号的冲激列采样-4",
+    "title": "第七章 采样",
+    "section": "离散时间信号的冲激列采样",
+    "text": "离散时间信号的冲激列采样\n核心差异与理解\n\n求和范围：从无限项 \\(\\sum_{k=-\\infty}^{\\infty}\\) 简化为了有限项 \\(\\sum_{k=0}^{N-1}\\)。\n信号定义：此处使用的是完整的离散频谱 \\(X\\)，而不是之前视角的切片分量 \\(\\tilde{X}\\)。\n周期性体现：该视角充分利用了离散频率域的周期性。因为 \\(\\omega_s = \\frac{2\\pi}{N}\\)，所以当 \\(k\\) 超过 \\(N-1\\) 后的项实际上是前 \\(N\\) 项的周期重复。\n\n数学背景\n这种视角直接对应了离散傅里叶变换（DFT）中频域采样的物理过程，即在 \\([0, 2\\pi)\\) 范围内取 \\(N\\) 个等间距采样点。\n\n对比提示：\n\n\n\n\n视角一：强调如何通过“切片”原始连续频谱并周期搬移来构造新频谱。\n\n\n\n\n\n\n视角二：强调在已有周期频谱的基础上，通过有限次的平移叠加来描述采样后的效果。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间信号的冲激列采样-5",
+    "href": "Chapter07_V4.html#离散时间信号的冲激列采样-5",
+    "title": "第七章 采样",
+    "section": "离散时间信号的冲激列采样",
+    "text": "离散时间信号的冲激列采样"
+  },
+  {
+    "objectID": "Chapter07_V4.html#重构步骤-reconstruction-process",
+    "href": "Chapter07_V4.html#重构步骤-reconstruction-process",
+    "title": "第七章 采样",
+    "section": "重构步骤 (Reconstruction Process)",
+    "text": "重构步骤 (Reconstruction Process)\n给定样本序列 \\(\\{x[kN] : k \\in \\mathbb{Z}\\}\\)，原始信号 \\(x[n]\\) 可以通过以下步骤重构：\n1. 构造脉冲序列 \\(x_p[n]\\)\n首先构造一个包含样本值的脉冲串： \\[\nx_p[n] = \\sum_{k=-\\infty}^{\\infty} x[kN]\\delta[n - kN]\n\\]\n2. 通过低通滤波器\n将 \\(x_p[n]\\) 输入一个增益为 \\(N\\)、截止频率为 \\(\\omega_c \\in (\\omega_M, \\omega_s - \\omega_M)\\) 的理想低通滤波器。其频率响应为： \\[\nH(e^{j\\omega}) = N[u(\\omega + \\omega_c) - u(\\omega - \\omega_c)]\n\\]\n3. 输出重构信号 \\(x_r[n]\\)\n输出信号的频谱为 \\(X_r(e^{j\\omega}) = X_p(e^{j\\omega})H(e^{j\\omega})\\)。在满足采样定理的条件下，该输出 \\(x_r[n]\\) 与原始信号 \\(x[n]\\) 完全一致。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#时域重建",
+    "href": "Chapter07_V4.html#时域重建",
+    "title": "第七章 采样",
+    "section": "时域重建",
+    "text": "时域重建\n\n1. 低通滤波器的单位脉冲响应 (Impulse response of lowpass filter)\n理想低通滤波器 \\(H(e^{j\\omega})\\) 在时域对应的单位脉冲响应 \\(h[n]\\) 是一个 \\(\\text{sinc}\\) 函数：\n\\[\nh[n] = \\frac{N \\sin(\\omega_c n)}{\\pi n}\n\\]\n这里 \\(N\\) 是增益系数，\\(\\omega_c\\) 是滤波器的截止频率。在时域中，这个响应表现为以 \\(n=0\\) 为中心的无限长振荡序列。\n2. 使用 sinc 函数进行带限插值 (Band-limited interpolation)\n重构信号 \\(x[n]\\)（即 \\(x_r[n]\\)）可以通过将采样序列 \\(x_p[n]\\) 与滤波器的单位脉冲响应 \\(h[n]\\) 进行卷积得到。这一过程被称为带限插值：\n\\[\nx[n] = x_r[n] = (x_p * h)[n] = \\sum_{k=-\\infty}^{\\infty} x[kN] \\frac{N \\sin(\\omega_c (n - kN))}{\\pi (n - kN)}\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V4.html#时域重建-1",
+    "href": "Chapter07_V4.html#时域重建-1",
+    "title": "第七章 采样",
+    "section": "时域重建",
+    "text": "时域重建\n物理意义解析\n\n卷积过程：该公式表明，重构信号在任意时刻 \\(n\\) 的值，都是由所有采样点 \\(x[kN]\\) 经过 \\(\\text{sinc}\\) 函数加权叠加而成的。\n内插本质：在采样点 \\(n=kN\\) 处，由于 \\(\\text{sinc}\\) 函数的特性，该项贡献为原始样本值，而其他项贡献为零。在非采样点处，\\(\\text{sinc}\\) 函数起到了平滑内插的作用。\n理想还原：只要满足采样定理，这种基于 \\(\\text{sinc}\\) 函数的内插可以完美还原带限信号，不产生任何失真。\n\n\n公式提示：\n\n\n\n\n\\(\\omega_c\\) 通常取在 \\((\\omega_M, \\omega_s - \\omega_M)\\) 之间。\n\n\n\n\n\n\n当 \\(\\omega_c = \\pi/N\\) 且增益为 \\(N\\) 时，这是最常用的标准重构形式。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#抽取",
+    "href": "Chapter07_V4.html#抽取",
+    "title": "第七章 采样",
+    "section": "抽取",
+    "text": "抽取\n设 \\(x_b[n]\\) 是对原始信号 \\(x[n]\\) 进行因子为 \\(N\\) 的下采样（抽取）后得到的信号，即 \\(x_b[n] = x[nN]\\)。\n其离散时间傅里叶变换（DTFT） \\(X_b(e^{j\\omega})\\) 推导如下：\n\\[\n\\begin{aligned}\nX_b(e^{j\\omega}) &= \\sum_{n \\in \\mathbb{Z}} x_b[n]e^{-j\\omega n} \\\\\n&= \\sum_{n \\in \\mathbb{Z}} x[nN]e^{-j\\omega n} \\\\\n&= \\sum_{k \\in N\\mathbb{Z}} x[k]e^{-j\\omega k/N} \\quad (k = nN) \\\\\n&= \\sum_{k \\in \\mathbb{Z}} x_p[k]e^{-j\\frac{\\omega}{N}k} \\quad (x_p[n] = 0 \\text{ for } n \\in \\mathbb{Z} \\setminus N\\mathbb{Z}) \\\\\n&= X_p(e^{j\\omega/N})\n\\end{aligned}\n\\]\n这里 \\(x_p[k]\\) 是采样序列（在非 \\(N\\) 的倍数处补零的序列）。\n 已知 \\(X_p(e^{j\\omega})\\) 的周期为 \\(2\\pi/N\\)，根据上述关系式 \\(X_b(e^{j\\omega}) = X_p(e^{j\\omega/N})\\) 可以得出： * \\(X_b(e^{j\\omega})\\) 的周期为 \\(2\\pi\\)。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#抽取-1",
+    "href": "Chapter07_V4.html#抽取-1",
+    "title": "第七章 采样",
+    "section": "抽取",
+    "text": "抽取\n无混叠情况下的特性\n如果在采样过程中没有发生混叠（满足采样定理），则具有以下特性：\n\n频谱展宽：\\(X_b\\) 是原始信号频谱 \\(X\\) 在每个周期内的展宽版本（Stretched version）。\n关系区别：虽然数学形式上 \\(X_b(e^{j\\omega}) = X_p(e^{j\\omega/N})\\)，但需要注意在物理意义和幅度对应上，\\(X_b(e^{j\\omega}) \\neq X(e^{j\\omega/N})\\)。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#周期性分析",
+    "href": "Chapter07_V4.html#周期性分析",
+    "title": "第七章 采样",
+    "section": "2. 周期性分析",
+    "text": "2. 周期性分析\n已知 \\(X_p(e^{j\\omega})\\) 的周期为 \\(2\\pi/N\\)，根据上述关系式 \\(X_b(e^{j\\omega}) = X_p(e^{j\\omega/N})\\) 可以得出： * \\(X_b(e^{j\\omega})\\) 的周期为 \\(2\\pi\\)。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#冲激串采样时域",
+    "href": "Chapter07_V4.html#冲激串采样时域",
+    "title": "第七章 采样",
+    "section": "冲激串采样（时域）",
+    "text": "冲激串采样（时域）\n\n\n 连续时间信号 \\(x(t)\\)\n \n冲激串\n\\[\np(t)=\\sum_{n=-\\infty}^{\\infty} \\delta(t-nT)\n\\]\n  采样信号\n\\[\nx_p(t)=x(t)p(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\delta(t-nT)\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V4.html#冲激串采样频域",
+    "href": "Chapter07_V4.html#冲激串采样频域",
+    "title": "第七章 采样",
+    "section": "冲激串采样（频域）",
+    "text": "冲激串采样（频域）\n\n\n   连续时间信号频谱 \\(X(j\\omega)\\)\n   冲激串频谱\n\\[\nP(j\\omega)=\\omega_s \\sum_{k=-\\infty}^{\\infty} \\delta(\\omega-k\\omega_s)\n\\]\n \n采样信号频谱\n\\[\nX_p(j\\omega)=\\frac{1}{2\\pi}(X*P)(\\omega)=\\frac{1}{T}\\sum_{k=-\\infty}^{\\infty} X(j(\\omega-k\\omega_s))\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V4.html#toc1",
+    "href": "Chapter07_V4.html#toc1",
+    "title": "第七章 采样",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
+  },
+  {
+    "objectID": "Chapter07_V4.html#toc2",
+    "href": "Chapter07_V4.html#toc2",
+    "title": "第七章 采样",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
+  },
+  {
+    "objectID": "Chapter07_V4.html#toc3",
+    "href": "Chapter07_V4.html#toc3",
+    "title": "第七章 采样",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间信号的脉冲串采样",
+    "href": "Chapter07_V4.html#离散时间信号的脉冲串采样",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲串采样",
+    "text": "离散时间信号的脉冲串采样\n\n\n   \n离散时间信号\\(x[n]\\)\n   \n离散时间脉冲串：\\(p[n]=\\sum \\delta[n-kN]\\)\n   \n采样信号 \\(x_p[n]=x[n]p[n]\\)"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间信号的脉冲采样",
+    "href": "Chapter07_V4.html#离散时间信号的脉冲采样",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲采样",
+    "text": "离散时间信号的脉冲采样\n脉冲序列的频谱\n离散时间脉冲序列的频谱 \\(P(e^{j\\omega})\\) 可以表示为一系列周期性的 \\(\\delta\\) 函数：\n\\[\nP(e^{j\\omega}) = \\omega_s \\sum_{k=-\\infty}^{\\infty} \\delta(\\omega - k\\omega_s), \\quad \\omega_s = \\frac{2\\pi}{N}\n\\]\n这里 \\(\\omega_s\\) 是采样频率（或频谱间隔），\\(N\\) 是离散脉冲序列的周期。\n采样信号的频谱\n采样信号的频谱 \\(X_p\\) 是原始信号频谱 \\(X\\) 与脉冲序列频谱 \\(P\\) 的周期卷积：\n\\[\nX_p = \\frac{1}{2\\pi} X \\circledast P = \\frac{1}{2\\pi} \\tilde{X} * P = \\frac{1}{2\\pi} X * \\tilde{P}\n\\]\n其中： * \\(\\circledast\\) 表示周期卷积。 * \\(*\\) 表示线性卷积。 * \\(\\tilde{X}\\) 和 \\(\\tilde{P}\\) 分别是 \\(X\\) 和 \\(P\\) 在一个 \\(2\\pi\\) 周期内的部分。\n频谱展开形式\n根据上述性质，采样信号的频谱 \\(X_p(e^{j\\omega})\\) 可以进一步展开为：\n\\[\nX_p(e^{j\\omega}) = \\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}(e^{j(\\omega-k\\omega_s)}) = \\frac{1}{N} \\sum_{k=0}^{N-1} X(e^{j(\\omega-k\\omega_s)})\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V4.html#toc4",
+    "href": "Chapter07_V4.html#toc4",
+    "title": "第七章 采样",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间信号的脉冲串采样-1",
+    "href": "Chapter07_V4.html#离散时间信号的脉冲串采样-1",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲串采样",
+    "text": "离散时间信号的脉冲串采样\n第一种视角：在 \\(k\\omega_s\\) 处复制 \\(\\tilde{X}\\)\n 从数学角度看，采样信号的频谱 \\(X_p(e^{j\\omega})\\) 可以视为原始频谱分量 \\(\\tilde{X}\\) 在频域内以 \\(\\omega_s\\) 为间隔进行的周期性平移与叠加：\n\\[\nX_p(e^{j\\omega}) = \\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}(e^{j(\\omega-k\\omega_s)})\n\\]\n\n物理意义解析\n\n频谱搬移：公式中的 \\((\\omega - k\\omega_s)\\) 项表示将原始频谱 \\(\\tilde{X}\\) 的中心从原点搬移到 \\(k\\omega_s\\) 处。\n周期叠加：通过对所有整数 \\(k\\) 进行求和，形成了在整个频率轴上周期性变化的频谱。\n幅度缩放：叠加后的频谱整体乘上了系数 \\(\\frac{1}{N}\\)。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间信号的脉冲串采样-2",
+    "href": "Chapter07_V4.html#离散时间信号的脉冲串采样-2",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲串采样",
+    "text": "离散时间信号的脉冲串采样\n第二种视角：在 \\(k\\omega_s\\) 处复制 \\(X\\)，\\(k = 0, 1, \\dots, N-1\\)\n与第一种视角（无限项求和）不同，第二种视角指出，由于离散时间信号频谱 \\(X(e^{j\\omega})\\) 本身就是以 \\(2\\pi\\) 为周期的，因此采样后的频谱 \\(X_p(e^{j\\omega})\\) 可以通过仅在一个周期内进行有限次平移叠加来获得：\n\\[\nX_p(e^{j\\omega}) = \\frac{1}{N} \\sum_{k=0}^{N-1} X(e^{j(\\omega-k\\omega_s)})\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间信号的脉冲串采样-3",
+    "href": "Chapter07_V4.html#离散时间信号的脉冲串采样-3",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲串采样",
+    "text": "离散时间信号的脉冲串采样\n核心差异与理解\n\n求和范围：从无限项 \\(\\sum_{k=-\\infty}^{\\infty}\\) 简化为了有限项 \\(\\sum_{k=0}^{N-1}\\)。\n信号定义：此处使用的是完整的离散频谱 \\(X\\)，而不是之前视角的切片分量 \\(\\tilde{X}\\)。\n周期性体现：该视角充分利用了离散频率域的周期性。因为 \\(\\omega_s = \\frac{2\\pi}{N}\\)，所以当 \\(k\\) 超过 \\(N-1\\) 后的项实际上是前 \\(N\\) 项的周期重复。\n\n数学背景\n这种视角直接对应了离散傅里叶变换（DFT）中频域采样的物理过程，即在 \\([0, 2\\pi)\\) 范围内取 \\(N\\) 个等间距采样点。\n\n对比提示：\n\n\n\n\n视角一：强调如何通过“切片”原始连续频谱并周期搬移来构造新频谱。\n\n\n\n\n\n\n视角二：强调在已有周期频谱的基础上，通过有限次的平移叠加来描述采样后的效果。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#toc5",
+    "href": "Chapter07_V4.html#toc5",
+    "title": "第七章 采样",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
+  },
+  {
+    "objectID": "Chapter07_V4.html#抽取-2",
+    "href": "Chapter07_V4.html#抽取-2",
+    "title": "第七章 采样",
+    "section": "抽取",
+    "text": "抽取"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间信号的脉冲串采样-4",
+    "href": "Chapter07_V4.html#离散时间信号的脉冲串采样-4",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲串采样",
+    "text": "离散时间信号的脉冲串采样"
+  },
+  {
+    "objectID": "Chapter07_V4.html#离散时间采样定理-1",
+    "href": "Chapter07_V4.html#离散时间采样定理-1",
+    "title": "第七章 采样",
+    "section": "离散时间采样定理",
+    "text": "离散时间采样定理\n2. 通过低通滤波器\n将 \\(x_p[n]\\) 输入一个增益为 \\(N\\)、截止频率为 \\(\\omega_c \\in (\\omega_M, \\omega_s - \\omega_M)\\) 的理想低通滤波器。其频率响应为： \\[\nH(e^{j\\omega}) = N[u(\\omega + \\omega_c) - u(\\omega - \\omega_c)]\n\\]\n3. 输出重构信号 \\(x_r[n]\\)\n输出信号的频谱为 \\(X_r(e^{j\\omega}) = X_p(e^{j\\omega})H(e^{j\\omega})\\)。在满足采样定理的条件下，该输出 \\(x_r[n]\\) 与原始信号 \\(x[n]\\) 完全一致。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#模数转换cd-1",
+    "href": "Chapter07_V4.html#模数转换cd-1",
+    "title": "第七章 采样",
+    "section": "模数转换（C/D）",
+    "text": "模数转换（C/D）\n由此可见，两者存在恒等关系： \\[\\mathbf{X_p(j\\omega) = X_d(e^{j\\omega T})}\\]\n时域与频域关系： \\[\nX_p(j\\omega)=X_d(e^{j\\omega T})\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V4.html#连续时间信号的离散时间处理-1",
+    "href": "Chapter07_V4.html#连续时间信号的离散时间处理-1",
+    "title": "第七章 采样",
+    "section": "连续时间信号的离散时间处理",
+    "text": "连续时间信号的离散时间处理\n\n\n\n理论理想化 (Idealization)\n为了简化数学分析，我们通常假设：\n\n无量化误差：忽略幅度量化带来的精度损失。\n脉冲串采样：假设 C/D 过程是通过理想脉冲串采样完成的。\n理想重构：假设 D/C 过程是通过理想低通滤波器进行的完美还原。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#混叠示例-1",
+    "href": "Chapter07_V4.html#混叠示例-1",
+    "title": "第七章 采样",
+    "section": "混叠示例",
+    "text": "混叠示例\n\n\nVideo"
+  },
+  {
+    "objectID": "Chapter07_V4.html#连续时间信号的采样-2",
+    "href": "Chapter07_V4.html#连续时间信号的采样-2",
+    "title": "第七章 采样",
+    "section": "连续时间信号的采样",
+    "text": "连续时间信号的采样\n\n\n\n\n\n\n\nCaution\n\n\n需要注意的是：\n\n在没有任何条件限制的情况下，从连续时间信号采样所得到的样本序列不能唯一地代表原来的连续时间信号。\n此外，对同一个连续时间信号，当采样间隔不同时也会 得到不同的样本序列。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#采样定理-nyquist-shannon-sampling-theorem",
+    "href": "Chapter07_V4.html#采样定理-nyquist-shannon-sampling-theorem",
+    "title": "第七章 采样",
+    "section": "采样定理 （Nyquist-Shannon Sampling Theorem）",
+    "text": "采样定理 （Nyquist-Shannon Sampling Theorem）\n若连续时间信号 \\(x(t)\\) 是带限的（其频谱 \\(X(j\\omega)=0\\) 当 \\(|\\omega|&gt;\\omega_M\\)），且采样满足\n\\[\n\\omega_s \\triangleq \\frac{2\\pi}{T} &gt; 2\\omega_M\n\\]\n（其中 \\(2\\omega_M\\) 称为奈奎斯特率），则该信号可由其采样序列 \\(x(nT),\\ n\\in\\mathbb{Z}\\) 唯一确定。\n当信号满足采样定理的条件时，可以研究如何从采样信号恢复原信号  重建步骤：  1. 构造冲激采样信号 \\[x_p(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\delta(t-nT)\\]\n\n通过增益为 \\(T\\)、截止频率 \\(\\omega_c\\in(\\omega_M, \\omega_s-\\omega_M)\\) 的理想低通滤波器\n\\[\nH(j\\omega)=T[u(\\omega+\\omega_c)-u(\\omega-\\omega_c)]\n\\]\n滤波器输出 \\(x_r(t)\\) 即为原始信号 \\(x(t)\\)"
+  },
+  {
+    "objectID": "Chapter07_V4.html#零阶保持zero-order-hold-2",
+    "href": "Chapter07_V4.html#零阶保持zero-order-hold-2",
+    "title": "第七章 采样",
+    "section": "零阶保持（Zero-Order Hold）",
+    "text": "零阶保持（Zero-Order Hold）\n零阶保持采样在原理上可以用冲激串采样，再级联一个零阶保持系统来实现。\n\n重建信号： \\[\nx_0(t)=\\sum_{n=-\\infty}^{\\infty} x(nT) h_0(t-nT)\n\\]\n\n\n零阶保持滤波器频率响应： \\[\nH_0(j\\omega)=e^{-j\\omega T/2} \\frac{2\\sin(\\omega T/2)}{\\omega}\n\\] 为了从\\(x_0(t)\\)能恢复\\(x(t)\\)，就要求零阶保持后再级联一个系统。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#零阶保持zero-order-hold-3",
+    "href": "Chapter07_V4.html#零阶保持zero-order-hold-3",
+    "title": "第七章 采样",
+    "section": "零阶保持（Zero-Order Hold）",
+    "text": "零阶保持（Zero-Order Hold）\n\n\n若要求级联后的总响应满足： \\[H_0(j\\omega)H_r(j\\omega) = \\begin{cases} T, & |\\omega| &lt; \\omega_c \\\\ 0, & |\\omega| &gt; \\omega_c \\end{cases}\\] 其中截断频率满足：\\(\\omega_M &lt; \\omega_c &lt; \\omega_s - \\omega_M\\)。\n\n\n\n已知零阶保持器的频率响应（含线性相位滞后）： \\[H_0(j\\omega) = \\frac{2\\sin\\frac{\\omega T}{2}}{\\omega} e^{-j\\frac{\\omega T}{2}}\\]\n则所需的重建滤波器 \\(H_r(j\\omega)\\) 为： \\[H_r(j\\omega) = \\frac{H(j\\omega)}{\\frac{2\\sin(\\omega T/2)}{\\omega}} \\cdot e^{j\\frac{\\omega T}{2}}\\]"
+  },
+  {
+    "objectID": "Chapter07_V4.html#零阶保持zero-order-hold-4",
+    "href": "Chapter07_V4.html#零阶保持zero-order-hold-4",
+    "title": "第七章 采样",
+    "section": "零阶保持（Zero-Order Hold）",
+    "text": "零阶保持（Zero-Order Hold）\n2. 频率特性分析图解\n以 \\(H(j\\omega)\\) 表示增益为 \\(T\\) 的理想低通滤波器特性：\n\n\n\n\n\n当取 \\(\\omega_c = \\frac{1}{2}\\omega_s\\) 时，补偿滤波器的特性如下：\n\n\n幅度特性 \\(|H_r(j\\omega)|\\) 为了补偿衰减，补偿滤波器的增益在截止频率附近向上弯曲（翘起）。\n\n相位特性 \\(\\angle H_r(j\\omega)\\) 为了抵消 \\(H_0(j\\omega)\\) 带来的 \\(T/2\\) 时间滞后，补偿器需提供一个超前的线性相位。"
+  },
+  {
+    "objectID": "Chapter07_V4.html#典型插值方法",
+    "href": "Chapter07_V4.html#典型插值方法",
+    "title": "第七章 采样",
+    "section": "典型插值方法",
+    "text": "典型插值方法\n内插：由样本值重建某一函数的过程。\n\n\n\n\n\n\n\n零阶保持\n\n\n\n\n\n线性插值"
+  },
+  {
+    "objectID": "Chapter07_V4.html#模数转换连续离散",
+    "href": "Chapter07_V4.html#模数转换连续离散",
+    "title": "第七章 采样",
+    "section": "模数转换（连续/离散）",
+    "text": "模数转换（连续/离散）"
+  },
+  {
+    "objectID": "Chapter07_V4.html#数模转换离散连续",
+    "href": "Chapter07_V4.html#数模转换离散连续",
+    "title": "第七章 采样",
+    "section": "数模转换（离散/连续）",
+    "text": "数模转换（离散/连续）\n反向过程，低通滤波器截止在 \\(\\omega_s/2\\)。\n\n\n\\[Y_d(e^{j\\Omega}) = H_d(e^{j\\Omega})X_d(e^{j\\Omega})\\]\n\\[Y_p(j\\omega) = Y_d(e^{j\\omega T}) = H_d(e^{j\\omega T})X_d(e^{j\\omega T}) = H_d(e^{j\\omega T})X_p(j\\omega)\\]\n\\[Y_c(j\\omega) = Y_p(j\\omega)H_{lp}(j\\omega) = H_d(e^{j\\omega T})X_p(j\\omega)H_{lp}(j\\omega) = H_d(e^{j\\omega T})X_c(j\\omega)\\]\n\\[H_c(j\\omega) = \\begin{cases} H_d(e^{j\\omega T}) & |\\omega| &lt; \\frac{\\omega_s}{2} = \\frac{\\pi}{T} \\\\ 0, & \\text{其他} \\end{cases}\\]"
+  },
+  {
+    "objectID": "Chapter07_V4.html#模数转换连续离散-1",
+    "href": "Chapter07_V4.html#模数转换连续离散-1",
+    "title": "第七章 采样",
+    "section": "模数转换（连续/离散）",
+    "text": "模数转换（连续/离散）"
+  },
+  {
+    "objectID": "Chapter07_V4.html#数模转换离散连续-1",
+    "href": "Chapter07_V4.html#数模转换离散连续-1",
+    "title": "第七章 采样",
+    "section": "数模转换（离散/连续）",
+    "text": "数模转换（离散/连续）"
+  },
+  {
+    "objectID": "Chapter07_V5.html#toc0",
+    "href": "Chapter07_V5.html#toc0",
+    "title": "第七章 采样",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
+  },
+  {
+    "objectID": "Chapter07_V5.html#连续时间信号的采样",
+    "href": "Chapter07_V5.html#连续时间信号的采样",
+    "title": "第七章 采样",
+    "section": "连续时间信号的采样",
+    "text": "连续时间信号的采样\n采样：在某些离散的时间点上提取连续时间信号值的过程称为采样。\n采样将连续时间信号转换为离散时间信号。\\(T=\\) 采样周期，均匀采样是最常见的方式。\n\n\n连续时间信号 ：\n\n\n离散时间信号 ：\n\n\n采样允许使用数字电子设备对连续时间信号进行处理、记录、传输、存储和检索。\n\n医学成像\n雷达、通信系统\n计算机控制系统\n消费电子：MP3、数字相机、打印机等应用 \n\n\\[\\huge \\text{物理世界} \\xrightleftharpoons[\\text{重建 }]{\\text{采样 }} \\text{数字世界}\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#连续时间信号的采样-1",
+    "href": "Chapter07_V5.html#连续时间信号的采样-1",
+    "title": "第七章 采样",
+    "section": "连续时间信号的采样",
+    "text": "连续时间信号的采样\n采样会丢失信息，不同信号可能产生相同的采样序列。\n\n\\(x_1(t)=\\cos(\\pi t/3)\\) 与 \\(x_2(t)=\\cos(7\\pi t/3)\\) 是不同的信号\n\n但采样后得到完全相同的序列：\\(x_1[n]=\\cos(\\pi n/3)=x_2[n]=\\cos(7\\pi n/3)\\)\n\n\n关键问题：\n\n在什么条件下，一个连续时间信号可以用它的离散时间样本来代替而不致丢失原有的信息。\n如何从连续时间信号的离散时间样本不失真地恢复成原来的连续时间信号。\n如何对一个连续时间信号进行离散时间处理。\n对离散时间信号如何进行采样、抽取，及内插。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#连续时间信号的采样-2",
+    "href": "Chapter07_V5.html#连续时间信号的采样-2",
+    "title": "第七章 采样",
+    "section": "连续时间信号的采样",
+    "text": "连续时间信号的采样\n\n\n\n\n\n\n\nCaution\n\n\n需要注意的是：\n\n在没有任何条件限制的情况下，从连续时间信号采样所得到的样本序列不能唯一地代表原来的连续时间信号。\n此外，对同一个连续时间信号，当采样间隔不同时也会 得到不同的样本序列。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#toc1",
+    "href": "Chapter07_V5.html#toc1",
+    "title": "第七章 采样",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
+  },
+  {
+    "objectID": "Chapter07_V5.html#冲激串采样时域",
+    "href": "Chapter07_V5.html#冲激串采样时域",
+    "title": "第七章 采样",
+    "section": "冲激串采样（时域）",
+    "text": "冲激串采样（时域）\n\n\n 连续时间信号 \\(x(t)\\)\n \n冲激串\n\\[\np(t)=\\sum_{n=-\\infty}^{\\infty} \\delta(t-nT)\n\\]\n  采样信号\n\\[\nx_p(t)=x(t)p(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\delta(t-nT)\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#冲激串采样频域",
+    "href": "Chapter07_V5.html#冲激串采样频域",
+    "title": "第七章 采样",
+    "section": "冲激串采样（频域）",
+    "text": "冲激串采样（频域）\n\n\n   连续时间信号频谱 \\(X(j\\omega)\\)\n   冲激串频谱\n\\[\nP(j\\omega)=\\omega_s \\sum_{k=-\\infty}^{\\infty} \\delta(\\omega-k\\omega_s)\n\\]\n \n采样信号频谱\n\\[\nX_p(j\\omega)=\\frac{1}{2\\pi}(X*P)(\\omega)=\\frac{1}{T}\\sum_{k=-\\infty}^{\\infty} X(j(\\omega-k\\omega_s))\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#冲激列采样频域带限信号",
+    "href": "Chapter07_V5.html#冲激列采样频域带限信号",
+    "title": "第七章 采样",
+    "section": "冲激列采样（频域）——带限信号",
+    "text": "冲激列采样（频域）——带限信号\n\n\n  带限连续时间信号：\\(X(j\\omega)=0\\)  当 \\(|\\omega|&gt;\\omega_M\\) 时\n   情况1：\\(\\omega_s &gt; 2\\omega_M\\)  频谱无重叠  ——可以通过低通滤波恢复原始频谱\n   情况2：\\(\\omega_s &lt; 2\\omega_M\\)  出现频谱重叠(即混叠）\n ——无法恢复原始信号\n\n\n\n\n采样角频率 \\(\\omega_s=2\\pi/T\\)\n\n1. 采样信号的频谱结构\n采样信号的频谱 \\(X_s(j\\omega)\\) 由原信号频谱 \\(X(j\\omega)\\) 的无限次频移组成：\n\n幅值： 变为原频谱的 \\(\\frac{1}{T_s}\\)\n频移量： 偏移量为采样角频率的整数倍 \\(n\\omega_s\\)\n\n\n2. 无混叠条件 (Nyquist Criterion)\n\n各相邻频谱不会重叠。\n可以利用理想低通滤波器从 \\(X_s(j\\omega)\\) 中完整恢复原信号频谱 \\(X(j\\omega)\\)。\n\n\n3. 频谱混叠 (Aliasing)\n\n频移后的相邻频谱会互相重叠。\n这种重叠导致原信号的频谱信息被破坏，无法恢复原信号。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#采样定理-nyquist-shannon-sampling-theorem",
+    "href": "Chapter07_V5.html#采样定理-nyquist-shannon-sampling-theorem",
+    "title": "第七章 采样",
+    "section": "采样定理 （Nyquist-Shannon Sampling Theorem）",
+    "text": "采样定理 （Nyquist-Shannon Sampling Theorem）\n若连续时间信号 \\(x(t)\\) 是带限的（其频谱 \\(X(j\\omega)=0\\) 当 \\(|\\omega|&gt;\\omega_M\\)），且采样满足\n\\[\n\\omega_s \\triangleq \\frac{2\\pi}{T} &gt; 2\\omega_M\n\\]\n（其中 \\(2\\omega_M\\) 称为奈奎斯特率），则该信号可由其采样序列 \\(x(nT),\\ n\\in\\mathbb{Z}\\) 唯一确定。\n当信号满足采样定理的条件时，可以研究如何从采样信号恢复原信号  重建步骤：  1. 构造冲激采样信号 \\[x_p(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\delta(t-nT)\\]\n\n通过增益为 \\(T\\)、截止频率 \\(\\omega_c\\in(\\omega_M, \\omega_s-\\omega_M)\\) 的理想低通滤波器\n\\[\nH(j\\omega)=T[u(\\omega+\\omega_c)-u(\\omega-\\omega_c)]\n\\]\n滤波器输出 \\(x_r(t)\\) 即为原始信号 \\(x(t)\\)"
+  },
+  {
+    "objectID": "Chapter07_V5.html#频域中的重建",
+    "href": "Chapter07_V5.html#频域中的重建",
+    "title": "第七章 采样",
+    "section": "频域中的重建",
+    "text": "频域中的重建\n\n\n    \n奈奎斯特率(Nyquist Rate)：\n指为了避免信号混叠，最低允许的采样频率： \\[\\omega_s = 2\\omega_M\\]\n\n奈奎斯特频率：\\(\\omega_M\\)\n\n  - 低通滤波器：\n增益 \\(T\\)\n截止频率满足 \\[\\omega_M &lt; \\omega_c &lt; \\omega_s - \\omega_M\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#时域中的重建",
+    "href": "Chapter07_V5.html#时域中的重建",
+    "title": "第七章 采样",
+    "section": "时域中的重建",
+    "text": "时域中的重建\n\n低通滤波器的冲激响应： \\[\nh(t)=\\frac{T\\sin(\\omega_c t)}{\\pi t}\n\\]\n重建信号： \\[\nx_r(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\frac{T\\sin(\\omega_c(t-nT))}{\\pi(t-nT)}\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#时域中的重建omega_comega_s2",
+    "href": "Chapter07_V5.html#时域中的重建omega_comega_s2",
+    "title": "第七章 采样",
+    "section": "时域中的重建（\\(\\omega_c=\\omega_s/2\\)）",
+    "text": "时域中的重建（\\(\\omega_c=\\omega_s/2\\)）\n\n\n\n\n\n\\(\\omega_c=\\frac{\\omega_s}{2}=\\frac{\\pi}{T}\\)"
+  },
+  {
+    "objectID": "Chapter07_V5.html#时域中的重建omega_comega_s2-1",
+    "href": "Chapter07_V5.html#时域中的重建omega_comega_s2-1",
+    "title": "第七章 采样",
+    "section": "时域中的重建（\\(\\omega_c=\\omega_s/2\\)）",
+    "text": "时域中的重建（\\(\\omega_c=\\omega_s/2\\)）\n当截止频率取 \\(\\omega_c=\\omega_s/2=\\pi/T\\) 时，得到 Whittaker-Shannon 插值公式：\n\\[\nx_r(t)=\\sum_{n=-\\infty}^{\\infty} x(nT)\\operatorname{sinc}\\left(\\frac{t-nT}{T}\\right)\n\\]\n其中 \\(\\operatorname{sinc}(t)=\\frac{\\sin(\\pi t)}{\\pi t}\\)\n由于 \\(\\text{sinc}\\) 函数的傅里叶变换关系如下：\n\\[\n\\text{sinc} \\left( \\frac{t - nT}{T} \\right) \\xleftrightarrow{\\mathcal{F}} T e^{-jnT\\omega} \\left[ u\\left( \\omega + \\frac{\\pi}{T} \\right) - u\\left( \\omega - \\frac{\\pi}{T} \\right) \\right]\n\\]\n根据 Parseval 等式（或乘法性质），我们可以推导出：\n\\[\n\\int_{\\mathbb{R}} \\text{sinc} \\left( \\frac{t - nT}{T} \\right) \\text{sinc} \\left( \\frac{t - mT}{T} \\right) dt = \\frac{T^2}{2\\pi} \\int_{-\\frac{\\pi}{T}}^{\\frac{\\pi}{T}} e^{j(m-n)T\\omega} d\\omega = T \\delta[n-m]\n\\]\n结论\n上述推导表明，Whittaker-Shannon 公式（采样定理插值公式）实际上是一个正交展开。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#时域中的重建其他截止频率示例",
+    "href": "Chapter07_V5.html#时域中的重建其他截止频率示例",
+    "title": "第七章 采样",
+    "section": "时域中的重建（其他截止频率示例）",
+    "text": "时域中的重建（其他截止频率示例）\n\n\\(\\omega_c=\\omega_s/4=\\pi/(2T) &gt; \\omega_M\\)"
+  },
+  {
+    "objectID": "Chapter07_V5.html#时域中的重建其他截止频率示例-1",
+    "href": "Chapter07_V5.html#时域中的重建其他截止频率示例-1",
+    "title": "第七章 采样",
+    "section": "时域中的重建（其他截止频率示例）",
+    "text": "时域中的重建（其他截止频率示例）\n\n\\(\\omega_c=3\\omega_s/5 &lt; \\omega_s - \\omega_M\\)"
+  },
+  {
+    "objectID": "Chapter07_V5.html#零阶保持zero-order-hold",
+    "href": "Chapter07_V5.html#零阶保持zero-order-hold",
+    "title": "第七章 采样",
+    "section": "零阶保持（Zero-Order Hold）",
+    "text": "零阶保持（Zero-Order Hold）\n\n\n\n\n\n\n从理想走向现实\n\n\n之前采样使用了理想的冲激采样串，但实际 ADC 还需要面对有限采样带宽等问题。\n\n\n\n采样保持电路 (S/H Circuit) 在物理实现中，采样是通过开关对电容充电完成的：\n\n有限采样带宽： 采样开关和电容构成低通滤波器，限制了捕捉快速变化信号的能力。\n保持阶梯： 采样后的电压必须保持足够稳定，直到量化器完成 A/D 转换。\n\n\n\nVideo"
+  },
+  {
+    "objectID": "Chapter07_V5.html#零阶保持zero-order-hold-1",
+    "href": "Chapter07_V5.html#零阶保持zero-order-hold-1",
+    "title": "第七章 采样",
+    "section": "零阶保持（Zero-Order Hold）",
+    "text": "零阶保持（Zero-Order Hold）\n在一个给定的瞬时对输入信号采样，并保持这一样本值直到下一个样本被采到为止。\n\n\n信号的样本经零阶保持后，所得到的信号是一个阶梯形信号。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#零阶保持zero-order-hold-2",
+    "href": "Chapter07_V5.html#零阶保持zero-order-hold-2",
+    "title": "第七章 采样",
+    "section": "零阶保持（Zero-Order Hold）",
+    "text": "零阶保持（Zero-Order Hold）\n零阶保持采样在原理上可以用冲激串采样，再级联一个零阶保持系统来实现。\n\n重建信号： \\[\nx_0(t)=\\sum_{n=-\\infty}^{\\infty} x(nT) h_0(t-nT)\n\\]\n\n\n零阶保持滤波器频率响应： \\[\nH_0(j\\omega)=e^{-j\\omega T/2} \\frac{2\\sin(\\omega T/2)}{\\omega}\n\\] 为了从\\(x_0(t)\\)能恢复\\(x(t)\\)，就要求零阶保持后再级联一个系统。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#零阶保持zero-order-hold-3",
+    "href": "Chapter07_V5.html#零阶保持zero-order-hold-3",
+    "title": "第七章 采样",
+    "section": "零阶保持（Zero-Order Hold）",
+    "text": "零阶保持（Zero-Order Hold）\n\n\n若要求级联后的总响应满足： \\[H_0(j\\omega)H_r(j\\omega) = \\begin{cases} T, & |\\omega| &lt; \\omega_c \\\\ 0, & |\\omega| &gt; \\omega_c \\end{cases}\\] 其中截断频率满足：\\(\\omega_M &lt; \\omega_c &lt; \\omega_s - \\omega_M\\)。\n\n\n\n已知零阶保持器的频率响应（含线性相位滞后）： \\[H_0(j\\omega) = \\frac{2\\sin\\frac{\\omega T}{2}}{\\omega} e^{-j\\frac{\\omega T}{2}}\\]\n则所需的重建滤波器 \\(H_r(j\\omega)\\) 为： \\[H_r(j\\omega) = \\frac{H(j\\omega)}{\\frac{2\\sin(\\omega T/2)}{\\omega}} \\cdot e^{j\\frac{\\omega T}{2}}\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#零阶保持zero-order-hold-4",
+    "href": "Chapter07_V5.html#零阶保持zero-order-hold-4",
+    "title": "第七章 采样",
+    "section": "零阶保持（Zero-Order Hold）",
+    "text": "零阶保持（Zero-Order Hold）\n2. 频率特性分析图解\n以 \\(H(j\\omega)\\) 表示增益为 \\(T\\) 的理想低通滤波器特性：\n\n\n\n\n\n当取 \\(\\omega_c = \\frac{1}{2}\\omega_s\\) 时，补偿滤波器的特性如下：\n\n\n幅度特性 \\(|H_r(j\\omega)|\\) 为了补偿衰减，补偿滤波器的增益在截止频率附近向上弯曲（翘起）。\n\n相位特性 \\(\\angle H_r(j\\omega)\\) 为了抵消 \\(H_0(j\\omega)\\) 带来的 \\(T/2\\) 时间滞后，补偿器需提供一个超前的线性相位。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#toc2",
+    "href": "Chapter07_V5.html#toc2",
+    "title": "第七章 采样",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
+  },
+  {
+    "objectID": "Chapter07_V5.html#典型插值方法",
+    "href": "Chapter07_V5.html#典型插值方法",
+    "title": "第七章 采样",
+    "section": "典型插值方法",
+    "text": "典型插值方法\n内插：由样本值重建某一函数的过程。\n\n\n\n\n\n\n\n零阶保持\n\n\n\n\n\n线性插值"
+  },
+  {
+    "objectID": "Chapter07_V5.html#线性插值first-order-hold",
+    "href": "Chapter07_V5.html#线性插值first-order-hold",
+    "title": "第七章 采样",
+    "section": "线性插值（First-Order Hold）",
+    "text": "线性插值（First-Order Hold）\n\n重建信号： \\[\nx_1(t)=\\sum_{n=-\\infty}^{\\infty} x(nT) h_1(t-nT)\n\\]\n\n\n一阶保持滤波器频率响应： \\[\nH_1(j\\omega)=\\frac{1}{T}\\left[\\frac{\\sin(\\omega T/2)}{\\omega/2}\\right]^2\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#线性插值first-order-hold-1",
+    "href": "Chapter07_V5.html#线性插值first-order-hold-1",
+    "title": "第七章 采样",
+    "section": "线性插值（First-Order Hold）",
+    "text": "线性插值（First-Order Hold）"
+  },
+  {
+    "objectID": "Chapter07_V5.html#toc3",
+    "href": "Chapter07_V5.html#toc3",
+    "title": "第七章 采样",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
+  },
+  {
+    "objectID": "Chapter07_V5.html#混叠aliasing",
+    "href": "Chapter07_V5.html#混叠aliasing",
+    "title": "第七章 采样",
+    "section": "混叠（Aliasing）",
+    "text": "混叠（Aliasing）\n\n\n混叠会使频率发生“折叠”。\n\n\n\n\n\n\\(x(t)=\\cos(\\omega_0 t + \\phi)\\)\n当 \\(\\omega_0 &lt; \\omega_s/2\\) 时，无混叠，重建信号与原始信号相同。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#混叠",
+    "href": "Chapter07_V5.html#混叠",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n\n\n混叠会使频率发生“折叠”。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#混叠-1",
+    "href": "Chapter07_V5.html#混叠-1",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n\n\n混叠会使频率发生“折叠”。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#混叠-2",
+    "href": "Chapter07_V5.html#混叠-2",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n\n\n混叠会使频率发生“折叠”。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#混叠示例",
+    "href": "Chapter07_V5.html#混叠示例",
+    "title": "第七章 采样",
+    "section": "混叠示例",
+    "text": "混叠示例\n信号 \\(x(t) = \\cos\\left(\\frac{5\\pi}{3}t\\right)\\)，采样(以\\(T=1\\)为周期)后变为\\(x[n] = \\cos\\left(\\frac{5\\pi}{3}n\\right)=\\cos\\left(\\frac{\\pi}{3}n\\right)\\)\n重建后（取\\(\\omega_c=\\pi\\)）得到 \\(x_r(t)=\\cos(\\pi t/3)\\)"
+  },
+  {
+    "objectID": "Chapter07_V5.html#混叠示例-1",
+    "href": "Chapter07_V5.html#混叠示例-1",
+    "title": "第七章 采样",
+    "section": "混叠示例",
+    "text": "混叠示例\n电影中车轮有时看起来慢速旋转甚至反向，就是混叠现象。\n\n\nVideo"
+  },
+  {
+    "objectID": "Chapter07_V5.html#混叠-3",
+    "href": "Chapter07_V5.html#混叠-3",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n混叠边界情况（\\(\\omega_0 = \\omega_s/2\\)）\n\n\n混叠会使频率发生“折叠”。\n\n\n\n\n\n\n\n\n\n\n重建信号幅度减半：\\(x_r(t)=\\cos\\phi \\cdot \\cos(\\omega_0 t)\\)"
+  },
+  {
+    "objectID": "Chapter07_V5.html#混叠-4",
+    "href": "Chapter07_V5.html#混叠-4",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n对复杂信号的影响：混叠不仅影响单一频率，也会使复杂信号的频谱发生折叠。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#混叠-5",
+    "href": "Chapter07_V5.html#混叠-5",
+    "title": "第七章 采样",
+    "section": "混叠",
+    "text": "混叠\n采样率越低，混叠越严重"
+  },
+  {
+    "objectID": "Chapter07_V5.html#抗混叠滤波器",
+    "href": "Chapter07_V5.html#抗混叠滤波器",
+    "title": "第七章 采样",
+    "section": "抗混叠滤波器",
+    "text": "抗混叠滤波器\n在采样前，用低通滤波器滤除高于 \\(\\omega_s/2\\) 的频率成分，可有效防止混叠。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#抗混叠滤波器实际应用",
+    "href": "Chapter07_V5.html#抗混叠滤波器实际应用",
+    "title": "第七章 采样",
+    "section": "抗混叠滤波器（实际应用）",
+    "text": "抗混叠滤波器（实际应用）"
+  },
+  {
+    "objectID": "Chapter07_V5.html#toc4",
+    "href": "Chapter07_V5.html#toc4",
+    "title": "第七章 采样",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
+  },
+  {
+    "objectID": "Chapter07_V5.html#连续时间信号的离散时间处理",
+    "href": "Chapter07_V5.html#连续时间信号的离散时间处理",
+    "title": "第七章 采样",
+    "section": "连续时间信号的离散时间处理",
+    "text": "连续时间信号的离散时间处理\n\n离散时间处理的优势\n\n数字电子设备的通用性：可以通过软件算法轻松实现各种复杂的处理逻辑，而无需更改硬件。\n抗噪性强：数字信号在传输和存储过程中对环境噪声具有更高的容减能力。\n\n实际实现\n\n连续/离散（C/D） 转换：通常由模数转换器 (ADC) 实现。\n离散/连续（D/C） 转换：通常由数模转换器 (DAC) 实现。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#连续时间信号的离散时间处理-1",
+    "href": "Chapter07_V5.html#连续时间信号的离散时间处理-1",
+    "title": "第七章 采样",
+    "section": "连续时间信号的离散时间处理",
+    "text": "连续时间信号的离散时间处理\n\n\n\n理论理想化 (Idealization)\n为了简化数学分析，我们通常假设：\n\n无量化误差：忽略幅度量化带来的精度损失。\n脉冲串采样：假设 C/D 过程是通过理想脉冲串采样完成的。\n理想重构：假设 D/C 过程是通过理想低通滤波器进行的完美还原。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#模数转换cd",
+    "href": "Chapter07_V5.html#模数转换cd",
+    "title": "第七章 采样",
+    "section": "模数转换（C/D）",
+    "text": "模数转换（C/D）\n\n\n采样假设，在讨论 CT 与 DT 频谱关系前，必须满足：\n\n带限信号：\\(x_c(t)\\) 的频谱 \\(X_c(j\\omega)\\) 在 \\(|\\omega| &gt; \\omega_M\\) 时为零。\n奈奎斯特准则：采样频率 \\(\\omega_s = \\frac{2\\pi}{T} &gt; 2\\omega_M\\)。\n无混叠：确保基带频谱在周期延拓时不发生重叠。\n\n\n\n\n从冲激串采样信号 \\(x_p(t)\\) 的 CTFT 出发：\n\\[\n\\begin{aligned}\nX_p(j\\omega) &= \\mathcal{F} \\left\\{ \\sum_{n=-\\infty}^{\\infty} x_c(nT)\\delta(t-nT) \\right\\} \\\\\n&= \\sum_{n=-\\infty}^{\\infty} x_c(nT) \\mathcal{F} \\{ \\delta(t-nT) \\} \\\\\n&= \\sum_{n=-\\infty}^{\\infty} x_c(nT) e^{-j\\omega Tn}= \\sum_{n=-\\infty}^{\\infty} x_d[n] e^{-j\\omega T n}=X_d(e^{j\\omega T})\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#模数转换连续离散",
+    "href": "Chapter07_V5.html#模数转换连续离散",
+    "title": "第七章 采样",
+    "section": "模数转换（连续/离散）",
+    "text": "模数转换（连续/离散）"
+  },
+  {
+    "objectID": "Chapter07_V5.html#数模转换离散连续",
+    "href": "Chapter07_V5.html#数模转换离散连续",
+    "title": "第七章 采样",
+    "section": "数模转换（离散/连续）",
+    "text": "数模转换（离散/连续）\n反向过程，低通滤波器截止在 \\(\\omega_s/2\\)。\n\n\n\\[Y_d(e^{j\\Omega}) = H_d(e^{j\\Omega})X_d(e^{j\\Omega})\\]\n\\[Y_p(j\\omega) = Y_d(e^{j\\omega T}) = H_d(e^{j\\omega T})X_d(e^{j\\omega T}) = H_d(e^{j\\omega T})X_p(j\\omega)\\]\n\\[Y_c(j\\omega) = Y_p(j\\omega)H_{lp}(j\\omega) = H_d(e^{j\\omega T})X_p(j\\omega)H_{lp}(j\\omega) = H_d(e^{j\\omega T})X_c(j\\omega)\\]\n\\[H_c(j\\omega) = \\begin{cases} H_d(e^{j\\omega T}) & |\\omega| &lt; \\frac{\\omega_s}{2} = \\frac{\\pi}{T} \\\\ 0, & \\text{其他} \\end{cases}\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#数模转换离散连续-1",
+    "href": "Chapter07_V5.html#数模转换离散连续-1",
+    "title": "第七章 采样",
+    "section": "数模转换（离散/连续）",
+    "text": "数模转换（离散/连续）\n\n采样是复制，处理是滤波，重建是截取。 只要在 \\(\\pm\\pi/T\\) 范围内操作，数字世界和模拟世界就是镜像对称的。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#整体频率响应",
+    "href": "Chapter07_V5.html#整体频率响应",
+    "title": "第七章 采样",
+    "section": "整体频率响应",
+    "text": "整体频率响应\n\\[\nH_c(j\\omega)=\\begin{cases}H_d(e^{j\\omega T}) & |\\omega|&lt;\\omega_s/2 \\\\ 0 & \\text{其他}\\end{cases}\n\\]\n\\[\\Longrightarrow H_d(e^{j\\Omega}) = H_c\\left( j\\frac{\\Omega}{T} \\right), \\quad |\\Omega| &lt; \\pi\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#示例数字微分器",
+    "href": "Chapter07_V5.html#示例数字微分器",
+    "title": "第七章 采样",
+    "section": "示例：数字微分器",
+    "text": "示例：数字微分器\n频率响应相位与幅度特性。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#toc5",
+    "href": "Chapter07_V5.html#toc5",
+    "title": "第七章 采样",
+    "section": "目录",
+    "text": "目录\n\n1. 引言\n2. 用信号样本表示连续时间信号-采样定理\n3. 利用内插由样本重建信号\n4. 欠采样\n5. 连续时间信号的离散时间处理\n6. 离散时间信号采样"
+  },
+  {
+    "objectID": "Chapter07_V5.html#离散时间信号的脉冲串采样",
+    "href": "Chapter07_V5.html#离散时间信号的脉冲串采样",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲串采样",
+    "text": "离散时间信号的脉冲串采样\n\n\n   \n离散时间信号\\(x[n]\\)\n   \n离散时间脉冲串：\\(p[n]=\\sum \\delta[n-kN]\\)\n   \n采样信号 \\(x_p[n]=x[n]p[n]\\)"
+  },
+  {
+    "objectID": "Chapter07_V5.html#离散时间信号的脉冲采样",
+    "href": "Chapter07_V5.html#离散时间信号的脉冲采样",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲采样",
+    "text": "离散时间信号的脉冲采样\n脉冲序列的频谱\n离散时间脉冲序列的频谱 \\(P(e^{j\\omega})\\) 可以表示为一系列周期性的 \\(\\delta\\) 函数：\n\\[\nP(e^{j\\omega}) = \\omega_s \\sum_{k=-\\infty}^{\\infty} \\delta(\\omega - k\\omega_s), \\quad \\omega_s = \\frac{2\\pi}{N}\n\\]\n这里 \\(\\omega_s\\) 是采样频率（或频谱间隔），\\(N\\) 是离散脉冲序列的周期。\n采样信号的频谱\n采样信号的频谱 \\(X_p\\) 是原始信号频谱 \\(X\\) 与脉冲序列频谱 \\(P\\) 的周期卷积：\n\\[\nX_p = \\frac{1}{2\\pi} X \\circledast P = \\frac{1}{2\\pi} \\tilde{X} * P = \\frac{1}{2\\pi} X * \\tilde{P}\n\\]\n其中： * \\(\\circledast\\) 表示周期卷积。 * \\(*\\) 表示线性卷积。 * \\(\\tilde{X}\\) 和 \\(\\tilde{P}\\) 分别是 \\(X\\) 和 \\(P\\) 在一个 \\(2\\pi\\) 周期内的部分。\n频谱展开形式\n根据上述性质，采样信号的频谱 \\(X_p(e^{j\\omega})\\) 可以进一步展开为：\n\\[\nX_p(e^{j\\omega}) = \\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}(e^{j(\\omega-k\\omega_s)}) = \\frac{1}{N} \\sum_{k=0}^{N-1} X(e^{j(\\omega-k\\omega_s)})\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#离散时间信号的脉冲串采样-1",
+    "href": "Chapter07_V5.html#离散时间信号的脉冲串采样-1",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲串采样",
+    "text": "离散时间信号的脉冲串采样\n第一种视角：在 \\(k\\omega_s\\) 处复制 \\(\\tilde{X}\\)\n 从数学角度看，采样信号的频谱 \\(X_p(e^{j\\omega})\\) 可以视为原始频谱分量 \\(\\tilde{X}\\) 在频域内以 \\(\\omega_s\\) 为间隔进行的周期性平移与叠加：\n\\[\nX_p(e^{j\\omega}) = \\frac{1}{N} \\sum_{k=-\\infty}^{\\infty} \\tilde{X}(e^{j(\\omega-k\\omega_s)})\n\\]\n\n物理意义解析\n\n频谱搬移：公式中的 \\((\\omega - k\\omega_s)\\) 项表示将原始频谱 \\(\\tilde{X}\\) 的中心从原点搬移到 \\(k\\omega_s\\) 处。\n周期叠加：通过对所有整数 \\(k\\) 进行求和，形成了在整个频率轴上周期性变化的频谱。\n幅度缩放：叠加后的频谱整体乘上了系数 \\(\\frac{1}{N}\\)。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#离散时间信号的脉冲串采样-2",
+    "href": "Chapter07_V5.html#离散时间信号的脉冲串采样-2",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲串采样",
+    "text": "离散时间信号的脉冲串采样\n第二种视角：在 \\(k\\omega_s\\) 处复制 \\(X\\)，\\(k = 0, 1, \\dots, N-1\\)\n与第一种视角（无限项求和）不同，第二种视角指出，由于离散时间信号频谱 \\(X(e^{j\\omega})\\) 本身就是以 \\(2\\pi\\) 为周期的，因此采样后的频谱 \\(X_p(e^{j\\omega})\\) 可以通过仅在一个周期内进行有限次平移叠加来获得：\n\\[\nX_p(e^{j\\omega}) = \\frac{1}{N} \\sum_{k=0}^{N-1} X(e^{j(\\omega-k\\omega_s)})\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#离散时间信号的脉冲串采样-3",
+    "href": "Chapter07_V5.html#离散时间信号的脉冲串采样-3",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲串采样",
+    "text": "离散时间信号的脉冲串采样\n核心差异与理解\n\n求和范围：从无限项 \\(\\sum_{k=-\\infty}^{\\infty}\\) 简化为了有限项 \\(\\sum_{k=0}^{N-1}\\)。\n信号定义：此处使用的是完整的离散频谱 \\(X\\)，而不是之前视角的切片分量 \\(\\tilde{X}\\)。\n周期性体现：该视角充分利用了离散频率域的周期性。因为 \\(\\omega_s = \\frac{2\\pi}{N}\\)，所以当 \\(k\\) 超过 \\(N-1\\) 后的项实际上是前 \\(N\\) 项的周期重复。\n\n数学背景\n这种视角直接对应了离散傅里叶变换（DFT）中频域采样的物理过程，即在 \\([0, 2\\pi)\\) 范围内取 \\(N\\) 个等间距采样点。\n\n对比提示：\n\n\n\n\n视角一：强调如何通过“切片”原始连续频谱并周期搬移来构造新频谱。\n\n\n\n\n\n\n视角二：强调在已有周期频谱的基础上，通过有限次的平移叠加来描述采样后的效果。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#离散时间信号的脉冲串采样-4",
+    "href": "Chapter07_V5.html#离散时间信号的脉冲串采样-4",
+    "title": "第七章 采样",
+    "section": "离散时间信号的脉冲串采样",
+    "text": "离散时间信号的脉冲串采样"
+  },
+  {
+    "objectID": "Chapter07_V5.html#离散时间采样定理",
+    "href": "Chapter07_V5.html#离散时间采样定理",
+    "title": "第七章 采样",
+    "section": "离散时间采样定理",
+    "text": "离散时间采样定理\n对于一个带限离散时间信号 \\(x[n]\\)，其频谱 \\(X(e^{j\\omega})\\) 在 \\(\\omega_M &lt; |\\omega| \\leq \\pi\\) 范围内为 0。\n如果满足以下条件，则该信号可以由其样本 \\(x[kN], k \\in \\mathbb{Z}\\) 唯一确定：\n\\[\n\\omega_s \\triangleq \\frac{2\\pi}{N} &gt; 2\\omega_M\n\\]\n这本质上是离散信号域的奈奎斯特准则，确保了在频域周期搬移时不会发生混叠。\n给定样本序列 \\(\\{x[kN] : k \\in \\mathbb{Z}\\}\\)，原始信号 \\(x[n]\\) 可以通过以下步骤重构：\n1. 构造脉冲序列 \\(x_p[n]\\)\n首先构造一个包含样本值的脉冲串： \\[\nx_p[n] = \\sum_{k=-\\infty}^{\\infty} x[kN]\\delta[n - kN]\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#离散时间采样定理-1",
+    "href": "Chapter07_V5.html#离散时间采样定理-1",
+    "title": "第七章 采样",
+    "section": "离散时间采样定理",
+    "text": "离散时间采样定理\n2. 通过低通滤波器\n将 \\(x_p[n]\\) 输入一个增益为 \\(N\\)、截止频率为 \\(\\omega_c \\in (\\omega_M, \\omega_s - \\omega_M)\\) 的理想低通滤波器。其频率响应为： \\[\nH(e^{j\\omega}) = N[u(\\omega + \\omega_c) - u(\\omega - \\omega_c)]\n\\]\n3. 输出重构信号 \\(x_r[n]\\)\n输出信号的频谱为 \\(X_r(e^{j\\omega}) = X_p(e^{j\\omega})H(e^{j\\omega})\\)。在满足采样定理的条件下，该输出 \\(x_r[n]\\) 与原始信号 \\(x[n]\\) 完全一致。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#时域重建",
+    "href": "Chapter07_V5.html#时域重建",
+    "title": "第七章 采样",
+    "section": "时域重建",
+    "text": "时域重建\n\n1. 低通滤波器的单位脉冲响应\n理想低通滤波器 \\(H(e^{j\\omega})\\) 在时域对应的单位脉冲响应 \\(h[n]\\) 是一个 \\(\\text{sinc}\\) 函数：\n\\[\nh[n] = \\frac{N \\sin(\\omega_c n)}{\\pi n}\n\\]\n这里 \\(N\\) 是增益系数，\\(\\omega_c\\) 是滤波器的截止频率。在时域中，这个响应表现为以 \\(n=0\\) 为中心的无限长振荡序列。\n2. 使用 sinc 函数进行带限插值\n重构信号 \\(x[n]\\)（即 \\(x_r[n]\\)）可以通过将采样序列 \\(x_p[n]\\) 与滤波器的单位脉冲响应 \\(h[n]\\) 进行卷积得到。这一过程被称为带限插值：\n\\[\nx[n] = x_r[n] = (x_p * h)[n] = \\sum_{k=-\\infty}^{\\infty} x[kN] \\frac{N \\sin(\\omega_c (n - kN))}{\\pi (n - kN)}\n\\]"
+  },
+  {
+    "objectID": "Chapter07_V5.html#时域重建-1",
+    "href": "Chapter07_V5.html#时域重建-1",
+    "title": "第七章 采样",
+    "section": "时域重建",
+    "text": "时域重建\n物理意义解析\n\n卷积过程：该公式表明，重构信号在任意时刻 \\(n\\) 的值，都是由所有采样点 \\(x[kN]\\) 经过 \\(\\text{sinc}\\) 函数加权叠加而成的。\n内插本质：在采样点 \\(n=kN\\) 处，由于 \\(\\text{sinc}\\) 函数的特性，该项贡献为原始样本值，而其他项贡献为零。在非采样点处，\\(\\text{sinc}\\) 函数起到了平滑内插的作用。\n理想还原：只要满足采样定理，这种基于 \\(\\text{sinc}\\) 函数的内插可以完美还原带限信号，不产生任何失真。\n\n\n公式提示：\n\n\n\n\n\\(\\omega_c\\) 通常取在 \\((\\omega_M, \\omega_s - \\omega_M)\\) 之间。\n\n\n\n\n\n\n当 \\(\\omega_c = \\pi/N\\) 且增益为 \\(N\\) 时，这是最常用的标准重构形式。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#抽取decimation",
+    "href": "Chapter07_V5.html#抽取decimation",
+    "title": "第七章 采样",
+    "section": "抽取（Decimation）",
+    "text": "抽取（Decimation）\n\n\n    时域信号\\(x[n]\\)\n    采样信号:\\(x_p[n] = \\sum_{k=-\\infty}^{\\infty} x[kN]\\delta[n - kN]\\)     抽取后信号：\n\\(x_b[n]=x[nN]\\)\n减少了采样样本量"
+  },
+  {
+    "objectID": "Chapter07_V5.html#抽取",
+    "href": "Chapter07_V5.html#抽取",
+    "title": "第七章 采样",
+    "section": "抽取",
+    "text": "抽取\n设 \\(x_b[n]\\) 是对原始信号 \\(x[n]\\) 进行因子为 \\(N\\) 的下采样（抽取）后得到的信号，即 \\(x_b[n] = x[nN]\\)。\n其离散时间傅里叶变换（DTFT） \\(X_b(e^{j\\omega})\\) 推导如下：\n\\[\n\\begin{aligned}\nX_b(e^{j\\omega}) &= \\sum_{n \\in \\mathbb{Z}} x_b[n]e^{-j\\omega n} \\\\\n&= \\sum_{n \\in \\mathbb{Z}} x[nN]e^{-j\\omega n} \\\\\n&= \\sum_{k \\in N\\mathbb{Z}} x[k]e^{-j\\omega k/N} \\quad (k = nN) \\\\\n&= \\sum_{k \\in \\mathbb{Z}} x_p[k]e^{-j\\frac{\\omega}{N}k} \\quad (x_p[n] = 0 \\text{ for } n \\in \\mathbb{Z} \\setminus N\\mathbb{Z}) \\\\\n&= X_p(e^{j\\omega/N})\n\\end{aligned}\n\\]\n这里 \\(x_p[k]\\) 是采样序列（在非 \\(N\\) 的倍数处补零的序列）。\n 已知 \\(X_p(e^{j\\omega})\\) 的周期为 \\(2\\pi/N\\)，根据上述关系式 \\(X_b(e^{j\\omega}) = X_p(e^{j\\omega/N})\\) 可以得出： * \\(X_b(e^{j\\omega})\\) 的周期为 \\(2\\pi\\)。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#抽取-1",
+    "href": "Chapter07_V5.html#抽取-1",
+    "title": "第七章 采样",
+    "section": "抽取",
+    "text": "抽取\n无混叠情况下的特性\n如果在采样过程中没有发生混叠（满足采样定理），则具有以下特性：\n\n频谱展宽：\\(X_b\\) 是原始信号频谱 \\(X\\) 在每个周期内的展宽版本。\n关系区别：虽然数学形式上 \\(X_b(e^{j\\omega}) = X_p(e^{j\\omega/N})\\)，但需要注意在物理意义和幅度对应上，\\(X_b(e^{j\\omega}) \\neq X(e^{j\\omega/N})\\)。"
+  },
+  {
+    "objectID": "Chapter07_V5.html#抽取-2",
+    "href": "Chapter07_V5.html#抽取-2",
+    "title": "第七章 采样",
+    "section": "抽取",
+    "text": "抽取"
+  },
+  {
+    "objectID": "Chapter07_V5.html#作业",
+    "href": "Chapter07_V5.html#作业",
+    "title": "第七章 采样",
+    "section": "作业",
+    "text": "作业\n一、 书面作业\n\n7.2\n\n7.4\n\n7.5\n\n7.6\n7.7\n7.10\n\n二、 编程作业 详细见乐学平台"
+  },
+  {
+    "objectID": "lecturenotes/关于周期卷积的推导.html#核心公式定义",
+    "href": "lecturenotes/关于周期卷积的推导.html#核心公式定义",
+    "title": "离散时间信号脉冲采样的频域分析",
+    "section": "1. 核心公式定义",
+    "text": "1. 核心公式定义\n在离散时间脉冲采样中，采样信号的频谱 \\(X_p\\) 可由原始频谱 \\(X\\) 与脉冲序列频谱 \\(P\\) 的周期卷积得到：\n\\[X_p = \\frac{1}{2\\pi} X \\circledast P = \\frac{1}{2\\pi} \\tilde{X} * P = \\frac{1}{2\\pi} X * \\tilde{P}\\]\n符号说明\n\n\\(\\circledast\\)：周期卷积 (Periodic Convolution)\n\\(*\\)：线性卷积 (Linear Convolution)\n\\(\\tilde{P}\\)：\\(P\\) 在一个 \\(2\\pi\\) 周期内的部分"
+  },
+  {
+    "objectID": "lecturenotes/关于周期卷积的推导.html#脉冲序列-tildep-的结构",
+    "href": "lecturenotes/关于周期卷积的推导.html#脉冲序列-tildep-的结构",
+    "title": "离散时间信号脉冲采样的频域分析",
+    "section": "2. 脉冲序列 \\(\\tilde{P}\\) 的结构",
+    "text": "2. 脉冲序列 \\(\\tilde{P}\\) 的结构\n在一个 \\(2\\pi\\) 周期内，离散脉冲序列的频谱 \\(\\tilde{P}\\) 是由 \\(N\\) 个等间隔的冲激函数构成的“梳状”函数：\n\\[\\tilde{P}(e^{j\\omega}) = \\omega_s \\sum_{k=0}^{N-1} \\delta(\\omega - k\\omega_s)\\]\n其中： - \\(\\omega_s = \\frac{2\\pi}{N}\\) 为采样频率（频谱间隔） - \\(N\\) 为离散脉冲序列的周期"
+  },
+  {
+    "objectID": "lecturenotes/关于周期卷积的推导.html#从线性卷积到有限项求和",
+    "href": "lecturenotes/关于周期卷积的推导.html#从线性卷积到有限项求和",
+    "title": "离散时间信号脉冲采样的频域分析",
+    "section": "3. 从线性卷积到有限项求和",
+    "text": "3. 从线性卷积到有限项求和\n利用 \\(X * \\tilde{P}\\) 推导 \\(0\\) 到 \\(N-1\\) 叠加过程：\n卷积性质利用\n根据冲激函数的卷积性质：\\(X(\\omega) * \\delta(\\omega - \\omega_0) = X(\\omega - \\omega_0)\\)。\n推导步骤\n\n展开线性卷积： \\[X * \\tilde{P} = X(e^{j\\omega}) * \\left[ \\omega_s \\sum_{k=0}^{N-1} \\delta(\\omega - k\\omega_s) \\right]\\]\n分配律应用： \\[X * \\tilde{P} = \\omega_s \\sum_{k=0}^{N-1} X(e^{j(\\omega - k\\omega_s)})\\]"
+  },
+  {
+    "objectID": "lecturenotes/关于周期卷积的推导.html#最终频谱展开形式",
+    "href": "lecturenotes/关于周期卷积的推导.html#最终频谱展开形式",
+    "title": "离散时间信号脉冲采样的频域分析",
+    "section": "4. 最终频谱展开形式",
+    "text": "4. 最终频谱展开形式\n代入系数 \\(\\frac{1}{2\\pi}\\)，得到最终的离散采样频谱：\n\\[X_p(e^{j\\omega}) = \\frac{1}{2\\pi} \\cdot \\frac{2\\pi}{N} \\sum_{k=0}^{N-1} X(e^{j(\\omega - k\\omega_s)})\\]\n\\[X_p(e^{j\\omega}) = \\frac{1}{N} \\sum_{k=0}^{N-1} X(e^{j(\\omega - k\\omega_s)})\\]"
+  },
+  {
+    "objectID": "lecturenotes/关于周期卷积的推导.html#关键直觉解读",
+    "href": "lecturenotes/关于周期卷积的推导.html#关键直觉解读",
+    "title": "离散时间信号脉冲采样的频域分析",
+    "section": "5. 关键直觉解读",
+    "text": "5. 关键直觉解读\n为什么是有限项和？\n虽然理论定义中 \\(k\\) 可取 \\(-\\infty\\) 到 \\(+\\infty\\)，但由于 \\(X(e^{j\\omega})\\) 具有 \\(2\\pi\\) 的周期性： - 当 \\(k\\) 增加 \\(N\\) 时，偏移量 \\(k\\omega_s = 2\\pi\\)。 - 此时 \\(X(e^{j(\\omega - 2\\pi)})\\) 与 \\(X(e^{j\\omega})\\) 完全重合。\n物理意义\n使用 \\(\\tilde{P}\\) 进行线性卷积，本质上是将原始频谱 \\(X\\) 在 \\(2\\pi\\) 周期内等间隔地搬移 \\(N\\) 次，并将这些副本叠加。 - 这正是频谱混叠 (Aliasing) 的数学描述。 - 最终结果是 \\(N\\) 个独立频谱分量的加权平均。"
   }
 ]

@@ -1,0 +1,480 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     19825,        470]
+NotebookOptionsPosition[     19229,        451]
+NotebookOutlinePosition[     19643,        468]
+CellTagsIndexPosition[     19600,        465]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Clear", "[", "All", "]"}]], "Input",
+ CellChangeTimes->{{3.98615950052862*^9, 3.986159507904428*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"3b43d04e-2b33-4644-a6a3-e596d8e6fc65"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"ws", "=", "6"}], ",", 
+       RowBox[{"tMax", "=", 
+        RowBox[{"4", " ", "\[Pi]"}]}], ",", "reconstructedW", ",", 
+       "sampleData", ",", "t", ",", "freqDomainPlot"}], "}"}], ",", 
+     RowBox[{"(*", 
+      RowBox[{"\:6838\:5fc3\:903b\:8f91", "\:ff1a", 
+       RowBox[{
+       "\:8ba1\:7b97\:91cd\:5efa\:540e\:7684\:8868\:73b0\:9891\:7387", " ", 
+        RowBox[{"(", "\:6298\:8fd4\:6548\:5e94", ")"}]}]}], "*)"}], 
+     RowBox[{
+      RowBox[{"reconstructedW", "=", 
+       RowBox[{
+        RowBox[{"Mod", "[", 
+         RowBox[{
+          RowBox[{"w0", "+", 
+           RowBox[{"ws", "/", "2"}]}], ",", "ws"}], "]"}], "-", 
+        RowBox[{"ws", "/", "2"}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", "\:91c7\:6837\:6570\:636e", "*)"}], 
+      RowBox[{"sampleData", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"t", ",", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"w0", " ", "t"}], "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "tMax", ",", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"2", " ", "\[Pi]"}], ")"}], "/", "ws"}]}], "}"}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"Column", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"(*", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"--", 
+             RowBox[{"-", "1."}]}], " ", "\:65f6\:57df\:6f14\:793a"}], "\:ff1a", 
+           RowBox[{
+            RowBox[{"\:89c2\:5bdf\:4fe1\:53f7\:5982\:4f55", 
+             RowBox[{
+              RowBox[{
+              "\[OpenCurlyDoubleQuote]", "\:53d8\:6162", 
+               "\[CloseCurlyDoubleQuote]"}], "--"}]}], "-"}]}], "*)"}], 
+         RowBox[{
+          RowBox[{"Show", "[", 
+           RowBox[{"(*", "\:539f\:59cb\:7269\:7406\:4fe1\:53f7", "*)"}], 
+           RowBox[{
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{"Sin", "[", 
+               RowBox[{"w0", " ", "t"}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"t", ",", "0", ",", "tMax"}], "}"}], ",", 
+              RowBox[{"PlotStyle", "->", 
+               RowBox[{"{", 
+                RowBox[{"Directive", "[", 
+                 RowBox[{
+                  RowBox[{"GrayLevel", "[", "0.7", "]"}], ",", 
+                  RowBox[{"Thickness", "[", "0.003", "]"}]}], "]"}], "}"}]}], 
+              ",", 
+              RowBox[{"Filling", "->", "Axis"}], ",", 
+              RowBox[{"FillingStyle", "->", 
+               RowBox[{"Lighter", "[", 
+                RowBox[{"Gray", ",", "0.9"}], "]"}]}]}], "]"}], ",", 
+            RowBox[{"(*", 
+             RowBox[{
+             "\:91cd\:5efa\:4fe1\:53f7", "\:ff1a", 
+              "\:989c\:8272\:968f\:9891\:7387\:53d8\:5316", "\:ff0c", 
+              "\:63d0\:9192\:5b66\:751f\:6df7\:53e0\:53d1\:751f"}], "*)"}], 
+            RowBox[{"Plot", "[", 
+             RowBox[{
+              RowBox[{"Sin", "[", 
+               RowBox[{"reconstructedW", " ", "t"}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"t", ",", "0", ",", "tMax"}], "}"}], ",", 
+              RowBox[{"PlotStyle", "->", 
+               RowBox[{"{", 
+                RowBox[{"Directive", "[", 
+                 RowBox[{
+                  RowBox[{"If", "[", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Abs", "[", 
+                    RowBox[{"reconstructedW", "-", "w0"}], "]"}], "<", 
+                    "0.01"}], ",", 
+                    RowBox[{"Darker", "[", "Green", "]"}], ",", "Red"}], 
+                   "]"}], ",", 
+                  RowBox[{"Thickness", "[", "0.008", "]"}]}], "]"}], 
+                "}"}]}]}], "]"}], ",", 
+            RowBox[{"(*", 
+             RowBox[{
+             "\:91c7\:6837\:70b9", "\:ff1a", 
+              "\:5927\:5706\:70b9\:589e\:52a0\:89c6\:89c9\:8bb0\:5fc6"}], 
+             "*)"}], 
+            RowBox[{"ListPlot", "[", 
+             RowBox[{"sampleData", ",", 
+              RowBox[{"Filling", "->", "Axis"}], ",", 
+              RowBox[{"PlotStyle", "->", 
+               RowBox[{"Directive", "[", 
+                RowBox[{
+                 RowBox[{"PointSize", "[", "0.02", "]"}], ",", "Blue"}], 
+                "]"}]}], ",", 
+              RowBox[{"FillingStyle", "->", 
+               RowBox[{"Directive", "[", 
+                RowBox[{"Blue", ",", "Dashed", ",", 
+                 RowBox[{"Thickness", "[", "0.003", "]"}]}], "]"}]}]}], "]"}],
+             ",", 
+            RowBox[{"PlotRange", "->", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", "tMax"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"-", "1.2"}], ",", "1.5"}], "}"}]}], "}"}]}], ",", 
+            RowBox[{"ImageSize", "->", "700"}], ",", 
+            RowBox[{"Frame", "->", "True"}], ",", 
+            RowBox[{"PlotLabel", "->", 
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<\:65f6\:57df\:ff1a\:91cd\:5efa\:4fe1\:53f7\:7684'\
+\:6298\:8fd4'\:73b0\:8c61\>\"", ",", "16", ",", "Bold", ",", 
+               RowBox[{"FontFamily", "->", "\"\<Heiti SC\>\""}]}], "]"}]}]}], 
+           "]"}], ",", 
+          RowBox[{"Spacer", "[", "20", "]"}], ",", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"--", 
+              RowBox[{"-", "2."}]}], " ", "\:9891\:57df\:6f14\:793a"}], "\:ff1a", 
+            RowBox[{
+             RowBox[{"\:89c2\:5bdf\:9891\:7387\:70b9\:5982\:4f55", 
+              RowBox[{
+              "\[OpenCurlyDoubleQuote]", "\:8de8\:8fc7", 
+               "\[CloseCurlyDoubleQuote]"}], 
+              RowBox[{"\:5948\:594e\:65af\:7279\:9650", "--"}]}], "-"}]}], 
+           "*)"}], 
+          RowBox[{"freqDomainPlot", "=", 
+           RowBox[{"Graphics", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+              "(*", "\:5948\:594e\:65af\:7279\:533a\:57df\:80cc\:666f", 
+               "*)"}], 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"LightBlue", ",", 
+                 RowBox[{"Opacity", "[", "0.3", "]"}], ",", 
+                 RowBox[{"Rectangle", "[", 
+                  RowBox[{
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "ws"}], "/", "2"}], ",", "0"}], "}"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"ws", "/", "2"}], ",", "1"}], "}"}]}], "]"}]}], 
+                "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"Dashed", ",", "Gray", ",", 
+                 RowBox[{"Line", "[", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "ws"}], "/", "2"}], ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"-", "ws"}], "/", "2"}], ",", "1.2"}], "}"}]}], 
+                   "}"}], "]"}], ",", 
+                 RowBox[{"Line", "[", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"ws", "/", "2"}], ",", "0"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"ws", "/", "2"}], ",", "1.2"}], "}"}]}], "}"}], 
+                  "]"}]}], "}"}], ",", 
+               RowBox[{"(*", "\:539f\:59cb\:9891\:7387\:70b9", "*)"}], 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"PointSize", "[", "0.03", "]"}], ",", "Gray", ",", 
+                 RowBox[{"Point", "[", 
+                  RowBox[{"{", 
+                   RowBox[{"w0", ",", "0.5"}], "}"}], "]"}], ",", 
+                 RowBox[{"Text", "[", 
+                  RowBox[{
+                   RowBox[{"Style", "[", 
+                    RowBox[{"\"\<\[Omega]_0\>\"", ",", "14"}], "]"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"w0", ",", "0.6"}], "}"}]}], "]"}]}], "}"}], ",", 
+               
+               RowBox[{"(*", 
+                RowBox[{"\:91cd\:5efa\:540e\:7684\:9891\:7387\:70b9", " ", 
+                 RowBox[{"(", "\:6df7\:53e0\:540e\:7684\:4f4d\:7f6e", ")"}]}],
+                 "*)"}], 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"PointSize", "[", "0.04", "]"}], ",", "Red", ",", 
+                 RowBox[{"Point", "[", 
+                  RowBox[{"{", 
+                   RowBox[{"reconstructedW", ",", "0.5"}], "}"}], "]"}], ",", 
+                 
+                 RowBox[{"Text", "[", 
+                  RowBox[{
+                   RowBox[{"Style", "[", 
+                    
+                    RowBox[{"\"\<\:91cd\:5efa\:9891\:7387\>\"", ",", "14", ",",
+                     "Bold", ",", "Red"}], "]"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"reconstructedW", ",", "0.3"}], "}"}]}], "]"}]}], 
+                "}"}], ",", 
+               RowBox[{"(*", "\:6307\:793a\:7bad\:5934", "*)"}], 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"Arrowheads", "[", "0.03", "]"}], ",", 
+                 RowBox[{"Arrow", "[", 
+                  RowBox[{"{", 
+                   RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{"w0", ",", "0.5"}], "}"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"reconstructedW", ",", "0.5"}], "}"}]}], "}"}], 
+                  "]"}]}], "}"}]}], "}"}], ",", 
+             RowBox[{"Axes", "->", 
+              RowBox[{"{", 
+               RowBox[{"True", ",", "False"}], "}"}]}], ",", 
+             RowBox[{"PlotRange", "->", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"{", 
+                 RowBox[{
+                  RowBox[{"-", "2"}], ",", 
+                  RowBox[{"ws", "+", "2"}]}], "}"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ",", 
+             RowBox[{"AspectRatio", "->", "0.15"}], ",", 
+             RowBox[{"ImageSize", "->", "700"}], ",", 
+             RowBox[{"AxesLabel", "->", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 RowBox[{"\"\<\:9891\:7387 \[Omega]\>\"", ",", "12"}], "]"}], 
+                ",", "None"}], "}"}]}], ",", 
+             RowBox[{"Epilog", "->", 
+              RowBox[{"Text", "[", 
+               RowBox[{
+                RowBox[{"Style", "[", 
+                 
+                 RowBox[{"\"\<Nyquist \:533a\:57df (-w_s/2 \:5230 w_s/2)\>\"",
+                   ",", "12", ",", "Blue"}], "]"}], ",", 
+                RowBox[{"{", 
+                 RowBox[{"0", ",", "0.8"}], "}"}]}], "]"}]}]}], "]"}]}]}], 
+         "}"}], ",", 
+        RowBox[{"Alignment", "->", "Center"}]}], "]"}]}]}], "]"}], ",", 
+   RowBox[{"(*", "\:63a7\:5236\:9762\:677f", "*)"}], 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "w0", ",", "1", 
+       ",", "\"\<\:8f93\:5165\:4fe1\:53f7\:9891\:7387 \
+\\!\\(\[Omega]\\)_0\>\""}], "}"}], ",", "0", ",", "10", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"view", ",", "\"\<\:81ea\:52a8\>\""}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<w_s/6\>\"", ",", "\"\<2w_s/6\>\"", ",", "\"\<4w_s/6\>\"", 
+       ",", "\"\<5w_s/6\>\"", ",", "\"\<w_s (\:5168\:6df7\:53e0)\>\""}], 
+      "}"}]}], "}"}], ",", 
+   RowBox[{"(*", 
+    RowBox[{
+    "\:4ea4\:4e92\:903b\:8f91", "\:ff1a", 
+     "\:70b9\:51fb\:6309\:94ae\:81ea\:52a8\:8df3\:8f6c\:5230\:5178\:578b\:6848\
+\:4f8b"}], "*)"}], 
+   RowBox[{"TrackingFunction", "->", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"w0", "=", 
+         RowBox[{"Which", "[", 
+          RowBox[{
+           RowBox[{"#2", "==", "\"\<w_s/6\>\""}], ",", "1", ",", 
+           RowBox[{"#2", "==", "\"\<2w_s/6\>\""}], ",", "2", ",", 
+           RowBox[{"#2", "==", "\"\<4w_s/6\>\""}], ",", "4", ",", 
+           RowBox[{"#2", "==", "\"\<5w_s/6\>\""}], ",", "5", ",", 
+           RowBox[{"#2", "==", "\"\<w_s (\:5168\:6df7\:53e0)\>\""}], ",", "6",
+            ",", "True", ",", "#1"}], "]"}]}], ";"}], ")"}], "&"}], ")"}]}]}],
+   "]"}]], "Input",
+ CellChangeTimes->{{3.9861595164234867`*^9, 3.986159516424527*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"8bc7e169-35f6-4d51-aaf0-b48e9ae0a690"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`view$$ = "\:81ea\:52a8", $CellContext`w0$$ =
+     2.98, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`w0$$], 1, 
+       "\:8f93\:5165\:4fe1\:53f7\:9891\:7387 \!\(\[Omega]\)_0"}, 0, 10, 
+      ControlType -> Manipulator}, {{
+       Hold[$CellContext`view$$], "\:81ea\:52a8"}, {
+      "w_s/6", "2w_s/6", "4w_s/6", "5w_s/6", "w_s (\:5168\:6df7\:53e0)"}, 
+      ControlType -> SetterBar}}, Typeset`size$$ = {
+    700., {289.03540592104247`, 294.76733951479247`}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`view$$ = "\:81ea\:52a8", $CellContext`w0$$ = 
+        1}, "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`ws$ = 6, $CellContext`tMax$ = 
+         4 Pi, $CellContext`reconstructedW$, $CellContext`sampleData$, \
+$CellContext`t$, $CellContext`freqDomainPlot$}, $CellContext`reconstructedW$ = 
+         Mod[$CellContext`w0$$ + $CellContext`ws$/
+             2, $CellContext`ws$] - $CellContext`ws$/
+          2; $CellContext`sampleData$ = Table[{$CellContext`t$, 
+            Sin[$CellContext`w0$$ $CellContext`t$]}, {$CellContext`t$, 
+            0, $CellContext`tMax$, (2 Pi)/$CellContext`ws$}]; Column[{
+           Show[
+            Plot[
+             
+             Sin[$CellContext`w0$$ $CellContext`t$], {$CellContext`t$, 
+              0, $CellContext`tMax$}, PlotStyle -> {
+               Directive[
+                GrayLevel[0.7], 
+                Thickness[0.003]]}, Filling -> Axis, FillingStyle -> 
+             Lighter[Gray, 0.9]], 
+            Plot[
+             
+             Sin[$CellContext`reconstructedW$ $CellContext`t$], \
+{$CellContext`t$, 0, $CellContext`tMax$}, PlotStyle -> {
+               Directive[
+                If[
+                Abs[$CellContext`reconstructedW$ - $CellContext`w0$$] < 0.01, 
+                 
+                 Darker[Green], Red], 
+                Thickness[0.008]]}], 
+            
+            ListPlot[$CellContext`sampleData$, Filling -> Axis, PlotStyle -> 
+             Directive[
+               PointSize[0.02], Blue], FillingStyle -> Directive[Blue, Dashed, 
+               Thickness[0.003]]], 
+            PlotRange -> {{0, $CellContext`tMax$}, {-1.2, 1.5}}, ImageSize -> 
+            700, Frame -> True, PlotLabel -> 
+            Style["\:65f6\:57df\:ff1a\:91cd\:5efa\:4fe1\:53f7\:7684'\:6298\
+\:8fd4'\:73b0\:8c61", 16, Bold, FontFamily -> "Heiti SC"]], 
+           Spacer[20], $CellContext`freqDomainPlot$ = Graphics[{{LightBlue, 
+               Opacity[0.3], 
+               
+               Rectangle[{(-$CellContext`ws$)/2, 0}, {$CellContext`ws$/2, 
+                 1}]}, {Dashed, Gray, 
+               
+               Line[{{(-$CellContext`ws$)/2, 0}, {(-$CellContext`ws$)/2, 
+                  1.2}}], 
+               Line[{{$CellContext`ws$/2, 0}, {$CellContext`ws$/2, 1.2}}]}, {
+               PointSize[0.03], Gray, 
+               Point[{$CellContext`w0$$, 0.5}], 
+               Text[
+                Style["\[Omega]_0", 14], {$CellContext`w0$$, 0.6}]}, {
+               PointSize[0.04], Red, 
+               Point[{$CellContext`reconstructedW$, 0.5}], 
+               Text[
+                Style[
+                "\:91cd\:5efa\:9891\:7387", 14, Bold, 
+                 Red], {$CellContext`reconstructedW$, 0.3}]}, {
+               Arrowheads[0.03], 
+               
+               Arrow[{{$CellContext`w0$$, 0.5}, {$CellContext`reconstructedW$,
+                   0.5}}]}}, Axes -> {True, False}, 
+             PlotRange -> {{-2, $CellContext`ws$ + 2}, {0, 1}}, AspectRatio -> 
+             0.15, ImageSize -> 700, AxesLabel -> {
+               Style["\:9891\:7387 \[Omega]", 12], None}, Epilog -> Text[
+               Style[
+               "Nyquist \:533a\:57df (-w_s/2 \:5230 w_s/2)", 12, Blue], {
+               0, 0.8}]]}, Alignment -> Center]], 
+      "Specifications" :> {{{$CellContext`w0$$, 1, 
+          "\:8f93\:5165\:4fe1\:53f7\:9891\:7387 \!\(\[Omega]\)_0"}, 0, 10, 
+         Appearance -> "Labeled"}, {{$CellContext`view$$, "\:81ea\:52a8"}, {
+         "w_s/6", "2w_s/6", "4w_s/6", "5w_s/6", "w_s (\:5168\:6df7\:53e0)"}}},
+       "Options" :> {
+       TrackingFunction -> (($CellContext`w0$$ = 
+          Which[#2 == "w_s/6", 1, #2 == "2w_s/6", 2, #2 == "4w_s/6", 4, #2 == 
+            "5w_s/6", 5, #2 == "w_s (\:5168\:6df7\:53e0)", 6, True, #]; 
+         Null)& )}, "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      749.0999999999999, {351.80563602358154`, 357.53756961733154`}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.986159517648775*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"41a365a2-2256-4679-9179-4de89fa33ddf"]
+}, Open  ]]
+},
+WindowSize->{808, 821},
+WindowMargins->{{28, Automatic}, {-838, Automatic}},
+LightDark->"Light",
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"acd093bd-3ecd-42d1-a501-dcc8f5b752ab"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 204, 3, 55, "Input",ExpressionUUID->"3b43d04e-2b33-4644-a6a3-e596d8e6fc65"],
+Cell[CellGroupData[{
+Cell[783, 27, 12748, 306, 742, "Input",ExpressionUUID->"8bc7e169-35f6-4d51-aaf0-b48e9ae0a690"],
+Cell[13534, 335, 5679, 113, 745, "Output",ExpressionUUID->"41a365a2-2256-4679-9179-4de89fa33ddf"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

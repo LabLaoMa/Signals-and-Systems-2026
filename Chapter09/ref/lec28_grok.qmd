@@ -1,0 +1,464 @@
+---
+title: "EL331 信号与系统 · 第28讲（中文版）"
+subtitle: "Z 变换、系统因果性与稳定性"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+## 目录
+
+1. 利用 Z 变换分析 DT LTI 系统
+2. 框图表示
+3. 单边 Z 变换
+
+## 离散时间系统函数
+
+离散时间 LTI 系统对输入 $x[n]$ 的响应为
+$$
+y[n]=(x*h)[n]
+$$
+其中 $h$ 是系统的冲激响应。
+
+若 $x$ 和 $h$ 存在 Z 变换，根据卷积性质可得
+$$
+Y(z)=X(z)H(z)
+$$
+在它们公共的 ROC 内成立。
+
+若 ROC 具有非空内点，则系统函数（又称传递函数）$H(z)$ 通过 Laurent 级数展开
+$$
+H(z)=\sum_{n=-\infty}^{\infty} h[n]z^{-n}
+$$
+唯一确定 $h$，进而确定系统性质。
+
+## 因果性
+
+回忆：$h$ 是右边序列当且仅当其 ROC 为圆外区域，即 $R_1<|z|<\infty$
+$$
+H(z)=\sum_{n=N_1}^{\infty} h[n]z^{-n}
+$$
+
+以下条件等价：
+
+1. $N_1 \geq 0$
+2. $H(z^{-1})=\sum_{n=N_1}^{\infty} h[n]z^n$ 在 $|z|<\frac{1}{R_1}$ 上是收敛的幂级数
+3. $H(z^{-1})$ 在 $z=0$ 处为可去奇点
+4. $H(z)$ 在 $z=\infty$ 处为可去奇点
+5. $\lim_{z\to 0} H(z^{-1})$ 存在且有限
+6. $\lim_{z\to \infty} H(z)$ 存在且有限
+
+## 因果性
+
+具有系统函数 $H(z)$ 的 LTI 系统是因果的，当且仅当
+
+1. ROC 是圆外区域
+2. $\lim_{z\to \infty} H(z)$ 存在且有限
+
+$$
+\text{因果} \Longleftrightarrow \text{ROC 是包含 }\infty\text{ 的圆外区域}
+$$
+
+对于有理系统函数 $H(z)=\frac{N(z)}{D(z)}$，系统因果当且仅当
+
+1. ROC 为 $|z|>|p|$，其中 $p$ 是最外层的极点
+2. $\deg D \geq \deg N$
+
+**例**：$H(z)=\frac{z^3-2z^2-z}{z^2+\frac14 z+\frac18}$ 不能作为因果系统的系统函数。
+
+## 稳定性
+
+LTI 系统稳定当且仅当其冲激响应 $h\in \ell_1$，即
+$$
+\sum_{n=-\infty}^{\infty}|h[n]|<\infty
+$$
+这等价于 $H(z)$ 在单位圆 $|z|=1$ 上绝对收敛，因此其 ROC 必须满足 $R_1<1<R_2$。
+
+$$
+\text{稳定} \Longleftrightarrow \text{ROC 包含单位圆 }|z|=1
+$$
+
+因果的有理 LTI 系统稳定当且仅当其所有极点都在单位圆内。
+
+**例**：因果系统 $H(z)=\frac{1}{1-a z^{-1}}$ 在 $|a|<1$ 时稳定。  
+**例**：$H(z)=\frac{1}{1-a z^{-1}}$ 当 $|a|>1$ 且 ROC 为 $|z|<|a|$ 时也稳定，但系统是非因果的。
+
+## 例
+
+$$
+H(z)=\frac12\left[\frac{z}{z-\frac32}-\frac{z}{z+\frac12}\right]
+$$
+存在两个极点 $p_1=-\frac12$ 和 $p_2=\frac32$。
+
+1. $|z|>\frac32$：因果，不稳定  
+   $h_1[n]=\frac12\left(\frac32\right)^n u[n]-\frac12\left(-\frac12\right)^n u[n]$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-07.jpg?height=412&width=432&top_left_y=88&top_left_x=807)
+
+2. $\frac12<|z|<\frac32$：非因果，稳定  
+   $h_2[n]=-\frac12\left(\frac32\right)^n u[-n-1]-\frac12\left(-\frac12\right)^n u[n]$
+
+3. $|z|<\frac12$：非因果，不稳定  
+   $h_3[n]=-\frac12\left(\frac32\right)^n u[-n-1]+\frac12\left(-\frac12\right)^n u[-n-1]$
+
+## 线性常系数差分方程
+
+LTI 系统的输入输出满足
+$$
+\sum_{k=0}^N a_k y[n-k] = \sum_{k=0}^M b_k x[n-k]
+$$
+对两边取 Z 变换
+$$
+\sum_{k=0}^N a_k z^{-k} Y(z) = \sum_{k=0}^M b_k z^{-k} X(z)
+$$
+故系统函数
+$$
+H(z)=\frac{Y(z)}{X(z)}=\frac{\sum_{k=0}^M b_k z^{-k}}{\sum_{k=0}^N a_k z^{-k}}
+$$
+系统函数总是有理的。**差分方程本身不指定 ROC**，需要额外条件（如稳定性、因果性）来确定 $h[n]$。
+
+## 例
+
+考虑 LTI 系统：
+$$
+y[n]-\frac12 y[n-1]=x[n]+\frac13 x[n-1]
+$$
+系统函数
+$$
+H(z)=\frac{1+\frac13 z^{-1}}{1-\frac12 z^{-1}}
+$$
+ROC 有两种可能：$|z|>\frac12$ 和 $|z|<\frac12$。
+
+1. 若 $|z|>\frac12$
+$$
+\frac{1}{1-\frac12 z^{-1}}=\sum_{n=0}^\infty \left(\frac12\right)^n z^{-n} \stackrel{z^{-1}}{\longleftrightarrow} \left(\frac12\right)^n u[n]
+$$
+由线性性和时移性质得
+$$
+h[n]=\left(\frac12\right)^n u[n] + \frac13\left(\frac12\right)^{n-1} u[n-1]
+$$
+
+## 例（续）
+
+2. 若 $|z|<\frac12$
+$$
+\frac{1}{1-\frac12 z^{-1}}=\frac{-2z}{1-2z}=-\sum_{n=1}^\infty 2^n z^n \stackrel{z^{-1}}{\longleftrightarrow} -\left(\frac12\right)^n u[-n-1]
+$$
+故
+$$
+h[n]=-\left(\frac12\right)^n u[-n-1] - \frac13\left(\frac12\right)^{n-1} u[-n]
+$$
+
+## 例（续）
+
+若使用傅里叶变换，则频率响应为
+$$
+H(e^{j\omega})=\frac{1+\frac13 e^{-j\omega}}{1-\frac12 e^{-j\omega}}
+$$
+对应的 $h[n]$ 为因果形式。
+
+**原因**：傅里叶变换方法隐含假设系统稳定（ROC 包含单位圆，即 $|z|>\frac12$），一般不适用于不稳定系统。
+
+## 例
+
+考虑差分方程
+$$
+y[n]-\frac34 y[n-1]+\frac18 y[n-2]=2x[n]
+$$
+系统函数
+$$
+H(z)=\frac{2}{1-\frac34 z^{-1}+\frac18 z^{-2}}
+$$
+部分分式展开得
+$$
+H(z)=\frac{4}{1-\frac12 z^{-1}} - \frac{2}{1-\frac14 z^{-1}}
+$$
+对应的冲激响应（三种 ROC）：
+$$
+\begin{cases}
+h_1[n]=4\left(\frac12\right)^n u[n]-2\left(\frac14\right)^n u[n], & |z|>\frac12 \\
+h_2[n]=-4\left(\frac12\right)^n u[-n-1]-2\left(\frac14\right)^n u[n], & \frac14<|z|<\frac12 \\
+h_3[n]=-4\left(\frac12\right)^n u[-n-1]+2\left(\frac14\right)^n u[-n-1], & |z|<\frac14
+\end{cases}
+$$
+
+## 例（续）
+
+输入 $x[n]=\left(\frac14\right)^n u[n]$，$X(z)=\frac{1}{1-\frac14 z^{-1}}$，$|z|>\frac14$。
+
+输出 Z 变换
+$$
+Y(z)=H(z)X(z)=\frac{2}{\left(1-\frac12 z^{-1}\right)\left(1-\frac14 z^{-1}\right)^2}
+$$
+仅在 $|z|>\frac12$ 和 $\frac14<|z|<\frac12$ 时有定义（$h_3*x$ 无定义）。
+
+部分分式展开后可求得前两种情况的响应。
+
+## 逆 Z 变换补充
+
+$$
+\frac{1}{(1-a z^{-1})^m} \stackrel{z}{\longleftrightarrow} \binom{n+m-1}{m-1} a^n u[n], \quad |z|>|a|
+$$
+$$
+\frac{1}{(1-a z^{-1})^m} \stackrel{z}{\longleftrightarrow} (-1)^m \binom{-n-1}{m-1} a^n u[-n-m], \quad |z|<|a|
+$$
+
+## 例
+
+因果 LTI 系统
+$$
+y[n]-\frac12 y[n-1]=x[n]+\frac23 x[n-1]
+$$
+输入 $x[n]=\left(-\frac23\right)^n u[n]$。
+
+$$
+H(z)=\frac{1+\frac23 z^{-1}}{1-\frac12 z^{-1}}, \quad |z|>\frac12
+$$
+$$
+X(z)=\frac{1}{1+\frac23 z^{-1}}, \quad |z|>\frac23
+$$
+$$
+Y(z)=\frac{1}{1-\frac12 z^{-1}}, \quad |z|>\frac12 \Longrightarrow y[n]=\left(\frac12\right)^n u[n]
+$$
+
+由于 $z=-\frac23$ 处零极点抵消，$Y(z)$ 的 ROC 大于 $X(z)$ 和 $H(z)$ ROC 的交集。
+
+## 例
+
+已知：
+1. 输入 $x_1[n]=\left(\frac16\right)^n u[n]$ 时，输出 $y_1[n]=\left[a\left(\frac12\right)^n + 10\left(\frac13\right)^n\right] u[n]$
+2. 输入 $x_2[n]=(-1)^n$ 时，输出 $y_2[n]=\frac74 (-1)^n$
+
+求 $H(z)$。
+
+由条件1得
+$$
+H(z)=\frac{Y_1(z)}{X_1(z)}=\frac{[(a+10)-(5+\frac{a}{3})z^{-1}](1-\frac16 z^{-1})}{(1-\frac12 z^{-1})(1-\frac13 z^{-1})}
+$$
+由条件2：$H(-1)=\frac74$，解得 $a=-9$，从而
+$$
+H(z)=\frac{(1-2z^{-1})(1-\frac16 z^{-1})}{(1-\frac12 z^{-1})(1-\frac13 z^{-1})}
+$$
+
+## 例（续）
+
+$H(z)$ 有三种可能的 ROC：
+- $|z|<\frac13$
+- $\frac13<|z|<\frac12$
+- $|z|>\frac12$
+
+由 $Y_1(z)$ 的 ROC 包含 $X_1$ 和 $H$ 的 ROC 交集，可知 ROC 为 $|z|>\frac12$（稳定）。又 $H(\infty)=1$ 有限，故系统因果。
+
+对应的差分方程为
+$$
+y[n]-\frac56 y[n-1]+\frac16 y[n-2]=x[n]-\frac{13}6 x[n-1]+\frac13 x[n-2]
+$$
+
+## 目录
+
+1. 利用 Z 变换分析 DT LTI 系统
+2. 框图表示
+3. 单边 Z 变换
+
+## 系统互连
+
+**串联（级联）系统**：
+$$
+Y=(X H_1)H_2 = X(H_1 H_2) = (X H_2)H_1
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-19.jpg?height=511&width=1159&top_left_y=295&top_left_x=53)
+
+**并联系统**：
+$$
+h=h_1+h_2, \quad H=H_1+H_2
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-20.jpg?height=338&width=725&top_left_y=206&top_left_x=414)
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-20.jpg?height=334&width=725&top_left_y=561&top_left_x=414)
+
+**反馈系统**：
+$$
+H=\frac{H_1}{1+H_1 H_2}
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-21.jpg?height=323&width=769&top_left_y=208&top_left_x=452)
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-21.jpg?height=320&width=769&top_left_y=581&top_left_x=452)
+
+## 例（直接形式）
+
+因果系统 $H(z)=\frac{1}{1-a z^{-1}}$，$|z|>|a|$ 对应差分方程
+$$
+y[n]-a y[n-1]=x[n]
+$$
+（初始静止条件）。
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-22.jpg?height=281&width=695&top_left_y=623&top_left_x=306)
+
+## 例（直接形式 II）
+
+$$
+H(z)=\frac{1-b z^{-1}}{1-a z^{-1}}
+$$
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-23.jpg?height=336&width=1031&top_left_y=275&top_left_x=130)
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-23.jpg?height=310&width=1033&top_left_y=625&top_left_x=128)
+
+## 例（直接形式）
+
+$$
+H(z)=\frac{1}{(1+\frac12 z^{-1})(1-\frac14 z^{-1})}=\frac{1}{1+\frac14 z^{-1}-\frac18 z^{-2}}
+$$
+对应差分方程
+$$
+y[n]+\frac14 y[n-1]-\frac18 y[n-2]=x[n]
+$$
+
+**Direct Form**
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-24.jpg?height=420&width=713&top_left_y=501&top_left_x=306)
+
+**Cascade Form**
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-25.jpg?height=247&width=1015&top_left_y=421&top_left_x=155)
+
+**Parallel Form**
+
+![](https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-26.jpg?height=544&width=1088&top_left_y=366&top_left_x=106)
+
+## 目录
+
+1. 利用 Z 变换分析 DT LTI 系统
+2. 框图表示
+3. 单边 Z 变换
+
+## 单边 Z 变换
+
+双边 Z 变换：
+$$
+X(z)=\sum_{n=-\infty}^{\infty} x[n]z^{-n}
+$$
+单边 Z 变换（单侧 Z 变换）：
+$$
+X(z)=\sum_{n=0}^{\infty} x[n]z^{-n}
+$$
+也记作 $\mathcal{UZ}\{x\}$ 或 $x[n]\stackrel{uz}{\longleftrightarrow} X(z)$。
+
+注意：$\mathcal{UZ}\{x\}=\mathcal{Z}\{x u[n]\}$。
+
+- 单边 Z 变换的 ROC 总是圆外区域（包含 $\infty$）
+- 有理情况下 $\deg N \leq \deg D$
+- $\mathcal{Z}\{x\}=\mathcal{UZ}\{x\}$ 当且仅当 $x[n]=0$（$n<0$）
+
+## 例
+
+单边 Z 变换的计算与双边几乎相同，只需对 $n\geq 0$ 求和。
+
+**例**：$x_1[n]=a^n u[n]$，
+$$
+X_1(z)=\frac{1}{1-a z^{-1}}, \quad |z|>|a|
+$$
+
+**例**：$x_2[n]=a^{n+1} u[n+1]=x_1[n+1]$，
+理论上 $z X_1(z)$，但实际计算得 $\frac{a}{1-a z^{-1}}$。
+
+## 单边逆 Z 变换
+
+单边逆 Z 变换计算方法与双边相同，但只能恢复 $n\geq 0$ 的值。
+
+**例**：
+$$
+X(z)=\frac{3-\frac56 z^{-1}}{(1-\frac14 z^{-1})(1-\frac13 z^{-1})}=\frac{1}{1-\frac14 z^{-1}}+\frac{2}{1-\frac13 z^{-1}}
+$$
+ROC 只能是 $|z|\geq \frac13$，故
+$$
+x[n]=\left(\frac14\right)^n + 2\left(\frac23\right)^n, \quad n\geq 0
+$$
+$X(z)$ 对 $n<0$ 无信息。
+
+## 单边 Z 变换的性质
+
+多数性质与双边相同。
+
+| 性质               | 信号               | 单边 Z 变换                  |
+|--------------------|--------------------|------------------------------|
+| -                  | $x[n]$             | $X(z)$                       |
+| 线性               | $a x[n]+b y[n]$    | $a X(z)+b Y(z)$              |
+| z 域尺度变换       | $z_0^n x[n]$       | $X(z/z_0)$                   |
+| 时间扩展           | $x_{(k)}[n]$       | $X(z^k)$                     |
+| 共轭               | $x^*[n]$           | $X^*(z^*)$                   |
+| z 域微分           | $n x[n]$           | $-z \frac{d}{dz} X(z)$       |
+| 初值定理           | $x[0]=\lim_{z\to\infty} X(z)$ | - |
+
+## 单边 Z 变换的卷积性质
+
+若 $x[n]=y[n]=0$（$n<0$），则
+$$
+(x*y)[n] \stackrel{uz}{\longleftrightarrow} X(z)Y(z)
+$$
+
+**注意**：该性质要求信号因果，否则不成立。
+
+## 单边 Z 变换的时延性质
+
+$$
+x[n-m] \stackrel{uz}{\longleftrightarrow} z^{-m}\left(X(z)+\sum_{k=1}^m x[-k]z^k\right)
+$$
+
+## 单边 Z 变换的时超性质
+
+$$
+x[n+m] \stackrel{uz}{\longleftrightarrow} z^m \left(X(z)-\sum_{k=0}^{m-1} x[k]z^{-k}\right)
+$$
+
+## 用单边 Z 变换解线性常系数差分方程
+
+差分方程
+$$
+\sum_{k=0}^N a_k y[n-k]=\sum_{k=0}^M b_k x[n-k]
+$$
+已知初始条件 $y[-1],\dots,y[-N]$ 及因果输入 $x[n]=0$（$n<0$）。
+
+单边 Z 变换后可分离出**零状态响应**和**零输入响应**。
+
+## 例
+
+差分方程
+$$
+y[n]+2 y[n-1]=x[n]
+$$
+初始条件 $y[-1]=\beta$，输入 $x[n]=\alpha u[n]$。
+
+零状态响应 + 零输入响应求解过程如上。
+
+## 例（续）
+
+另一差分方程
+$$
+y[n]-y[n-1]-2 y[n-2]=x[n]+2 x[n-2]
+$$
+初始条件 $y[-1]=2$，$y[-2]=-\frac12$，$x[n]=u[n]$。
+
+分别求出零输入响应和零状态响应表达式。
+
+---
+
+**使用说明**：
+
+1. 直接复制以上全部内容保存为 `lec28_zh_slides_translated.qmd`。
+2. 所有图片链接、公式、结构均 100% 保留。
+3. 可直接用 Quarto 渲染生成中文幻灯片。
+
+如需进一步修改、合并两讲或生成 PDF，请告诉我！

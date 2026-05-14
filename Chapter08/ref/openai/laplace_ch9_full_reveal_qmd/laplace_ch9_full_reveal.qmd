@@ -1,0 +1,209 @@
+---
+title: "第9章 拉普拉斯变换"
+subtitle: "The Laplace Transform"
+format:
+  revealjs:
+    theme: simple
+    css: styles.css
+    slide-number: true
+    hash: true
+    width: 1280
+    height: 960
+    margin: 0.02
+    transition: none
+    controls: true
+    progress: true
+    center: true
+execute:
+  echo: false
+---
+
+<!--
+逐页转换说明：本文件将原 PDF 的 31 页逐页转换为 reveal.js 幻灯片。
+每一页对应一张高分辨率 PNG，保存在 images/ 目录。
+运行方式：quarto preview laplace_ch9_full_reveal.qmd 或 quarto render laplace_ch9_full_reveal.qmd
+-->
+
+## 第 1 页 {#page-1}
+
+![](images/page-01.png){.slide-page fig-alt="第1页"}
+
+---
+
+## 第 2 页 {#page-2}
+
+![](images/page-02.png){.slide-page fig-alt="第2页"}
+
+---
+
+## 第 3 页 {#page-3}
+
+![](images/page-03.png){.slide-page fig-alt="第3页"}
+
+---
+
+## 第 4 页 {#page-4}
+
+![](images/page-04.png){.slide-page fig-alt="第4页"}
+
+---
+
+## 第 5 页 {#page-5}
+
+![](images/page-05.png){.slide-page fig-alt="第5页"}
+
+---
+
+## 第 6 页 {#page-6}
+
+![](images/page-06.png){.slide-page fig-alt="第6页"}
+
+---
+
+## 第 7 页 {#page-7}
+
+![](images/page-07.png){.slide-page fig-alt="第7页"}
+
+---
+
+## 第 8 页 {#page-8}
+
+![](images/page-08.png){.slide-page fig-alt="第8页"}
+
+---
+
+## 第 9 页 {#page-9}
+
+![](images/page-09.png){.slide-page fig-alt="第9页"}
+
+---
+
+## 第 10 页 {#page-10}
+
+![](images/page-10.png){.slide-page fig-alt="第10页"}
+
+---
+
+## 第 11 页 {#page-11}
+
+![](images/page-11.png){.slide-page fig-alt="第11页"}
+
+---
+
+## 第 12 页 {#page-12}
+
+![](images/page-12.png){.slide-page fig-alt="第12页"}
+
+---
+
+## 第 13 页 {#page-13}
+
+![](images/page-13.png){.slide-page fig-alt="第13页"}
+
+---
+
+## 第 14 页 {#page-14}
+
+![](images/page-14.png){.slide-page fig-alt="第14页"}
+
+---
+
+## 第 15 页 {#page-15}
+
+![](images/page-15.png){.slide-page fig-alt="第15页"}
+
+---
+
+## 第 16 页 {#page-16}
+
+![](images/page-16.png){.slide-page fig-alt="第16页"}
+
+---
+
+## 第 17 页 {#page-17}
+
+![](images/page-17.png){.slide-page fig-alt="第17页"}
+
+---
+
+## 第 18 页 {#page-18}
+
+![](images/page-18.png){.slide-page fig-alt="第18页"}
+
+---
+
+## 第 19 页 {#page-19}
+
+![](images/page-19.png){.slide-page fig-alt="第19页"}
+
+---
+
+## 第 20 页 {#page-20}
+
+![](images/page-20.png){.slide-page fig-alt="第20页"}
+
+---
+
+## 第 21 页 {#page-21}
+
+![](images/page-21.png){.slide-page fig-alt="第21页"}
+
+---
+
+## 第 22 页 {#page-22}
+
+![](images/page-22.png){.slide-page fig-alt="第22页"}
+
+---
+
+## 第 23 页 {#page-23}
+
+![](images/page-23.png){.slide-page fig-alt="第23页"}
+
+---
+
+## 第 24 页 {#page-24}
+
+![](images/page-24.png){.slide-page fig-alt="第24页"}
+
+---
+
+## 第 25 页 {#page-25}
+
+![](images/page-25.png){.slide-page fig-alt="第25页"}
+
+---
+
+## 第 26 页 {#page-26}
+
+![](images/page-26.png){.slide-page fig-alt="第26页"}
+
+---
+
+## 第 27 页 {#page-27}
+
+![](images/page-27.png){.slide-page fig-alt="第27页"}
+
+---
+
+## 第 28 页 {#page-28}
+
+![](images/page-28.png){.slide-page fig-alt="第28页"}
+
+---
+
+## 第 29 页 {#page-29}
+
+![](images/page-29.png){.slide-page fig-alt="第29页"}
+
+---
+
+## 第 30 页 {#page-30}
+
+![](images/page-30.png){.slide-page fig-alt="第30页"}
+
+---
+
+## 第 31 页 {#page-31}
+
+![](images/page-31.png){.slide-page fig-alt="第31页"}

@@ -1,0 +1,75 @@
+---
+title: "离散时间信号脉冲采样的频域分析"
+subtitle: "周期卷积与频谱混叠的数学细节"
+author: "Ma Yue"
+date: "2026-05-06"
+format:
+  revealjs:
+    theme: league
+    slide-number: true
+    mathjax: true
+---
+
+## 1. 核心公式定义
+
+在离散时间脉冲采样中，采样信号的频谱 $X_p$ 可由原始频谱 $X$ 与脉冲序列频谱 $P$ 的周期卷积得到：
+
+$$X_p = \frac{1}{2\pi} X \circledast P = \frac{1}{2\pi} \tilde{X} * P = \frac{1}{2\pi} X * \tilde{P}$$
+
+### 符号说明
+- $\circledast$：周期卷积 (Periodic Convolution)
+- $*$：线性卷积 (Linear Convolution)
+- $\tilde{P}$：$P$ 在一个 $2\pi$ 周期内的部分
+
+---
+
+## 2. 脉冲序列 $\tilde{P}$ 的结构
+
+在一个 $2\pi$ 周期内，离散脉冲序列的频谱 $\tilde{P}$ 是由 $N$ 个等间隔的冲激函数构成的“梳状”函数：
+
+$$\tilde{P}(e^{j\omega}) = \omega_s \sum_{k=0}^{N-1} \delta(\omega - k\omega_s)$$
+
+其中：
+- $\omega_s = \frac{2\pi}{N}$ 为采样频率（频谱间隔）
+- $N$ 为离散脉冲序列的周期
+
+---
+
+## 3. 从线性卷积到有限项求和
+
+利用 $X * \tilde{P}$ 推导 $0$ 到 $N-1$ 叠加过程：
+
+### 卷积性质利用
+根据冲激函数的卷积性质：$X(\omega) * \delta(\omega - \omega_0) = X(\omega - \omega_0)$。
+
+### 推导步骤
+1. **展开线性卷积**：
+   $$X * \tilde{P} = X(e^{j\omega}) * \left[ \omega_s \sum_{k=0}^{N-1} \delta(\omega - k\omega_s) \right]$$
+2. **分配律应用**：
+   $$X * \tilde{P} = \omega_s \sum_{k=0}^{N-1} X(e^{j(\omega - k\omega_s)})$$
+
+---
+
+## 4. 最终频谱展开形式
+
+代入系数 $\frac{1}{2\pi}$，得到最终的离散采样频谱：
+
+$$X_p(e^{j\omega}) = \frac{1}{2\pi} \cdot \frac{2\pi}{N} \sum_{k=0}^{N-1} X(e^{j(\omega - k\omega_s)})$$
+
+$$X_p(e^{j\omega}) = \frac{1}{N} \sum_{k=0}^{N-1} X(e^{j(\omega - k\omega_s)})$$
+
+
+
+---
+
+## 5. 关键直觉解读
+
+### 为什么是有限项和？
+虽然理论定义中 $k$ 可取 $-\infty$ 到 $+\infty$，但由于 $X(e^{j\omega})$ 具有 $2\pi$ 的周期性：
+- 当 $k$ 增加 $N$ 时，偏移量 $k\omega_s = 2\pi$。
+- 此时 $X(e^{j(\omega - 2\pi)})$ 与 $X(e^{j\omega})$ **完全重合**。
+
+### 物理意义
+使用 $\tilde{P}$ 进行线性卷积，本质上是将原始频谱 $X$ 在 $2\pi$ 周期内等间隔地搬移 $N$ 次，并将这些副本叠加。
+- 这正是**频谱混叠 (Aliasing)** 的数学描述。
+- 最终结果是 $N$ 个独立频谱分量的加权平均。

@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-a8da12e74b29c2e7b17644f84b91567b.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.30">
+
+  <title>My Site – quarto-input5f32dc016f3821d7</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-ca6c53983499909029db778ee07132c3.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="拉普拉斯变换及其应用" class="slide level2">
+<h2>09 拉普拉斯变换及其应用</h2>
+</section>
+<section id="连续信号的复频域分析" class="slide level2">
+<h2>连续信号的复频域分析</h2>
+</section>
+<section id="傅里叶变换的计算" class="slide level2">
+<h2>傅里叶变换的计算</h2>
+<p>计算单边信号 <span class="math inline">\(x(t)=\sin \left(\omega_{0} t\right) u(t)\)</span> 的傅里叶变换 －已知 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-02.jpg?height=587&amp;width=1004&amp;top_left_y=188&amp;top_left_x=2278"></p>
+<p><span class="math display">\[
+\begin{gathered}
+u(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \pi \delta(\omega)+\frac{1}{\mathrm{j} \omega} \\
+\sin \omega_{0} t=\frac{1}{2 j}\left(\mathrm{e}^{\mathrm{j} \omega_{0} t}-\mathrm{e}^{-\mathrm{j} \omega_{0} t}\right) \stackrel{\mathcal{F}}{\longleftrightarrow}-\mathrm{j} \pi\left[\delta\left(\omega-\omega_{0}\right)-\delta\left(\omega+\omega_{0}\right)\right]
+\end{gathered}
+\]</span></p>
+<p>－利用频域卷积特性，</p>
+<p><span class="math display">\[
+\mathcal{F}[x(t)]=\frac{\omega_{0}}{\omega_{0}^{2}-\omega^{2}}+\frac{\mathrm{j} \pi}{2}\left[\delta\left(\omega+\omega_{0}\right)-\delta\left(\omega-\omega_{0}\right)\right]
+\]</span></p>
+</section>
+<section id="傅里叶变换的缺陷" class="slide level2">
+<h2>傅里叶变换的缺陷</h2>
+<p>－傅里叶变换的缺陷 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-03.jpg?height=435&amp;width=605&amp;top_left_y=71&amp;top_left_x=2605"></p>
+<p>表达信号受限制 <span class="math inline">\(x(t)=e^{a t} u(t) ; a&gt;0\)</span>, <span class="math inline">\(X(j \omega)\)</span> 不存在</p>
+<p>变换形式相对复杂</p>
+<p><span class="math display">\[
+\begin{gathered}
+x(t)=u(t) \\
+x(t)=\sin \left(\omega_{0} t\right) u(t)
+\end{gathered}
+\]</span></p>
+<p>求解微分方程过程复杂 分析系统有限制 －拉普拉斯变换的优势</p>
+<p>求解微分方程步骤简化 将微分方程转换为代数方程</p>
+<p>指数函数等有不连续点 的函数可转换为简单的初等函数</p>
+<p>时域中的卷积变换为复频域中的乘积，建立系统函数的概念</p>
+<p>利用系统函数零极点分布可直观表达系统很多特性</p>
+</section>
+<section id="拉普拉斯变换和傅里叶变换" class="slide level2">
+<h2>拉普拉斯变换和傅里叶变换</h2>
+<p>－拉普拉斯变换是傅里叶变换的一种扩展 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-04.jpg?height=967&amp;width=1280&amp;top_left_y=666&amp;top_left_x=244"> <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-04.jpg?height=895&amp;width=1340&amp;top_left_y=736&amp;top_left_x=1718"></p>
+<p>1．拉普拉斯变换： 对＂频率 <span class="math inline">\(\omega\)</span>＂含义的扩充</p>
+<p>2．（单边） 拉普拉斯变换的计算： 复频域的优势</p>
+<p>3．（单边） 拉普拉斯变换的性质： 信号的复频域特性</p>
+<p>4．拉普拉斯反变换： 部分分式展开</p>
+<p>1．拉普拉斯变换：</p>
+<p>2．（单边） 拉普拉斯变换的计算：信号的时域、频域抽样，抽样定理</p>
+<p>对＂频率 <span class="math inline">\(\omega\)</span>＂含义的扩充</p>
+<p>3．（单边） 拉普拉斯变换的性质：信号的复频域特性</p>
+<p>4．拉普拉斯反变换：部分分式展开</p>
+</section>
+<section id="从傅里叶变换到拉普拉斯变换" class="slide level2">
+<h2>从傅里叶变换到拉普拉斯变换</h2>
+<ul>
+<li>针对指数信号 <span class="math inline">\(x(t)=e^{a t} u(t) ; a&gt;0 ;\)</span> 不存在傅里叶变换</li>
+<li>将 <span class="math inline">\(x(t)\)</span> 乘以衰减因子 <span class="math inline">\(e^{-\sigma t}\)</span> ，满足绝对可积条件</li>
+</ul>
+<p><span class="math display">\[
+\text { 令 } s=\sigma+j \omega
+\]</span></p>
+<p><span class="math display">\[
+\mathcal{F}\left[x(t) e^{-\sigma t}\right]=\int_{-\infty}^{\infty} x(t) e^{-\sigma t} e^{-j \omega t} \mathrm{~d} t=\int_{0}^{\infty} e^{a t} e^{-\sigma t} e^{-j \omega t} \mathrm{~d} t=\int_{0}^{\infty} e^{-(s-a) t} \mathrm{~d} t=\frac{1}{s-a} \quad \text { 若 } \sigma&gt;a
+\]</span></p>
+<p>－针对一般信号</p>
+<p><span class="math display">\[
+\text { 令 } s=\sigma+j \omega
+\]</span></p>
+<p><span class="math display">\[
+\mathcal{F}\left[x(t) e^{-\sigma t}\right]=\int_{-\infty}^{\infty} x(t) e^{-\sigma t} e^{-j \omega t} \mathrm{~d} t=\int_{-\infty}^{\infty} x(t) e^{-(\sigma+j \omega) t} \mathrm{~d} t=\int_{-\infty}^{\infty} x(t) e^{-s t} \mathrm{~d} t=X(s)=\mathcal{L}[x(t)]
+\]</span></p>
+<p>－由 <span class="math inline">\(x(t) e^{-\sigma t}\)</span> 的傅里叶反变换可推出</p>
+<p><span class="math display">\[
+x(t)=\frac{1}{2 \pi j} \int_{\sigma-j \infty}^{\sigma+j \infty} X(s) e^{s t} \mathrm{~d} s
+\]</span></p>
+</section>
+<section id="拉普拉斯变换" class="slide level2">
+<h2>拉普拉斯变换</h2>
+<p>－拉普拉斯变换（LT）</p>
+<p><span class="math display">\[
+X(s)=\mathcal{L}[x(t)]=\int_{-\infty}^{\infty} x(t) e^{-s t} \mathrm{~d} t
+\]</span></p>
+<p>－拉普拉斯反变换（逆变换）</p>
+<p><span class="math display">\[
+\begin{gathered}
+x(t)=\mathcal{L}^{-1}[X(s)]=\frac{1}{2 \pi j} \int_{\sigma-j \infty}^{\sigma+j \infty} X(s) e^{s t} \mathrm{~d} s \\
+x(t) \stackrel{\mathcal{L}}{\leftrightarrow} X(s)
+\end{gathered}
+\]</span></p>
+<p>－信号 <span class="math inline">\(x(t)\)</span> 可分解成复指数 <span class="math inline">\(e^{s t}\)</span> 的线性组合，不同信号只是复指数 <span class="math inline">\(e^{s t}\)</span> 前的系数 <span class="math inline">\(X(s)\)</span> 不同。 <span class="math inline">\(X(s)\)</span> 是复频率 <span class="math inline">\(s\)</span> 的函数，称复频谱。</p>
+</section>
+<section id="从傅里叶变换到拉普拉斯变换-1" class="slide level2">
+<h2>从傅里叶变换到拉普拉斯变换</h2>
+<ul>
+<li>FT为实频域，将信号分解为等幅振荡的频率分量</li>
+<li>LT将信号分解成幅度可变的复指数分量，针对复频域，物理含义不如FT，对信号的频谱分析还是要通过FT</li>
+</ul>
+<p>实频域</p>
+<p><span class="math display">\[
+e^{j \omega t}=\cos \omega t+j \sin \omega t
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-09.jpg?height=596&amp;width=1013&amp;top_left_y=1114&amp;top_left_x=335"></p>
+<p>复频域 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-09.jpg?height=672&amp;width=1017&amp;top_left_y=1092&amp;top_left_x=1933"></p>
+</section>
+<section id="单边拉普拉斯变换" class="slide level2">
+<h2>单边拉普拉斯变换</h2>
+<p>－单边拉普拉斯正变换</p>
+<p><span class="math display">\[
+X(s)=\int_{0_{-}}^{\infty} x(t) e^{-s t} \mathrm{~d} t
+\]</span></p>
+<p>－单边拉普拉斯反变换</p>
+<p><span class="math display">\[
+x(t)=\frac{1}{2 \pi j} \int_{\sigma-j \infty}^{\sigma+j \infty} X(s) e^{s t} \mathrm{~d} s
+\]</span></p>
+<p>－积分下限定义为零的左极限 <span class="math inline">\(\mathbf{0}_{-}\)</span>，目的在于 <span class="math inline">\(s\)</span> 域分析时能够有效地处理出现在 0 时刻的冲激信号。</p>
+</section>
+<section id="单边拉普拉斯变换存在的条件" class="slide level2">
+<h2>单边拉普拉斯变换存在的条件</h2>
+<ul>
+<li>充分条件为：</li>
+<li>绝对可积</li>
+</ul>
+<p><span class="math display">\[
+X(s)=\int_{0_{-}}^{\infty}|x(t)| e^{-\sigma t} \mathrm{~d} t=C&lt;\infty
+\]</span></p>
+<p>－对任意信号 <span class="math inline">\(x(t)\)</span> ，若满足上式，则 <span class="math inline">\(x(t)\)</span> 应满足</p>
+<p><span class="math display">\[
+\lim _{t \rightarrow \infty} x(t) e^{-\sigma t}=0 ; \quad\left(\sigma&gt;\sigma_{0}\right)
+\]</span></p>
+</section>
+<section id="单边拉普拉斯变换及其存在的条件" class="slide level2">
+<h2>单边拉普拉斯变换及其存在的条件</h2>
+<p>－ <span class="math inline">\(\lim _{t \rightarrow \infty} x(t) e^{-\sigma t}=0 ; \quad\left(\sigma&gt;\sigma_{0}\right)\)</span> <span class="math inline">\({ }^{-} \sigma&gt;\sigma_{0}\)</span> 称收敛条件 －<span class="math inline">\(\sigma_{0}\)</span> 称绝对收敛坐标 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-12.jpg?height=959&amp;width=1680&amp;top_left_y=335&amp;top_left_x=1333"> －有始有终、能量有限的信号（如冲激信号），收敛区为整个 <span class="math inline">\(s\)</span> 平面。有界非周期信号LT一定存在</p>
+</section>
+<section id="单边拉普拉斯变换及其存在的条件-1" class="slide level2">
+<h2>单边拉普拉斯变换及其存在的条件</h2>
+<p><span class="math display">\[
+\lim _{t \rightarrow \infty} t^{n} e^{-\sigma t}=0 ; \quad(\sigma&gt;0)
+\]</span></p>
+<p>－随时间的幂成正比增长的信号，收敛坐标落于原点</p>
+<p><span class="math display">\[
+\lim _{t \rightarrow \infty} e^{a t} e^{-\sigma t}=0 ; \quad(\sigma&gt;a)
+\]</span></p>
+<ul>
+<li>指数增长的信号，收敛坐标与 <span class="math inline">\(a\)</span> 有关</li>
+<li>比指数增长的更快的函数，无法进行 LT ，如 <span class="math inline">\(e^{t^{2}}\)</span> 或 <span class="math inline">\(t e^{t^{2}}\)</span> ，仅在有限时间范围内LT存在。</li>
+</ul>
+</section>
+<section id="拉普拉斯变换收敛域" class="slide level2">
+<h2>拉普拉斯变换收敛域</h2>
+<p>计算下列信号拉普拉斯变换的收敛域 （1）<span class="math inline">\(u(t)-u(t-\tau)\)</span> （2）<span class="math inline">\(u(t)\)</span> （3）<span class="math inline">\(e^{3 t} u(t)\)</span> （4）<span class="math inline">\(t^{n} u(t)\)</span> （5）<span class="math inline">\(t^{t}, \mathrm{e}^{t^{2}}\)</span></p>
+<p>收玫域为全 s 平面</p>
+<p><span class="math display">\[
+\sigma&gt;0
+\]</span></p>
+<p><span class="math inline">\(\sigma&gt;3\)</span></p>
+<p><span class="math display">\[
+\sigma&gt;0
+\]</span></p>
+<p>不存在</p>
+</section>
+<section id="拉普拉斯变换的发展历程" class="slide level2">
+<h2>拉普拉斯变换的发展历程</h2>
+
+<img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-15.jpg?height=1136&amp;width=3009&amp;top_left_y=398&amp;top_left_x=166" class="r-stretch"><p>1．拉普拉斯变换： 对＂频率 <span class="math inline">\(\omega\)</span>＂含义的扩充</p>
+<p>2．（单边） 拉普拉斯变换的计算： 复频域的优势 2．（单边） 拉普拉斯变换的计算： 复频域的优势</p>
+<p>3．（单边） 拉普拉斯变换的性质：信号的复频域特性</p>
+<p>4．拉普拉斯反变换： 部分分式展开</p>
+</section>
+<section id="常用信号的拉普拉斯变换" class="slide level2">
+<h2>常用信号的拉普拉斯变换</h2>
+<p>－指数型函数 <span class="math inline">\(e^{\lambda t} u(t)\)</span></p>
+<p><span class="math display">\[
+\mathcal{L}\left[e^{\lambda t} u(t)\right]=\int_{0_{-}}^{\infty} e^{\lambda t} e^{-s t} \mathrm{~d} t=\frac{1}{s-\lambda}, \quad \sigma&gt;\lambda
+\]</span></p>
+<p>－同理：</p>
+<p><span class="math display">\[
+\begin{gathered}
+e^{-\lambda t} u(t) \stackrel{\mathcal{L}}{\leftrightarrow} \frac{1}{s+\lambda}, \quad \sigma&gt;-\lambda \\
+e^{j \omega_{0} t} u(t) \stackrel{\mathcal{L}}{\leftrightarrow} \frac{1}{s-j \omega_{0}}, \quad \sigma&gt;0 \\
+e^{\left(\sigma_{0}+j \omega_{0}\right) t} u(t) \stackrel{\mathcal{L}}{\leftrightarrow} \frac{1}{s-\left(\sigma_{0}+j \omega_{0}\right)}, \quad \sigma&gt;\sigma_{0}
+\end{gathered}
+\]</span></p>
+</section>
+<section id="常用信号的拉普拉斯变换-1" class="slide level2">
+<h2>常用信号的拉普拉斯变换</h2>
+<p>－冲激信号</p>
+<p><span class="math display">\[
+\mathcal{L}[\delta(t)]=\int_{0_{-}}^{\infty} \delta(t) e^{-s t} \mathrm{~d} t=1, \quad \sigma&gt;-\infty
+\]</span></p>
+<p>－冲激信号出现在 <span class="math inline">\(t=t_{0}\left(t_{0}&gt;0\right)\)</span> 处</p>
+<p><span class="math display">\[
+\mathcal{L}\left[\delta\left(t-t_{0}\right)\right]=\int_{0_{-}}^{\infty} \delta\left(t-t_{0}\right) e^{-s t} \mathrm{~d} t=e^{-s t_{0}}, \quad \sigma&gt;-\infty
+\]</span></p>
+</section>
+<section id="常用信号的拉普拉斯变换-2" class="slide level2">
+<h2>常用信号的拉普拉斯变换</h2>
+<p>－阶跃函数 <span class="math inline">\(u(t)\)</span></p>
+<p><span class="math display">\[
+\mathcal{L}[u(t)]=\lim _{\lambda \rightarrow 0} \mathcal{L}\left[e^{\lambda t} u(t)\right]=\lim _{\lambda \rightarrow 0} \frac{1}{s-\lambda}=\frac{1}{s}, \quad \sigma&gt;0
+\]</span></p>
+<p>或</p>
+<p><span class="math display">\[
+\mathcal{L}[u(t)]=\int_{0_{-}}^{\infty} e^{-s t} \mathrm{~d} t=\frac{1}{s}, \quad \sigma&gt;0
+\]</span></p>
+</section>
+<section id="单边拉普拉斯变换的计算" class="slide level2">
+<h2>单边拉普拉斯变换的计算</h2>
+<p>已知 <span class="math inline">\(x(t)=e^{-a(t+1)} u(t+1)\)</span> ，计算其LT －利用定义</p>
+<p><span class="math display">\[
+\begin{gathered}
+X(s)=\int_{0_{-}}^{\infty} e^{-a(t+1)} u(t+1) e^{-s t} \mathrm{~d} t \\
+=\int_{0_{-}}^{\infty} e^{-a} e^{-t(s+a)} \mathrm{d} t=\frac{e^{-a}}{s+a}, \quad \sigma&gt;-a
+\end{gathered}
+\]</span></p>
+<p>1．拉普拉斯变换：</p>
+<p>2．（单边） 拉普拉斯变换的计算：信号的时域、频域抽样，抽样定理</p>
+<p>对＂频率 <span class="math inline">\(\omega\)</span>＂含义的扩充</p>
+<p>3．（单边） 4．拉普拉斯反变换： 拉普拉斯变换的性质部分分式展开</p>
+</section>
+<section id="单边拉普拉斯变换的性质" class="slide level2">
+<h2>单边拉普拉斯变换的性质</h2>
+<p>已知 <span class="math inline">\(x(t)=\delta(t)+e^{t} u(t)\)</span> ，计算其LT －注意单边LT积分区域</p>
+<p><span class="math display">\[
+X(s)=1+\frac{1}{s-1}=\frac{s}{s-1}, \quad \sigma&gt;1
+\]</span></p>
+</section>
+<section id="单边拉普拉斯变换的性质-1" class="slide level2">
+<h2>单边拉普拉斯变换的性质</h2>
+<p>－线性特性：若 <span class="math inline">\(x_{1}(t) \stackrel{\mathcal{L}}{\leftrightarrow} X_{1}(s), \sigma&gt;\sigma_{1} ; x_{2}(t) \stackrel{\mathcal{L}}{\leftrightarrow} X_{2}(s), \sigma&gt;\sigma_{2}\)</span> ，则</p>
+<p><span class="math display">\[
+\begin{gathered}
+a_{1} x_{1}(t)+a_{2} x_{2}(t) \stackrel{\mathcal{L}}{\leftrightarrow} a_{1} X_{1}(s)+a_{2} X_{2}(s) \\
+\sigma&gt;\max \left(\sigma_{1}, \sigma_{2}\right)
+\end{gathered}
+\]</span></p>
+<p>－单边拉普拉斯变换性质中收敛域的变化仅反映一般情况，信号变换后，对应的收敛域可能会变大</p>
+</section>
+<section id="单边拉普拉斯变换的性质-2" class="slide level2">
+<h2>单边拉普拉斯变换的性质</h2>
+<p><span class="math display">\[
+e^{j \omega_{0} t} u(t) \stackrel{\mathcal{L}}{\leftrightarrow} \frac{1}{s-j \omega_{0}}, \quad \sigma&gt;0
+\]</span></p>
+<p>－正弦信号</p>
+<p><span class="math display">\[
+\begin{gathered}
+\cos \omega_{0} t u(t)=\frac{e^{j \omega_{0} t}+e^{-j \omega_{0} t}}{2} u(t) \\
+\stackrel{\mathcal{L}}{\leftrightarrow} \frac{1}{2}\left(\frac{1}{s-j \omega_{0}}+\frac{1}{s+j \omega_{0}}\right)=\frac{s}{s^{2}+\omega_{0}^{2}}, \quad \sigma&gt;0 \\
+\sin \omega_{0} t u(t)=\frac{e^{j \omega_{0} t}-e^{-j \omega_{0} t}}{2 j} u(t) \\
+\stackrel{\mathcal{L}}{\leftrightarrow} \frac{1}{2 j}\left(\frac{1}{s-j \omega_{0}}-\frac{1}{s+j \omega_{0}}\right)=\frac{\omega_{0}}{s^{2}+\omega_{0}^{2}}, \quad \sigma&gt;0
+\end{gathered}
+\]</span></p>
+</section>
+<section id="单边拉普拉斯变换的性质-3" class="slide level2">
+<h2>单边拉普拉斯变换的性质</h2>
+<p>－展缩特性（尺度变换）：若 <span class="math inline">\(x(t) \stackrel{\mathcal{L}}{\leftrightarrow} X(s), \sigma&gt;\sigma_{0}\)</span> ，则</p>
+<p><span class="math display">\[
+x(a t) \stackrel{\mathcal{L}}{\leftrightarrow} \frac{1}{a} X\left(\frac{S}{a}\right), \quad \sigma&gt;a \sigma_{0}, \quad a&gt;0
+\]</span></p>
+<p>－时移特性：若 <span class="math inline">\(x(t) \stackrel{\mathcal{L}}{\leftrightarrow} X(s), \sigma&gt;\sigma_{0}\)</span> ，则</p>
+<p><span class="math display">\[
+x\left(t-t_{0}\right) u\left(t-t_{0}\right) \stackrel{\mathcal{L}}{\leftrightarrow} e^{-s t_{0}} X(s), \quad \sigma&gt;\sigma_{0}, \quad t_{0}&gt;0
+\]</span></p>
+</section>
+<section id="拉普拉斯变换计算" class="slide level2">
+<h2>拉普拉斯变换计算</h2>
+<p>求如图所示周期信号的单边 LT <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-26.jpg?height=413&amp;width=1170&amp;top_left_y=219&amp;top_left_x=1906"> －周期为 <span class="math inline">\(T\)</span> 的单边周期信号 <span class="math inline">\(x(t)\)</span> 可以表示为第一个周期信号 <span class="math inline">\(x_{1}(t)\)</span> 及其时移 <span class="math inline">\(x_{1}(t-k T)\)</span> 的线性组合，即</p>
+<p><span class="math display">\[
+x(t)=\sum_{k=0}^{\infty} x_{1}(t-k T)
+\]</span></p>
+<p>－若计算出 <span class="math inline">\(x_{1}(t)\)</span> 的拉普拉斯变换 <span class="math inline">\(X_{1}(s)\)</span> ，利用 LT 的时移特性和线性特性，即可求得单边周期信号的 LT为</p>
+<p><span class="math display">\[
+L[x(t)]=\sum_{k=0}^{\infty} \mathrm{e}^{-s k T} X_{1}(s)=\frac{X_{1}(s)}{1-\mathrm{e}^{-s T}}, \sigma&gt;0
+\]</span></p>
+</section>
+<section id="拉普拉斯变换计算-1" class="slide level2">
+<h2>拉普拉斯变换计算</h2>
+<p>求如图所示周期信号的单边LT <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-27.jpg?height=410&amp;width=1166&amp;top_left_y=58&amp;top_left_x=1993"></p>
+<p><span class="math display">\[
+\begin{gathered}
+x_{1}(t)=2[u(t)-u(t-1)] \\
+x(t)=x_{1}(t)+x_{1}(t-2)+x_{1}(t-4)+\cdots
+\end{gathered}
+\]</span></p>
+<p>－所以 <span class="math inline">\(T=2\)</span> ，且</p>
+<p><span class="math display">\[
+X_{1}(s)=L\left\{x_{1}(t)\right\}=\frac{2}{s}\left(1-\mathrm{e}^{-s}\right), \sigma&gt;-\infty
+\]</span></p>
+<p>－代入</p>
+<p><span class="math display">\[
+X(s)=X_{1}(s)\left(1+\mathrm{e}^{-2 s}+\mathrm{e}^{-4 s}+\cdots\right)=\frac{X_{1}(s)}{1-\mathrm{e}^{-2 s}}, \quad \sigma&gt;0
+\]</span></p>
+</section>
+<section id="单边拉普拉斯变换的性质-4" class="slide level2">
+<h2>单边拉普拉斯变换的性质</h2>
+<p>已知 <span class="math inline">\(\mathcal{L}[x(t)]=X(s)\)</span> ，若 <span class="math inline">\(a&gt;0, b&gt;0\)</span> ，求 <span class="math inline">\(\mathcal{L}[x(a t-b) u(a t-b)]\)</span> －先进行时移</p>
+<p><span class="math display">\[
+\mathcal{L}[x(t-b) u(t-b)]=X(s) e^{-b s}
+\]</span></p>
+<p>后进行尺度变换</p>
+<p><span class="math display">\[
+\mathcal{L}[x(a t-b) u(a t-b)]=\frac{1}{a} X\left(\frac{s}{a}\right) e^{-\frac{b s}{a}}
+\]</span></p>
+</section>
+<section id="单边拉普拉斯变换的性质-5" class="slide level2">
+<h2>单边拉普拉斯变换的性质</h2>
+<p>已知 <span class="math inline">\(\mathcal{L}[x(t)]=X(s)\)</span> ，若 <span class="math inline">\(a&gt;0, b&gt;0\)</span> ，求 <span class="math inline">\(\mathcal{L}[x(a t-b) u(a t-b)]\)</span> －先尺度变换</p>
+<p><span class="math display">\[
+\mathcal{L}[x(a t) u(a t)]=\frac{1}{a} X\left(\frac{S}{a}\right)
+\]</span></p>
+<p>再时移</p>
+<p><span class="math display">\[
+\mathcal{L}[x(a t-b) u(a t-b)]=\mathcal{L}\left[x\left(a\left(t-\frac{b}{a}\right)\right) u\left(a\left(t-\frac{b}{a}\right)\right)\right]=\frac{1}{a} X\left(\frac{s}{a}\right) e^{-\frac{b s}{a}}
+\]</span></p>
+</section>
+<section id="单边拉普拉斯变换的性质-6" class="slide level2">
+<h2>单边拉普拉斯变换的性质</h2>
+<p>－卷积特性：若 <span class="math inline">\(x_{1}(t) \stackrel{\mathcal{L}}{\leftrightarrow} X_{1}(s), \sigma&gt;\sigma_{1} ; x_{2}(t) \stackrel{\mathcal{L}}{\leftrightarrow} X_{2}(s), \sigma&gt;\sigma_{2}\)</span> ，则</p>
+<p><span class="math display">\[
+\begin{gathered}
+x_{1}(t) * x_{2}(t) \stackrel{\mathcal{L}}{\leftrightarrow} X_{1}(s) X_{2}(s) \\
+\sigma&gt;\max \left(\sigma_{1}, \sigma_{2}\right)
+\end{gathered}
+\]</span></p>
+<p>－乘积特性：若 <span class="math inline">\(x_{1}(t) \stackrel{\mathcal{L}}{\leftrightarrow} X_{1}(s), \sigma&gt;\sigma_{1} ; x_{2}(t) \stackrel{\mathcal{L}}{\leftrightarrow} X_{2}(s), \sigma&gt;\sigma_{2}\)</span> ，则</p>
+<p><span class="math display">\[
+\begin{gathered}
+x_{1}(t) x_{2}(t) \stackrel{\mathcal{L}}{\leftrightarrow} \frac{1}{2 \pi j}\left[X_{1}(s) * X_{2}(s)\right] \\
+\sigma&gt;\sigma_{1}+\sigma_{2}
+\end{gathered}
+\]</span></p>
+</section>
+<section id="单边拉普拉斯变换的性质-7" class="slide level2">
+<h2>单边拉普拉斯变换的性质</h2>
+<ul>
+<li>乘积特性的特殊形式：</li>
+<li>指数加权（ <span class="math inline">\(s\)</span> 域平移）：若 <span class="math inline">\(x(t) \stackrel{\mathcal{L}}{\leftrightarrow} X(s), \sigma&gt;\sigma_{0}\)</span> ，则</li>
+</ul>
+<p><span class="math display">\[
+e^{-\lambda t} x(t) \stackrel{\mathcal{L}}{\leftrightarrow} X(s+\lambda), \sigma&gt;\sigma_{0}-\lambda, \quad \lambda&gt;0
+\]</span></p>
+<p>－线性加权（ <span class="math inline">\(s\)</span> 域微分）：若 <span class="math inline">\(x(t) \stackrel{\mathcal{L}}{\leftrightarrow} X(s), \sigma&gt;\sigma_{0}\)</span> ，则</p>
+<p><span class="math display">\[
+-t x(t) \stackrel{\mathcal{L}}{\leftrightarrow} \frac{\mathrm{d} X(s)}{\mathrm{d} s}, \sigma&gt;\sigma_{0}
+\]</span></p>
+</section>
+<section id="单边拉普拉斯变换的性质-8" class="slide level2">
+<h2>单边拉普拉斯变换的性质</h2>
+<p>－微分特性：若 <span class="math inline">\(x(t) \stackrel{\mathcal{L}}{\leftrightarrow} X(s), \sigma&gt;\sigma_{0}\)</span> ，则</p>
+<p><span class="math display">\[
+\frac{\mathrm{d} x(t)}{\mathrm{d} t} \stackrel{\mathcal{L}}{\leftrightarrow} s X(s)-x\left(0_{-}\right), \sigma&gt;\sigma_{0}
+\]</span></p>
+<p>若 <span class="math inline">\(x\left(0_{-}\right)=0\)</span> ，则 <span class="math inline">\(\frac{\mathrm{d} x(t)}{\mathrm{d} t} \stackrel{\mathcal{L}}{\leftrightarrow} s X(s)\)</span> －高阶扩展</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}^{n} x(t)}{\mathrm{d}^{n} t} \stackrel{\mathcal{L}}{\leftrightarrow} s^{n} X(s)-\sum_{r=0}^{n-1} s^{n-r-1} x^{(r)}\left(0_{-}\right), \sigma&gt;\sigma_{0}
+\]</span></p>
+</section>
+<section id="单边拉普拉斯变换的性质-9" class="slide level2">
+<h2>单边拉普拉斯变换的性质</h2>
+<p>－积分特性：若 <span class="math inline">\(x(t) \stackrel{\mathcal{L}}{\leftrightarrow} X(s), \sigma&gt;\sigma_{0}\)</span> ，则</p>
+<p><span class="math display">\[
+x^{-1}\left(0_{-}\right)=\int_{-\infty}^{0_{-}} x(\tau) \mathrm{d} \tau
+\]</span></p>
+<p><span class="math display">\[
+\int_{-\infty}^{t} x(\tau) \mathrm{d} \tau \stackrel{\mathcal{L}}{\leftrightarrow} \frac{X(s)}{s}+\frac{x^{-1}\left(0_{-}\right)}{s}, \sigma&gt;\max \left(\sigma_{0}, 0\right)
+\]</span></p>
+<p>若 <span class="math inline">\(x^{-1}\left(0_{-}\right)=0\)</span> ，则</p>
+<p><span class="math display">\[
+\int_{-\infty}^{t} x(\tau) \mathrm{d} \tau \stackrel{\mathcal{L}}{\leftrightarrow} \frac{X(s)}{s}
+\]</span></p>
+</section>
+<section id="拉普拉斯变换计算-2" class="slide level2">
+<h2>拉普拉斯变换计算</h2>
+</section>
+<section id="求如图所示信号的单边拉普拉斯变换" class="slide level2">
+<h2>求如图所示信号的单边拉普拉斯变换</h2>
+<p><img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-34.jpg?height=447&amp;width=824&amp;top_left_y=93&amp;top_left_x=2327"> －对 <span class="math inline">\(x(t)\)</span> 求导，利用LT的微分特性，可得</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}^{2} x(t)}{\mathrm{d} t^{2}} \stackrel{L}{\longleftrightarrow} s^{2} X(s)-s x\left(0_{-}\right)-x^{\prime}\left(0_{-}\right)
+\]</span></p>
+<p>因此</p>
+<p><span class="math display">\[
+s^{2} X(s)=1-2 \mathrm{e}^{-s}+\mathrm{e}^{-2 s}
+\]</span></p>
+<p><span class="math display">\[
+X(s)=\frac{1-2 \mathrm{e}^{-s}+\mathrm{e}^{-2 s}}{s^{2}}, \sigma&gt;-\infty
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-34.jpg?height=475&amp;width=652&amp;top_left_y=697&amp;top_left_x=2379"> <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-34.jpg?height=517&amp;width=553&amp;top_left_y=1291&amp;top_left_x=2411"></p>
+</section>
+<section id="拉普拉斯变换计算-3" class="slide level2">
+<h2>拉普拉斯变换计算</h2>
+<p>求如图所示信号的单边拉普拉斯变换 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-35.jpg?height=444&amp;width=811&amp;top_left_y=98&amp;top_left_x=2336"> －对 <span class="math inline">\(x(t)\)</span> 表达为 <span class="math inline">\(x(t)=x_{1}(t) * x_{1}(t)\)</span></p>
+<p><span class="math display">\[
+x_{1}(t)=u(t)-u(t-1)
+\]</span></p>
+<ul>
+<li>已知 <span class="math inline">\(\mathcal{L}[u(t)]=1 / s\)</span></li>
+<li>LT位移特性 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-35.jpg?height=385&amp;width=708&amp;top_left_y=846&amp;top_left_x=2426"></li>
+</ul>
+<p><span class="math display">\[
+X_{1}(s)=\frac{1-\mathrm{e}^{-s}}{s}, \quad \sigma&gt;-\infty
+\]</span></p>
+<p>－利用LT的卷积特性，可得</p>
+<p><span class="math display">\[
+X(s)=X_{1}(s) \cdot X_{1}(s)=\left(\frac{1-\mathrm{e}^{-s}}{s}\right)^{2}, \sigma&gt;-\infty
+\]</span></p>
+</section>
+<section id="拉表拉其該抬认筸" class="slide level2">
+<h2>拉表拉其該抬认筸</h2>
+<p>求如图所示信号的单边拉普拉斯变换 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-36.jpg?height=444&amp;width=816&amp;top_left_y=152&amp;top_left_x=2345"> －将 <span class="math inline">\(x(t)\)</span> 用基本信号表达为</p>
+<p><span class="math display">\[
+\begin{gathered}
+x(t)=r(t)-2 r(t-1)+r(t-2) \\
+r(t)=t u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s^{2}}
+\end{gathered}
+\]</span></p>
+<p>－利用拉氏变换的位移特性和线性特性，可得</p>
+<p><span class="math display">\[
+X(s)=\frac{1-2 \mathrm{e}^{-s}+\mathrm{e}^{-2 s}}{s^{2}}, \sigma&gt;-\infty
+\]</span></p>
+</section>
+<section id="拉普拉斯变换与傅里叶变换的关系" class="slide level2">
+<h2>拉普拉斯变换与傅里叶变换的关系</h2>
+<p>－当收敛域包含 <span class="math inline">\(j \omega\)</span> 轴时，拉普拉斯变换和傅里叶变换均存在</p>
+<p><span class="math display">\[
+X(j \omega)=\left.X(s)\right|_{s=j \omega}
+\]</span></p>
+<ul>
+<li>当收敛域不包含 <span class="math inline">\(j \omega\)</span> 轴时，拉普拉斯变换存在而傅里叶变换不存在</li>
+<li>当收敛域的收敛边界位于 <span class="math inline">\(j \omega\)</span> 轴时，拉普拉斯变换和傅里叶变换均存在 <span class="math inline">\(\left(K_{n}\right.\)</span> 为系数）</li>
+</ul>
+<p><span class="math display">\[
+X(j \omega)=\left.X(s)\right|_{s=j \omega}+\pi \sum_{n} K_{n} \delta\left(\omega-\omega_{n}\right)
+\]</span></p>
+</section>
+<section id="拉普拉斯变换的计算" class="slide level2">
+<h2>拉普拉斯变换的计算</h2>
+<p>计算拉普拉斯变换和傅里叶变换</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">时域信号</th>
+<th style="text-align: left;">傅里叶变换</th>
+<th style="text-align: left;">拉普拉斯变换</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{e}^{-3 t} u(t)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{j \omega+3}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{s+3} \quad \sigma&gt;-3\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\mathrm{e}^{3 t} u(t)\)</span></td>
+<td style="text-align: left;">不存在</td>
+<td style="text-align: left;"><span class="math inline">\(\frac{1}{s-3} \quad \sigma&gt;3\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\cos 2 t u(t)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{\mathrm{j} \omega}{(\mathrm{j} \omega)^{2}+4}+\frac{\pi}{2}[\delta(\omega-2)+\delta(\omega-2)]\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\frac{s}{s^{2}+4} \quad \sigma&gt;0\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="拉普拉斯变换的计算-1" class="slide level2">
+<h2>拉普拉斯变换的计算</h2>
+<p>基于 <span class="math inline">\(X(s)=\frac{s}{(s+4)^{2}} \quad \sigma&gt;-4\)</span> ，求 <span class="math inline">\(X(j \omega)\)</span> －收敛域 □－4包含 <span class="math inline">\(j \omega\)</span> 轴</p>
+<p><span class="math display">\[
+X(\mathrm{j} \omega)=X(s) \left\lvert\, s=\mathrm{j} \omega=\frac{\mathrm{j} \omega}{(\mathrm{j} \omega+4)^{2}}\right.
+\]</span></p>
+</section>
+<section id="拉普拉斯变换的计算-2" class="slide level2">
+<h2>拉普拉斯变换的计算</h2>
+<p>基于 <span class="math inline">\(X(s)=\frac{1}{\left(s^{2}+9\right) s} \quad \sigma&gt;0\)</span> ，求 <span class="math inline">\(X(j \omega)\)</span> －收玫域的收敛边界位于 <span class="math inline">\(j \omega\)</span> 轴</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; X(\mathrm{j} \omega)=X(s) \mid s=\mathrm{j} \omega+\pi \sum_{n} K_{n} \delta\left(\omega-\omega_{n}\right) \\
+&amp; X(s)=-\frac{1}{18} \frac{1}{s-\mathrm{j} 3}-\frac{1}{18} \frac{1}{s+\mathrm{j} 3}+\frac{1}{9} \frac{1}{s} \\
+&amp; X(\mathrm{j} \omega)=\frac{1}{\mathrm{j} \omega\left(9-\omega^{2}\right)}-\frac{\pi}{18}[\delta(\omega+3)+\delta(\omega-3)]+\frac{\pi}{9} \delta(\omega)
+\end{aligned}
+\]</span></p>
+<p>1．拉普拉斯变换：</p>
+<p>2．（单边） 拉普拉斯变换的计算：复频域的优势</p>
+<p>对＂频率 <span class="math inline">\(\omega\)</span>＂含义的扩充</p>
+<p>3．（单边） 拉普拉斯变换的性质：信号的复频域特性</p>
+<p>4．拉普拉斯反变换：部分分式展开</p>
+</section>
+<section id="单边拉普拉斯的反变换" class="slide level2">
+<h2>单边拉普拉斯的反变换</h2>
+<p>－单边拉普拉斯的反变换</p>
+<p><span class="math display">\[
+x(t)=\frac{1}{2 \pi j} \int_{\sigma-\mathrm{j} \infty}^{\sigma+\mathrm{j} \infty} X(s) \mathrm{e}^{s t} \mathrm{~d} s
+\]</span></p>
+<ul>
+<li>计算拉普拉斯反变换方法：</li>
+<li>利用复变函数中的留数定理</li>
+</ul>
+</section>
+<section id="采用部分分式展开法" class="slide level2">
+<h2>- 采用部分分式展开法</h2>
+</section>
+<section id="单边拉普拉斯的反变换计算" class="slide level2">
+<h2>单边拉普拉斯的反变换计算</h2>
+<p>－对于LT的结果，一般可以表示为</p>
+<p><span class="math display">\[
+\begin{aligned}
+X(s) &amp; =\frac{N(s)}{D(s)}=\frac{b_{m} s^{m}+b_{m-1} s^{m-1}+\cdots+b_{1} s+b_{0}}{s^{n}+a_{n-1} s^{n-1}+\cdots+a_{1} s+a_{0}} \\
+&amp; =\frac{b_{m}\left(s-z_{1}\right)\left(s-z_{2}\right) \cdots\left(s-z_{m}\right)}{\left(s-p_{1}\right)\left(s-p_{2}\right) \cdots\left(s-p_{n}\right)} \text { 零点 }^{\text {极点 }}
+\end{aligned}
+\]</span></p>
+<p>－<span class="math inline">\(X(s)\)</span> 为有理真分式 <span class="math inline">\((m&lt;n)\)</span> ，极点为一阶极点</p>
+<p><span class="math display">\[
+\begin{gathered}
+X(s)=\frac{N(s)}{D(s)}=\frac{N(s)}{\left(s-p_{1}\right)\left(s-p_{2}\right) \cdots\left(s-p_{n}\right)}=\frac{k_{1}}{s-p_{1}}+\frac{k_{2}}{s-p_{2}}+\cdots+\frac{k_{n}}{s-p_{n}} \\
+k_{i}=\left.\left(s-p_{i}\right) X(s)\right|_{s=p_{i}} \quad i=1,2, \cdots, n \\
+x(t)=\left(k_{1} \mathrm{e}^{p_{1} t}+k_{2} \mathrm{e}^{p_{2} t}+\cdots+k_{n} \mathrm{e}^{p_{n} t}\right) u(t)
+\end{gathered}
+\]</span></p>
+</section>
+<section id="单边拉普拉斯的反变换计算-1" class="slide level2">
+<h2>单边拉普拉斯的反变换计算</h2>
+<p>采用部分分式展开法求 <span class="math inline">\(X(s)\)</span> 的反变换</p>
+<p><span class="math display">\[
+X(s)=\frac{s+2}{s^{3}+4 s^{2}+3 s} \quad \operatorname{Re}(s)&gt;0
+\]</span></p>
+<p>－<span class="math inline">\(X(s)\)</span> 为有理真分式，极点为一阶极点</p>
+<p><span class="math display">\[
+X(s)=\frac{s+2}{s(s+1)(s+3)}=\frac{k_{1}}{s}+\frac{k_{2}}{s+1}+\frac{k_{3}}{s+3}
+\]</span></p>
+<p>－将上式两端同时乘以 <span class="math inline">\(s\)</span> 可得</p>
+<p><span class="math display">\[
+s X(s)=\frac{s+2}{(s+1)(s+3)}=k_{1}+\frac{s k_{2}}{s+1}+\frac{s k_{3}}{s+3}
+\]</span></p>
+<p>－令 <span class="math inline">\(s=0\)</span> ，上式右端只有 <span class="math inline">\(k_{1}\)</span> 项不等于零，所以</p>
+<p><span class="math display">\[
+k_{1}=s X(s)\left|s=0=\frac{s+2}{(s+1)(s+3)}\right|_{s=0}=\frac{2}{3}
+\]</span></p>
+</section>
+<section id="单边拉普拉斯的反变换计算-2" class="slide level2">
+<h2>单边拉普拉斯的反变换计算</h2>
+<p>采用部分分式展开法求 <span class="math inline">\(X(s)\)</span> 的反变换</p>
+<p><span class="math display">\[
+X(s)=\frac{s+2}{s^{3}+4 s^{2}+3 s} \quad \operatorname{Re}(s)&gt;0
+\]</span></p>
+<p>－同理可求出</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; k_{2}=\left.(s+1) X(s)\right|_{s=-1}=\left.\frac{s+2}{s(s+3)}\right|_{s=-1}=-\frac{1}{2} \\
+&amp; k_{3}=\left.(s+3) X(s)\right|_{s=-3}=\left.\frac{s+2}{s(s+1)}\right|_{s=-3}=-\frac{1}{6}
+\end{aligned}
+\]</span></p>
+<p>－由此可得</p>
+<p><span class="math display">\[
+X(s)=\frac{s+2}{s(s+1)(s+3)}=\frac{2 / 3}{s}+\frac{-1 / 2}{s+1}+\frac{-1 / 6}{s+3}
+\]</span></p>
+<p>－对上式进行拉氏反变换可得</p>
+<p><span class="math display">\[
+x(t)=\frac{2}{3} u(t)-\frac{1}{2} e^{-t} u(t)-\frac{1}{6} e^{-3 t} u(t)
+\]</span></p>
+</section>
+<section id="单边拉普拉斯的反变换计算-3" class="slide level2">
+<h2>单边拉普拉斯的反变换计算</h2>
+<p><span class="math display">\[
+X(s)=\frac{N(s)}{D(s)}=\frac{b_{m} s^{m}+b_{m-1} s^{m-1}+\cdots+b_{1} s+b_{0}}{s^{n}+a_{n-1} s^{n-1}+\cdots+a_{1} s+a_{0}}
+\]</span></p>
+<p>－<span class="math inline">\(X(s)\)</span> 为有理假分式 <span class="math inline">\((m \geq n)\)</span> 真分式</p>
+<p><span class="math display">\[
+X(s)=\frac{N(s)}{D(s)}=B_{0}+B_{1} s+\cdots+B_{m-n} s^{m-n}+\frac{N_{1}(s)}{D(s)}
+\]</span></p>
+<p>－利用以下结论辅助反变换</p>
+<p><span class="math display">\[
+B_{0} \stackrel{\mathcal{L}}{\leftrightarrow} B_{0} \delta(t), \quad B_{1} S \stackrel{\mathcal{L}}{\leftrightarrow} B_{1} \delta^{\prime}(t), \quad B_{m-n} S^{m-n} \stackrel{\mathcal{L}}{\leftrightarrow} B_{m-n} \delta^{(m-n)}(t)
+\]</span></p>
+</section>
+<section id="单边拉普拉斯的反变换计算-4" class="slide level2">
+<h2>单边拉普拉斯的反变换计算</h2>
+<p>采用部分分式展开法求 <span class="math inline">\(X(s)\)</span> 的反变换</p>
+<p><span class="math display">\[
+X(s)=\frac{s^{3}+5 s^{2}+9 s+7}{(s+1)(s+2)}
+\]</span></p>
+<p>－不满足真分式要求，先变换为</p>
+<p><span class="math display">\[
+X(s)=s+2+\frac{s+3}{(s+1)(s+2)}=s+2+\frac{2}{s+1}-\frac{1}{s+2}
+\]</span></p>
+<p>－最后一项为真分式，因此</p>
+<p><span class="math display">\[
+x(t)=\delta^{\prime}(t)+2 \delta(t)+2 e^{-t}-e^{-2 t}, t \geq 0
+\]</span></p>
+</section>
+<section id="单边拉普拉斯的反变换计算-5" class="slide level2">
+<h2>单边拉普拉斯的反变换计算</h2>
+<p>采用部分分式展开法求 <span class="math inline">\(X(s)\)</span> 的反变换</p>
+<p><span class="math display">\[
+X(s)=\frac{s^{4}-13 s^{2}-11 s+2}{s^{3}+4 s^{2}+3 s} \quad \operatorname{Re}(s)&gt;0
+\]</span></p>
+<p>－<span class="math inline">\(X(s)\)</span> 为有理假分式，将其化为有理真分式</p>
+<p><span class="math display">\[
+X(s)=s-4+\frac{s+2}{s^{3}+4 s^{2}+3 s}
+\]</span></p>
+<p>－可得</p>
+<p><span class="math display">\[
+x(t)=\delta^{\prime}(t)-4 \delta(t)+\frac{2}{3} u(t)-\frac{1}{2} \mathrm{e}^{-t} u(t)-\frac{1}{6} \mathrm{e}^{-3 t} u(t)
+\]</span></p>
+</section>
+<section id="单边拉普拉斯的反变换计算-6" class="slide level2">
+<h2>单边拉普拉斯的反变换计算</h2>
+<p><span class="math display">\[
+X(s)=\frac{N(s)}{D(s)}=\frac{b_{m} s^{m}+b_{m-1} s^{m-1}+\cdots+b_{1} s+b_{0}}{s^{n}+a_{n-1} s^{n-1}+\cdots+a_{1} s+a_{0}}
+\]</span></p>
+<p>－<span class="math inline">\(X(s)\)</span> 为有理真分式 <span class="math inline">\((m&lt;n)\)</span> ，极点为 <span class="math inline">\(r\)</span> 重阶极点</p>
+<p><span class="math display">\[
+\begin{gathered}
+X(s)=\frac{N(s)}{D(s)}=\frac{N(s)}{\left(s-p_{1}\right)^{r}\left(s-p_{r+1}\right) \cdots\left(s-p_{n}\right)} \\
+=\frac{k_{1}}{\left(s-p_{1}\right)^{r}}+\frac{k_{2}}{\left(s-p_{1}\right)^{r-1}}+\cdots+\frac{k_{r}}{s-p_{1}}+\frac{k_{r+1}}{s-p_{r+1}}+\cdots+\frac{k_{n}}{s-p_{n}} \\
+k_{i}=\left.\frac{1}{(i-1)!} \frac{\mathrm{d}^{i-1}}{\mathrm{~d} s^{i-1}}\left[\left(s-p_{1}\right)^{r} X(s)\right]\right|_{s=p_{1}} \quad i=1,2, \cdots, r \\
+x(t)=\left[\sum_{i=1}^{r} \frac{k_{i}}{(i-1)!} t^{i-1} \mathrm{e}^{p_{1} t}\right] u(t)+\sum_{i=r+1}^{n} k_{i} \mathrm{e}^{p_{1} t} u(t)
+\end{gathered}
+\]</span></p>
+</section>
+<section id="主白边拉牽拉斯的历文换计笑" class="slide level2">
+<h2>主白边拉牽拉斯的历文换计笑</h2>
+<p><span class="math display">\[
+k_{i}=\left.\frac{1}{(i-1)!} \frac{\mathrm{d}^{i-1}}{\mathrm{~d} s^{i-1}}\left[\left(s-p_{1}\right)^{r} X(s)\right]\right|_{s=p_{1}} \quad i=1,2, \cdots, r
+\]</span></p>
+<p>采用部分分式展开法求 <span class="math inline">\(X(s)=\frac{s-2}{s(s+1)^{3}}, ~ \operatorname{Re}(s)&gt;0\)</span> 的反变换 －<span class="math inline">\(X(s)\)</span> 有一个3阶重极点</p>
+<p><span class="math display">\[
+\begin{gathered}
+X(s)=\frac{k_{1}}{s}+\frac{k_{2}}{(s+1)^{3}}+\frac{k_{3}}{(s+1)^{2}}+\frac{k_{4}}{s+1} \\
+k_{1}=\left.s X(s)\right|_{s=0}=\left.\frac{s-2}{(s+1)^{3}}\right|_{s=0}=-2
+\end{gathered}
+\]</span></p>
+<p>－将（1）式两端同时乘以 <span class="math inline">\((s+1)^{3}\)</span> 可得</p>
+<p><span class="math display">\[
+(s+1)^{3} X(s)=\frac{k_{1}(s+1)^{3}}{s}+k_{2}+k_{3}(s+1)+k_{4}(s+1)^{2}
+\]</span></p>
+<p>－令 <span class="math inline">\(s=-1\)</span> ，（2）式右端只有 <span class="math inline">\(k_{2}\)</span> 项不等于零，所以</p>
+<p><span class="math display">\[
+k_{2}=\left.(s+1)^{3} X(s)\right|_{s=-1}=\left.\frac{s-2}{s}\right|_{s=-1}=3
+\]</span></p>
+</section>
+<section id="主白边拉牽拉斯的历文换计笑-1" class="slide level2">
+<h2>主白边拉牽拉斯的历文换计笑</h2>
+<p><span class="math display">\[
+k_{i}=\left.\frac{1}{(i-1)!} \frac{\mathrm{d}^{i-1}}{\mathrm{~d} s^{i-1}}\left[\left(s-p_{1}\right)^{r} X(s)\right]\right|_{s=p_{1}} \quad i=1,2, \cdots, r
+\]</span></p>
+<p>采用部分分式展开法求 <span class="math inline">\(X(s)\)</span> 的反变换</p>
+<p><span class="math display">\[
+X(s)=\frac{s-2}{s(s+1)^{3}} \quad \operatorname{Re}(s)&gt;0
+\]</span></p>
+<p><span class="math display">\[
+(s+1)^{3} X(s)=\frac{k_{1}(s+1)^{3}}{s}+k_{2}+k_{3}(s+1)+k_{4}(s+1)^{2}
+\]</span></p>
+<p>－对（2）式求一阶导数，再令 <span class="math inline">\(s=-1\)</span> 可得</p>
+<p><span class="math display">\[
+k_{3}=\left.\frac{\mathrm{d}\left[(s+1)^{3} X(s)\right]}{\mathrm{d} s}\right|_{s=-1}=\left.\left(\frac{s-2}{s}\right)^{\prime}\right|_{s=-1}=2
+\]</span></p>
+<p>－对（2）式求二阶导数，再令 <span class="math inline">\(s=-1\)</span> 可得</p>
+<p><span class="math display">\[
+k_{4}=\left.\frac{1}{2} \frac{\mathrm{~d}^{2}\left[(s+1)^{3} X(s)\right]}{\mathrm{d} s^{2}}\right|_{s=-1}=\left.\frac{1}{2}\left(\frac{s-2}{s}\right)^{\prime \prime}\right|_{s=-1}=2
+\]</span></p>
+</section>
+<section id="单边拉普拉斯的反变换计算-7" class="slide level2">
+<h2>单边拉普拉斯的反变换计算</h2>
+<p><span class="math display">\[
+X(s)=\frac{s-2}{s(s+1)^{3}} \quad \operatorname{Re}(s)&gt;0
+\]</span></p>
+<p>采用部分分式展开法求 <span class="math inline">\(X(s)\)</span> 的反变换 －整理可得</p>
+<p><span class="math display">\[
+X(s)=\frac{-2}{s}+\frac{3}{(s+1)^{3}}+\frac{2}{(s+1)^{2}}+\frac{2}{s+1}
+\]</span></p>
+<p>－因此</p>
+<p><span class="math display">\[
+x(t)=\mathcal{L}^{-1}[X(s)]=\left(-2+\frac{3}{2} t^{2} \mathrm{e}^{-t}+2 t \mathrm{e}^{-t}+2 \mathrm{e}^{-t}\right) u(t)
+\]</span></p>
+</section>
+<section id="拉普拉斯反变换计算" class="slide level2">
+<h2>拉普拉斯反变换计算</h2>
+<p>求下列 <span class="math inline">\(X(s)\)</span> 的反变换</p>
+<p><span class="math display">\[
+X(s)=\frac{s^{2}+8}{(s+4)^{2}}
+\]</span></p>
+<p>－<span class="math inline">\(X(s)\)</span> 不是真分式，且有一个2阶重极点</p>
+<p><span class="math display">\[
+\begin{gathered}
+X(s)=1+\frac{-8 s-8}{(s+4)^{2}}=1+\frac{k_{1}}{(s+4)^{2}}+\frac{k_{2}}{s+4} \\
+k_{1}=\left.(s+4)^{2} X(s)\right|_{s=-4}=\left.(-8 s-8)\right|_{s=-4}=24 \\
+k_{2}=\left.\frac{\mathrm{d}}{\mathrm{~d} s}\left[(s+4)^{2} X(s)\right]\right|_{s=-4}=(-8 s-8)^{\prime}=-8
+\end{gathered}
+\]</span></p>
+<p>－因此</p>
+<p><span class="math display">\[
+x(t)=\delta(t)-8 \mathrm{e}^{-4 t} u(t)+24 t \mathrm{e}^{-4 t} u(t)
+\]</span></p>
+</section>
+<section id="拉普拉斯反变换计算-1" class="slide level2">
+<h2>拉普拉斯反变换计算</h2>
+<p>求下列 <span class="math inline">\(X(s)\)</span> 的反变换</p>
+<p><span class="math display">\[
+\begin{array}{rl}
+\mathcal{L}[\delta(t)]=1 &amp; \mathcal{L}[u(t)]=\frac{1}{s} \\
+e^{-\lambda t} u(t) &amp; \stackrel{\mathcal{L}}{\leftrightarrow} \frac{1}{s+\lambda} \\
+\cos \omega_{0} t u(t) &amp; \stackrel{\mathcal{L}}{\leftrightarrow} \frac{s}{s^{2}+\omega_{0}^{2}} \\
+\sin \omega_{0} t u(t) &amp; \stackrel{\mathcal{L}}{\leftrightarrow} \frac{\omega_{0}}{s^{2}+\omega_{0}^{2}}
+\end{array}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X(s)\)</span> 有一个2阶重极点和一对共轭极点</li>
+<li>令 <span class="math inline">\(s^{2}=q\)</span> ，则 <span class="math inline">\(X(s)=\frac{1}{3 q(q+4)}=\frac{1}{3}\left(\frac{k_{1}}{q}+\frac{k_{2}}{(q+4)}\right)\)</span></li>
+</ul>
+<p><span class="math display">\[
+\begin{gathered}
+k_{1}=\left.q \cdot \frac{1}{q(q+4)}\right|_{q=0}=\frac{1}{4} ; \quad k_{2}=\left.(q+4) \cdot \frac{1}{q(q+4)}\right|_{q=-4}=-\frac{1}{4} \\
+X(s)=\frac{1}{3}\left(\frac{1}{4 s^{2}}-\frac{1}{4\left(s^{2}+4\right)}\right)
+\end{gathered}
+\]</span></p>
+<p>－因此</p>
+<p><span class="math display">\[
+x(t)=\frac{1}{12}\left(t-\frac{1}{2} \sin 2 t\right) u(t)
+\]</span></p>
+</section>
+<section id="拉普拉斯反变换计算-2" class="slide level2">
+<h2>拉普拉斯反变换计算</h2>
+<p>求 <span class="math inline">\(X(s)=\frac{1-\mathrm{e}^{-2 s}}{s\left(s^{2}+4\right)}\)</span> 的反变换</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \mathcal{L}[\delta(t)]=1 \quad \mathcal{L}[u(t)]=\frac{1}{s} \\
+&amp; e^{-\lambda t} u(t) \stackrel{\mathcal{L}}{\leftrightarrow} \frac{1}{s+\lambda} \\
+&amp; \cos \omega_{0} t u(t) \stackrel{\mathcal{L}}{\leftrightarrow} \\
+&amp; \sin \omega_{0} t u(t) \stackrel{\mathcal{L}}{\leftrightarrow} \\
+&amp; \sin \frac{\omega_{0}^{2}}{s^{2}+\omega_{0}^{2}}
+\end{aligned}
+\]</span></p>
+<p>－<span class="math inline">\(X(s)\)</span> 不是有理分式，将其表示为</p>
+<p><span class="math display">\[
+X_{1}(s) \quad X_{2}(s)=X_{1} e^{-2 s}
+\]</span></p>
+<p><span class="math display">\[
+X(s)=\frac{1}{s\left(s^{2}+4\right)}-\frac{\mathrm{e}^{-2 s}}{s\left(s^{2}+4\right)}
+\]</span></p>
+<p><span class="math display">\[
+x_{2}(t)=x_{1}(t-2)
+\]</span></p>
+<p>－将 <span class="math inline">\(X_{1}(s)\)</span> 展开为</p>
+<p><span class="math display">\[
+\begin{gathered}
+X_{1}(s)=\frac{k_{1}}{s}+\frac{k_{2} s+k_{3}}{s^{2}+4} \\
+k_{1}=\frac{1}{4} \quad k_{2}=-\frac{1}{4} \quad k_{3}=0
+\end{gathered}
+\]</span></p>
+<p>－可得</p>
+<p><span class="math display">\[
+x_{1}(t)=\frac{1}{4}(1-\cos 2 t) u(t) ; \quad x_{2}(t)=-\frac{1}{4}[1-\cos 2(t-2)] u(t-2)
+\]</span></p>
+</section>
+<section id="信号的复频域分析小结" class="slide level2">
+<h2>信号的复频域分析小结</h2>
+<p>－信号的复频域分析实质是将信号分解为复指数信号的线性组合，使用的数学工具是拉普拉斯变换</p>
+<ul>
+<li>利用基本信号的复频谱和拉普拉斯变换的性质可对任意信号进行复频域分析</li>
+<li>复频域分析主要用于线性系统的分析</li>
+</ul>
+</section>
+<section id="微分方程描述系统的复频域分析" class="slide level2">
+<h2>微分方程描述系统的复频域分析</h2>
+<p>－微分方程描述系统的复频域分析的流程</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">时域微分方程</th>
+<th style="text-align: left;">解微分方程</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="math inline">\(\_\_\_\_\)</span></td>
+<td style="text-align: left;">时域响应 <span class="math inline">\(y(t)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-57.jpg?height=474&amp;width=83&amp;top_left_y=828&amp;top_left_x=792"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="math inline">\(\begin{aligned} &amp; \text { 拉昏辰变换 } \\ &amp; \text { 变 } \end{aligned}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(s\)</span> 域代数方程</td>
+<td style="text-align: left;"><span class="math inline">\(\_\_\_\_\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(s\)</span> 域响应 <span class="math inline">\(Y(s)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: left;">解代数方程</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="微分方程描述系统的复频域分析-1" class="slide level2">
+<h2>微分方程描述系统的复频域分析</h2>
+<p>－二阶系统响应的 <span class="math inline">\(s\)</span> 域求解</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}^{2} y(t)}{\mathrm{d} t^{2}}+a_{1} \frac{\mathrm{~d} y(t)}{\mathrm{d} t}+a_{2} y(t)=b_{0} \frac{\mathrm{~d}^{2} x(t)}{\mathrm{d} t^{2}}+b_{1} \frac{\mathrm{~d} x(t)}{\mathrm{d} t}+b_{2} x(t)
+\]</span></p>
+<ul>
+<li>已知 <span class="math inline">\(x(t), y\left(0_{-}\right), y^{\prime}\left(0_{-}\right)\)</span>，求 <span class="math inline">\(y(t)\)</span> 。</li>
+<li>求解步骤：</li>
+<li>经拉氏变换将时域微分方程变换为 <span class="math inline">\(s\)</span> 域代数方程</li>
+<li>求解 <span class="math inline">\(s\)</span> 域代数方程，求出 <span class="math inline">\(Y_{z i}(s), Y_{z s}(s)\)</span></li>
+<li>拉氏反变换，求出响应的时域表示式</li>
+</ul>
+</section>
+<section id="微分方程描述系统的复频域分析-2" class="slide level2">
+<h2>微分方程描述系统的复频域分析</h2>
+<p>－二阶系统响应的 <span class="math inline">\(s\)</span> 域求解</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}^{2} y(t)}{\mathrm{d} t^{2}}+a_{1} \frac{\mathrm{~d} y(t)}{\mathrm{d} t}+a_{2} y(t)=b_{0} \frac{\mathrm{~d}^{2} x(t)}{\mathrm{d} t^{2}}+b_{1} \frac{\mathrm{~d} x(t)}{\mathrm{d} t}+b_{2} x(t)
+\]</span></p>
+<p><span class="math inline">\(\left[s^{2} Y(s)-s y\left(0_{-}\right)-y^{\prime}\left(0_{-}\right)\right]+a_{1}\left[s Y(s)-y\left(0_{-}\right)\right]+a_{2} Y(s)\)</span> <span class="math inline">\(y^{\prime \prime}(t)\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; a_{1} y^{\prime}(t) \quad a_{2} y(t) \\
+= &amp; b_{0} s^{2} X(s)+b_{1} s X(s)+b_{2} X(s)
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+b_{0} x^{\prime \prime}(t)+b_{1} x^{\prime}(t)+b_{2} x(t)
+\]</span></p>
+<p><span class="math display">\[
+Y(s)=\frac{Y_{z i}(s)}{\frac{s y\left(0_{-}\right)+y^{\prime}\left(0_{-}\right)+a_{1} y\left(0_{-}\right)}{s^{2}+a_{1} s+a_{2}}}+\frac{b_{0} s^{2}+b_{1} s+b_{2}}{s^{2}+a_{1} s+a_{2}} X(s) Y_{Z s}(s)
+\]</span></p>
+<p><span class="math display">\[
+y(t)=y_{z i}(t)+y_{z S}(t)=\mathcal{L}^{-1}\left\{Y_{z i}(s)+Y_{z S}(s)\right\}
+\]</span></p>
+<p><span class="math display">\[
+\frac{\mathrm{d} x(t)}{\mathrm{d} t} \stackrel{\mathcal{L}}{\leftrightarrow} s X(s)-x\left(0_{-}\right), \sigma&gt;\sigma_{0}
+\]</span></p>
+<p><span class="math display">\[
+\frac{\mathrm{d}^{n} x(t)}{\mathrm{d}^{n} t} \stackrel{\mathcal{L}}{\leftrightarrow} s^{n} X(s)-\sum_{r=0}^{n-1} s^{n-r-1} x^{(r)}\left(0_{-}\right), \sigma&gt;\sigma_{0}
+\]</span></p>
+</section>
+<section id="微分方程描述系统的复频域分析-3" class="slide level2">
+<h2>微分方程描述系统的复频域分析</h2>
+<p>系统的微分方程为 <span class="math inline">\(y^{\prime \prime}(t)+5 y^{\prime}(t)+6 y(t)=2 x^{\prime}(t)+8 x(t)\)</span> ，激励 <span class="math inline">\(x(t)=e^{-t} u(t)\)</span> ，初始状态 <span class="math inline">\(y\left(0_{-}\right)=3, ~ y^{\prime}\left(0_{-}\right)=2\)</span> ，求响应 <span class="math inline">\(y(t)\)</span> 。 －对微分方程进行单边LT可得</p>
+<p><span class="math display">\[
+\begin{gathered}
+s^{2} Y(s)-s y\left(0_{-}\right)-y^{\prime}\left(0_{-}\right)+5\left[s Y(s)-y\left(0_{-}\right)\right]+6 Y(s)=2 s X(s)+8 X(s) \\
+Y(s)=Y_{z i}(s)+Y_{z s}(s)=\frac{(s+5) y\left(0_{-}\right)+y^{\prime}\left(0_{-}\right)}{\left(s^{2}+5 s+6\right)}+\frac{2 s+8}{s^{2}+5 s+6} X(s) \\
+Y_{z i}(s)=\frac{3 s+17}{s^{2}+5 s+6}=\frac{11}{s+2}-\frac{8}{s+3} \\
+y_{z i}(t)=\mathcal{L}^{-1}\left[Y_{z i}(s)\right]=11 \mathrm{e}^{-2 t}-8 \mathrm{e}^{-3 t}, t \geq 0
+\end{gathered}
+\]</span></p>
+</section>
+<section id="微分方程描述系统的复频域分析-4" class="slide level2">
+<h2>微分方程描述系统的复频域分析</h2>
+<p>系统的微分方程为 <span class="math inline">\(y^{\prime \prime}(t)+5 y^{\prime}(t)+6 y(t)=2 x^{\prime}(t)+8 x(t)\)</span> ，激励 <span class="math inline">\(x(t)=e^{-t} u(t)\)</span> ，初始状态 <span class="math inline">\(y\left(0_{-}\right)=3, ~ y^{\prime}\left(0_{-}\right)=2\)</span> ，求响应 <span class="math inline">\(y(t)\)</span> 。 －对微分方程进行单边LT可得</p>
+<p><span class="math display">\[
+\begin{gathered}
+Y_{z s}(s)=\frac{2 s+8}{s^{2}+5 s+6} \cdot \frac{1}{s+1}=\frac{2 s+8}{(s+2)(s+3)} \cdot \frac{1}{s+1} \\
+=\frac{3}{s+1}-\frac{4}{s+2}+\frac{1}{(s+3)}
+\end{gathered}
+\]</span></p>
+<ul>
+<li>因此 <span class="math inline">\(y_{z S}(t)=\mathcal{L}^{-1}\left\{Y_{z S}(s)\right\}=\left(3 \mathrm{e}^{-t}-4 \mathrm{e}^{-2 t}+\mathrm{e}^{-3 t}\right) \cdot u(t)\)</span></li>
+<li>综上：<span class="math inline">\(y(t)=y_{z i}(t)+y_{z s}(t)=3 \mathrm{e}^{-t}+7 \mathrm{e}^{-2 t}-7 \mathrm{e}^{-3 t}, t \geq 0\)</span></li>
+</ul>
+</section>
+<section id="系统函数" class="slide level2">
+<h2>系统函数</h2>
+<p>－系统在零状态（起始条件为 0 ）条件下，输出的LT与输入的LT之比，记为 <span class="math inline">\(H(s)\)</span> 。</p>
+<p><span class="math display">\[
+H(s)=\frac{\mathcal{L}\left[y_{z s}(t)\right]}{\mathcal{L}[x(t)]}=\frac{Y_{z s}(s)}{X(s)}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-62.jpg?height=274&amp;width=1756&amp;top_left_y=787&amp;top_left_x=720"> －<span class="math inline">\(H(s)\)</span> 与 <span class="math inline">\(h(t)\)</span> 的关系</p>
+<p><span class="math display">\[
+H(s)=\frac{\mathcal{L}\left[y_{z s}(t)\right]}{\mathcal{L}[x(t)]}=\frac{\mathcal{L}[h(t)]}{1}=\mathcal{L}[h(t)]
+\]</span></p>
+<p><span class="math display">\[
+H(s)=\mathcal{L}[h(t)] \quad h(t)=\mathcal{L}^{-1}[H(s)]
+\]</span></p>
+</section>
+<section id="系统函数-1" class="slide level2">
+<h2>系统函数</h2>
+<p>－求零状态响应 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-63.jpg?height=291&amp;width=967&amp;top_left_y=580&amp;top_left_x=546"></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; y_{z s}(t)=x(t) * h(t) \\
+&amp; Y_{z s}(s)=X(s) H(s)
+\end{aligned}
+\]</span></p>
+<ul>
+<li>求 <span class="math inline">\(H(s)\)</span> 的方法</li>
+<li>由系统的冲激响应求解：<span class="math inline">\(H(s)=\mathcal{L}[h(t)]\)</span></li>
+<li>由定义式</li>
+</ul>
+<p><span class="math display">\[
+H(s)=\frac{\mathcal{L}\left[y_{z S}(t)\right]}{\mathcal{L}[x(t)]}
+\]</span></p>
+<p>－由系统的微分方程写出 <span class="math inline">\(H(s)\)</span></p>
+</section>
+<section id="系统函数-2" class="slide level2">
+<h2>系统函数</h2>
+<p>已知LTI连续时间系统满足的微分方程为</p>
+<p><span class="math display">\[
+y^{\prime \prime}(t)+3 y^{\prime}(t)+2 y(t)=3 x(t)+2 x^{\prime}(t), \quad t \geq 0
+\]</span></p>
+<p>试求该系统的系统函数 <span class="math inline">\(H(s)\)</span> 和单位冲激响应 <span class="math inline">\(h(t)\)</span> 。 －对微分方程两边进行LT</p>
+<p><span class="math display">\[
+\left(s^{2}+3 s+2\right) Y_{z s}(s)=(3+2 s) X(s)
+\]</span></p>
+<p>－根据系统函数的定义可得</p>
+<p><span class="math display">\[
+H(s)=\frac{Y_{z S}(s)}{X(s)}=\frac{2 s+3}{s^{2}+3 s+2}=\frac{1}{s+1}+\frac{1}{s+2}
+\]</span></p>
+<p>－进行LT反变换，可得</p>
+<p><span class="math display">\[
+h(t)=\left(\mathrm{e}^{-t}+\mathrm{e}^{-2 t}\right) u(t)
+\]</span></p>
+<p>求零初始状态的理想积分器的系统函数 <span class="math inline">\(H(s)\)</span> －具有零初始状态的理想积分器的输入输出关系为</p>
+<p><span class="math display">\[
+y(t)=\int_{0}^{t} x(\tau) \mathrm{d} \tau
+\]</span></p>
+<p>－两边取 LT ，可得</p>
+<p><span class="math display">\[
+Y(s)=\frac{1}{s} X(s)
+\]</span></p>
+<p>－根据系统函数的定义可得</p>
+<p><span class="math display">\[
+H(s)=\frac{Y(s)}{X(s)}=\frac{1}{s}
+\]</span></p>
+</section>
+<section id="系统函数-3" class="slide level2">
+<h2>系统函数</h2>
+<p><span class="math display">\[
+\begin{gathered}
+\frac{\mathrm{d} x(t)}{\mathrm{d} t} \stackrel{\mathcal{L}}{\leftrightarrow} s X(s)-x\left(0_{-}\right) \\
+\mathcal{L}[\delta(t)]=1
+\end{gathered}
+\]</span></p>
+<p>求零初始状态的理想微分器的系统函数 <span class="math inline">\(H(s)\)</span> －具有零初始状态的理想积分器的输入输出关系为</p>
+<p><span class="math display">\[
+y(t)=\frac{\mathrm{d} x(t)}{\mathrm{d} t}
+\]</span></p>
+<p>－由于</p>
+<p><span class="math display">\[
+h(t)=\frac{\mathrm{d} \delta(t)}{\mathrm{d} t}
+\]</span></p>
+<p>－两边取LT，根据系统函数的定义可得</p>
+<p><span class="math display">\[
+H(s)=s-\delta\left(0^{-}\right)=s
+\]</span></p>
+</section>
+<section id="零极点与时域特性" class="slide level2">
+<h2>零极点与时域特性</h2>
+<ul>
+<li><span class="math inline">\(H(s)\)</span> 的零极点分布与 <span class="math inline">\(h(t)\)</span> 的波形特征相对应</li>
+<li>零极点分布图零点</li>
+</ul>
+<p><span class="math display">\[
+H(s)=\frac{N(s)}{D(s)}=\frac{b_{m}\left(s-z_{1}\right)\left(s-z_{2}\right) \cdots\left(s-z_{m}\right)}{\left(s-p_{1}\right)\left(s-p_{2}\right) \cdots\left(s-p_{n}\right)}
+\]</span></p>
+<p>－若</p>
+<p><span class="math display">\[
+H(s)=\frac{s(s-1+j)(s-1-j)}{(s+1)^{2}(s+2 j)(s-2 j)}
+\]</span></p>
+<ul>
+<li>一阶极点： <span class="math inline">\(2 j,-2 j\)</span></li>
+<li>二阶极点：－1</li>
+<li>一阶零点： <span class="math inline">\(0,1+j, 1-j, \infty\)</span> <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-67.jpg?height=995&amp;width=1156&amp;top_left_y=823&amp;top_left_x=1991"> －<span class="math inline">\(H(s)\)</span> 与 <span class="math inline">\(h(t)\)</span> 的关系 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-68.jpg?height=670&amp;width=653&amp;top_left_y=553&amp;top_left_x=443"> <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-68.jpg?height=801&amp;width=425&amp;top_left_y=547&amp;top_left_x=2284"></li>
+</ul>
+<p><span class="math inline">\(\frac{\frac{1}{s-1}}{\Delta}\)</span> <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-68.jpg?height=458&amp;width=527&amp;top_left_y=1379&amp;top_left_x=2307"></p>
+<p>零极点与时域特性 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-69.jpg?height=1528&amp;width=3152&amp;top_left_y=290&amp;top_left_x=116"></p>
+</section>
+<section id="系统函数与系统稳定性" class="slide level2">
+<h2>系统函数与系统稳定性</h2>
+<p>－连续时间LTI系统BIBO稳定的充分必要条件是</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty}|h(\tau)| \mathrm{d} \tau=S&lt;\infty
+\]</span></p>
+<p>－因果系统在 <span class="math inline">\(s\)</span> 域有界输入有界输出（BIBO）的充要条件是系统函数 <span class="math inline">\(H(s)\)</span> 的全部极点位于左半 <span class="math inline">\(s\)</span> 平面。</p>
+</section>
+<section id="系统函数与系统稳定性-1" class="slide level2">
+<h2>系统函数与系统稳定性</h2>
+<p>判断下述系统是否稳定</p>
+<p><span class="math display">\[
+H_{1}(s)=\frac{s+3}{(s+1)(s+2)}, \operatorname{Re}(s)&gt;-1
+\]</span></p>
+<p>－极点为 <span class="math inline">\(s=-1\)</span> 和 <span class="math inline">\(s=-2\)</span> ，都在 <span class="math inline">\(s\)</span> 左半平面。系统稳定</p>
+<p><span class="math display">\[
+H_{2}(s)=\frac{s}{s^{2}+\omega_{0}^{2}}, \operatorname{Re}(s)&gt;0
+\]</span></p>
+<p>－极点为 <span class="math inline">\(s= \pm j \omega_{0}\)</span> ，是虚轴上的一对共轭极点。系统不稳定。</p>
+</section>
+<section id="拉普拉斯变换的应用" class="slide level2">
+<h2>拉普拉斯变换的应用</h2>
+<p>－已知一连续时间LTI系统的零状态响应</p>
+<p><span class="math display">\[
+y_{Z S}(t)=\left(0.5+\mathrm{e}^{-t}-1.5 \mathrm{e}^{-2 t}\right) u(t)
+\]</span></p>
+<p>已知 <span class="math inline">\(x(t)=u(t)\)</span> ，由 <span class="math inline">\(s\)</span> 域求解：</p>
+<ul>
+<li>该系统的系统函数 <span class="math inline">\(H(s)\)</span> 并画出零极点分布图</li>
+<li>写出描述系统的微分方程、系统的冲激响应 <span class="math inline">\(h(t)\)</span></li>
+<li>判断系统是否因果稳定</li>
+</ul>
+</section>
+<section id="拉普拉斯变换的应用-1" class="slide level2">
+<h2>拉普拉斯变换的应用</h2>
+<p>－已知一连续时间LTI系统的零状态响应</p>
+<p><span class="math display">\[
+y_{Z S}(t)=\left(0.5+\mathrm{e}^{-t}-1.5 \mathrm{e}^{-2 t}\right) u(t)
+\]</span></p>
+<p>已知 <span class="math inline">\(x(t)=u(t)\)</span> ，由 <span class="math inline">\(s\)</span> 域求解：</p>
+<ul>
+<li>该系统的系统函数 <span class="math inline">\(H(s)\)</span> 并画出零极点分布图</li>
+<li>零状态响应和激励信号的拉氏变换分别为</li>
+</ul>
+<p><span class="math display">\[
+\begin{array}{cc}
+Y_{\mathrm{ZS}}(s)=\frac{0.5}{s}+\frac{1}{s+1}-\frac{1.5}{s+2}=\frac{2 s+1}{s(s+1)(s+2)} &amp; \operatorname{Re}(s)&gt;0 \\
+X(s)=\frac{1}{s} &amp; \operatorname{Re}(s)&gt;0
+\end{array}
+\]</span></p>
+<p>－根据系统函数的定义，可得</p>
+<p><span class="math display">\[
+H(s)=\frac{Y_{\mathrm{ZS}}(s)}{X(s)}=\frac{2 s+1}{(s+1)(s+2)}=\frac{2 s+1}{s^{2}+3 s+2} \quad \operatorname{Re}(s)&gt;-1
+\]</span></p>
+</section>
+<section id="拉普拉斯变换的应用-2" class="slide level2">
+<h2>拉普拉斯变换的应用</h2>
+<p>－已知一连续时间LTI系统的零状态响应</p>
+<p><span class="math display">\[
+y_{Z S}(t)=\left(0.5+\mathrm{e}^{-t}-1.5 \mathrm{e}^{-2 t}\right) u(t)
+\]</span></p>
+<p>已知 <span class="math inline">\(x(t)=u(t)\)</span> ，由 <span class="math inline">\(s\)</span> 域求解：</p>
+<ul>
+<li>该系统的系统函数 <span class="math inline">\(H(s)\)</span> 并画出零极点分布图</li>
+<li>系统函数</li>
+</ul>
+<p><span class="math display">\[
+H(s)=\frac{Y_{\mathrm{ZS}}(s)}{X(s)}=\frac{2 s+1}{s^{2}+3 s+2} \quad \operatorname{Re}(s)&gt;-1
+\]</span></p>
+<p>－该系统的零点 <span class="math inline">\(z=-0.5\)</span> 为，极点为 <span class="math inline">\(p_{1}=-1, p_{2}=-2\)</span> <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-74.jpg?height=466&amp;width=1062&amp;top_left_y=1347&amp;top_left_x=1065"></p>
+</section>
+<section id="拉普拉斯变换的应用-3" class="slide level2">
+<h2>拉普拉斯变换的应用</h2>
+<p>－已知一连续时间LTI系统的零状态响应</p>
+<p><span class="math display">\[
+y_{Z S}(t)=\left(0.5+\mathrm{e}^{-t}-1.5 \mathrm{e}^{-2 t}\right) u(t)
+\]</span></p>
+<p>已知 <span class="math inline">\(x(t)=u(t)\)</span> ，由 <span class="math inline">\(s\)</span> 域求解：</p>
+<ul>
+<li>写出描述系统的微分方程、系统的冲激响应 <span class="math inline">\(h(t)\)</span></li>
+<li>系统函数</li>
+</ul>
+<p><span class="math display">\[
+H(s)=\frac{Y_{\mathrm{ZS}}(s)}{X(s)}=\frac{2 s+1}{s^{2}+3 s+2} \quad \operatorname{Re}(s)&gt;-1
+\]</span></p>
+<p>－系统微分方程的 <span class="math inline">\(s\)</span> 域表达式</p>
+<p><span class="math display">\[
+\left(s^{2}+3 s+2\right) Y_{\mathrm{ZS}}(s)=(2 s+1) X(s)
+\]</span></p>
+<p>－两边进行拉氏反变换，可得描述系统的微分方程为</p>
+<p><span class="math display">\[
+y^{\prime \prime}(t)+3 y^{\prime}(t)+2 y(t)=2 x^{\prime}(t)+x(t)
+\]</span></p>
+</section>
+<section id="拉普拉斯变换的应用-4" class="slide level2">
+<h2>拉普拉斯变换的应用</h2>
+<p>－已知一连续时间LTI系统的零状态响应</p>
+<p><span class="math display">\[
+y_{Z S}(t)=\left(0.5+\mathrm{e}^{-t}-1.5 \mathrm{e}^{-2 t}\right) u(t)
+\]</span></p>
+<p>已知 <span class="math inline">\(x(t)=u(t)\)</span> ，由 <span class="math inline">\(s\)</span> 域求解：</p>
+<ul>
+<li>写出描述系统的微分方程、系统的冲激响应 <span class="math inline">\(h(t)\)</span></li>
+<li>将系统函数进行部分分式展开，有</li>
+</ul>
+<p><span class="math display">\[
+H(s)=\frac{2 s+1}{s^{2}+3 s+2}=\frac{-1}{s+1}+\frac{3}{s+2}
+\]</span></p>
+<p>－再进行拉氏反变换，可得系统冲激响应为</p>
+<p><span class="math display">\[
+h(t)=\left(-\mathrm{e}^{-t}+3 \mathrm{e}^{-2 t}\right) u(t)
+\]</span></p>
+</section>
+<section id="拉普拉斯变换的应用-5" class="slide level2">
+<h2>拉普拉斯变换的应用</h2>
+<p>－已知一连续时间LTI系统的零状态响应</p>
+<p><span class="math display">\[
+y_{Z S}(t)=\left(0.5+\mathrm{e}^{-t}-1.5 \mathrm{e}^{-2 t}\right)
+\]</span></p>
+<p>已知 <span class="math inline">\(x(t)=u(t)\)</span> ，由 <span class="math inline">\(s\)</span> 域求解： －判断系统是否因果稳定 <img data-src="https://cdn.mathpix.com/cropped/13b06ab6-e7a0-4013-93f4-6aff42bf786d-77.jpg?height=478&amp;width=1066&amp;top_left_y=550&amp;top_left_x=2093"> －系统函数</p>
+<p><span class="math display">\[
+H(s)=\frac{2 s+1}{s^{2}+3 s+2}=\frac{-1}{s+1}+\frac{3}{s+2}
+\]</span></p>
+<ul>
+<li>系统冲激响应 <span class="math inline">\(h(t)=\left(-\mathrm{e}^{-t}+3 \mathrm{e}^{-2 t}\right) u(t)\)</span> ，满足 <span class="math inline">\(h(t)=0, t&lt;0\)</span> ；故该系统为因果系统</li>
+<li>对因果系统，由零极点分布图可看出，系统的极点位于 <span class="math inline">\(s\)</span> 左半平面，故该系统稳定</li>
+</ul>
+
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'visible',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

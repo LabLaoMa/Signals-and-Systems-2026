@@ -1,0 +1,281 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10909,        273]
+NotebookOptionsPosition[     10377,        254]
+NotebookOutlinePosition[     10821,        272]
+CellTagsIndexPosition[     10778,        269]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{"(*", 
+   RowBox[{"\:5b9a\:4e49\:4f20\:9012\:51fd\:6570", " ", "H", 
+    RowBox[{"(", "s", ")"}]}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"h", "=", 
+     RowBox[{"TransferFunctionModel", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"2", " ", "zeta", " ", "wn", " ", "s"}], "+", 
+          RowBox[{"wn", "^", "2"}]}], ")"}], "/", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"s", "^", "2"}], "+", 
+          RowBox[{"2", " ", "zeta", " ", "wn", " ", "s"}], "+", 
+          RowBox[{"wn", "^", "2"}]}], ")"}]}], ",", "s"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+     "\:4f7f\:7528", " ", "Row", " ", 
+      "\:5c06\:4e24\:4e2a\:56fe\:8868\:5e76\:6392\:653e\:7f6e"}], "*)"}], 
+    RowBox[{"Row", "[", 
+     RowBox[{"{", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"1.", " ", "\:9891\:57df"}], "\:ff1a", 
+        "\:6ce2\:5fb7\:5e45\:9891\:56fe"}], "*)"}], 
+      RowBox[{
+       RowBox[{"BodePlot", "[", 
+        RowBox[{"h", ",", 
+         RowBox[{"{", 
+          RowBox[{"0.1", ",", "100"}], "}"}], ",", 
+         RowBox[{"PlotLayout", "->", "\"\<Magnitude\>\""}], ",", 
+         RowBox[{"PlotLabel", "->", 
+          RowBox[{"Style", "[", 
+           
+           RowBox[{"\"\<\:9891\:57df\:ff1a\:5e45\:9891\:7279\:6027 (Bode \
+Magnitude)\>\"", ",", "12", ",", "Bold"}], "]"}]}], ",", 
+         RowBox[{"FrameLabel", "->", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"\"\<\:5e45\:5ea6 (dB)\>\"", ",", "None"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"\"\<\:9891\:7387 (rad/s)\>\"", ",", "None"}], "}"}]}], 
+           "}"}]}], ",", 
+         RowBox[{"PlotStyle", "->", 
+          RowBox[{"{", 
+           RowBox[{"Thick", ",", "Blue"}], "}"}]}], ",", 
+         RowBox[{"GridLines", "->", "Automatic"}], ",", 
+         RowBox[{"ImageSize", "->", "400"}], ",", 
+         RowBox[{"ScalingFunctions", "->", 
+          RowBox[{"{", 
+           RowBox[{"\"\<Log10\>\"", ",", "\"\<dB\>\""}], "}"}]}]}], "]"}], ",", 
+       RowBox[{"Spacer", "[", "10", "]"}], ",", 
+       RowBox[{
+       "(*", "\:4e24\:4e2a\:56fe\:4e4b\:95f4\:7684\:6c34\:5e73\:95f4\:8ddd", 
+        "*)"}], 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"2.", " ", "\:65f6\:57df"}], "\:ff1a", 
+         "\:5355\:4f4d\:9636\:8dc3\:54cd\:5e94"}], "*)"}], 
+       RowBox[{
+        RowBox[{"OutputResponse", "[", 
+         RowBox[{"h", ",", 
+          RowBox[{"UnitStep", "[", "t", "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0", ",", "10"}], "}"}]}], "]"}], "//", 
+        RowBox[{
+         RowBox[{"Plot", "[", 
+          RowBox[{"#", ",", 
+           RowBox[{"{", 
+            RowBox[{"t", ",", "0", ",", "10"}], "}"}], ",", 
+           RowBox[{"PlotRange", "->", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "1.6"}], "}"}]}], ",", 
+           RowBox[{"PlotStyle", "->", 
+            RowBox[{"{", 
+             RowBox[{"Thick", ",", 
+              RowBox[{"RGBColor", "[", 
+               RowBox[{"0", ",", "0.6", ",", "0"}], "]"}]}], "}"}]}], ",", 
+           RowBox[{"Frame", "->", "True"}], ",", 
+           RowBox[{"PlotLabel", "->", 
+            RowBox[{"Style", "[", 
+             
+             RowBox[{"\"\<\:65f6\:57df\:ff1a\:5355\:4f4d\:9636\:8dc3\:54cd\
+\:5e94 (Step Response)\>\"", ",", "12", ",", "Bold"}], "]"}]}], ",", 
+           RowBox[{"FrameLabel", "->", 
+            RowBox[{"{", 
+             
+             RowBox[{"\"\<\:65f6\:95f4 (t/s)\>\"", 
+              ",", "\"\<\:8f66\:8eab\:4f4d\:79fb (y(t))\>\""}], "}"}]}], ",", 
+           
+           RowBox[{"GridLines", "->", "Automatic"}], ",", 
+           RowBox[{"ImageSize", "->", "400"}], ",", 
+           RowBox[{"Epilog", "->", 
+            RowBox[{"{", 
+             RowBox[{"Dashed", ",", "Red", ",", 
+              RowBox[{"Line", "[", 
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{"{", 
+                  RowBox[{"0", ",", "1"}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{"10", ",", "1"}], "}"}]}], "}"}], "]"}]}], 
+             "}"}]}]}], "]"}], "&"}]}]}], "}"}], "]"}]}], ",", 
+   RowBox[{"(*", 
+    RowBox[{
+    "\:63a7\:4ef6\:5e03\:5c40", "\:ff1a", "\:653e\:7f6e\:5728\:9876\:90e8", "\:ff0c",
+      "\:65b9\:4fbf\:6f14\:793a"}], "*)"}], 
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"\"\<\:56fa\:6709\:9891\:7387 \\!\\(\\*SubscriptBox[\\(\
+\[Omega]\\), \\(n\\)]\\):\>\"", ",", 
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"wn", ",", "10", ",", "\"\<\>\""}], "}"}], ",", "1", ",",
+             "50", ",", 
+            RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], "]"}]}],
+         "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\<\:963b\:5c3c\:6bd4 \[Zeta]:\>\"", ",", 
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"zeta", ",", "0.5", ",", "\"\<\>\""}], "}"}], ",", 
+            "0.01", ",", "1.5", ",", 
+            RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}], "]"}]}],
+         "}"}]}], "}"}], ",", 
+     RowBox[{"Alignment", "->", "Left"}]}], "]"}], ",", 
+   RowBox[{"ControlPlacement", "->", "Top"}], ",", 
+   RowBox[{"TrackedSymbols", ":>", 
+    RowBox[{"{", 
+     RowBox[{"wn", ",", "zeta"}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.986457502088832*^9, 3.986457502090123*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"2039d959-487e-40ad-9147-3f5886634d1e"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`wn$$ = 10.4, $CellContext`zeta$$ = 0.438, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`wn$$], 10, ""}, 1, 50, ControlType -> Manipulator}, {{
+       Hold[$CellContext`zeta$$], 0.5, ""}, 0.01, 1.5, ControlType -> 
+      Manipulator}, {
+      Hold[
+       Grid[{{
+         "\:56fa\:6709\:9891\:7387 \!\(\*SubscriptBox[\(\[Omega]\), \
+\(n\)]\):", 
+          Manipulate`Place[1]}, {"\:963b\:5c3c\:6bd4 \[Zeta]:", 
+          Manipulate`Place[2]}}, Alignment -> Left]], 
+      Manipulate`Dump`ThisIsNotAControl, ControlType -> None}}, 
+    Typeset`size$$ = {1215., {198.92767584697583`, 207.52557623760083`}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`wn$$ = 10, $CellContext`zeta$$ = 0.5}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, 
+      "Body" :> ($CellContext`h = 
+        TransferFunctionModel[(
+           2 $CellContext`zeta$$ $CellContext`wn$$ $CellContext`s + \
+$CellContext`wn$$^2)/($CellContext`s^2 + 
+          2 $CellContext`zeta$$ $CellContext`wn$$ $CellContext`s + \
+$CellContext`wn$$^2), $CellContext`s]; Row[{
+          
+          BodePlot[$CellContext`h, {0.1, 100}, PlotLayout -> "Magnitude", 
+           PlotLabel -> 
+           Style["\:9891\:57df\:ff1a\:5e45\:9891\:7279\:6027 (Bode \
+Magnitude)", 12, Bold], 
+           FrameLabel -> {{"\:5e45\:5ea6 (dB)", None}, {
+             "\:9891\:7387 (rad/s)", None}}, PlotStyle -> {Thick, Blue}, 
+           GridLines -> Automatic, ImageSize -> 400, 
+           ScalingFunctions -> {"Log10", "dB"}], 
+          Spacer[10], 
+          (
+          Plot[#, {$CellContext`t, 0, 10}, PlotRange -> {0, 1.6}, 
+           PlotStyle -> {Thick, 
+             RGBColor[0, 0.6, 0]}, Frame -> True, PlotLabel -> 
+           Style["\:65f6\:57df\:ff1a\:5355\:4f4d\:9636\:8dc3\:54cd\:5e94 \
+(Step Response)", 12, Bold], 
+           FrameLabel -> {
+            "\:65f6\:95f4 (t/s)", "\:8f66\:8eab\:4f4d\:79fb (y(t))"}, 
+           GridLines -> Automatic, ImageSize -> 400, Epilog -> {Dashed, Red, 
+             Line[{{0, 1}, {10, 1}}]}]& )[
+           OutputResponse[$CellContext`h, 
+            UnitStep[$CellContext`t], {$CellContext`t, 0, 10}]]}]), 
+      "Specifications" :> {{{$CellContext`wn$$, 10, ""}, 1, 50, Appearance -> 
+         "Labeled", ControlPlacement -> 1}, {{$CellContext`zeta$$, 0.5, ""}, 
+         0.01, 1.5, Appearance -> "Labeled", ControlPlacement -> 2}, 
+        Grid[{{
+          "\:56fa\:6709\:9891\:7387 \!\(\*SubscriptBox[\(\[Omega]\), \
+\(n\)]\):", 
+           Manipulate`Place[1]}, {"\:963b\:5c3c\:6bd4 \[Zeta]:", 
+           Manipulate`Place[2]}}, Alignment -> Left]}, 
+      "Options" :> {
+       ControlPlacement -> Top, 
+        TrackedSymbols :> {$CellContext`wn$$, $CellContext`zeta$$}}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{1284.65, {290.6333139695344, 299.2312143601594}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.986457502824143*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"27137811-8dc0-4b11-a502-0b0e11e19ca4"]
+}, Open  ]]
+},
+WindowSize->{1555, 1234},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+LightDark->"Light",
+Magnification:>1.5 Inherited,
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"ce53b5b1-266f-47b2-a7ca-5d10dc284057"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 5716, 145, 476, "Input",ExpressionUUID->"2039d959-487e-40ad-9147-3f5886634d1e"],
+Cell[6295, 169, 4066, 82, 615, "Output",ExpressionUUID->"27137811-8dc0-4b11-a502-0b0e11e19ca4"]
+}, Open  ]]
+}
+]
+*)
+

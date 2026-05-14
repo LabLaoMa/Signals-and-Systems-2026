@@ -1,0 +1,518 @@
+---
+title: "EL331 信号与系统 · 第31讲（中文版）"
+subtitle: "单边拉普拉斯变换、初值定理与终值定理"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+## 1. 单边拉普拉斯变换
+
+## 2. 回顾
+
+## 单边拉普拉斯变换
+
+回顾： the (双边) Laplace transform of a CT signal $x$
+
+$$
+X(s)=\int_{-\infty}^{\infty} x(t) e^{-s t} d t
+$$
+
+The 单边 Laplace transform of $x$ is
+
+$$
+X(s)=\int_{0_{-}}^{\infty} x(t) e^{-s t} d t
+$$
+
+also denoted
+
+$$
+\mathcal{X}=\mathcal{U} \mathcal{L}\{x\}, \quad x(t) \stackrel{\mathcal{U L}}{\longleftrightarrow} \mathcal{X}(s)
+$$
+
+收敛域 of $X$ is always a right half-plane
+注意： Information about $x(t)$ at $t<0$ is lost in $x$.
+注意： $\mathcal{L}\{x\}=\mathcal{U} \mathcal{L}\{x\}$ iff $x(t)$ is causal, i.e. $x(t)=0$ for $t<0$
+
+## 例子
+
+The calculation of 单边 Laplace transforms is almost the same as for 双边 Laplace transforms.
+
+例. $x_{1}(t)=e^{-a t} u(t)$,
+
+$$
+X_{1}(s)=X_{1}(s)=\frac{1}{s+a}, \quad \operatorname{Re} s>-\operatorname{Re} a
+$$
+
+例. $x_{2}(t)=e^{-a(t+1)} u(t+1)=x_{1}(t+1)$,
+
+$$
+\begin{array}{cl}
+\text { 双边 } & X_{2}(s)=e^{s} X_{1}(s)=\frac{e^{s}}{s+a}, \quad \operatorname{Re} s>-\operatorname{Re} a \\
+\text { 单边 } & X_{2}(s)=\int_{0}^{\infty} e^{-a(t+1)} e^{-s t} d t=\frac{e^{-a}}{s+a}, \operatorname{Re} s>-\operatorname{Re} a
+\end{array}
+$$
+
+注意： $X_{2} \neq X_{2}$, since $x_{2}$ is noncausal.
+注意： $X_{2} \neq e^{s} X_{1}$, time-shift property fails for 单边 transform.
+
+## 例子
+
+The calculation of 单边 Laplace transforms is almost the same as for 双边 Laplace transforms.
+
+例. $x_{3}(t)=e^{-a|t|}$ 其 $\operatorname{Re} a>0$
+
+$$
+\begin{aligned}
+\text { 双边 } & X_{3}(t)=\frac{-2 a}{s^{2}-a^{2}}, \quad-\operatorname{Re} a<\operatorname{Re} s<\operatorname{Re} a \\
+\text { 单边 } & X_{3}(s)=\frac{1}{s+a}, \quad \operatorname{Re} s>-\operatorname{Re} a
+\end{aligned}
+$$
+
+注意： $X_{3} \neq X_{1}$, since $x_{3} \neq x_{1}$
+注意： $X_{3}=X_{1}$, since $x_{3}$ and $x_{1}$ differ only for $t<0$
+例. $x(t)=\delta(t)+2 \delta^{\prime}(t)+e^{t} u(t)$
+
+$$
+X(s)=X(s)=1+2 s+\frac{1}{s-1}, \quad \operatorname{Re} s>1
+$$
+
+注意： The lower limit of integration is $0_{-}$so $\delta$ and $\delta^{\prime}$ contribute to $\mathcal{X}$
+
+## 例子
+
+The calculation of inverse 单边 Laplace transforms is the same as for 双边 Laplace transforms, but we can only recover $x(t)$ for $t \geq 0$ !
+
+例. Given 单边 Laplace transform
+
+$$
+X(s)=\frac{1}{(s+1)(s+2)}=\frac{1}{s+1}-\frac{1}{s+2}
+$$
+
+the only possibility for 收敛域 is $\operatorname{Re} s>-1$. Thus
+
+$$
+x(t)=e^{-t}-e^{-2 t}, \quad t \geq 0
+$$
+
+X provides no information about $x(t)$ for $t<0$
+例. $\mathfrak{X}(s)=\frac{s^{2}-3}{s+2}=-2+s+\frac{1}{s+2}$. The 收敛域 must be $\operatorname{Re} s>-2$, and
+
+$$
+x(t)=-2 \delta(t)+\delta^{\prime}(t)+e^{-2 t}, \quad t \geq 0
+$$
+
+## Properties of 单边拉普拉斯变换
+
+Many properties are the same as for 双边 Laplace transform
+
+| Property | Signal | ULT |
+| :---: | :---: | :---: |
+| - | $x(t)$ | $X(s)$ |
+| - | $y(t)$ | $Y(s)$ |
+| Linearity | $a x(t)+b y(t)$ | $a X(s)+b y(s)$ |
+| Shifting in $s$-domain | $e^{s_{0} t} x(t)$ | $X\left(s-s_{0}\right)$ |
+| Time scaling | $x(a t), a>0$ | $\frac{1}{a} X\left(\frac{s}{a}\right)$ |
+| Conjugation | $x^{*}(t)$ | $X^{*}\left(s^{*}\right)$ |
+| Differentiation in $s$ domain | $-t x(t)$ | $\frac{d}{d s} X(s)$ |
+
+## Convolution Property of 单边拉普拉斯变换
+
+若 $x(t)=y(t)=0$ for $t<0$, 则
+
+$$
+(x * y)(t) \stackrel{u \mathcal{L}}{\longleftrightarrow} X(s) y(s), \quad \text { 收敛域 } \supset \operatorname{收敛域}_{x} \cap \operatorname{收敛域}_{y}
+$$
+
+证明. Note $(x * y)(t)=0$ for $t<0$.
+
+$$
+\mathcal{U} \mathcal{L}\{x * y\}=\mathcal{L}\{x * y\}=\mathcal{L}\{x\} \mathcal{L}\{y\}=\mathcal{U} \mathcal{L}\{x\} \mathcal{U} \mathcal{L}\{y\}
+$$
+
+Caution. The assumption $x(t)=y(t)=0$ for $t<0$ is important!
+例. $x(t)=\delta(t)-\delta(t-1), y(t)=\delta(t+1)$,
+
+$$
+X(s)=1-e^{-s}, \quad Y(s)=0,
+$$
+
+Note $(x * y)(t)=\delta(t+1)-\delta(t)$, and
+
+$$
+\mathcal{U} \mathcal{L}\{x * y\}=-1 \neq \mathcal{X}(s) \mathcal{Y}(s)
+$$
+
+## 时域积分性质
+
+若
+
+$$
+x(t) \stackrel{\varkappa L}{\longleftrightarrow} X(s), \quad \text { 其 } \text { 收敛域 }=R
+$$
+
+则
+
+$$
+\int_{0_{-}}^{t} x(\tau) d \tau \stackrel{u \mathcal{L}}{\longleftrightarrow} \frac{1}{s} \mathcal{X}(s), \quad \text { 其 收敛域 } \supset R \cap\{\operatorname{Re} s>0\}
+$$
+
+证明. Apply the convolution property to $\tilde{x} * u$, where
+
+$$
+\tilde{x}(t)= \begin{cases}x(t), & t \geq 0 \\ 0, & t<0\end{cases}
+$$
+
+例. $x(t)=\delta(t), X(s)=1$.
+
+$$
+\int_{0_{-}}^{t} x(\tau) d \tau=u(t) \stackrel{u \mathcal{L}}{\longleftrightarrow} \frac{1}{s}, \quad \operatorname{Re} s>0
+$$
+
+## 时域微分性质
+
+若
+
+$$
+x(t) \stackrel{u \Sigma}{\longleftrightarrow} X(s), \quad \text { 其 } \mathrm{收敛域}=R
+$$
+
+and $\lim _{t \rightarrow+\infty} x(t) e^{-s t}=0$ for $s \in R_{0}$, 则
+
+$$
+\frac{d}{d t} x(t) \stackrel{u \mathcal{L}}{\longleftrightarrow} s \mathcal{X}(s)-x\left(0_{-}\right), \quad \text { 其 } \mathrm{收敛域} \supset R \cap R_{0}
+$$
+
+注意： $R_{0} \supset$ 收敛域 of $X(s)$ (also true for 双边 Laplace transform)
+证明. Use integration by parts
+
+$$
+\int_{0_{-}}^{\infty} x^{\prime}(t) e^{-s t} d t=\left.x(t) e^{-s t}\right|_{t=0_{-}} ^{\infty}+s \int_{0_{-}}^{\infty} x(t) e^{-s t} d t=-x\left(0_{-}\right)+s \mathfrak{X}(s)
+$$
+
+注意： Had we used the definition $X(s)=\int_{0_{+}}^{\infty} x(t) e^{-s t} d t$, we would have $\frac{d}{d t} x(t) \stackrel{\mathcal{L} \mathcal{L}}{\longleftrightarrow} s \mathcal{X}(s)-x\left(0_{+}\right)$
+
+## 时域微分性质
+
+例. $x(t)=e^{-t}, \mathcal{X}(s)=\frac{1}{s+1}$ 其 收敛域 Re $s>-1$. By the differentiation property,
+
+$$
+x^{\prime}(t) \stackrel{u \mathcal{L}}{\longleftrightarrow} \frac{s}{s+1}-1=-\frac{1}{s+1}, \quad \operatorname{收敛域} \supset\{\operatorname{Re} s>-1\}
+$$
+
+By direct calculation,
+
+$$
+x^{\prime}(t)=-e^{-t} \stackrel{u \mathcal{L}}{\longleftrightarrow}=-\frac{1}{s+1}, \quad \operatorname{收敛域}=\operatorname{收敛域}=\{\operatorname{Re} s>-1\}
+$$
+
+例. $x(t)=e^{-t} u(t), X(s)=\frac{1}{s+1}$ 其 收敛域 $\operatorname{Re} s>-1$. By the differentiation property,
+
+$$
+x^{\prime}(t) \longleftrightarrow \frac{\mathcal{L}}{\longleftrightarrow} \frac{s}{s+1}, \quad \operatorname{收敛域} \supset\{\operatorname{Re} s>-1\}
+$$
+
+By direct calculation, $x^{\prime}(t)=\delta(t)-e^{-t} u(t)$, and
+
+$$
+\mathcal{U} \mathcal{L}\left\{x^{\prime}\right\}=-\frac{1}{s+1}+1=\frac{s}{s+1}, \quad \mathrm{收敛域}=\mathrm{收敛域}=\{\operatorname{Re} s>-1\}
+$$
+
+## 时域微分性质
+
+Under appropriate conditions, e.g. $x^{(k)}(t)=O\left(e^{\gamma t}\right)$, we can extend the differentiation property to higher derivatives,
+
+$$
+x^{(n)}(t) \stackrel{\mathcal{U}}{\longleftrightarrow} s^{n} \mathfrak{X}(s)-\sum_{k=0}^{n-1} s^{n-1-k} x^{(k)}\left(0_{-}\right)
+$$
+
+Since solutions to constant coefficient ODEs is of the form
+
+$$
+x(t)=\sum_{k=1}^{n} p_{i}(t) e^{a_{i} t}
+$$
+
+where $p_{i}$ are polynomials, the above condition is satisfied.
+Unilateral Laplace transform is useful for solving ODEs 其 nonzero initial condtions.
+
+## 初值定理
+
+定理. 若 the 单边 Laplace transform $\mathcal{X}(s)$ of $x(t)$ is a proper rational function, 则
+
+$$
+x\left(0_{+}\right)=\lim _{s \rightarrow \infty} s \mathfrak{X}(s)
+$$
+
+证明. $X(s)$ has partial fraction expansion,
+
+$$
+\begin{gathered}
+X(s)=\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(s+a_{i}\right)^{k_{i}}} \\
+x(t)=\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}} t^{k_{i}-1}}{\left(k_{i}-1\right)!} e^{-a_{i} t}, \quad t \geq 0 \\
+x\left(0_{+}\right)=\sum_{i=1}^{r} A_{i, 1}=\lim _{s \rightarrow \infty} \sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}} s}{\left(s+a_{i}\right)^{k_{i}}}=\lim _{s \rightarrow \infty} s \mathcal{X}(s)
+\end{gathered}
+$$
+
+例. $x(t)=2 e^{-t}+e^{-2 t}, \mathcal{X}(s)=\frac{3 s+5}{s^{2}+3 s+2}, x\left(0_{+}\right)=\lim _{s \rightarrow \infty} s \mathfrak{X}(s)=3$.
+
+## 初值定理
+
+若 $\mathcal{X}(s)$ is rational but not proper, 则
+
+$$
+\mathfrak{X}(s)=\sum_{k=0}^{n} a_{k} s^{k}+\mathfrak{X}_{1}(s)
+$$
+
+where $X_{1}(s)$ is a proper rational function.
+Taking inverse transform,
+
+$$
+x(t)=\sum_{k=0}^{n} a_{k} \delta^{(k)}(t)+x_{1}(t)
+$$
+
+So
+
+$$
+x\left(0_{+}\right)=x_{1}\left(0_{+}\right)=\lim _{s \rightarrow \infty} s \mathcal{X}_{1}(s)
+$$
+
+例. $x(t)=\delta(t)+2 e^{-t}, X(s)=1+\frac{2}{s+1}=\frac{s+3}{s+1}$,
+
+$$
+x\left(0_{+}\right)=2=\lim _{s \rightarrow \infty} \frac{2 s}{s+1} \neq \lim _{s \rightarrow \infty} s \mathfrak{X}(s)
+$$
+
+## 例
+
+Suppose a CT LTI system has the following properties.
+
+1. The system is causal
+2. The system function $H(s)$ is a proper rational function and has only two poles, at $s=-2$ and $s=-4$.
+3. For input $x(t)=1$, the output is $y(t)=0$
+4. The impulse response satisfies $h\left(0_{+}\right)=4$
+
+Determine the system function $H(s)$.
+解. By 1 and 2
+
+$$
+H(s)=\frac{a s+b}{(s+2)(s+4)}, \quad \operatorname{Re} s>-2
+$$
+
+By 3, $H(0)=0$, so $b=0$.
+By 4, $\lim _{s \rightarrow \infty} s H(s)=4$, so $a=4$, and
+
+$$
+H(s)=\frac{4 s}{(s+2)(s+4)}, \quad \operatorname{Re} s>-2
+$$
+
+## 终值定理
+
+定理. Suppose $x(t)$ does not contain $\delta$ or its derivatives for $t \geq 0$. 若 $X(s)$ converges for real $s>0$ and the $x(t)$ has a finite limit as $t \rightarrow+\infty$, 则
+
+$$
+\lim _{t \rightarrow+\infty} x(t)=\lim _{s \rightarrow 0_{+}} s X(s)
+$$
+
+证明. Since $A \triangleq \lim _{t \rightarrow+\infty} x(t)$ exists, $x(t)$ is bounded on $(0,+\infty)$, i.e. $|x(t)| \leq M$. For any $\epsilon>0, \exists T$ s.t. $|x(t)-A|<\epsilon$ for $t \geq T$.
+For $s>0$,
+
+$$
+s \mathfrak{X}(s)-A=s \int_{0}^{\infty}[x(t)-A] e^{-s t} d t
+$$
+
+$$
+|s \mathcal{X}(s)-A| \leq s\left(\int_{0}^{T}+\int_{T}^{\infty}\right)|x(t)-A| e^{-s t} d t=I_{1}+I_{2}
+$$
+
+where $I_{1} \leq s T(M+A)$ and $I_{2} \leq \epsilon s \int_{T}^{\infty} e^{-s t} d t \leq \epsilon s \int_{0}^{\infty} e^{-s t} d t=\epsilon$.
+
+$$
+\lim _{s \rightarrow 0_{+}}|s \mathcal{X}(s)-A| \leq \epsilon \Longrightarrow \lim _{s \rightarrow 0_{+}}|s \mathcal{X}(s)-A|=0 \Longrightarrow \lim _{s \rightarrow 0_{+}} s \mathcal{X}(s)=A
+$$
+
+## 终值定理
+
+例. $x(t)=2+3 e^{-t}+e^{-2 t}$,
+
+$$
+\mathcal{X}(s)=\frac{2}{s}+\frac{3}{s+1}+\frac{1}{s+2}, \quad \operatorname{Re} s>0
+$$
+
+Check
+
+$$
+\lim _{s \rightarrow 0_{+}} s \mathfrak{X}(s)=2=\lim _{t \rightarrow+\infty} x(t)
+$$
+
+The Final Values 定理 can be extended to allow finitely many $\delta$ and its derivatives in $x(t)$ on the positive real axis. We can rewrite $x(t)$ as
+
+$$
+\begin{gathered}
+x(t)=x_{1}(t)+\sum_{i=1}^{n} a_{i} \delta^{\left(k_{i}\right)}\left(t-t_{i}\right) \stackrel{\mathcal{U L}}{\longleftrightarrow} \mathcal{X}(s)=\mathcal{X}_{1}(s)+\sum_{i=1}^{n} a_{i} s^{k_{i}} e^{-s t_{i}} \\
+\lim _{t \rightarrow+\infty} x(t)=\lim _{t \rightarrow+\infty} x_{1}(t)=\lim _{s \rightarrow 0_{+}} s \mathcal{X}_{1}(s)=\lim _{s \rightarrow 0_{+}} s \mathcal{X}(s)
+\end{gathered}
+$$
+
+例. $x(t)=\delta(t)+2, \mathcal{X}(s)=\frac{1}{s}+1, x(+\infty)=2=\lim _{s \rightarrow 0_{+}} s \mathcal{X}(s)$.
+
+## 线性常系数微分方程
+
+Consider ODE
+
+$$
+\sum_{k=0}^{N} a_{k} \frac{d^{k} y}{d t^{k}}=\sum_{k=0}^{M} b_{k} \frac{d^{k} x}{d t^{k}}
+$$
+
+其 initial condition $y^{(k)}\left(0_{-}\right), k=0,1, \ldots, N-1$, and causal input, i.e. $x(t)=0$ for $t<0$.
+
+Take 单边 Laplace transform of both sides
+
+$$
+\sum_{k=0}^{N} a_{k}\left[s^{k} \mathcal{Y}(s)-\sum_{\ell=0}^{k-1} s^{k-1-\ell} y^{(\ell)}\left(0_{-}\right)\right]=\sum_{k=0}^{M} b_{k} s^{k} \mathcal{X}(s)
+$$
+
+so
+
+$$
+y(s)=\underbrace{\frac{\sum_{k=0}^{M} b_{k} s^{k}}{\sum_{k=0}^{N} a_{k} s^{k}} \mathfrak{X}(s)}_{\text {zero-state response }}+\underbrace{\frac{\sum_{k=0}^{N} a_{k} \sum_{\ell=0}^{k-1} s^{k-1-\ell} y^{(\ell)}\left(0_{-}\right)}{\sum_{k=0}^{N} a_{k} s^{k}}}_{\text {zero-input response }}
+$$
+
+## 例
+
+## Consider ODE
+
+$$
+y^{\prime \prime}(t)+3 y^{\prime}(t)+2 y(t)=2 x^{\prime}(t)+6 x(t)
+$$
+
+其 initial condition $y\left(0_{-}\right)=c_{0}, y^{\prime}\left(0_{-}\right)=c_{1}$ and $x(t)=e^{-t} u(t)$.
+Take 单边 Laplace transform of both sides
+
+$$
+\left[s^{2} y(s)-s c_{0}-c_{1}\right]+3\left[s y(s)-c_{0}\right]+2 y(s)=2 s \mathcal{X}(s)+6 \mathcal{X}(s)=\frac{2 s+6}{s+1}
+$$
+
+SO
+
+$$
+\begin{aligned}
+y(s) & =\frac{2 s+6}{\left(s^{2}+3 s+2\right)(s+1)}+\frac{c_{0} s+\left(3 c_{0}+c_{1}\right)}{s^{2}+3 s+2} \\
+& =\underbrace{\frac{2 s+6}{(s+1)^{2}(s+2)}}_{\text {zero-state response }}+\underbrace{\frac{c_{0} s+\left(3 c_{0}+c_{1}\right)}{(s+1)(s+2)}}_{\text {zero-input response }}
+\end{aligned}
+$$
+
+## 例 (cont'd)
+
+Zero-state response
+
+$$
+y_{z s}(s)=\frac{2 s+6}{(s+1)^{2}(s+2)}, \quad \operatorname{Re} s>-1
+$$
+
+For $t \geq 0$,
+
+$$
+\begin{aligned}
+y_{z s}(t) & =\operatorname{Res}\left[y_{z i} e^{s t},-2\right]+\operatorname{Res}\left[y_{z i} e^{s t},-1\right] \\
+& =\left.\frac{(2 s+6) e^{s t}}{(s+1)^{2}}\right|_{s=-2}+\left[\frac{d}{d s} \frac{(2 s+6) e^{s t}}{s+2}\right]_{s=-1}=2 e^{-2 t}+(4 t-2) e^{-t}
+\end{aligned}
+$$
+
+Zero-input response
+
+$$
+\begin{aligned}
+& y_{z i}(s)=\frac{c_{0} s+\left(3 c_{0}+c_{1}\right)}{(s+1)(s+2)}, \quad \operatorname{Re} s>-1 \\
+& \begin{aligned}
+y_{z i}(t) & =\operatorname{Res}\left[y_{z s} s t,-2\right]+\operatorname{Res}\left[y_{z s} e^{s t},-1\right] \\
+& =\left(2 c_{0}+c_{1}\right) e^{-t}-\left(c_{0}+c_{1}\right) e^{-2 t}, \quad t \geq 0
+\end{aligned}
+\end{aligned}
+$$
+
+目录
+
+1. 单边拉普拉斯变换
+2. 回顾
+
+- Complex numbers and complex functions
+- arithmetic and representations
+- argument is multivalued, principal value ( $-\pi, \pi$ ]
+- simply and multiply connected domains
+- continuity of functions
+- Analytic functions
+- analytic at $z_{0}$ iff differentiable on some open disk $B\left(z_{0}, r\right)$
+- $f(z)=u(x, y)+j v(x, y)$ is analytic iff $u, v$ are continuously differentiable and satisfy Cauchy-Riemann equation
+
+$$
+u_{x}=v_{y}, \quad u_{y}=-v_{x}
+$$
+
+- rational function $R(z)=\frac{N(z)}{D(z)}$ is analytic on $\mathbb{C}$ except for zeros of $D(z)$ (aka poles of $R(z)$ )
+- elementary analytic functions
+- Complex Integration
+- Cauchy's 定理
+
+$$
+\int_{C} f(z) d z=0
+$$
+
+- Cauchy's Integral Formula
+
+$$
+f^{(k)}(z)=\frac{n!}{j 2 \pi} \int_{C} \frac{f(\zeta)}{(\zeta-z)^{n+1}} d \zeta
+$$
+
+- Series
+- power series and disk of convergence
+- Laurent series and annulus of convergence (cf. $z$-transform)
+- Residue
+
+$$
+\operatorname{Res}\left[f, z_{0}\right]= \begin{cases}\frac{1}{j 2 \pi} \int_{C} f(z) d z=c_{-1}, & z_{0} \in \mathbb{C} \\ -\frac{1}{j 2 \pi} \int_{C} f(z) d z=-c_{-1}, & z_{0}=\infty\end{cases}
+$$
+
+- Residue 定理
+- Signal Representations
+- time domain: linear combination of $\delta$, convolution
+- frequency domain: linear combination of sinusoids (CT/DT Fourier series/transforms), spectrum
+- $s$-domain: 双边/单边 Laplace transforms
+- $z$-domain: 双边/单边 $z$-transforms
+- Sampling
+- Nyquist rate
+- spectra of sampled signals
+- Systems
+- properties of systems (causality, stability, linearity, time-invariance...)
+- representations of LTI systems (differential/difference equations, block diagrams, impulse response, frequency response, system function)
+- eigenfunction property of LTI systems
+- filtering
+- Transforms (Fourier, Laplace, Z)
+- forward and inverse transforms
+- properties
+- analysis of LTI systems
+- given system, find response to input
+- given input output pairs, identify system
+- ODE
+- classical method in time domain
+- transform method
+- initial rest/LTI: Fourier, 双边 Laplace
+- nonzero initial condition: 单边 Laplace
+- Difference equations
+- classical method in time domain
+- transform method
+- initial rest/LTI: Fourier, 双边 $z$-transform
+- nonzero initial condition: 单边 $z$-transform
+
+祝期末考试顺利！

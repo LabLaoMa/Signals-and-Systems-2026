@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-a8da12e74b29c2e7b17644f84b91567b.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.30">
+
+  <title>My Site – readme_zh-cn</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #f8f8f2;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #f8f8f2; } /* Normal */
+    code span.al { color: #f07178; } /* Alert */
+    code span.an { color: #d4d0ab; } /* Annotation */
+    code span.at { color: #00e0e0; } /* Attribute */
+    code span.bn { color: #d4d0ab; } /* BaseN */
+    code span.bu { color: #abe338; } /* BuiltIn */
+    code span.cf { color: #ffa07a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #abe338; } /* Char */
+    code span.cn { color: #ffd700; } /* Constant */
+    code span.co { color: #f8f8f2; font-style: italic; } /* Comment */
+    code span.cv { color: #ffd700; } /* CommentVar */
+    code span.do { color: #f8f8f2; } /* Documentation */
+    code span.dt { color: #ffa07a; } /* DataType */
+    code span.dv { color: #d4d0ab; } /* DecVal */
+    code span.er { color: #f07178; text-decoration: underline; } /* Error */
+    code span.ex { color: #00e0e0; font-weight: bold; } /* Extension */
+    code span.fl { color: #d4d0ab; } /* Float */
+    code span.fu { color: #ffa07a; } /* Function */
+    code span.im { color: #abe338; } /* Import */
+    code span.in { color: #d4d0ab; } /* Information */
+    code span.kw { color: #ffa07a; font-weight: bold; } /* Keyword */
+    code span.op { color: #ffa07a; } /* Operator */
+    code span.ot { color: #00e0e0; } /* Other */
+    code span.pp { color: #dcc6e0; } /* Preprocessor */
+    code span.re { color: #00e0e0; background-color: #f8f8f2; } /* RegionMarker */
+    code span.sc { color: #abe338; } /* SpecialChar */
+    code span.ss { color: #abe338; } /* SpecialString */
+    code span.st { color: #abe338; } /* String */
+    code span.va { color: #00e0e0; } /* Variable */
+    code span.vs { color: #abe338; } /* VerbatimString */
+    code span.wa { color: #dcc6e0; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-ca6c53983499909029db778ee07132c3.css">
+  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-dark">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section class="slide level2">
+
+<div data-align="center" data-xmlns="http://www.w3.org/1999/html">
+<!-- logo -->
+<p align="center">
+<img src="https://gcore.jsdelivr.net/gh/opendatalab/MinerU@master/docs/images/MinerU-logo.png" width="300px" style="vertical-align:middle;">
+</p>
+<!-- icon -->
+<p><a href="https://github.com/opendatalab/MinerU"><img data-src="https://img.shields.io/github/stars/opendatalab/MinerU.svg" alt="stars"></a> <a href="https://github.com/opendatalab/MinerU"><img data-src="https://img.shields.io/github/forks/opendatalab/MinerU.svg" alt="forks"></a> <a href="https://github.com/opendatalab/MinerU/issues"><img data-src="https://img.shields.io/github/issues-raw/opendatalab/MinerU.png" alt="open issues"></a> <a href="https://github.com/opendatalab/MinerU/issues"><img data-src="https://img.shields.io/github/issues-closed-raw/opendatalab/MinerU.png" alt="issue resolution"></a> <a href="https://pypi.org/project/mineru/"><img data-src="https://img.shields.io/pypi/v/mineru.png" alt="PyPI version"></a> <a href="https://pypi.org/project/mineru/"><img data-src="https://img.shields.io/pypi/pyversions/mineru.png" alt="PyPI - Python Version"></a> <a href="https://pepy.tech/project/mineru"><img data-src="https://static.pepy.tech/badge/mineru.png" alt="Downloads"></a> <a href="https://pepy.tech/project/mineru"><img data-src="https://static.pepy.tech/badge/mineru/month.png" alt="Downloads"></a> <a href="https://mineru.net/OpenSourceTools/Extractor?source=github"><img data-src="https://img.shields.io/badge/webapp_on_mineru.net-blue?logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM0IiBoZWlnaHQ9IjEzNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtMTIyLDljMCw1LTQsOS05LDlzLTktNC05LTksNC05LDktOSw5LDQsOSw5eiIgZmlsbD0idXJsKCNhKSIvPjxwYXRoIGQ9Im0xMjIsOWMwLDUtNCw5LTksOXMtOS00LTktOSw0LTksOS05LDksNCw5LDl6IiBmaWxsPSIjMDEwMTAxIi8+PHBhdGggZD0ibTkxLDE4YzAsNS00LDktOSw5cy05LTQtOS05LDQtOSw5LTksOSw0LDksOXoiIGZpbGw9InVybCgjYikiLz48cGF0aCBkPSJtOTEsMThjMCw1LTQsOS05LDlzLTktNC05LTksNC05LDktOSw5LDQsOSw5eiIgZmlsbD0iIzAxMDEwMSIvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJtMzksNjJjMCwxNiw4LDMwLDIwLDM4LDctNiwxMi0xNiwxMi0yNlY0OWMwLTQsMy03LDYtOGw0Ni0xMmM1LTEsMTEsMywxMSw4djMxYzAsMzctMzAsNjYtNjYsNjYtMzcsMC02Ni0zMC02Ni02NlY0NmMwLTQsMy03LDYtOGwyMC02YzUtMSwxMSwzLDExLDh2MjF6bS0yOSw2YzAsMTYsNiwzMCwxNyw0MCwzLDEsNSwxLDgsMSw1LDAsMTAtMSwxNS0zQzM3LDk1LDI5LDc5LDI5LDYyVjQybC0xOSw1djIweiIgZmlsbD0idXJsKCNjKSIvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJtMzksNjJjMCwxNiw4LDMwLDIwLDM4LDctNiwxMi0xNiwxMi0yNlY0OWMwLTQsMy03LDYtOGw0Ni0xMmM1LTEsMTEsMywxMSw4djMxYzAsMzctMzAsNjYtNjYsNjYtMzcsMC02Ni0zMC02Ni02NlY0NmMwLTQsMy03LDYtOGwyMC02YzUtMSwxMSwzLDExLDh2MjF6bS0yOSw2YzAsMTYsNiwzMCwxNyw0MCwzLDEsNSwxLDgsMSw1LDAsMTAtMSwxNS0zQzM3LDk1LDI5LDc5LDI5LDYyVjQybC0xOSw1djIweiIgZmlsbD0iIzAxMDEwMSIvPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9Ijg0IiB5MT0iNDEiIHgyPSI3NSIgeTI9IjEyMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZTJlMmUiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDE9Ijg0IiB5MT0iNDEiIHgyPSI3NSIgeTI9IjEyMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZTJlMmUiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYyIgeDE9Ijg0IiB5MT0iNDEiIHgyPSI3NSIgeTI9IjEyMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZTJlMmUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48L3N2Zz4=&amp;labelColor=white.png" alt="OpenDataLab"></a> <a href="https://www.modelscope.cn/studios/OpenDataLab/MinerU"><img data-src="https://img.shields.io/badge/Demo_on_ModelScope-purple?logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIzIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KCiA8Zz4KICA8dGl0bGU+TGF5ZXIgMTwvdGl0bGU+CiAgPHBhdGggaWQ9InN2Z18xNCIgZmlsbD0iIzYyNGFmZiIgZD0ibTAsODkuODRsMjUuNjUsMGwwLDI1LjY0OTk5bC0yNS42NSwwbDAsLTI1LjY0OTk5eiIvPgogIDxwYXRoIGlkPSJzdmdfMTUiIGZpbGw9IiM2MjRhZmYiIGQ9Im05OS4xNCwxMTUuNDlsMjUuNjUsMGwwLDI1LjY1bC0yNS42NSwwbDAsLTI1LjY1eiIvPgogIDxwYXRoIGlkPSJzdmdfMTYiIGZpbGw9IiM2MjRhZmYiIGQ9Im0xNzYuMDksMTQxLjE0bC0yNS42NDk5OSwwbDAsMjIuMTlsNDcuODQsMGwwLC00Ny44NGwtMjIuMTksMGwwLDI1LjY1eiIvPgogIDxwYXRoIGlkPSJzdmdfMTciIGZpbGw9IiMzNmNmZDEiIGQ9Im0xMjQuNzksODkuODRsMjUuNjUsMGwwLDI1LjY0OTk5bC0yNS42NSwwbDAsLTI1LjY0OTk5eiIvPgogIDxwYXRoIGlkPSJzdmdfMTgiIGZpbGw9IiMzNmNmZDEiIGQ9Im0wLDY0LjE5bDI1LjY1LDBsMCwyNS42NWwtMjUuNjUsMGwwLC0yNS42NXoiLz4KICA8cGF0aCBpZD0ic3ZnXzE5IiBmaWxsPSIjNjI0YWZmIiBkPSJtMTk4LjI4LDg5Ljg0bDI1LjY0OTk5LDBsMCwyNS42NDk5OWwtMjUuNjQ5OTksMGwwLC0yNS42NDk5OXoiLz4KICA8cGF0aCBpZD0ic3ZnXzIwIiBmaWxsPSIjMzZjZmQxIiBkPSJtMTk4LjI4LDY0LjE5bDI1LjY0OTk5LDBsMCwyNS42NWwtMjUuNjQ5OTksMGwwLC0yNS42NXoiLz4KICA8cGF0aCBpZD0ic3ZnXzIxIiBmaWxsPSIjNjI0YWZmIiBkPSJtMTUwLjQ0LDQybDAsMjIuMTlsMjUuNjQ5OTksMGwwLDI1LjY1bDIyLjE5LDBsMCwtNDcuODRsLTQ3Ljg0LDB6Ii8+CiAgPHBhdGggaWQ9InN2Z18yMiIgZmlsbD0iIzM2Y2ZkMSIgZD0ibTczLjQ5LDg5Ljg0bDI1LjY1LDBsMCwyNS42NDk5OWwtMjUuNjUsMGwwLC0yNS42NDk5OXoiLz4KICA8cGF0aCBpZD0ic3ZnXzIzIiBmaWxsPSIjNjI0YWZmIiBkPSJtNDcuODQsNjQuMTlsMjUuNjUsMGwwLC0yMi4xOWwtNDcuODQsMGwwLDQ3Ljg0bDIyLjE5LDBsMCwtMjUuNjV6Ii8+CiAgPHBhdGggaWQ9InN2Z18yNCIgZmlsbD0iIzYyNGFmZiIgZD0ibTQ3Ljg0LDExNS40OWwtMjIuMTksMGwwLDQ3Ljg0bDQ3Ljg0LDBsMCwtMjIuMTlsLTI1LjY1LDBsMCwtMjUuNjV6Ii8+CiA8L2c+Cjwvc3ZnPg==&amp;labelColor=white.png" alt="ModelScope"></a> <a href="https://huggingface.co/spaces/opendatalab/MinerU"><img data-src="https://img.shields.io/badge/Demo_on_HuggingFace-yellow.svg?logo=data:image/png;base64,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&amp;labelColor=white.png" alt="HuggingFace"></a> <a href="https://colab.research.google.com/gist/myhloli/a3cb16570ab3cfeadf9d8f0ac91b4fca/mineru_demo.ipynb"><img data-src="https://colab.research.google.com/assets/colab-badge.svg" alt="Colab"></a> <a href="https://arxiv.org/abs/2409.18839"><img data-src="https://img.shields.io/badge/MinerU-Technical%20Report-b31b1b.svg?logo=arXiv" alt="arXiv"></a> <a href="https://arxiv.org/abs/2509.22186"><img data-src="https://img.shields.io/badge/MinerU2.5-Technical%20Report-b31b1b.svg?logo=arXiv" alt="arXiv"></a> <a href="https://arxiv.org/abs/2604.04771"><img data-src="https://img.shields.io/badge/MinerU2.5%20Pro-Technical%20Report-b31b1b.svg?logo=arXiv" alt="arXiv"></a> <a href="https://deepwiki.com/opendatalab/MinerU"><img data-src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a></p>
+<p><a href="https://trendshift.io/repositories/11174" target="_blank"><img src="https://trendshift.io/api/badge/repositories/11174" alt="opendatalab%2FMinerU | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"></a></p>
+<!-- language -->
+<p><a href="README.md">English</a> | <a href="../../ref/MinerU-master/README_zh-CN.html">简体中文</a></p>
+<!-- hot link -->
+<p align="center">
+🚀<a href="https://mineru.net/?source=github">MinerU 官网入口→✅ 免装在线版 ✅ 全功能客户端 ✅ 开发者API在线调用，省去部署麻烦，多种产品形态一键get，速冲！</a>
+</p>
+<!-- join us -->
+<p align="center">
+👋 join us on <a href="https://discord.gg/Tdedn9GTXq" target="_blank">Discord</a> and <a href="https://mineru.net/community-portal/?aliasId=3c430f94" target="_blank">WeChat</a>
+</p>
+</div>
+<details>
+<summary>
+MinerU — 专为 LLM · RAG · Agent 场景构建的高精度文档解析引擎
+</summary>
+<p>将 PDF · DOCX · PPTX · XLSX · 图片 · 网页转为结构化 Markdown / JSON · VLM+OCR 双引擎 · 109 种语言 <br> MCP Server · LangChain / Dify / FastGPT 原生集成 · 10+ 国产算力适配 <br></p>
+<p><strong>🔍 核心解析能力</strong> - 原生支持 <code>DOCX</code>、<code>PPTX</code>、<code>XLSX</code> 解析 - 公式 → LaTeX · 表格 → HTML，精准还原复杂版面 - 支持扫描件、手写体、多栏布局、跨页表格合并 - 输出符合人类阅读顺序，自动去除页眉页脚 - VLM + OCR 双引擎，支持 109 种语言识别</p>
+<p><strong>🔌 接入方式</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>场景</th>
+<th>方案</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>AI 编程工具</td>
+<td>MCP Server — Cursor · Claude Desktop · Windsurf</td>
+</tr>
+<tr class="even">
+<td>RAG 框架</td>
+<td>LangChain · LlamaIndex · RAGFlow · RAG-Anything · Flowise · Dify · FastGPT</td>
+</tr>
+<tr class="odd">
+<td>开发集成</td>
+<td>Python / Go / TypeScript SDK · CLI · REST API · Docker</td>
+</tr>
+<tr class="even">
+<td>零代码</td>
+<td>mineru.net 在线版 · Gradio WebUI · 桌面客户端</td>
+</tr>
+</tbody>
+</table>
+<p><strong>🖥️ 部署生态（支持私有化 · 完全离线）</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>推理后端</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>pipeline</td>
+<td>快速稳定，无幻觉，CPU / GPU 均可运行</td>
+</tr>
+<tr class="even">
+<td>vlm-engine</td>
+<td>高精度，支持 vLLM / LMdeploy / mlx 生态</td>
+</tr>
+<tr class="odd">
+<td>hybrid-engine</td>
+<td>高精度，原生文本提取，低幻觉</td>
+</tr>
+</tbody>
+</table>
+<p>国产算力：昇腾 · 寒武纪 · 燧原 · 沐曦 · 摩尔线程 · 昆仑芯 · 天数智芯 · 瀚博 · 太初元碁 · 海光 · 平头哥</p>
+</details>
+</section>
+<section id="更新记录" class="title-slide slide level1 center">
+<h1>更新记录</h1>
+<ul>
+<li><p>2026/04/18 3.1.0 发布</p>
+<p>本次版本更新聚焦于<strong>许可协议开放性、解析精度提升与全格式原生支持</strong>。主要更新内容包括：</p>
+<ul>
+<li>许可协议升级
+<ul>
+<li>MinerU 已正式从 <code>AGPLv3</code> 切换至基于 <code>Apache 2.0</code> 的 <a href="https://github.com/opendatalab/MinerU/blob/master/LICENSE.md">MinerU 开源许可证</a>。</li>
+<li>新的许可方式在兼顾开源协作与商业落地的同时，进一步降低了社区使用和商业化接入门槛，让 MinerU 更容易融入真实业务流程。</li>
+</ul></li>
+<li>VLM 主模型升级
+<ul>
+<li>VLM 主模型正式切换为 <code>MinerU2.5-Pro-2604-1.2B</code>，整体解析精度提升至业内领先水平。</li>
+<li>新模型现已支持子图切分合并、图像与图表解析、截断段落合并、跨页面表格合并以及表格内图像识别，复杂版面场景下的解析能力进一步增强。</li>
+</ul></li>
+<li>全格式原生解析支持
+<ul>
+<li>新增 <code>PPTX</code> 与 <code>XLSX</code> 原生解析能力。</li>
+<li>至此，MinerU 已完整支持图片、<code>PDF</code>、<code>DOCX</code>、<code>PPTX</code>、<code>XLSX</code> 全格式解析，为多类型文档统一处理提供了更完整的能力闭环。</li>
+</ul></li>
+</ul>
+<p>通过 3.1.0 版本，MinerU 在开放性、解析精度和落地能力上进一步提升。新的许可协议降低了社区使用和商业接入门槛，<code>MinerU2.5-Pro-2604-1.2B</code> 提升了复杂内容的解析质量，而 <code>PPTX</code> 与 <code>XLSX</code> 原生解析的补齐，也让 MinerU 完成了主流文档格式的端到端覆盖。</p></li>
+<li><p>2026/03/29 3.0.0 发布</p>
+<p>本次版本更新围绕<strong>解析能力、系统架构与工程可用性</strong>进行了系统升级。主要更新内容包括：</p>
+<ul>
+<li><code>DOCX</code> 原生解析
+<ul>
+<li>正式支持 <code>DOCX</code> 原生解析，在无幻觉前提下实现高精度解析。</li>
+<li>相较于“先将 <code>DOCX</code> 转为 <code>PDF</code> 再解析”的传统流程，端到端速度提升数十倍以上，更适合对精度与吞吐均有要求的场景。</li>
+</ul></li>
+<li><code>pipeline</code> 后端升级
+<ul>
+<li><code>pipeline</code> 后端在 OmniDocBench (v1.5) 上取得 <code>86.2</code> 分，精度超过上一代主流 VLM <code>MinerU2.0-2505-0.9B</code>。</li>
+<li>新增表格内图片/公式解析、印章文字识别、竖排文本支持、行间公式序号识别等能力，持续提升复杂文档场景下的解析效果。</li>
+<li>在保持高精度的同时，资源占用极低，并继续支持纯 CPU 环境推理。</li>
+</ul></li>
+<li><code>API / CLI / Router</code> 编排升级
+<ul>
+<li><code>mineru</code> 现作为基于 <code>mineru-api</code> 的编排客户端运行；在未传入 <code>--api-url</code> 时，会自动拉起本地临时服务。</li>
+<li><code>mineru-api</code> 新增异步任务接口 <code>POST /tasks</code>，支持任务提交、状态查询与结果获取；同时保留同步解析接口 <code>POST /file_parse</code>，以兼容老版本插件。</li>
+<li>新增 <code>mineru-router</code>，适用于多服务、多 GPU 的统一入口部署与任务路由；其接口与 <code>mineru-api</code> 完全兼容，并支持任务自动负载均衡。</li>
+</ul></li>
+<li>部署与使用体验优化
+<ul>
+<li>解决了 <code>torch &gt;= 2.8</code> 的兼容问题，基础镜像升级为 <code>vllm0.11.2 + torch2.9.0</code>，统一了不同 Compute Capability 的安装路径。</li>
+<li>通过滑动窗口优化解析链路，显著降低长文档场景下的内存峰值占用，上万页文档解析不再需要手动拆分。</li>
+<li><code>pipeline</code> 的 batch 推理支持流式落盘，已完成的解析结果可及时写出，进一步提升长任务处理体验。</li>
+<li>完成线程安全优化，全面支持多线程并发推理；配合 <code>mineru-router</code>，可一键实现多卡部署，轻松构建高并发、高吞吐解析系统。</li>
+<li>完全移除了两个 AGPLv3 模型（<code>doclayoutyolo</code> 和 <code>mfd_yolov8</code>）以及一个 CC-BY-NC-SA 4.0 模型（<code>layoutreader</code>）的使用。</li>
+</ul></li>
+</ul>
+<p>本次更新不仅是若干功能点的补强，更是 MinerU 在系统能力上的一次关键跃迁。我们重点解决了长文档解析过程中的内存峰值占用问题，通过滑动窗口、流式落盘等链路优化，让超长文档解析从“需要手动拆分、谨慎处理”走向“稳定可跑、规模可扩展”。同时，我们完成了线程安全优化，全面支持多线程并发推理，进一步提升了单机资源利用率与高并发场景下的运行稳定性。在此基础上，基于 mineru-router 与全新的 API / CLI 编排体系，MinerU 已具备一键多卡部署、多服务统一接入、任务自动负载均衡的能力，显著降低了大规模部署难度。至此，MinerU 正在从单一的数据生产工具，进一步演进为面向高并发、高吞吐场景的大规模文档解析基座，为企业级文档数据处理提供更稳定、更高效、更易扩展的基础设施能力。</p></li>
+</ul>
+<blockquote>
+<p>📝 查看完整的 <a href="https://opendatalab.github.io/MinerU/zh/reference/changelog/">更新日志</a> 了解更多历史版本信息</p>
+</blockquote>
+</section>
+
+<section>
+<section id="mineru" class="title-slide slide level1 center">
+<h1>MinerU</h1>
+
+</section>
+<section id="项目简介" class="slide level2">
+<h2>项目简介</h2>
+<p>MinerU 是一款文档解析工具，可将 <code>PDF</code>、图片以及 <code>DOCX</code>、<code>PPTX</code>、<code>XLSX</code> 转化为机器可读格式（如 Markdown、JSON），便于后续检索、抽取与二次处理。 MinerU诞生于<a href="https://github.com/InternLM/InternLM">书生-浦语</a>的预训练过程中，我们将会集中精力解决科技文献中的符号转化问题，希望在大模型时代为科技发展做出贡献。 相比国内外知名商用产品MinerU还很年轻，如果遇到问题或者结果不及预期请到<a href="https://github.com/opendatalab/MinerU/issues">issue</a>提交问题，同时<strong>附上相关文档或样例文件</strong>。</p>
+<p>https://github.com/user-attachments/assets/4bea02c9-6d54-4cd6-97ed-dff14340982c</p>
+</section>
+<section id="主要功能" class="slide level2">
+<h2>主要功能</h2>
+<ul>
+<li>支持 <code>PDF</code>、图片与 <code>DOCX</code>、<code>PPTX</code>、<code>XLSX</code> 输入</li>
+<li>删除页眉、页脚、脚注、页码等元素，确保语义连贯</li>
+<li>输出符合人类阅读顺序的文本，适用于单栏、多栏及复杂排版</li>
+<li>保留原文档的结构，包括标题、段落、列表等</li>
+<li>提取图像、图片描述、表格、表格标题及脚注</li>
+<li>自动识别并转换文档中的公式为LaTeX格式</li>
+<li>自动识别并转换文档中的表格为HTML格式</li>
+<li>自动检测扫描版PDF和乱码PDF，并启用OCR功能</li>
+<li>OCR支持109种语言的检测与识别</li>
+<li>支持多种输出格式，如多模态与NLP的Markdown、按阅读顺序排序的JSON、含有丰富信息的中间格式等</li>
+<li>支持多种可视化结果，包括layout可视化、span可视化等，便于高效确认输出效果与质检</li>
+<li>内置命令行、FastAPI、Gradio WebUI，支持本地编排和多服务部署</li>
+<li>支持纯CPU环境运行，并支持 GPU/MPS加速，以及十余款国产算力平台的推理加速</li>
+<li>兼容Windows、Linux和Mac平台</li>
+</ul>
+</section></section>
+<section>
+<section id="快速开始" class="title-slide slide level1 center">
+<h1>快速开始</h1>
+<p>文档解析是困难且复杂的任务，尤其是对于复杂版面、扫描件、手写体等场景，解析结果可能不尽如人意。我们建议您先使用在线体验评估 MinerU 的解析效果和适用性，再根据实际需求选择合适的部署方式。 如果您有解析效果不佳的<strong>文档</strong>样例，欢迎提交上传到 <a href="https://github.com/opendatalab/MinerU/issues">issue</a>，我们会持续优化解析能力。 如果安装或使用中遇到任何问题，请先查询 <a href="#faq">FAQ</a></p>
+</section>
+<section id="在线体验" class="slide level2">
+<h2>在线体验</h2>
+<h3 id="官网在线应用">官网在线应用</h3>
+<p>官网在线版功能与客户端一致，界面美观，功能丰富，需要登录使用</p>
+<ul>
+<li><a href="https://mineru.net/OpenSourceTools/Extractor?source=github"><img data-src="https://img.shields.io/badge/webapp_on_mineru.net-blue?logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTM0IiBoZWlnaHQ9IjEzNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJtMTIyLDljMCw1LTQsOS05LDlzLTktNC05LTksNC05LDktOSw5LDQsOSw5eiIgZmlsbD0idXJsKCNhKSIvPjxwYXRoIGQ9Im0xMjIsOWMwLDUtNCw5LTksOXMtOS00LTktOSw0LTksOS05LDksNCw5LDl6IiBmaWxsPSIjMDEwMTAxIi8+PHBhdGggZD0ibTkxLDE4YzAsNS00LDktOSw5cy05LTQtOS05LDQtOSw5LTksOSw0LDksOXoiIGZpbGw9InVybCgjYikiLz48cGF0aCBkPSJtOTEsMThjMCw1LTQsOS05LDlzLTktNC05LTksNC05LDktOSw5LDQsOSw5eiIgZmlsbD0iIzAxMDEwMSIvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJtMzksNjJjMCwxNiw4LDMwLDIwLDM4LDctNiwxMi0xNiwxMi0yNlY0OWMwLTQsMy03LDYtOGw0Ni0xMmM1LTEsMTEsMywxMSw4djMxYzAsMzctMzAsNjYtNjYsNjYtMzcsMC02Ni0zMC02Ni02NlY0NmMwLTQsMy03LDYtOGwyMC02YzUtMSwxMSwzLDExLDh2MjF6bS0yOSw2YzAsMTYsNiwzMCwxNyw0MCwzLDEsNSwxLDgsMSw1LDAsMTAtMSwxNS0zQzM3LDk1LDI5LDc5LDI5LDYyVjQybC0xOSw1djIweiIgZmlsbD0idXJsKCNjKSIvPjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJtMzksNjJjMCwxNiw4LDMwLDIwLDM4LDctNiwxMi0xNiwxMi0yNlY0OWMwLTQsMy03LDYtOGw0Ni0xMmM1LTEsMTEsMywxMSw4djMxYzAsMzctMzAsNjYtNjYsNjYtMzcsMC02Ni0zMC02Ni02NlY0NmMwLTQsMy03LDYtOGwyMC02YzUtMSwxMSwzLDExLDh2MjF6bS0yOSw2YzAsMTYsNiwzMCwxNyw0MCwzLDEsNSwxLDgsMSw1LDAsMTAtMSwxNS0zQzM3LDk1LDI5LDc5LDI5LDYyVjQybC0xOSw1djIweiIgZmlsbD0iIzAxMDEwMSIvPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9Ijg0IiB5MT0iNDEiIHgyPSI3NSIgeTI9IjEyMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZTJlMmUiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYiIgeDE9Ijg0IiB5MT0iNDEiIHgyPSI3NSIgeTI9IjEyMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZTJlMmUiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYyIgeDE9Ijg0IiB5MT0iNDEiIHgyPSI3NSIgeTI9IjEyMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyZTJlMmUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48L3N2Zz4=&amp;labelColor=white.png" alt="OpenDataLab"></a></li>
+</ul>
+<h3 id="基于gradio的在线demo">基于Gradio的在线demo</h3>
+<p>基于gradio开发的webui，界面简洁，仅包含核心解析功能，免登录</p>
+<ul>
+<li><a href="https://www.modelscope.cn/studios/OpenDataLab/MinerU"><img data-src="https://img.shields.io/badge/Demo_on_ModelScope-purple?logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIzIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KCiA8Zz4KICA8dGl0bGU+TGF5ZXIgMTwvdGl0bGU+CiAgPHBhdGggaWQ9InN2Z18xNCIgZmlsbD0iIzYyNGFmZiIgZD0ibTAsODkuODRsMjUuNjUsMGwwLDI1LjY0OTk5bC0yNS42NSwwbDAsLTI1LjY0OTk5eiIvPgogIDxwYXRoIGlkPSJzdmdfMTUiIGZpbGw9IiM2MjRhZmYiIGQ9Im05OS4xNCwxMTUuNDlsMjUuNjUsMGwwLDI1LjY1bC0yNS42NSwwbDAsLTI1LjY1eiIvPgogIDxwYXRoIGlkPSJzdmdfMTYiIGZpbGw9IiM2MjRhZmYiIGQ9Im0xNzYuMDksMTQxLjE0bC0yNS42NDk5OSwwbDAsMjIuMTlsNDcuODQsMGwwLC00Ny44NGwtMjIuMTksMGwwLDI1LjY1eiIvPgogIDxwYXRoIGlkPSJzdmdfMTciIGZpbGw9IiMzNmNmZDEiIGQ9Im0xMjQuNzksODkuODRsMjUuNjUsMGwwLDI1LjY0OTk5bC0yNS42NSwwbDAsLTI1LjY0OTk5eiIvPgogIDxwYXRoIGlkPSJzdmdfMTgiIGZpbGw9IiMzNmNmZDEiIGQ9Im0wLDY0LjE5bDI1LjY1LDBsMCwyNS42NWwtMjUuNjUsMGwwLC0yNS42NXoiLz4KICA8cGF0aCBpZD0ic3ZnXzE5IiBmaWxsPSIjNjI0YWZmIiBkPSJtMTk4LjI4LDg5Ljg0bDI1LjY0OTk5LDBsMCwyNS42NDk5OWwtMjUuNjQ5OTksMGwwLC0yNS42NDk5OXoiLz4KICA8cGF0aCBpZD0ic3ZnXzIwIiBmaWxsPSIjMzZjZmQxIiBkPSJtMTk4LjI4LDY0LjE5bDI1LjY0OTk5LDBsMCwyNS42NWwtMjUuNjQ5OTksMGwwLC0yNS42NXoiLz4KICA8cGF0aCBpZD0ic3ZnXzIxIiBmaWxsPSIjNjI0YWZmIiBkPSJtMTUwLjQ0LDQybDAsMjIuMTlsMjUuNjQ5OTksMGwwLDI1LjY1bDIyLjE5LDBsMCwtNDcuODRsLTQ3Ljg0LDB6Ii8+CiAgPHBhdGggaWQ9InN2Z18yMiIgZmlsbD0iIzM2Y2ZkMSIgZD0ibTczLjQ5LDg5Ljg0bDI1LjY1LDBsMCwyNS42NDk5OWwtMjUuNjUsMGwwLC0yNS42NDk5OXoiLz4KICA8cGF0aCBpZD0ic3ZnXzIzIiBmaWxsPSIjNjI0YWZmIiBkPSJtNDcuODQsNjQuMTlsMjUuNjUsMGwwLC0yMi4xOWwtNDcuODQsMGwwLDQ3Ljg0bDIyLjE5LDBsMCwtMjUuNjV6Ii8+CiAgPHBhdGggaWQ9InN2Z18yNCIgZmlsbD0iIzYyNGFmZiIgZD0ibTQ3Ljg0LDExNS40OWwtMjIuMTksMGwwLDQ3Ljg0bDQ3Ljg0LDBsMCwtMjIuMTlsLTI1LjY1LDBsMCwtMjUuNjV6Ii8+CiA8L2c+Cjwvc3ZnPg==&amp;labelColor=white.png" alt="ModelScope"></a></li>
+<li><a href="https://huggingface.co/spaces/opendatalab/MinerU"><img data-src="https://img.shields.io/badge/Demo_on_HuggingFace-yellow.svg?logo=data:image/png;base64,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&amp;labelColor=white.png" alt="HuggingFace"></a></li>
+</ul>
+</section>
+<section id="本地部署" class="slide level2">
+<h2>本地部署</h2>
+<blockquote>
+<p>[!WARNING] <strong>安装前必看——软硬件环境支持说明</strong></p>
+<p>为了确保项目的稳定性和可靠性，我们在开发过程中仅对特定的软硬件环境进行优化和测试。这样当用户在推荐的系统配置上部署和运行项目时，能够获得最佳的性能表现和最少的兼容性问题。</p>
+<p>通过集中资源和精力于主线环境，我们团队能够更高效地解决潜在的BUG，及时开发新功能。</p>
+<p>在非主线环境中，由于硬件、软件配置的多样性，以及第三方依赖项的兼容性问题，我们无法100%保证项目的完全可用性。因此，对于希望在非推荐环境中使用本项目的用户，我们建议先仔细阅读文档以及FAQ，大多数问题已经在FAQ中有对应的解决方案，除此之外我们鼓励社区反馈问题，以便我们能够逐步扩大支持范围。</p>
+</blockquote>
+<pre><code>&lt;tr&gt;
+  &lt;th&gt;GPU加速支持&lt;/th&gt;
+  &lt;td colspan="4" style="text-align:center;"&gt;Volta及以后架构GPU或Apple Silicon&lt;/td&gt;
+  &lt;td rowspan="2"&gt;不需要&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;显存最低要求&lt;/th&gt;
+  &lt;td style="text-align:center;"&gt;4GB&lt;/td&gt;
+  &lt;td style="text-align:center;"&gt;8GB&lt;/td&gt;
+  &lt;td style="text-align:center;"&gt;8GB&lt;/td&gt;
+  &lt;td style="text-align:center;"&gt;2GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;内存要求&lt;/th&gt;
+  &lt;td colspan="3" style="text-align:center;"&gt;最低16GB以上,推荐32GB以上&lt;/td&gt;
+  &lt;td colspan="2" style="text-align:center;"&gt;最低16GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;磁盘空间要求&lt;/th&gt;
+  &lt;td colspan="3" style="text-align:center;"&gt;20GB以上,推荐使用SSD&lt;/td&gt;
+  &lt;td colspan="2" style="text-align:center;"&gt;至少2GB&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+  &lt;th&gt;python版本&lt;/th&gt;
+  &lt;td colspan="5" style="text-align:center;"&gt;3.10-3.13&lt;/td&gt;
+&lt;/tr&gt;</code></pre><table>
+<thead>
+<tr>
+<th rowspan="2">
+解析后端
+</th>
+<th rowspan="2">
+pipeline
+</th>
+<th colspan="2">
+*-auto-engine
+</th>
+<th colspan="2">
+*-http-client
+</th>
+</tr>
+<tr>
+<th>
+hybrid
+</th>
+<th>
+vlm
+</th>
+<th>
+hybrid
+</th>
+<th>
+vlm
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>
+后端特性
+</th>
+<td>
+兼容性好
+</td>
+<td colspan="2">
+硬件配置要求较高
+</td>
+<td colspan="2">
+适用于OpenAI兼容服务器<sup>2</sup>
+</td>
+</tr>
+<tr>
+<th>
+精度指标<sup>1</sup>
+</th>
+<td style="text-align:center;">
+85+
+</td>
+<td colspan="4" style="text-align:center;">
+95+
+</td>
+</tr>
+<tr>
+<th>
+操作系统
+</th>
+<td colspan="5" style="text-align:center;">
+Linux<sup>3</sup> / Windows<sup>4</sup> / macOS<sup>5</sup>
+</td>
+</tr>
+<tr>
+<th>
+纯CPU平台支持
+</th>
+<td style="text-align:center;">
+✅
+</td>
+<td colspan="2" style="text-align:center;">
+❌
+</td>
+<td colspan="2" style="text-align:center;">
+✅
+</td>
+</tr>
+
+</tbody>
+</table>
+<p><sup>1</sup> 精度指标为OmniDocBench (v1.6)的End-to-End Evaluation Overall分数，基于<code>MinerU</code>最新版本测试<br>
+<sup>2</sup> 兼容OpenAI API的服务器，如通过<code>vLLM</code>/<code>SGLang</code>/<code>LMDeploy</code>等推理框架部署的本地模型服务器或远程模型服务<br>
+<sup>3</sup> Linux仅支持2019年及以后发行版<br>
+<sup>4</sup> 由于关键依赖<code>ray</code>未能在windows平台支持Python 3.13，故仅支持至3.10~3.12版本<br>
+<sup>5</sup> macOS 需使用14.0以上版本</p>
+<blockquote>
+<p>[!TIP] 除以上主流环境与平台外，我们也收录了一些社区用户反馈的其他平台支持情况，详情请参考<a href="https://opendatalab.github.io/MinerU/zh/usage/">其他加速卡适配</a>。<br>
+如果您有意将自己的环境适配经验分享给社区，欢迎通过<a href="https://github.com/opendatalab/MinerU/discussions/categories/show-and-tell">show-and-tell</a>提交或提交PR至<a href="https://github.com/opendatalab/MinerU/tree/master/docs/zh/usage/acceleration_cards">其他加速卡适配</a>文档。</p>
+</blockquote>
+<h3 id="安装-mineru">安装 MinerU</h3>
+<h4 id="使用pip或uv安装mineru">使用pip或uv安装MinerU</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a></a><span class="ex">pip</span> install <span class="at">--upgrade</span> pip <span class="at">-i</span> https://mirrors.aliyun.com/pypi/simple</span>
+<span id="cb2-2"><a></a><span class="ex">pip</span> install uv <span class="at">-i</span> https://mirrors.aliyun.com/pypi/simple</span>
+<span id="cb2-3"><a></a><span class="ex">uv</span> pip install <span class="at">-U</span> <span class="st">"mineru[all]"</span> <span class="at">-i</span> https://mirrors.aliyun.com/pypi/simple </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<h4 id="通过源码安装mineru">通过源码安装MinerU</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="fu">git</span> clone https://github.com/opendatalab/MinerU.git</span>
+<span id="cb3-2"><a></a><span class="bu">cd</span> MinerU</span>
+<span id="cb3-3"><a></a><span class="ex">uv</span> pip install <span class="at">-e</span> .<span class="pp">[</span><span class="ss">all</span><span class="pp">]</span> <span class="at">-i</span> https://mirrors.aliyun.com/pypi/simple</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote>
+<p>[!TIP] <code>mineru[all]</code>包含所有核心功能，兼容Windows / Linux / macOS系统，适合绝大多数用户。 如果您需要指定vlm模型的推理框架，或是仅准备在边缘设备安装轻量版client端，可以参考文档<a href="https://opendatalab.github.io/MinerU/zh/quick_start/extension_modules/">扩展模块安装指南</a>。</p>
+</blockquote>
+</section>
+<section class="slide level2">
+
+<h4 id="使用docker部署mineru">使用docker部署Mineru</h4>
+<p>MinerU提供了便捷的docker部署方式，这有助于快速搭建环境并解决一些棘手的环境兼容问题。</p>
+<blockquote>
+<p>[!TIP] - Docker 部署仅适用于 Linux，以及支持 WSL2 的 Windows 环境； - macOS 用户请直接参考前面两种方式部署安装，不要使用 Docker 部署。</p>
+</blockquote>
+<p>您可以在文档中获取<a href="https://opendatalab.github.io/MinerU/zh/quick_start/docker_deployment/">Docker部署说明</a>。</p>
+</section>
+<section class="slide level2">
+
+<h3 id="使用-mineru">使用 MinerU</h3>
+<blockquote>
+<p>[!TIP] 默认使用托管在<code>huggingface</code>的模型进行解析，首次使用时会自动下载所需模型文件，后续使用将直接加载本地缓存的模型。如果您无法访问<code>huggingface</code>，可以通过以下命令切换至国内镜像源:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="bu">export</span> <span class="va">MINERU_MODEL_SOURCE</span><span class="op">=</span>modelscope</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</blockquote>
+<p>如果您的设备满足上表中GPU加速的条件，可以使用简单的命令行进行文档解析:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a></a><span class="ex">mineru</span> <span class="at">-p</span> <span class="op">&lt;</span>input_path<span class="op">&gt;</span> -o <span class="op">&lt;</span>output_path<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如果您的设备不满足GPU加速条件，可以指定后端为<code>pipeline</code>，以在纯CPU环境下运行:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a></a><span class="ex">mineru</span> <span class="at">-p</span> <span class="op">&lt;</span>input_path<span class="op">&gt;</span> -o <span class="op">&lt;</span>output_path<span class="op">&gt;</span> -b pipeline</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>当前 <code>mineru</code> 支持本地 <code>PDF / 图片 / DOCX / PPTX / XLSX</code> 文件或目录输入，并可通过命令行、API、WebUI、<code>mineru-router</code> 等多种方式进行文档解析，具体使用方法请参考<a href="https://opendatalab.github.io/MinerU/zh/usage/">使用指南</a>。</p>
+</section></section>
+<section id="faq" class="title-slide slide level1 center">
+<h1>FAQ</h1>
+<ul>
+<li>如果您在使用过程中遇到问题，可以先查看<a href="https://opendatalab.github.io/MinerU/zh/faq/">常见问题</a>是否有解答。<br>
+</li>
+<li>如果未能解决您的问题，您也可以使用<a href="https://deepwiki.com/opendatalab/MinerU">DeepWiki</a>与AI助手交流，这可以解决大部分常见问题。<br>
+</li>
+<li>如果您仍然无法解决问题，您可通过<a href="https://discord.gg/Tdedn9GTXq">Discord</a>或<a href="https://mineru.net/community-portal/?aliasId=3c430f94">WeChat</a>加入社区，与其他用户和开发者交流。</li>
+</ul>
+</section>
+
+<section id="all-thanks-to-our-contributors" class="title-slide slide level1 center">
+<h1>All Thanks To Our Contributors</h1>
+<p><a href="https://github.com/opendatalab/MinerU/graphs/contributors"> <img src="https://contrib.rocks/image?repo=opendatalab/MinerU"> </a></p>
+</section>
+
+<section id="license-information" class="title-slide slide level1 center">
+<h1>License Information</h1>
+<p>本仓库采用 <a href="https://github.com/opendatalab/MinerU/blob/master/LICENSE.md">MinerU 开源许可证</a> 进行许可，基于 Apache 2.0 并附带额外条款。</p>
+</section>
+
+<section id="acknowledgments" class="title-slide slide level1 center">
+<h1>Acknowledgments</h1>
+<ul>
+<li><a href="https://github.com/opendatalab/UniMERNet">UniMERNet</a></li>
+<li><a href="https://github.com/RapidAI/TableStructureRec">TableStructureRec</a></li>
+<li><a href="https://github.com/PaddlePaddle/PaddleOCR">PaddleOCR</a></li>
+<li><a href="https://github.com/frotms/PaddleOCR2Pytorch">PaddleOCR2Pytorch</a></li>
+<li><a href="https://github.com/LlmKira/fast-langdetect">fast-langdetect</a></li>
+<li><a href="https://github.com/pypdfium2-team/pypdfium2">pypdfium2</a></li>
+<li><a href="https://github.com/datalab-to/pdftext">pdftext</a></li>
+<li><a href="https://github.com/pdfminer/pdfminer.six">pdfminer.six</a></li>
+<li><a href="https://github.com/py-pdf/pypdf">pypdf</a></li>
+<li><a href="https://github.com/google/magika">magika</a></li>
+<li><a href="https://github.com/vllm-project/vllm">vLLM</a></li>
+<li><a href="https://github.com/InternLM/lmdeploy">LMDeploy</a></li>
+</ul>
+</section>
+
+<section id="citation" class="title-slide slide level1 center">
+<h1>Citation</h1>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bibtex number-lines code-with-copy"><code class="sourceCode bibtex"><span id="cb7-1"><a></a><span class="va">@article</span>{<span class="ot">wang2026mineru2</span>,</span>
+<span id="cb7-2"><a></a>  <span class="dt">title</span>={MinerU2. 5-Pro: Pushing the Limits of Data-Centric Document Parsing at Scale},</span>
+<span id="cb7-3"><a></a>  <span class="dt">author</span>={Wang, Bin and He, Tianyao and Ouyang, Linke and Wu, Fan and Zhao, Zhiyuan and Chu, Tao and Qu, Yuan and Jin, Zhenjiang and Zeng, Weijun and Miao, Ziyang and others},</span>
+<span id="cb7-4"><a></a>  <span class="dt">journal</span>={arXiv preprint arXiv:2604.04771},</span>
+<span id="cb7-5"><a></a>  <span class="dt">year</span>={2026}</span>
+<span id="cb7-6"><a></a>}</span>
+<span id="cb7-7"><a></a></span>
+<span id="cb7-8"><a></a><span class="va">@article</span>{<span class="ot">dong2026minerudiffusion</span>,</span>
+<span id="cb7-9"><a></a>  <span class="dt">title</span>={MinerU-Diffusion: Rethinking Document OCR as Inverse Rendering via Diffusion Decoding},</span>
+<span id="cb7-10"><a></a>  <span class="dt">author</span>={Dong, Hejun and Niu, Junbo and Wang, Bin and Zeng, Weijun and Zhang, Wentao and He, Conghui},</span>
+<span id="cb7-11"><a></a>  <span class="dt">journal</span>={arXiv preprint arXiv:2603.22458},</span>
+<span id="cb7-12"><a></a>  <span class="dt">year</span>={2026}</span>
+<span id="cb7-13"><a></a>}</span>
+<span id="cb7-14"><a></a></span>
+<span id="cb7-15"><a></a><span class="va">@article</span>{<span class="ot">niu2025mineru2</span>,</span>
+<span id="cb7-16"><a></a>  <span class="dt">title</span>={Mineru2. 5: A decoupled vision-language model for efficient high-resolution document parsing},</span>
+<span id="cb7-17"><a></a>  <span class="dt">author</span>={Niu, Junbo and Liu, Zheng and Gu, Zhuangcheng and Wang, Bin and Ouyang, Linke and Zhao, Zhiyuan and Chu, Tao and He, Tianyao and Wu, Fan and Zhang, Qintong and others},</span>
+<span id="cb7-18"><a></a>  <span class="dt">journal</span>={arXiv preprint arXiv:2509.22186},</span>
+<span id="cb7-19"><a></a>  <span class="dt">year</span>={2025}</span>
+<span id="cb7-20"><a></a>}</span>
+<span id="cb7-21"><a></a></span>
+<span id="cb7-22"><a></a><span class="va">@article</span>{<span class="ot">wang2024mineru</span>,</span>
+<span id="cb7-23"><a></a>  <span class="dt">title</span>={Mineru: An open-source solution for precise document content extraction},</span>
+<span id="cb7-24"><a></a>  <span class="dt">author</span>={Wang, Bin and Xu, Chao and Zhao, Xiaomeng and Ouyang, Linke and Wu, Fan and Zhao, Zhiyuan and Xu, Rui and Liu, Kaiwen and Qu, Yuan and Shang, Fukai and others},</span>
+<span id="cb7-25"><a></a>  <span class="dt">journal</span>={arXiv preprint arXiv:2409.18839},</span>
+<span id="cb7-26"><a></a>  <span class="dt">year</span>={2024}</span>
+<span id="cb7-27"><a></a>}</span>
+<span id="cb7-28"><a></a></span>
+<span id="cb7-29"><a></a><span class="va">@article</span>{<span class="ot">he2024opendatalab</span>,</span>
+<span id="cb7-30"><a></a>  <span class="dt">title</span>={Opendatalab: Empowering general artificial intelligence with open datasets},</span>
+<span id="cb7-31"><a></a>  <span class="dt">author</span>={He, Conghui and Li, Wei and Jin, Zhenjiang and Xu, Chao and Wang, Bin and Lin, Dahua},</span>
+<span id="cb7-32"><a></a>  <span class="dt">journal</span>={arXiv preprint arXiv:2407.13773},</span>
+<span id="cb7-33"><a></a>  <span class="dt">year</span>={2024}</span>
+<span id="cb7-34"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+
+<section id="star-history" class="title-slide slide level1 center">
+<h1>Star History</h1>
+
+<img alt="Star History Chart" src="https://api.star-history.com/svg?repos=opendatalab/MinerU&amp;type=Date" class="r-stretch"></section>
+
+<section id="links" class="title-slide slide level1 center">
+<h1>Links</h1>
+<ul>
+<li><a href="https://github.com/OpenDCAI/DataFlow">Easy Data Preparation with latest LLMs-based Operators and Pipelines</a></li>
+<li><a href="https://github.com/opendatalab/Vis3">Vis3 (OSS browser based on s3)</a></li>
+<li><a href="https://github.com/opendatalab/labelU">LabelU (A Lightweight Multi-modal Data Annotation Tool)</a></li>
+<li><a href="https://github.com/opendatalab/LabelLLM">LabelLLM (An Open-source LLM Dialogue Annotation Platform)</a></li>
+<li><a href="https://github.com/opendatalab/PDF-Extract-Kit">PDF-Extract-Kit (A Comprehensive Toolkit for High-Quality PDF Content Extraction)</a></li>
+<li><a href="https://github.com/opendatalab/OmniDocBench">OmniDocBench (A Comprehensive Benchmark for Document Parsing and Evaluation)</a></li>
+<li><a href="https://github.com/opendatalab/magic-html">Magic-HTML (Mixed web page extraction tool)</a></li>
+<li><a href="https://github.com/InternLM/magic-doc">Magic-Doc (Fast speed ppt/pptx/doc/docx/pdf extraction tool)</a></li>
+<li><a href="https://github.com/MigoXLab/dingo">Dingo: A Comprehensive AI Data Quality Evaluation Tool</a></li>
+</ul>
+
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'visible',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

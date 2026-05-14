@@ -1,0 +1,283 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     10953,        273]
+NotebookOptionsPosition[     10451,        255]
+NotebookOutlinePosition[     10865,        272]
+CellTagsIndexPosition[     10822,        269]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "samplePoints", ",", "continuousPlot", ",", "reconstructedPlot", ",", 
+       RowBox[{"ws", "=", "6"}], ",", 
+       RowBox[{"(*", 
+        RowBox[{"\:8bbe\:5b9a\:91c7\:6837\:9891\:7387\:4e3a", " ", "6"}], 
+        "*)"}], 
+       RowBox[{"tMax", "=", 
+        RowBox[{"4", " ", "\[Pi]"}]}]}], "}"}], ",", 
+     RowBox[{"(*", 
+      RowBox[{"1.", " ", "\:8ba1\:7b97\:91c7\:6837\:70b9"}], "*)"}], 
+     RowBox[{
+      RowBox[{"samplePoints", "=", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"t", ",", 
+           RowBox[{"Sin", "[", 
+            RowBox[{"w0", " ", "t"}], "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "tMax", ",", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"2", " ", "\[Pi]"}], ")"}], "/", "ws"}]}], "}"}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{"2.", " ", "\:539f\:59cb\:4fe1\:53f7\:66f2\:7ebf", " ", 
+        RowBox[{"(", "\:5b9e\:7ebf", ")"}]}], "*)"}], 
+      RowBox[{"continuousPlot", "=", 
+       RowBox[{"Plot", "[", 
+        RowBox[{
+         RowBox[{"Sin", "[", 
+          RowBox[{"w0", " ", "t"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "tMax"}], "}"}], ",", 
+         RowBox[{"PlotStyle", "->", 
+          RowBox[{"{", 
+           RowBox[{"Black", ",", 
+            RowBox[{"Thickness", "[", "0.005", "]"}]}], "}"}]}], ",", 
+         RowBox[{"PlotLabel", "->", 
+          RowBox[{"Style", "[", 
+           
+           RowBox[{"\"\<Original vs Reconstructed Signal\>\"", ",", "14", ",",
+             "Bold"}], "]"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"3.", " ", "\:91cd\:5efa\:4fe1\:53f7\:66f2\:7ebf", " ", 
+         RowBox[{"(", "\:865a\:7ebf", ")"}]}], "-", 
+        "\:6a21\:62df\:4f4e\:901a\:6ee4\:6ce2\:91cd\:5efa\:7684\:6548\:679c"}]\
+, "*)"}], 
+      RowBox[{
+      "(*", "\:8fd9\:91cc\:7684\:7b97\:6cd5\:5bfb\:627e\:4e0e\:91c7\:6837\
+\:70b9\:5339\:914d\:7684\:6700\:7b80\:6b63\:5f26\:6ce2", "*)"}], 
+      RowBox[{"reconstructedPlot", "=", 
+       RowBox[{"Plot", "[", 
+        RowBox[{
+         RowBox[{"Sin", "[", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"Mod", "[", 
+              RowBox[{
+               RowBox[{"w0", "+", 
+                RowBox[{"ws", "/", "2"}]}], ",", "ws"}], "]"}], "-", 
+             RowBox[{"ws", "/", "2"}]}], ")"}], " ", "t"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "tMax"}], "}"}], ",", 
+         RowBox[{"PlotStyle", "->", 
+          RowBox[{"{", 
+           RowBox[{"Red", ",", "Dashed", ",", 
+            RowBox[{"Thickness", "[", "0.005", "]"}]}], "}"}]}]}], "]"}]}], ";",
+       "\[IndentingNewLine]", 
+      RowBox[{"Show", "[", 
+       RowBox[{"continuousPlot", ",", "reconstructedPlot", ",", 
+        RowBox[{"(*", 
+         RowBox[{
+         "\:7ed8\:5236\:91c7\:6837\:8109\:51b2", "/", "\:6837\:672c\:70b9"}], 
+         "*)"}], 
+        RowBox[{"ListPlot", "[", 
+         RowBox[{"samplePoints", ",", 
+          RowBox[{"Filling", "->", "Axis"}], ",", 
+          RowBox[{"PlotStyle", "->", 
+           RowBox[{"Directive", "[", 
+            RowBox[{
+             RowBox[{"PointSize", "[", "Large", "]"}], ",", "Blue"}], 
+            "]"}]}]}], "]"}], ",", 
+        RowBox[{"PlotRange", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", "tMax"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", "1.2"}], ",", "1.2"}], "}"}]}], "}"}]}], ",", 
+        RowBox[{"Frame", "->", "True"}], ",", 
+        RowBox[{"ImageSize", "->", "600"}], ",", 
+        RowBox[{"Epilog", "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Text", "[", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              RowBox[{
+               RowBox[{"\"\<Original: \\!\\(\[Omega]\\)_0 = \>\"", "<>", 
+                RowBox[{"ToString", "[", "w0", "]"}]}], ",", "12"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0.5", ",", "1.1"}], "}"}]}], "]"}], ",", 
+           RowBox[{"Text", "[", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<Sampling: \\!\\(\[Omega]\\)_s = 6\>\"", ",", "12", 
+               ",", "Blue"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"3.5", ",", "1.1"}], "}"}]}], "]"}], ",", 
+           RowBox[{"Text", "[", 
+            RowBox[{
+             RowBox[{"Style", "[", 
+              
+              RowBox[{"\"\<Reconstructed (Aliased)\>\"", ",", "12", ",", 
+               "Red"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"8", ",", "1.1"}], "}"}]}], "]"}]}], "}"}]}]}], 
+       "]"}]}]}], "]"}], ",", 
+   RowBox[{"(*", 
+    RowBox[{
+    "\:52a8\:6001\:8c03\:8282\:6309\:94ae", "\:ff0c", 
+     "\:5bf9\:5e94\:56fe\:4e2d\:56db\:4e2a\:5173\:952e\:70b9"}], "*)"}], 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "w0", ",", "1", ",", "\"\<Signal Frequency (\\!\\(\[Omega]\\)_0)\>\""}],
+       "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "->", "\"\<w_s/6 (a)\>\""}], ",", 
+       RowBox[{"2", "->", "\"\<2w_s/6 (b)\>\""}], ",", 
+       RowBox[{"4", "->", "\"\<4w_s/6 (c)\>\""}], ",", 
+       RowBox[{"5", "->", "\"\<5w_s/6 (d)\>\""}]}], "}"}], ",", 
+     RowBox[{"ControlType", "->", "SetterBar"}]}], "}"}], ",", 
+   RowBox[{
+   "(*", "\:4e5f\:53ef\:4ee5\:624b\:52a8\:8fde\:7eed\:8c03\:8282", "*)"}], 
+   RowBox[{"{", 
+    RowBox[{"w0", ",", "0.1", ",", "10", ",", 
+     RowBox[{"Appearance", "->", "\"\<Labeled\>\""}]}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.986159342484043*^9, 3.986159342484974*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"76f661c4-df50-4ac6-ba42-08ad5288fce8"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`w0$$ = 5, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`w0$$], 1, "Signal Frequency (\!\(\[Omega]\)_0)"}, {
+      1 -> "w_s/6 (a)", 2 -> "2w_s/6 (b)", 4 -> "4w_s/6 (c)", 5 -> 
+       "5w_s/6 (d)"}, ControlType -> SetterBar}, {
+      Hold[$CellContext`w0$$], 0.1, 10, ControlType -> Manipulator}}, 
+    Typeset`size$$ = {600., {190.5665261450061, 196.2984597387561}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = True, 
+    Typeset`keyframeActionsQ$$ = False, Typeset`keyframeList$$ = {}}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`w0$$ = 0.1}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$, Typeset`keyframeActionsQ$$, 
+        Typeset`keyframeList$$}, "Body" :> 
+      Module[{$CellContext`samplePoints$, $CellContext`continuousPlot$, \
+$CellContext`reconstructedPlot$, $CellContext`ws$ = 6, $CellContext`tMax$ = 
+         4 Pi}, $CellContext`samplePoints$ = Table[{$CellContext`t, 
+            Sin[$CellContext`w0$$ $CellContext`t]}, {$CellContext`t, 
+            0, $CellContext`tMax$, (2 
+             Pi)/$CellContext`ws$}]; $CellContext`continuousPlot$ = Plot[
+           
+           Sin[$CellContext`w0$$ $CellContext`t], {$CellContext`t, 
+            0, $CellContext`tMax$}, PlotStyle -> {Black, 
+             Thickness[0.005]}, PlotLabel -> 
+           Style["Original vs Reconstructed Signal", 14, 
+             Bold]]; $CellContext`reconstructedPlot$ = Plot[
+           
+           Sin[(Mod[$CellContext`w0$$ + $CellContext`ws$/
+                2, $CellContext`ws$] - $CellContext`ws$/
+             2) $CellContext`t], {$CellContext`t, 0, $CellContext`tMax$}, 
+           PlotStyle -> {Red, Dashed, 
+             Thickness[0.005]}]; 
+        Show[$CellContext`continuousPlot$, $CellContext`reconstructedPlot$, 
+          
+          ListPlot[$CellContext`samplePoints$, Filling -> Axis, PlotStyle -> 
+           Directive[
+             PointSize[Large], Blue]], 
+          PlotRange -> {{0, $CellContext`tMax$}, {-1.2, 1.2}}, Frame -> True, 
+          ImageSize -> 600, Epilog -> {
+            Text[
+             Style[
+             "Original: \!\(\[Omega]\)_0 = " <> ToString[$CellContext`w0$$], 
+              12], {0.5, 1.1}], 
+            Text[
+             Style["Sampling: \!\(\[Omega]\)_s = 6", 12, Blue], {3.5, 1.1}], 
+            Text[
+             Style["Reconstructed (Aliased)", 12, Red], {8, 1.1}]}]], 
+      "Specifications" :> {{{$CellContext`w0$$, 1, 
+          "Signal Frequency (\!\(\[Omega]\)_0)"}, {
+         1 -> "w_s/6 (a)", 2 -> "2w_s/6 (b)", 4 -> "4w_s/6 (c)", 5 -> 
+          "5w_s/6 (d)"}, ControlType -> SetterBar}, {$CellContext`w0$$, 0.1, 
+         10, Appearance -> "Labeled"}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{
+      649.0999999999999, {267.0567562475452, 272.7886898412952}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.986159343632251*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"62977597-cf98-45af-97af-84ebb0f2797e"]
+}, Open  ]]
+},
+WindowSize->{808, 821},
+WindowMargins->{{20, Automatic}, {-838, Automatic}},
+LightDark->"Light",
+FrontEndVersion->"14.3 for Mac OS X ARM (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"9185a225-00d2-499c-8237-574e944a5236"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 6002, 153, 415, "Input",ExpressionUUID->"76f661c4-df50-4ac6-ba42-08ad5288fce8"],
+Cell[6581, 177, 3854, 75, 556, "Output",ExpressionUUID->"62977597-cf98-45af-97af-84ebb0f2797e"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

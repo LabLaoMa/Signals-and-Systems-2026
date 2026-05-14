@@ -306,7 +306,7 @@ $y(t)=\sum_{k=0}^{3} \cos [2 k \pi t-\arctan (2 k \pi)]$
 对于以 $\omega_{0}$ 为中心的窄带输入信号 $x$，即
 
 $$
-X(j \omega)=0, \quad \text { 对于 }\left|\omega-\omega_{0}\right|>\Delta \omega, \text { 其中 } \Delta \omega \ll 1
+X(j \omega)=0, \quad \text {当 }\left|\omega-\omega_{0}\right|>\Delta \omega, \text { 其中 } \Delta \omega \ll 1
 $$
 
 对相位作线性近似
@@ -374,11 +374,11 @@ $$
 注意：**对实值 $h[n]$ ，仅需画出 $[0, \pi]$ 范围的 $H\left(e^{j \omega}\right)$**
 :::
 ::: {.column width="50%"}
-![](imglink/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32.png){width=45%}
+![](imglink/SampleBode.png){width=60%}
 
-![](imglink/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32_2.png){width=45%}
+<!-- ![](imglink/f3ae4a22-f536-42b2-a6e3-531457fc9a85-32_2.png){width=45%}
 
-![](imglink/f3ae4a22-f536-42b2-a6e3-531457fc9a85-34.png){width=45%}
+![](imglink/f3ae4a22-f536-42b2-a6e3-531457fc9a85-34.png){width=45%} -->
 :::
 ::::
 
@@ -1194,7 +1194,7 @@ $$
 ::: {.column width="35%"} 
 ![](imglink/2o_response.png){width=80% fig-align=center}
 
-$\zeta<0.707$时，幅频特性在 $\quad \omega_{n} \sqrt{1-2\zeta^2}$ 处出现峰值，峰值为$1/2\zeta \sqrt{1-2\zeta^2}$,$\longrightarrow$可以用于设计选频放大器，在某一较窄的频率范围内，对一些正弦信号提供放大。用品质因数Q来衡量峰值的尖锐程度：$Q=\frac{1}{2\zeta}$
+$\zeta<0.707$时，幅频特性在 $\quad \omega_{n} \sqrt{1-2\zeta^2}$ 处出现峰值，峰值为$1/2\zeta \sqrt{1-\zeta^2}$,$\longrightarrow$可以用于设计选频放大器，在某一较窄的频率范围内，对一些正弦信号提供放大。用品质因数Q来衡量峰值的尖锐程度：$Q=\frac{1}{2\zeta}$
 
 :::
 ::::
@@ -1301,16 +1301,20 @@ $$
 
 ![](imglink/resp_destrete.png){fig-align=center}
 
+－ 当 $a>0$ 时，随着 $a$ 的增大，系统的单位脉冲响应单调衰减得越来越慢。
+
+－ 当 $a<0$ 时，系统的单位脉冲响应存在振荡。 $|a|$ 越大，振荡的持续期越长；单位脉冲响应衰减得越慢。
+
 
 ## 一阶离散时间系统
 
 ![](imglink/2e842975-f7e6-4ed7-8237-183ab702c91c-67.png){fig-align=center}
 
-由图可以看出：
 
-－ 当 $a>0$ 时，随着 $a$ 的增大，系统的单位脉冲响应单调衰减得越来越慢。单位阶跃响应单调上升得越来越慢。
 
-－ 当 $a<0$ 时，系统的单位脉冲响应和单位阶跃响应都存在振荡。 $|a|$ 越大，振荡的持续期越长；单位脉冲响应衰减得越慢，单位阶跃响应上升得越慢。
+－ 当 $a>0$ 时，随着 $a$ 的增大，系统的单位阶跃响应单调上升得越来越慢。
+
+－ 当 $a<0$ 时，系统的单位阶跃响应存在振荡。 $|a|$ 越大，振荡的持续期越长；单位阶跃响应上升得越慢。
 
 
 
@@ -1599,6 +1603,11 @@ $$
 
 ![](imglink/2e842975-f7e6-4ed7-8237-183ab702c91c-93.png)
 
+其他窗函数：https://vru.vibrationresearch.com/lesson/tables-of-window-function-details/
+
+## 系统的时域分析与频域分析举例
+
+![](imglink/fir-filters-featured.png)
 
 
 <!-- ## 目录

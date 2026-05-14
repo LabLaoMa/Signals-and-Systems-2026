@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6a8276bf55561bdbc268162d41bd1f7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.30">
+
+  <meta name="author" content="Bo Jiang（原作者）｜中文翻译整理">
+  <meta name="dcterms.date" content="2019-03-14">
+  <title>My Site – EL331 信号与系统 · 第28讲（中文版）</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-a4ea08cfedeeddbe6e914dc83ce154fd.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">EL331 信号与系统 · 第28讲（中文版）</h1>
+  <p class="subtitle">Z 变换、系统因果性与稳定性</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Bo Jiang（原作者）｜中文翻译整理 
+</div>
+</div>
+</div>
+
+  <p class="date">2019-03-14</p>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#/目录" id="/toc-目录"><span class="header-section-number">1</span> 目录</a></li>
+<li><a href="#/离散时间系统函数" id="/toc-离散时间系统函数"><span class="header-section-number">2</span> 离散时间系统函数</a></li>
+<li><a href="#/因果性" id="/toc-因果性"><span class="header-section-number">3</span> 因果性</a></li>
+<li><a href="#/因果性-1" id="/toc-因果性-1"><span class="header-section-number">4</span> 因果性</a></li>
+<li><a href="#/稳定性" id="/toc-稳定性"><span class="header-section-number">5</span> 稳定性</a></li>
+<li><a href="#/例" id="/toc-例"><span class="header-section-number">6</span> 例</a></li>
+<li><a href="#/线性常系数差分方程" id="/toc-线性常系数差分方程"><span class="header-section-number">7</span> 线性常系数差分方程</a></li>
+<li><a href="#/例-1" id="/toc-例-1"><span class="header-section-number">8</span> 例</a></li>
+<li><a href="#/例续" id="/toc-例续"><span class="header-section-number">9</span> 例（续）</a></li>
+<li><a href="#/例续-1" id="/toc-例续-1"><span class="header-section-number">10</span> 例（续）</a></li>
+<li><a href="#/例-2" id="/toc-例-2"><span class="header-section-number">11</span> 例</a></li>
+<li><a href="#/例续-2" id="/toc-例续-2"><span class="header-section-number">12</span> 例（续）</a></li>
+<li><a href="#/逆-z-变换补充" id="/toc-逆-z-变换补充"><span class="header-section-number">13</span> 逆 Z 变换补充</a></li>
+<li><a href="#/例-3" id="/toc-例-3"><span class="header-section-number">14</span> 例</a></li>
+<li><a href="#/例-4" id="/toc-例-4"><span class="header-section-number">15</span> 例</a></li>
+<li><a href="#/例续-3" id="/toc-例续-3"><span class="header-section-number">16</span> 例（续）</a></li>
+<li><a href="#/目录-1" id="/toc-目录-1"><span class="header-section-number">17</span> 目录</a></li>
+<li><a href="#/系统互连" id="/toc-系统互连"><span class="header-section-number">18</span> 系统互连</a></li>
+<li><a href="#/例直接形式" id="/toc-例直接形式"><span class="header-section-number">19</span> 例（直接形式）</a></li>
+<li><a href="#/例直接形式-ii" id="/toc-例直接形式-ii"><span class="header-section-number">20</span> 例（直接形式 II）</a></li>
+<li><a href="#/例直接形式-1" id="/toc-例直接形式-1"><span class="header-section-number">21</span> 例（直接形式）</a></li>
+<li><a href="#/目录-2" id="/toc-目录-2"><span class="header-section-number">22</span> 目录</a></li>
+<li><a href="#/单边-z-变换" id="/toc-单边-z-变换"><span class="header-section-number">23</span> 单边 Z 变换</a></li>
+<li><a href="#/例-5" id="/toc-例-5"><span class="header-section-number">24</span> 例</a></li>
+<li><a href="#/单边逆-z-变换" id="/toc-单边逆-z-变换"><span class="header-section-number">25</span> 单边逆 Z 变换</a></li>
+<li><a href="#/单边-z-变换的性质" id="/toc-单边-z-变换的性质"><span class="header-section-number">26</span> 单边 Z 变换的性质</a></li>
+<li><a href="#/单边-z-变换的卷积性质" id="/toc-单边-z-变换的卷积性质"><span class="header-section-number">27</span> 单边 Z 变换的卷积性质</a></li>
+<li><a href="#/单边-z-变换的时延性质" id="/toc-单边-z-变换的时延性质"><span class="header-section-number">28</span> 单边 Z 变换的时延性质</a></li>
+<li><a href="#/单边-z-变换的时超性质" id="/toc-单边-z-变换的时超性质"><span class="header-section-number">29</span> 单边 Z 变换的时超性质</a></li>
+<li><a href="#/用单边-z-变换解线性常系数差分方程" id="/toc-用单边-z-变换解线性常系数差分方程"><span class="header-section-number">30</span> 用单边 Z 变换解线性常系数差分方程</a></li>
+<li><a href="#/例-6" id="/toc-例-6"><span class="header-section-number">31</span> 例</a></li>
+<li><a href="#/例续-4" id="/toc-例续-4"><span class="header-section-number">32</span> 例（续）</a></li>
+
+</ul>
+</nav>
+</section>
+<section id="目录" class="slide level2 center" data-number="1">
+<h2><span class="header-section-number">1</span> 目录</h2>
+<ol type="1">
+<li>利用 Z 变换分析 DT LTI 系统</li>
+<li>框图表示</li>
+<li>单边 Z 变换</li>
+</ol>
+</section>
+<section id="离散时间系统函数" class="slide level2 center" data-number="2">
+<h2><span class="header-section-number">2</span> 离散时间系统函数</h2>
+<p>离散时间 LTI 系统对输入 <span class="math inline">\(x[n]\)</span> 的响应为 <span class="math display">\[
+y[n]=(x*h)[n]
+\]</span> 其中 <span class="math inline">\(h\)</span> 是系统的冲激响应。</p>
+<p>若 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(h\)</span> 存在 Z 变换，根据卷积性质可得 <span class="math display">\[
+Y(z)=X(z)H(z)
+\]</span> 在它们公共的 ROC 内成立。</p>
+<p>若 ROC 具有非空内点，则系统函数（又称传递函数）<span class="math inline">\(H(z)\)</span> 通过 Laurent 级数展开 <span class="math display">\[
+H(z)=\sum_{n=-\infty}^{\infty} h[n]z^{-n}
+\]</span> 唯一确定 <span class="math inline">\(h\)</span>，进而确定系统性质。</p>
+</section>
+<section id="因果性" class="slide level2 center" data-number="3">
+<h2><span class="header-section-number">3</span> 因果性</h2>
+<p>回忆：<span class="math inline">\(h\)</span> 是右边序列当且仅当其 ROC 为圆外区域，即 <span class="math inline">\(R_1&lt;|z|&lt;\infty\)</span> <span class="math display">\[
+H(z)=\sum_{n=N_1}^{\infty} h[n]z^{-n}
+\]</span></p>
+<p>以下条件等价：</p>
+<ol type="1">
+<li><span class="math inline">\(N_1 \geq 0\)</span></li>
+<li><span class="math inline">\(H(z^{-1})=\sum_{n=N_1}^{\infty} h[n]z^n\)</span> 在 <span class="math inline">\(|z|&lt;\frac{1}{R_1}\)</span> 上是收敛的幂级数</li>
+<li><span class="math inline">\(H(z^{-1})\)</span> 在 <span class="math inline">\(z=0\)</span> 处为可去奇点</li>
+<li><span class="math inline">\(H(z)\)</span> 在 <span class="math inline">\(z=\infty\)</span> 处为可去奇点</li>
+<li><span class="math inline">\(\lim_{z\to 0} H(z^{-1})\)</span> 存在且有限</li>
+<li><span class="math inline">\(\lim_{z\to \infty} H(z)\)</span> 存在且有限</li>
+</ol>
+</section>
+<section id="因果性-1" class="slide level2 center" data-number="4">
+<h2><span class="header-section-number">4</span> 因果性</h2>
+<p>具有系统函数 <span class="math inline">\(H(z)\)</span> 的 LTI 系统是因果的，当且仅当</p>
+<ol type="1">
+<li>ROC 是圆外区域</li>
+<li><span class="math inline">\(\lim_{z\to \infty} H(z)\)</span> 存在且有限</li>
+</ol>
+<p><span class="math display">\[
+\text{因果} \Longleftrightarrow \text{ROC 是包含 }\infty\text{ 的圆外区域}
+\]</span></p>
+<p>对于有理系统函数 <span class="math inline">\(H(z)=\frac{N(z)}{D(z)}\)</span>，系统因果当且仅当</p>
+<ol type="1">
+<li>ROC 为 <span class="math inline">\(|z|&gt;|p|\)</span>，其中 <span class="math inline">\(p\)</span> 是最外层的极点</li>
+<li><span class="math inline">\(\deg D \geq \deg N\)</span></li>
+</ol>
+<p><strong>例</strong>：<span class="math inline">\(H(z)=\frac{z^3-2z^2-z}{z^2+\frac14 z+\frac18}\)</span> 不能作为因果系统的系统函数。</p>
+</section>
+<section id="稳定性" class="slide level2 center" data-number="5">
+<h2><span class="header-section-number">5</span> 稳定性</h2>
+<p>LTI 系统稳定当且仅当其冲激响应 <span class="math inline">\(h\in \ell_1\)</span>，即 <span class="math display">\[
+\sum_{n=-\infty}^{\infty}|h[n]|&lt;\infty
+\]</span> 这等价于 <span class="math inline">\(H(z)\)</span> 在单位圆 <span class="math inline">\(|z|=1\)</span> 上绝对收敛，因此其 ROC 必须满足 <span class="math inline">\(R_1&lt;1&lt;R_2\)</span>。</p>
+<p><span class="math display">\[
+\text{稳定} \Longleftrightarrow \text{ROC 包含单位圆 }|z|=1
+\]</span></p>
+<p>因果的有理 LTI 系统稳定当且仅当其所有极点都在单位圆内。</p>
+<p><strong>例</strong>：因果系统 <span class="math inline">\(H(z)=\frac{1}{1-a z^{-1}}\)</span> 在 <span class="math inline">\(|a|&lt;1\)</span> 时稳定。<br>
+<strong>例</strong>：<span class="math inline">\(H(z)=\frac{1}{1-a z^{-1}}\)</span> 当 <span class="math inline">\(|a|&gt;1\)</span> 且 ROC 为 <span class="math inline">\(|z|&lt;|a|\)</span> 时也稳定，但系统是非因果的。</p>
+</section>
+<section id="例" class="slide level2 center" data-number="6">
+<h2><span class="header-section-number">6</span> 例</h2>
+<p><span class="math display">\[
+H(z)=\frac12\left[\frac{z}{z-\frac32}-\frac{z}{z+\frac12}\right]
+\]</span> 存在两个极点 <span class="math inline">\(p_1=-\frac12\)</span> 和 <span class="math inline">\(p_2=\frac32\)</span>。</p>
+<ol type="1">
+<li><span class="math inline">\(|z|&gt;\frac32\)</span>：因果，不稳定<br>
+<span class="math inline">\(h_1[n]=\frac12\left(\frac32\right)^n u[n]-\frac12\left(-\frac12\right)^n u[n]\)</span></li>
+</ol>
+
+<img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-07.jpg?height=412&amp;width=432&amp;top_left_y=88&amp;top_left_x=807" class="r-stretch"><ol start="2" type="1">
+<li><p><span class="math inline">\(\frac12&lt;|z|&lt;\frac32\)</span>：非因果，稳定<br>
+<span class="math inline">\(h_2[n]=-\frac12\left(\frac32\right)^n u[-n-1]-\frac12\left(-\frac12\right)^n u[n]\)</span></p></li>
+<li><p><span class="math inline">\(|z|&lt;\frac12\)</span>：非因果，不稳定<br>
+<span class="math inline">\(h_3[n]=-\frac12\left(\frac32\right)^n u[-n-1]+\frac12\left(-\frac12\right)^n u[-n-1]\)</span></p></li>
+</ol>
+</section>
+<section id="线性常系数差分方程" class="slide level2 center" data-number="7">
+<h2><span class="header-section-number">7</span> 线性常系数差分方程</h2>
+<p>LTI 系统的输入输出满足 <span class="math display">\[
+\sum_{k=0}^N a_k y[n-k] = \sum_{k=0}^M b_k x[n-k]
+\]</span> 对两边取 Z 变换 <span class="math display">\[
+\sum_{k=0}^N a_k z^{-k} Y(z) = \sum_{k=0}^M b_k z^{-k} X(z)
+\]</span> 故系统函数 <span class="math display">\[
+H(z)=\frac{Y(z)}{X(z)}=\frac{\sum_{k=0}^M b_k z^{-k}}{\sum_{k=0}^N a_k z^{-k}}
+\]</span> 系统函数总是有理的。<strong>差分方程本身不指定 ROC</strong>，需要额外条件（如稳定性、因果性）来确定 <span class="math inline">\(h[n]\)</span>。</p>
+</section>
+<section id="例-1" class="slide level2 center" data-number="8">
+<h2><span class="header-section-number">8</span> 例</h2>
+<p>考虑 LTI 系统： <span class="math display">\[
+y[n]-\frac12 y[n-1]=x[n]+\frac13 x[n-1]
+\]</span> 系统函数 <span class="math display">\[
+H(z)=\frac{1+\frac13 z^{-1}}{1-\frac12 z^{-1}}
+\]</span> ROC 有两种可能：<span class="math inline">\(|z|&gt;\frac12\)</span> 和 <span class="math inline">\(|z|&lt;\frac12\)</span>。</p>
+<ol type="1">
+<li>若 <span class="math inline">\(|z|&gt;\frac12\)</span> <span class="math display">\[
+\frac{1}{1-\frac12 z^{-1}}=\sum_{n=0}^\infty \left(\frac12\right)^n z^{-n} \stackrel{z^{-1}}{\longleftrightarrow} \left(\frac12\right)^n u[n]
+\]</span> 由线性性和时移性质得 <span class="math display">\[
+h[n]=\left(\frac12\right)^n u[n] + \frac13\left(\frac12\right)^{n-1} u[n-1]
+\]</span></li>
+</ol>
+</section>
+<section id="例续" class="slide level2 center" data-number="9">
+<h2><span class="header-section-number">9</span> 例（续）</h2>
+<ol start="2" type="1">
+<li>若 <span class="math inline">\(|z|&lt;\frac12\)</span> <span class="math display">\[
+\frac{1}{1-\frac12 z^{-1}}=\frac{-2z}{1-2z}=-\sum_{n=1}^\infty 2^n z^n \stackrel{z^{-1}}{\longleftrightarrow} -\left(\frac12\right)^n u[-n-1]
+\]</span> 故 <span class="math display">\[
+h[n]=-\left(\frac12\right)^n u[-n-1] - \frac13\left(\frac12\right)^{n-1} u[-n]
+\]</span></li>
+</ol>
+</section>
+<section id="例续-1" class="slide level2 center" data-number="10">
+<h2><span class="header-section-number">10</span> 例（续）</h2>
+<p>若使用傅里叶变换，则频率响应为 <span class="math display">\[
+H(e^{j\omega})=\frac{1+\frac13 e^{-j\omega}}{1-\frac12 e^{-j\omega}}
+\]</span> 对应的 <span class="math inline">\(h[n]\)</span> 为因果形式。</p>
+<p><strong>原因</strong>：傅里叶变换方法隐含假设系统稳定（ROC 包含单位圆，即 <span class="math inline">\(|z|&gt;\frac12\)</span>），一般不适用于不稳定系统。</p>
+</section>
+<section id="例-2" class="slide level2 center" data-number="11">
+<h2><span class="header-section-number">11</span> 例</h2>
+<p>考虑差分方程 <span class="math display">\[
+y[n]-\frac34 y[n-1]+\frac18 y[n-2]=2x[n]
+\]</span> 系统函数 <span class="math display">\[
+H(z)=\frac{2}{1-\frac34 z^{-1}+\frac18 z^{-2}}
+\]</span> 部分分式展开得 <span class="math display">\[
+H(z)=\frac{4}{1-\frac12 z^{-1}} - \frac{2}{1-\frac14 z^{-1}}
+\]</span> 对应的冲激响应（三种 ROC）： <span class="math display">\[
+\begin{cases}
+h_1[n]=4\left(\frac12\right)^n u[n]-2\left(\frac14\right)^n u[n], &amp; |z|&gt;\frac12 \\
+h_2[n]=-4\left(\frac12\right)^n u[-n-1]-2\left(\frac14\right)^n u[n], &amp; \frac14&lt;|z|&lt;\frac12 \\
+h_3[n]=-4\left(\frac12\right)^n u[-n-1]+2\left(\frac14\right)^n u[-n-1], &amp; |z|&lt;\frac14
+\end{cases}
+\]</span></p>
+</section>
+<section id="例续-2" class="slide level2 center" data-number="12">
+<h2><span class="header-section-number">12</span> 例（续）</h2>
+<p>输入 <span class="math inline">\(x[n]=\left(\frac14\right)^n u[n]\)</span>，<span class="math inline">\(X(z)=\frac{1}{1-\frac14 z^{-1}}\)</span>，<span class="math inline">\(|z|&gt;\frac14\)</span>。</p>
+<p>输出 Z 变换 <span class="math display">\[
+Y(z)=H(z)X(z)=\frac{2}{\left(1-\frac12 z^{-1}\right)\left(1-\frac14 z^{-1}\right)^2}
+\]</span> 仅在 <span class="math inline">\(|z|&gt;\frac12\)</span> 和 <span class="math inline">\(\frac14&lt;|z|&lt;\frac12\)</span> 时有定义（<span class="math inline">\(h_3*x\)</span> 无定义）。</p>
+<p>部分分式展开后可求得前两种情况的响应。</p>
+</section>
+<section id="逆-z-变换补充" class="slide level2 center" data-number="13">
+<h2><span class="header-section-number">13</span> 逆 Z 变换补充</h2>
+<p><span class="math display">\[
+\frac{1}{(1-a z^{-1})^m} \stackrel{z}{\longleftrightarrow} \binom{n+m-1}{m-1} a^n u[n], \quad |z|&gt;|a|
+\]</span> <span class="math display">\[
+\frac{1}{(1-a z^{-1})^m} \stackrel{z}{\longleftrightarrow} (-1)^m \binom{-n-1}{m-1} a^n u[-n-m], \quad |z|&lt;|a|
+\]</span></p>
+</section>
+<section id="例-3" class="slide level2 center" data-number="14">
+<h2><span class="header-section-number">14</span> 例</h2>
+<p>因果 LTI 系统 <span class="math display">\[
+y[n]-\frac12 y[n-1]=x[n]+\frac23 x[n-1]
+\]</span> 输入 <span class="math inline">\(x[n]=\left(-\frac23\right)^n u[n]\)</span>。</p>
+<p><span class="math display">\[
+H(z)=\frac{1+\frac23 z^{-1}}{1-\frac12 z^{-1}}, \quad |z|&gt;\frac12
+\]</span> <span class="math display">\[
+X(z)=\frac{1}{1+\frac23 z^{-1}}, \quad |z|&gt;\frac23
+\]</span> <span class="math display">\[
+Y(z)=\frac{1}{1-\frac12 z^{-1}}, \quad |z|&gt;\frac12 \Longrightarrow y[n]=\left(\frac12\right)^n u[n]
+\]</span></p>
+<p>由于 <span class="math inline">\(z=-\frac23\)</span> 处零极点抵消，<span class="math inline">\(Y(z)\)</span> 的 ROC 大于 <span class="math inline">\(X(z)\)</span> 和 <span class="math inline">\(H(z)\)</span> ROC 的交集。</p>
+</section>
+<section id="例-4" class="slide level2 center" data-number="15">
+<h2><span class="header-section-number">15</span> 例</h2>
+<p>已知： 1. 输入 <span class="math inline">\(x_1[n]=\left(\frac16\right)^n u[n]\)</span> 时，输出 <span class="math inline">\(y_1[n]=\left[a\left(\frac12\right)^n + 10\left(\frac13\right)^n\right] u[n]\)</span> 2. 输入 <span class="math inline">\(x_2[n]=(-1)^n\)</span> 时，输出 <span class="math inline">\(y_2[n]=\frac74 (-1)^n\)</span></p>
+<p>求 <span class="math inline">\(H(z)\)</span>。</p>
+<p>由条件1得 <span class="math display">\[
+H(z)=\frac{Y_1(z)}{X_1(z)}=\frac{[(a+10)-(5+\frac{a}{3})z^{-1}](1-\frac16 z^{-1})}{(1-\frac12 z^{-1})(1-\frac13 z^{-1})}
+\]</span> 由条件2：<span class="math inline">\(H(-1)=\frac74\)</span>，解得 <span class="math inline">\(a=-9\)</span>，从而 <span class="math display">\[
+H(z)=\frac{(1-2z^{-1})(1-\frac16 z^{-1})}{(1-\frac12 z^{-1})(1-\frac13 z^{-1})}
+\]</span></p>
+</section>
+<section id="例续-3" class="slide level2 center" data-number="16">
+<h2><span class="header-section-number">16</span> 例（续）</h2>
+<p><span class="math inline">\(H(z)\)</span> 有三种可能的 ROC： - <span class="math inline">\(|z|&lt;\frac13\)</span> - <span class="math inline">\(\frac13&lt;|z|&lt;\frac12\)</span> - <span class="math inline">\(|z|&gt;\frac12\)</span></p>
+<p>由 <span class="math inline">\(Y_1(z)\)</span> 的 ROC 包含 <span class="math inline">\(X_1\)</span> 和 <span class="math inline">\(H\)</span> 的 ROC 交集，可知 ROC 为 <span class="math inline">\(|z|&gt;\frac12\)</span>（稳定）。又 <span class="math inline">\(H(\infty)=1\)</span> 有限，故系统因果。</p>
+<p>对应的差分方程为 <span class="math display">\[
+y[n]-\frac56 y[n-1]+\frac16 y[n-2]=x[n]-\frac{13}6 x[n-1]+\frac13 x[n-2]
+\]</span></p>
+</section>
+<section id="目录-1" class="slide level2 center" data-number="17">
+<h2><span class="header-section-number">17</span> 目录</h2>
+<ol type="1">
+<li>利用 Z 变换分析 DT LTI 系统</li>
+<li>框图表示</li>
+<li>单边 Z 变换</li>
+</ol>
+</section>
+<section id="系统互连" class="slide level2 center" data-number="18">
+<h2><span class="header-section-number">18</span> 系统互连</h2>
+<p><strong>串联（级联）系统</strong>： <span class="math display">\[
+Y=(X H_1)H_2 = X(H_1 H_2) = (X H_2)H_1
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-19.jpg?height=511&amp;width=1159&amp;top_left_y=295&amp;top_left_x=53"></p>
+<p><strong>并联系统</strong>： <span class="math display">\[
+h=h_1+h_2, \quad H=H_1+H_2
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-20.jpg?height=338&amp;width=725&amp;top_left_y=206&amp;top_left_x=414"></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-20.jpg?height=334&amp;width=725&amp;top_left_y=561&amp;top_left_x=414"></p>
+<p><strong>反馈系统</strong>： <span class="math display">\[
+H=\frac{H_1}{1+H_1 H_2}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-21.jpg?height=323&amp;width=769&amp;top_left_y=208&amp;top_left_x=452"></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-21.jpg?height=320&amp;width=769&amp;top_left_y=581&amp;top_left_x=452"></p>
+</section>
+<section id="例直接形式" class="slide level2 center" data-number="19">
+<h2><span class="header-section-number">19</span> 例（直接形式）</h2>
+<p>因果系统 <span class="math inline">\(H(z)=\frac{1}{1-a z^{-1}}\)</span>，<span class="math inline">\(|z|&gt;|a|\)</span> 对应差分方程 <span class="math display">\[
+y[n]-a y[n-1]=x[n]
+\]</span> （初始静止条件）。</p>
+
+<img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-22.jpg?height=281&amp;width=695&amp;top_left_y=623&amp;top_left_x=306" class="r-stretch"></section>
+<section id="例直接形式-ii" class="slide level2 center" data-number="20">
+<h2><span class="header-section-number">20</span> 例（直接形式 II）</h2>
+<p><span class="math display">\[
+H(z)=\frac{1-b z^{-1}}{1-a z^{-1}}
+\]</span></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-23.jpg?height=336&amp;width=1031&amp;top_left_y=275&amp;top_left_x=130"></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-23.jpg?height=310&amp;width=1033&amp;top_left_y=625&amp;top_left_x=128"></p>
+</section>
+<section id="例直接形式-1" class="slide level2 center" data-number="21">
+<h2><span class="header-section-number">21</span> 例（直接形式）</h2>
+<p><span class="math display">\[
+H(z)=\frac{1}{(1+\frac12 z^{-1})(1-\frac14 z^{-1})}=\frac{1}{1+\frac14 z^{-1}-\frac18 z^{-2}}
+\]</span> 对应差分方程 <span class="math display">\[
+y[n]+\frac14 y[n-1]-\frac18 y[n-2]=x[n]
+\]</span></p>
+<p><strong>Direct Form</strong></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-24.jpg?height=420&amp;width=713&amp;top_left_y=501&amp;top_left_x=306"></p>
+<p><strong>Cascade Form</strong></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-25.jpg?height=247&amp;width=1015&amp;top_left_y=421&amp;top_left_x=155"></p>
+<p><strong>Parallel Form</strong></p>
+<p><img data-src="https://cdn.mathpix.com/cropped/5693e73c-f7d3-489e-959e-fbd2437c470f-26.jpg?height=544&amp;width=1088&amp;top_left_y=366&amp;top_left_x=106"></p>
+</section>
+<section id="目录-2" class="slide level2 center" data-number="22">
+<h2><span class="header-section-number">22</span> 目录</h2>
+<ol type="1">
+<li>利用 Z 变换分析 DT LTI 系统</li>
+<li>框图表示</li>
+<li>单边 Z 变换</li>
+</ol>
+</section>
+<section id="单边-z-变换" class="slide level2 center" data-number="23">
+<h2><span class="header-section-number">23</span> 单边 Z 变换</h2>
+<p>双边 Z 变换： <span class="math display">\[
+X(z)=\sum_{n=-\infty}^{\infty} x[n]z^{-n}
+\]</span> 单边 Z 变换（单侧 Z 变换）： <span class="math display">\[
+X(z)=\sum_{n=0}^{\infty} x[n]z^{-n}
+\]</span> 也记作 <span class="math inline">\(\mathcal{UZ}\{x\}\)</span> 或 <span class="math inline">\(x[n]\stackrel{uz}{\longleftrightarrow} X(z)\)</span>。</p>
+<p>注意：<span class="math inline">\(\mathcal{UZ}\{x\}=\mathcal{Z}\{x u[n]\}\)</span>。</p>
+<ul>
+<li>单边 Z 变换的 ROC 总是圆外区域（包含 <span class="math inline">\(\infty\)</span>）</li>
+<li>有理情况下 <span class="math inline">\(\deg N \leq \deg D\)</span></li>
+<li><span class="math inline">\(\mathcal{Z}\{x\}=\mathcal{UZ}\{x\}\)</span> 当且仅当 <span class="math inline">\(x[n]=0\)</span>（<span class="math inline">\(n&lt;0\)</span>）</li>
+</ul>
+</section>
+<section id="例-5" class="slide level2 center" data-number="24">
+<h2><span class="header-section-number">24</span> 例</h2>
+<p>单边 Z 变换的计算与双边几乎相同，只需对 <span class="math inline">\(n\geq 0\)</span> 求和。</p>
+<p><strong>例</strong>：<span class="math inline">\(x_1[n]=a^n u[n]\)</span>， <span class="math display">\[
+X_1(z)=\frac{1}{1-a z^{-1}}, \quad |z|&gt;|a|
+\]</span></p>
+<p><strong>例</strong>：<span class="math inline">\(x_2[n]=a^{n+1} u[n+1]=x_1[n+1]\)</span>， 理论上 <span class="math inline">\(z X_1(z)\)</span>，但实际计算得 <span class="math inline">\(\frac{a}{1-a z^{-1}}\)</span>。</p>
+</section>
+<section id="单边逆-z-变换" class="slide level2 center" data-number="25">
+<h2><span class="header-section-number">25</span> 单边逆 Z 变换</h2>
+<p>单边逆 Z 变换计算方法与双边相同，但只能恢复 <span class="math inline">\(n\geq 0\)</span> 的值。</p>
+<p><strong>例</strong>： <span class="math display">\[
+X(z)=\frac{3-\frac56 z^{-1}}{(1-\frac14 z^{-1})(1-\frac13 z^{-1})}=\frac{1}{1-\frac14 z^{-1}}+\frac{2}{1-\frac13 z^{-1}}
+\]</span> ROC 只能是 <span class="math inline">\(|z|\geq \frac13\)</span>，故 <span class="math display">\[
+x[n]=\left(\frac14\right)^n + 2\left(\frac23\right)^n, \quad n\geq 0
+\]</span> <span class="math inline">\(X(z)\)</span> 对 <span class="math inline">\(n&lt;0\)</span> 无信息。</p>
+</section>
+<section id="单边-z-变换的性质" class="slide level2 center" data-number="26">
+<h2><span class="header-section-number">26</span> 单边 Z 变换的性质</h2>
+<p>多数性质与双边相同。</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 28%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>性质</th>
+<th>信号</th>
+<th>单边 Z 变换</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-</td>
+<td><span class="math inline">\(x[n]\)</span></td>
+<td><span class="math inline">\(X(z)\)</span></td>
+</tr>
+<tr class="even">
+<td>线性</td>
+<td><span class="math inline">\(a x[n]+b y[n]\)</span></td>
+<td><span class="math inline">\(a X(z)+b Y(z)\)</span></td>
+</tr>
+<tr class="odd">
+<td>z 域尺度变换</td>
+<td><span class="math inline">\(z_0^n x[n]\)</span></td>
+<td><span class="math inline">\(X(z/z_0)\)</span></td>
+</tr>
+<tr class="even">
+<td>时间扩展</td>
+<td><span class="math inline">\(x_{(k)}[n]\)</span></td>
+<td><span class="math inline">\(X(z^k)\)</span></td>
+</tr>
+<tr class="odd">
+<td>共轭</td>
+<td><span class="math inline">\(x^*[n]\)</span></td>
+<td><span class="math inline">\(X^*(z^*)\)</span></td>
+</tr>
+<tr class="even">
+<td>z 域微分</td>
+<td><span class="math inline">\(n x[n]\)</span></td>
+<td><span class="math inline">\(-z \frac{d}{dz} X(z)\)</span></td>
+</tr>
+<tr class="odd">
+<td>初值定理</td>
+<td><span class="math inline">\(x[0]=\lim_{z\to\infty} X(z)\)</span></td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="单边-z-变换的卷积性质" class="slide level2 center" data-number="27">
+<h2><span class="header-section-number">27</span> 单边 Z 变换的卷积性质</h2>
+<p>若 <span class="math inline">\(x[n]=y[n]=0\)</span>（<span class="math inline">\(n&lt;0\)</span>），则 <span class="math display">\[
+(x*y)[n] \stackrel{uz}{\longleftrightarrow} X(z)Y(z)
+\]</span></p>
+<p><strong>注意</strong>：该性质要求信号因果，否则不成立。</p>
+</section>
+<section id="单边-z-变换的时延性质" class="slide level2 center" data-number="28">
+<h2><span class="header-section-number">28</span> 单边 Z 变换的时延性质</h2>
+<p><span class="math display">\[
+x[n-m] \stackrel{uz}{\longleftrightarrow} z^{-m}\left(X(z)+\sum_{k=1}^m x[-k]z^k\right)
+\]</span></p>
+</section>
+<section id="单边-z-变换的时超性质" class="slide level2 center" data-number="29">
+<h2><span class="header-section-number">29</span> 单边 Z 变换的时超性质</h2>
+<p><span class="math display">\[
+x[n+m] \stackrel{uz}{\longleftrightarrow} z^m \left(X(z)-\sum_{k=0}^{m-1} x[k]z^{-k}\right)
+\]</span></p>
+</section>
+<section id="用单边-z-变换解线性常系数差分方程" class="slide level2 center" data-number="30">
+<h2><span class="header-section-number">30</span> 用单边 Z 变换解线性常系数差分方程</h2>
+<p>差分方程 <span class="math display">\[
+\sum_{k=0}^N a_k y[n-k]=\sum_{k=0}^M b_k x[n-k]
+\]</span> 已知初始条件 <span class="math inline">\(y[-1],\dots,y[-N]\)</span> 及因果输入 <span class="math inline">\(x[n]=0\)</span>（<span class="math inline">\(n&lt;0\)</span>）。</p>
+<p>单边 Z 变换后可分离出<strong>零状态响应</strong>和<strong>零输入响应</strong>。</p>
+</section>
+<section id="例-6" class="slide level2 center" data-number="31">
+<h2><span class="header-section-number">31</span> 例</h2>
+<p>差分方程 <span class="math display">\[
+y[n]+2 y[n-1]=x[n]
+\]</span> 初始条件 <span class="math inline">\(y[-1]=\beta\)</span>，输入 <span class="math inline">\(x[n]=\alpha u[n]\)</span>。</p>
+<p>零状态响应 + 零输入响应求解过程如上。</p>
+</section>
+<section id="例续-4" class="slide level2 center" data-number="32">
+<h2><span class="header-section-number">32</span> 例（续）</h2>
+<p>另一差分方程 <span class="math display">\[
+y[n]-y[n-1]-2 y[n-2]=x[n]+2 x[n-2]
+\]</span> 初始条件 <span class="math inline">\(y[-1]=2\)</span>，<span class="math inline">\(y[-2]=-\frac12\)</span>，<span class="math inline">\(x[n]=u[n]\)</span>。</p>
+<p>分别求出零输入响应和零状态响应表达式。</p>
+</section>
+<section class="slide level2 center">
+
+<p><strong>使用说明</strong>：</p>
+<ol type="1">
+<li>直接复制以上全部内容保存为 <code>lec28_zh_slides_translated.qmd</code>。</li>
+<li>所有图片链接、公式、结构均 100% 保留。</li>
+<li>可直接用 Quarto 渲染生成中文幻灯片。</li>
+</ol>
+<p>如需进一步修改、合并两讲或生成 PDF，请告诉我！</p>
+
+
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'visible',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1920,
+
+        height: 1080,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

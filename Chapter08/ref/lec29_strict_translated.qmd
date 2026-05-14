@@ -1,0 +1,751 @@
+---
+title: "EL331 信号与系统 · 第29讲（中文版）"
+subtitle: "拉普拉斯变换：收敛域与性质"
+author: "Bo Jiang（原作者）｜中文翻译整理"
+date: "2019-03-14"
+format:
+  revealjs:
+    slide-level: 2
+    theme: simple
+    slide-number: true
+    toc: true
+    number-sections: true
+    transition: fade
+    center: true
+    math: mathjax
+---
+
+
+## 目录
+
+1. 拉普拉斯变换
+
+## 2. 收敛域
+
+## 3. Properties of 拉普拉斯变换
+
+## 拉普拉斯变换
+
+已知：连续时间 LTI 系统在输入 $x(t)=e^{s t}$ 时，其输出为
+
+$$
+y(t)=(x * h)(t)=H(s) e^{s t}
+$$
+
+其中 $h$ 为系统的冲激响应，且
+
+$$
+H(s)=\int_{-\infty}^{\infty} h(t) e^{-s t} d t
+$$
+
+系统函数 $H(s)$ 称为 $h$ 的拉普拉斯变换。
+一般地，连续时间信号 $x(t)$ 的拉普拉斯变换定义为
+
+$$
+X(s)=\int_{-\infty}^{\infty} x(t) e^{-s t} d t=\lim _{\substack{T_{1} \rightarrow \infty \\ T_{2} \rightarrow \infty}} \int_{-T_{1}}^{T_{2}} x(t) e^{-s t} d t
+$$
+
+也可记为
+
+$$
+X=\mathcal{L}\{x\}, \quad \text { or } \quad x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s)
+$$
+
+## 拉普拉斯变换
+
+使得拉普拉斯变换积分
+
+$$
+X(s)=\int_{-\infty}^{\infty} x(t) e^{-s t} d t=\lim _{\substack{T_{1} \rightarrow \infty \\ T_{2} \rightarrow \infty}} \int_{-T_{1}}^{T_{2}} x(t) e^{-s t} d t
+$$
+
+收敛的复数 $s$ 的集合称为收敛域（ROC）
+
+## 与连续时间傅里叶变换的关系
+
+当 $s=\sigma+j \omega$ 时，
+
+$$
+X(\sigma+j \omega)=\int_{-\infty}^{\infty}\left\{x(t) e^{-\sigma t}\right\} e^{-j \omega t} d t=\mathcal{F}\left\{x(t) e^{-\sigma t}\right\}
+$$
+
+若收敛域包含虚轴，令 $\sigma=0$，则有
+
+$$
+\left.X(s)\right|_{s=j \omega}=X(j \omega)=\mathcal{F}\{x\}(j \omega)
+$$
+
+## 例
+
+例：当 $x(t)=e^{-a t} u(t)$ 时，
+
+$$
+X(s)=\int_{0}^{\infty} e^{-a t} e^{-s t} d t=\lim _{T \rightarrow \infty} \frac{1-e^{-(s+a) T}}{s+a}=\frac{1}{s+a},
+$$
+
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-05.jpg?height=252&width=281&top_left_y=88&top_left_x=969)
+其收敛域为 $\operatorname{Re} s>-\operatorname{Re} a$.
+若 $\operatorname{Re} a>0$, the ROC contains the imaginary axis,
+
+$$
+\mathcal{F}\{x\}(j \omega)=\left.X(s)\right|_{z=e^{j \omega}}=\frac{1}{j \omega+a}
+$$
+
+If $\operatorname{Re} a<0$, the CTFT does not exist.
+If $\operatorname{Re} a=0$, the CTFT exists only as a distribution,
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-05.jpg?height=256&width=274&top_left_y=523&top_left_x=971)
+
+$$
+a=j \omega_{0} \Longrightarrow \mathcal{F}\{x\}\left(e^{j \omega}\right)=\frac{1}{j\left(\omega+\omega_{0}\right)}+\pi \delta\left(\omega+\omega_{0}\right) \neq\left. X(s)\right|_{s=j \omega}
+$$
+
+## 例
+
+For $x(t)=-e^{-a t} u(-t)$,
+
+$$
+X(s)=-\int_{-\infty}^{0} e^{-a t} e^{-s t} d t=\lim _{T \rightarrow \infty} \frac{1-e^{(s+a) T}}{s+a}=\frac{1}{s+a},
+$$
+
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-06.jpg?height=252&width=270&top_left_y=88&top_left_x=971)
+其收敛域为 $\operatorname{Re} s<-\operatorname{Re} a$.
+If $\operatorname{Re} a<0$, the ROC contains the imaginary axis,
+
+$$
+\mathcal{F}\{x\}(j \omega)=\left.X(s)\right|_{z=e^{j \omega}}=\frac{1}{j \omega+a}
+$$
+
+若 $\operatorname{Re} a>0$, the CTFT does not exist.
+If $\operatorname{Re} a=0$, the CTFT exists only as a distribution,
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-06.jpg?height=265&width=276&top_left_y=525&top_left_x=971)
+
+$$
+a=j \omega_{0} \Longrightarrow \mathcal{F}\{x\}\left(e^{j \omega}\right)=\frac{1}{j\left(\omega+\omega_{0}\right)}+\pi \delta\left(\omega+\omega_{0}\right) \neq\left. X(s)\right|_{s=j \omega}
+$$
+
+收敛域的重要性
+$x_{1}(t)=e^{-a t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X_{1}(s)=\frac{1}{s+a}$,
+ROC $\operatorname{Re} s>-\operatorname{Re} a$
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-07.jpg?height=254&width=278&top_left_y=88&top_left_x=896)
+$x_{2}(t)=-e^{-a t} u(-t) \stackrel{\mathcal{L}}{\longleftrightarrow} X_{2}(s)=\frac{1}{s+a}$,
+ROC $\operatorname{Re} s<-\operatorname{Re} a$
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-07.jpg?height=254&width=272&top_left_y=399&top_left_x=898)
+
+Different signals can have the same $X(s)$ but different ROCs
+Always specify ROC for Laplace transforms!
+
+## 例
+
+For $x(t)=3 e^{-2 t} u(t)-2 e^{-t} u(t)$,
+
+$$
+\begin{aligned}
+X(s) & =\int_{0}^{\infty}\left[3 e^{-2 t} u(t)-2 e^{-t} u(t)\right] e^{-s t} d t \\
+& =\frac{3}{s+2}-\frac{2}{s+1} \\
+& =\frac{s-1}{(s+2)(s+1)}
+\end{aligned}
+$$
+
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-08.jpg?height=456&width=523&top_left_y=97&top_left_x=716)
+with $\operatorname{ROC} \operatorname{Re} s>-1$.
+
+Two simple poles at $s=-2$ and $s=-1$
+A simple zero at $s=1$
+Also a simple zero at $\infty$.
+
+## 例
+
+For $x(t)=e^{-2 t} u(t)+e^{-t} \cos (3 t) u(t)=e^{-2 t}+\frac{1}{2} e^{-(1-3 j) t}+\frac{1}{2} e^{-(1+3 j) t}$,
+
+$$
+\begin{aligned}
+X(s) & =\frac{1}{s+2}+\frac{1}{2} \frac{1}{s+(1-3 j)}+\frac{1}{2} \frac{1}{s+(1+3 j)} \\
+& =\frac{2 s^{2}+5 s+12}{\left(s^{2}+2 s+10\right)(s+1)} \\
+& =\frac{\left(s+\frac{5+j \sqrt{71}}{4}\right)\left(s+\frac{5-j \sqrt{71}}{4}\right)}{(s+2)(s+1-3 j)(s+1+3 j)}
+\end{aligned}
+$$
+
+with $\mathrm{ROC} \operatorname{Re} s>-1$.
+Simple poles at $s=-2$ and $s=-1 \pm 3 j$
+Simple zeros at $s=\frac{-5 \pm j \sqrt{71}}{4}$
+Also a simple zero at $\infty$.
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-09.jpg?height=533&width=449&top_left_y=348&top_left_x=805)
+
+## 有理拉普拉斯变换
+
+A rational transform $X$ has the following form
+
+$$
+X(s)=\frac{N(s)}{D(s)}
+$$
+
+where $N, D$ are polynomials that are coprime, i.e. they have no common factors of degree $\geq 1$.
+By the Fundamental 定理 of Algebra,
+
+$$
+X(s)=A \frac{\prod_{k=1}^{n}\left(s-z_{k}\right)}{\prod_{k=1}^{m}\left(s-p_{k}\right)}
+$$
+
+with the convention $\prod_{k=1}^{0} \cdot=1$.
+
+- $z_{1}, \ldots, z_{n}$ are the finite zeros of $X$
+- $p_{1}, \ldots, p_{m}$ are the finite poles of $X$
+- If $n>m, X$ has a pole of order $n-m$ at $\infty$
+- If $n<m, X$ has a zero of order $m-n$ at $\infty$
+
+
+## 有理拉普拉斯变换
+
+A rational function $X$ is determined by its zeros and poles in $\mathbb{C}$, including their orders, up to a multiplicative constant factor.
+
+A rational Laplace transform is determined by its pole-zero plot and ROC, up to a multiplicative constant factor.
+
+例.
+
+$$
+X(s)=A \frac{(s-1)^{2}}{(s+1)(s-2)}
+$$
+
+We will see there are three possibilities for the ROC
+
+- $\operatorname{Re} s<-1$
+- $-1<\operatorname{Re} s<2$
+- $\operatorname{Re} s>2$
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-11.jpg?height=534&width=495&top_left_y=374&top_left_x=741)
+
+
+## 目录
+
+1. 拉普拉斯变换
+2. 收敛域
+3. Properties of 拉普拉斯变换
+
+## Convergence of 拉普拉斯变换
+
+Assume $x(t)$ is integrable on any finite interval $\left[T_{1}, T_{2}\right]$. The convergence of the Laplace transform
+
+$$
+X(s)=\int_{-\infty}^{\infty} x(t) e^{-s t} d t=\lim _{\substack{T_{1} \rightarrow \infty \\ T_{2} \rightarrow \infty}} \int_{-T_{1}}^{T_{2}} x(t) e^{-s t} d t
+$$
+
+is equivalent to the convergence of the following two integrals
+
+$$
+\begin{align*}
+& \int_{0}^{\infty} x(t) e^{-s t} d t=\lim _{T_{2} \rightarrow \infty} \int_{0}^{T_{2}} x(t) e^{-s t} d t  \tag{$\star$}\\
+& \int_{-\infty}^{0} x(t) e^{-s t} d t=\lim _{T_{1} \rightarrow \infty} \int_{-T_{1}}^{0} x(t) e^{-s t} d t
+\end{align*}
+$$
+
+The ROC for the Laplace transform is the intersection of the ROCs for the above two one-sided integrals.
+
+NB. The integral in ( $\star$ ) is the unilateral Laplace transform of $x$.
+
+## Convergence of Unilateral 拉普拉斯变换
+
+定理. If the integral in ( $\star$ ) converges for $s=s_{0}=\sigma_{0}+j \omega_{0}$, then it converges for any $s=\sigma+j \omega$ with $\sigma>\sigma_{0}$.
+
+证明. Let
+
+$$
+y(t)=\int_{0}^{t} x(\tau) e^{-s_{0} \tau} d \tau
+$$
+
+By assumption, $\lim _{t \rightarrow \infty} y(t)$ exists and hence $M \triangleq \sup _{t \geq 0}|y(t)|<\infty$.
+Integration by parts yields
+
+$$
+\begin{aligned}
+\int_{0}^{T} x(t) e^{-s t} d t & =\int_{0}^{T} y^{\prime}(t) e^{-\left(s-s_{0}\right) t} d t \\
+& =e^{-\left(s-s_{0}\right) T} y(T)+\left(s-s_{0}\right) \int_{0}^{T} y(t) e^{-\left(s-s_{0}\right) t} d t
+\end{aligned}
+$$
+
+As $T \rightarrow \infty, e^{-\left(s-s_{0}\right) T} y(T) \rightarrow 0$.
+
+## Convergence of Unilateral 拉普拉斯变换
+
+定理. If the integral in ( $\star$ ) converges for $s=s_{0}=\sigma_{0}+j \omega_{0}$, then it converges for any $s$ with $\operatorname{Re} s>\sigma_{0}$.
+
+证明 (cont'd). Let $s=\sigma+j \omega$.
+
+$$
+\begin{aligned}
+\int_{0}^{T}\left|y(t) e^{-\left(s-s_{0}\right) t}\right| d t & =\int_{0}^{T}|y(t)| e^{-\left(\sigma-\sigma_{0}\right) t} d t \\
+& \leq \int_{0}^{T} M e^{-\left(\sigma-\sigma_{0}\right) t} d t \leq \frac{M}{\sigma-\sigma_{0}}
+\end{aligned}
+$$
+
+so the integral $\int_{0}^{\infty} y(t) e^{-\left(s-s_{0}\right) t} d t$ converges absolutely.
+Therefore, ( *) converges and
+
+$$
+\int_{0}^{\infty} x(t) e^{-s t} d t=\left(s-s_{0}\right) \int_{0}^{\infty} y(t) e^{-\left(s-s_{0}\right) t} d t
+$$
+
+## ROC of Unilateral 拉普拉斯变换
+
+Three possibilities for the convergence of the integral ( $\star$ ),
+(a). it converges for every $s \in \mathbb{C}$
+(b). it diverges for every $s \in \mathbb{C}$
+(c). it converges for $\operatorname{Re} s>\sigma_{c} \in \mathbb{R}$ and diverges for $\operatorname{Re} s<\sigma_{c}$
+
+In case (c), $\sigma_{c} \in \mathbb{R}$ is called the abscissa of convergence, and the line $\operatorname{Re} s=\sigma_{c}$ is called the axis of convergence
+
+The $\mathrm{ROC}^{1}$ is always a right half-plane
+
+$$
+\operatorname{ROC}=\left\{s \in \mathbb{C}: \operatorname{Re} s>\sigma_{c}\right\}
+$$
+
+We also write $\sigma_{c}=-\infty$ in case (a), and $\sigma_{c}=+\infty$ in case (b).
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-16.jpg?height=254&width=276&top_left_y=561&top_left_x=918)
+
+[^0]
+## ROC of Unilateral 拉普拉斯变换
+
+例. $\int_{0}^{\infty} e^{t^{2}} e^{-s t} d t$ diverges for every $s \in \mathbb{C}$, i.e. $\sigma_{c}=+\infty$
+证明. Let $s=\sigma \in \mathbb{R}$. Note
+
+$$
+\int_{0}^{\infty} e^{t^{2}} e^{-\sigma t} d t=+\infty
+$$
+
+Since $\sigma$ is arbitrary, the previous theorem implies the integral diverges for any $s \in \mathbb{C}$.
+
+例. $\int_{0}^{\infty} e^{-t^{2}} e^{-s t} d t$ converges for every $s \in \mathbb{C}$, i.e. $\sigma_{c}=-\infty$
+证明. Let $s=\sigma \in \mathbb{R}$. Note
+
+$$
+\int_{0}^{\infty} e^{-t^{2}} e^{-\sigma t} d t=e^{\sigma^{2} / 4} \int_{0}^{\infty} e^{-(t+\sigma / 2)^{2}} d t \leq e^{\sigma^{2} / 4} \int_{-\infty}^{\infty} e^{-t^{2}} d t=\sqrt{\pi} e^{\sigma^{2} / 4}
+$$
+
+The integral converges absolutely for every $s \in \mathbb{C}$.
+例. $\int_{0}^{\infty} e^{-s t} d t$ has $\sigma_{c}=0$
+
+## 绝对收敛 of Unilateral 拉普拉斯变换
+
+定理. If the integral in ( $\star$ ) converges absolutely for $s=s_{0}=\sigma_{0}+j \omega_{0}$, then it converges absolutely and uniformly for $s=\sigma+j \omega$ with $\sigma \geq \sigma_{0}$.
+证明.
+
+$$
+\int_{0}^{\infty}\left|x(t) e^{-s t}\right| d t=\int_{0}^{\infty}|x(t)| e^{-\sigma t} d t \leq \int_{0}^{\infty}|x(t)| e^{-\sigma_{0} t} d t<\infty
+$$
+
+As in the case of convergence, the region of absolute convergence (ROAC) is always a right half-plane
+
+$$
+\operatorname{ROAC}=\left\{s \in \mathbb{C}: \operatorname{Re} s>\sigma_{a}\right\}
+$$
+
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-18.jpg?height=260&width=280&top_left_y=523&top_left_x=942)
+where $\sigma_{a} \in \overline{\mathbb{R}}$ is the abscissa of absolute convergence, and the line $\operatorname{Re} s=\sigma_{a}$ is the axis of absolute convergence.
+
+## ROAC of Unilateral 拉普拉斯变换
+
+The axis of convergence and the axis of absolute convergence need not coincide!
+
+例. Let $k>0$. To see $\sigma_{a}=k$, note $\int_{0}^{\infty} e^{k t} \sin \left(e^{k t}\right) e^{-s t} d t$ converges absolutely for $\operatorname{Re} s>k$, since for $s=\sigma+j \omega$,
+
+$$
+\left|e^{k t} \sin \left(e^{k t}\right) e^{-s t}\right| \leq e^{-(\sigma-k) t} \in L_{1}[0, \infty)
+$$
+
+It is not absolutely convergent for $s=k$, since
+
+$$
+\int_{0}^{\infty}\left|\sin \left(e^{k t}\right)\right| d t=\frac{1}{k} \int_{1}^{\infty} \frac{|\sin u|}{u} d u=\infty .
+$$
+
+Let $s=\sigma \in \mathbb{R}$.
+
+$$
+\int_{0}^{\infty} e^{k t} \sin \left(e^{k t}\right) e^{-\sigma t} d t=\frac{1}{k} \int_{1}^{\infty} \frac{\sin u}{u^{\sigma / k}} d u
+$$
+
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-19.jpg?height=256&width=271&top_left_y=523&top_left_x=945)
+
+Dirichlet's test implies $\sigma_{c}=0$.
+NB. We will use ROC, although in most cases ROC = ROAC.
+
+## ROC of (Bilateral) 拉普拉斯变换
+
+The ROC of
+
+$$
+\int_{0}^{\infty} x(t) e^{-s t} d t
+$$
+
+is a right half-plane $\operatorname{Re} s>\sigma_{1}$.
+The ROC of
+
+$$
+\int_{-\infty}^{0} x(t) e^{-s t} d t=\int_{0}^{\infty} x(-t) e^{-(-s) t} d t
+$$
+
+is a left half-plane, $\operatorname{Re} s<\sigma_{2}$.
+The ROC of
+
+$$
+X(s)=\int_{-\infty}^{\infty} x(t) e^{-s t} d t=\int_{0}^{\infty} x(t) e^{-s t} d t+\int_{-\infty}^{0} x(t) e^{-s t} d t
+$$
+
+is a strip $\sigma_{1}<\operatorname{Re} s<\sigma_{2}$, which is nonempty iff $\sigma_{1}<\sigma_{2}$
+
+## Properties of ROC
+
+- $X(s)$ is analytic in the ROC and
+
+$$
+f^{(k)}(s)=\int(-t)^{k} x(t) e^{-s t} d t
+$$
+
+- If $x$ is of finite duration and in $L_{1}$, then the ROC is $\mathbb{C}$.
+- If $x$ is left-sided, its ROC is a left half-plane
+- If $x$ is right-sided, its ROC is a right half-plane
+- If $x$ is two-sided, its ROC is a strip
+
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-21.jpg?height=256&width=276&top_left_y=599&top_left_x=93)
+left-sided
+
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-21.jpg?height=256&width=278&top_left_y=599&top_left_x=488)
+right-sided
+
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-21.jpg?height=256&width=276&top_left_y=599&top_left_x=883)
+two-sided
+
+## 例
+
+Consider $x(t)=e^{-b|t|}=e^{-b t} u(t)+e^{b t} u(-t)$ Recall
+
+$$
+\begin{aligned}
+& e^{-b t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+b}, \quad \operatorname{Re} s>-b \\
+& e^{b t} u(-t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{-1}{s-b}, \quad \operatorname{Re} s<b
+\end{aligned}
+$$
+
+Thus
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-22.jpg?height=278&width=334&top_left_y=75&top_left_x=869)
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-22.jpg?height=141&width=336&top_left_y=359&top_left_x=869)
+
+$$
+x(t)=e^{-b|t|} \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+b}-\frac{1}{s-b}=\frac{-2 b}{s^{2}-b^{2}}, \quad-b<\operatorname{Re} s<b
+$$
+
+The ROC is nonempty iff $b>0$.
+NB. For Laplace transform to exist, $x(t)$ has to decay fast enough either as $t \rightarrow+\infty$ or $t \rightarrow-\infty$. The exponential weighting in $e^{-s t}$ cannot kill both.
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-22.jpg?height=296&width=319&top_left_y=625&top_left_x=891)
+
+## Properties of ROC
+
+- If $X(s)$ is rational, the ROC is bounded by poles or extends to infinity.
+- If $x$ is also right-sided, then its ROC is the right half-plane bounded by the rightmost pole in $\mathbb{C}$, e.g. region III
+- If $x$ is also left-sided, then its ROC is the left half-plane bounded by the leftmost pole in $\mathbb{C}$, e.g. region I
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-23.jpg?height=531&width=494&top_left_y=275&top_left_x=718)
+
+
+## 目录
+
+## 1. 拉普拉斯变换
+
+## 2. 收敛域
+
+## 3. Properties of 拉普拉斯变换
+
+## 线性性质
+
+If
+
+$$
+\begin{array}{ll}
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s) & \text { with } \mathrm{ROC}=R_{1} \\
+y(t) \stackrel{\mathcal{L}}{\longleftrightarrow} Y(s) & \text { with } \mathrm{ROC}=R_{2}
+\end{array}
+$$
+
+then
+
+$$
+a x(t)+b y(t) \stackrel{\mathcal{L}}{\longleftrightarrow} a X(s)+b Y(s) \quad \text { with } \mathrm{ROC} \supset R_{1} \cap R_{2}
+$$
+
+NB. The ROC may be larger than $R_{1} \cap R_{2}$.
+例. $\quad x(t)=\cos \left(\omega_{0} t\right) u(t)=\frac{1}{2} e^{j \omega_{0} t} u(t)+\frac{1}{2} e^{-j \omega_{0} t} u(t)$
+
+$$
+\begin{gathered}
+X(s)=\frac{1}{2} \frac{1}{s-j \omega_{0}}+\frac{1}{2} \frac{1}{s+j \omega_{0}}=\frac{s}{s^{2}+\omega_{0}^{2}}, \quad \operatorname{Re} s>0 \\
+\sin \left(\omega_{0} t\right) u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{\omega_{0}}{s^{2}+\omega_{0}^{2}}, \quad \operatorname{Re} s>0
+\end{gathered}
+$$
+
+## 线性性质
+
+## 例.
+
+$X_{1}(s)=\frac{1}{s+1}, \quad \operatorname{Re} s>-1 ; \quad X_{2}(s)=\frac{1}{(s+1)(s+2)}, \quad \operatorname{Re} s>-1$
+
+$$
+X(s)=X_{1}(s)-X_{2}(s)=\frac{s+1}{(s+1)(s+2)}=\frac{1}{s+2}, \quad \operatorname{Re} s>-2
+$$
+
+ROC enlarges due to pole-zero cancellation at $s=-1$.
+In time domain,
+
+$$
+\begin{gathered}
+x_{1}(t)=e^{-t} u(t), \quad x_{2}(t)=e^{-t} u(t)-e^{-2 t} u(t) \\
+x(t)=x_{1}(t)-x_{2}(t)=e^{-2 t} u(t)
+\end{gathered}
+$$
+
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-26.jpg?height=254&width=325&top_left_y=674&top_left_x=95)
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-26.jpg?height=250&width=331&top_left_y=676&top_left_x=479)
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-26.jpg?height=262&width=331&top_left_y=670&top_left_x=874)
+
+## 时移性质
+
+If
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \sigma_{1}<\operatorname{Re} s<\sigma_{2}
+$$
+
+then
+
+$$
+x\left(t-t_{0}\right) \stackrel{\mathcal{L}}{\longleftrightarrow} e^{-s t_{0}} X(s), \quad \sigma_{1}<\operatorname{Re} s<\sigma_{2}
+$$
+
+例.
+
+$$
+\begin{gathered}
+? \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{e^{3 s}}{s+2}, \operatorname{Re} s>-2 \\
+x(t)=e^{-2 t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+2}, \operatorname{Re} s>-2 \\
+x(t+3)=e^{-2(t+3)} u(t+3) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{e^{3 s}}{s+2}, \operatorname{Re} s>-2
+\end{gathered}
+$$
+
+## Shifting in $s$-domain
+
+If
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \sigma_{1}<\operatorname{Re} s<\sigma_{2}
+$$
+
+then
+
+$$
+e^{s_{0} t} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X\left(s-s_{0}\right), \quad \sigma_{1}+\operatorname{Re} s_{0}<\operatorname{Re} s<\sigma_{2}+\operatorname{Re} s_{0}
+$$
+
+## 例.
+
+For $\alpha \in \mathbb{R}$,
+
+$$
+\begin{array}{ll}
+e^{-\alpha t} \cos \left(\omega_{0} t\right) u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{s+\alpha}{(s+\alpha)^{2}+\omega_{0}^{2}}, & \operatorname{Re} s>-\alpha \\
+e^{-\alpha t} \sin \left(\omega_{0} t\right) u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{\omega_{0}}{(s+\alpha)^{2}+\omega_{0}^{2}}, & \operatorname{Re} s>-\alpha
+\end{array}
+$$
+
+## 时间尺度变换
+
+If
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \sigma_{1}<\operatorname{Re} s<\sigma_{2}
+$$
+
+then for $a \in \mathbb{R} \backslash\{0\}$,
+
+$$
+x(a t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{|a|} X\left(\frac{s}{a}\right), \quad \sigma_{1}<\frac{1}{a} \operatorname{Re} s<\sigma_{2}
+$$
+
+For time reversal,
+
+$$
+x(-t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(-s), \quad-\sigma_{2}<\operatorname{Re} s<-\sigma_{1}
+$$
+
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-29.jpg?height=252&width=294&top_left_y=638&top_left_x=106)
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-29.jpg?height=288&width=276&top_left_y=638&top_left_x=499)
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-29.jpg?height=288&width=281&top_left_y=638&top_left_x=887)
+
+## 共轭
+
+If
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \sigma_{1}<\operatorname{Re} s<\sigma_{2}
+$$
+
+then
+
+$$
+x^{*}(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X^{*}\left(s^{*}\right), \quad \sigma_{1}<\operatorname{Re} s<\sigma_{2}
+$$
+
+If $x$ is real-valued, then $X(s)=X^{*}\left(s^{*}\right)$, so the zeros and poles of $X(s)$ appear in conjugate pairs.
+
+## 例.
+
+For $x(t)=e^{-2 t} u(t)+e^{-t} \cos (3 t) u(t)$,
+
+$$
+X(s)=\frac{\left(s+\frac{5+j \sqrt{71}}{4}\right)\left(s+\frac{5-j \sqrt{71}}{4}\right)}{(s+2)(s+1-3 j)(s+1+3 j)}
+$$
+
+with $\operatorname{ROC} \operatorname{Re} s>-1$.
+![](https://cdn.mathpix.com/cropped/646e1f59-f1f3-4ba4-9866-6ad138ffe01e-30.jpg?height=458&width=407&top_left_y=474&top_left_x=807)
+
+## 卷积性质
+
+If
+
+$$
+\begin{array}{ll}
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s) & \text { with } \mathrm{ROAC}=R_{1} \\
+y(t) \stackrel{\mathcal{L}}{\longleftrightarrow} Y(s) & \text { with } \mathrm{ROAC}=R_{2}
+\end{array}
+$$
+
+then
+
+$$
+(x * y)(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s) Y(s) \quad \text { with ROAC } \supset R_{1} \cap R_{2}
+$$
+
+A more precise statement is the following.
+定理. If both $X(s)=\int_{-\infty}^{\infty} x(t) e^{-s t} d t$ and $Y(s)=\int_{-\infty}^{\infty} y(t) e^{-s t} d t$ converges absolutely at some $s=s_{0}$, then the Laplace transform of $z=x * y$ converges absolutely at $s=s_{0}$, and
+
+$$
+X\left(s_{0}\right) Y\left(s_{0}\right)=Z\left(s_{0}\right)=\int_{-\infty}^{\infty} z(t) e^{-s_{0} t} d t
+$$
+
+## 卷积性质
+
+证明.
+
+$$
+\begin{aligned}
+X(s) Y(s) & =\int_{-\infty}^{\infty} x(v)\left[\int_{-\infty}^{\infty} y(\tau) e^{-s(v+\tau)} d v\right] d \tau \\
+& =\int_{-\infty}^{\infty} x(v)\left[\int_{-\infty}^{\infty} y(t-v) e^{-s v} d v\right] d t \quad(t=v+\tau) \\
+& =\int_{-\infty}^{\infty}\left[\int_{-\infty}^{\infty} x(v) y(t-v) d t\right] e^{-s v} d v \quad \text { (Fubini's 定理) }
+\end{aligned}
+$$
+
+NB. The ROAC of $\mathcal{L}\{x * y\}$ may be larger than the common ROAC of $\mathcal{L}\{x\}$ and $\mathcal{L}\{y\}$.
+
+例. $X_{1}(s)=\frac{s+1}{(s+2)^{2}}$ has ROAC $\operatorname{Re} s>-2, X_{2}(s)=\frac{1}{s+1}$ has ROAC Re $s>-1$, but $X(s)=X_{1}(s) X_{2}(s)=\frac{1}{(s+2)^{2}}$ with ROAC $\operatorname{Re} s>-2$, due to pole-zero cancellation at $s=-1$.
+
+## 时域微分性质
+
+If
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \text { with } \text { ROC }=R
+$$
+
+and $\lim _{t \rightarrow \pm \infty} x(t) e^{-s t}=0$ for $s \in R \in R_{0}$, then
+
+$$
+\frac{d}{d t} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s X(s), \quad \text { with } \mathrm{ROC} \supset R \cap R_{0}
+$$
+
+证明. Integration by parts yields
+
+$$
+\int_{-\infty}^{\infty} x^{\prime}(t) e^{-s t} d t=\left.x(t) e^{-s t}\right|_{-\infty} ^{\infty}+s \int_{-\infty}^{\infty} x(t) e^{-s t} d t=s \int_{-\infty}^{\infty} x(t) e^{-s t} d t
+$$
+
+NB. ROC may enlarge or shrink
+例. $x(t)=\left(1-e^{-t}\right) u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s(s+1)}$ with ROC = ROAC
+$\operatorname{Re} s>0$, and $x^{\prime}(t)=e^{-t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+1}$ with ROC = ROAC
+$\operatorname{Re} s>-1$. The ROC of $\mathcal{L}\left\{x^{\prime}\right\}$ is larger that that of $\mathcal{L}\{x\}$.
+
+## 时域微分性质
+
+例. Consider $x(t)=e^{k t} \sin \left(e^{k t}\right)$ with $k>0$.
+
+- For $s=\sigma \in \mathbb{R}, u=e^{k t}$ yields (cf. slide 18)
+
+$$
+\int_{-\infty}^{\infty} x(t) e^{-s t} d t=\frac{1}{k} \int_{0}^{\infty} \frac{\sin u}{u^{\sigma / k}} d u=\frac{1}{k} \int_{0}^{1} \frac{\sin u}{u^{\sigma / k}} d u+\frac{1}{k} \int_{1}^{\infty} \frac{\sin u}{u^{\sigma / k}} d u
+$$
+
+- $\int_{1}^{\infty} \frac{\sin u}{u^{\sigma / k}} d u$ has ROAC $\operatorname{Re} s>k$ and ROC $\operatorname{Re} s>0$
+- As $u \downarrow 0, \frac{\sin u}{u^{\sigma / k}} \sim u^{1-\sigma / k}$, so $\int_{0}^{1} \frac{\sin u}{u^{\sigma / k}} d u$ has ROAC $\operatorname{Re} s<2 k$
+- Thus $\mathcal{L}\{x\}$ has $\operatorname{ROC} k<\operatorname{Re} s<2 k$ and $\operatorname{ROC} 0<\operatorname{Re} s<2 k$.
+- $x^{\prime}(t)=k e^{k t} \sin \left(e^{k t}\right)+k e^{2 k t} \cos \left(e^{k t}\right)$. For $s=\sigma \in \mathbb{R}$,
+
+$$
+\int_{-\infty}^{\infty} x^{\prime}(t) e^{-s t} d t=\int_{0}^{\infty} \frac{\sin u+u \cos u}{u^{\sigma / k}} d u
+$$
+
+$\mathcal{L}\left\{x^{\prime}\right\}$ has empty ROAC, and ROC $k<\operatorname{Re} s<2 k$
+
+- Note $\lim _{t \rightarrow \pm \infty} x(t) e^{-s t}=0$ fails for $s$ with $0<\operatorname{Re} s<k$
+
+
+## 时域微分性质
+
+If $x(t)=O\left(e^{a t}\right)$ as $t \rightarrow+\infty$ and $x(t)=O\left(e^{b t}\right)$ as $t \rightarrow-\infty$, then
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \text { with ROAC containing } a<\operatorname{Re} s<b
+$$
+
+and
+
+$$
+\frac{d}{d t} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s X(s), \quad \text { with ROC containing } a<\operatorname{Re} s<b
+$$
+
+NB. In general, from the absolute convergence of $\mathcal{L}\{x\}$ at $s=s_{0}$ we can only conclude the convergence of $\mathcal{L}\left\{x^{\prime}\right\}$ at $s=s_{0}$.
+
+NB. We mostly deal with $x(t)$ of the form $\sum_{k=0}^{m} p_{k}(t) e^{\alpha_{k} t} u\left( \pm t+\beta_{k}\right)$, where $p_{k}$ are polynomials. After introducing Laplace transform for singularity functions, we have for such functions,
+
+$$
+\frac{d^{n}}{d t^{n}} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s^{n} X(s), \quad \text { with ROC containing } a<\operatorname{Re} s<b
+$$
+
+## $s$ 域微分性质
+
+If
+
+$$
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \sigma_{1}<\operatorname{Re} s<\sigma_{2}
+$$
+
+then
+
+$$
+-t x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{d}{d s} X(s), \quad \sigma_{1}<\operatorname{Re} s<\sigma_{2}
+$$
+
+证明. Differentiation under integral sign (can be justified) yields
+
+$$
+\frac{d}{d s} \int_{-\infty}^{\infty} x(t) e^{-s t} d t=\int_{-\infty}^{\infty} x(t) \frac{d}{d s} e^{-s t} d t=\int_{-\infty}^{\infty}-t x(t) e^{-s t} d t
+$$
+
+例.
+
+$$
+e^{-a t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+a}, \quad \operatorname{Re} s>-a
+$$
+
+$$
+t^{n} e^{-a t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow}\left(-\frac{d}{d s}\right)^{n} \frac{1}{s+a}=\frac{n!}{(s+a)^{n+1}}, \quad \operatorname{Re} s>-a
+$$
+
+Similarly, $\quad-t^{n} e^{-a t} u(-t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{n!}{(s+a)^{n+1}}, \quad \operatorname{Re} s<-a$
+
+
+[^0]:    ¹More precisely, the interior of the ROC.

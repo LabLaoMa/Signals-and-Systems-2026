@@ -1,0 +1,19 @@
+/* Full-page PDF slide image layout */
+.reveal .slides section {
+  padding: 0 !important;
+}
+.reveal .slides section h2 {
+  display: none;
+}
+.reveal img.slide-page {
+  max-width: 100%;
+  max-height: 92vh;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+  border: none !important;
+  box-shadow: none !important;
+}
+.reveal .slide-number {
+  font-size: 0.45em;
+}

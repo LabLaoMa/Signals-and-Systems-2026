@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.30">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Bo Jiang（原作者）｜中文翻译整理">
+<meta name="dcterms.date" content="2019-03-14">
+
+<title>EL331 信号与系统 · 第30讲（中文版） – My Site</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-b6a8276bf55561bdbc268162d41bd1f7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-45431c2918bd31147ddb3fa7038bb99f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lec30_zh_slides_strict_clean (1).html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">EL331 信号与系统 · 第30讲（中文版）</h1>
+<p class="subtitle lead">拉普拉斯变换、系统分析与框图表示</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Bo Jiang（原作者）｜中文翻译整理 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 14, 2019</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="目录" class="level2">
+<h2 class="anchored" data-anchor-id="目录">目录</h2>
+<ol type="1">
+<li>拉普拉斯变换的性质</li>
+<li>拉普拉斯逆变换</li>
+<li>奇异函数的拉普拉斯变换</li>
+<li>利用拉普拉斯变换分析连续时间 LTI 系统</li>
+<li>框图表示</li>
+</ol>
+</section>
+<section id="卷积性质" class="level2">
+<h2 class="anchored" data-anchor-id="卷积性质">卷积性质</h2>
+<p>If</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s) &amp; \text { with } \text { ROAC }=R_{1} \\
+y(t) \stackrel{\mathcal{L}}{\longleftrightarrow} Y(s) &amp; \text { with ROAC }=R_{2}
+\end{array}
+\]</span></p>
+<p>则</p>
+<p><span class="math display">\[
+(x * y)(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s) Y(s) \quad \text { with ROAC } \supset R_{1} \cap R_{2}
+\]</span></p>
+<p>A more prec为e statement 为 the following. 定理： 如果both <span class="math inline">\(X(s)=\int_{-\infty}^{\infty} x(t) e^{-s t} d t\)</span> and <span class="math inline">\(Y(s)=\int_{-\infty}^{\infty} y(t) e^{-s t} d t\)</span> converges absolutely at some <span class="math inline">\(s=s_{0}\)</span>, 则 the Laplace transform of <span class="math inline">\(z=x * y\)</span> converges absolutely at <span class="math inline">\(s=s_{0}\)</span>, and</p>
+<p><span class="math display">\[
+X\left(s_{0}\right) Y\left(s_{0}\right)=Z\left(s_{0}\right)=\int_{-\infty}^{\infty} z(t) e^{-s_{0} t} d t
+\]</span></p>
+</section>
+<section id="卷积性质-1" class="level2">
+<h2 class="anchored" data-anchor-id="卷积性质-1">卷积性质</h2>
+<p>证明.</p>
+<p><span class="math display">\[
+\begin{aligned}
+X(s) Y(s) &amp; =\int_{-\infty}^{\infty} x(v)\left[\int_{-\infty}^{\infty} y(\tau) e^{-s(v+\tau)} d v\right] d \tau \\
+&amp; =\int_{-\infty}^{\infty} x(v)\left[\int_{-\infty}^{\infty} y(t-v) e^{-s v} d v\right] d t \quad(t=v+\tau) \\
+&amp; =\int_{-\infty}^{\infty}\left[\int_{-\infty}^{\infty} x(v) y(t-v) d t\right] e^{-s v} d v \quad \text { (Fubini's Theorem) }
+\end{aligned}
+\]</span></p>
+<p>注意： The ROAC of <span class="math inline">\(\mathcal{L}\{x * y\}\)</span> may be larger than the common ROAC of <span class="math inline">\(\mathcal{L}\{x\}\)</span> and <span class="math inline">\(\mathcal{L}\{y\}\)</span>.</p>
+<p>例. <span class="math inline">\(X_{1}(s)=\frac{s+1}{(s+2)^{2}}\)</span> has ROAC <span class="math inline">\(\operatorname{Re} s&gt;-2, X_{2}(s)=\frac{1}{s+1}\)</span> has ROAC Re <span class="math inline">\(s&gt;-1\)</span>, but <span class="math inline">\(X(s)=X_{1}(s) X_{2}(s)=\frac{1}{(s+2)^{2}}\)</span> with ROAC <span class="math inline">\(\operatorname{Re} s&gt;-2\)</span>, due to pole-zero cancellation at <span class="math inline">\(s=-1\)</span>.</p>
+</section>
+<section id="时域微分性质" class="level2">
+<h2 class="anchored" data-anchor-id="时域微分性质">时域微分性质</h2>
+<p>If</p>
+<p><span class="math display">\[
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \text { with } \text { ROC }=R
+\]</span></p>
+<p>and <span class="math inline">\(\lim _{t \rightarrow \pm \infty} x(t) e^{-s t}=0\)</span> for <span class="math inline">\(s \in R_{0}\)</span>, 则</p>
+<p><span class="math display">\[
+\frac{d}{d t} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s X(s), \quad \text { with } \mathrm{ROC} \supset R \cap R_{0}
+\]</span></p>
+<p>证明. Integration by parts 得到</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} x^{\prime}(t) e^{-s t} d t=\left.x(t) e^{-s t}\right|_{-\infty} ^{\infty}+s \int_{-\infty}^{\infty} x(t) e^{-s t} d t=s \int_{-\infty}^{\infty} x(t) e^{-s t} d t
+\]</span></p>
+<p>注意： ROC may enlarge or shrink 例. <span class="math inline">\(x(t)=\left(1-e^{-t}\right) u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s(s+1)}\)</span> with ROC = ROAC <span class="math inline">\(\operatorname{Re} s&gt;0\)</span>, and <span class="math inline">\(x^{\prime}(t)=e^{-t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+1}\)</span> with ROC = ROAC <span class="math inline">\(\operatorname{Re} s&gt;-1\)</span>. The ROC of <span class="math inline">\(\mathcal{L}\left\{x^{\prime}\right\}\)</span> 为 larger that that of <span class="math inline">\(\mathcal{L}\{x\}\)</span>.</p>
+</section>
+<section id="时域微分性质-1" class="level2">
+<h2 class="anchored" data-anchor-id="时域微分性质-1">时域微分性质</h2>
+<p>例. Consider <span class="math inline">\(x(t)=e^{k t} \sin \left(e^{k t}\right)\)</span> with <span class="math inline">\(k&gt;0\)</span>.</p>
+<ul>
+<li>对于<span class="math inline">\(s=\sigma \in \mathbb{R}, u=e^{k t}\)</span> 得到 (cf.&nbsp;slide 18)</li>
+</ul>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} x(t) e^{-s t} d t=\frac{1}{k} \int_{0}^{\infty} \frac{\sin u}{u^{\sigma / k}} d u=\frac{1}{k} \int_{0}^{1} \frac{\sin u}{u^{\sigma / k}} d u+\frac{1}{k} \int_{1}^{\infty} \frac{\sin u}{u^{\sigma / k}} d u
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\int_{1}^{\infty} \frac{\sin u}{u^{\sigma / k}} d u\)</span> has ROAC <span class="math inline">\(\operatorname{Re} s&gt;k\)</span> and ROC <span class="math inline">\(\operatorname{Re} s&gt;0\)</span></li>
+<li>As <span class="math inline">\(u \downarrow 0, \frac{\sin u}{u^{\sigma / k}} \sim u^{1-\sigma / k}\)</span>, so <span class="math inline">\(\int_{0}^{1} \frac{\sin u}{u^{\sigma / k}} d u\)</span> has ROAC <span class="math inline">\(\operatorname{Re} s&lt;2 k\)</span></li>
+<li>Thus <span class="math inline">\(\mathcal{L}\{x\}\)</span> has <span class="math inline">\(\operatorname{ROC} k&lt;\operatorname{Re} s&lt;2 k\)</span> and <span class="math inline">\(\operatorname{ROC} 0&lt;\operatorname{Re} s&lt;2 k\)</span>.</li>
+<li><span class="math inline">\(x^{\prime}(t)=k e^{k t} \sin \left(e^{k t}\right)+k e^{2 k t} \cos \left(e^{k t}\right)\)</span>. 对于<span class="math inline">\(s=\sigma \in \mathbb{R}\)</span>,</li>
+</ul>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty} x^{\prime}(t) e^{-s t} d t=\int_{0}^{\infty} \frac{\sin u+u \cos u}{u^{\sigma / k}} d u
+\]</span></p>
+<p><span class="math inline">\(\mathcal{L}\left\{x^{\prime}\right\}\)</span> has empty ROAC, and ROC <span class="math inline">\(k&lt;\operatorname{Re} s&lt;2 k\)</span></p>
+<ul>
+<li>Note <span class="math inline">\(\lim _{t \rightarrow \pm \infty} x(t) e^{-s t}=0\)</span> fails for <span class="math inline">\(s\)</span> with <span class="math inline">\(0&lt;\operatorname{Re} s&lt;k\)</span></li>
+</ul>
+</section>
+<section id="时域微分性质-2" class="level2">
+<h2 class="anchored" data-anchor-id="时域微分性质-2">时域微分性质</h2>
+<p>如果<span class="math inline">\(x(t)=O\left(e^{a t}\right)\)</span> as <span class="math inline">\(t \rightarrow+\infty\)</span> and <span class="math inline">\(x(t)=O\left(e^{b t}\right)\)</span> as <span class="math inline">\(t \rightarrow-\infty\)</span>, 则</p>
+<p><span class="math display">\[
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \text { with ROAC containing } a&lt;\operatorname{Re} s&lt;b
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+\frac{d}{d t} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s X(s), \quad \text { with ROC containing } a&lt;\operatorname{Re} s&lt;b
+\]</span></p>
+<p>注意： 一般而言， from the absolute convergence of <span class="math inline">\(\mathcal{L}\{x\}\)</span> at <span class="math inline">\(s=s_{0}\)</span> we can only conclude the convergence of <span class="math inline">\(\mathcal{L}\left\{x^{\prime}\right\}\)</span> at <span class="math inline">\(s=s_{0}\)</span>.</p>
+<p>注意： We mostly deal with <span class="math inline">\(x(t)\)</span> of the form <span class="math inline">\(\sum_{k=0}^{m} p_{k}(t) e^{\alpha_{k} t} u\left( \pm t+\beta_{k}\right)\)</span>, 其中 <span class="math inline">\(p_{k}\)</span> are polynomials. After introducing Laplace transform for singularity functions, we have for such functions,</p>
+<p><span class="math display">\[
+\frac{d^{n}}{d t^{n}} x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} s^{n} X(s), \quad \text { with ROC containing } a&lt;\operatorname{Re} s&lt;b
+\]</span></p>
+</section>
+<section id="s-域微分性质" class="level2">
+<h2 class="anchored" data-anchor-id="s-域微分性质"><span class="math inline">\(s\)</span> 域微分性质</h2>
+<p>If</p>
+<p><span class="math display">\[
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \operatorname{ROAC} \sigma_{1}&lt;\operatorname{Re} s&lt;\sigma_{2}
+\]</span></p>
+<p>则</p>
+<p><span class="math display">\[
+-t x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{d}{d s} X(s), \quad \operatorname{ROAC} \sigma_{1}&lt;\operatorname{Re} s&lt;\sigma_{2}
+\]</span></p>
+<p>“证明”. Differentiating under integral sign (can be justified)</p>
+<p><span class="math display">\[
+\frac{d}{d s} \int_{-\infty}^{\infty} x(t) e^{-s t} d t=\int_{-\infty}^{\infty} x(t) \frac{d}{d s} e^{-s t} d t=\int_{-\infty}^{\infty}-t x(t) e^{-s t} d t
+\]</span></p>
+<p>例.</p>
+<p><span class="math display">\[
+e^{-a t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s+a}, \quad \operatorname{Re} s&gt;-a
+\]</span></p>
+<p><span class="math display">\[
+t^{n} e^{-a t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow}\left(-\frac{d}{d s}\right)^{n} \frac{1}{s+a}=\frac{n!}{(s+a)^{n+1}}, \quad \operatorname{Re} s&gt;-a
+\]</span></p>
+<p>Similarly,</p>
+<p><span class="math display">\[
+-t^{n} e^{-a t} u(-t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{n!}{(s+a)^{n+1}}, \quad \operatorname{Re} s&lt;-a
+\]</span></p>
+</section>
+<section id="时域积分性质" class="level2">
+<h2 class="anchored" data-anchor-id="时域积分性质">时域积分性质</h2>
+<p>If</p>
+<p><span class="math display">\[
+x(t) \stackrel{\mathcal{L}}{\longleftrightarrow} X(s), \quad \text { ROAC }=R
+\]</span></p>
+<p>则</p>
+<p><span class="math display">\[
+\int_{-\infty}^{t} x(\tau) d \tau \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s} X(s), \quad \text { ROAC } \supset R \cap\{\operatorname{Re} s&gt;0\}
+\]</span></p>
+<p>证明. Follows from convolution property and the following</p>
+<p><span class="math display">\[
+\int_{-\infty}^{t} x(\tau) d \tau=(x * u)(t)
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{s} \text { with ROAC }=\{\operatorname{Re} s&gt;0\}
+\]</span></p>
+<p>注意： Th为 property holds also for Laplace transforms of singularity functions and will be useful computing some Laplace transforms.</p>
+</section>
+<section id="目录-1" class="level2">
+<h2 class="anchored" data-anchor-id="目录-1">目录</h2>
+<ol type="1">
+<li>拉普拉斯变换的性质</li>
+<li>拉普拉斯逆变换</li>
+<li>奇异函数的拉普拉斯变换</li>
+<li>利用拉普拉斯变换分析连续时间 LTI 系统</li>
+<li>框图表示</li>
+</ol>
+</section>
+<section id="拉普拉斯逆变换" class="level2">
+<h2 class="anchored" data-anchor-id="拉普拉斯逆变换">拉普拉斯逆变换</h2>
+<p>Recall Laplace transform 为 related to CTFT by</p>
+<p><span class="math display">\[
+X(\sigma+j \omega)=\int_{-\infty}^{\infty}\left\{x(t) e^{-\sigma t}\right\} e^{-j \omega t} d t=\mathcal{F}\left\{x(t) e^{-\sigma t}\right\}
+\]</span></p>
+<p>Take the inverse Fourier transform for <span class="math inline">\(s=\sigma+j \omega \in \mathrm{ROC}\)</span>,</p>
+<p><span class="math display">\[
+x(t) e^{-\sigma t}=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(\sigma+j \omega) e^{j \omega t} d \omega
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+x(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(\sigma+j \omega) e^{(\sigma+j \omega) t} d \omega
+\]</span></p>
+<p>or</p>
+<p><span class="math display">\[
+x(t)=\frac{1}{j 2 \pi} \int_{\sigma-j \infty}^{\sigma+j \infty} X(s) e^{s t} d s=\lim _{A \rightarrow \infty} \frac{1}{j 2 \pi} \int_{\sigma-j A}^{\sigma+j A} X(s) e^{s t} d s
+\]</span></p>
+</section>
+<section id="inverse-transform-by-partial-fraction-expansion" class="level2">
+<h2 class="anchored" data-anchor-id="inverse-transform-by-partial-fraction-expansion">Inverse Transform by Partial Fraction Expansion</h2>
+<p>对于rational Laplace transform, the inverse transform can be found by partial fraction expansion.</p>
+<p>Recall a proper rational function has the following partial fraction expansion</p>
+<p><span class="math display">\[
+R(s)=\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(s+a_{i}\right)^{k_{i}}}
+\]</span></p>
+<p>Also recall</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{t^{n-1}}{(n-1)!} e^{-a t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{(s+a)^{n}}, &amp; \operatorname{Re} s&gt;-a \\
+-\frac{t^{n-1}}{(n-1)!} e^{-a t} u(-t) \stackrel{\mathcal{L}}{\longleftrightarrow} \frac{1}{(s+a)^{n}}, &amp; \operatorname{Re} s&lt;-a
+\end{aligned}
+\]</span></p>
+<p>By linearity, <span class="math inline">\(\mathcal{L}^{-1}\{R\}\)</span> 为 a linear combination of terms of the above form, 其中 signs are chosen according to the ROC.</p>
+</section>
+<section id="例" class="level2">
+<h2 class="anchored" data-anchor-id="例">例</h2>
+<p>Consider a rational Laplace transform <span class="math inline">\(X(s)=\frac{1}{(s+1)(s+2)^{2}}\)</span></p>
+<p><span class="math display">\[
+X(s)=\frac{1}{s+1}+\frac{-1}{s+2}+\frac{-1}{(s+2)^{2}}
+\]</span></p>
+<p>Two poles at <span class="math inline">\(s=-1\)</span> and <span class="math inline">\(s=-2\)</span>.</p>
+<ol type="1">
+<li>如果ROC 为 <span class="math inline">\(\operatorname{Re} s&gt;-1\)</span></li>
+</ol>
+<p><span class="math display">\[
+x(t)=e^{-t} u(t)-(1+t) e^{-2 t} u(t)
+\]</span></p>
+<ol start="2" type="1">
+<li>如果ROC 为 <span class="math inline">\(\operatorname{Re} s&lt;-2\)</span></li>
+</ol>
+<p><span class="math display">\[
+x(t)=-e^{-t} u(-t)+(1+t) e^{-2 t} u(-t)
+\]</span></p>
+<ol start="3" type="1">
+<li>如果ROC 为 <span class="math inline">\(-2&lt;\operatorname{Re} s&lt;-1\)</span></li>
+</ol>
+<p><span class="math display">\[
+x(t)=-e^{-t} u(-t)-(1+t) e^{-2 t} u(t)
+\]</span></p>
+</section>
+<section id="inverse-transform-by-contour-integration" class="level2">
+<h2 class="anchored" data-anchor-id="inverse-transform-by-contour-integration">Inverse Transform by Contour Integration</h2>
+<p>Suppose <span class="math inline">\(X(s)\)</span> has finitely many finite 为olated singularities <span class="math inline">\(s_{1}, \ldots, s_{n}\)</span>, and ROC 为 <span class="math inline">\(-\infty \leq \sigma_{1}&lt;\operatorname{Re} s&lt;\sigma_{2} \leq+\infty\)</span>.</p>
+<p>The inverse transform 为</p>
+<p><span class="math display">\[
+x(t)=\lim _{r \rightarrow \infty} \frac{1}{j 2 \pi} \int_{\sigma-j r}^{\sigma+j r} X(s) e^{s t} d s
+\]</span></p>
+<p>其中 <span class="math inline">\(\sigma_{1}&lt;\sigma&lt;\sigma_{2}\)</span>. 对于<span class="math inline">\(t&gt;0\)</span>, choose a large semicircle <span class="math inline">\(C_{r}\)</span> that encloses all <span class="math inline">\(s_{k}\)</span> with <span class="math inline">\(\operatorname{Re} s \leq \sigma_{1}\)</span>.</p>
+<p>如果<span class="math inline">\(X(s)\)</span> sat为fies <span class="math inline">\({ }^{1}\)</span> (a shifted and rotated version of) Jordan’s Lemma (slide 6, Lecture 27), Residue Theorem implies <img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-14.jpg?height=569&amp;width=389&amp;top_left_y=224&amp;top_left_x=838" class="img-fluid"></p>
+<p><span class="math display">\[
+x(t)=\sum_{k: s_{k} \leq \sigma_{1}} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right], \quad t&gt;0
+\]</span></p>
+<p><span class="math inline">\({ }^{1}\)</span> sat为fied by proper rational functions</p>
+</section>
+<section id="inverse-transform-by-contour-integration-1" class="level2">
+<h2 class="anchored" data-anchor-id="inverse-transform-by-contour-integration-1">Inverse Transform by Contour Integration</h2>
+<p>Suppose <span class="math inline">\(X(s)\)</span> has finitely many finite 为olated singularities <span class="math inline">\(s_{1}, \ldots, s_{n}\)</span>, and ROC 为 <span class="math inline">\(-\infty \leq \sigma_{1}&lt;\operatorname{Re} s&lt;\sigma_{2} \leq+\infty\)</span>.</p>
+<p>The inverse transform 为</p>
+<p><span class="math display">\[
+x(t)=\lim _{r \rightarrow \infty} \frac{1}{j 2 \pi} \int_{\sigma-j r}^{\sigma+j r} X(s) e^{s t} d s
+\]</span></p>
+<p>其中 <span class="math inline">\(\sigma_{1}&lt;\sigma&lt;\sigma_{2}\)</span>. 对于<span class="math inline">\(t&lt;0\)</span>, choose a large semicircle <span class="math inline">\(C_{r}\)</span> that encloses all <span class="math inline">\(s_{k}\)</span> with <span class="math inline">\(\operatorname{Re} s \geq \sigma_{2}\)</span>.</p>
+<p>如果<span class="math inline">\(X(s)\)</span> sat为fies (a shifted and rotated version of) Jordan’s Lemma, Residue Theorem implies</p>
+<p><span class="math display">\[
+x(t)=-\sum_{k: s_{k} \geq \sigma_{2}} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right], \quad t&lt;0
+\]</span></p>
+<p><img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-15.jpg?height=569&amp;width=442&amp;top_left_y=250&amp;top_left_x=794" class="img-fluid"></p>
+<p>Caution. Negative sign due to negative orientation of contour.</p>
+</section>
+<section id="例-1" class="level2">
+<h2 class="anchored" data-anchor-id="例-1">例</h2>
+<p>Consider a rational Laplace transform <span class="math inline">\(X(s)=\frac{1}{(s+1)(s+2)^{2}}\)</span></p>
+<p><span class="math display">\[
+\begin{gathered}
+\operatorname{Res}\left[X(s) e^{s t},-1\right]=\left.\frac{e^{s t}}{(s+2)^{2}}\right|_{s=-1}=e^{-t} \\
+\operatorname{Res}\left[X(s) e^{s t},-2\right]=\left[\frac{d}{d s} \frac{e^{s t}}{s+1}\right]_{s=-2}=-(1+t) e^{-2 t}
+\end{gathered}
+\]</span></p>
+<ol type="1">
+<li>如果ROC 为 <span class="math inline">\(\operatorname{Re} s&gt;-1\)</span>, 则 <span class="math inline">\(\sigma_{1}=-1, \sigma_{2}=+\infty\)</span>.</li>
+</ol>
+<p>对于<span class="math inline">\(t&gt;0\)</span>,</p>
+<p><span class="math display">\[
+x(t)=\sum_{k: \operatorname{Re} s_{k} \leq-1} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=e^{-t}-(1+t) e^{-2 t}
+\]</span></p>
+<p>对于<span class="math inline">\(t&lt;0\)</span>,</p>
+<p><span class="math display">\[
+x(t)=-\sum_{k: \operatorname{Re} s_{k} \geq+\infty} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=0
+\]</span></p>
+</section>
+<section id="例-contd" class="level2">
+<h2 class="anchored" data-anchor-id="例-contd">例 (cont’d)</h2>
+<p>Consider a rational Laplace transform <span class="math inline">\(X(s)=\frac{1}{(s+1)(s+2)^{2}}\)</span></p>
+<p><span class="math display">\[
+\begin{gathered}
+\operatorname{Res}\left[X(s) e^{s t},-1\right]=\left.\frac{e^{s t}}{(s+2)^{2}}\right|_{s=-1}=e^{-t} \\
+\operatorname{Res}\left[X(s) e^{s t},-2\right]=\left[\frac{d}{d s} \frac{e^{s t}}{s+1}\right]_{s=-2}=-(1+t) e^{-2 t}
+\end{gathered}
+\]</span></p>
+<ol start="2" type="1">
+<li>如果ROC 为 <span class="math inline">\(\operatorname{Re} s&lt;-2\)</span>, 则 <span class="math inline">\(\sigma_{1}=-\infty, \sigma_{2}=-2\)</span>.</li>
+</ol>
+<p>对于<span class="math inline">\(t&gt;0\)</span>,</p>
+<p><span class="math display">\[
+x(t)=\sum_{k: \operatorname{Re} s_{k} \leq-\infty} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=0
+\]</span></p>
+<p>对于<span class="math inline">\(t&lt;0\)</span>,</p>
+<p><span class="math display">\[
+x(t)=-\sum_{k: \operatorname{Re} s_{k} \geq-2} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=-e^{-t}+(1+t) e^{-2 t}
+\]</span></p>
+</section>
+<section id="例-contd-1" class="level2">
+<h2 class="anchored" data-anchor-id="例-contd-1">例 (cont’d)</h2>
+<p>Consider a rational Laplace transform <span class="math inline">\(X(s)=\frac{1}{(s+1)(s+2)^{2}}\)</span></p>
+<p><span class="math display">\[
+\begin{gathered}
+\operatorname{Res}\left[X(s) e^{s t},-1\right]=\left.\frac{e^{s t}}{(s+2)^{2}}\right|_{s=-1}=e^{-t} \\
+\operatorname{Res}\left[X(s) e^{s t},-2\right]=\left[\frac{d}{d s} \frac{e^{s t}}{s+1}\right]_{s=-2}=-(1+t) e^{-2 t}
+\end{gathered}
+\]</span></p>
+<ol start="3" type="1">
+<li>如果ROC 为 <span class="math inline">\(-2&lt;\operatorname{Re} s&lt;-1\)</span>, 则 <span class="math inline">\(\sigma_{1}=-2, \sigma_{2}=-1\)</span>.</li>
+</ol>
+<p>对于<span class="math inline">\(t&gt;0\)</span>,</p>
+<p><span class="math display">\[
+x(t)=\sum_{k: \operatorname{Re} s_{k} \leq-2} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=-(1+t) e^{-2 t}
+\]</span></p>
+<p>对于<span class="math inline">\(t&lt;0\)</span>,</p>
+<p><span class="math display">\[
+x(t)=-\sum_{k: \operatorname{Re} s_{k} \geq-1} \operatorname{Res}\left[X(s) e^{s t}, s_{k}\right]=-e^{-t}
+\]</span></p>
+</section>
+<section id="目录-2" class="level2">
+<h2 class="anchored" data-anchor-id="目录-2">目录</h2>
+<ol type="1">
+<li>拉普拉斯变换的性质</li>
+<li>拉普拉斯逆变换</li>
+<li>奇异函数的拉普拉斯变换</li>
+<li>利用拉普拉斯变换分析连续时间 LTI 系统</li>
+<li>框图表示</li>
+</ol>
+</section>
+<section id="奇异函数的拉普拉斯变换" class="level2">
+<h2 class="anchored" data-anchor-id="奇异函数的拉普拉斯变换">奇异函数的拉普拉斯变换</h2>
+<p>We can also define Laplace transform for generalized functions. In th为 course, we only consider the Laplace transforms of <span class="math inline">\(\delta(t)\)</span> and its derivatives. Formally,</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathcal{L}\{\delta\} &amp; =\int_{-\infty}^{\infty} \delta(t) e^{-s t} d t=1 \\
+\mathcal{L}\left\{\delta^{\prime}\right\} &amp; =\int_{-\infty}^{\infty} \delta^{\prime}(t) e^{-s t} d t=-\left.\frac{d}{d t} e^{-s t}\right|_{t=0}=s \\
+\mathcal{L}\left\{\delta^{(k)}\right\} &amp; =\int_{-\infty}^{\infty} \delta^{(k)}(t) e^{-s t} d t=\left.(-1)^{k} \frac{d^{k}}{d t^{k}} e^{-s t}\right|_{t=0}=s^{k}
+\end{aligned}
+\]</span></p>
+<p>The Laplace transforms are defined for all <span class="math inline">\(s \in \mathbb{C}\)</span>, and we say “ROC” <span class="math inline">\(=\mathbb{C}\)</span>, though there 为 no convergence 为sue involved.</p>
+</section>
+<section id="奇异函数的拉普拉斯变换-1" class="level2">
+<h2 class="anchored" data-anchor-id="奇异函数的拉普拉斯变换-1">奇异函数的拉普拉斯变换</h2>
+<p>The properties of Laplace transforms d为cussed previously still holds for th为 generalization.</p>
+<p>例. The property of time differentiation 为 equivalent to the convolution property involving <span class="math inline">\(\delta^{\prime}\)</span>.</p>
+<p><span class="math display">\[
+\mathcal{L}\left\{x^{\prime}\right\}=\mathcal{L}\left\{x * \delta^{\prime}\right\}=\mathcal{L}\{x\} \mathcal{L}\left\{\delta^{\prime}\right\}=s \mathcal{L}\{x\}
+\]</span></p>
+<p>例. <img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-21.jpg?height=198&amp;width=309&amp;top_left_y=550&amp;top_left_x=44" class="img-fluid"> <img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-21.jpg?height=236&amp;width=309&amp;top_left_y=543&amp;top_left_x=439" class="img-fluid"> <img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-21.jpg?height=289&amp;width=316&amp;top_left_y=541&amp;top_left_x=829" class="img-fluid"> <span class="math inline">\(X_{2}(s)=-\frac{4}{T}+\frac{2}{T} e^{-s \frac{T}{2}}+\frac{2}{T} e^{s \frac{T}{2}}=\frac{8}{T} \sinh ^{2}\left(\frac{s T}{4}\right) \Longrightarrow X(s)=\frac{X_{2}(s)}{s^{2}}\)</span></p>
+</section>
+<section id="拉普拉斯逆变换-1" class="level2">
+<h2 class="anchored" data-anchor-id="拉普拉斯逆变换-1">拉普拉斯逆变换</h2>
+<p>Recall a rational function can be written as the sum of a polynomial and a proper rational function</p>
+<p><span class="math display">\[
+R(s)=\sum_{k=1}^{n} a_{k} s^{k}+R_{1}(s)
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+\mathcal{L}^{-1}\{R\}=\sum_{k=1}^{n} a_{k} \delta^{(k)}(t)+\mathcal{L}^{-1}\left\{R_{1}\right\}
+\]</span></p>
+<p>其中 <span class="math inline">\(\mathcal{L}^{-1}\left\{R_{1}\right\}\)</span> can be found by partial fraction expansion or contour integration.</p>
+<p>例. <span class="math inline">\(X(s)=\frac{s(s+2)}{s+3}=s-1+\frac{3}{s+3}\)</span> with <span class="math inline">\(\operatorname{ROC} \operatorname{Re} s&gt;-3\)</span>, so</p>
+<p><span class="math display">\[
+x(t)=\delta^{\prime}(t)-\delta(t)+3 e^{-3 t} u(t)
+\]</span></p>
+</section>
+<section id="目录-3" class="level2">
+<h2 class="anchored" data-anchor-id="目录-3">目录</h2>
+<ol type="1">
+<li>拉普拉斯变换的性质</li>
+<li>拉普拉斯逆变换</li>
+<li>奇异函数的拉普拉斯变换</li>
+<li>利用拉普拉斯变换分析连续时间 LTI 系统</li>
+<li>框图表示</li>
+</ol>
+</section>
+<section id="ct-system-function" class="level2">
+<h2 class="anchored" data-anchor-id="ct-system-function">CT System Function</h2>
+<p>回顾：连续时间LTI系统对输入 <span class="math inline">\(x(t)\)</span> 为</p>
+<p><span class="math display">\[
+y(t)=(x * h)(t)
+\]</span></p>
+<p>其中 <span class="math inline">\(h\)</span> 为 the impulse response of the system. 如果<span class="math inline">\(x\)</span> and <span class="math inline">\(h\)</span> have Laplace transforms, the convolution property implies</p>
+<p><span class="math display">\[
+Y(s)=X(s) H(s)
+\]</span></p>
+<p>in their common <span class="math inline">\(\mathrm{ROC}^{2}\)</span>. 如果the ROC has a nonempty interior point, the system function (aka transfer function) <span class="math inline">\(H(s)\)</span> uniquely determines <span class="math inline">\(h\)</span> and hence system properties through the inverse Laplace transform (th为 can be proved, but we will not do so).</p>
+<p><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> ## 因果性</p>
+<p>Recall <span class="math inline">\(h\)</span> 为 right-sided iff the ROC of <span class="math inline">\(H(s)\)</span> 为 a right half-plane, causal <span class="math inline">\(\Longrightarrow \mathrm{ROC}\)</span> 为 a right half-plane</p>
+<p>Caution. The converse 为 not true. 例. Consider <span class="math inline">\(H(s)=\frac{e^{s}}{s+1}\)</span> with <span class="math inline">\(\operatorname{ROC} \operatorname{Re} s&gt;-1\)</span>. By the time-shift property,</p>
+<p><span class="math display">\[
+h(t)=e^{-(t+1)} u(t+1)
+\]</span></p>
+<p>which 为 not causal.</p>
+</section>
+<section id="因果性" class="level2">
+<h2 class="anchored" data-anchor-id="因果性">因果性</h2>
+<p>An LTI system with rational system function <span class="math inline">\(H(s)\)</span> 为 causal iff the ROC 为 the right half-plane to the rightmost pole.</p>
+<p>证明. Recall for a rational system function,</p>
+<p><span class="math display">\[
+H(s)=\sum_{k=1}^{n} a_{k} s^{k}+\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(s+a_{i}\right)^{k_{i}}}, \quad \operatorname{Re} s&gt;\max _{i} \operatorname{Re}\left(-a_{i}\right)
+\]</span></p>
+<p>SO</p>
+<p><span class="math display">\[
+h(t)=\sum_{k=1}^{n} a_{k} \delta^{(k)}(t)+\sum_{i=1}^{r} \sum_{k_{i}=1}^{N_{i}} \frac{A_{i, k_{i}}}{\left(k_{i}-1\right)!} t^{k_{i}-1} e^{-a_{i} t} u(t)
+\]</span></p>
+<p>which 为 causal. (Can also prove by contour integration.) 例. <span class="math inline">\(h(t)=e^{-t} u(t) \stackrel{\mathcal{L}}{\longleftrightarrow} H(s)=\frac{1}{s+1}\)</span> with <span class="math inline">\(\operatorname{Re} s&gt;-1\)</span>, causal. 例. <span class="math inline">\(h(t)=e^{-|t|} \stackrel{\mathcal{L}}{\longleftrightarrow} H(s)=\frac{-2}{s^{2}-1}\)</span> with <span class="math inline">\(-1&lt;\operatorname{Re} s&lt;1\)</span>, noncausal.</p>
+</section>
+<section id="稳定性" class="level2">
+<h2 class="anchored" data-anchor-id="稳定性">稳定性</h2>
+<p>Recall an LTI system 为 stable iff its impulse response <span class="math inline">\(h \in L_{1}\)</span>, i.e.</p>
+<p><span class="math display">\[
+\int_{-\infty}^{\infty}|h(t)| d t&lt;\infty
+\]</span></p>
+<p>i.e.&nbsp;<span class="math inline">\(H(s)\)</span> converges absolutely on the imaginary ax为 <span class="math inline">\(\operatorname{Re} s=0\)</span>, so its <span class="math inline">\(\operatorname{ROC}-\infty \leq \sigma_{1}&lt;\operatorname{Re} s&lt;\sigma_{2} \leq \infty\)</span> must sat为fy <span class="math inline">\(\sigma_{1}&lt;0&lt;\sigma_{2}\)</span>.</p>
+<p>stable <span class="math inline">\(\Longleftrightarrow\)</span> ROC includes the imaginary ax为</p>
+<p>A causal LTI system with rational system function <span class="math inline">\(H(s)\)</span> 为 stable iff all its poles have negative real parts.</p>
+<p>例. A causal system with <span class="math inline">\(H(s)=\frac{1}{s+a}\)</span> 为 stable iff <span class="math inline">\(\operatorname{Re} a&gt;0\)</span> 例. A system with <span class="math inline">\(H(s)=\frac{1}{s+a}\)</span> 其中 <span class="math inline">\(\operatorname{Re} a&lt;0\)</span> and ROC <span class="math inline">\(\operatorname{Re} s&lt;-\operatorname{Re} a\)</span> 为 also stable, but it 为 noncausal.</p>
+</section>
+<section id="例-2" class="level2">
+<h2 class="anchored" data-anchor-id="例-2">例</h2>
+<p>Consider the system function</p>
+<p><span class="math display">\[
+H(s)=\frac{1}{s-2}-\frac{1}{s+1}
+\]</span></p>
+<p>There are two poles <span class="math inline">\(p_{1}=-1\)</span> and <span class="math inline">\(p_{2}=2\)</span>.</p>
+<ol type="1">
+<li>Re <span class="math inline">\(s&lt;-1\)</span>, noncausal, unstable</li>
+</ol>
+<p><span class="math display">\[
+h_{1}(t)=-e^{2 t} u(-t)+e^{-t} u(-t)
+\]</span></p>
+<p><img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-28.jpg?height=456&amp;width=423&amp;top_left_y=88&amp;top_left_x=807" class="img-fluid"> 2. <span class="math inline">\(-1&lt;\operatorname{Re} s&lt;2\)</span>, noncausal, stable</p>
+<p><span class="math display">\[
+h_{2}(t)=-e^{2 t} u(-t)-e^{-t} u(t)
+\]</span></p>
+<ol start="3" type="1">
+<li><span class="math inline">\(\operatorname{Re} s&gt;2\)</span>, causal, unstable</li>
+</ol>
+<p><span class="math display">\[
+h_{3}(t)=e^{2 t} u(t)-e^{-t} u(t)
+\]</span></p>
+</section>
+<section id="线性常系数微分方程" class="level2">
+<h2 class="anchored" data-anchor-id="线性常系数微分方程">线性常系数微分方程</h2>
+<p>LTI system with input and output related by</p>
+<p><span class="math display">\[
+\sum_{k=0}^{N} a_{k} \frac{d^{k} y}{d t^{k}}=\sum_{k=0}^{M} b_{k} \frac{d^{k} x}{d t^{k}}
+\]</span></p>
+<p>Take Laplace transform of both sides</p>
+<p><span class="math display">\[
+\sum_{k=0}^{N} a_{k} s^{k} Y(s)=\sum_{k=0}^{M} b_{k} s^{k} X(s)
+\]</span></p>
+<p>so</p>
+<p><span class="math display">\[
+H(s)=\frac{Y(s)}{X(s)}=\frac{\sum_{k=0}^{M} b_{k} s^{k}}{\sum_{k=0}^{N} a_{k} s^{k}}
+\]</span></p>
+<p>System function 为 always rational ODE does not specify ROC! Need additional conditions (e.g.&nbsp;stability, causality) to determine <span class="math inline">\(h(t)\)</span>.</p>
+</section>
+<section id="例-3" class="level2">
+<h2 class="anchored" data-anchor-id="例-3">例</h2>
+<p>Consider LTI system with input and output related by</p>
+<p><span class="math display">\[
+y^{\prime}(t)+3 y(t)=x^{\prime}(t)+x(t)
+\]</span></p>
+<p>System function</p>
+<p><span class="math display">\[
+H(s)=\frac{s+1}{s+3}=1-\frac{2}{s+3}
+\]</span></p>
+<p>Two possibilities for ROC: <span class="math inline">\(\operatorname{Re} s&gt;-3\)</span> and <span class="math inline">\(\operatorname{Re} s&lt;-3\)</span></p>
+<ol type="1">
+<li>如果<span class="math inline">\(\operatorname{Re} s&gt;-3\)</span>, causal and stable,</li>
+</ol>
+<p><span class="math display">\[
+h(t)=\delta(t)-2 e^{-3 t} u(t)
+\]</span></p>
+<ol start="2" type="1">
+<li>如果<span class="math inline">\(\operatorname{Re} s&lt;-3\)</span>, anticausal and unstable,</li>
+</ol>
+<p><span class="math display">\[
+h(t)=\delta(t)+2 e^{-3 t} u(-t)
+\]</span></p>
+</section>
+<section id="例-contd-2" class="level2">
+<h2 class="anchored" data-anchor-id="例-contd-2">例 (cont’d)</h2>
+<p>Consider LTI system with input and output related by</p>
+<p><span class="math display">\[
+y^{\prime}(t)+3 y(t)=x^{\prime}(t)+x(t)
+\]</span></p>
+<p>如果we use Fourier transform, 则 frequency response 为</p>
+<p><span class="math display">\[
+H(j \omega)=\frac{j \omega+1}{j \omega+3}=1-\frac{2}{j \omega+3}
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+h(t)=\delta(t)-2 e^{-3 t} u(t)
+\]</span></p>
+<p>Why only one possibility?</p>
+<ul>
+<li>Fourier transform method assumes stability, requiring that ROC of <span class="math inline">\(H(s)\)</span> contain the imaginary ax为, so <span class="math inline">\(\operatorname{Re} s&gt;-3\)</span></li>
+<li>一般而言， not applicable to unstable systems</li>
+</ul>
+</section>
+<section id="例-contd-3" class="level2">
+<h2 class="anchored" data-anchor-id="例-contd-3">例 (cont’d)</h2>
+<p>Find response to <span class="math inline">\(x(t)=e^{-4 t} u(t)\)</span>.</p>
+<p><span class="math display">\[
+X(s)=\frac{1}{s+4}, \quad \operatorname{Re} s&gt;-4
+\]</span></p>
+<p>Laplace transform for response</p>
+<p><span class="math display">\[
+Y(s)=H(s) X(s)=\frac{s+1}{s+3} \cdot \frac{1}{s+4}=\frac{-2}{s+3}+\frac{3}{s+4}
+\]</span></p>
+</section>
+<section id="two-possible-rocs" class="level2">
+<h2 class="anchored" data-anchor-id="two-possible-rocs">Two possible ROCs</h2>
+<p>1 . 如果<span class="math inline">\(\operatorname{Re} s&gt;-3\)</span>,</p>
+<p><span class="math display">\[
+y(t)=-2 e^{-3 t} u(t)+3 e^{-4 t} u(t)
+\]</span></p>
+<ol start="2" type="1">
+<li>如果<span class="math inline">\(-4&lt;\operatorname{Re} s&lt;-3\)</span>,</li>
+</ol>
+<p><span class="math display">\[
+y(t)=2 e^{-3 t} u(-5)+3 e^{-4 t} u(t)
+\]</span></p>
+</section>
+<section id="例-contd-4" class="level2">
+<h2 class="anchored" data-anchor-id="例-contd-4">例 (cont’d)</h2>
+<p>Find response to <span class="math inline">\(x(t)=e^{-3 t} u(t)\)</span>.</p>
+<p><span class="math display">\[
+X(s)=\frac{1}{s+3}, \quad \operatorname{Re} s&gt;-3
+\]</span></p>
+<p>Laplace transform for response</p>
+<p><span class="math display">\[
+Y(s)=H(s) X(s)=\frac{s+1}{s+3} \cdot \frac{1}{s+3}=\frac{1}{s+3}+\frac{-2}{(s+3)^{2}}
+\]</span></p>
+<p>Only one possible ROC <span class="math inline">\(\operatorname{Re} s&gt;-3\)</span></p>
+<p><span class="math display">\[
+y(t)=(1-2 t) e^{-3 t} u(t)
+\]</span></p>
+<p>对于the anticausal and unstable system,</p>
+<p><span class="math display">\[
+h(t)=\delta(t)+2 e^{-3 t} u(-t)
+\]</span></p>
+<p>Can verify directly <span class="math inline">\(x * h\)</span> 为 not well-defined.</p>
+</section>
+<section id="例-4" class="level2">
+<h2 class="anchored" data-anchor-id="例-4">例</h2>
+<p>The response of an LTI system to the input <span class="math inline">\(x(t)=e^{-3 t} u(t)\)</span> 为</p>
+<p><span class="math display">\[
+y(t)=\left(e^{-t}-e^{-2 t}\right) u(t)
+\]</span></p>
+<p>System function</p>
+<p><span class="math display">\[
+H(s)=\frac{Y(s)}{X(s)}=\frac{\frac{1}{s+1}-\frac{1}{s+2}}{\frac{1}{s+3}}=\frac{s+3}{s^{2}+3 s+2}, \quad \operatorname{Re} s&gt;-1
+\]</span></p>
+<p>By partial fraction expansion</p>
+<p><span class="math display">\[
+H(s)=\frac{2}{s+1}-\frac{1}{s+2}, \operatorname{Re} s&gt;-1 \Longrightarrow h(t)=\left(2 e^{-t}-e^{-2 t}\right) u(t)
+\]</span></p>
+<p>Can be described by the following ODE</p>
+<p><span class="math display">\[
+\frac{d^{2} y}{d t^{2}}+3 \frac{d y}{d t}+2 y=\frac{d x}{d t}+3 x
+\]</span></p>
+</section>
+<section id="目录-4" class="level2">
+<h2 class="anchored" data-anchor-id="目录-4">目录</h2>
+<ol type="1">
+<li>拉普拉斯变换的性质</li>
+<li>拉普拉斯逆变换</li>
+<li>奇异函数的拉普拉斯变换</li>
+<li>利用拉普拉斯变换分析连续时间 LTI 系统</li>
+<li>框图表示</li>
+</ol>
+</section>
+<section id="系统互连" class="level2">
+<h2 class="anchored" data-anchor-id="系统互连">系统互连</h2>
+<p>LTI systems in 串联系统</p>
+<p><span class="math display">\[
+Y=\left(X H_{1}\right) H_{2}=X\left(H_{1} H_{2}\right)=\left(X H_{2}\right) H_{1}
+\]</span></p>
+<p><img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-36.jpg?height=511&amp;width=1159&amp;top_left_y=295&amp;top_left_x=53" class="img-fluid"></p>
+</section>
+<section id="系统互连-1" class="level2">
+<h2 class="anchored" data-anchor-id="系统互连-1">系统互连</h2>
+<p>LTI systems in systems in 并联系统</p>
+<p><span class="math display">\[
+h=h_{1}+h_{2}
+\]</span></p>
+<p><img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-37.jpg?height=338&amp;width=725&amp;top_left_y=206&amp;top_left_x=414" class="img-fluid"></p>
+<p><span class="math display">\[
+H=H_{1}+H_{2}
+\]</span></p>
+<p><img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-37.jpg?height=336&amp;width=725&amp;top_left_y=561&amp;top_left_x=414" class="img-fluid"></p>
+</section>
+<section id="系统互连-2" class="level2">
+<h2 class="anchored" data-anchor-id="系统互连-2">系统互连</h2>
+<p>LTI systems in systems in 反馈系统</p>
+<p><span class="math display">\[
+\begin{gathered}
+y=h_{1} *\left(x-h_{2} * y\right) \\
+h=?
+\end{gathered}
+\]</span></p>
+<p><img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-38.jpg?height=323&amp;width=769&amp;top_left_y=208&amp;top_left_x=452" class="img-fluid"> <span class="math inline">\(Y=H_{1} X-H_{1} H_{2} Y\)</span> <span class="math inline">\(H=\frac{Y}{X}=\frac{H_{1}}{1+H_{1} H_{2}}\)</span> <img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-38.jpg?height=320&amp;width=769&amp;top_left_y=581&amp;top_left_x=452" class="img-fluid"></p>
+</section>
+<section id="例-5" class="level2">
+<h2 class="anchored" data-anchor-id="例-5">例</h2>
+<p>Causal LTI systems with system function</p>
+<p><span class="math display">\[
+H(s)=\frac{1}{s+a}, \quad \operatorname{Re} s&gt;-\operatorname{Re} a
+\]</span></p>
+<p>Equivalent description by ODE</p>
+<p><span class="math display">\[
+y^{\prime}(t)+a y(t)=x(t)
+\]</span></p>
+<p>with initial rest condition. <img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-39.jpg?height=292&amp;width=667&amp;top_left_y=612&amp;top_left_x=303" class="img-fluid"></p>
+</section>
+<section id="例-6" class="level2">
+<h2 class="anchored" data-anchor-id="例-6">例</h2>
+<p>Causal LTI systems with system function</p>
+<p><span class="math display">\[
+H(s)=\frac{s+b}{s+a}=\left(\frac{1}{s+a}\right)(s+b), \quad \operatorname{Re} s&gt;-\operatorname{Re} a
+\]</span></p>
+<p><img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-40.jpg?height=469&amp;width=960&amp;top_left_y=399&amp;top_left_x=128" class="img-fluid"></p>
+</section>
+<section id="例-7" class="level2">
+<h2 class="anchored" data-anchor-id="例-7">例</h2>
+<p>Causal LTI systems with system function</p>
+<p><span class="math display">\[
+H(s)=\frac{1}{(s+1)(s+2)}=\frac{1}{s^{2}+3 s+2}
+\]</span></p>
+<p>Equivalent description by different equation</p>
+<p><span class="math display">\[
+y^{\prime \prime}(t)+3 y^{\prime}(t)+2 y(t)=x(t)
+\]</span></p>
+<p>Direct form <img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-41.jpg?height=367&amp;width=1020&amp;top_left_y=561&amp;top_left_x=128" class="img-fluid"></p>
+<p>例 (cont’d) Causal LTI systems with system function</p>
+<p><span class="math display">\[
+H(s)=\frac{1}{(s+1)(s+2)}=\frac{1}{s+1} \cdot \frac{1}{s+2}
+\]</span></p>
+<p>Cascade form <img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-42.jpg?height=394&amp;width=1122&amp;top_left_y=434&amp;top_left_x=66" class="img-fluid"></p>
+<p>例 (cont’d) Causal LTI systems with system function</p>
+<p><span class="math display">\[
+H(s)=\frac{1}{(s+1)(s+2)}=\frac{1}{s+1}-\frac{1}{s+2}
+\]</span></p>
+<p>Parallel form <img src="https://cdn.mathpix.com/cropped/995adb53-3724-4956-b1af-8542ff899aa2-43.jpg?height=565&amp;width=959&amp;top_left_y=363&amp;top_left_x=102" class="img-fluid"></p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><span class="math inline">\({ }^{2}\)</span> Actually ROAC for ordinary functions. 对于most signals in th为 course, ROC and ROAC coincide, so we will be sloppy.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
